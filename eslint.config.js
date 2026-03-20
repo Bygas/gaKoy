@@ -9,7 +9,7 @@ import globals from 'globals'
 export default [
   js.configs.recommended,
 
-  // Vue 文件
+  // Vue dosyaları
   {
     files: ['**/*.vue'],
     languageOptions: {
@@ -38,7 +38,7 @@ export default [
     }
   },
 
-  // TS 文件
+  // TS dosyaları
   {
     files: ['**/*.ts', '**/*.tsx'],
     languageOptions: {
