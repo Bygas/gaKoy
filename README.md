@@ -9,11 +9,6 @@
 
   Yazı tabanlı bir kır yaşamı ve işletme oyunu. Esin kaynağı Yıldız Çiyi Vadisi’dir. Piksel üslup ve Anadolu esintili görsel dil kullanır. Tamamen istemci tarafında çalışır, sunucu gerekmez.
 
-  [![GitHub Release](https://img.shields.io/github/v/release/setube/taoyuan?style=flat&logo=github&label=Release)](https://github.com/setube/taoyuan/releases/latest)
-  [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0)
-  [![Tap Tap](https://img.shields.io/badge/TapTap-gaK%C3%B6y-18d6e0)](https://www.taptap.cn/app/816558)
-  [![Featured｜HelloGitHub](https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=e73a691ffcfa4d0e92a05912fe8c0b46&claim_uid=OCYdts5lPczHag4&theme=small)](https://hellogithub.com/repository/e73a691ffcfa4d0e92a05912fe8c0b46)
-</div>
 
 ## Oyunun Özellikleri
 
