@@ -1,191 +1,208 @@
 <div align="center">
-  <img src="images/logo.png" alt="桃源乡" width="400" />
+  <img src="images/logo.png" alt="gaKöy" width="400" />
 
-  # 桃源乡
+  # gaKöy
 
-  > 传说在群山深处，有一处与世隔绝的村落——桃源乡。
-  > 这里四季分明，民风淳朴，但近年来年轻人纷纷离去，村庄日渐冷清。
-  > 你收到一封来自已故祖父的信，信中附有一把铜钥匙和一张泛黄的地契……
+  > Rivayet olunur ki, dağların kuytusunda dünyadan kopuk bir oba vardır — gaKöy.
+  > Dört mevsim belirgindir, halkı sade ve içtendir; lakin son yıllarda gençler bir bir göçmüş, köy tenhalaşmıştır.
+  > Bir gün rahmetli dedenizden bir mektup alırsınız… İçinde bir bakır anahtar ve sararmış bir tapu vardır…
 
-  一款文字版田园模拟经营游戏，灵感来自星露谷物语，采用像素 + 中国风视觉设计。纯客户端运行，无需后端服务器。
+  Yazı tabanlı bir kır yaşamı ve işletme oyunu. Esin kaynağı Yıldız Çiyi Vadisi’dir. Piksel üslup ve Anadolu esintili görsel dil kullanır. Tamamen istemci tarafında çalışır, sunucu gerekmez.
 
   [![GitHub Release](https://img.shields.io/github/v/release/setube/taoyuan?style=flat&logo=github&label=Release)](https://github.com/setube/taoyuan/releases/latest)
   [![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0)
-  [![Tap Tap](https://img.shields.io/badge/TapTap-%E6%A1%83%E6%BA%90%E4%B9%A1-18d6e0)](https://www.taptap.cn/app/816558)
+  [![Tap Tap](https://img.shields.io/badge/TapTap-gaK%C3%B6y-18d6e0)](https://www.taptap.cn/app/816558)
   [![Featured｜HelloGitHub](https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=e73a691ffcfa4d0e92a05912fe8c0b46&claim_uid=OCYdts5lPczHag4&theme=small)](https://hellogithub.com/repository/e73a691ffcfa4d0e92a05912fe8c0b46)
 </div>
 
-## 游戏特色
+## Oyunun Özellikleri
 
-**角色创建** — 输入名字、选择性别，6 种田庄各有独特加成（溪流钓鱼加成、竹林采集加成、山丘挖矿加成等），NPC 根据性别使用不同称呼
+**Karakter Yaratımı** — Adını yaz, cinsiyetini seç; 6 ayrı yurt farklı bereket sunar (dere balıkçılığı, kamışlık toplama, dağ madenciliği gibi). Köylüler, seçtiğin kimliğe göre sana farklı hitap eder.
 
-**四季轮回** — 春耕夏种秋收冬藏，28 天一季，昼夜时段变化（6:00-次日2:00），六种天气（晴/雨/雷雨/雪/大风/绿雨）
+**Mevsim Döngüsü** — Baharda sür, yazda ek, güzde biç, kışta sakla. Her mevsim 28 gündür. Gün akışı 06:00’dan ertesi gün 02:00’ye dek sürer. Altı çeşit hava vardır (açık, yağmur, fırtına, kar, sert yel, yeşil yağmur).
 
-**田庄经营** — 38 种作物四季轮作，4×4 起步扩建至 8×8；3 种洒水器自动浇水，6 种肥料提升品质；建造温室全季种植，8 种果树 28 天挂果
+**Çiftlik Yönetimi** — 38 çeşit ürün yetiştir; 4×4’lük tarladan 8×8’lik düzene geç. 3 tür sulama düzeneği, 6 tür gübre, dört mevsim çalışan sera ve 28 günde meyve veren 8 çeşit ağaç seni bekler.
 
-**畜牧养殖** — 鸡舍（鸡/鸭/兔/鹅/鹌鹑/鸽/乌骨鸡/孔雀）+ 畜棚（牛/羊/山羊/水牛/牦牛/羊驼/鹿/鸵鸟/骆驼/驼鹿/驴），共 19 种动物，畜舍 3 级升级
+**Hayvancılık** — Kümes (tavuk, ördek, tavşan, kaz, bıldırcın, güvercin, kara tavuk, tavus kuşu) ve ağıl (inek, koyun, keçi, manda, yak, alpaka, geyik, devekuşu, deve, sığın, eşek) ile toplam 19 hayvan türü bulunur. Barınaklar 3 aşamada geliştirilir.
 
-**技能成长** — 农耕、采集、钓鱼、挖矿四大技能，等级 5 和 10 可选择专精方向
+**Beceri Gelişimi** — Tarım, toplama, balıkçılık ve madencilik olmak üzere dört ana beceri vardır. 5. ve 10. seviyede uzmanlık yolu seçilir.
 
-**乡里社交** — 34 位村民（12 位可婚 NPC），送礼、聊天、触发心事件，求婚成家、配偶助农；6 位隐藏仙灵 NPC（龙灵、桃夭、月兔、狐仙、山翁、归女），独立发现链 + 缘分系统 + 结缘奖励
+**Köy Yaşamı** — 34 köylü vardır; bunların 12’siyle evlenilebilir. Hediye ver, sohbet et, gönül olaylarını aç, ev kur, eşinin yardımıyla toprağı bereketlendir. Ayrıca 6 gizli kutlu varlık bulunur: Ejder Ruhu, Şeftali Perisi, Ay Tavşanı, Tilki Ereni, Dağ Eri ve Dönüş Kızı. Her birinin ayrı keşif zinciri, gönül bağı ve ödülü vardır.
 
-**钓鱼系统** — 6 大钓点（溪流/池塘/江河/暗河/瀑布/沼泽），60 种鱼类；实时小游戏：长按拉线控制钩子高度，进度达标即收杆；鱼饵、浮漂、蟹笼、雨天淘金
+**Balıkçılık** — 6 büyük av bölgesi bulunur (dere, gölet, ırmak, yeraltı suyu, çağlayan, bataklık) ve 60 tür balık yakalanabilir. Gerçek zamanlı mini oyunda misinayı gergin tutup iğnenin yüksekliğini ayarlarsın; ölçü dolunca avı çekersin. Yem, şamandıra, yengeç kapanı ve yağmurlu günde altın arama da vardır.
 
-**鱼塘养殖** — 建造鱼塘投放鱼苗，每日产出副产品，繁殖增殖
+**Balık Göleti** — Balık göleti kur, yavru bırak, her gün yan ürün elde et, çoğalt ve üret.
 
-**矿洞探险** — 云隐矿洞 120 层（浅层/冰霜/熔岩/水晶/暗影/深渊），每 20 层 BOSS 战，回合制战斗；通关后解锁骷髅矿穴
+**Maden Serüveni** — Yun Gizli Maden Ocağı 120 kattır (yüzey, kırağı, lav, billur, gölge, dipyar). Her 20 katta bir baş düşmanla sıra tabanlı savaş yapılır. Bitirince İskelet Ocağı açılır.
 
-**翰海沙漠** — 矿洞之外的高级冒险区域，更稀有的资源与更强的敌人
+**Kum Denizi** — Madenin ötesinde daha ileri seviye bir serüven bölgesi vardır; daha nadir kaynaklar ve daha güçlü düşmanlar burada bulunur.
 
-**烹饪系统** — 113 种食谱，烹饪料理恢复体力、生命值并获得当日增益
+**Aşçılık** — 113 tarif vardır. Pişirdiğin yemekler can, direnç ve günlük güçlendirme sağlar.
 
-**加工制造** — 21 种加工机器（酒坊/酱缸/油坊/熔炉/织布机/制茶机/药碾等），150+ 种加工配方
+**İşleme ve Üretim** — 21 tür işleme düzeneği bulunur (şaraplık, küp, yağlık, ocak, dokuma tezgâhı, çay düzeneği, ilaç taşı ve daha niceleri). 150’den fazla işleme tarifi vardır.
 
-**仓库箱子** — 5 种材质箱子（木/铜/铁/金/虚空），分类存放物品；虚空箱支持远程存取，可指定为原料箱/成品箱实现作坊自动出入料
+**Sandık Sistemi** — 5 tür sandık vardır (ahşap, bakır, demir, altın, boşluk). Eşyaları sınıflandırarak saklayabilirsin. Boşluk sandığı uzaktan erişim sunar; ham madde ve mamul sandığı olarak ayarlanıp atölyelerin giriş çıkışını otomatikleştirir.
 
-**育种系统** — 种子制造机产出育种种子，杂交培育新品种，400 种杂交配方横跨 10 代谱系
+**Tohum Yetiştirme** — Tohum ocağı yeni yetiştirme tohumları verir. Melezleme ile yeni türler doğar. 10 kuşağa yayılan 400 melez tarifi bulunur.
 
-**冒险公会** — 21 种讨伐目标，击杀怪物积累声望解锁奖励
+**Lonca** — 21 tür av hedefi vardır. Canavar avladıkça ün kazanır, yeni ödüller açarsın.
 
-**博物馆收集** — 捐赠矿物、文物与仙灵物品，集齐解锁奖励
+**Müze Koleksiyonu** — Madenler, kalıntılar ve kutlu eşyalar bağışlanır; takım tamamlandığında ödüller açılır.
 
-**装备系统** — 武器、帽子、鞋子、戒指，套装效果加成
+**Donanım Sistemi** — Silahlar, başlıklar, ayakkabılar ve yüzükler vardır; takım etkileri ek güç verir.
 
-**任务成就** — 5 章 50 个主线剧情任务、每日委托（送货/钓鱼/采矿/采集）、20 个社区任务包；109 个成就贯穿全部玩法
+**Görevler ve Başarılar** — 5 bölümden oluşan 50 ana hikâye görevi, günlük işler (teslimat, balıkçılık, madencilik, toplama), 20 topluluk görev paketi ve tüm oynanışı kapsayan 109 başarı bulunur.
 
-**程序化音乐** — Tone.js 实时合成，中国风五声音阶（宫商角徵羽）；19 首 BGM（四季+节日+小游戏+战斗+翰海），80+ 种音效；天气与时段动态修饰音色和节奏
+**Ezgi Düzeni** — Tone.js ile gerçek zamanlı ses kurulur; beş sesli Anadolu ezgisi havası taşır. 19 arka plan ezgisi ve 80’den fazla ses etkisi vardır. Hava ve gün vakti, sesin rengini ve ritmini değiştirir.
 
-## 游戏截图
+## Oyun Görselleri
 
-![游戏截图1](images/1.png)
+![Oyun Görseli 1](images/1.png)
 
-![游戏截图2](images/2.png)
+![Oyun Görseli 2](images/2.png)
 
-## 快速开始
+## Hızlı Başlangıç
 
 ```bash
-# 安装依赖
+# Bağımlılıkları kur
 pnpm install
 
-# 启动开发服务器
+# Geliştirme sunucusunu başlat
 pnpm dev
 
-# 类型检查 + 生产构建
+# Tür denetimi + üretim derlemesi
 pnpm build
 
-# 预览构建结果
+# Derlemeyi önizle
 pnpm preview
 
-# 构建 Electron 桌面客户端
+# Electron masaüstü sürümünü derle
 pnpm build:electron
-```
 
-### Docker 部署
-
-```bash
-# 方式一：使用预构建镜像（推荐）
+# Yöntem 1: Hazır imaj kullan (önerilir)
 docker run -d -p 8080:80 ghcr.io/setube/taoyuan:latest
 
-# 方式二：指定版本
+# Yöntem 2: Belirli sürüm kullan
 docker run -d -p 8080:80 ghcr.io/setube/taoyuan:<version>
 
-# 方式三：本地构建镜像
+# Yöntem 3: Yerelde imaj derle
 docker build -t taoyuan .
 docker run -d -p 8080:80 taoyuan
-```
+http://localhost:8080 adresine giderek oyunu başlatabilirsin.
+Teknoloji Yığını
+Teknoloji
+Sürüm
+Kullanım Alanı
+Vue 3
+3.5
+Birleşik API + <script setup>
+TypeScript
+5.9
+Sıkı tür denetimi
+Vite
+7
+Derleme ve geliştirme sunucusu
+Pinia
+3
+Durum yönetimi (26 store)
+TailwindCSS
+3
+Atomik biçim + CSS değişkenli tema
+Vue Router
+5
+İstemci yönlendirmesi (23 oyun paneli)
+Tone.js
+15
+Ezgi ve ses üretimi
+Electron
+39
+Masaüstü paketleme
+lucide-vue-next
+0.563
+Simge takımı
+VueUse
+14
+Birleşik yardımcı işlevler
+CryptoJS
+4
+Kayıt AES şifreleme
 
-访问 `http://localhost:8080` 即可开始游戏。
-
-## 技术栈
-
-| 技术            | 版本  | 用途                            |
-| --------------- | ----- | ------------------------------- |
-| Vue 3           | 3.5   | 组合式 API + `<script setup>`   |
-| TypeScript      | 5.9   | 严格类型检查                    |
-| Vite            | 7     | 构建与开发服务器                |
-| Pinia           | 3     | 状态管理（26 个 store）         |
-| TailwindCSS     | 3     | 原子化样式 + CSS 变量自定义主题 |
-| Vue Router      | 5     | 客户端路由（23 个游戏面板）     |
-| Tone.js         | 15    | 程序化音频合成（BGM + SFX）     |
-| Electron        | 39    | 桌面客户端打包                  |
-| lucide-vue-next | 0.563 | 图标库                          |
-| VueUse          | 14    | 组合式工具函数                  |
-| CryptoJS        | 4     | 存档 AES 加密                   |
-
-## 项目结构
-
-```
+Proje Yapısı
 src/
-├── views/              # 页面级组件
-│   ├── MainMenu.vue    # 主菜单（新游戏、存档管理、导入导出）
-│   ├── GameLayout.vue  # 游戏主布局（状态栏 + 侧栏 + 日志 + 弹窗）
-│   └── game/           # 23 个游戏面板
-│       ├── FarmView.vue        # 农场
-│       ├── AnimalView.vue      # 畜牧
-│       ├── HomeView.vue        # 家园与仓库
-│       ├── ShopView.vue        # 商店
-│       ├── NpcView.vue         # 村民社交
-│       ├── FishingView.vue     # 钓鱼
-│       ├── FishPondView.vue    # 鱼塘
-│       ├── MiningView.vue      # 矿洞
-│       ├── HanhaiView.vue      # 翰海沙漠
-│       ├── CookingView.vue     # 烹饪
-│       ├── ProcessingView.vue  # 作坊加工
-│       ├── BreedingView.vue    # 育种
-│       ├── MuseumView.vue      # 博物馆
-│       ├── GuildView.vue       # 冒险公会
-│       ├── InventoryView.vue   # 背包
-│       └── ...                 # 更多面板
-├── components/game/    # 20 个子组件（小游戏、对话框、状态栏等）
-├── stores/             # 26 个 Pinia 状态仓库
-├── composables/        # 可复用逻辑（导航、日结算、日志、音频、对话等）
-├── data/               # 40 个游戏数据模块（作物、物品、NPC、鱼类、食谱等）
-├── types/              # TypeScript 类型定义
-├── router/             # Vue Router 路由配置
-├── assets/             # 静态资源（zpix 像素字体、Logo）
-├── app.css             # 全局样式与 Tailwind 主题
-├── App.vue             # 根组件
-└── main.ts             # 应用入口
-```
+├── views/              # Sayfa düzeyi bileşenler
+│   ├── MainMenu.vue    # Ana menü (yeni oyun, kayıt yönetimi, içe-dışa aktarma)
+│   ├── GameLayout.vue  # Oyun ana yerleşimi (durum çubuğu + yan çubuk + günlük + pencere)
+│   └── game/           # 23 oyun paneli
+│       ├── FarmView.vue        # Çiftlik
+│       ├── AnimalView.vue      # Hayvancılık
+│       ├── HomeView.vue        # Yurt ve depo
+│       ├── ShopView.vue        # Dükkân
+│       ├── NpcView.vue         # Köylü ilişkileri
+│       ├── FishingView.vue     # Balıkçılık
+│       ├── FishPondView.vue    # Balık göleti
+│       ├── MiningView.vue      # Maden ocağı
+│       ├── HanhaiView.vue      # Kum Denizi
+│       ├── CookingView.vue     # Aşçılık
+│       ├── ProcessingView.vue  # Atölye işleme
+│       ├── BreedingView.vue    # Tohum yetiştirme
+│       ├── MuseumView.vue      # Müze
+│       ├── GuildView.vue       # Lonca
+│       ├── InventoryView.vue   # Çanta
+│       └── ...                 # Daha başka paneller
+├── components/game/    # 20 alt bileşen (mini oyun, konuşma kutusu, durum çubuğu vb.)
+├── stores/             # 26 Pinia durum ambarı
+├── composables/        # Yeniden kullanılabilir mantık (gezinme, gün sonu, günlük, ses, diyalog vb.)
+├── data/               # 40 oyun veri bölümü (ürün, eşya, NPC, balık, tarif vb.)
+├── types/              # TypeScript tür tanımları
+├── router/             # Vue Router yönlendirme ayarları
+├── assets/             # Durağan kaynaklar (zpix piksel yazısı, logo)
+├── app.css             # Genel biçim ve Tailwind teması
+├── App.vue             # Kök bileşen
+└── main.ts             # Uygulama girişi
 
-## 游戏系统一览
-
-| 系统     | 说明                                                                               |
-| -------- | ---------------------------------------------------------------------------------- |
-| 时间     | 年 → 季（春夏秋冬）→ 天（28天/季）→ 时段（6:00-次日2:00），六种天气                |
-| 体力     | 初始 120，所有操作消耗体力，可通过药膳提升上限至 180                               |
-| 农场     | 38 种作物，4×4→8×8 地块，3 种洒水器 + 6 种肥料，温室全季种植                       |
-| 畜牧     | 19 种动物（鸡舍 8 种 + 畜棚 11 种），畜舍 3 级升级                                 |
-| 鱼塘     | 投放鱼苗养殖，每日产出副产品，可繁殖增殖                                           |
-| 育种     | 种子制造机产出育种种子，培育高品质作物品种，400 种杂交配方横跨 10 代               |
-| 品质     | 普通/优良/精品/极品，影响售价（×1.0/×1.25/×1.5/×2.0）和送礼效果                    |
-| 背包     | 20-36 格，单格堆叠上限 99，工具栏独立                                              |
-| 仓库     | 分类箱子系统（木/铜/铁/金/虚空），虚空箱支持远程存取与作坊自动出入料               |
-| 工具     | 水壶/锄头/镐/鱼竿，三级升级（基础→铁制→精钢），降低体力消耗                        |
-| 装备     | 武器、帽子、鞋子、戒指，套装效果加成                                               |
-| 商店     | 按季节更新商品，可出售背包物品，物品品质可视化标识                                 |
-| NPC      | 34 位村民（12 位可婚）+ 6 位隐藏仙灵，好感度/缘分、心事件、节日活动，配偶/仙缘助农 |
-| 矿洞     | 云隐矿洞 120 层（6 区）+ 骷髅矿穴 + 翰海沙漠，回合制战斗，每 20 层 BOSS            |
-| 公会     | 21 种讨伐目标，击杀积累声望解锁奖励                                                |
-| 博物馆   | 捐赠矿物、文物与仙灵物品（40 件），集齐解锁奖励                                    |
-| 任务     | 5 章 50 个主线任务 + 每日委托 + 20 个社区任务包，109 个成就                        |
-| 存档     | 3 个存档槽位（localStorage + AES 加密），每日自动保存，支持导入导出、WebDAV 云同步 |
-| 音乐音效 | Tone.js 程序化合成，五声音阶 19 首 BGM + 80 余种音效，天气/时段动态修饰            |
-
-## 设计规范
-
-- **配色**：传统中国色系（墨色背景 #1a1a1a、赤金强调 #c8a45c、朱红警告 #c34043、竹青成功 #5a9e6f）
-- **字体**：zpix 像素字体，关闭字体平滑
-- **UI 风格**：扁平硬边按钮、1px 细边框、最大 2px 圆角、4px 倍数间距
-- **响应式**：移动端底部导航 + 桌面端侧边栏，768px 断点
-
-## 交流
-
-- QQ 群：[920930589](https://qm.qq.com/q/2BVaTTwDkI)
-- GitHub：[https://github.com/setube/taoyuan](https://github.com/setube/taoyuan)
-
-## 许可证
-
-本项目采用 [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/deed.zh-hans) 许可协议。
-
-允许自由共享和演绎，但 **未经作者书面授权，禁止用于任何商业目的**。详见 [LICENSE](LICENSE) 文件。
+Oyun Sistemleri Özeti
+Sistem
+Açıklama
+Zaman
+Yıl → mevsim (bahar, yaz, güz, kış) → gün (28 gün/mevsim) → vakit (06:00–ertesi gün 02:00)
+Direnç
+Başlangıçta 120; tüm işler direnç tüketir; özel yemeklerle üst sınır 180’e çıkar
+Çiftlik
+38 ürün, 4×4 → 8×8 tarla, 3 sulama düzeneği + 6 gübre, sera ile dört mevsim ekim
+Hayvancılık
+19 hayvan türü (8 kümes + 11 ağıl), 3 aşamalı barınak yükseltmesi
+Balık Göleti
+Yavru bırak, üret, yan ürün al, çoğalt
+Tohum Yetiştirme
+Tohum ocağı ile yeni tohumlar, yüksek nitelikli türler, 400 melez tarifi
+Nitelik
+Sıradan / iyi / seçkin / üstün; satış değeri ve hediye etkisini değiştirir
+Çanta
+20–36 göz, göz başı 99 yığın sınırı, araç çubuğu ayrıdır
+Depo
+Ahşap / bakır / demir / altın / boşluk sandıkları; boşluk sandığı uzaktan erişim sağlar
+Araçlar
+Suluk / çapa / kazma / olta; 3 aşamalı yükseltme ile direnç tüketimi azalır
+Donanım
+Silah, başlık, ayakkabı, yüzük; takım etkileri vardır
+Dükkân
+Mevsime göre ürün değişir; çantadaki eşyalar satılabilir; nitelik işaretleri görünür
+NPC
+34 köylü (12 evlenilebilir) + 6 gizli kutlu varlık; gönül bağı, olaylar, şenlikler
+Maden
+Yun Gizli Maden Ocağı 120 kat + İskelet Ocağı + Kum Denizi; sıra tabanlı savaş, baş düşman
+Lonca
+21 av hedefi; düşman kestikçe ün artar ve ödüller açılır
+Müze
+Maden, kalıntı ve kutlu eşyalar bağışlanır; takım tamamlanınca ödül açılır
+Görev
+5 bölüm 50 ana görev + günlük işler + 20 topluluk paketi + 109 başarı
+Kayıt
+3 kayıt yuvası (localStorage + AES), günlük otomatik kayıt, içe-dışa aktarma, WebDAV eşitleme
+Müzik ve Ses
+Tone.js ile ezgi üretimi; 19 arka plan ezgisi + 80’den fazla ses; hava ve vakte göre değişim
+Tasarım Ölçüleri
+Renkler: Geleneksel tonlar (koyu zemin #1a1a1a, altın vurgu #c8a45c, kızıl uyarı #c34043, kamış yeşili başarı #5a9e6f)
+Yazı: zpix piksel yazısı, yazı yumuşatma kapalı
+Arayüz: Düz ve sert kenarlı düğmeler, 1px ince çerçeve, en çok 2px köşe yuvarlama, 4px katlı boşluk sistemi
+Uyarlama: Mobilde alt gezinme, masaüstünde yan çubuk; kırılma noktası 768px
