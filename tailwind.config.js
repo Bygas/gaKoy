@@ -14,21 +14,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: themeColor('bg'),
-        panel: themeColor('panel'),
-        text: themeColor('text'),
-        accent: '#c8a45c',
-        danger: '#c34043',
-        success: '#5a9e6f',
-        water: '#4c6e8a',
-        earth: '#8b6914',
-        muted: '#6b7280',
-        'quality-fine': '#d4976a',
-        'quality-excellent': '#a8c4d4',
-        'quality-supreme': '#ffd700'
+        bg: themeColor('bg'),        // Arka plan
+        panel: themeColor('panel'),  // Panel yüzeyi
+        text: themeColor('text'),    // Metin rengi
+        accent: '#c8a45c',           // Vurgu (altın ton)
+        danger: '#c34043',           // Tehlike
+        success: '#5a9e6f',          // Başarı
+        water: '#4c6e8a',            // Su tonu
+        earth: '#8b6914',            // Toprak tonu
+        muted: '#6b7280',            // Soluk renk
+        'quality-fine': '#d4976a',       // Kalite: İyi
+        'quality-excellent': '#a8c4d4',  // Kalite: Pekiyi
+        'quality-supreme': '#ffd700'     // Kalite: Efsane
       },
       fontFamily: {
-        game: ['zpix', 'monospace']
+        game: ['zpix', 'monospace'] // Oyun yazı tipi
       },
       spacing: {
         30: '7.5rem',
@@ -41,7 +41,7 @@ export default {
         36: '36'
       },
       borderRadius: {
-        xs: '0.125rem'
+        xs: '0.125rem' // Çok küçük köşe yuvarlama
       },
       zIndex: {
         60: '60',
