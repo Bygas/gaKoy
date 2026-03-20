@@ -78,8 +78,8 @@ export type TipNpcId = (typeof TIP_NPC_IDS)[number]
 
 /** NPC提示标签 */
 export const TIP_NPC_LABELS: Record<TipNpcId, string> = {
-  Balıkçı Dede: '天气预报',
-  Hoca Efendi: '今日运势',
-  Fatma Teyze: '食谱推荐',
-  Muhtar Mehmet: '生活提示'
+  'Balıkçı Dede': '天气预报',
+  'Hoca Efendi': '今日运势',
+  'Fatma Teyze': '食谱推荐',
+  'Muhtar Mehmet': '生活提示'
 }
