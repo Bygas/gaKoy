@@ -7,7 +7,7 @@
       "@/*": ["./src/*"]
     },
 
-    /* Linting */
+    /* Kod denetimi */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
