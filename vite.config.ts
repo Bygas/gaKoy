@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import legacy from '@vitejs/plugin-legacy'
 
-/** Dev-only：WebDAV 反向代理，绕过浏览器 CORS */
+/** Yalnızca geliştirme için: WebDAV ters vekili, tarayıcı CORS engelini aşar */
 const webdavProxy = (): Plugin => ({
   name: 'webdav-proxy',
   configureServer(server) {
@@ -11,7 +11,7 @@ const webdavProxy = (): Plugin => ({
       const targetUrl = req.headers['x-webdav-url'] as string | undefined
       if (!targetUrl) {
         res.statusCode = 400
-        res.end('Missing x-webdav-url header')
+        res.end('x-webdav-url başlığı eksik')
         return
       }
       try {
@@ -24,7 +24,7 @@ const webdavProxy = (): Plugin => ({
         }
         fwdHeaders.host = url.host
         const proxyReq = mod.request(url, { method: req.method, headers: fwdHeaders }, (proxyRes) => {
-          // 剥离 WWW-Authenticate 防止浏览器弹出原生认证对话框
+          // Tarayıcının yerel kimlik doğrulama penceresi açılmasın diye WWW-Authenticate başlığını kaldır
           const respHeaders = { ...proxyRes.headers }
           delete respHeaders['www-authenticate']
           res.writeHead(proxyRes.statusCode!, respHeaders)
@@ -32,12 +32,12 @@ const webdavProxy = (): Plugin => ({
         })
         proxyReq.on('error', () => {
           res.statusCode = 502
-          res.end('Proxy error')
+          res.end('Vekil sunucu hatası')
         })
         req.pipe(proxyReq)
       } catch {
         res.statusCode = 500
-        res.end('Internal proxy error')
+        res.end('İç vekil sunucu hatası')
       }
     })
   }
