@@ -1,13 +1,13 @@
 import type { NpcDef } from '@/types'
 
-/** 所有NPC定义 */
+/** Tüm NPC tanımları */
 export const NPCS: NpcDef[] = [
   // ============================================================
-  // 原有 NPC (6)
+  // Mevcut NPC'ler (6)
   // ============================================================
   {
-    id: 'Hasan Enişte',
-    name: '陈伯',
+    id: 'chen_bo',
+    name: 'Hasan Enişte',
     gender: 'male',
     role: '万物铺老板',
     personality: '热心豪爽',
@@ -23,8 +23,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Elif',
-    name: '柳娘',
+    id: 'liu_niang',
+    name: 'Elif',
     gender: 'female',
     role: '村长的女儿',
     personality: '温柔聪慧',
@@ -39,7 +39,7 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['和{title}聊天总是很开心……', '这朵花送给你，是我在山上找到的。']
     },
     marriageable: true,
-    heartEventIds: ['Elif_heart_3', 'Elif_heart_5', 'Elif_heart_8'],
+    heartEventIds: ['liu_niang_heart_3', 'liu_niang_heart_5', 'liu_niang_heart_8'],
     datingDialogues: [
       '今天想和{player}一起去溪边散步呢。',
       '{title}，我给你绣了个香囊，随身带着吧。',
@@ -50,11 +50,11 @@ export const NPCS: NpcDef[] = [
       '有些话只想说给知己听……{title}，谢谢你一直在。',
       '红颜知己，一世难求。遇见{player}是我的福气。'
     ],
-    zhijiHeartEventIds: ['Elif_zhiji_7', 'Elif_zhiji_9']
+    zhijiHeartEventIds: ['liu_niang_zhiji_7', 'liu_niang_zhiji_9']
   },
   {
-    id: 'İsmail',
-    name: '阿石',
+    id: 'a_shi',
+    name: 'İsmail',
     gender: 'male',
     role: '矿工',
     personality: '沉默寡言',
@@ -69,18 +69,18 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['……{player}是我第一个朋友。', '最深处的宝藏……我只告诉{title}。']
     },
     marriageable: true,
-    heartEventIds: ['İsmail_heart_3', 'İsmail_heart_5', 'İsmail_heart_8'],
+    heartEventIds: ['a_shi_heart_3', 'a_shi_heart_5', 'a_shi_heart_8'],
     datingDialogues: [
       '……{player}，这块矿石很漂亮。像你的眼睛。',
       '以前觉得矿洞最好，现在……有{title}在的地方更好。',
       '我不太会说话……但{player}在身边就够了。'
     ],
     zhijiDialogues: ['……有你在旁边挖矿，效率好像变高了。', '{player}，这块矿石……只有知己才配拥有。', '不用说话也很自在……这就是知己吧。'],
-    zhijiHeartEventIds: ['İsmail_zhiji_7', 'İsmail_zhiji_9']
+    zhijiHeartEventIds: ['a_shi_zhiji_7', 'a_shi_zhiji_9']
   },
   {
-    id: 'Aylin',
-    name: '秋月',
+    id: 'qiu_yue',
+    name: 'Aylin',
     gender: 'female',
     role: '渔家女',
     personality: '活泼开朗',
@@ -95,7 +95,7 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['以后一起去钓鱼好不好？每天都去！', '{title}是我见过最厉害的钓手！嘿嘿。']
     },
     marriageable: true,
-    heartEventIds: ['Aylin_heart_3', 'Aylin_heart_5', 'Aylin_heart_8'],
+    heartEventIds: ['qiu_yue_heart_3', 'qiu_yue_heart_5', 'qiu_yue_heart_8'],
     datingDialogues: [
       '{player}！今天的夕阳好美，我们一起看嘛！',
       '嘿嘿，{title}是我的了，别人不许抢。',
@@ -106,11 +106,11 @@ export const NPCS: NpcDef[] = [
       '嘿嘿，有什么心事都可以跟我说！我们可是知己！',
       '以后不管去哪儿，都带上{title}！'
     ],
-    zhijiHeartEventIds: ['Aylin_zhiji_7', 'Aylin_zhiji_9']
+    zhijiHeartEventIds: ['qiu_yue_zhiji_7', 'qiu_yue_zhiji_9']
   },
   {
-    id: 'Hekim Dede',
-    name: '林老',
+    id: 'lin_lao',
+    name: 'Hekim Dede',
     gender: 'male',
     role: '老中医',
     personality: '慈祥博学',
@@ -126,8 +126,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Mıstık',
-    name: '小满',
+    id: 'xiao_man',
+    name: 'Mıstık',
     gender: 'male',
     role: '木匠学徒',
     personality: '调皮好奇',
@@ -144,11 +144,11 @@ export const NPCS: NpcDef[] = [
   },
 
   // ============================================================
-  // 新增可婚 NPC (9) — 总计 12 可婚
+  // Yeni evlenilebilir NPC'ler (9)
   // ============================================================
   {
-    id: 'Bahar',
-    name: '春兰',
+    id: 'chun_lan',
+    name: 'Bahar',
     gender: 'female',
     role: '茶庄女主人',
     personality: '温婉端庄',
@@ -163,7 +163,7 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['和{title}品茶的时光，是我一天中最期待的事。', '这盏茶，只为{player}而泡。']
     },
     marriageable: true,
-    heartEventIds: ['Bahar_heart_3', 'Bahar_heart_5', 'Bahar_heart_8'],
+    heartEventIds: ['chun_lan_heart_3', 'chun_lan_heart_5', 'chun_lan_heart_8'],
     datingDialogues: [
       '这盏茶，是我为{player}特别调配的，尝尝看。',
       '和{title}品茶的午后，是我最珍贵的时光。',
@@ -174,11 +174,11 @@ export const NPCS: NpcDef[] = [
       '茶庄的事，以前只有我一个人扛。有{title}在，轻松了许多。',
       '红颜知己共品茗，人生至乐莫过于此。'
     ],
-    zhijiHeartEventIds: ['Bahar_zhiji_7', 'Bahar_zhiji_9']
+    zhijiHeartEventIds: ['chun_lan_zhiji_7', 'chun_lan_zhiji_9']
   },
   {
-    id: 'Nazan',
-    name: '雪芹',
+    id: 'xue_qin',
+    name: 'Nazan',
     gender: 'female',
     role: '画师',
     personality: '孤傲清高',
@@ -193,7 +193,7 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['以前觉得世间无人懂我的画……直到遇见{player}。', '这幅画是为{title}画的，收好。']
     },
     marriageable: true,
-    heartEventIds: ['Nazan_heart_3', 'Nazan_heart_5', 'Nazan_heart_8'],
+    heartEventIds: ['xue_qin_heart_3', 'xue_qin_heart_5', 'xue_qin_heart_8'],
     datingDialogues: [
       '……{player}，你别动，让我画下你现在的样子。',
       '以前只在画里找美，现在……{title}比画更美。',
@@ -204,11 +204,11 @@ export const NPCS: NpcDef[] = [
       '这幅画的主题是「知音」……灵感来自{player}。',
       '以前觉得世间无人懂我。现在不这么想了。'
     ],
-    zhijiHeartEventIds: ['Nazan_zhiji_7', 'Nazan_zhiji_9']
+    zhijiHeartEventIds: ['xue_qin_zhiji_7', 'xue_qin_zhiji_9']
   },
   {
-    id: 'Suna',
-    name: '素素',
+    id: 'su_su',
+    name: 'Suna',
     gender: 'female',
     role: '裁缝',
     personality: '娴静手巧',
@@ -223,7 +223,7 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['{player}穿我做的衣服，是我最开心的事。', '以后我只给{title}一个人做衣裳。']
     },
     marriageable: true,
-    heartEventIds: ['Suna_heart_3', 'Suna_heart_5', 'Suna_heart_8'],
+    heartEventIds: ['su_su_heart_3', 'su_su_heart_5', 'su_su_heart_8'],
     datingDialogues: [
       '我在给{player}做一件衣裳，每一针都是心意。',
       '{title}穿上我做的衣服时，是我最幸福的时刻。',
@@ -234,11 +234,11 @@ export const NPCS: NpcDef[] = [
       '有心事的时候，想到{title}就安心了。',
       '知己之间不需要太多言语……但我还是想多和{player}说说话。'
     ],
-    zhijiHeartEventIds: ['Suna_zhiji_7', 'Suna_zhiji_9']
+    zhijiHeartEventIds: ['su_su_zhiji_7', 'su_su_zhiji_9']
   },
   {
-    id: 'Zeyno',
-    name: '红豆',
+    id: 'hong_dou',
+    name: 'Zeyno',
     gender: 'female',
     role: '酒庄女',
     personality: '豪爽大方',
@@ -253,7 +253,7 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['全村就{title}你配得上喝我的珍藏。', '{player}在，酒才香。']
     },
     marriageable: true,
-    heartEventIds: ['Zeyno_heart_3', 'Zeyno_heart_5', 'Zeyno_heart_8'],
+    heartEventIds: ['hong_dou_heart_3', 'hong_dou_heart_5', 'hong_dou_heart_8'],
     datingDialogues: [
       '{player}！来，陪我喝一杯！今天的酒特别甜。',
       '嘿，{title}，你是唯一能让我脸红的人。',
@@ -264,11 +264,11 @@ export const NPCS: NpcDef[] = [
       '全天下能跟我拼酒的只有{title}！这就是知己！',
       '有你这个知己，酒再烈也是甜的。'
     ],
-    zhijiHeartEventIds: ['Zeyno_zhiji_7', 'Zeyno_zhiji_9']
+    zhijiHeartEventIds: ['hong_dou_zhiji_7', 'hong_dou_zhiji_9']
   },
   {
-    id: 'Cemil',
-    name: '丹青',
+    id: 'dan_qing',
+    name: 'Cemil',
     gender: 'male',
     role: '书生',
     personality: '儒雅温文',
@@ -283,7 +283,7 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['若非遇见{player}，我早已离开此地了。', '笔墨纸砚，不如{title}一笑。']
     },
     marriageable: true,
-    heartEventIds: ['Cemil_heart_3', 'Cemil_heart_5', 'Cemil_heart_8'],
+    heartEventIds: ['dan_qing_heart_3', 'dan_qing_heart_5', 'dan_qing_heart_8'],
     datingDialogues: [
       '今日写了一首词，是关于{player}的……要听吗？',
       '遇见{title}之前，我以为此生只与书卷为伴。',
@@ -294,11 +294,11 @@ export const NPCS: NpcDef[] = [
       '今日又写了一篇新文，第一个想给{title}看。',
       '有{player}这般知己，纵使布衣一生，又有何憾？'
     ],
-    zhijiHeartEventIds: ['Cemil_zhiji_7', 'Cemil_zhiji_9']
+    zhijiHeartEventIds: ['dan_qing_zhiji_7', 'dan_qing_zhiji_9']
   },
   {
-    id: 'Demir',
-    name: '阿铁',
+    id: 'a_tie',
+    name: 'Demir',
     gender: 'male',
     role: '铁匠学徒',
     personality: '憨厚老实',
@@ -313,7 +313,7 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['{player}……谢谢你一直鼓励我。', '等我出师了，第一件作品送给{title}。']
     },
     marriageable: true,
-    heartEventIds: ['Demir_heart_3', 'Demir_heart_5', 'Demir_heart_8'],
+    heartEventIds: ['a_tie_heart_3', 'a_tie_heart_5', 'a_tie_heart_8'],
     datingDialogues: [
       '我、我给{player}打了个铁花……不好看的话就扔掉吧……',
       '有{title}在旁边看着我打铁，感觉锤子都轻了。',
@@ -324,11 +324,11 @@ export const NPCS: NpcDef[] = [
       '我给你打了个新工具，比、比给别人的都结实！',
       '{title}是我最好的兄弟！……啊不，是知己！'
     ],
-    zhijiHeartEventIds: ['Demir_zhiji_7', 'Demir_zhiji_9']
+    zhijiHeartEventIds: ['a_tie_zhiji_7', 'a_tie_zhiji_9']
   },
   {
-    id: 'Baran',
-    name: '云飞',
+    id: 'yun_fei',
+    name: 'Baran',
     gender: 'male',
     role: '猎人',
     personality: '桀骜不羁',
@@ -343,18 +343,18 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['我这辈子不信任何人……除了{player}。', '{title}，跟我一起守这片山林吧。']
     },
     marriageable: true,
-    heartEventIds: ['Baran_heart_3', 'Baran_heart_5', 'Baran_heart_8'],
+    heartEventIds: ['yun_fei_heart_3', 'yun_fei_heart_5', 'yun_fei_heart_8'],
     datingDialogues: [
       '……{player}，今天的月色不错。陪我坐一会儿。',
       '以前我只信自己。现在……也信{title}了。',
       '这座山，以后和{player}一起守。'
     ],
     zhijiDialogues: ['……以前不信任何人。但你不同，{player}。', '进山的路，只带你一个人走过。这就够了。', '知己……比朋友重，不输兄弟。'],
-    zhijiHeartEventIds: ['Baran_zhiji_7', 'Baran_zhiji_9']
+    zhijiHeartEventIds: ['yun_fei_zhiji_7', 'yun_fei_zhiji_9']
   },
   {
-    id: 'İbo',
-    name: '大牛',
+    id: 'da_niu',
+    name: 'İbo',
     gender: 'male',
     role: '牧场小伙',
     personality: '憨直热情',
@@ -369,7 +369,7 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['{player}是我见过最会照顾动物的人！', '{title}，将来咱们合开一个大牧场怎么样？']
     },
     marriageable: true,
-    heartEventIds: ['İbo_heart_3', 'İbo_heart_5', 'İbo_heart_8'],
+    heartEventIds: ['da_niu_heart_3', 'da_niu_heart_5', 'da_niu_heart_8'],
     datingDialogues: [
       '{player}！今天小牛犊出生了！我第一个想告诉你！',
       '嘿嘿，和{title}在一起比和牛在一起还开心！',
@@ -380,11 +380,11 @@ export const NPCS: NpcDef[] = [
       '有你陪我看牛、淋雨、赶羊……比什么都开心！',
       '咱俩以后合开牧场吧！知己搭伙，天下无敌！'
     ],
-    zhijiHeartEventIds: ['İbo_zhiji_7', 'İbo_zhiji_9']
+    zhijiHeartEventIds: ['da_niu_zhiji_7', 'da_niu_zhiji_9']
   },
   {
-    id: 'Mahir',
-    name: '墨白',
+    id: 'mo_bai',
+    name: 'Mahir',
     gender: 'male',
     role: '乐师',
     personality: '文静忧郁',
@@ -399,7 +399,7 @@ export const NPCS: NpcDef[] = [
       bestFriend: ['这首曲子没有名字……因为它是为{player}而作的。', '{title}是我的知音。']
     },
     marriageable: true,
-    heartEventIds: ['Mahir_heart_3', 'Mahir_heart_5', 'Mahir_heart_8'],
+    heartEventIds: ['mo_bai_heart_3', 'mo_bai_heart_5', 'mo_bai_heart_8'],
     datingDialogues: [
       '……{player}，这首曲子只弹给你听。',
       '以前总觉得音乐是孤独的……遇见{title}才明白，也可以是温暖的。',
@@ -410,15 +410,15 @@ export const NPCS: NpcDef[] = [
       '为你谱的曲子越来越多了……知己的力量真奇妙。',
       '有{title}在的日子，琴声都变得温暖了。'
     ],
-    zhijiHeartEventIds: ['Mahir_zhiji_7', 'Mahir_zhiji_9']
+    zhijiHeartEventIds: ['mo_bai_zhiji_7', 'mo_bai_zhiji_9']
   },
 
   // ============================================================
-  // 不可婚 NPC (22) — 总计 22 不可婚
+  // Evlenilemez NPC'ler
   // ============================================================
   {
-    id: 'Fatma Teyze',
-    name: '王大婶',
+    id: 'wang_dashen',
+    name: 'Fatma Teyze',
     gender: 'female',
     role: '村里的厨娘',
     personality: '热心善良',
@@ -434,8 +434,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Mustafa Usta',
-    name: '赵木匠',
+    id: 'zhao_mujiang',
+    name: 'Mustafa Usta',
     gender: 'male',
     role: '木匠师傅',
     personality: '严厉认真',
@@ -451,8 +451,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Ali Usta',
-    name: '孙铁匠',
+    id: 'sun_tiejiang',
+    name: 'Ali Usta',
     gender: 'male',
     role: '铁匠',
     personality: '粗犷豪迈',
@@ -468,8 +468,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Emine Nine',
-    name: '张婆婆',
+    id: 'zhang_popo',
+    name: 'Emine Nine',
     gender: 'female',
     role: '织布老人',
     personality: '慈祥唠叨',
@@ -485,8 +485,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Balıkçı Dede',
-    name: '李渔翁',
+    id: 'li_yu',
+    name: 'Balıkçı Dede',
     gender: 'male',
     role: '老渔翁',
     personality: '淡泊悠闲',
@@ -502,8 +502,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Hoca Efendi',
-    name: '周秀才',
+    id: 'zhou_xiucai',
+    name: 'Hoca Efendi',
     gender: 'male',
     role: '私塾先生',
     personality: '迂腐可爱',
@@ -519,8 +519,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Nuriye Teyze',
-    name: '吴婶',
+    id: 'wu_shen',
+    name: 'Nuriye Teyze',
     gender: 'female',
     role: '杂货帮工',
     personality: '精明世故',
@@ -536,8 +536,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Seyyar Salih',
-    name: '马六',
+    id: 'ma_liu',
+    name: 'Seyyar Salih',
     gender: 'male',
     role: '货郎',
     personality: '油嘴滑舌',
@@ -553,8 +553,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Bekçi Osman',
-    name: '老宋',
+    id: 'lao_song',
+    name: 'Bekçi Osman',
     gender: 'male',
     role: '守夜人',
     personality: '沉稳寡言',
@@ -570,8 +570,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Hatice Abla',
-    name: '胖婶',
+    id: 'pang_shen',
+    name: 'Hatice Abla',
     gender: 'female',
     role: '豆腐坊老板',
     personality: '泼辣爽快',
@@ -587,8 +587,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Zehra',
-    name: '阿花',
+    id: 'a_hua',
+    name: 'Zehra',
     gender: 'female',
     role: '陈伯的孙女',
     personality: '天真烂漫',
@@ -604,8 +604,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Yaman',
-    name: '石头',
+    id: 'shi_tou',
+    name: 'Yaman',
     gender: 'male',
     role: '村里顽童',
     personality: '调皮捣蛋',
@@ -621,8 +621,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Meryem',
-    name: '慧娘',
+    id: 'hui_niang',
+    name: 'Meryem',
     gender: 'female',
     role: '绣庄老板',
     personality: '坚韧温和',
@@ -638,8 +638,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Rıza Dayı',
-    name: '老陆',
+    id: 'lao_lu',
+    name: 'Rıza Dayı',
     gender: 'male',
     role: '酒窖老板',
     personality: '嗜酒好客',
@@ -655,8 +655,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Muhtar Mehmet',
-    name: '柳村长',
+    id: 'liu_cunzhang',
+    name: 'Muhtar Mehmet',
     gender: 'male',
     role: '村长',
     personality: '威严公正',
@@ -672,8 +672,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Yasemin',
-    name: '钱娘',
+    id: 'qian_niang',
+    name: 'Yasemin',
     gender: 'female',
     role: '药铺学徒',
     personality: '害羞温顺',
@@ -689,8 +689,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Kahveci Bekir',
-    name: '何掌柜',
+    id: 'he_zhanggui',
+    name: 'Kahveci Bekir',
     gender: 'male',
     role: '茶楼掌柜',
     personality: '圆滑健谈',
@@ -706,8 +706,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Kemal Amca',
-    name: '秦大叔',
+    id: 'qin_dashu',
+    name: 'Kemal Amca',
     gender: 'male',
     role: '果园主人',
     personality: '朴实勤劳',
@@ -723,8 +723,8 @@ export const NPCS: NpcDef[] = [
     }
   },
   {
-    id: 'Ufuk',
-    name: '阿福',
+    id: 'a_fu',
+    name: 'Ufuk',
     gender: 'male',
     role: '放牛娃',
     personality: '憨厚乐观',
@@ -741,7 +741,7 @@ export const NPCS: NpcDef[] = [
   }
 ]
 
-/** 根据ID获取NPC定义 */
+/** ID ile NPC bul */
 export const getNpcById = (id: string): NpcDef | undefined => {
   return NPCS.find(n => n.id === id)
-}
+        }
