@@ -36,22 +36,21 @@ import type { MorningEffect } from '@/data/farmEvents'
 import router from '@/router'
 
 const NPC_NAME_MAP: Record<string, string> = {
-const NPC_NAME_MAP: Record<string, string> = {
   'Hasan Enişte': '陈伯',
-  'Elif': '柳娘',
+  Elif: '柳娘',
   'İsmail': '阿石',
-  'Aylin': '秋月',
+  Aylin: '秋月',
   'Hekim Dede': '林老',
   'Mıstık': '小满',
-  'Bahar': '春兰',
-  'Nazan': '雪芹',
-  'Suna': '素素',
-  'Zeyno': '红豆',
-  'Cemil': '丹青',
-  'Demir': '阿铁',
-  'Baran': '云飞',
+  Bahar: '春兰',
+  Nazan: '雪芹',
+  Suna: '素素',
+  Zeyno: '红豆',
+  Cemil: '丹青',
+  Demir: '阿铁',
+  Baran: '云飞',
   'İbo': '大牛',
-  'Mahir': '墨白',
+  Mahir: '墨白',
   'Fatma Teyze': '王大婶',
   'Mustafa Usta': '赵木匠',
   'Ali Usta': '孙铁匠',
@@ -62,15 +61,15 @@ const NPC_NAME_MAP: Record<string, string> = {
   'Seyyar Salih': '马六',
   'Bekçi Osman': '老宋',
   'Hatice Abla': '胖婶',
-  'Zehra': '阿花',
-  'Yaman': '石头',
-  'Meryem': '慧娘',
+  Zehra: '阿花',
+  Yaman: '石头',
+  Meryem: '慧娘',
   'Rıza Dayı': '老陆',
   'Muhtar Mehmet': '柳村长',
-  'Yasemin': '钱娘',
+  Yasemin: '钱娘',
   'Kahveci Bekir': '何掌柜',
   'Kemal Amca': '秦大叔',
-  'Ufuk': '阿福'
+  Ufuk: '阿福'
 }
 
 const getNpcName = (npcId: string): string => {
@@ -110,7 +109,7 @@ const NPC_RECIPE_MAP: { npcId: string; level: 'acquaintance' | 'friendly' | 'bes
 /** 结婚食谱映射 */
 const MARRIAGE_RECIPE_MAP: Record<string, string> = {
   Elif: 'phoenix_cake',
-  İsmail: 'molten_hotpot',
+  'İsmail': 'molten_hotpot',
   Aylin: 'moonlight_sashimi',
   Bahar: 'tea_banquet',
   Nazan: 'snow_plum_soup',
@@ -119,7 +118,7 @@ const MARRIAGE_RECIPE_MAP: Record<string, string> = {
   Cemil: 'scholars_porridge',
   Demir: 'ironforge_stew',
   Baran: 'hunters_roast',
-  İbo: 'ranch_milk_soup',
+  'İbo': 'ranch_milk_soup',
   Mahir: 'moonlit_tea_rice'
 }
 
@@ -1027,7 +1026,7 @@ export const handleEndDay = () => {
         tutorialStore.markTipShown(tip.id)
         if (tip.conditionKey === 'firstRainyDay') tutorialStore.setFlag('seenRain')
         if (tip.conditionKey === 'justChangedSeason') tutorialStore.setFlag('seenSeasonChange')
-        break // 每天只显示一条
+        break
       }
     }
     // 清除临时标记
@@ -1080,12 +1079,11 @@ export const handleEndDay = () => {
   if (gameStore.farmMapType === 'wilderness') {
     const orePool = ['copper_ore', 'iron_ore', 'gold_ore']
     const randomOre = orePool[Math.floor(Math.random() * orePool.length)]!
-    const qty = 2 + Math.floor(Math.random() * 2) // 2-3
+    const qty = 2 + Math.floor(Math.random() * 2)
     inventoryStore.addItem(randomOre, qty)
     const oreDef = getItemById(randomOre)
     addLog(`荒野中发现了${qty}个${oreDef?.name ?? randomOre}。`)
 
-    // 夜间野兽遭遇（25%概率）
     if (Math.random() < 0.25) {
       const combatLevel = skillStore.getSkill('combat').level
       const winRate = Math.min(0.95, 0.5 + combatLevel * 0.05)
@@ -1098,7 +1096,7 @@ export const handleEndDay = () => {
         const lootName = getItemById(loot)?.name ?? loot
         addLog(`夜间有野兽入侵！你奋力击退了它，缴获了${lootQty}个${lootName}。`)
       } else {
-        const damage = 5 + Math.floor(Math.random() * 11) // 5-15
+        const damage = 5 + Math.floor(Math.random() * 11)
         playerStore.takeDamage(damage)
         const crops = farmStore.plots.filter(p => p.state === 'growing' || p.state === 'harvestable')
         if (crops.length > 0) {
@@ -1118,7 +1116,7 @@ export const handleEndDay = () => {
     const foragePool = getForageItems(gameStore.season)
     const commonForage = foragePool.filter(f => f.chance >= 0.1)
     if (commonForage.length > 0) {
-      const count = 1 + (Math.random() < 0.4 ? 1 : 0) // 1-2个
+      const count = 1 + (Math.random() < 0.4 ? 1 : 0)
       const gathered: string[] = []
       for (let i = 0; i < count; i++) {
         const item = commonForage[Math.floor(Math.random() * commonForage.length)]!
@@ -1137,7 +1135,7 @@ export const handleEndDay = () => {
       const year = gameStore.year
       const orePool = year >= 2 ? ['copper_ore', 'iron_ore', 'gold_ore'] : ['copper_ore', 'iron_ore']
       const oreId = orePool[Math.floor(Math.random() * orePool.length)]!
-      const qty = 3 + Math.floor(Math.random() * 3) // 3-5
+      const qty = 3 + Math.floor(Math.random() * 3)
       gameStore.surfaceOrePatch = { oreId, quantity: qty }
       const oreName = getItemById(oreId)?.name ?? '矿石'
       addLog(`山丘上发现了一处${oreName}脉！`)
@@ -1168,13 +1166,11 @@ export const handleEndDay = () => {
     triggerPetAdoption()
   }
 
-  // 回到农场页面（防止留在商铺等页面继续操作）
   void router.push({ name: 'farm' })
 
-  // 自动存档
   saveStore.autoSave()
 }
 
 export const useEndDay = () => {
   return { handleEndDay }
-}
+        }
