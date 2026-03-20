@@ -1,41 +1,47 @@
-# 行为准则
+# Davranış Tüzüğü
 
-## 我们的承诺
+## Sözümüz
 
-为了营造一个开放和友善的环境，我们作为贡献者和维护者承诺：参与本项目的每个人都不会受到骚扰，无论年龄、体型、残障、民族、性别认同与表达、经验水平、国籍、外貌、种族、宗教或性取向如何。
+Açık ve dostane bir ortam kurmak adına, biz katkı sunanlar ve koruyucular şunu taahhüt ederiz:  
+Bu projeye katılan hiç kimse; yaşı, bedeni, engeli, kökeni, kimliği, deneyimi, memleketi, görünüşü, inancı ya da yönelimi ne olursa olsun rahatsız edilmeyecektir.
 
-## 我们的标准
+## Ölçümüz
 
-**有助于营造良好环境的行为包括：**
+**Ortamı güzelleştiren davranışlar:**
 
-- 使用友善和包容的语言
-- 尊重不同的观点和经验
-- 优雅地接受建设性批评
-- 关注对社区最有利的事情
-- 对其他社区成员表示同理心
+- Nazik ve kapsayıcı bir dil kullanmak  
+- Farklı görüş ve yaşantılara saygı göstermek  
+- Yapıcı eleştiriyi olgunlukla karşılamak  
+- Topluluğun hayrına olanı gözetmek  
+- Diğerlerine anlayış ve gönül yakınlığı göstermek  
 
-**不可接受的行为包括：**
+**Kabul edilmeyen davranışlar:**
 
-- 使用性暗示的语言或图像，以及不受欢迎的性关注
-- 恶意挑衅、侮辱性评论以及人身或政治攻击
-- 公开或私下的骚扰
-- 未经明确许可发布他人的私人信息（如地址、电子邮件）
-- 其他在专业环境中被合理认为不当的行为
+- Cinsel imalı sözler, görüntüler veya istenmeyen yakınlık  
+- Hakaret, kışkırtma ve kişisel ya da siyasi saldırılar  
+- Açık ya da gizli taciz  
+- İzin almadan başkalarının özel bilgilerini yaymak  
+- Uygunsuz sayılabilecek diğer davranışlar  
 
-## 我们的责任
+## Sorumluluk
 
-项目维护者有责任澄清可接受行为的标准，并应对任何不可接受的行为采取适当和公正的纠正措施。
+Proje koruyucuları, kabul edilebilir davranışların sınırlarını açıkça belirtmekle yükümlüdür.  
+Uygunsuz davranışlara karşı adil ve yerinde önlemler alırlar.
 
-项目维护者有权删除、编辑或拒绝与本行为准则不符的评论、提交、代码、Wiki 编辑、问题和其他贡献，并可临时或永久封禁任何行为不当、具有威胁性、冒犯性或有害的贡献者。
+Kurallara uymayan içerikler silinebilir, düzenlenebilir ya da reddedilebilir.  
+Gerek görüldüğünde kişi geçici ya da kalıcı olarak uzaklaştırılabilir.
 
-## 适用范围
+## Kapsam
 
-本行为准则适用于所有项目空间，以及个人在公共场合代表项目或其社区时的行为。
+Bu tüzük, proje içindeki tüm alanlar için geçerlidir.  
+Ayrıca bir kişi projeyi temsil ettiği her yerde bu kurallara uymakla yükümlüdür.
 
-## 执行
+## Uygulama
 
-如发现滥用、骚扰或其他不可接受的行为，请通过项目 Issues 进行报告。项目团队将审查和调查所有投诉，并做出适当的回应。项目团队有义务对事件报告者的信息保密。
+Taciz veya uygunsuz davranış görürsen, proje Issues üzerinden bildir.  
+Ekip tüm başvuruları inceler ve gerekli karşılığı verir.  
+Bildiren kişinin bilgileri gizli tutulur.
 
-## 归属
+## Kaynak
 
-本行为准则改编自 [Contributor Covenant](https://www.contributor-covenant.org/) 2.1 版本。
+Bu metin, Contributor Covenant 2.1 sürümünden esinlenmiştir.
