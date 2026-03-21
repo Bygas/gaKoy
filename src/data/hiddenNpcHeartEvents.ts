@@ -1,30 +1,30 @@
 import type { HeartEventDef } from '@/types'
 
-/** 隐藏NPC心事件（使用 HeartEventDef 格式，requiredFriendship 对应缘分阈值） */
+/** Gizli NPC gönül olayları (HeartEventDef biçimi, requiredFriendship = bağ eşiği) */
 export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
   // ============================================================
-  // 龙灵 — 3个心事件
+  // Su Ruhu — 3 gönül olayı
   // ============================================================
   {
     id: 'long_ling_heart_1',
     npcId: 'long_ling',
     requiredFriendship: 800,
-    title: '鳞光下的低语',
+    title: 'Pul Işığındaki Fısıltı',
     scenes: [
-      { text: '你来到瀑布边打坐，水雾中一道翠色鳞光若隐若现。龙灵的声音在水声中响起：' },
-      { text: '「你是第一个能听见我声音的凡人……已有百年无人走近这潭水了。」' },
+      { text: 'Çağlayanın kıyısına varıp sessizce oturursun. Su sisi içinde zümrüt renkli pul ışıkları belli belirsiz titreşir. Su Ruhu’nun sesi çağlayan gürültüsünün içinden yükselir:' },
+      { text: '“Sesimi duyan ilk fani sensin… yüzyıllardır kimse bu suyun dibine böyle yaklaşmadı.”' },
       {
-        text: '龙灵的目光落在你身上，似乎在审视什么。',
+        text: 'Su Ruhu bakışlarını üzerine çevirir; sanki içinde bir şey tartıyordur.',
         choices: [
           {
-            text: '「为什么选择在这里栖息？」',
+            text: '“Neden bu yeri yurt edindin?”',
             friendshipChange: 30,
-            response: '「此处灵脉交汇，是桃源乡气运所在。我守护的……不只是这潭水。」'
+            response: '“Burada ruh damarları birleşir. gaKöy’ün bahtı bu sularda düğümlüdür. Benim koruduğum yalnızca bu göl değildir.”'
           },
           {
-            text: '「你一定很寂寞吧。」',
+            text: '“Çok yalnız olmalısın.”',
             friendshipChange: 50,
-            response: '龙灵沉默了很久，最终轻声说：「……寂寞是有的。」水面泛起微微涟漪。'
+            response: 'Su Ruhu uzun süre susar. Sonunda yumuşak bir sesle, “...Evet, yalnızlık vardır.” der. Suyun yüzeyinde ince halkalar yayılır.'
           }
         ]
       }
@@ -34,16 +34,24 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'long_ling_heart_2',
     npcId: 'long_ling',
     requiredFriendship: 1600,
-    title: '龙珠之忆',
+    title: 'İnci Hatırası',
     scenes: [
-      { text: '今夜月色格外明亮，瀑布潭水中映出一轮完整的月亮。龙灵的身形在月光下完整显现——一条通体翠绿的灵龙，优雅而威严。' },
-      { text: '「你可知我的真名吗？」龙灵问道，声音中带着一丝期待。' },
-      { text: '「千年前，我化形时曾有一个名字……沧澜。意为沧海微澜。」' },
+      { text: 'Bu gece ay ışığı her zamankinden daha parlaktır. Çağlayan gölünde dolunay eksiksiz yansır. Su Ruhu, ay altında gerçek biçimiyle görünür: baştan sona zümrüt pullarla kaplı görkemli bir ruh ejderi.' },
+      { text: '“Gerçek adımı biliyor musun?” diye sorar. Sesinde çok ince bir beklenti saklıdır.' },
+      { text: '“Yüzyıllar önce suret kazandığımda bana bir ad verilmişti… Alazsu. Derin denizin kıpırtısı demektir.”' },
       {
-        text: '龙灵从水中托出一颗微微发光的珠子。「这是我的逆鳞下曾藏过的旧物。」',
+        text: 'Sudan hafifçe ışıldayan bir inci yükseltir. “Bu, vaktiyle en kıymetli pulumun altında sakladığım eski bir emanettir.”',
         choices: [
-          { text: '「我会好好珍惜的。」', friendshipChange: 50, response: '龙灵点头，水面泛起温柔的光：「你是唯一让我愿意取出它的人。」' },
-          { text: '小心翼翼地接过珠子。', friendshipChange: 30, response: '珠子入手温凉，内有微弱的脉动，如同心跳。' }
+          {
+            text: '“Bunu iyi koruyacağım.”',
+            friendshipChange: 50,
+            response: 'Su Ruhu başını eğer. Su yüzeyi yumuşak bir ışıkla parlar. “Onu çıkarmaya razı olduğum tek kişi sensin.”'
+          },
+          {
+            text: 'İnciyi iki elinle dikkatlice alırsın.',
+            friendshipChange: 30,
+            response: 'İnci avucunda serin ve canlıdır; içinde kalp atışını andıran hafif bir titreşim vardır.'
+          }
         ]
       }
     ]
@@ -52,48 +60,52 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'long_ling_heart_3',
     npcId: 'long_ling',
     requiredFriendship: 2400,
-    title: '沧澜之约',
+    title: 'Alazsu’nun Andı',
     scenes: [
-      { text: '暴风雨夜，瀑布水量暴涨。你冒雨赶来，发现龙灵正以灵力稳住即将决堤的潭水。' },
-      { text: '「走开！」龙灵喝道，但声音中满是疲惫，「今夜灵脉紊乱……我撑不了多久。」' },
+      { text: 'Fırtınalı bir gecede çağlayanın suyu coşup taşar. Yağmur altında koşarak vardığında Su Ruhu’nun ruh gücüyle gölü taşmaktan alıkoyduğunu görürsün.' },
+      { text: '“Uzak dur!” diye seslenir ama sesi yorgunlukla titrer. “Bu gece ruh damarları bozuldu… daha fazla dayanamayacağım.”' },
       {
-        text: '你看到龙灵的鳞片开始暗淡，她的力量正在消耗殆尽。',
+        text: 'Pullarının ışığı sönükleşmeye başlamıştır. Gücü tükenmektedir.',
         choices: [
           {
-            text: '冲进水中，将灵力供奉递给龙灵。',
+            text: 'Suya atılıp ruh sunusunu ona uzatırsın.',
             friendshipChange: 80,
-            response: '你的行动让龙灵一愣。她接过供奉，灵力缓缓恢复。风雨渐息后，她轻声道：「……谢谢你。」'
+            response: 'Yaptığın şey onu şaşkına çevirir. Sunuyu alır; kaybolan gücü ağır ağır geri dönmeye başlar. Fırtına dinerken sana fısıldar: “...Teşekkür ederim.”'
           },
           {
-            text: '在岸边为她祈祷，集中精神传递念头。',
+            text: 'Kıyıda gözlerini kapatıp bütün yüreğinle onun için dua edersin.',
             friendshipChange: 60,
-            response: '一股温暖的力量从你心中涌出，龙灵感应到了。「你的心意……我收到了。」暴雨渐停。'
+            response: 'İçinden yayılan sıcaklık dalga dalga ona ulaşır. Su Ruhu bunu hisseder. “Gönlünün sesini aldım.” der. Sağanak hafiflemeye başlar.'
           }
         ]
       },
-      { text: '风雨过后，龙灵第一次以人形出现在你面前——一位身着翠衣的女子。「从今往后，唤我沧澜便好。」' }
+      { text: 'Fırtına dindikten sonra Su Ruhu ilk kez insan suretiyle karşına çıkar: zümrüt giysili bir kadın. “Bundan böyle bana Alazsu diye seslen.”' }
     ]
   },
 
   // ============================================================
-  // 桃夭 — 3个心事件
+  // Çiçek Ruhu — 3 gönül olayı
   // ============================================================
   {
     id: 'tao_yao_heart_1',
     npcId: 'tao_yao',
     requiredFriendship: 800,
-    title: '花语',
+    title: 'Çiçeğin Dili',
     scenes: [
-      { text: '清晨，你发现农场的桃树下多了一圈不知名的小花。花瓣上还带着露水，散发着淡淡的甜香。' },
-      { text: '桃夭从花丛中探出头来：「这些是我种的，好看吗？」她的笑容像春天本身。' },
+      { text: 'Sabah erkenden tarlaya çıktığında şeftali ağaçlarının dibinde küçük yabani çiçeklerden halka halka açtığını görürsün. Yapraklarında taze çiy, havadaysa hafif tatlı bir koku vardır.' },
+      { text: 'Çiçek Ruhu çiçeklerin arasından başını uzatır. “Bunları ben diktim, güzel olmuş mu?” Gülüşü baharın kendisi gibidir.' },
       {
-        text: '她摘下一朵小花递给你。',
+        text: 'Bir çiçek koparıp sana uzatır.',
         choices: [
-          { text: '「很美，谢谢你。」', friendshipChange: 40, response: '桃夭笑得更灿烂了：「你喜欢就好。以后我每天都种一朵。」' },
           {
-            text: '把花别在她耳边。',
+            text: '“Çok güzel, sağ ol.”',
+            friendshipChange: 40,
+            response: 'Gülüşü daha da parlar. “Beğendiysen ne mutlu. Her gün senin için bir tane daha açtırırım.”'
+          },
+          {
+            text: 'Çiçeği onun kulağının yanına iliştirirsin.',
             friendshipChange: 60,
-            response: '桃夭愣了一下，脸颊泛起桃花般的红晕：「你……你做什么呀……」但她没有取下那朵花。'
+            response: 'Bir an dona kalır; yanakları şeftali çiçeği gibi pembelenir. “S-sen ne yapıyorsun…” der ama çiçeği çıkarmaya da kıyamaz.'
           }
         ]
       }
@@ -103,22 +115,22 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'tao_yao_heart_2',
     npcId: 'tao_yao',
     requiredFriendship: 1600,
-    title: '落花有意',
+    title: 'Düşen Yaprakların Niyeti',
     scenes: [
-      { text: '你发现桃夭独自坐在最古老的那棵桃树下，花瓣如雨般落下，她的身形在花雨中若隐若现。' },
-      { text: '「这棵树……是我出生的地方。」她的声音很轻，「已经三百年了。每到春天，我都会回到这里。」' },
+      { text: 'Çiçek Ruhu’nu korudaki en yaşlı şeftali ağacının altında tek başına otururken bulursun. Yapraklar yağmur gibi dökülür; onun bedeni o yaprakların arasında kimi an belirir, kimi an silikleşir.' },
+      { text: '“Bu ağaç… doğduğum yer.” der usulca. “Üç yüz yıldır her bahar buraya dönerim.”' },
       {
-        text: '你注意到她的手中捧着一片枯叶——桃树唯一枯黄的叶子。',
+        text: 'Avuçlarında tuttuğu tek bir sararmış yaprak dikkatini çeker; ağacın üzerindeki tek solgun yaprak odur.',
         choices: [
           {
-            text: '「树生病了吗？」',
+            text: '“Ağaç hasta mı?”',
             friendshipChange: 30,
-            response: '「不是……是我的根基在衰弱。」她看向你，「但自从你来了之后，这片土地又有了生机。」'
+            response: '“Hayır… zayıflayan benim kök bağım.” Gözlerini sana çevirir. “Ama sen geldikten sonra bu toprak yeniden canlandı.”'
           },
           {
-            text: '默默坐到她身边。',
+            text: 'Sessizce gidip yanına oturursun.',
             friendshipChange: 50,
-            response: '桃夭靠过来，将头轻轻倚在你肩上。花瓣落在你们的头顶，像一场无声的祝福。'
+            response: 'Çiçek Ruhu sana yaslanır, başını omzuna hafifçe bırakır. Yapraklar üstünüze dökülür; sessiz bir kutsama gibi.'
           }
         ]
       }
@@ -128,49 +140,53 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'tao_yao_heart_3',
     npcId: 'tao_yao',
     requiredFriendship: 2400,
-    title: '灵桃之心',
+    title: 'Kutlu Meyvenin Yüreği',
     scenes: [
-      { text: '春末最后一天，你发现桃夭站在老桃树前，双手合十，全身散发着柔和的光芒。' },
-      { text: '「我在做一件很重要的事。」她说，声音有些颤抖。「把我最后的灵力注入这棵树……这样它就能再活三百年。」' },
-      { text: '「但代价是……我可能会沉睡很久。」' },
+      { text: 'İlkbaharın son gününde Çiçek Ruhu’nu yaşlı şeftali ağacının önünde, ellerini birleştirmiş halde bulursun. Tüm bedeni yumuşak bir ışıkla parlıyordur.' },
+      { text: '“Çok önemli bir iş yapıyorum.” der; sesi hafifçe titrer. “Kalan son ruh gücümü bu ağaca veriyorum… böylece üç yüz yıl daha yaşayabilecek.”' },
+      { text: '“Ama bedeli… uzun bir uyku olabilir.”' },
       {
-        text: '你感到心中一紧。',
+        text: 'Yüreğin sıkışır.',
         choices: [
           {
-            text: '握住她的手：「让我帮你分担。」',
+            text: 'Elini tutup, “Yükünü benimle paylaş.” dersin.',
             friendshipChange: 80,
-            response: '你的体温透过指尖传递给她。桃夭睁大了眼睛——灵力不减反增。「原来……人的心意也可以成为灵力。」'
+            response: 'Parmaklarından geçen sıcaklık ona ulaşır. Gözleri büyür; sönmesi gereken ışık daha da güçlenir. “Demek insanın gönlü de ruh gücüne dönüşebiliyormuş…”'
           },
           {
-            text: '「我会每天照顾这棵树的。」',
+            text: '“Ben bu ağaca her gün bakarım.”',
             friendshipChange: 60,
-            response: '桃夭微笑着点头：「有你在，我放心了。」她从树上摘下一颗金色的桃子递给你，「这是灵桃，是我的心意。」'
+            response: 'Gülümsəyerek başını sallar. “Sen varken içim rahat.” Daldan altın renkli bir şeftali koparıp sana verir. “Bu kutlu meyve… benim gönül armağanım.”'
           }
         ]
       },
-      { text: '老桃树重新焕发生机，枝头缀满了花苞。桃夭看着这一切，脸上是满足的笑容：「谢谢你，让我不再孤单。」' }
+      { text: 'Yaşlı ağaç yeniden canlanır; dalları tomurcuklarla dolar. Çiçek Ruhu bu manzaraya huzurla bakar. “Teşekkür ederim. Sayende artık yalnız değilim.”' }
     ]
   },
 
   // ============================================================
-  // 月兔 — 3个心事件
+  // Ay Tavşanı — 3 gönül olayı
   // ============================================================
   {
     id: 'yue_tu_heart_1',
     npcId: 'yue_tu',
     requiredFriendship: 800,
-    title: '药杵的节拍',
+    title: 'Tokmağın Ezgisi',
     scenes: [
-      { text: '月光下的竹林里传来叮叮当当的声响。循声而去，你发现月兔正用玉杵捣着什么。' },
-      { text: '「嘘——别吵！」她竖起耳朵（真的有兔耳朵在帽子下面），「我在配一种特殊的药。」' },
+      { text: 'Ay ışıklı korulukta tıkırtılı bir ses yankılanır. Sesi izlediğinde Ay Tavşanı’nın yeşim tokmakla bir şeyler dövdüğünü görürsün.' },
+      { text: '“Şşt, gürültü etme!” der, kulaklarını dikerek. “Çok özel bir karışım hazırlıyorum.”' },
       {
-        text: '她手忙脚乱地把各种草药扔进臼中，节拍越来越快。',
+        text: 'Otlara yetişemeyecek kadar hızlı davranmaya başlar; karışım kabında tempo gittikçe hızlanır.',
         choices: [
-          { text: '帮她稳住药臼。', friendshipChange: 40, response: '「诶？你的手好稳啊！」月兔感激地笑了，「有你帮忙，这药一定能成。」' },
           {
-            text: '跟着节拍一起打拍子。',
+            text: 'Kabı sabitleyip ona yardım edersin.',
+            friendshipChange: 40,
+            response: '“Aa? Elin ne kadar sağlam!” Ay Tavşanı sevinçle güler. “Sen yardım edince bu ilaç kesin tutacak.”'
+          },
+          {
+            text: 'Vuruşlarına ritim tutarak eşlik edersin.',
             friendshipChange: 50,
-            response: '月兔一愣，随即咯咯笑起来：「你跟着一起捣的样子好有趣！」药杵发出的声响竟变成了悦耳的旋律。'
+            response: 'Bir an şaşırır, sonra kıkırdamaya başlar. “Senin de benimle birlikte dövüyormuş gibi ritim tutman çok komik!” Tokmağın sesi bir anda tatlı bir ezgiye dönüşür.'
           }
         ]
       }
@@ -180,22 +196,22 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'yue_tu_heart_2',
     npcId: 'yue_tu',
     requiredFriendship: 1600,
-    title: '月宫的秘密',
+    title: 'Ay Yurdunun Sırrı',
     scenes: [
-      { text: '你发现月兔蹲在河边，盯着水中的月亮发呆。她的兔耳朵耷拉着，看起来很沮丧。' },
-      { text: '「其实……我是偷跑下来的。」她小声说，「月宫里太无聊了，每天只有捣药、捣药、捣药……」' },
+      { text: 'Ay Tavşanı’nı dere kıyısında çömelmiş, sudaki ay yansısına dalıp gitmiş halde bulursun. Kulakları düşmüştür; keyifsiz görünüyordur.' },
+      { text: '“Aslında… ben oradan gizlice kaçtım.” der kısık sesle. “Ay yurdunda hep aynı şey vardı: ilaç döv, yine döv, yine döv…”' },
       {
-        text: '她抬头看着天上的月亮：「可是有时候……我也会想念那里。」',
+        text: 'Göğe bakar. “Ama bazen… orayı da özlediğim oluyor.”',
         choices: [
           {
-            text: '「这里不好吗？」',
+            text: '“Burada mutlu değil misin?”',
             friendshipChange: 30,
-            response: '「这里很好！有花有草有好吃的！」她的耳朵竖了起来，「还有……你。」她赶紧低下头，耳朵尖红了。'
+            response: '“Burada çok güzel şeyler var! Çiçek, ot, güzel kokular…” Kulakları yeniden dikilir. “Bir de… sen.” Bunu der demez başını öne eğer; kulak uçları kızarmıştır.'
           },
           {
-            text: '「你可以随时回去看看啊。」',
+            text: '“İstersen bir gün dönüp bakabilirsin.”',
             friendshipChange: 50,
-            response: '「嗯……但是回去了就不容易再下来了。」她看向你，「所以我选择留在这里。」'
+            response: '“Olur ama… dönersem yeniden aşağı inmem zor olur.” Sana bakar. “Ben o yüzden burada kalmayı seçtim.”'
           }
         ]
       }
@@ -205,52 +221,52 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'yue_tu_heart_3',
     npcId: 'yue_tu',
     requiredFriendship: 2400,
-    title: '不归的月兔',
+    title: 'Dönmeyen Ay Tavşanı',
     scenes: [
-      { text: '中秋夜，一道金光从天而降落在村外的山丘上。月兔紧张地抓住你的袖子：「他们来找我了……」' },
-      { text: '天空中传来庄严的声音：「玉兔，月宫需要你归位。」' },
+      { text: 'Güz ortası gecesinde gökten altın bir ışık inip köy dışındaki tepeye düşer. Ay Tavşanı korkuyla koluna sarılır. “Beni almaya geldiler…”' },
+      { text: 'Gökyüzünden ağırbaşlı bir ses yankılanır: “Ay tavşanı, yurdun seni geri çağırıyor.”' },
       {
-        text: '月兔浑身发抖，但她看向你的眼神中充满了不舍。',
+        text: 'Ay Tavşanı ürperir ama sana baktığında gözlerinde gitmek istemeyen bir bağlılık vardır.',
         choices: [
           {
-            text: '「她已经找到了归处。」',
+            text: '“O, artık kendi yurdunu buldu.” dersin.',
             friendshipChange: 80,
-            response: '你的声音坚定而清晰。天空沉默了片刻，最终金光缓缓消散。月兔紧紧抱住你：「谢谢你……」'
+            response: 'Sesin kararlı biçimde yükselir. Gökyüzü bir süre susar. Sonra altın ışık yavaşça dağılır. Ay Tavşanı sana sımsıkı sarılır. “Teşekkür ederim…”'
           },
           {
-            text: '握住她的手，不说话。',
+            text: 'Elini tutup sessizce yanında durursun.',
             friendshipChange: 60,
-            response: '月兔感受到你掌心的温度，深吸一口气，对着天空喊道：「我不回去了！」金光渐渐消散。'
+            response: 'Avucunun sıcaklığını hisseden Ay Tavşanı derin bir nefes alır ve göğe bağırır: “Ben geri dönmüyorum!” Altın ışık yavaşça sönüp gider.'
           }
         ]
       },
-      { text: '月光重归平静。月兔擦了擦眼角：「从今以后，这里就是我的月宫了。」' }
+      { text: 'Ay ışığı yeniden sakinleşir. Ay Tavşanı gözlerini siler. “Bundan sonra benim ay yurdum burası.”' }
     ]
   },
 
   // ============================================================
-  // 狐仙 — 3个心事件
+  // Tilki Eren — 3 gönül olayı
   // ============================================================
   {
     id: 'hu_xian_heart_1',
     npcId: 'hu_xian',
     requiredFriendship: 800,
-    title: '狐火谜题',
+    title: 'Ruh Alevi Bilmecesi',
     scenes: [
-      { text: '黄昏时分，村口出现了几团飘忽不定的蓝色火焰。村民们纷纷回避，只有你好奇地靠近。' },
-      { text: '「哟，胆子不小嘛。」狐仙从火焰后走出，手中把玩着一颗琉璃珠。「来玩个游戏如何？」' },
+      { text: 'Alacakaranlıkta köy girişinde maviye çalan birkaç alev topu süzülmeye başlar. Köylüler yolunu değiştirir ama sen merakla yaklaşırsın.' },
+      { text: '“Oo, cesaretin varmış.” Tilki Eren alevlerin ardından çıkar; elinde saydam bir boncukla oynuyordur. “Bir oyun oynayalım mı?”' },
       {
-        text: '他伸出三只手——等等，三只？你揉了揉眼睛，确实只有两只手。一只手心里有珠子，另一只空的。「猜猜珠子在哪？」',
+        text: 'Üç el uzatır—bir an durursun, gerçekten üç mü? Gözlerini ovuşturunca yine iki el görürsün. Bir avucunda boncuk vardır, diğeri boştur. “Söyle bakalım, boncuk hangi elde?”',
         choices: [
           {
-            text: '指向他的左手。',
+            text: 'Sol elini işaret edersin.',
             friendshipChange: 20,
-            response: '他摊开左手——空的。摊开右手——也是空的。珠子不知何时已经出现在你的口袋里。「下次再来玩呀。」'
+            response: 'Sol elini açar—boştur. Sağ elini açar—o da boştur. Boncuk çoktan cebinde belirmiştir. “Bir dahaki sefere daha dikkatli bak.”'
           },
           {
-            text: '「珠子在你袖子里。」',
+            text: '“Boncuk kolunda saklı.” dersin.',
             friendshipChange: 50,
-            response: '狐仙一愣，随即大笑：「有意思！你是第一个不按规矩猜的人。」他抖了抖袖子，珠子真的掉了出来。'
+            response: 'Tilki Eren bir an durur, sonra kahkaha atar. “İlginç! Kurala göre değil, akla göre düşündün.” Kolunu silkince boncuk gerçekten yere düşer.'
           }
         ]
       }
@@ -260,23 +276,23 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'hu_xian_heart_2',
     npcId: 'hu_xian',
     requiredFriendship: 1600,
-    title: '千年之约',
+    title: 'Yüzyıllık Söz',
     scenes: [
-      { text: '你在矿洞深处发现了一面古老的铜镜。当你擦去灰尘时，镜中映出的不是你的脸——而是一只九尾金狐。' },
-      { text: '「看到了？那是千年前的我。」狐仙的声音从身后传来。他今天没有笑容，「那时候我还不会说人话。」' },
-      { text: '「千年修行，化人形，学人语，品人情。」他看着镜子，「可越像人，就越孤独。」' },
+      { text: 'Madenin derininde eski bir tunç ayna bulursun. Tozu sildiğinde aynada kendi yüzün değil, dokuz kuyruklu altın bir tilki belirir.' },
+      { text: '“Gördün mü? O, yüzyıllar önceki hâlim.” Tilki Eren’in sesi arkandan gelir. Bu kez yüzünde alaycı gülüş yoktur. “O zamanlar insan dili bile bilmezdim.”' },
+      { text: '“Uzun zaman boyunca insanları gözledim; biçimlerini, dillerini, duygularını öğrendim.” Aynaya bakar. “Ama insana benzeyiş arttıkça yalnızlık da büyüdü.”' },
       {
-        text: '你从未见过他这样认真的表情。',
+        text: 'Onu ilk kez böyle ciddi görürsün.',
         choices: [
           {
-            text: '「孤独不是坏事。」',
+            text: '“Yalnızlık her zaman kötü değildir.”',
             friendshipChange: 30,
-            response: '「哦？」他挑起眉毛，「说来听听。」你把自己初来桃源乡时的孤独告诉了他。他听完，轻声笑了：「看来我们是同类。」'
+            response: '“Öyle mi?” Kaşını kaldırır. Sen de gaKöy’e ilk geldiğin günlerde hissettiğin yalnızlığı anlatırsın. Sessizce dinler; sonunda hafifçe gülümser. “Demek bir bakıma aynı türdeniz.”'
           },
           {
-            text: '「你现在不孤独了。」',
+            text: '“Artık yalnız değilsin.”',
             friendshipChange: 50,
-            response: '狐仙沉默了很久，最终露出一个不同于以往的、真诚的微笑：「嗯，现在不了。」'
+            response: 'Uzun süre susar. Sonra alışıldık alaydan uzak, içten bir gülümseme belirir yüzünde. “Evet… artık değilim.”'
           }
         ]
       }
@@ -286,23 +302,23 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'hu_xian_heart_3',
     npcId: 'hu_xian',
     requiredFriendship: 2400,
-    title: '幻与真',
+    title: 'Gerçek ile Gölge',
     scenes: [
-      { text: '一天夜里，你梦见了一片金色的旷野。狐仙站在远处，身后九条尾巴完全展开，金光灿烂。' },
-      { text: '「这不是梦。」他说，「这是我的本相，我的世界。」' },
-      { text: '他向你走来：「一千年来，我用幻术骗过无数人。但在你面前……我不想再用幻术了。」' },
+      { text: 'Bir gece düşünde altın renkli uçsuz bucaksız bir ova görürsün. Tilki Eren uzakta duruyordur; ardındaki dokuz kuyruk bütünüyle açılmış, ışıl ışıl parlamaktadır.' },
+      { text: '“Bu bir düş değil.” der. “Bu benim öz biçimim, benim dünyam.”' },
+      { text: 'Sana doğru yürür. “Yüzyıllar boyunca nice kişiyi göz boyamayla aldattım. Ama senin yanında… artık perde kullanmak istemiyorum.”' },
       {
-        text: '他伸出手。你注意到他的手在微微颤抖。',
+        text: 'Elini uzatır. Parmaklarının hafifçe titrediğini fark edersin.',
         choices: [
           {
-            text: '握住他的手。',
+            text: 'Elini tutarsın.',
             friendshipChange: 80,
-            response: '幻境碎裂，你回到了现实。但狐仙的手仍在你手中——温暖而真实。「这是第一次，我在凡人面前露出真容。」'
+            response: 'Görüntü çatlayıp dağılır; yeniden gerçek dünyaya dönersin. Ama Tilki Eren’in eli hâlâ elindedir—sıcak ve gerçektir. “Bir faninin önünde ilk kez öz suretimle durdum.”'
           },
           {
-            text: '「不管是狐还是人，你都是你。」',
+            text: '“Tilki de olsan insan suretinde de olsan, sen yine sensin.”',
             friendshipChange: 60,
-            response: '他的九尾缓缓收拢，金光消散，变回那个玩世不恭的少年模样。但他的眼中多了一丝从未有过的柔软。'
+            response: 'Dokuz kuyruğu yavaşça kapanır, altın ışık söner; yine o alaycı delikanlı görünümüne bürünür. Ama bakışlarında daha önce hiç görmediğin bir yumuşaklık vardır.'
           }
         ]
       }
@@ -310,24 +326,28 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
   },
 
   // ============================================================
-  // 山翁 — 3个心事件
+  // Dağ Dervişi — 3 gönül olayı
   // ============================================================
   {
     id: 'shan_weng_heart_1',
     npcId: 'shan_weng',
     requiredFriendship: 800,
-    title: '山中一局棋',
+    title: 'Dağdaki Taş Oyunu',
     scenes: [
-      { text: '你在矿洞深处发现了一个隐秘的石室。山翁盘膝坐在石桌前，面前摆着一盘棋。' },
-      { text: '「来了？坐。」他示意对面的石凳。棋盘上的棋子散发着微弱的灵光。' },
+      { text: 'Madenin derinliklerinde gizli bir taş oda keşfedersin. Dağ Dervişi taş masanın önünde bağdaş kurmuş oturuyordur; önünde dizili eski bir taş oyun tahtası vardır.' },
+      { text: '“Geldin mi? Otur.” diyerek karşıdaki taş oturağı işaret eder. Taşların üzerinde hafif bir ışık gezinmektedir.' },
       {
-        text: '「这盘棋我已经下了三百年。」他看着棋盘说道。',
+        text: '“Bu oyunu üç yüz yıldır sürdürürüm.” der, tahtaya bakarak.',
         choices: [
-          { text: '「和谁下的？」', friendshipChange: 30, response: '「和自己。」他捋了捋胡须，「修炼修炼，说到底不过是和自己下棋。」' },
           {
-            text: '尝试落一子。',
+            text: '“Kiminle oynuyorsun?”',
+            friendshipChange: 30,
+            response: '“Kendimle.” Sakalını sıvazlar. “İnsanın en uzun hesabı kendi nefsiyledir.”'
+          },
+          {
+            text: 'Bir taşı dikkatle yerine bırakırsın.',
             friendshipChange: 50,
-            response: '山翁看着你落子的位置，眼中闪过一丝惊讶：「妙手。三百年来第一次有人在这一处落子。」'
+            response: 'Dağ Dervişi senin hamlene bakarken gözlerinde kısa bir şaşkınlık belirir. “İyi hamle. Üç yüz yıldır kimse taşı buraya koymadı.”'
           }
         ]
       }
@@ -337,19 +357,23 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'shan_weng_heart_2',
     npcId: 'shan_weng',
     requiredFriendship: 1600,
-    title: '师徒之缘',
+    title: 'Usta ile Çırak Arasında',
     scenes: [
-      { text: '山翁带你来到山顶。冬日的清晨，云海翻涌在脚下，日出将天边染成金红色。' },
-      { text: '「老夫修行千年，见过无数风景。」他深吸一口气，「但这个日出……每次看都觉得是新的。」' },
+      { text: 'Dağ Dervişi seni dağın zirvesine götürür. Kış sabahında bulut denizi ayaklarının altındadır; doğan güneş ufku kızıl altına boyar.' },
+      { text: '“Uzun yıllar boyunca nice manzara gördüm.” der derin bir soluk alarak. “Ama şu doğuş… her bakışta yeniden doğmuş gibi gelir.”' },
       {
-        text: '他转向你：「小友，老夫有个不情之请。」',
+        text: 'Sonra sana döner. “Evlat, senden bir dileğim var.”',
         choices: [
           {
-            text: '「前辈请说。」',
+            text: '“Buyur, söyle.”',
             friendshipChange: 30,
-            response: '「你可愿做老夫的关门弟子？不学仙术，只学养生之道。」他的眼神真诚，「老夫所学，不想失传。」'
+            response: '“İster misin, sana bildiklerimi bırakayım? Gösterişli büyüler değil; bedeni, nefesi ve ömrü korumanın yolunu.” Bakışları içtendir. “Öğrendiklerim bende sönsün istemem.”'
           },
-          { text: '恭敬地行礼。', friendshipChange: 50, response: '山翁欣慰地笑了：「你的心性比许多修行百年的人都好。老夫认你这个徒弟。」' }
+          {
+            text: 'Saygıyla eğilip selam verirsin.',
+            friendshipChange: 50,
+            response: 'Dağ Dervişi memnuniyetle gülümser. “Yüreğinin dengesi nice yıllık yolcudan sağlam. Seni talebe sayıyorum.”'
+          }
         ]
       }
     ]
@@ -358,23 +382,23 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'shan_weng_heart_3',
     npcId: 'shan_weng',
     requiredFriendship: 2400,
-    title: '传道',
+    title: 'Yol Aktarımı',
     scenes: [
-      { text: '冬至这天，山翁让你在雪地中打坐。寒风刺骨，但他说：「心静自然暖。」' },
-      { text: '你不知道过了多久。当你睁开眼时，发现周围的雪已经融化了一圈——是你身体散发的热量。' },
-      { text: '「成了。」山翁拍手大笑，「凡人之体，却能引动天地灵气。你是老夫见过最有天赋的。」' },
+      { text: 'Kış gündönümünde Dağ Dervişi senden kar üstünde oturup nefesini dinlemeni ister. Ayaz keskindir ama o yalnızca, “Yüreği sakin olan üşümez.” der.' },
+      { text: 'Ne kadar zaman geçtiğini anlamazsın. Gözlerini açtığında etrafındaki karın halka halinde eridiğini görürsün; bu, bedeninden yükselen ısıdır.' },
+      { text: '“Oldu.” Dağ Dervişi ilk kez yüksek sesle güler. “Fani bedeniyle yerin göğün soluğunu kendine çağıran ender kişilerdensin.”' },
       {
-        text: '他从怀中取出一个古朴的葫芦：「这是老夫的随身宝物。」',
+        text: 'Koynundan eski, sade bir matarayı andıran kap çıkarır. “Bu, uzun yıllardır yanımdaki en kıymetli eşyadır.”',
         choices: [
           {
-            text: '「弟子不敢受。」',
+            text: '“Bunu alamam.”',
             friendshipChange: 60,
-            response: '「让你拿着就拿着！」他塞到你手里，「老夫不需要它了。有你在，比任何宝物都好。」他的眼中有泪光闪过。'
+            response: '“Alırsın.” diyerek eline sıkıştırır. “Benim ona artık ihtiyacım yok. Senin varlığın, eşyaların hepsinden değerli.” Gözlerinde ince bir yaş parıltısı doğar.'
           },
           {
-            text: '双手郑重接过。',
+            text: 'İki elinle saygıyla kabul edersin.',
             friendshipChange: 80,
-            response: '「好。」山翁点头，「从今以后，你就是桃源乡的守山人。老夫……终于可以放心了。」'
+            response: '“Güzel.” diye başını sallar. “Bundan sonra gaKöy’ün dağ yoluna göz kulak olacak kişi sensin. Artık içim rahattır.”'
           }
         ]
       }
@@ -382,28 +406,28 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
   },
 
   // ============================================================
-  // 归女 — 3个心事件
+  // Düş Dokuyucu — 3 gönül olayı
   // ============================================================
   {
     id: 'gui_nv_heart_1',
     npcId: 'gui_nv',
     requiredFriendship: 800,
-    title: '织机声',
+    title: 'Tezgâhın Sesi',
     scenes: [
-      { text: '深夜，你被一阵若有若无的织机声吸引到村口老井旁。月光下，一台半透明的织机凭空出现。' },
-      { text: '归女坐在织机前，纤细的手指穿梭于丝线之间。她织的不是布——是月光本身。' },
+      { text: 'Gece yarısı ince bir dokuma sesi seni köy girişindeki eski kuyunun yanına çeker. Ay ışığının altında yarı saydam bir tezgâh kendi kendine belirir.' },
+      { text: 'Düş Dokuyucu tezgâhın başında oturur; ince parmakları ışıklı teller arasında dolaşır. Dokuduğu şey kumaş değil—ayın ışığının kendisidir.' },
       {
-        text: '她注意到你，手上的动作顿了顿：「你……能看到我在织什么吗？」',
+        text: 'Seni fark edince hareketleri yavaşlar. “Benim ne ördüğümü… görebiliyor musun?” diye sorar.',
         choices: [
           {
-            text: '「月光？」',
+            text: '“Ay ışığını mı?”',
             friendshipChange: 40,
-            response: '她轻轻笑了：「对。我把月光织成梦。每个月圆之夜，桃源乡的人都能做个好梦……就是我织的。」'
+            response: 'Usulca gülümser. “Evet. Ay ışığını düşe çeviriyorum. Dolunay gecelerinde gaKöy halkının güzel düşler görmesinde benim ilmiklerim vardır.”'
           },
           {
-            text: '「很美的东西。」',
+            text: '“Çok güzel bir şey dokuyorsun.”',
             friendshipChange: 50,
-            response: '她低下头，声音很轻：「已经很久……没有人说过我织的东西美了。」丝线在她手中发出柔和的光。'
+            response: 'Başını eğer, sesi iyice hafifler. “Çok uzun zamandır… kimse dokuduğum şeye güzel dememişti.” Teller avuçlarında yumuşak bir ışıkla parlar.'
           }
         ]
       }
@@ -413,23 +437,23 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'gui_nv_heart_2',
     npcId: 'gui_nv',
     requiredFriendship: 1600,
-    title: '故乡的方向',
+    title: 'Yurdun Yönü',
     scenes: [
-      { text: '归女今天没有在织布。她站在村口，面朝北方，身形比平时更加虚幻。' },
-      { text: '「我在找故乡的方向。」她说，声音像风中的丝线。「可是……我已经忘了故乡在哪。」' },
-      { text: '「我只记得那里有一棵很大很大的桑树，树下有一架织机。每天织布、染色、晾晒……那时候我还活着。」' },
+      { text: 'Düş Dokuyucu bugün tezgâh başında değildir. Köy çıkışında kuzeye dönük durur; bedeni her zamankinden daha siliktir.' },
+      { text: '“Yurdumun yönünü arıyorum.” der. Sesi rüzgârdaki bir tel kadar incedir. “Ama artık onun nerede olduğunu anımsamıyorum.”' },
+      { text: '“Aklımda yalnızca kocaman bir dut ağacı kaldı. Altında bir tezgâh, çevresinde boyanmış ipler, serilmiş bezler… O zamanlar hâlâ yaşıyordum.”' },
       {
-        text: '一滴银色的泪珠落在地上，化作一朵银花。',
+        text: 'Gümüş renkli bir gözyaşı yere düşer ve küçük parlak bir çiçeğe dönüşür.',
         choices: [
           {
-            text: '「这里也可以是故乡。」',
+            text: '“Burası da yurt olabilir.”',
             friendshipChange: 50,
-            response: '她看向你，银色的眼睛里映出你的身影：「也许……你说得对。有人在的地方，就是故乡。」'
+            response: 'Sana bakar; gümüş gözlerinde suretin belirir. “Belki… haklısın. İnsanın gönül verdiği yer de yurt sayılır.”'
           },
           {
-            text: '默默将银花捡起，递给她。',
+            text: 'Yere düşen çiçeği alıp sessizce ona uzatırsın.',
             friendshipChange: 40,
-            response: '她接过银花，捧在手心。花开始发出温暖的光：「原来……被人记住的感觉，是这样的。」'
+            response: 'Çiçeği avucunda tutar. Çiçek sıcak bir ışık yaymaya başlar. “Demek birinin seni hatırlaması böyle bir şeymiş…”'
           }
         ]
       }
@@ -439,23 +463,23 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
     id: 'gui_nv_heart_3',
     npcId: 'gui_nv',
     requiredFriendship: 2400,
-    title: '归处',
+    title: 'Varılan Yer',
     scenes: [
-      { text: '冬至深夜，你发现归女的身形比以往任何时候都要清晰。她站在雪地中，手中捧着一匹银色的锦缎。' },
-      { text: '「这是我用一年时间织成的。」她将锦缎展开——上面织着桃源乡的四季风景，栩栩如生。' },
-      { text: '「春天的桃花，夏天的荷塘，秋天的枫叶，冬天的飞雪……还有，你的身影。」她的脸微微泛红。' },
+      { text: 'Kış gündönümünün gecesinde Düş Dokuyucu’yu her zamankinden daha net görürsün. Karların ortasında durmaktadır; kollarında gümüş ışıklı bir dokuma vardır.' },
+      { text: '“Bunu bir yıl boyunca işledim.” Kumaşı açınca üzerinde gaKöy’ün dört mevsimi görünür; sanki canlıymış gibi parlar.' },
+      { text: '“Baharın şeftali çiçekleri, yazın nilüferli suları, güzün kızaran yaprakları, kışın karı… ve senin siluetin.” Yüzü hafifçe kızarır.' },
       {
-        text: '她将锦缎递向你：「这是我所有心意织成的。请你收下。」',
+        text: 'Dokumayı sana uzatır. “Bütün gönlümü buna işledim. Lütfen kabul et.”',
         choices: [
           {
-            text: '「这是我收到过最美的礼物。」',
+            text: '“Hayatımda aldığım en güzel armağan bu.”',
             friendshipChange: 80,
-            response: '归女的眼眶红了，但她在笑：「谢谢你。因为你，我终于找到了……我的归处。」她的身形变得前所未有的清晰而真实。'
+            response: 'Gözleri kızarır ama yüzünde gülümseme vardır. “Teşekkür ederim. Senin sayende sonunda… varacağım yeri buldum.” Bedeni hiç olmadığı kadar net ve gerçek görünmeye başlar.'
           },
           {
-            text: '将锦缎小心地围在她肩上。',
+            text: 'Dokumayı dikkatle onun omuzlarına yerleştirirsin.',
             friendshipChange: 60,
-            response: '「你……」她的声音颤抖，「为什么不留给自己？」你摇摇头。归女低声说：「……傻瓜。」但她将锦缎紧紧裹住了自己。'
+            response: '“Sen…” Sesi titrer. “Neden bunu kendine saklamadın?” Başını sallarsın. Düş Dokuyucu kısık sesle, “...Tatlı budala.” der ama kumaşı sıkıca üstüne sarar.'
           }
         ]
       }
@@ -463,12 +487,12 @@ export const HIDDEN_NPC_HEART_EVENTS: HeartEventDef[] = [
   }
 ]
 
-/** 根据NPC ID获取心事件列表 */
+/** NPC ID’ye göre gönül olaylarını getir */
 export const getHiddenNpcHeartEvents = (npcId: string): HeartEventDef[] => {
   return HIDDEN_NPC_HEART_EVENTS.filter(e => e.npcId === npcId)
 }
 
-/** 根据事件ID获取心事件 */
+/** Olay ID’sine göre gönül olayını getir */
 export const getHiddenNpcHeartEventById = (eventId: string): HeartEventDef | undefined => {
   return HIDDEN_NPC_HEART_EVENTS.find(e => e.id === eventId)
-}
+      }
