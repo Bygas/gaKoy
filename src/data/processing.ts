@@ -1,11 +1,11 @@
 import type { ProcessingMachineDef, ProcessingRecipeDef, SprinklerDef, FertilizerDef, BaitDef, TackleDef, BombDef } from '@/types'
 
-/** 加工机器定义 */
+/** İşleme makineleri tanımları */
 export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   {
     id: 'wine_workshop',
-    name: '酒坊',
-    description: '将水果/作物酿成美酒，售价翻三倍。',
+    name: 'Şırahane',
+    description: 'Meyve ve mahsulü içkiye çevirir, satış değerini üç katına çıkarır.',
     craftCost: [
       { itemId: 'wood', quantity: 30 },
       { itemId: 'copper_ore', quantity: 5 },
@@ -15,8 +15,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'sauce_jar',
-    name: '酱缸',
-    description: '将作物腌制成酱菜蜜饯，稳定增值。',
+    name: 'Küp Ocağı',
+    description: 'Mahsulleri turşu ve reçellik erzağa çevirir, değerini düzenli artırır.',
     craftCost: [
       { itemId: 'wood', quantity: 20 },
       { itemId: 'copper_ore', quantity: 8 },
@@ -26,8 +26,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'bee_house',
-    name: '蜂箱',
-    description: '每4天自动产出蜂蜜。',
+    name: 'Arı Kovanı',
+    description: 'Her 4 günde bir kendiliğinden bal üretir.',
     craftCost: [
       { itemId: 'wood', quantity: 40 },
       { itemId: 'iron_ore', quantity: 2 },
@@ -37,8 +37,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'oil_press',
-    name: '油坊',
-    description: '将芝麻或种子榨成食用油。',
+    name: 'Yağ Sıkacağı',
+    description: 'Susamı ya da tohumu sıkar, yemeklik yağ çıkarır.',
     craftCost: [
       { itemId: 'wood', quantity: 15 },
       { itemId: 'iron_ore', quantity: 5 },
@@ -48,8 +48,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'mayo_maker',
-    name: '蛋黄酱机',
-    description: '将鸡蛋或鸭蛋制成蛋黄酱。',
+    name: 'Mayonez Teknesi',
+    description: 'Tavuk ya da ördek yumurtasından mayonez yapar.',
     craftCost: [
       { itemId: 'wood', quantity: 15 },
       { itemId: 'copper_ore', quantity: 5 },
@@ -59,8 +59,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'seed_maker',
-    name: '种子制造机',
-    description: '将成熟作物转化为种子。',
+    name: 'Tohum Çevirici',
+    description: 'Olgun mahsulü tohuma dönüştürür.',
     craftCost: [
       { itemId: 'wood', quantity: 20 },
       { itemId: 'iron_ore', quantity: 5 },
@@ -70,8 +70,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'crystal_duplicator',
-    name: '结晶复制机',
-    description: '投入宝石后缓慢复制，获得双倍产出。',
+    name: 'Taş Çoğaltıcı',
+    description: 'Kıymetli taşı içine alır, ağır ağır çoğaltır ve çift ürün verir.',
     craftCost: [
       { itemId: 'gold_ore', quantity: 5 },
       { itemId: 'iron_ore', quantity: 3 },
@@ -81,8 +81,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'smoker',
-    name: '烟熏机',
-    description: '将鱼烟熏处理，售价翻倍。',
+    name: 'İs Ocağı',
+    description: 'Balığı tütsüler, satış değerini iki katına çıkarır.',
     craftCost: [
       { itemId: 'wood', quantity: 20 },
       { itemId: 'iron_ore', quantity: 3 },
@@ -92,8 +92,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'dehydrator',
-    name: '脱水机',
-    description: '将蘑菇或水果脱水保存，增值出售。',
+    name: 'Kurutmalık',
+    description: 'Mantarı ya da meyveyi kurutup saklar, daha değerli satar.',
     craftCost: [
       { itemId: 'wood', quantity: 15 },
       { itemId: 'iron_ore', quantity: 2 },
@@ -103,8 +103,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'recycler',
-    name: '回收机',
-    description: '将垃圾回收转化为有用材料。',
+    name: 'Geri Dönüşüm Ocağı',
+    description: 'Çer çöpü işe yarar malzemeye çevirir.',
     craftCost: [
       { itemId: 'wood', quantity: 25 },
       { itemId: 'iron_ore', quantity: 5 },
@@ -114,8 +114,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'cheese_press',
-    name: '乳酪机',
-    description: '将牛奶制成美味的奶酪。',
+    name: 'Peynir Teknesi',
+    description: 'Sütten nefis peynir yapar.',
     craftCost: [
       { itemId: 'iron_ore', quantity: 5 },
       { itemId: 'wood', quantity: 15 },
@@ -125,8 +125,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'loom',
-    name: '织布机',
-    description: '将毛线和丝织成布匹。',
+    name: 'Dokuma Tezgâhı',
+    description: 'Yün ve ipeği dokuyup kumaşa çevirir.',
     craftCost: [
       { itemId: 'wood', quantity: 20 },
       { itemId: 'iron_ore', quantity: 3 },
@@ -136,8 +136,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'furnace',
-    name: '熔炉',
-    description: '将矿石冶炼成金属锭。完成后自动收取。',
+    name: 'Döküm Ocağı',
+    description: 'Cevheri maden külçesine dönüştürür. İş bitince ürünü kendi toplar.',
     craftCost: [
       { itemId: 'copper_ore', quantity: 10 },
       { itemId: 'iron_ore', quantity: 5 },
@@ -148,8 +148,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'charcoal_kiln',
-    name: '炭窑',
-    description: '将木材烧制成木炭。',
+    name: 'Kömürlük',
+    description: 'Odunu yakıp mangal kömürüne çevirir.',
     craftCost: [
       { itemId: 'wood', quantity: 20 },
       { itemId: 'copper_ore', quantity: 3 },
@@ -159,8 +159,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'mill',
-    name: '石磨',
-    description: '将谷物磨成面粉。',
+    name: 'Değirmen Taşı',
+    description: 'Tahılı öğütüp una çevirir.',
     craftCost: [
       { itemId: 'wood', quantity: 25 },
       { itemId: 'iron_ore', quantity: 3 },
@@ -170,8 +170,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'worm_bin',
-    name: '蚯蚓箱',
-    description: '每2天自动产出鱼饵。',
+    name: 'Solucan Sandığı',
+    description: 'Her 2 günde bir kendiliğinden yem çıkarır.',
     craftCost: [
       { itemId: 'wood', quantity: 15 },
       { itemId: 'herb', quantity: 5 },
@@ -181,8 +181,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'tea_maker',
-    name: '制茶机',
-    description: '将茶叶和花卉泡制成饮品。',
+    name: 'Dem Ocağı',
+    description: 'Çay yaprağı ve çiçekleri demleyip içecek hazırlar.',
     craftCost: [
       { itemId: 'wood', quantity: 15 },
       { itemId: 'iron_ore', quantity: 2 },
@@ -192,8 +192,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'tofu_press',
-    name: '豆腐坊',
-    description: '将豆类磨制成豆腐和酱料。',
+    name: 'Tofu Teknesi',
+    description: 'Bakliyatı öğütüp tofu ve ezme yapar.',
     craftCost: [
       { itemId: 'wood', quantity: 20 },
       { itemId: 'iron_ore', quantity: 3 },
@@ -203,8 +203,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'herb_grinder',
-    name: '药碾',
-    description: '将草药研磨成药膏和精华。',
+    name: 'Şifa Dibeci',
+    description: 'Otları öğütüp merhem ve öz çıkarır.',
     craftCost: [
       { itemId: 'iron_ore', quantity: 5 },
       { itemId: 'quartz', quantity: 2 },
@@ -214,8 +214,8 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   },
   {
     id: 'incense_maker',
-    name: '制香坊',
-    description: '将树脂和花卉制成香料。',
+    name: 'Buhurhane',
+    description: 'Reçine ve çiçekten koku ve tütsü hazırlar.',
     craftCost: [
       { itemId: 'wood', quantity: 15 },
       { itemId: 'bamboo', quantity: 10 },
@@ -225,1403 +225,1425 @@ export const PROCESSING_MACHINES: ProcessingMachineDef[] = [
   }
 ]
 
-/** 加工配方 */
+/** İşleme tarifleri */
 export const PROCESSING_RECIPES: ProcessingRecipeDef[] = [
-  // 酒坊
+  // Şırahane
   {
     id: 'wine_watermelon',
     machineType: 'wine_workshop',
-    name: '西瓜酒',
+    name: 'Karpuz Şırası',
     inputItemId: 'watermelon',
     inputQuantity: 1,
     outputItemId: 'watermelon_wine',
     outputQuantity: 1,
     processingDays: 3,
-    description: '甘甜的西瓜酿成的佳酿。'
+    description: 'Tatlı karpuzdan yapılmış nefis içki.'
   },
   {
     id: 'wine_osmanthus',
     machineType: 'wine_workshop',
-    name: '桂花酿',
+    name: 'Osmanthus Şırası',
     inputItemId: 'osmanthus',
     inputQuantity: 1,
     outputItemId: 'osmanthus_wine',
     outputQuantity: 1,
     processingDays: 3,
-    description: '馥郁芬芳的桂花酒。'
+    description: 'Mis kokulu çiçek içkisi.'
   },
   {
     id: 'vinegar_rice',
     machineType: 'wine_workshop',
-    name: '米醋',
+    name: 'Pirinç Sirkesi',
     inputItemId: 'rice',
     inputQuantity: 2,
     outputItemId: 'rice_vinegar',
     outputQuantity: 1,
     processingDays: 3,
-    description: '家酿老陈醋。'
+    description: 'Ev usulü dinlenmiş sirke.'
   },
-  // 酱缸
+
+  // Küp Ocağı
   {
     id: 'pickle_cabbage',
     machineType: 'sauce_jar',
-    name: '腌白菜',
+    name: 'Lahana Turşusu',
     inputItemId: 'cabbage',
     inputQuantity: 2,
     outputItemId: 'pickled_cabbage',
     outputQuantity: 1,
     processingDays: 2,
-    description: '开胃的腌白菜。'
+    description: 'İştah açan lahana turşusu.'
   },
   {
     id: 'pickle_radish',
     machineType: 'sauce_jar',
-    name: '萝卜干',
+    name: 'Kurutulmuş Turp',
     inputItemId: 'radish',
     inputQuantity: 2,
     outputItemId: 'dried_radish',
     outputQuantity: 1,
     processingDays: 2,
-    description: '香脆的萝卜干。'
+    description: 'Kıtır kıtır turp kurusu.'
   },
   {
     id: 'preserve_pumpkin',
     machineType: 'sauce_jar',
-    name: '南瓜酱',
+    name: 'Balkabağı Ezmesi',
     inputItemId: 'pumpkin',
     inputQuantity: 1,
     outputItemId: 'pumpkin_preserve',
     outputQuantity: 1,
     processingDays: 2,
-    description: '浓郁的南瓜酱。'
+    description: 'Yoğun kıvamlı balkabağı ezmesi.'
   },
-  // 蜂箱
+
+  // Arı Kovanı
   {
     id: 'honey',
     machineType: 'bee_house',
-    name: '蜂蜜',
+    name: 'Bal',
     inputItemId: null,
     inputQuantity: 0,
     outputItemId: 'honey',
     outputQuantity: 1,
     processingDays: 4,
-    description: '金黄甘甜的蜂蜜。'
+    description: 'Altın sarısı, tatlı mı tatlı bal.'
   },
   {
     id: 'honey_chrysanthemum',
     machineType: 'bee_house',
-    name: '菊花蜜',
+    name: 'Kasımpatı Balı',
     inputItemId: 'chrysanthemum',
     inputQuantity: 1,
     outputItemId: 'chrysanthemum_honey',
     outputQuantity: 1,
     processingDays: 4,
-    description: '带有菊花清香的蜂蜜。'
+    description: 'Çiçek kokulu kasımpatı balı.'
   },
   {
     id: 'honey_osmanthus',
     machineType: 'bee_house',
-    name: '桂花蜜',
+    name: 'Osmanthus Balı',
     inputItemId: 'osmanthus',
     inputQuantity: 1,
     outputItemId: 'osmanthus_honey',
     outputQuantity: 1,
     processingDays: 4,
-    description: '馥郁芬芳的桂花蜂蜜。'
+    description: 'Mis kokulu çiçek balı.'
   },
   {
     id: 'honey_rapeseed',
     machineType: 'bee_house',
-    name: '菜花蜜',
+    name: 'Kanola Çiçeği Balı',
     inputItemId: 'rapeseed',
     inputQuantity: 1,
     outputItemId: 'rapeseed_honey',
     outputQuantity: 1,
     processingDays: 4,
-    description: '清甜的油菜花蜂蜜。'
+    description: 'Hafif ve tatlı kır çiçeği balı.'
   },
   {
     id: 'honey_snow_lotus',
     machineType: 'bee_house',
-    name: '雪莲蜜',
+    name: 'Kardelen Balı',
     inputItemId: 'snow_lotus',
     inputQuantity: 1,
     outputItemId: 'snow_lotus_honey',
     outputQuantity: 1,
     processingDays: 4,
-    description: '珍贵的雪莲花蜂蜜。'
+    description: 'Nadir ve kıymetli bir çiçek balı.'
   },
-  // 油坊
+
+  // Yağ Sıkacağı
   {
     id: 'sesame_oil',
     machineType: 'oil_press',
-    name: '芝麻油',
+    name: 'Susam Yağı',
     inputItemId: 'sesame',
     inputQuantity: 3,
     outputItemId: 'sesame_oil',
     outputQuantity: 1,
     processingDays: 1,
-    description: '醇香的小磨麻油。'
+    description: 'Mis kokulu köy usulü susam yağı.'
   },
   {
     id: 'tea_oil',
     machineType: 'oil_press',
-    name: '茶油',
+    name: 'Çay Yağı',
     inputItemId: 'tea',
     inputQuantity: 2,
     outputItemId: 'tea_oil',
     outputQuantity: 1,
     processingDays: 1,
-    description: '珍贵的山茶油。'
+    description: 'Kıymetli dağ yağı.'
   },
   {
     id: 'truffle_oil',
     machineType: 'oil_press',
-    name: '松露油',
+    name: 'Trüf Yağı',
     inputItemId: 'truffle',
     inputQuantity: 1,
     outputItemId: 'truffle_oil',
     outputQuantity: 1,
     processingDays: 1,
-    description: '珍贵的松露油。'
+    description: 'Nadir mantardan çıkarılmış özel yağ.'
   },
-  // 新增：酒坊配方
+
+  // Ek Şırahane tarifleri
   {
     id: 'wine_peach',
     machineType: 'wine_workshop',
-    name: '桃花酒',
+    name: 'Şeftali Şırası',
     inputItemId: 'peach',
     inputQuantity: 1,
     outputItemId: 'peach_wine',
     outputQuantity: 1,
     processingDays: 3,
-    description: '清甜的桃花酒。'
+    description: 'Tatlı ve yumuşak içimli şeftali şırası.'
   },
   {
     id: 'wine_jujube',
     machineType: 'wine_workshop',
-    name: '红枣酒',
+    name: 'Hünnap Şırası',
     inputItemId: 'jujube',
     inputQuantity: 1,
     outputItemId: 'jujube_wine',
     outputQuantity: 1,
     processingDays: 3,
-    description: '醇厚滋补的红枣酒。'
+    description: 'Dolgun ve besleyici hünnap içkisi.'
   },
   {
     id: 'wine_corn',
     machineType: 'wine_workshop',
-    name: '玉米酒',
+    name: 'Mısır Şırası',
     inputItemId: 'corn',
     inputQuantity: 2,
     outputItemId: 'corn_wine',
     outputQuantity: 1,
     processingDays: 3,
-    description: '淡雅清香的玉米酒。'
+    description: 'Hafif ve hoş kokulu mısır içkisi.'
   },
-  // 新增：酱缸配方
+
+  // Ek Küp Ocağı tarifleri
   {
     id: 'pickle_chili',
     machineType: 'sauce_jar',
-    name: '泡椒',
+    name: 'Biber Turşusu',
     inputItemId: 'chili',
     inputQuantity: 2,
     outputItemId: 'pickled_chili',
     outputQuantity: 1,
     processingDays: 2,
-    description: '酸辣开胃的泡椒。'
+    description: 'Ekşi acı, iştah kabartan biber turşusu.'
   },
   {
     id: 'pickle_ginger',
     machineType: 'sauce_jar',
-    name: '腌姜',
+    name: 'Zencefil Turşusu',
     inputItemId: 'ginger',
     inputQuantity: 2,
     outputItemId: 'pickled_ginger',
     outputQuantity: 1,
     processingDays: 2,
-    description: '酸甜脆嫩的腌姜。'
+    description: 'Tatlı ekşi kıtır zencefil turşusu.'
   },
-  // 蛋黄酱机
+
+  // Mayonez Teknesi
   {
     id: 'mayo_egg',
     machineType: 'mayo_maker',
-    name: '蛋黄酱',
+    name: 'Mayonez',
     inputItemId: 'egg',
     inputQuantity: 1,
     outputItemId: 'mayonnaise',
     outputQuantity: 1,
     processingDays: 2,
-    description: '用鸡蛋制成的浓郁蛋黄酱。'
+    description: 'Tavuk yumurtasından yapılan koyu mayonez.'
   },
   {
     id: 'mayo_duck_egg',
     machineType: 'mayo_maker',
-    name: '鸭蛋黄酱',
+    name: 'Ördek Yumurtası Mayonezi',
     inputItemId: 'duck_egg',
     inputQuantity: 1,
     outputItemId: 'duck_mayonnaise',
     outputQuantity: 1,
     processingDays: 2,
-    description: '用鸭蛋制成的高级蛋黄酱。'
+    description: 'Ördek yumurtasından yapılan seçkin mayonez.'
   },
   {
     id: 'mayo_goose_egg',
     machineType: 'mayo_maker',
-    name: '鹅蛋黄酱',
+    name: 'Kaz Yumurtası Mayonezi',
     inputItemId: 'goose_egg',
     inputQuantity: 1,
     outputItemId: 'goose_mayonnaise',
     outputQuantity: 1,
     processingDays: 2,
-    description: '用鹅蛋制成的浓稠蛋黄酱。'
+    description: 'Kaz yumurtasından yapılan yoğun mayonez.'
   },
   {
     id: 'mayo_silkie_egg',
     machineType: 'mayo_maker',
-    name: '乌鸡蛋黄酱',
+    name: 'Kara Tavuk Yumurtası Mayonezi',
     inputItemId: 'silkie_egg',
     inputQuantity: 1,
     outputItemId: 'silkie_mayonnaise',
     outputQuantity: 1,
     processingDays: 2,
-    description: '用乌鸡蛋制成的滋补蛋黄酱。'
+    description: 'Kara tavuk yumurtasından yapılan besleyici mayonez.'
   },
   {
     id: 'mayo_ostrich_egg',
     machineType: 'mayo_maker',
-    name: '鸵鸟蛋黄酱',
+    name: 'Devekuşu Yumurtası Mayonezi',
     inputItemId: 'ostrich_egg',
     inputQuantity: 1,
     outputItemId: 'ostrich_mayonnaise',
     outputQuantity: 1,
     processingDays: 2,
-    description: '用鸵鸟蛋制成的大份蛋黄酱。'
+    description: 'Devekuşu yumurtasından yapılan iri porsiyon mayonez.'
   },
   {
     id: 'mayo_quail_egg',
     machineType: 'mayo_maker',
-    name: '鹌鹑蛋黄酱',
+    name: 'Bıldırcın Yumurtası Mayonezi',
     inputItemId: 'quail_egg',
     inputQuantity: 3,
     outputItemId: 'quail_mayonnaise',
     outputQuantity: 1,
     processingDays: 2,
-    description: '用鹌鹑蛋制成的精致蛋黄酱。'
+    description: 'Bıldırcın yumurtasından yapılan zarif mayonez.'
   },
-  // 种子制造机
+
+  // Tohum Çevirici
   {
     id: 'seed_from_cabbage',
     machineType: 'seed_maker',
-    name: '青菜种子',
+    name: 'Lahana Tohumu',
     inputItemId: 'cabbage',
     inputQuantity: 1,
     outputItemId: 'seed_cabbage',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从青菜中提取种子。'
+    description: 'Lahanadan tohum çıkarılır.'
   },
   {
     id: 'seed_from_radish',
     machineType: 'seed_maker',
-    name: '萝卜种子',
+    name: 'Turp Tohumu',
     inputItemId: 'radish',
     inputQuantity: 1,
     outputItemId: 'seed_radish',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从萝卜中提取种子。'
+    description: 'Turptan tohum çıkarılır.'
   },
   {
     id: 'seed_from_potato',
     machineType: 'seed_maker',
-    name: '土豆种子',
+    name: 'Patates Tohumu',
     inputItemId: 'potato',
     inputQuantity: 1,
     outputItemId: 'seed_potato',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从土豆中提取种子。'
+    description: 'Patatesten tohum çıkarılır.'
   },
   {
     id: 'seed_from_tea',
     machineType: 'seed_maker',
-    name: '茶苗种子',
+    name: 'Çay Fidesi Tohumu',
     inputItemId: 'tea',
     inputQuantity: 1,
     outputItemId: 'seed_tea',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从茶苗中提取种子。'
+    description: 'Çay fidesinden tohum çıkarılır.'
   },
   {
     id: 'seed_from_watermelon',
     machineType: 'seed_maker',
-    name: '西瓜种子',
+    name: 'Karpuz Tohumu',
     inputItemId: 'watermelon',
     inputQuantity: 1,
     outputItemId: 'seed_watermelon',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从西瓜中提取种子。'
+    description: 'Karpuzdan tohum çıkarılır.'
   },
   {
     id: 'seed_from_rice',
     machineType: 'seed_maker',
-    name: '稻种',
+    name: 'Pirinç Tohumu',
     inputItemId: 'rice',
     inputQuantity: 1,
     outputItemId: 'seed_rice',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从稻谷中提取种子。'
+    description: 'Pirinçten tohum çıkarılır.'
   },
   {
     id: 'seed_from_lotus_root',
     machineType: 'seed_maker',
-    name: '莲藕种子',
+    name: 'Nilüfer Kökü Tohumu',
     inputItemId: 'lotus_root',
     inputQuantity: 1,
     outputItemId: 'seed_lotus_root',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从莲藕中提取种子。'
+    description: 'Nilüfer kökünden tohum çıkarılır.'
   },
   {
     id: 'seed_from_sesame',
     machineType: 'seed_maker',
-    name: '芝麻种子',
+    name: 'Susam Tohumu',
     inputItemId: 'sesame',
     inputQuantity: 1,
     outputItemId: 'seed_sesame',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从芝麻中提取种子。'
+    description: 'Susamdan tohum çıkarılır.'
   },
   {
     id: 'seed_from_pumpkin',
     machineType: 'seed_maker',
-    name: '南瓜种子',
+    name: 'Balkabağı Tohumu',
     inputItemId: 'pumpkin',
     inputQuantity: 1,
     outputItemId: 'seed_pumpkin',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从南瓜中提取种子。'
+    description: 'Balkabağından tohum çıkarılır.'
   },
   {
     id: 'seed_from_sweet_potato',
     machineType: 'seed_maker',
-    name: '红薯种子',
+    name: 'Tatlı Patates Tohumu',
     inputItemId: 'sweet_potato',
     inputQuantity: 1,
     outputItemId: 'seed_sweet_potato',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从红薯中提取种子。'
+    description: 'Tatlı patatesten tohum çıkarılır.'
   },
   {
     id: 'seed_from_chrysanthemum',
     machineType: 'seed_maker',
-    name: '菊花种子',
+    name: 'Kasımpatı Tohumu',
     inputItemId: 'chrysanthemum',
     inputQuantity: 1,
     outputItemId: 'seed_chrysanthemum',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从菊花中提取种子。'
+    description: 'Kasımpatıdan tohum çıkarılır.'
   },
   {
     id: 'seed_from_osmanthus',
     machineType: 'seed_maker',
-    name: '桂花种子',
+    name: 'Osmanthus Tohumu',
     inputItemId: 'osmanthus',
     inputQuantity: 1,
     outputItemId: 'seed_osmanthus',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从桂花中提取种子。'
+    description: 'Osmanthus çiçeğinden tohum çıkarılır.'
   },
   {
     id: 'seed_from_bamboo_shoot',
     machineType: 'seed_maker',
-    name: '春笋种子',
+    name: 'Bambu Sürgünü Tohumu',
     inputItemId: 'bamboo_shoot',
     inputQuantity: 1,
     outputItemId: 'seed_bamboo_shoot',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从春笋中提取种子。'
+    description: 'Bambu sürgününden tohum çıkarılır.'
   },
   {
     id: 'seed_from_persimmon',
     machineType: 'seed_maker',
-    name: '柿子种子',
+    name: 'Trabzon Hurması Tohumu',
     inputItemId: 'persimmon',
     inputQuantity: 1,
     outputItemId: 'seed_persimmon',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从柿子中提取种子。'
+    description: 'Trabzon hurmasından tohum çıkarılır.'
   },
   {
     id: 'seed_from_winter_wheat',
     machineType: 'seed_maker',
-    name: '冬麦种子',
+    name: 'Kış Buğdayı Tohumu',
     inputItemId: 'winter_wheat',
     inputQuantity: 1,
     outputItemId: 'seed_winter_wheat',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从冬小麦中提取种子。'
+    description: 'Kış buğdayından tohum çıkarılır.'
   },
   {
     id: 'seed_from_garlic',
     machineType: 'seed_maker',
-    name: '大蒜种子',
+    name: 'Sarımsak Tohumu',
     inputItemId: 'garlic',
     inputQuantity: 1,
     outputItemId: 'seed_garlic',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从大蒜中提取种子。'
+    description: 'Sarımsaktan tohum çıkarılır.'
   },
   {
     id: 'seed_from_snow_lotus',
     machineType: 'seed_maker',
-    name: '雪莲种子',
+    name: 'Karçiçeği Tohumu',
     inputItemId: 'snow_lotus',
     inputQuantity: 1,
     outputItemId: 'seed_snow_lotus',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从雪莲中提取种子。'
+    description: 'Karçiçeğinden tohum çıkarılır.'
   },
   {
     id: 'seed_from_rapeseed',
     machineType: 'seed_maker',
-    name: '油菜种子',
+    name: 'Kanola Tohumu',
     inputItemId: 'rapeseed',
     inputQuantity: 1,
     outputItemId: 'seed_rapeseed',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从油菜中提取种子。'
+    description: 'Kanoladan tohum çıkarılır.'
   },
   {
     id: 'seed_from_broad_bean',
     machineType: 'seed_maker',
-    name: '蚕豆种子',
+    name: 'Bakla Tohumu',
     inputItemId: 'broad_bean',
     inputQuantity: 1,
     outputItemId: 'seed_broad_bean',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从蚕豆中提取种子。'
+    description: 'Bakladan tohum çıkarılır.'
   },
   {
     id: 'seed_from_peach',
     machineType: 'seed_maker',
-    name: '水蜜桃种子',
+    name: 'Şeftali Tohumu',
     inputItemId: 'peach',
     inputQuantity: 1,
     outputItemId: 'seed_peach',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从水蜜桃中提取种子。'
+    description: 'Şeftaliden tohum çıkarılır.'
   },
   {
     id: 'seed_from_green_bean',
     machineType: 'seed_maker',
-    name: '豆角种子',
+    name: 'Taze Fasulye Tohumu',
     inputItemId: 'green_bean',
     inputQuantity: 1,
     outputItemId: 'seed_green_bean',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从豆角中提取种子。'
+    description: 'Taze fasulyeden tohum çıkarılır.'
   },
   {
     id: 'seed_from_loofah',
     machineType: 'seed_maker',
-    name: '丝瓜种子',
+    name: 'Kabak Lifi Tohumu',
     inputItemId: 'loofah',
     inputQuantity: 1,
     outputItemId: 'seed_loofah',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从丝瓜中提取种子。'
+    description: 'Liften tohum çıkarılır.'
   },
   {
     id: 'seed_from_eggplant',
     machineType: 'seed_maker',
-    name: '茄子种子',
+    name: 'Patlıcan Tohumu',
     inputItemId: 'eggplant',
     inputQuantity: 1,
     outputItemId: 'seed_eggplant',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从茄子中提取种子。'
+    description: 'Patlıcandan tohum çıkarılır.'
   },
   {
     id: 'seed_from_chili',
     machineType: 'seed_maker',
-    name: '辣椒种子',
+    name: 'Biber Tohumu',
     inputItemId: 'chili',
     inputQuantity: 1,
     outputItemId: 'seed_chili',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从辣椒中提取种子。'
+    description: 'Biberden tohum çıkarılır.'
   },
   {
     id: 'seed_from_lotus_seed',
     machineType: 'seed_maker',
-    name: '莲子种子',
+    name: 'Nilüfer Tohumu',
     inputItemId: 'lotus_seed',
     inputQuantity: 1,
     outputItemId: 'seed_lotus_seed',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从莲子中提取种子。'
+    description: 'Nilüfer tohumundan yeni tohum çıkarılır.'
   },
   {
     id: 'seed_from_corn',
     machineType: 'seed_maker',
-    name: '玉米种子',
+    name: 'Mısır Tohumu',
     inputItemId: 'corn',
     inputQuantity: 1,
     outputItemId: 'seed_corn',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从玉米中提取种子。'
+    description: 'Mısırdan tohum çıkarılır.'
   },
   {
     id: 'seed_from_yam',
     machineType: 'seed_maker',
-    name: '山药种子',
+    name: 'Yer Elması Tohumu',
     inputItemId: 'yam',
     inputQuantity: 1,
     outputItemId: 'seed_yam',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从山药中提取种子。'
+    description: 'Yam bitkisinden tohum çıkarılır.'
   },
   {
     id: 'seed_from_peanut',
     machineType: 'seed_maker',
-    name: '花生种子',
+    name: 'Yer Fıstığı Tohumu',
     inputItemId: 'peanut',
     inputQuantity: 1,
     outputItemId: 'seed_peanut',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从花生中提取种子。'
+    description: 'Yer fıstığından tohum çıkarılır.'
   },
   {
     id: 'seed_from_jujube',
     machineType: 'seed_maker',
-    name: '红枣种子',
+    name: 'Hünnap Tohumu',
     inputItemId: 'jujube',
     inputQuantity: 1,
     outputItemId: 'seed_jujube',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从红枣中提取种子。'
+    description: 'Hünnaptan tohum çıkarılır.'
   },
   {
     id: 'seed_from_ginger',
     machineType: 'seed_maker',
-    name: '生姜种子',
+    name: 'Zencefil Tohumu',
     inputItemId: 'ginger',
     inputQuantity: 1,
     outputItemId: 'seed_ginger',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从生姜中提取种子。'
+    description: 'Zencefilden tohum çıkarılır.'
   },
   {
     id: 'seed_from_napa_cabbage',
     machineType: 'seed_maker',
-    name: '白菜种子',
+    name: 'Çin Lahanası Tohumu',
     inputItemId: 'napa_cabbage',
     inputQuantity: 1,
     outputItemId: 'seed_napa_cabbage',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从白菜中提取种子。'
+    description: 'Çin lahanasından tohum çıkarılır.'
   },
   {
     id: 'seed_from_spinach',
     machineType: 'seed_maker',
-    name: '菠菜种子',
+    name: 'Ispanak Tohumu',
     inputItemId: 'spinach',
     inputQuantity: 1,
     outputItemId: 'seed_spinach',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从菠菜中提取种子。'
+    description: 'Ispanaktan tohum çıkarılır.'
   },
   {
     id: 'seed_from_mustard_green',
     machineType: 'seed_maker',
-    name: '芥菜种子',
+    name: 'Hardal Otu Tohumu',
     inputItemId: 'mustard_green',
     inputQuantity: 1,
     outputItemId: 'seed_mustard_green',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从芥菜中提取种子。'
+    description: 'Hardal otundan tohum çıkarılır.'
   },
   {
     id: 'seed_from_chives',
     machineType: 'seed_maker',
-    name: '韭菜种子',
+    name: 'Frenk Soğanı Tohumu',
     inputItemId: 'chives',
     inputQuantity: 1,
     outputItemId: 'seed_chives',
     outputQuantity: 2,
     processingDays: 1,
-    description: '从韭菜中提取种子。'
+    description: 'Frenk soğanından tohum çıkarılır.'
   },
-  // 结晶复制机
+
+  // Taş Çoğaltıcı
   {
     id: 'dup_quartz',
     machineType: 'crystal_duplicator',
-    name: '复制石英',
+    name: 'Kuvars Çoğalt',
     inputItemId: 'quartz',
     inputQuantity: 1,
     outputItemId: 'quartz',
     outputQuantity: 2,
     processingDays: 3,
-    description: '缓慢复制一颗石英。'
+    description: 'Bir parça kuvarsı ağır ağır çoğaltır.'
   },
   {
     id: 'dup_jade',
     machineType: 'crystal_duplicator',
-    name: '复制翡翠',
+    name: 'Yeşim Çoğalt',
     inputItemId: 'jade',
     inputQuantity: 1,
     outputItemId: 'jade',
     outputQuantity: 2,
     processingDays: 4,
-    description: '缓慢复制一颗翡翠。'
+    description: 'Bir parça yeşimi ağır ağır çoğaltır.'
   },
   {
     id: 'dup_ruby',
     machineType: 'crystal_duplicator',
-    name: '复制红宝石',
+    name: 'Yakut Çoğalt',
     inputItemId: 'ruby',
     inputQuantity: 1,
     outputItemId: 'ruby',
     outputQuantity: 2,
     processingDays: 5,
-    description: '缓慢复制一颗红宝石。'
+    description: 'Bir parça yakutu ağır ağır çoğaltır.'
   },
   {
     id: 'dup_moonstone',
     machineType: 'crystal_duplicator',
-    name: '复制月光石',
+    name: 'Aytaşı Çoğalt',
     inputItemId: 'moonstone',
     inputQuantity: 1,
     outputItemId: 'moonstone',
     outputQuantity: 2,
     processingDays: 5,
-    description: '缓慢复制一颗月光石。'
+    description: 'Bir parça aytaşını ağır ağır çoğaltır.'
   },
   {
     id: 'dup_obsidian',
     machineType: 'crystal_duplicator',
-    name: '复制黑曜石',
+    name: 'Obsidyen Çoğalt',
     inputItemId: 'obsidian',
     inputQuantity: 1,
     outputItemId: 'obsidian',
     outputQuantity: 2,
     processingDays: 4,
-    description: '缓慢复制一颗黑曜石。'
+    description: 'Bir parça obsidyeni ağır ağır çoğaltır.'
   },
   {
     id: 'dup_dragon_jade',
     machineType: 'crystal_duplicator',
-    name: '复制龙玉',
+    name: 'Ejder Yeşimi Çoğalt',
     inputItemId: 'dragon_jade',
     inputQuantity: 1,
     outputItemId: 'dragon_jade',
     outputQuantity: 2,
     processingDays: 7,
-    description: '缓慢复制一颗龙玉。'
+    description: 'Bir parça ejder yeşimini ağır ağır çoğaltır.'
   },
-  // 烟熏机
+
+  // İs Ocağı
   {
     id: 'smoke_crucian',
     machineType: 'smoker',
-    name: '烟熏鲫鱼',
+    name: 'Tütsülenmiş Sazan',
     inputItemId: 'crucian',
     inputQuantity: 1,
     outputItemId: 'smoked_crucian',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将鲫鱼烟熏处理。'
+    description: 'Sazanı tütsüler.'
   },
   {
     id: 'smoke_carp',
     machineType: 'smoker',
-    name: '烟熏鲤鱼',
+    name: 'Tütsülenmiş Tatlı Su Sazanı',
     inputItemId: 'carp',
     inputQuantity: 1,
     outputItemId: 'smoked_carp',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将鲤鱼烟熏处理。'
+    description: 'Tatlı su sazanını tütsüler.'
   },
   {
     id: 'smoke_grass_carp',
     machineType: 'smoker',
-    name: '烟熏草鱼',
+    name: 'Tütsülenmiş Ot Sazanı',
     inputItemId: 'grass_carp',
     inputQuantity: 1,
     outputItemId: 'smoked_grass_carp',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将草鱼烟熏处理。'
+    description: 'Ot sazanını tütsüler.'
   },
   {
     id: 'smoke_bass',
     machineType: 'smoker',
-    name: '烟熏鲈鱼',
+    name: 'Tütsülenmiş Levrek',
     inputItemId: 'bass',
     inputQuantity: 1,
     outputItemId: 'smoked_bass',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将鲈鱼烟熏处理。'
+    description: 'Levreği tütsüler.'
   },
   {
     id: 'smoke_catfish',
     machineType: 'smoker',
-    name: '烟熏鲶鱼',
+    name: 'Tütsülenmiş Yayın Balığı',
     inputItemId: 'catfish',
     inputQuantity: 1,
     outputItemId: 'smoked_catfish',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将鲶鱼烟熏处理。'
+    description: 'Yayın balığını tütsüler.'
   },
   {
     id: 'smoke_mandarin_fish',
     machineType: 'smoker',
-    name: '烟熏桂花鱼',
+    name: 'Tütsülenmiş Mandalina Balığı',
     inputItemId: 'mandarin_fish',
     inputQuantity: 1,
     outputItemId: 'smoked_mandarin_fish',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将桂花鱼烟熏处理。'
+    description: 'Mandalina balığını tütsüler.'
   },
   {
     id: 'smoke_eel',
     machineType: 'smoker',
-    name: '烟熏鳗鱼',
+    name: 'Tütsülenmiş Yılan Balığı',
     inputItemId: 'eel',
     inputQuantity: 1,
     outputItemId: 'smoked_eel',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将鳗鱼烟熏处理。'
+    description: 'Yılan balığını tütsüler.'
   },
   {
     id: 'smoke_sturgeon',
     machineType: 'smoker',
-    name: '烟熏鲟鱼',
+    name: 'Tütsülenmiş Mersin Balığı',
     inputItemId: 'sturgeon',
     inputQuantity: 1,
     outputItemId: 'smoked_sturgeon',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将鲟鱼烟熏处理。'
+    description: 'Mersin balığını tütsüler.'
   },
   {
     id: 'smoke_loach',
     machineType: 'smoker',
-    name: '烟熏泥鳅',
+    name: 'Tütsülenmiş Çamur Balığı',
     inputItemId: 'loach',
     inputQuantity: 1,
     outputItemId: 'smoked_loach',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将泥鳅烟熏处理。'
+    description: 'Çamur balığını tütsüler.'
   },
   {
     id: 'smoke_yellow_eel',
     machineType: 'smoker',
-    name: '烟熏黄鳝',
+    name: 'Tütsülenmiş Sarı Yılan Balığı',
     inputItemId: 'yellow_eel',
     inputQuantity: 1,
     outputItemId: 'smoked_yellow_eel',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将黄鳝烟熏处理。'
+    description: 'Sarı yılan balığını tütsüler.'
   },
-  // 脱水机
+
+  // Kurutmalık
   {
     id: 'dry_mushroom',
     machineType: 'dehydrator',
-    name: '干蘑菇',
+    name: 'Kuru Mantar',
     inputItemId: 'wild_mushroom',
     inputQuantity: 3,
     outputItemId: 'dried_mushroom',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将野蘑菇脱水制成干蘑菇。'
+    description: 'Yabani mantarı kurutup saklar.'
   },
   {
     id: 'dry_peach',
     machineType: 'dehydrator',
-    name: '桃干',
+    name: 'Kuru Şeftali',
     inputItemId: 'tree_peach',
     inputQuantity: 1,
     outputItemId: 'dried_peach',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将鲜桃脱水制成桃干。'
+    description: 'Taze şeftaliyi kurutup saklar.'
   },
   {
     id: 'dry_lychee',
     machineType: 'dehydrator',
-    name: '荔枝干',
+    name: 'Kuru Liçi',
     inputItemId: 'lychee',
     inputQuantity: 1,
     outputItemId: 'dried_lychee',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将荔枝脱水制成荔枝干。'
+    description: 'Liçiyi kurutup saklar.'
   },
   {
     id: 'dry_persimmon',
     machineType: 'dehydrator',
-    name: '柿饼',
+    name: 'Kuru Hurma Dilimi',
     inputItemId: 'persimmon',
     inputQuantity: 1,
     outputItemId: 'dried_persimmon_slice',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将柿子脱水制成柿饼。'
+    description: 'Trabzon hurmasını kurutup saklar.'
   },
   {
     id: 'dry_hawthorn',
     machineType: 'dehydrator',
-    name: '山楂片',
+    name: 'Alıç Kurusu',
     inputItemId: 'hawthorn',
     inputQuantity: 1,
     outputItemId: 'dried_hawthorn',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将山楂脱水制成山楂片。'
+    description: 'Alıcı kurutup dilim yapar.'
   },
   {
     id: 'dry_apricot',
     machineType: 'dehydrator',
-    name: '杏脯',
+    name: 'Kuru Kayısı',
     inputItemId: 'apricot',
     inputQuantity: 1,
     outputItemId: 'dried_apricot',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将杏子脱水制成杏脯。'
+    description: 'Kayısıyı kurutup saklar.'
   },
   {
     id: 'dry_wild_berry',
     machineType: 'dehydrator',
-    name: '果脯',
+    name: 'Kuru Yaban Yemişi',
     inputItemId: 'wild_berry',
     inputQuantity: 3,
     outputItemId: 'dried_berry',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将野果脱水制成果脯。'
+    description: 'Yaban yemişini kurutup erzak yapar.'
   },
-  // 回收机
+
+  // Geri Dönüşüm Ocağı
   {
     id: 'recycle_firewood',
     machineType: 'recycler',
-    name: '回收柴火',
+    name: 'Çöpten Yakacak',
     inputItemId: 'trash',
     inputQuantity: 3,
     outputItemId: 'firewood',
     outputQuantity: 5,
     processingDays: 1,
-    description: '将垃圾回收转化为柴火。'
+    description: 'Çer çöpten yakacak çıkarır.'
   },
   {
     id: 'recycle_copper',
     machineType: 'recycler',
-    name: '回收铜矿',
+    name: 'Çöpten Bakır',
     inputItemId: 'trash',
     inputQuantity: 5,
     outputItemId: 'copper_ore',
     outputQuantity: 3,
     processingDays: 1,
-    description: '将垃圾回收提炼出铜矿。'
+    description: 'Çer çöpten bakır ayıklar.'
   },
   {
     id: 'recycle_iron',
     machineType: 'recycler',
-    name: '回收铁矿',
+    name: 'Çöpten Demir',
     inputItemId: 'trash',
     inputQuantity: 5,
     outputItemId: 'iron_ore',
     outputQuantity: 2,
     processingDays: 1,
-    description: '将垃圾回收提炼出铁矿。'
+    description: 'Çer çöpten demir ayıklar.'
   },
   {
     id: 'recycle_quartz',
     machineType: 'recycler',
-    name: '回收石英',
+    name: 'Çöpten Kuvars',
     inputItemId: 'trash',
     inputQuantity: 8,
     outputItemId: 'quartz',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将垃圾回收提炼出石英。'
+    description: 'Çer çöpten kuvars çıkarır.'
   },
   {
     id: 'recycle_driftwood',
     machineType: 'recycler',
-    name: '浮木回收',
+    name: 'Sürüklenmiş Odun Dönüşümü',
     inputItemId: 'driftwood',
     inputQuantity: 5,
     outputItemId: 'wood',
     outputQuantity: 10,
     processingDays: 1,
-    description: '将浮木处理为可用木材。'
+    description: 'Sürüklenmiş odunu işe yarar keresteye çevirir.'
   },
   {
     id: 'recycle_cd',
     machineType: 'recycler',
-    name: '碟片提炼',
+    name: 'Kırık Levha Eritimi',
     inputItemId: 'broken_cd',
     inputQuantity: 3,
     outputItemId: 'copper_ore',
     outputQuantity: 3,
     processingDays: 1,
-    description: '从碎碟片中提炼金属。'
+    description: 'Kırık levhadan maden ayıklar.'
   },
   {
     id: 'recycle_newspaper',
     machineType: 'recycler',
-    name: '报纸回收',
+    name: 'Islak Kâğıt Kurutması',
     inputItemId: 'soggy_newspaper',
     inputQuantity: 5,
     outputItemId: 'firewood',
     outputQuantity: 3,
     processingDays: 1,
-    description: '将湿报纸晒干用作燃料。'
+    description: 'Islak kâğıdı kurutup yakacak eder.'
   },
-  // 乳酪机
+
+  // Peynir Teknesi
   {
     id: 'cheese_milk',
     machineType: 'cheese_press',
-    name: '奶酪',
+    name: 'Peynir',
     inputItemId: 'milk',
     inputQuantity: 1,
     outputItemId: 'cheese',
     outputQuantity: 1,
     processingDays: 2,
-    description: '用牛奶制成的醇厚奶酪。'
+    description: 'İnek sütünden yapılmış dolgun peynir.'
   },
   {
     id: 'cheese_goat',
     machineType: 'cheese_press',
-    name: '山羊奶酪',
+    name: 'Keçi Peyniri',
     inputItemId: 'goat_milk',
     inputQuantity: 1,
     outputItemId: 'goat_cheese',
     outputQuantity: 1,
     processingDays: 2,
-    description: '用山羊奶制成的风味奶酪。'
+    description: 'Keçi sütünden yapılmış nefis peynir.'
   },
   {
     id: 'cheese_buffalo',
     machineType: 'cheese_press',
-    name: '水牛奶酪',
+    name: 'Manda Peyniri',
     inputItemId: 'buffalo_milk',
     inputQuantity: 1,
     outputItemId: 'buffalo_cheese',
     outputQuantity: 1,
     processingDays: 2,
-    description: '用水牛奶制成的浓郁奶酪。'
+    description: 'Manda sütünden yapılmış yoğun peynir.'
   },
   {
     id: 'cheese_yak',
     machineType: 'cheese_press',
-    name: '牦牛奶酪',
+    name: 'Yak Peyniri',
     inputItemId: 'yak_milk',
     inputQuantity: 1,
     outputItemId: 'yak_cheese',
     outputQuantity: 1,
     processingDays: 2,
-    description: '用牦牛奶制成的高原奶酪。'
+    description: 'Dağ sütünden yapılmış özel peynir.'
   },
-  // 织布机
+
+  // Dokuma Tezgâhı
   {
     id: 'weave_wool',
     machineType: 'loom',
-    name: '布匹',
+    name: 'Kumaş',
     inputItemId: 'wool',
     inputQuantity: 1,
     outputItemId: 'cloth',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将羊毛纺织成布匹。'
+    description: 'Yünü dokuyup kumaşa çevirir.'
   },
   {
     id: 'weave_silk',
     machineType: 'loom',
-    name: '丝绸',
+    name: 'İpek Kumaş',
     inputItemId: 'silk',
     inputQuantity: 1,
     outputItemId: 'silk_cloth',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将蚕丝织成华美丝绸。'
+    description: 'İpeği dokuyup zarif kumaşa çevirir.'
   },
   {
     id: 'weave_alpaca',
     machineType: 'loom',
-    name: '羊驼绒',
+    name: 'Alpaka Dokuma',
     inputItemId: 'alpaca_wool',
     inputQuantity: 1,
     outputItemId: 'alpaca_cloth',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将羊驼毛织成柔软绒布。'
+    description: 'Alpaka yününden yumuşak dokuma çıkarır.'
   },
   {
     id: 'weave_rabbit',
     machineType: 'loom',
-    name: '毛毡',
+    name: 'Keçe',
     inputItemId: 'rabbit_fur',
     inputQuantity: 1,
     outputItemId: 'felt',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将兔毛压制成毛毡。'
+    description: 'Tavşan kürkünü bastırıp keçe yapar.'
   },
-  // 熔炉
+
+  // Döküm Ocağı
   {
     id: 'smelt_copper',
     machineType: 'furnace',
-    name: '铜锭',
+    name: 'Bakır Külçesi',
     inputItemId: 'copper_ore',
     inputQuantity: 5,
     outputItemId: 'copper_bar',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将铜矿冶炼成铜锭。'
+    description: 'Bakır cevherini eritip külçe yapar.'
   },
   {
     id: 'smelt_iron',
     machineType: 'furnace',
-    name: '铁锭',
+    name: 'Demir Külçesi',
     inputItemId: 'iron_ore',
     inputQuantity: 5,
     outputItemId: 'iron_bar',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将铁矿冶炼成铁锭。'
+    description: 'Demir cevherini eritip külçe yapar.'
   },
   {
     id: 'smelt_gold',
     machineType: 'furnace',
-    name: '金锭',
+    name: 'Altın Külçesi',
     inputItemId: 'gold_ore',
     inputQuantity: 5,
     outputItemId: 'gold_bar',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将金矿冶炼成金锭。'
+    description: 'Altın cevherini eritip külçe yapar.'
   },
   {
     id: 'smelt_iridium',
     machineType: 'furnace',
-    name: '铱锭',
+    name: 'İridyum Külçesi',
     inputItemId: 'iridium_ore',
     inputQuantity: 5,
     outputItemId: 'iridium_bar',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将铱矿冶炼成铱锭。'
+    description: 'İridyum cevherini eritip külçe yapar.'
   },
-  // 炭窑
+
+  // Kömürlük
   {
     id: 'burn_wood',
     machineType: 'charcoal_kiln',
-    name: '木炭（木材）',
+    name: 'Kömür (Odun)',
     inputItemId: 'wood',
     inputQuantity: 10,
     outputItemId: 'charcoal',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将木材烧制成木炭。'
+    description: 'Odunu yakıp kömüre çevirir.'
   },
   {
     id: 'burn_bamboo',
     machineType: 'charcoal_kiln',
-    name: '木炭（竹子）',
+    name: 'Kömür (Bambu)',
     inputItemId: 'bamboo',
     inputQuantity: 5,
     outputItemId: 'charcoal',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将竹子烧制成木炭。'
+    description: 'Bambuyu yakıp kömüre çevirir.'
   },
-  // 石磨
+
+  // Değirmen Taşı
   {
     id: 'mill_rice',
     machineType: 'mill',
-    name: '米粉',
+    name: 'Pirinç Unu',
     inputItemId: 'rice',
     inputQuantity: 2,
     outputItemId: 'rice_flour',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将稻米磨成米粉。'
+    description: 'Pirinci öğütüp un yapar.'
   },
   {
     id: 'mill_wheat',
     machineType: 'mill',
-    name: '面粉',
+    name: 'Buğday Unu',
     inputItemId: 'winter_wheat',
     inputQuantity: 2,
     outputItemId: 'wheat_flour',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将冬小麦磨成面粉。'
+    description: 'Kış buğdayını öğütüp un yapar.'
   },
   {
     id: 'mill_corn',
     machineType: 'mill',
-    name: '玉米粉',
+    name: 'Mısır Unu',
     inputItemId: 'corn',
     inputQuantity: 2,
     outputItemId: 'cornmeal',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将玉米磨成玉米粉。'
+    description: 'Mısırı öğütüp un yapar.'
   },
-  // 蚯蚓箱
+
+  // Solucan Sandığı
   {
     id: 'worm_bait',
     machineType: 'worm_bin',
-    name: '蚯蚓鱼饵',
+    name: 'Solucan Yemi',
     inputItemId: null,
     inputQuantity: 0,
     outputItemId: 'standard_bait',
     outputQuantity: 3,
     processingDays: 2,
-    description: '蚯蚓箱自动产出鱼饵。'
+    description: 'Sandık kendiliğinden balık yemi üretir.'
   },
-  // 制茶机
+
+  // Dem Ocağı
   {
     id: 'brew_green_tea',
     machineType: 'tea_maker',
-    name: '绿茶',
+    name: 'Yeşil Çay',
     inputItemId: 'tea',
     inputQuantity: 2,
     outputItemId: 'green_tea_drink',
     outputQuantity: 1,
     processingDays: 1,
-    description: '用茶叶泡制的清香绿茶。'
+    description: 'Çay yaprağından demlenmiş ferah içecek.'
   },
   {
     id: 'brew_chrysanthemum',
     machineType: 'tea_maker',
-    name: '菊花茶',
+    name: 'Kasımpatı Çayı',
     inputItemId: 'chrysanthemum',
     inputQuantity: 2,
     outputItemId: 'chrysanthemum_tea',
     outputQuantity: 1,
     processingDays: 1,
-    description: '清热明目的菊花茶。'
+    description: 'Ferahlık veren kasımpatı çayı.'
   },
   {
     id: 'brew_osmanthus',
     machineType: 'tea_maker',
-    name: '桂花茶',
+    name: 'Osmanthus Çayı',
     inputItemId: 'osmanthus',
     inputQuantity: 2,
     outputItemId: 'osmanthus_tea',
     outputQuantity: 1,
     processingDays: 1,
-    description: '馥郁芬芳的桂花茶。'
+    description: 'Mis kokulu çiçek çayı.'
   },
   {
     id: 'brew_ginseng',
     machineType: 'tea_maker',
-    name: '人参茶',
+    name: 'Ginseng Çayı',
     inputItemId: 'ginseng',
     inputQuantity: 1,
     outputItemId: 'ginseng_tea',
     outputQuantity: 1,
     processingDays: 1,
-    description: '滋补强身的人参茶。'
+    description: 'Güç kuvvet veren ginseng çayı.'
   },
-  // 豆腐坊
+
+  // Tofu Teknesi
   {
     id: 'press_tofu',
     machineType: 'tofu_press',
-    name: '豆腐',
+    name: 'Tofu',
     inputItemId: 'broad_bean',
     inputQuantity: 3,
     outputItemId: 'tofu',
     outputQuantity: 1,
     processingDays: 1,
-    description: '用蚕豆磨制的鲜嫩豆腐。'
+    description: 'Bakladan yapılmış yumuşak tofu.'
   },
   {
     id: 'press_peanut_tofu',
     machineType: 'tofu_press',
-    name: '花生豆腐',
+    name: 'Yer Fıstıklı Tofu',
     inputItemId: 'peanut',
     inputQuantity: 3,
     outputItemId: 'peanut_tofu',
     outputQuantity: 1,
     processingDays: 1,
-    description: '用花生磨制的香浓豆腐。'
+    description: 'Yer fıstığından yapılmış yoğun tofu.'
   },
   {
     id: 'press_sesame_paste',
     machineType: 'tofu_press',
-    name: '芝麻酱',
+    name: 'Susam Ezmesi',
     inputItemId: 'sesame',
     inputQuantity: 2,
     outputItemId: 'sesame_paste',
     outputQuantity: 1,
     processingDays: 1,
-    description: '用芝麻磨制的浓香芝麻酱。'
+    description: 'Susamdan çekilmiş koyu ezme.'
   },
-  // 药碾
+
+  // Şifa Dibeci
   {
     id: 'grind_herb',
     machineType: 'herb_grinder',
-    name: '草药膏',
+    name: 'Ot Merhemi',
     inputItemId: 'herb',
     inputQuantity: 3,
     outputItemId: 'herbal_paste',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将草药研磨成药膏。'
+    description: 'Şifalı otu ezip merhem yapar.'
   },
   {
     id: 'grind_ginseng',
     machineType: 'herb_grinder',
-    name: '人参精',
+    name: 'Ginseng Özü',
     inputItemId: 'ginseng',
     inputQuantity: 1,
     outputItemId: 'ginseng_extract',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将人参浓缩成精华。'
+    description: 'Ginsengi yoğun öz hâline getirir.'
   },
   {
     id: 'grind_antler',
     machineType: 'herb_grinder',
-    name: '鹿茸粉',
+    name: 'Geyik Boynuzu Tozu',
     inputItemId: 'antler_velvet',
     inputQuantity: 1,
     outputItemId: 'antler_powder',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将鹿茸研磨成粉。'
+    description: 'Geyik boynuzunu ince toz eder.'
   },
   {
     id: 'grind_animal_medicine',
     machineType: 'herb_grinder',
-    name: '兽药',
+    name: 'Hayvan İlacı',
     inputItemId: 'herb',
     inputQuantity: 2,
     outputItemId: 'animal_medicine',
     outputQuantity: 1,
     processingDays: 1,
-    description: '将草药研磨成治疗牲畜的药物。'
+    description: 'Şifalı ottan hayvanlar için ilaç yapar.'
   },
-  // 特殊饲料
+
+  // Özel yemler
   {
     id: 'mill_premium_feed',
     machineType: 'mill',
-    name: '精饲料',
+    name: 'Besili Yem',
     inputItemId: 'corn',
     inputQuantity: 3,
     outputItemId: 'premium_feed',
     outputQuantity: 2,
     processingDays: 1,
-    description: '将玉米配制成精饲料。'
+    description: 'Mısırdan kuvvetli yem hazırlanır.'
   },
   {
     id: 'mill_nourishing_feed',
     machineType: 'mill',
-    name: '滋补饲料',
+    name: 'Besleyici Yem',
     inputItemId: 'rice',
     inputQuantity: 3,
     outputItemId: 'nourishing_feed',
     outputQuantity: 2,
     processingDays: 1,
-    description: '将稻米配制成滋补饲料。'
+    description: 'Pirinçten besleyici yem hazırlanır.'
   },
   {
     id: 'grind_vitality_feed',
     machineType: 'herb_grinder',
-    name: '活力饲料',
+    name: 'Canlılık Yemi',
     inputItemId: 'herb',
     inputQuantity: 3,
     outputItemId: 'vitality_feed',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将草药研磨成活力饲料。'
+    description: 'Şifalı ottan canlılık veren yem yapılır.'
   },
-  // 制香坊
+
+  // Buhurhane
   {
     id: 'incense_pine',
     machineType: 'incense_maker',
-    name: '松香',
+    name: 'Çam Buhuru',
     inputItemId: 'pine_resin',
     inputQuantity: 2,
     outputItemId: 'pine_incense',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将松脂炼制成松香。'
+    description: 'Çam reçinesinden hoş kokulu buhur yapılır.'
   },
   {
     id: 'incense_camphor',
     machineType: 'incense_maker',
-    name: '樟脑香',
+    name: 'Kafur Buhuru',
     inputItemId: 'camphor_oil',
     inputQuantity: 2,
     outputItemId: 'camphor_incense',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将樟脑油炼制成樟脑香。'
+    description: 'Kafur yağından keskin kokulu buhur yapılır.'
   },
   {
     id: 'incense_osmanthus',
     machineType: 'incense_maker',
-    name: '桂花香',
+    name: 'Osmanthus Buhuru',
     inputItemId: 'osmanthus',
     inputQuantity: 2,
     outputItemId: 'osmanthus_incense',
     outputQuantity: 1,
     processingDays: 2,
-    description: '将桂花制成桂花香。'
+    description: 'Çiçekten mis kokulu buhur yapılır.'
   }
 ]
 
-/** 洒水器定义 */
+/** Sulayıcı tanımları */
 export const SPRINKLERS: SprinklerDef[] = [
   {
     id: 'bamboo_sprinkler',
-    name: '竹筒洒水器',
-    description: '自动灌溉上下左右4块地。',
+    name: 'Bambu Sulayıcı',
+    description: 'Üst, alt, sağ ve soldaki 4 toprağı kendiliğinden sular.',
     range: 4,
     craftCost: [
       { itemId: 'bamboo', quantity: 10 },
@@ -1631,8 +1653,8 @@ export const SPRINKLERS: SprinklerDef[] = [
   },
   {
     id: 'copper_sprinkler',
-    name: '铜管洒水器',
-    description: '自动灌溉周围8块地。',
+    name: 'Bakır Sulayıcı',
+    description: 'Çevresindeki 8 toprağı kendiliğinden sular.',
     range: 8,
     craftCost: [
       { itemId: 'copper_bar', quantity: 3 },
@@ -1642,8 +1664,8 @@ export const SPRINKLERS: SprinklerDef[] = [
   },
   {
     id: 'gold_sprinkler',
-    name: '金管洒水器',
-    description: '自动灌溉周围5×5共24块地。',
+    name: 'Altın Sulayıcı',
+    description: '5×5 alandaki toplam 24 toprağı kendiliğinden sular.',
     range: 24,
     craftCost: [
       { itemId: 'gold_bar', quantity: 2 },
@@ -1654,12 +1676,12 @@ export const SPRINKLERS: SprinklerDef[] = [
   }
 ]
 
-/** 肥料定义 */
+/** Gübre tanımları */
 export const FERTILIZERS: FertilizerDef[] = [
   {
     id: 'basic_fertilizer',
-    name: '基础肥料',
-    description: '提升作物品质概率+20%。',
+    name: 'Kaba Gübre',
+    description: 'Mahsul kalitesi ihtimalini %20 artırır.',
     qualityBonus: 0.2,
     craftCost: [
       { itemId: 'wood', quantity: 5 },
@@ -1670,8 +1692,8 @@ export const FERTILIZERS: FertilizerDef[] = [
   },
   {
     id: 'quality_fertilizer',
-    name: '优质肥料',
-    description: '提升作物品质概率+40%。',
+    name: 'İyi Gübre',
+    description: 'Mahsul kalitesi ihtimalini %40 artırır.',
     qualityBonus: 0.4,
     craftCost: [
       { itemId: 'herb', quantity: 3 },
@@ -1682,8 +1704,8 @@ export const FERTILIZERS: FertilizerDef[] = [
   },
   {
     id: 'speed_gro',
-    name: '生长激素',
-    description: '加速作物生长25%。',
+    name: 'Büyütücü',
+    description: 'Mahsulün büyümesini %25 hızlandırır.',
     growthSpeedup: 0.25,
     craftCost: [
       { itemId: 'pine_cone', quantity: 3 },
@@ -1694,8 +1716,8 @@ export const FERTILIZERS: FertilizerDef[] = [
   },
   {
     id: 'deluxe_speed_gro',
-    name: '高级激素',
-    description: '加速作物生长33%。',
+    name: 'Usta Büyütücü',
+    description: 'Mahsulün büyümesini %33 hızlandırır.',
     growthSpeedup: 0.33,
     craftCost: [
       { itemId: 'quartz', quantity: 1 },
@@ -1706,8 +1728,8 @@ export const FERTILIZERS: FertilizerDef[] = [
   },
   {
     id: 'retaining_soil',
-    name: '保湿土',
-    description: '50%概率隔夜保持浇水状态。',
+    name: 'Nem Tutan Toprak',
+    description: 'Gece boyunca sululuğu koruma ihtimali %50.',
     retainChance: 0.5,
     craftCost: [
       { itemId: 'wood', quantity: 3 },
@@ -1718,8 +1740,8 @@ export const FERTILIZERS: FertilizerDef[] = [
   },
   {
     id: 'quality_retaining_soil',
-    name: '优质保湿土',
-    description: '100%隔夜保持浇水状态。',
+    name: 'Usta Nem Toprağı',
+    description: 'Gece boyunca sululuğu kesin korur.',
     retainChance: 1.0,
     craftCost: [
       { itemId: 'quartz', quantity: 1 },
@@ -1730,12 +1752,12 @@ export const FERTILIZERS: FertilizerDef[] = [
   }
 ]
 
-/** 鱼饵定义 */
+/** Yem tanımları */
 export const BAITS: BaitDef[] = [
   {
     id: 'standard_bait',
-    name: '普通鱼饵',
-    description: '使鱼更安静，降低猛冲概率。',
+    name: 'Sade Yem',
+    description: 'Balığı daha sakinleştirir, ani atılma ihtimalini düşürür.',
     behaviorModifier: { calm: 0.1, struggle: 0, dash: -0.1 },
     craftCost: [{ itemId: 'herb', quantity: 2 }],
     craftMoney: 0,
@@ -1743,8 +1765,8 @@ export const BAITS: BaitDef[] = [
   },
   {
     id: 'wild_bait',
-    name: '野生鱼饵',
-    description: '25%概率获得双倍鱼获。',
+    name: 'Yaban Yemi',
+    description: '%25 ihtimalle iki kat balık verir.',
     doubleCatchChance: 0.25,
     craftCost: [
       { itemId: 'herb', quantity: 3 },
@@ -1756,8 +1778,8 @@ export const BAITS: BaitDef[] = [
   },
   {
     id: 'magic_bait',
-    name: '魔法鱼饵',
-    description: '无视季节限制，可钓到所有鱼。',
+    name: 'Tılsımlı Yem',
+    description: 'Mevsim engelini kaldırır, her balık tutulabilir.',
     ignoresSeason: true,
     craftCost: [
       { itemId: 'ginseng', quantity: 1 },
@@ -1768,8 +1790,8 @@ export const BAITS: BaitDef[] = [
   },
   {
     id: 'deluxe_bait',
-    name: '精致鱼饵',
-    description: '鱼更安静，挣扎成功率+5%。',
+    name: 'Usta Yem',
+    description: 'Balık daha sakin olur, debelenmede başarı %5 artar.',
     behaviorModifier: { calm: 0.15, struggle: 0, dash: -0.1 },
     struggleBonus: 0.05,
     craftCost: [
@@ -1781,8 +1803,8 @@ export const BAITS: BaitDef[] = [
   },
   {
     id: 'targeted_bait',
-    name: '定向鱼饵',
-    description: '困难鱼权重×2，传说鱼权重×1.5。',
+    name: 'Seçici Yem',
+    description: 'Zor balıkların ağırlığı ×2, efsane balıkların ağırlığı ×1.5 olur.',
     hardWeightMult: 2,
     legendaryWeightMult: 1.5,
     craftCost: [
@@ -1794,12 +1816,12 @@ export const BAITS: BaitDef[] = [
   }
 ]
 
-/** 浮漂定义 */
+/** Olta eki tanımları */
 export const TACKLES: TackleDef[] = [
   {
     id: 'spinner',
-    name: '旋转浮漂',
-    description: '减少50%钓鱼体力消耗。',
+    name: 'Dönek Şamandıra',
+    description: 'Balık avında harcanan dayanıklılığı %50 azaltır.',
     maxDurability: 20,
     requiredRodTier: 'iron',
     staminaReduction: 0.5,
@@ -1812,8 +1834,8 @@ export const TACKLES: TackleDef[] = [
   },
   {
     id: 'trap_bobber',
-    name: '陷阱浮漂',
-    description: '断线时获得1次额外机会。',
+    name: 'Tuzak Şamandıra',
+    description: 'Misina kopunca 1 kez ek fırsat verir.',
     maxDurability: 20,
     requiredRodTier: 'iron',
     extraBreakChance: 1,
@@ -1826,8 +1848,8 @@ export const TACKLES: TackleDef[] = [
   },
   {
     id: 'cork_bobber',
-    name: '软木浮漂',
-    description: '挣扎时成功率+25%。',
+    name: 'Mantar Şamandıra',
+    description: 'Debelenme anında başarıyı %25 artırır.',
     maxDurability: 20,
     requiredRodTier: 'iron',
     struggleBonus: 0.25,
@@ -1840,8 +1862,8 @@ export const TACKLES: TackleDef[] = [
   },
   {
     id: 'quality_bobber',
-    name: '品质浮漂',
-    description: '钓到的鱼品质+1档。',
+    name: 'Bereket Şamandıra',
+    description: 'Tutulan balığın kalitesini 1 kademe yükseltir.',
     maxDurability: 20,
     requiredRodTier: 'iron',
     qualityBoost: 1,
@@ -1854,8 +1876,8 @@ export const TACKLES: TackleDef[] = [
   },
   {
     id: 'lead_bobber',
-    name: '铅坠浮漂',
-    description: '减少鱼猛冲和翻腾概率各10%。',
+    name: 'Kurşun Şamandıra',
+    description: 'Balığın ani atılma ve savrulma ihtimallerini %10 azaltır.',
     maxDurability: 20,
     requiredRodTier: 'iron',
     dangerReduction: 0.1,
@@ -1896,11 +1918,11 @@ export const getTackleById = (id: string): TackleDef | undefined => {
   return TACKLES.find(t => t.id === id)
 }
 
-/** 采脂器制造定义 */
+/** Reçine musluğu üretim tanımı */
 export const TAPPER = {
   id: 'tapper',
-  name: '采脂器',
-  description: '安装到成熟野树上，定期产出树脂。',
+  name: 'Reçine Musluğu',
+  description: 'Olgun yabani ağaca takılır, belli vakitlerde reçine verir.',
   craftCost: [
     { itemId: 'copper_ore', quantity: 5 },
     { itemId: 'wood', quantity: 10 }
@@ -1908,11 +1930,11 @@ export const TAPPER = {
   craftMoney: 200
 }
 
-/** 蟹笼制造定义 */
+/** Yengeç sepeti üretim tanımı */
 export const CRAB_POT_CRAFT = {
   id: 'crab_pot',
-  name: '蟹笼',
-  description: '放置在钓鱼地点，每日自动捕获水产（需鱼饵）。',
+  name: 'Yengeç Sepeti',
+  description: 'Balık tutulan yere bırakılır, her gün kendiliğinden su ürünü toplar (yem ister).',
   craftCost: [
     { itemId: 'wood', quantity: 15 },
     { itemId: 'iron_bar', quantity: 2 }
@@ -1920,11 +1942,11 @@ export const CRAB_POT_CRAFT = {
   craftMoney: 500
 }
 
-/** 避雷针制造定义 */
+/** Yıldırım direği üretim tanımı */
 export const LIGHTNING_ROD = {
   id: 'lightning_rod',
-  name: '避雷针',
-  description: '放置在农场，雷暴时吸收闪电保护作物，产出电池组。',
+  name: 'Yıldırım Direği',
+  description: 'Tarlaya dikilir; gök gürlerken yıldırımı içine çeker, mahsulü korur ve pil takımı üretir.',
   craftCost: [
     { itemId: 'iron_ore', quantity: 5 },
     { itemId: 'copper_ore', quantity: 3 },
@@ -1933,11 +1955,11 @@ export const LIGHTNING_ROD = {
   craftMoney: 300
 }
 
-/** 稻草人制造定义 */
+/** Korkuluk üretim tanımı */
 export const SCARECROW = {
   id: 'scarecrow',
-  name: '稻草人',
-  description: '放置在农场，驱赶偷吃作物的乌鸦。',
+  name: 'Korkuluk',
+  description: 'Tarlaya dikilir, mahsule dadanan kargaları uzak tutar.',
   craftCost: [
     { itemId: 'wood', quantity: 20 },
     { itemId: 'bamboo', quantity: 5 },
@@ -1948,8 +1970,8 @@ export const SCARECROW = {
 
 export const AUTO_PETTER = {
   id: 'auto_petter',
-  name: '自动抚摸机',
-  description: '安装到畜舍后，每天自动抚摸所有动物。需要大型畜舍（2级）。',
+  name: 'Otomat Sevgi Düzeneği',
+  description: 'Ahıra kurulduğunda her gün bütün hayvanları kendi okşar. Büyük ahır gerekir (2. seviye).',
   craftCost: [
     { itemId: 'gold_bar', quantity: 10 },
     { itemId: 'iron_bar', quantity: 20 },
@@ -1958,12 +1980,12 @@ export const AUTO_PETTER = {
   craftMoney: 5000
 }
 
-/** 炸弹定义 */
+/** Patlayıcı tanımları */
 export const BOMBS: BombDef[] = [
   {
     id: 'cherry_bomb',
-    name: '爆竹',
-    description: '小范围爆破，一次获取3份矿石。',
+    name: 'Çatapat',
+    description: 'Dar alanda patlar, bir kerede 3 pay maden toplar.',
     oreMultiplier: 3,
     clearsMonster: false,
     craftCost: [
@@ -1975,8 +1997,8 @@ export const BOMBS: BombDef[] = [
   },
   {
     id: 'bomb',
-    name: '火药包',
-    description: '大范围爆破，获取5份矿石并清除怪物。',
+    name: 'Barut Kesesi',
+    description: 'Geniş alanda patlar, 5 pay maden toplar ve yaratığı temizler.',
     oreMultiplier: 5,
     clearsMonster: true,
     craftCost: [
@@ -1989,8 +2011,8 @@ export const BOMBS: BombDef[] = [
   },
   {
     id: 'mega_bomb',
-    name: '雷火弹',
-    description: '超大范围爆破，获取8份矿石并清除怪物。',
+    name: 'Gök Gürleği',
+    description: 'Çok geniş alanda patlar, 8 pay maden toplar ve yaratıkları temizler.',
     oreMultiplier: 8,
     clearsMonster: true,
     craftCost: [
@@ -2006,4 +2028,4 @@ export const BOMBS: BombDef[] = [
 
 export const getBombById = (id: string): BombDef | undefined => {
   return BOMBS.find(b => b.id === id)
-}
+      }
