@@ -6,17 +6,17 @@ export const QUEST_TEMPLATES: QuestTemplateDef[] = [
   {
     type: 'delivery',
     targets: [
-      // 常见作物 — 混合季节
-      { itemId: 'cabbage', name: '青菜', minQty: 2, maxQty: 5, seasons: ['spring'], unitPrice: 35 },
-      { itemId: 'radish', name: '萝卜', minQty: 2, maxQty: 4, seasons: ['spring'], unitPrice: 55 },
-      { itemId: 'potato', name: '土豆', minQty: 2, maxQty: 4, seasons: ['spring'], unitPrice: 50 },
-      { itemId: 'rice', name: '稻米', minQty: 2, maxQty: 5, seasons: ['summer'], unitPrice: 40 },
-      { itemId: 'watermelon', name: '西瓜', minQty: 1, maxQty: 3, seasons: ['summer'], unitPrice: 80 },
-      { itemId: 'chili', name: '辣椒', minQty: 2, maxQty: 4, seasons: ['summer'], unitPrice: 45 },
-      { itemId: 'pumpkin', name: '南瓜', minQty: 1, maxQty: 3, seasons: ['autumn'], unitPrice: 100 },
-      { itemId: 'sweet_potato', name: '红薯', minQty: 2, maxQty: 4, seasons: ['autumn'], unitPrice: 60 },
-      { itemId: 'winter_wheat', name: '冬小麦', minQty: 2, maxQty: 5, seasons: ['winter'], unitPrice: 45 },
-      { itemId: 'garlic', name: '大蒜', minQty: 2, maxQty: 4, seasons: ['winter'], unitPrice: 50 }
+      // Yaygın mahsuller — karışık mevsimler
+      { itemId: 'cabbage', name: 'Lahana', minQty: 2, maxQty: 5, seasons: ['spring'], unitPrice: 35 },
+      { itemId: 'radish', name: 'Turp', minQty: 2, maxQty: 4, seasons: ['spring'], unitPrice: 55 },
+      { itemId: 'potato', name: 'Patates', minQty: 2, maxQty: 4, seasons: ['spring'], unitPrice: 50 },
+      { itemId: 'rice', name: 'Pirinç', minQty: 2, maxQty: 5, seasons: ['summer'], unitPrice: 40 },
+      { itemId: 'watermelon', name: 'Karpuz', minQty: 1, maxQty: 3, seasons: ['summer'], unitPrice: 80 },
+      { itemId: 'chili', name: 'Biber', minQty: 2, maxQty: 4, seasons: ['summer'], unitPrice: 45 },
+      { itemId: 'pumpkin', name: 'Balkabağı', minQty: 1, maxQty: 3, seasons: ['autumn'], unitPrice: 100 },
+      { itemId: 'sweet_potato', name: 'Tatlı Patates', minQty: 2, maxQty: 4, seasons: ['autumn'], unitPrice: 60 },
+      { itemId: 'winter_wheat', name: 'Kış Buğdayı', minQty: 2, maxQty: 5, seasons: ['winter'], unitPrice: 45 },
+      { itemId: 'garlic', name: 'Sarımsak', minQty: 2, maxQty: 4, seasons: ['winter'], unitPrice: 50 }
     ],
     npcPool: ['chen_bo', 'liu_niang', 'lin_lao', 'xiao_man'],
     rewardMultiplier: 3,
@@ -25,14 +25,14 @@ export const QUEST_TEMPLATES: QuestTemplateDef[] = [
   {
     type: 'fishing',
     targets: [
-      { itemId: 'crucian', name: '鲫鱼', minQty: 1, maxQty: 3, seasons: [], unitPrice: 15 },
-      { itemId: 'carp', name: '鲤鱼', minQty: 1, maxQty: 2, seasons: ['spring', 'summer'], unitPrice: 25 },
-      { itemId: 'grass_carp', name: '草鱼', minQty: 1, maxQty: 2, seasons: ['summer', 'autumn'], unitPrice: 30 },
-      { itemId: 'catfish', name: '鲶鱼', minQty: 1, maxQty: 2, seasons: ['summer'], unitPrice: 40 },
-      { itemId: 'bass', name: '鲈鱼', minQty: 1, maxQty: 2, seasons: ['autumn'], unitPrice: 35 },
-      { itemId: 'loach', name: '泥鳅', minQty: 1, maxQty: 3, seasons: ['summer', 'autumn'], unitPrice: 20 },
-      { itemId: 'creek_shrimp', name: '溪虾', minQty: 2, maxQty: 4, seasons: ['spring', 'summer', 'autumn'], unitPrice: 30 },
-      { itemId: 'silver_carp', name: '白鲢', minQty: 1, maxQty: 2, seasons: ['summer'], unitPrice: 25 }
+      { itemId: 'crucian', name: 'Sazan', minQty: 1, maxQty: 3, seasons: [], unitPrice: 15 },
+      { itemId: 'carp', name: 'Tatlı Su Sazanı', minQty: 1, maxQty: 2, seasons: ['spring', 'summer'], unitPrice: 25 },
+      { itemId: 'grass_carp', name: 'Ot Sazanı', minQty: 1, maxQty: 2, seasons: ['summer', 'autumn'], unitPrice: 30 },
+      { itemId: 'catfish', name: 'Yayın Balığı', minQty: 1, maxQty: 2, seasons: ['summer'], unitPrice: 40 },
+      { itemId: 'bass', name: 'Levrek', minQty: 1, maxQty: 2, seasons: ['autumn'], unitPrice: 35 },
+      { itemId: 'loach', name: 'Çamur Balığı', minQty: 1, maxQty: 3, seasons: ['summer', 'autumn'], unitPrice: 20 },
+      { itemId: 'creek_shrimp', name: 'Dere Karidesi', minQty: 2, maxQty: 4, seasons: ['spring', 'summer', 'autumn'], unitPrice: 30 },
+      { itemId: 'silver_carp', name: 'Gümüş Sazan', minQty: 1, maxQty: 2, seasons: ['summer'], unitPrice: 25 }
     ],
     npcPool: ['qiu_yue', 'chen_bo', 'lin_lao'],
     rewardMultiplier: 3,
@@ -41,11 +41,11 @@ export const QUEST_TEMPLATES: QuestTemplateDef[] = [
   {
     type: 'mining',
     targets: [
-      { itemId: 'copper_ore', name: '铜矿', minQty: 3, maxQty: 8, seasons: [], unitPrice: 10 },
-      { itemId: 'iron_ore', name: '铁矿', minQty: 3, maxQty: 6, seasons: [], unitPrice: 20 },
-      { itemId: 'gold_ore', name: '金矿', minQty: 2, maxQty: 4, seasons: [], unitPrice: 40 },
-      { itemId: 'quartz', name: '石英', minQty: 1, maxQty: 3, seasons: [], unitPrice: 30 },
-      { itemId: 'jade', name: '翡翠', minQty: 1, maxQty: 2, seasons: [], unitPrice: 80 }
+      { itemId: 'copper_ore', name: 'Bakır Cevheri', minQty: 3, maxQty: 8, seasons: [], unitPrice: 10 },
+      { itemId: 'iron_ore', name: 'Demir Cevheri', minQty: 3, maxQty: 6, seasons: [], unitPrice: 20 },
+      { itemId: 'gold_ore', name: 'Altın Cevheri', minQty: 2, maxQty: 4, seasons: [], unitPrice: 40 },
+      { itemId: 'quartz', name: 'Kuvars', minQty: 1, maxQty: 3, seasons: [], unitPrice: 30 },
+      { itemId: 'jade', name: 'Yeşim', minQty: 1, maxQty: 2, seasons: [], unitPrice: 80 }
     ],
     npcPool: ['a_shi', 'xiao_man', 'chen_bo'],
     rewardMultiplier: 2,
@@ -54,14 +54,14 @@ export const QUEST_TEMPLATES: QuestTemplateDef[] = [
   {
     type: 'gathering',
     targets: [
-      { itemId: 'wood', name: '木材', minQty: 5, maxQty: 10, seasons: [], unitPrice: 5 },
-      { itemId: 'herb', name: '草药', minQty: 2, maxQty: 5, seasons: ['spring', 'summer', 'autumn'], unitPrice: 15 },
-      { itemId: 'firewood', name: '柴火', minQty: 5, maxQty: 10, seasons: [], unitPrice: 3 },
-      { itemId: 'bamboo', name: '竹子', minQty: 3, maxQty: 6, seasons: ['spring', 'summer'], unitPrice: 10 },
-      { itemId: 'pine_cone', name: '松果', minQty: 2, maxQty: 4, seasons: ['autumn', 'winter'], unitPrice: 10 },
-      { itemId: 'wild_mushroom', name: '野蘑菇', minQty: 2, maxQty: 4, seasons: ['autumn'], unitPrice: 20 },
-      { itemId: 'wild_berry', name: '野果', minQty: 3, maxQty: 5, seasons: ['summer'], unitPrice: 10 },
-      { itemId: 'ginseng', name: '人参', minQty: 1, maxQty: 2, seasons: ['autumn', 'winter'], unitPrice: 50 }
+      { itemId: 'wood', name: 'Odun', minQty: 5, maxQty: 10, seasons: [], unitPrice: 5 },
+      { itemId: 'herb', name: 'Şifalı Ot', minQty: 2, maxQty: 5, seasons: ['spring', 'summer', 'autumn'], unitPrice: 15 },
+      { itemId: 'firewood', name: 'Yakacak', minQty: 5, maxQty: 10, seasons: [], unitPrice: 3 },
+      { itemId: 'bamboo', name: 'Bambu', minQty: 3, maxQty: 6, seasons: ['spring', 'summer'], unitPrice: 10 },
+      { itemId: 'pine_cone', name: 'Çam Kozalağı', minQty: 2, maxQty: 4, seasons: ['autumn', 'winter'], unitPrice: 10 },
+      { itemId: 'wild_mushroom', name: 'Yabani Mantar', minQty: 2, maxQty: 4, seasons: ['autumn'], unitPrice: 20 },
+      { itemId: 'wild_berry', name: 'Yabani Yemiş', minQty: 3, maxQty: 5, seasons: ['summer'], unitPrice: 10 },
+      { itemId: 'ginseng', name: 'Ginseng', minQty: 1, maxQty: 2, seasons: ['autumn', 'winter'], unitPrice: 50 }
     ],
     npcPool: ['lin_lao', 'liu_niang', 'xiao_man'],
     rewardMultiplier: 3,
@@ -69,24 +69,24 @@ export const QUEST_TEMPLATES: QuestTemplateDef[] = [
   }
 ]
 
-// 委托类型描述映射（预留）
+// Görev türü adları
 export const QUEST_TYPE_LABELS: Record<QuestType, string> = {
-  delivery: '送',
-  fishing: '钓',
-  mining: '采',
-  gathering: '收集',
-  special_order: '特殊'
+  delivery: 'Teslimat',
+  fishing: 'Balıkçılık',
+  mining: 'Madencilik',
+  gathering: 'Toplayıcılık',
+  special_order: 'Özel Emir'
 }
 
 const QUEST_TYPE_VERBS: Record<QuestType, string> = {
-  delivery: '送给',
-  fishing: '钓到',
-  mining: '采集',
-  gathering: '收集',
-  special_order: '收集'
+  delivery: 'teslim et',
+  fishing: 'yakala',
+  mining: 'çıkar',
+  gathering: 'topla',
+  special_order: 'topla'
 }
 
-/** 特殊订单模板 */
+/** Özel emir şablonu */
 interface SpecialOrderTemplate {
   name: string
   targetItemId: string
@@ -97,17 +97,17 @@ interface SpecialOrderTemplate {
   itemReward: { itemId: string; quantity: number }[]
   seasons: Season[]
   npcId: string
-  /** 难度梯度: 1=第7天(简单), 2=第14天(普通), 3=第21天(困难), 4=第28天(极难) */
+  /** Zorluk kademesi: 1=7. gün (kolay), 2=14. gün (orta), 3=21. gün (zor), 4=28. gün (çok zor) */
   tier: number
 }
 
-/** 按梯度分层的特殊订单模板 */
+/** Kademe bazlı özel emirler */
 const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
-  // === 第1梯度 (第7天): 简单, 7天时限, 数量少, 奖励适中 ===
+  // === 1. Kademe (7. gün): Kolay ===
   {
-    name: '铜矿采购',
+    name: 'Bakır Tedariki',
     targetItemId: 'copper_ore',
-    targetItemName: '铜矿',
+    targetItemName: 'Bakır Cevheri',
     quantity: 15,
     days: 7,
     moneyReward: 600,
@@ -117,9 +117,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 1
   },
   {
-    name: '鲜鱼征集',
+    name: 'Taze Balık Toplama İşi',
     targetItemId: 'crucian',
-    targetItemName: '鲫鱼',
+    targetItemName: 'Sazan',
     quantity: 8,
     days: 7,
     moneyReward: 500,
@@ -129,9 +129,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 1
   },
   {
-    name: '蔬菜采购',
+    name: 'Sebze Tedariki',
     targetItemId: 'cabbage',
-    targetItemName: '青菜',
+    targetItemName: 'Lahana',
     quantity: 10,
     days: 7,
     moneyReward: 500,
@@ -141,9 +141,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 1
   },
   {
-    name: '木材备料',
+    name: 'Odun Hazırlığı',
     targetItemId: 'wood',
-    targetItemName: '木材',
+    targetItemName: 'Odun',
     quantity: 30,
     days: 7,
     moneyReward: 400,
@@ -152,11 +152,12 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     npcId: 'chen_bo',
     tier: 1
   },
-  // === 第2梯度 (第14天): 普通, 7天时限, 数量中等, 奖励较好 ===
+
+  // === 2. Kademe (14. gün): Orta ===
   {
-    name: '铁矿备料',
+    name: 'Demir Hazırlığı',
     targetItemId: 'iron_ore',
-    targetItemName: '铁矿',
+    targetItemName: 'Demir Cevheri',
     quantity: 15,
     days: 7,
     moneyReward: 1200,
@@ -166,9 +167,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 2
   },
   {
-    name: '珍鱼征集令',
+    name: 'Nadir Balık Buyruğu',
     targetItemId: 'catfish',
-    targetItemName: '鲶鱼',
+    targetItemName: 'Yayın Balığı',
     quantity: 5,
     days: 7,
     moneyReward: 1000,
@@ -178,9 +179,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 2
   },
   {
-    name: '冬储备战',
+    name: 'Kışa Hazırlık',
     targetItemId: 'winter_wheat',
-    targetItemName: '冬小麦',
+    targetItemName: 'Kış Buğdayı',
     quantity: 15,
     days: 7,
     moneyReward: 1200,
@@ -190,9 +191,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 2
   },
   {
-    name: '药材收集',
+    name: 'Şifalı Ot Toplama',
     targetItemId: 'herb',
-    targetItemName: '草药',
+    targetItemName: 'Şifalı Ot',
     quantity: 15,
     days: 7,
     moneyReward: 800,
@@ -201,11 +202,12 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     npcId: 'lin_lao',
     tier: 2
   },
-  // === 第3梯度 (第21天): 困难, 7天时限, 数量大, 奖励丰厚 ===
+
+  // === 3. Kademe (21. gün): Zor ===
   {
-    name: '丰收计划',
+    name: 'Bereket Planı',
     targetItemId: 'pumpkin',
-    targetItemName: '南瓜',
+    targetItemName: 'Balkabağı',
     quantity: 10,
     days: 7,
     moneyReward: 2000,
@@ -215,9 +217,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 3
   },
   {
-    name: '西瓜大丰收',
+    name: 'Karpuz Bereketi',
     targetItemId: 'watermelon',
-    targetItemName: '西瓜',
+    targetItemName: 'Karpuz',
     quantity: 10,
     days: 7,
     moneyReward: 2200,
@@ -227,9 +229,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 3
   },
   {
-    name: '深层金矿',
+    name: 'Derin Maden Altını',
     targetItemId: 'gold_ore',
-    targetItemName: '金矿',
+    targetItemName: 'Altın Cevheri',
     quantity: 15,
     days: 7,
     moneyReward: 2500,
@@ -239,9 +241,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 3
   },
   {
-    name: '药材囤积',
+    name: 'Şifa Stoku',
     targetItemId: 'ginseng',
-    targetItemName: '人参',
+    targetItemName: 'Ginseng',
     quantity: 6,
     days: 7,
     moneyReward: 2000,
@@ -250,11 +252,12 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     npcId: 'lin_lao',
     tier: 3
   },
-  // === 第4梯度 (第28天): 极难, 7天时限, 数量极大, 奖励最丰厚 ===
+
+  // === 4. Kademe (28. gün): Çok zor ===
   {
-    name: '矿石大征集',
+    name: 'Büyük Maden Toplaması',
     targetItemId: 'gold_ore',
-    targetItemName: '金矿',
+    targetItemName: 'Altın Cevheri',
     quantity: 25,
     days: 7,
     moneyReward: 4000,
@@ -267,9 +270,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 4
   },
   {
-    name: '丰年盛宴',
+    name: 'Bereket Şöleni',
     targetItemId: 'pumpkin',
-    targetItemName: '南瓜',
+    targetItemName: 'Balkabağı',
     quantity: 20,
     days: 7,
     moneyReward: 4500,
@@ -282,9 +285,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 4
   },
   {
-    name: '渔王挑战',
+    name: 'Usta Balıkçı Meydan Okuması',
     targetItemId: 'catfish',
-    targetItemName: '鲶鱼',
+    targetItemName: 'Yayın Balığı',
     quantity: 12,
     days: 7,
     moneyReward: 3500,
@@ -294,9 +297,9 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
     tier: 4
   },
   {
-    name: '冬日大囤货',
+    name: 'Kışlık Büyük Erzak',
     targetItemId: 'winter_wheat',
-    targetItemName: '冬小麦',
+    targetItemName: 'Kış Buğdayı',
     quantity: 30,
     days: 7,
     moneyReward: 3500,
@@ -310,13 +313,15 @@ const SPECIAL_ORDER_TEMPLATES: SpecialOrderTemplate[] = [
   }
 ]
 
-const TIER_LABELS = ['简单', '普通', '困难', '极难']
+const TIER_LABELS = ['Kolay', 'Orta', 'Zor', 'Çok Zor']
 const TIER_FRIENDSHIP = [5, 8, 12, 15]
 
-/** 根据当前季节和梯度生成特殊订单 (tier: 1-4 对应 第7/14/21/28天) */
+/** Mevsim ve kademeye göre özel emir üretir */
 export const generateSpecialOrder = (season: Season, tier: number): QuestInstance | null => {
   const clampedTier = Math.max(1, Math.min(4, tier))
-  const valid = SPECIAL_ORDER_TEMPLATES.filter(t => t.tier === clampedTier && (t.seasons.length === 0 || t.seasons.includes(season)))
+  const valid = SPECIAL_ORDER_TEMPLATES.filter(
+    t => t.tier === clampedTier && (t.seasons.length === 0 || t.seasons.includes(season))
+  )
   if (valid.length === 0) return null
 
   const template = valid[Math.floor(Math.random() * valid.length)]!
@@ -331,7 +336,7 @@ export const generateSpecialOrder = (season: Season, tier: number): QuestInstanc
     npcId: template.npcId,
     npcName,
     tierLabel,
-    description: `${npcName}急需${template.quantity}个${template.targetItemName}。`,
+    description: `${npcName}, ${template.targetItemName} cinsinden ${template.quantity} adet istiyor.`,
     targetItemId: template.targetItemId,
     targetItemName: template.targetItemName,
     targetQuantity: template.quantity,
@@ -346,36 +351,36 @@ export const generateSpecialOrder = (season: Season, tier: number): QuestInstanc
 
 let questCounter = 0
 
-/** 根据当前季节生成随机委托 */
+/** İçinde bulunulan mevsime göre rastgele görev üretir */
 export const generateQuest = (season: Season, _day: number): QuestInstance | null => {
-  // 随机选择委托类型
+  // Rastgele görev türü seç
   const typeIndex = Math.floor(Math.random() * QUEST_TEMPLATES.length)
   const template = QUEST_TEMPLATES[typeIndex]!
 
-  // 按季节过滤目标
+  // Mevsime göre hedefleri süz
   const validTargets = template.targets.filter(t => t.seasons.length === 0 || t.seasons.includes(season))
   if (validTargets.length === 0) return null
 
-  // 随机选择目标
+  // Rastgele hedef seç
   const target = validTargets[Math.floor(Math.random() * validTargets.length)]!
 
-  // 从候选池随机选择 NPC
+  // NPC havuzundan rastgele kişi seç
   const npcId = template.npcPool[Math.floor(Math.random() * template.npcPool.length)]!
   const npcDef = getNpcById(npcId)
   const npcName = npcDef?.name ?? npcId
 
-  // 随机数量（范围内）
+  // Rastgele miktar
   const quantity = target.minQty + Math.floor(Math.random() * (target.maxQty - target.minQty + 1))
 
-  // 奖励计算
+  // Ödül hesabı
   const moneyReward = Math.floor(target.unitPrice * quantity * template.rewardMultiplier)
 
   questCounter++
   const verb = QUEST_TYPE_VERBS[template.type]
   const description =
     template.type === 'delivery'
-      ? `${npcName}需要${quantity}个${target.name}，请${verb}${npcName}。`
-      : `${npcName}委托：${verb}${quantity}个${target.name}。`
+      ? `${npcName} ${quantity} adet ${target.name} istiyor, bunları ${npcName} adlı kişiye ${verb}.`
+      : `${npcName} senden ${quantity} adet ${target.name} için görev istiyor: ${verb}.`
 
   return {
     id: `quest_${Date.now()}_${questCounter}`,
@@ -392,4 +397,4 @@ export const generateQuest = (season: Season, _day: number): QuestInstance | nul
     daysRemaining: 2,
     accepted: false
   }
-}
+    }
