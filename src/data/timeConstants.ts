@@ -1,30 +1,30 @@
 import type { Weekday, TimePeriod, LocationGroup } from '@/types'
 
-// === 时间常量 ===
+// === Zaman sabitleri ===
 export const DAY_START_HOUR = 6
-export const DAY_END_HOUR = 26 // 凌晨2点
+export const DAY_END_HOUR = 26 // gece 2
 export const MIDNIGHT_HOUR = 24
 export const PASSOUT_HOUR = 26
 
-// === 星期系统 ===
+// === Hafta sistemi ===
 export const WEEKDAYS: Weekday[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
 export const WEEKDAY_NAMES: Record<Weekday, string> = {
-  mon: '周一',
-  tue: '周二',
-  wed: '周三',
-  thu: '周四',
-  fri: '周五',
-  sat: '周六',
-  sun: '周日'
+  mon: 'Pazartesi',
+  tue: 'Salı',
+  wed: 'Çarşamba',
+  thu: 'Perşembe',
+  fri: 'Cuma',
+  sat: 'Cumartesi',
+  sun: 'Pazar'
 }
 
-/** 第1天=周一, 第7天=周日, 第8天=周一 ... */
+/** 1. gün = Pazartesi, 7. gün = Pazar, 8. gün = Pazartesi ... */
 export const getWeekday = (day: number): Weekday => {
   return WEEKDAYS[(day - 1) % 7]!
 }
 
-// === 时段判断 ===
+// === Vakit belirleme ===
 export const getTimePeriod = (hour: number): TimePeriod => {
   if (hour >= 6 && hour < 12) return 'morning'
   if (hour >= 12 && hour < 17) return 'afternoon'
@@ -33,91 +33,91 @@ export const getTimePeriod = (hour: number): TimePeriod => {
   return 'late_night'
 }
 
-// === 时间显示 ===
+// === Saat gösterimi ===
 export const formatHour = (hour: number): string => {
   const realHour = hour >= 24 ? hour - 24 : hour
-  if (hour >= 6 && hour < 12) return `上午 ${realHour}:00`
-  if (hour === 12) return `中午 12:00`
-  if (hour > 12 && hour < 18) return `下午 ${realHour}:00`
-  if (hour >= 18 && hour < 24) return `晚上 ${realHour}:00`
-  return `凌晨 ${realHour}:00`
+  if (hour >= 6 && hour < 12) return `Sabah ${realHour}:00`
+  if (hour === 12) return `Öğle 12:00`
+  if (hour > 12 && hour < 18) return `İkindi ${realHour}:00`
+  if (hour >= 18 && hour < 24) return `Akşam ${realHour}:00`
+  return `Gece ${realHour}:00`
 }
 
-/** 更精细的时间显示（支持小数小时） */
+/** Daha ayrıntılı zaman gösterimi (ondalıklı saati destekler) */
 export const formatTime = (hour: number): string => {
   const totalMinutes = Math.round(hour * 60)
-  let h = Math.floor(totalMinutes / 60)
+  const h = Math.floor(totalMinutes / 60)
   const m = totalMinutes % 60
   const realH = h >= 24 ? h - 24 : h
   const mm = m.toString().padStart(2, '0')
 
-  if (h >= 6 && h < 12) return `上午 ${realH}:${mm}`
-  if (h === 12 && m === 0) return `中午 12:00`
-  if (h >= 12 && h < 18) return `下午 ${realH}:${mm}`
-  if (h >= 18 && h < 24) return `晚上 ${realH}:${mm}`
-  return `凌晨 ${realH}:${mm}`
+  if (h >= 6 && h < 12) return `Sabah ${realH}:${mm}`
+  if (h === 12 && m === 0) return `Öğle 12:00`
+  if (h >= 12 && h < 18) return `İkindi ${realH}:${mm}`
+  if (h >= 18 && h < 24) return `Akşam ${realH}:${mm}`
+  return `Gece ${realH}:${mm}`
 }
 
-// === 行动时间开销 (单位：小时) ===
+// === Eylem zaman bedelleri (birim: saat) ===
 export const ACTION_TIME_COSTS = {
-  // 农场
+  // Çiftlik
   till: 0.17,
   plant: 0.17,
   water: 0.08,
   harvest: 0.17,
-  // 钓鱼
+  // Balıkçılık
   fishStart: 1,
-  // 挖矿
+  // Madencilik
   mineOre: 0.25,
   combat: 0.25,
   nextFloor: 0.17,
   revealTile: 0.05,
-  // 采集
+  // Toplama
   forage: 1,
   chopTree: 1,
-  // 烹饪
+  // Aşçılık
   cook: 0.5,
   eat: 0,
-  // 社交
+  // Sosyalleşme
   talk: 0.17,
   gift: 0,
-  // 加工坊
+  // Atölye
   craftMachine: 0.17,
   startProcessing: 0,
   collectProduct: 0,
   craftSprinkler: 0.17,
   craftFertilizer: 0.17,
   craftJadeRing: 0.17,
-  // 畜棚
+  // Ahır ve kümes
   feedAnimals: 0.5,
   petAnimal: 0.17,
   batchPet: 0.5,
   graze: 1,
-  // 农舍
+  // Çiftlik evi
   collectCave: 0.17,
   aging: 0.17,
   plantTree: 0.5,
-  // 工具升级
+  // Araç yükseltme
   toolUpgrade: 1,
-  // 批量农场操作
+  // Toplu çiftlik işlemleri
   batchWater: 0.17,
   batchTill: 0.25,
   batchHarvest: 0.5,
-  // 淘金
+  // Altın eleme
   pan: 1,
-  // UI
+  // Arayüz
   checkInventory: 0,
   checkSkills: 0,
   checkAchievement: 0,
-  // 育种
+  // Tohum yetiştirme
   breeding: 0.17,
-  // 鱼塘
+  // Balık göleti
   feedFish: 0.5,
   cleanPond: 0.5,
   collectFishProducts: 0.17
 } as const
 
-/** 工具等级对行动时间的减免（分钟） */
+/** Araç düzeyine göre eylem süresi indirimi (dakika) */
 export const TOOL_TIME_SAVINGS: Record<string, number> = {
   basic: 0,
   iron: 10,
@@ -125,13 +125,13 @@ export const TOOL_TIME_SAVINGS: Record<string, number> = {
   iridium: 30
 }
 
-/** 技能等级每级减免行动时间的比例 */
+/** Beceri düzeyi başına eylem süresi azaltma oranı */
 export const SKILL_TIME_REDUCTION_PER_LEVEL = 0.02
 
-/** 行动最低时间（分钟） */
+/** Bir eylemin en düşük süresi (dakika) */
 export const MIN_ACTION_MINUTES = 10
 
-// === 地点分组映射 ===
+// === Mekân grubu eşlemesi ===
 export const TAB_TO_LOCATION_GROUP: Record<string, LocationGroup | null> = {
   farm: 'farm',
   animal: 'farm',
@@ -156,7 +156,7 @@ export const TAB_TO_LOCATION_GROUP: Record<string, LocationGroup | null> = {
   hanhai: 'hanhai'
 }
 
-// === 移动时间 ===
+// === Yolculuk süresi ===
 export const TRAVEL_TIME: Record<string, number> = {
   'farm->village_area': 0.17,
   'farm->nature': 0.17,
@@ -180,7 +180,7 @@ export const TRAVEL_TIME: Record<string, number> = {
   'hanhai->mine': 0.5
 }
 
-// === 移动体力消耗 ===
+// === Yolculuk direnç bedeli ===
 export const TRAVEL_STAMINA: Record<string, number> = {
   'farm->village_area': 1,
   'farm->nature': 1,
@@ -205,18 +205,18 @@ export const TRAVEL_STAMINA: Record<string, number> = {
 }
 
 const LOCATION_GROUP_NAMES: Record<LocationGroup, string> = {
-  farm: '农场',
-  village_area: '桃源村',
-  nature: '野外',
-  mine: '矿洞',
-  hanhai: '瀚海'
+  farm: 'Çiftlik',
+  village_area: 'gaKöy',
+  nature: 'Kır',
+  mine: 'Maden Ocağı',
+  hanhai: 'Kum Denizi'
 }
 
 export const getLocationGroupName = (group: LocationGroup): string => {
   return LOCATION_GROUP_NAMES[group]
 }
 
-// === 商店营业 ===
+// === Dükkân çalışma saatleri ===
 export interface ShopSchedule {
   tabKey: string
   name: string
@@ -226,8 +226,8 @@ export interface ShopSchedule {
 }
 
 export const SHOP_SCHEDULES: ShopSchedule[] = [
-  { tabKey: 'shop', name: '桃源商圈', closedDays: [], openHour: 6, closeHour: 24 },
-  { tabKey: 'upgrade', name: '工坊', closedDays: ['sun'], openHour: 8, closeHour: 20 }
+  { tabKey: 'shop', name: 'gaKöy Çarşısı', closedDays: [], openHour: 6, closeHour: 24 },
+  { tabKey: 'upgrade', name: 'Atölye', closedDays: ['sun'], openHour: 8, closeHour: 20 }
 ]
 
 export const isShopOpen = (tabKey: string, day: number, hour: number): { open: boolean; reason?: string } => {
@@ -235,18 +235,18 @@ export const isShopOpen = (tabKey: string, day: number, hour: number): { open: b
   if (!schedule) return { open: true }
   const weekday = getWeekday(day)
   if (schedule.closedDays.includes(weekday)) {
-    return { open: false, reason: `${schedule.name}今天（${WEEKDAY_NAMES[weekday]}）休息。` }
+    return { open: false, reason: `${schedule.name} bugün kapalıdır (${WEEKDAY_NAMES[weekday]}).` }
   }
   if (hour < schedule.openHour) {
-    return { open: false, reason: `${schedule.name}还没开门（${formatHour(schedule.openHour)}开门）。` }
+    return { open: false, reason: `${schedule.name} henüz açılmadı (${formatHour(schedule.openHour)} açılır).` }
   }
   if (hour >= schedule.closeHour) {
-    return { open: false, reason: `${schedule.name}已经打烊了（${formatHour(schedule.closeHour)}关门）。` }
+    return { open: false, reason: `${schedule.name} kapanmıştır (${formatHour(schedule.closeHour)} kapanır).` }
   }
   return { open: true }
 }
 
-// === NPC 出没时间 ===
+// === NPC görünme vakitleri ===
 export interface NpcScheduleEntry {
   npcId: string
   availableDays: Weekday[] | 'all'
@@ -254,14 +254,14 @@ export interface NpcScheduleEntry {
 }
 
 export const NPC_SCHEDULES: NpcScheduleEntry[] = [
-  // 原有 NPC
+  // Eski NPC'ler
   { npcId: 'chen_bo', availableDays: 'all', availableHours: { from: 8, to: 20 } },
   { npcId: 'liu_niang', availableDays: 'all', availableHours: { from: 9, to: 21 } },
   { npcId: 'a_shi', availableDays: ['mon', 'tue', 'wed', 'thu', 'fri'], availableHours: { from: 7, to: 18 } },
   { npcId: 'qiu_yue', availableDays: 'all', availableHours: { from: 6, to: 22 } },
   { npcId: 'lin_lao', availableDays: 'all', availableHours: { from: 8, to: 19 } },
   { npcId: 'xiao_man', availableDays: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'], availableHours: { from: 9, to: 17 } },
-  // 新增可婚 NPC
+  // Yeni evlenilebilir NPC'ler
   { npcId: 'chun_lan', availableDays: 'all', availableHours: { from: 7, to: 20 } },
   { npcId: 'xue_qin', availableDays: ['mon', 'tue', 'wed', 'thu', 'fri'], availableHours: { from: 10, to: 19 } },
   { npcId: 'su_su', availableDays: 'all', availableHours: { from: 8, to: 20 } },
@@ -271,7 +271,7 @@ export const NPC_SCHEDULES: NpcScheduleEntry[] = [
   { npcId: 'yun_fei', availableDays: ['tue', 'thu', 'sat', 'sun'], availableHours: { from: 6, to: 16 } },
   { npcId: 'da_niu', availableDays: 'all', availableHours: { from: 6, to: 19 } },
   { npcId: 'mo_bai', availableDays: 'all', availableHours: { from: 12, to: 23 } },
-  // 新增不可婚 NPC
+  // Yeni evlenilemeyen NPC'ler
   { npcId: 'wang_dashen', availableDays: 'all', availableHours: { from: 6, to: 19 } },
   { npcId: 'zhao_mujiang', availableDays: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'], availableHours: { from: 7, to: 18 } },
   { npcId: 'sun_tiejiang', availableDays: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'], availableHours: { from: 7, to: 18 } },
@@ -306,17 +306,17 @@ export const getNpcUnavailableReason = (npcId: string, day: number, hour: number
   if (!schedule) return null
   const weekday = getWeekday(day)
   if (schedule.availableDays !== 'all' && !schedule.availableDays.includes(weekday)) {
-    return '今天不在村里'
+    return 'Bugün köyde değil'
   }
-  if (hour < schedule.availableHours.from) return '还没出门'
-  if (hour >= schedule.availableHours.to) return '已经回家了'
+  if (hour < schedule.availableHours.from) return 'Henüz dışarı çıkmadı'
+  if (hour >= schedule.availableHours.to) return 'Eve döndü'
   return null
 }
 
-// === 深夜惩罚 ===
-/** 渐进式晚睡恢复：根据就寝时间线性递减 */
-export const LATE_NIGHT_RECOVERY_MAX = 0.9 // 24时就寝恢复90%
-export const LATE_NIGHT_RECOVERY_MIN = 0.6 // 25时就寝恢复60%
+// === Geç yatma cezası ===
+/** Giderek azalan geç gece toparlanması: yatış saatine göre doğrusal olarak düşer */
+export const LATE_NIGHT_RECOVERY_MAX = 0.9 // saat 24'te yatarsa %90 toparlanır
+export const LATE_NIGHT_RECOVERY_MIN = 0.6 // saat 25'te yatarsa %60 toparlanır
 export const PASSOUT_STAMINA_RECOVERY = 0.5
 export const PASSOUT_MONEY_PENALTY_RATE = 0.1
 export const PASSOUT_MONEY_PENALTY_CAP = 1000
