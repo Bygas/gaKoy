@@ -3,48 +3,48 @@ import { CROPS } from './crops'
 import { getItemById } from './items'
 import type { Season } from '@/types'
 
-/** 旅行商人商品定义 */
+/** Gezgin tüccar eşya tanımı */
 export interface TravelingMerchantItem {
   itemId: string
   name: string
-  basePrice: number // 商人售价（约为 sellPrice 的 2-3 倍溢价）
+  basePrice: number // Tüccar satış fiyatı (genelde satış değerinin 2-3 katı)
 }
 
-/** 旅行商人当日库存 */
+/** Gezgin tüccarın günlük stoğu */
 export interface TravelingMerchantStock {
   itemId: string
   name: string
-  price: number // 含随机浮动后的售价
-  quantity: number // 剩余可购数量
+  price: number // Rastgele dalgalanma eklenmiş satış fiyatı
+  quantity: number // Kalan satın alınabilir miktar
 }
 
-/** 旅行商人商品池 */
+/** Gezgin tüccar eşya havuzu */
 export const TRAVELING_MERCHANT_POOL: TravelingMerchantItem[] = [
-  // 稀有宝石
-  { itemId: 'dragon_jade', name: '龙玉', basePrice: 800 },
-  { itemId: 'prismatic_shard', name: '五彩碎片', basePrice: 1200 },
-  { itemId: 'moonstone', name: '月光石', basePrice: 400 },
-  // 稀有采集物
-  { itemId: 'ginseng', name: '人参', basePrice: 500 },
-  { itemId: 'wintersweet', name: '腊梅', basePrice: 150 },
-  // 特殊材料
-  { itemId: 'iridium_ore', name: '铱矿', basePrice: 700 },
-  { itemId: 'cloth', name: '布匹', basePrice: 1000 },
-  // 稀有动物产品
-  { itemId: 'rabbit_foot', name: '幸运兔脚', basePrice: 1200 },
-  { itemId: 'truffle', name: '松露', basePrice: 1400 },
-  // 特殊物品
-  { itemId: 'rain_totem', name: '雨图腾', basePrice: 500 },
-  { itemId: 'silk_ribbon', name: '丝帕', basePrice: 500 }
+  // Nadir taşlar
+  { itemId: 'dragon_jade', name: 'Ejder Yeşimi', basePrice: 800 },
+  { itemId: 'prismatic_shard', name: 'Alaca Parça', basePrice: 1200 },
+  { itemId: 'moonstone', name: 'Aytaşı', basePrice: 400 },
+  // Nadir toplanabilirler
+  { itemId: 'ginseng', name: 'Ginseng', basePrice: 500 },
+  { itemId: 'wintersweet', name: 'Kış Çiçeği', basePrice: 150 },
+  // Özel malzemeler
+  { itemId: 'iridium_ore', name: 'İridyum Cevheri', basePrice: 700 },
+  { itemId: 'cloth', name: 'Kumaş', basePrice: 1000 },
+  // Nadir hayvan ürünleri
+  { itemId: 'rabbit_foot', name: 'Uğurlu Tavşan Ayağı', basePrice: 1200 },
+  { itemId: 'truffle', name: 'Trüf', basePrice: 1400 },
+  // Özel eşyalar
+  { itemId: 'rain_totem', name: 'Yağmur Tılsımı', basePrice: 500 },
+  { itemId: 'silk_ribbon', name: 'İpek Mendil', basePrice: 500 }
 ]
 
-/** 判断某天是否为旅行商人出摊日（周五/周日） */
+/** Bir günün gezgin tüccar pazarı günü olup olmadığını denetler (Cuma/Pazar) */
 export const isTravelingMerchantDay = (day: number): boolean => {
   const weekday = getWeekday(day)
   return weekday === 'fri' || weekday === 'sun'
 }
 
-/** 简单确定性伪随机数生成器 */
+/** Basit belirlenimli sahte rastgele sayı üreticisi */
 const seededRandom = (seed: number): (() => number) => {
   let s = seed
   return () => {
@@ -53,43 +53,43 @@ const seededRandom = (seed: number): (() => number) => {
   }
 }
 
-/** 根据游戏日期生成旅行商人当日库存 */
+/** Oyun tarihine göre gezgin tüccarın günlük stoğunu üretir */
 export const generateMerchantStock = (year: number, seasonIndex: number, day: number, currentSeason: Season): TravelingMerchantStock[] => {
   const seed = year * 10000 + seasonIndex * 1000 + day * 37
   const rng = seededRandom(seed)
 
   const stock: TravelingMerchantStock[] = []
 
-  // 从通用池随机选取 3-4 件
+  // Genel havuzdan rastgele 3-4 eşya seç
   const shuffled = [...TRAVELING_MERCHANT_POOL].sort(() => rng() - 0.5)
-  const generalCount = 3 + Math.floor(rng() * 2) // 3 或 4
+  const generalCount = 3 + Math.floor(rng() * 2) // 3 ya da 4
   for (let i = 0; i < Math.min(generalCount, shuffled.length); i++) {
     const item = shuffled[i]!
-    const priceVariation = 0.85 + rng() * 0.3 // ±15% 价格浮动
+    const priceVariation = 0.85 + rng() * 0.3 // ±%15 fiyat oynaklığı
     let price = Math.floor(item.basePrice * priceVariation)
-    // 防套利：商人售价不低于物品出售价的 2 倍
+    // Suistimali önleme: tüccar satış fiyatı, eşyanın satış değerinin 2 katından düşük olamaz
     const def = getItemById(item.itemId)
     if (def && def.sellPrice > 0) price = Math.max(price, def.sellPrice * 2)
     stock.push({
       itemId: item.itemId,
       name: item.name,
       price,
-      quantity: 1 + Math.floor(rng() * 2) // 1-2 个
+      quantity: 1 + Math.floor(rng() * 2) // 1-2 adet
     })
   }
 
-  // 从反季作物中选 1-2 种子
+  // Mevsim dışı ürünlerden 1-2 tohum seç
   const otherSeasonCrops = CROPS.filter(c => !c.season.includes(currentSeason) && c.seedPrice > 0)
   if (otherSeasonCrops.length > 0) {
     const shuffledCrops = [...otherSeasonCrops].sort(() => rng() - 0.5)
-    const seedCount = 1 + Math.floor(rng() * 2) // 1 或 2
+    const seedCount = 1 + Math.floor(rng() * 2) // 1 ya da 2
     for (let i = 0; i < Math.min(seedCount, shuffledCrops.length); i++) {
       const crop = shuffledCrops[i]!
       stock.push({
         itemId: crop.seedId,
-        name: `${crop.name}种子`,
-        price: Math.max(Math.floor(crop.seedPrice * 4), crop.sellPrice * 2), // 4 倍反季溢价，且不低于作物售价×2
-        quantity: 3 + Math.floor(rng() * 3) // 3-5 个
+        name: `${crop.name} Tohumu`,
+        price: Math.max(Math.floor(crop.seedPrice * 4), crop.sellPrice * 2), // Mevsim dışı için 4 kat fiyat, ayrıca ürün satış değerinin 2 katından düşük olamaz
+        quantity: 3 + Math.floor(rng() * 3) // 3-5 adet
       })
     }
   }
