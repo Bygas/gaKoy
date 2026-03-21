@@ -1,175 +1,183 @@
 import type { MonsterGoalDef, GuildShopItemDef, GuildDonationDef, GuildLevelDef } from '@/types'
 
-/** 怪物讨伐目标 */
+/** Canavar avı hedefleri */
 export const MONSTER_GOALS: MonsterGoalDef[] = [
-  // ===== 浅层 =====
-  { monsterId: 'mud_worm', monsterName: '泥虫', zone: 'shallow', killTarget: 25, reward: { money: 200 }, description: '清除浅层的泥虫。' },
+  // ===== Sığ Katlar =====
+  { monsterId: 'mud_worm', monsterName: 'Çamur Kurdu', zone: 'shallow', killTarget: 25, reward: { money: 200 }, description: 'Sığ katlardaki çamur kurtlarını temizle.' },
   {
     monsterId: 'stone_crab',
-    monsterName: '石蟹',
+    monsterName: 'Taş Yengeci',
     zone: 'shallow',
     killTarget: 25,
     reward: { money: 300 },
-    description: '消灭浅层的石蟹。'
+    description: 'Sığ katlardaki taş yengeçlerini yok et.'
   },
-  // ===== 冰霜 =====
-  { monsterId: 'ice_bat', monsterName: '冰蝠', zone: 'frost', killTarget: 25, reward: { money: 500 }, description: '击落冰霜层的冰蝠。' },
-  { monsterId: 'ghost', monsterName: '幽灵', zone: 'frost', killTarget: 25, reward: { money: 500 }, description: '驱散冰霜层的幽灵。' },
-  // ===== 熔岩 =====
-  { monsterId: 'fire_bat', monsterName: '火蝠', zone: 'lava', killTarget: 50, reward: { money: 800 }, description: '击退熔岩层的火蝠。' },
+
+  // ===== Ayaz Katı =====
+  { monsterId: 'ice_bat', monsterName: 'Buz Yarasa', zone: 'frost', killTarget: 25, reward: { money: 500 }, description: 'Ayaz katındaki buz yarasalarını düşür.' },
+  { monsterId: 'ghost', monsterName: 'Hortlak', zone: 'frost', killTarget: 25, reward: { money: 500 }, description: 'Ayaz katındaki hortlakları dağıt.' },
+
+  // ===== Kor Katı =====
+  { monsterId: 'fire_bat', monsterName: 'Ateş Yarasa', zone: 'lava', killTarget: 50, reward: { money: 800 }, description: 'Kor katındaki ateş yarasalarını püskürt.' },
   {
     monsterId: 'shadow_warrior',
-    monsterName: '暗影武士',
+    monsterName: 'Gölge Cengâveri',
     zone: 'lava',
     killTarget: 50,
     reward: { money: 1000 },
-    description: '击败熔岩层的暗影武士。'
+    description: 'Kor katındaki gölge cengâverlerini alt et.'
   },
-  // ===== 水晶 =====
+
+  // ===== Billur Katı =====
   {
     monsterId: 'crystal_golem',
-    monsterName: '水晶魔像',
+    monsterName: 'Billur Heyula',
     zone: 'crystal',
     killTarget: 50,
     reward: { money: 1500 },
-    description: '粉碎水晶层的魔像。'
+    description: 'Billur katındaki heyulaları parçala.'
   },
   {
     monsterId: 'prism_spider',
-    monsterName: '棱镜蛛',
+    monsterName: 'Prizma Örümceği',
     zone: 'crystal',
     killTarget: 50,
     reward: { money: 1500 },
-    description: '消灭水晶层的棱镜蛛。'
+    description: 'Billur katındaki prizma örümceklerini yok et.'
   },
-  // ===== 暗影 =====
+
+  // ===== Gölge Katı =====
   {
     monsterId: 'shadow_lurker',
-    monsterName: '暗影潜伏者',
+    monsterName: 'Gölge Pusucusu',
     zone: 'shadow',
     killTarget: 75,
     reward: { money: 2000 },
-    description: '猎杀暗影层的潜伏者。'
+    description: 'Gölge katındaki pusucuları avla.'
   },
   {
     monsterId: 'void_wraith',
-    monsterName: '虚空幽魂',
+    monsterName: 'Boşluk Ruhu',
     zone: 'shadow',
     killTarget: 75,
     reward: { money: 2500 },
-    description: '净化暗影层的虚空幽魂。'
+    description: 'Gölge katındaki boşluk ruhlarını arındır.'
   },
-  // ===== 深渊 =====
+
+  // ===== Uçurum Katı =====
   {
     monsterId: 'abyss_serpent',
-    monsterName: '深渊巨蟒',
+    monsterName: 'Uçurum Yılanı',
     zone: 'abyss',
     killTarget: 100,
     reward: { money: 3000 },
-    description: '讨伐深渊层的巨蟒。'
+    description: 'Uçurum katındaki dev yılanları avla.'
   },
   {
     monsterId: 'bone_dragon',
-    monsterName: '骨龙',
+    monsterName: 'Kemik Ejder',
     zone: 'abyss',
     killTarget: 100,
     reward: { money: 4000 },
-    description: '击败深渊层的骨龙。'
+    description: 'Uçurum katındaki kemik ejderleri yen.'
   },
+
   // ===== BOSS =====
   {
     monsterId: 'mud_golem',
-    monsterName: '泥岩巨兽',
+    monsterName: 'Çamur Kaya Devi',
     zone: 'boss',
     killTarget: 3,
     reward: { money: 500, items: [{ itemId: 'copper_bar', quantity: 10 }] },
-    description: '三次击败泥岩巨兽。'
+    description: 'Çamur Kaya Devini üç kez yen.'
   },
   {
     monsterId: 'frost_queen',
-    monsterName: '冰霜女王',
+    monsterName: 'Ayaz Hatunu',
     zone: 'boss',
     killTarget: 3,
     reward: { money: 800, items: [{ itemId: 'iron_bar', quantity: 10 }] },
-    description: '三次击败冰霜女王。'
+    description: 'Ayaz Hatununu üç kez yen.'
   },
   {
     monsterId: 'lava_lord',
-    monsterName: '熔岩君主',
+    monsterName: 'Kor Beyi',
     zone: 'boss',
     killTarget: 3,
     reward: { money: 1500, items: [{ itemId: 'gold_bar', quantity: 10 }] },
-    description: '三次击败熔岩君主。'
+    description: 'Kor Beyini üç kez yen.'
   },
   {
     monsterId: 'crystal_king',
-    monsterName: '水晶之王',
+    monsterName: 'Billur Hanı',
     zone: 'boss',
     killTarget: 3,
     reward: { money: 2500, items: [{ itemId: 'moonstone', quantity: 3 }] },
-    description: '三次击败水晶之王。'
+    description: 'Billur Hanını üç kez yen.'
   },
   {
     monsterId: 'shadow_sovereign',
-    monsterName: '暗影君主',
+    monsterName: 'Gölge Hükümdarı',
     zone: 'boss',
     killTarget: 3,
     reward: { money: 4000, items: [{ itemId: 'obsidian', quantity: 3 }] },
-    description: '三次击败暗影君主。'
+    description: 'Gölge Hükümdarını üç kez yen.'
   },
   {
     monsterId: 'abyss_dragon',
-    monsterName: '深渊龙王',
+    monsterName: 'Uçurum Ejder Hanı',
     zone: 'boss',
     killTarget: 3,
     reward: { money: 6000, items: [{ itemId: 'dragon_jade', quantity: 2 }] },
-    description: '三次击败深渊龙王。'
+    description: 'Uçurum Ejder Hanını üç kez yen.'
   },
-  // ===== 骷髅矿穴 =====
+
+  // ===== Kuru Kafa Madeni =====
   {
     monsterId: 'iridium_golem',
-    monsterName: '铱金魔像',
+    monsterName: 'İridyum Heyula',
     zone: 'skull',
     killTarget: 50,
     reward: { money: 3000 },
-    description: '在骷髅矿穴中讨伐铱金魔像。'
+    description: 'Kuru Kafa Madeninde iridyum heyulalarını avla.'
   },
   {
     monsterId: 'skull_serpent',
-    monsterName: '骷髅飞蛇',
+    monsterName: 'Kuru Kafa Yılanı',
     zone: 'skull',
     killTarget: 50,
     reward: { money: 3000 },
-    description: '在骷髅矿穴中消灭骷髅飞蛇。'
+    description: 'Kuru Kafa Madeninde uçan kuru kafa yılanlarını yok et.'
   },
   {
     monsterId: 'ancient_mummy',
-    monsterName: '远古木乃伊',
+    monsterName: 'Kadim Mumya',
     zone: 'skull',
     killTarget: 50,
     reward: { money: 5000 },
-    description: '在骷髅矿穴中击败远古木乃伊。'
+    description: 'Kuru Kafa Madeninde kadim mumyaları yen.'
   }
 ]
 
-/** 公会商店物品 (与镖局互补，不重复) */
+/** Lonca dükkânı eşyaları (Kervan Ocağı ile çakışmaz) */
 export const GUILD_SHOP_ITEMS: GuildShopItemDef[] = [
-  // --- 消耗品（铜钱购买，不限购）---
-  { itemId: 'combat_tonic', name: '战斗补剂', price: 200, description: '恢复30点HP。' },
-  { itemId: 'adventurer_ration', name: '冒险口粮', price: 350, description: '恢复25体力和25HP。', unlockGuildLevel: 2 },
-  { itemId: 'fortify_brew', name: '强化药水', price: 500, description: '恢复60点HP。' },
-  { itemId: 'ironhide_potion', name: '铁壁药剂', price: 800, description: '恢复全部HP。' },
-  { itemId: 'warriors_feast', name: '勇者盛宴', price: 1000, description: '恢复50体力和50HP。', unlockGuildLevel: 5 },
-  { itemId: 'slayer_charm', name: '猎魔符', price: 1500, description: '怪物掉落率+20%（当次探索）。', unlockGuildLevel: 3 },
-  { itemId: 'stamina_elixir', name: '精力药剂', price: 600, description: '恢复120点体力。', unlockGuildLevel: 4 },
-  { itemId: 'monster_lure', name: '怪物诱饵', price: 2000, description: '本层怪物数量翻倍。', unlockGuildLevel: 7 },
-  // --- 装备（贡献点+材料，限购1件）---
+  // --- Tüketmelikler (akıçe ile alınır, limitsiz) ---
+  { itemId: 'combat_tonic', name: 'Cenk Şerbeti', price: 200, description: '30 HP yeniler.' },
+  { itemId: 'adventurer_ration', name: 'Yolcu Azığı', price: 350, description: '25 can ve 25 kuvvet yeniler.', unlockGuildLevel: 2 },
+  { itemId: 'fortify_brew', name: 'Güç Şurubu', price: 500, description: '60 HP yeniler.' },
+  { itemId: 'ironhide_potion', name: 'Demir Deri İksiri', price: 800, description: 'Tüm HP’yi yeniler.' },
+  { itemId: 'warriors_feast', name: 'Yiğit Sofrası', price: 1000, description: '50 kuvvet ve 50 can yeniler.', unlockGuildLevel: 5 },
+  { itemId: 'slayer_charm', name: 'Avcı Muskası', price: 1500, description: 'Canavar düşürme oranı +%20 (yalnız o keşif için).', unlockGuildLevel: 3 },
+  { itemId: 'stamina_elixir', name: 'Derman İksiri', price: 600, description: '120 kuvvet yeniler.', unlockGuildLevel: 4 },
+  { itemId: 'monster_lure', name: 'Canavar Yemi', price: 2000, description: 'Bulunduğun katta canavar sayısını iki katına çıkarır.', unlockGuildLevel: 7 },
+
+  // --- Teçhizat (katkı puanı + malzeme, her biri 1 kez alınır) ---
   {
     itemId: 'guild_war_ring',
-    name: '公会战戒',
+    name: 'Lonca Harp Yüzüğü',
     price: 0,
     contributionCost: 200,
-    description: '攻击+4，防御+6%。',
+    description: 'Saldırı +4, savunma +%6.',
     unlockGuildLevel: 5,
     totalLimit: 1,
     equipType: 'ring',
@@ -180,10 +188,10 @@ export const GUILD_SHOP_ITEMS: GuildShopItemDef[] = [
   },
   {
     itemId: 'guild_war_helm',
-    name: '公会战盔',
+    name: 'Lonca Harp Miğferi',
     price: 0,
     contributionCost: 250,
-    description: '攻击+3，HP+15。',
+    description: 'Saldırı +3, HP +15.',
     unlockGuildLevel: 6,
     totalLimit: 1,
     equipType: 'hat',
@@ -194,10 +202,10 @@ export const GUILD_SHOP_ITEMS: GuildShopItemDef[] = [
   },
   {
     itemId: 'guild_war_boots',
-    name: '公会战靴',
+    name: 'Lonca Harp Çizmesi',
     price: 0,
     contributionCost: 250,
-    description: '攻击+2，防御+5%，移速+10%。',
+    description: 'Saldırı +2, savunma +%5, hız +%10.',
     unlockGuildLevel: 7,
     totalLimit: 1,
     equipType: 'shoe',
@@ -208,10 +216,10 @@ export const GUILD_SHOP_ITEMS: GuildShopItemDef[] = [
   },
   {
     itemId: 'guild_war_blade',
-    name: '公会战刃',
+    name: 'Lonca Harp Kılıcı',
     price: 0,
     contributionCost: 350,
-    description: '攻击力36，暴击率10%。',
+    description: 'Saldırı gücü 36, kritik oranı %10.',
     unlockGuildLevel: 9,
     totalLimit: 1,
     equipType: 'weapon',
@@ -220,51 +228,52 @@ export const GUILD_SHOP_ITEMS: GuildShopItemDef[] = [
       { itemId: 'dragon_jade', quantity: 1 }
     ]
   },
-  // --- 永久品（贡献点购买，每日限购）---
+
+  // --- Kalıcı eşyalar (katkı puanı ile alınır, günlük/haftalık sınır) ---
   {
     itemId: 'guild_badge',
-    name: '公会徽章',
+    name: 'Lonca Nişanı',
     price: 0,
     contributionCost: 150,
-    description: '攻击力永久+3。',
+    description: 'Kalıcı saldırı +3.',
     unlockGuildLevel: 6,
     dailyLimit: 1
   },
   {
     itemId: 'life_talisman',
-    name: '生命护符',
+    name: 'Can Muskası',
     price: 0,
     contributionCost: 200,
-    description: '最大生命值永久+15。',
+    description: 'Kalıcı azami can +15.',
     unlockGuildLevel: 8,
     dailyLimit: 1,
     totalLimit: 100
   },
   {
     itemId: 'defense_charm',
-    name: '守护符',
+    name: 'Koruyucu Muska',
     price: 0,
     contributionCost: 180,
-    description: '防御永久+3%。',
+    description: 'Kalıcı savunma +%3.',
     unlockGuildLevel: 7,
     weeklyLimit: 3,
     totalLimit: 10
   },
   {
     itemId: 'lucky_coin',
-    name: '幸运铜钱',
+    name: 'Uğur Akçesi',
     price: 0,
     contributionCost: 300,
-    description: '怪物掉落率永久+5%。',
+    description: 'Kalıcı canavar düşürme oranı +%5.',
     unlockGuildLevel: 10,
     weeklyLimit: 3,
     totalLimit: 10
   }
 ]
 
-/** 捐献物品表 */
+/** Loncaya bağışlanabilecek eşyalar */
 export const GUILD_DONATIONS: GuildDonationDef[] = [
-  // 矿石
+  // Cevherler
   { itemId: 'copper_ore', points: 2 },
   { itemId: 'iron_ore', points: 4 },
   { itemId: 'gold_ore', points: 8 },
@@ -272,7 +281,8 @@ export const GUILD_DONATIONS: GuildDonationDef[] = [
   { itemId: 'shadow_ore', points: 18 },
   { itemId: 'void_ore', points: 25 },
   { itemId: 'iridium_ore', points: 35 },
-  // 宝石
+
+  // Taşlar
   { itemId: 'quartz', points: 4 },
   { itemId: 'jade', points: 12 },
   { itemId: 'ruby', points: 18 },
@@ -282,7 +292,7 @@ export const GUILD_DONATIONS: GuildDonationDef[] = [
   { itemId: 'prismatic_shard', points: 80 }
 ]
 
-/** 公会等级表（10级） */
+/** Lonca seviye tablosu (10 seviye) */
 export const GUILD_LEVELS: GuildLevelDef[] = [
   { level: 1, expRequired: 100 },
   { level: 2, expRequired: 300 },
@@ -296,11 +306,11 @@ export const GUILD_LEVELS: GuildLevelDef[] = [
   { level: 10, expRequired: 7500 }
 ]
 
-/** 每公会等级的被动增益 */
+/** Her lonca seviyesinin sağladığı pasif artış */
 export const GUILD_BONUS_PER_LEVEL = {
-  attack: 1, // 每级+1攻击力
-  maxHp: 5 // 每级+5最大生命值
+  attack: 1, // Her seviyede +1 saldırı
+  maxHp: 5 // Her seviyede +5 azami can
 }
 
-/** 根据怪物ID查找讨伐目标 */
+/** Canavar kimliğine göre av hedefini bulur */
 export const getMonsterGoal = (monsterId: string): MonsterGoalDef | undefined => MONSTER_GOALS.find(g => g.monsterId === monsterId)
