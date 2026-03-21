@@ -1,27 +1,27 @@
 import type { MainQuestDef } from '@/types'
 
-/** 章节标题 */
+/** Bölüm başlıkları */
 export const CHAPTER_TITLES: Record<number, string> = {
-  1: '初入桃源',
-  2: '扎根大地',
-  3: '名扬四乡',
-  4: '风云际会',
-  5: '桃源之主'
+  1: 'gaKöy’e İlk Adım',
+  2: 'Toprağa Kök Salmak',
+  3: 'Dört Yana Ün Salmak',
+  4: 'Yazgıların Kesişmesi',
+  5: 'gaKöy’ün Beği'
 }
 
-/** 50个主线任务定义，分5章每章10个 */
+/** 50 ana görev tanımı, 5 bölüm ve her bölümde 10 görev */
 export const STORY_QUESTS: MainQuestDef[] = [
   // ============================================================
-  // 第1章「初入桃源」— 新手引导
+  // 1. Bölüm「gaKöy’e İlk Adım」— Başlangıç rehberi
   // ============================================================
   {
     id: 'main_1_1',
     chapter: 1,
     order: 1,
-    title: '新的开始',
-    description: '柳村长说，想在桃源乡立足，先从种地开始吧。试着收获5次作物。',
+    title: 'Yeni Başlangıç',
+    description: 'Muhtar Mehmet der ki: gaKöy’de tutunmak isteyen evvela toprağı işler. Haydi, 5 kez mahsul topla.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'harvestCrops', label: '累计收获5次作物', target: 5 }],
+    objectives: [{ type: 'harvestCrops', label: 'Toplam 5 kez mahsul topla', target: 5 }],
     moneyReward: 300,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 20 }]
   },
@@ -29,10 +29,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_1_2',
     chapter: 1,
     order: 2,
-    title: '远亲不如近邻',
-    description: '陈伯是村里万物铺的老板，多和他打打交道吧。',
+    title: 'Yakın Komşu Uzak Hısımdan Yeğdir',
+    description: 'Hasan Enişte köyün Her Şey Dükkânı’nı işletir. Onunla biraz ahbaplık kur.',
     npcId: 'chen_bo',
-    objectives: [{ type: 'npcFriendship', label: '与陈伯成为相识', npcId: 'chen_bo', friendshipLevel: 'acquaintance' }],
+    objectives: [{ type: 'npcFriendship', label: 'Hasan Enişte ile tanış ol', npcId: 'chen_bo', friendshipLevel: 'acquaintance' }],
     moneyReward: 200,
     friendshipReward: [{ npcId: 'chen_bo', amount: 20 }]
   },
@@ -40,10 +40,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_1_3',
     chapter: 1,
     order: 3,
-    title: '溪边垂钓',
-    description: '秋月是村里最会钓鱼的姑娘，她邀你去溪边试试身手。',
+    title: 'Dere Kıyısında Olta',
+    description: 'Aylin köyün en usta oltacısıdır. Seni dere kıyısına çağırıyor; hünerini göster.',
     npcId: 'qiu_yue',
-    objectives: [{ type: 'catchFish', label: '累计钓到5条鱼', target: 5 }],
+    objectives: [{ type: 'catchFish', label: 'Toplam 5 balık yakala', target: 5 }],
     moneyReward: 300,
     itemReward: [{ itemId: 'standard_bait', quantity: 10 }],
     friendshipReward: [{ npcId: 'qiu_yue', amount: 20 }]
@@ -52,10 +52,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_1_4',
     chapter: 1,
     order: 4,
-    title: '初探矿洞',
-    description: '阿石说矿洞里有好东西，但也有危险。先探到第5层试试。',
+    title: 'Madene İlk İniş',
+    description: 'İsmail der ki: Maden ocağında nimet de var, tehlike de. Hele bir 5. kata kadar in.',
     npcId: 'a_shi',
-    objectives: [{ type: 'reachMineFloor', label: '矿洞到达第5层', target: 5 }],
+    objectives: [{ type: 'reachMineFloor', label: 'Maden ocağında 5. kata ulaş', target: 5 }],
     moneyReward: 500,
     friendshipReward: [{ npcId: 'a_shi', amount: 20 }]
   },
@@ -63,10 +63,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_1_5',
     chapter: 1,
     order: 5,
-    title: '乡间美味',
-    description: '王大婶说，种地辛苦，学做几道菜犒劳自己吧。',
+    title: 'Köy Lezzeti',
+    description: 'Fatma Teyze der ki: Toprak işi yorucudur, insan kendini güzel bir yemekle ödüllendirmelidir. 3 yemek pişir.',
     npcId: 'wang_dashen',
-    objectives: [{ type: 'cookRecipes', label: '累计烹饪3道菜', target: 3 }],
+    objectives: [{ type: 'cookRecipes', label: 'Toplam 3 yemek pişir', target: 3 }],
     moneyReward: 300,
     friendshipReward: [{ npcId: 'wang_dashen', amount: 20 }]
   },
@@ -74,10 +74,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_1_6',
     chapter: 1,
     order: 6,
-    title: '广结善缘',
-    description: '柳村长希望你多认识村里的人，同时也帮乡亲们办办事。',
+    title: 'Hayırlı Bağlar Kurmak',
+    description: 'Muhtar Mehmet ister ki köylüyü tanıyıp onların işlerine de omuz veresin.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'completeQuests', label: '累计完成3个委托', target: 3 }],
+    objectives: [{ type: 'completeQuests', label: 'Toplam 3 iş tamamla', target: 3 }],
     moneyReward: 500,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 20 }]
   },
@@ -85,10 +85,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_1_7',
     chapter: 1,
     order: 7,
-    title: '木匠的考验',
-    description: '小满说他师父赵木匠急需一批木材，帮忙送去30个木材吧。',
+    title: "Marangozun Sınaması",
+    description: 'Mıstık der ki ustası Mustafa Usta’nın bir yığın keresteye ihtiyacı var. 30 odun ulaştır.',
     npcId: 'xiao_man',
-    objectives: [{ type: 'deliverItem', label: '交付木材×30', itemId: 'wood', itemQuantity: 30 }],
+    objectives: [{ type: 'deliverItem', label: 'Odun ×30 teslim et', itemId: 'wood', itemQuantity: 30 }],
     moneyReward: 500,
     itemReward: [{ itemId: 'basic_fertilizer', quantity: 5 }],
     friendshipReward: [{ npcId: 'xiao_man', amount: 30 }]
@@ -97,10 +97,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_1_8',
     chapter: 1,
     order: 8,
-    title: '林老的嘱托',
-    description: '林老要配一副药方，需要一些草药，帮他收集10个草药吧。',
+    title: "Hekim Dede'nin Tembihi",
+    description: 'Hekim Dede bir ilaç hazırlayacak, ona biraz şifalı ot gerek. 10 ot topla.',
     npcId: 'lin_lao',
-    objectives: [{ type: 'deliverItem', label: '交付草药×10', itemId: 'herb', itemQuantity: 10 }],
+    objectives: [{ type: 'deliverItem', label: 'Şifalı ot ×10 teslim et', itemId: 'herb', itemQuantity: 10 }],
     moneyReward: 500,
     friendshipReward: [{ npcId: 'lin_lao', amount: 30 }]
   },
@@ -108,10 +108,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_1_9',
     chapter: 1,
     order: 9,
-    title: '初露锋芒',
-    description: '柳村长对你的表现很满意。继续努力，让积蓄再多一些吧。',
+    title: 'İlk Parıltı',
+    description: 'Muhtar Mehmet yaptıklarından memnundur. Gayrete devam et, keseni biraz daha doldur.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'earnMoney', label: '累计获得5000文', target: 5000 }],
+    objectives: [{ type: 'earnMoney', label: 'Toplam 5000 akçe kazan', target: 5000 }],
     moneyReward: 800,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 20 }]
   },
@@ -119,26 +119,26 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_1_10',
     chapter: 1,
     order: 10,
-    title: '扎根桃源',
-    description: '要在桃源乡真正站稳脚跟，农耕技能必须过硬。把农耕练到3级吧。',
+    title: 'gaKöy’de Kök Salmak',
+    description: 'gaKöy’de gerçekten yer edinmek istiyorsan çiftçilikte eli sağlam olmalı. Çiftçilik becerisini 3. düzeye çıkar.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'skillLevel', label: '农耕技能达到3级', skillType: 'farming', target: 3 }],
+    objectives: [{ type: 'skillLevel', label: 'Çiftçilik becerisi 3. düzeye ulaşsın', skillType: 'farming', target: 3 }],
     moneyReward: 1000,
     itemReward: [{ itemId: 'quality_fertilizer', quantity: 5 }],
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
 
   // ============================================================
-  // 第2章「扎根大地」— 中前期
+  // 2. Bölüm「Toprağa Kök Salmak」— Orta oyunun başları
   // ============================================================
   {
     id: 'main_2_1',
     chapter: 2,
     order: 1,
-    title: '丰收之路',
-    description: '柳娘说你的农场越来越像样了，继续加油收获更多作物吧。',
+    title: 'Bereket Yolu',
+    description: 'Elif der ki tarlan artık iyiden iyiye kendini göstermeye başladı. Daha çok mahsul topla.',
     npcId: 'liu_niang',
-    objectives: [{ type: 'harvestCrops', label: '累计收获50次作物', target: 50 }],
+    objectives: [{ type: 'harvestCrops', label: 'Toplam 50 kez mahsul topla', target: 50 }],
     moneyReward: 800,
     friendshipReward: [{ npcId: 'liu_niang', amount: 20 }]
   },
@@ -146,10 +146,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_2_2',
     chapter: 2,
     order: 2,
-    title: '矿洞深处',
-    description: '阿石说矿洞20层以下有铁矿脉，深入探索一下吧。',
+    title: 'Madenin Derinleri',
+    description: 'İsmail der ki 20. katın altında demir damarları başlar. Biraz daha derine in.',
     npcId: 'a_shi',
-    objectives: [{ type: 'reachMineFloor', label: '矿洞到达第20层', target: 20 }],
+    objectives: [{ type: 'reachMineFloor', label: 'Maden ocağında 20. kata ulaş', target: 20 }],
     moneyReward: 1000,
     itemReward: [{ itemId: 'iron_ore', quantity: 10 }],
     friendshipReward: [{ npcId: 'a_shi', amount: 20 }]
@@ -158,10 +158,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_2_3',
     chapter: 2,
     order: 3,
-    title: '渔翁之道',
-    description: '李渔翁说，钓鱼讲究心境。多钓几条鱼，领悟其中奥妙。',
+    title: 'Oltacının Yolu',
+    description: 'Balıkçı Dede der ki balıkçılık gönül dinginliği ister. Biraz daha balık tutup işin sırrına er.',
     npcId: 'li_yu',
-    objectives: [{ type: 'catchFish', label: '累计钓到30条鱼', target: 30 }],
+    objectives: [{ type: 'catchFish', label: 'Toplam 30 balık yakala', target: 30 }],
     moneyReward: 800,
     friendshipReward: [{ npcId: 'li_yu', amount: 20 }]
   },
@@ -169,10 +169,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_2_4',
     chapter: 2,
     order: 4,
-    title: '乡情初绽',
-    description: '柳村长说村里祠堂有一块任务板，去图鉴中的「祠堂」看看，完成一个任务为村子做点贡献。',
+    title: 'Köy Bağının Filizlenişi',
+    description: 'Muhtar Mehmet der ki köyün mabedinde bir görev levhası vardır. Rehberdeki “Mabet” kısmına bak, bir görevi tamamlayıp köye katkı sun.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'completeBundles', label: '完成1个祠堂任务', target: 1 }],
+    objectives: [{ type: 'completeBundles', label: 'Mabet görevlerinden 1 tanesini tamamla', target: 1 }],
     moneyReward: 1000,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
@@ -180,12 +180,12 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_2_5',
     chapter: 2,
     order: 5,
-    title: '铁匠的友谊',
-    description: '孙铁匠需要一批铁矿来打造农具，送去15个铁矿表达心意。',
+    title: 'Demircinin Dostluğu',
+    description: 'Ali Usta yeni tarım araçları dövecek, biraz demir cevherine ihtiyacı var. Ona 15 demir cevheri götür.',
     npcId: 'sun_tiejiang',
     objectives: [
-      { type: 'npcFriendship', label: '与孙铁匠成为相识', npcId: 'sun_tiejiang', friendshipLevel: 'acquaintance' },
-      { type: 'deliverItem', label: '交付铁矿×15', itemId: 'iron_ore', itemQuantity: 15 }
+      { type: 'npcFriendship', label: 'Ali Usta ile tanış ol', npcId: 'sun_tiejiang', friendshipLevel: 'acquaintance' },
+      { type: 'deliverItem', label: 'Demir cevheri ×15 teslim et', itemId: 'iron_ore', itemQuantity: 15 }
     ],
     moneyReward: 1000,
     friendshipReward: [{ npcId: 'sun_tiejiang', amount: 30 }]
@@ -194,10 +194,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_2_6',
     chapter: 2,
     order: 6,
-    title: '牧场之梦',
-    description: '大牛说养动物是件快乐的事，试着养3只牲畜吧。',
+    title: 'Çiftlik Düşü',
+    description: 'İbo der ki hayvan yetiştirmek gönül açan bir iştir. 3 baş hayvan edin.',
     npcId: 'da_niu',
-    objectives: [{ type: 'ownAnimals', label: '拥有3只牲畜', target: 3 }],
+    objectives: [{ type: 'ownAnimals', label: '3 baş hayvana sahip ol', target: 3 }],
     moneyReward: 1000,
     friendshipReward: [{ npcId: 'da_niu', amount: 30 }]
   },
@@ -205,10 +205,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_2_7',
     chapter: 2,
     order: 7,
-    title: '厨艺精进',
-    description: '王大婶对你的厨艺赞不绝口，再多学几道菜吧。',
+    title: 'Aşçılıkta İlerlemek',
+    description: 'Fatma Teyze elinin tadını öve öve bitiremez. Daha çok yemek öğren.',
     npcId: 'wang_dashen',
-    objectives: [{ type: 'cookRecipes', label: '累计烹饪15道菜', target: 15 }],
+    objectives: [{ type: 'cookRecipes', label: 'Toplam 15 yemek pişir', target: 15 }],
     moneyReward: 800,
     friendshipReward: [{ npcId: 'wang_dashen', amount: 20 }]
   },
@@ -216,10 +216,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_2_8',
     chapter: 2,
     order: 8,
-    title: '村里的委托',
-    description: '柳村长说你帮了不少乡亲的忙，继续做下去吧。',
+    title: 'Köylünün İşi',
+    description: 'Muhtar Mehmet der ki köylünün işine epey yarar dokundu. Bunu sürdür.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'completeQuests', label: '累计完成10个委托', target: 10 }],
+    objectives: [{ type: 'completeQuests', label: 'Toplam 10 iş tamamla', target: 10 }],
     moneyReward: 1000,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 20 }]
   },
@@ -227,10 +227,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_2_9',
     chapter: 2,
     order: 9,
-    title: '四季物产',
-    description: '陈伯说桃源乡物产丰富，多发现一些不同的物品吧。',
+    title: 'Dört Mevsimin Nimeti',
+    description: 'Hasan Enişte der ki gaKöy’ün nimeti boldur. Daha çok farklı eşya keşfet.',
     npcId: 'chen_bo',
-    objectives: [{ type: 'discoverItems', label: '发现30种不同物品', target: 30 }],
+    objectives: [{ type: 'discoverItems', label: '30 farklı eşya keşfet', target: 30 }],
     moneyReward: 1200,
     friendshipReward: [{ npcId: 'chen_bo', amount: 20 }]
   },
@@ -238,26 +238,26 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_2_10',
     chapter: 2,
     order: 10,
-    title: '小有名气',
-    description: '你在桃源乡已经小有名气了。继续积累财富，证明自己的实力。',
+    title: 'Küçük Bir Şöhret',
+    description: 'Artık gaKöy’de adın anılır oldu. Servetini artır, kudretini göster.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'earnMoney', label: '累计获得15000文', target: 15000 }],
+    objectives: [{ type: 'earnMoney', label: 'Toplam 15000 akçe kazan', target: 15000 }],
     moneyReward: 1500,
     itemReward: [{ itemId: 'seed_peach', quantity: 3 }],
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
 
   // ============================================================
-  // 第3章「名扬四乡」— 中期
+  // 3. Bölüm「Dört Yana Ün Salmak」— Orta dönem
   // ============================================================
   {
     id: 'main_3_1',
     chapter: 3,
     order: 1,
-    title: '深渊挑战',
-    description: '阿石说矿洞40层以下有金矿脉，但怪物也更凶猛了。',
+    title: 'Derinlik Meydan Okuması',
+    description: 'İsmail der ki 40. katın altında altın damarları vardır, ama yaratıklar da azgınlaşır.',
     npcId: 'a_shi',
-    objectives: [{ type: 'reachMineFloor', label: '矿洞到达第40层', target: 40 }],
+    objectives: [{ type: 'reachMineFloor', label: 'Maden ocağında 40. kata ulaş', target: 40 }],
     moneyReward: 1500,
     itemReward: [{ itemId: 'gold_ore', quantity: 10 }],
     friendshipReward: [{ npcId: 'a_shi', amount: 20 }]
@@ -266,10 +266,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_3_2',
     chapter: 3,
     order: 2,
-    title: '百事通',
-    description: '柳村长说你已经成了村里的大忙人，继续帮助乡亲们吧。',
+    title: 'Her İşe Koşan',
+    description: 'Muhtar Mehmet der ki artık köyün aranan kişisi oldun. Ahaliye yardım etmeyi sürdür.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'completeQuests', label: '累计完成25个委托', target: 25 }],
+    objectives: [{ type: 'completeQuests', label: 'Toplam 25 iş tamamla', target: 25 }],
     moneyReward: 1500,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 20 }]
   },
@@ -277,10 +277,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_3_3',
     chapter: 3,
     order: 3,
-    title: '万物通鉴',
-    description: '周秀才对你的见识很感兴趣，希望你能发现更多桃源乡的物产。',
+    title: 'Varlık Bileni',
+    description: 'Hoca Efendi senin bilgine şaşar; gaKöy’ün daha nice nimetini keşfetmeni ister.',
     npcId: 'zhou_xiucai',
-    objectives: [{ type: 'discoverItems', label: '发现50种不同物品', target: 50 }],
+    objectives: [{ type: 'discoverItems', label: '50 farklı eşya keşfet', target: 50 }],
     moneyReward: 1500,
     friendshipReward: [{ npcId: 'zhou_xiucai', amount: 20 }]
   },
@@ -288,10 +288,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_3_4',
     chapter: 3,
     order: 4,
-    title: '美食家',
-    description: '胖婶说你的厨艺越来越好了，再接再厉！',
+    title: 'Lezzet Ehli',
+    description: 'Hatice Abla der ki aşçılığın iyice ilerledi, durmak yok.',
     npcId: 'pang_shen',
-    objectives: [{ type: 'cookRecipes', label: '累计烹饪30道菜', target: 30 }],
+    objectives: [{ type: 'cookRecipes', label: 'Toplam 30 yemek pişir', target: 30 }],
     moneyReward: 1200,
     friendshipReward: [{ npcId: 'pang_shen', amount: 20 }]
   },
@@ -299,10 +299,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_3_5',
     chapter: 3,
     order: 5,
-    title: '人缘好',
-    description: '柳村长希望你能和村里所有人都混个脸熟。',
+    title: 'Yüzü Tanınan',
+    description: 'Muhtar Mehmet ister ki köyde tanımadığın kimse kalmasın.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'npcAllFriendly', label: '与所有村民成为相识', friendshipLevel: 'acquaintance' }],
+    objectives: [{ type: 'npcAllFriendly', label: 'Bütün köylülerle tanış ol', friendshipLevel: 'acquaintance' }],
     moneyReward: 2000,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
@@ -310,10 +310,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_3_6',
     chapter: 3,
     order: 6,
-    title: '牧场扩张',
-    description: '大牛对你的牧场很感兴趣，把牲畜养到8只吧。',
+    title: 'Ağılın Büyümesi',
+    description: 'İbo çiftliğine imrenir; hayvan sayını 8 başa çıkar.',
     npcId: 'da_niu',
-    objectives: [{ type: 'ownAnimals', label: '拥有8只牲畜', target: 8 }],
+    objectives: [{ type: 'ownAnimals', label: '8 baş hayvana sahip ol', target: 8 }],
     moneyReward: 1500,
     friendshipReward: [{ npcId: 'da_niu', amount: 20 }]
   },
@@ -321,10 +321,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_3_7',
     chapter: 3,
     order: 7,
-    title: '渔王初成',
-    description: '秋月说你的钓术已经相当不错了，继续精进！',
+    title: 'Balıkçının Yükselişi',
+    description: 'Aylin der ki oltacılığın artık iyice yol aldı. Daha da ustalaş.',
     npcId: 'qiu_yue',
-    objectives: [{ type: 'catchFish', label: '累计钓到80条鱼', target: 80 }],
+    objectives: [{ type: 'catchFish', label: 'Toplam 80 balık yakala', target: 80 }],
     moneyReward: 1500,
     friendshipReward: [{ npcId: 'qiu_yue', amount: 20 }]
   },
@@ -332,10 +332,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_3_8',
     chapter: 3,
     order: 8,
-    title: '出货达人',
-    description: '何掌柜说你的出货种类越来越多，继续拓展销路。',
+    title: 'Sevk Ustası',
+    description: 'Kahveci Bekir mallarının çeşitlenmesine hayrandır. Ticaret yolunu genişlet.',
     npcId: 'he_zhanggui',
-    objectives: [{ type: 'shipItems', label: '出货15种不同物品', target: 15 }],
+    objectives: [{ type: 'shipItems', label: '15 farklı eşya sevk et', target: 15 }],
     moneyReward: 2000,
     friendshipReward: [{ npcId: 'he_zhanggui', amount: 20 }]
   },
@@ -343,10 +343,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_3_9',
     chapter: 3,
     order: 9,
-    title: '技艺精通',
-    description: '林老说人要有一技之长，把任意一项技能练到7级。',
+    title: 'Hüner Sahibi',
+    description: 'Hekim Dede der ki insanın elinde en az bir büyük hüner olmalı. Herhangi bir beceriyi 7. düzeye çıkar.',
     npcId: 'lin_lao',
-    objectives: [{ type: 'skillLevel', label: '任意技能达到7级', target: 7 }],
+    objectives: [{ type: 'skillLevel', label: 'Herhangi bir beceri 7. düzeye ulaşsın', target: 7 }],
     moneyReward: 2000,
     friendshipReward: [{ npcId: 'lin_lao', amount: 20 }]
   },
@@ -354,26 +354,26 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_3_10',
     chapter: 3,
     order: 10,
-    title: '声名远播',
-    description: '你的名声已经传到了邻村。继续积累财富，成为桃源乡的骄傲。',
+    title: 'Namın Yayıldı',
+    description: 'Ünün komşu köylere dek yayıldı. Servetini büyüt, gaKöy’ün gururu ol.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'earnMoney', label: '累计获得40000文', target: 40000 }],
+    objectives: [{ type: 'earnMoney', label: 'Toplam 40000 akçe kazan', target: 40000 }],
     moneyReward: 2500,
     itemReward: [{ itemId: 'jade', quantity: 2 }],
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
 
   // ============================================================
-  // 第4章「风云际会」— 中后期
+  // 4. Bölüm「Yazgıların Kesişmesi」— Orta oyunun sonları
   // ============================================================
   {
     id: 'main_4_1',
     chapter: 4,
     order: 1,
-    title: '深渊征服者',
-    description: '阿石说矿洞最深处隐藏着强大的boss，到达第80层吧。',
+    title: 'Derinliğin Fatihi',
+    description: 'İsmail der ki madenin derininde kudretli bir baş düşman saklanır. 80. kata var.',
     npcId: 'a_shi',
-    objectives: [{ type: 'reachMineFloor', label: '矿洞到达第80层', target: 80 }],
+    objectives: [{ type: 'reachMineFloor', label: 'Maden ocağında 80. kata ulaş', target: 80 }],
     moneyReward: 3000,
     itemReward: [{ itemId: 'gold_ore', quantity: 15 }],
     friendshipReward: [{ npcId: 'a_shi', amount: 20 }]
@@ -382,10 +382,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_4_2',
     chapter: 4,
     order: 2,
-    title: '降妖除魔',
-    description: '云飞说山里的怪物越来越多了，需要有人出手清理。',
+    title: 'Canavar Kıran',
+    description: 'Baran der ki dağlarda yaratıklar çoğaldı; birilerinin el atması gerekir.',
     npcId: 'yun_fei',
-    objectives: [{ type: 'killMonsters', label: '累计击杀150只怪物', target: 150 }],
+    objectives: [{ type: 'killMonsters', label: 'Toplam 150 yaratık öldür', target: 150 }],
     moneyReward: 2500,
     friendshipReward: [{ npcId: 'yun_fei', amount: 30 }]
   },
@@ -393,10 +393,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_4_3',
     chapter: 4,
     order: 3,
-    title: '乡情圆满',
-    description: '柳村长希望你能为村子完成更多祠堂任务。前往图鉴中的「祠堂」查看并提交所需物品。',
+    title: 'Köy Huzura Ersin',
+    description: 'Muhtar Mehmet, mabette daha çok görevi tamamlamanı ister. Rehberdeki “Mabet”e gidip gereken eşyaları sun.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'completeBundles', label: '完成4个祠堂任务', target: 4 }],
+    objectives: [{ type: 'completeBundles', label: '4 mabet görevini tamamla', target: 4 }],
     moneyReward: 3000,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
@@ -404,10 +404,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_4_4',
     chapter: 4,
     order: 4,
-    title: '百年好合',
-    description: '柳村长笑着说，是时候成个家了吧？',
+    title: 'Bir Ömür Bir Yastık',
+    description: 'Muhtar Mehmet gülümser: Artık yuva kurmanın vakti gelmedi mi?',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'married', label: '与心仪之人结婚' }],
+    objectives: [{ type: 'married', label: 'Gönlündeki kişiyle evlen' }],
     moneyReward: 2000,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
@@ -415,10 +415,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_4_5',
     chapter: 4,
     order: 5,
-    title: '大厨之路',
-    description: '王大婶说你的厨艺已经超过她了，继续挑战更多菜品。',
+    title: 'Usta Aşçı Yolu',
+    description: 'Fatma Teyze der ki elinin tadı onu geçmiş. Daha çok yemek dene.',
     npcId: 'wang_dashen',
-    objectives: [{ type: 'cookRecipes', label: '累计烹饪50道菜', target: 50 }],
+    objectives: [{ type: 'cookRecipes', label: 'Toplam 50 yemek pişir', target: 50 }],
     moneyReward: 2500,
     friendshipReward: [{ npcId: 'wang_dashen', amount: 20 }]
   },
@@ -426,10 +426,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_4_6',
     chapter: 4,
     order: 6,
-    title: '博物全才',
-    description: '周秀才说你的见识已经超越了大部分人，继续探索。',
+    title: 'Her Şeyi Bilen',
+    description: 'Hoca Efendi der ki görgün pek çok kişiyi aştı. Araştırmayı sürdür.',
     npcId: 'zhou_xiucai',
-    objectives: [{ type: 'discoverItems', label: '发现80种不同物品', target: 80 }],
+    objectives: [{ type: 'discoverItems', label: '80 farklı eşya keşfet', target: 80 }],
     moneyReward: 3000,
     friendshipReward: [{ npcId: 'zhou_xiucai', amount: 20 }]
   },
@@ -437,10 +437,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_4_7',
     chapter: 4,
     order: 7,
-    title: '物流大亨',
-    description: '何掌柜惊叹于你的出货规模，继续扩大出货种类。',
+    title: 'Ticaret Beği',
+    description: 'Kahveci Bekir sevk ettiğin malların büyüklüğüne şaşmıştır. Daha çok çeşit gönder.',
     npcId: 'he_zhanggui',
-    objectives: [{ type: 'shipItems', label: '出货30种不同物品', target: 30 }],
+    objectives: [{ type: 'shipItems', label: '30 farklı eşya sevk et', target: 30 }],
     moneyReward: 3000,
     friendshipReward: [{ npcId: 'he_zhanggui', amount: 20 }]
   },
@@ -448,10 +448,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_4_8',
     chapter: 4,
     order: 8,
-    title: '知己之交',
-    description: '人生得一知己足矣。和一位村民成为挚友吧。',
+    title: 'Can Yoldaşı',
+    description: 'İnsan ömründe bir hakiki dost yeter. Bir köylüyle can yoldaşı ol.',
     npcId: 'lin_lao',
-    objectives: [{ type: 'npcFriendship', label: '与任意村民成为挚友', npcId: '_any', friendshipLevel: 'bestFriend' }],
+    objectives: [{ type: 'npcFriendship', label: 'Herhangi bir köylüyle en yakın dost ol', npcId: '_any', friendshipLevel: 'bestFriend' }],
     moneyReward: 2500,
     friendshipReward: [{ npcId: 'lin_lao', amount: 20 }]
   },
@@ -459,10 +459,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_4_9',
     chapter: 4,
     order: 9,
-    title: '丰收大亨',
-    description: '柳娘说你的农场是桃源乡产量最高的，继续保持。',
+    title: 'Hasat Beği',
+    description: 'Elif der ki senin tarlan gaKöy’ün en bereketlisi oldu. Böyle sürdür.',
     npcId: 'liu_niang',
-    objectives: [{ type: 'harvestCrops', label: '累计收获300次作物', target: 300 }],
+    objectives: [{ type: 'harvestCrops', label: 'Toplam 300 kez mahsul topla', target: 300 }],
     moneyReward: 3000,
     friendshipReward: [{ npcId: 'liu_niang', amount: 20 }]
   },
@@ -470,26 +470,26 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_4_10',
     chapter: 4,
     order: 10,
-    title: '富甲一方',
-    description: '你的财富已经名闻乡里。柳村长说你是桃源乡的骄傲。',
+    title: 'Bir Diyarın Zengini',
+    description: 'Servetin artık dilden dile gezer. Muhtar Mehmet der ki sen gaKöy’ün yüz akısın.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'earnMoney', label: '累计获得100000文', target: 100000 }],
+    objectives: [{ type: 'earnMoney', label: 'Toplam 100000 akçe kazan', target: 100000 }],
     moneyReward: 5000,
     itemReward: [{ itemId: 'prismatic_shard', quantity: 1 }],
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
 
   // ============================================================
-  // 第5章「桃源之主」— 后期/终章
+  // 5. Bölüm「gaKöy’ün Beği」— Son dönem / bitiş
   // ============================================================
   {
     id: 'main_5_1',
     chapter: 5,
     order: 1,
-    title: '矿洞之底',
-    description: '阿石说矿洞最底层沉睡着古老的秘密，到达第120层揭开谜底。',
+    title: 'Madenin Dibinde',
+    description: 'İsmail der ki en dipte kadim bir sır uyur. 120. kata inip hakikati ortaya çıkar.',
     npcId: 'a_shi',
-    objectives: [{ type: 'reachMineFloor', label: '矿洞到达第120层', target: 120 }],
+    objectives: [{ type: 'reachMineFloor', label: 'Maden ocağında 120. kata ulaş', target: 120 }],
     moneyReward: 5000,
     friendshipReward: [{ npcId: 'a_shi', amount: 30 }]
   },
@@ -497,10 +497,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_5_2',
     chapter: 5,
     order: 2,
-    title: '骷髅深渊',
-    description: '阿石说矿洞尽头通往骷髅矿穴，那里有更珍贵的矿石。',
+    title: 'İskelet Uçurumu',
+    description: 'İsmail der ki madenin sonu İskelet Ocağı’na açılır; orada daha kıymetli cevherler vardır.',
     npcId: 'a_shi',
-    objectives: [{ type: 'reachSkullFloor', label: '骷髅矿穴到达第50层', target: 50 }],
+    objectives: [{ type: 'reachSkullFloor', label: 'İskelet Ocağı’nda 50. kata ulaş', target: 50 }],
     moneyReward: 5000,
     itemReward: [{ itemId: 'iridium_ore', quantity: 5 }],
     friendshipReward: [{ npcId: 'a_shi', amount: 30 }]
@@ -509,10 +509,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_5_3',
     chapter: 5,
     order: 3,
-    title: '万魔之敌',
-    description: '云飞说你已经是桃源乡最强的战士了，但怪物还在不断出现。',
+    title: 'Bütün Uğursuzlara Karşı',
+    description: 'Baran der ki artık gaKöy’ün en kudretli savaşçısı sensin, ama yaratıkların sonu kesilmiyor.',
     npcId: 'yun_fei',
-    objectives: [{ type: 'killMonsters', label: '累计击杀500只怪物', target: 500 }],
+    objectives: [{ type: 'killMonsters', label: 'Toplam 500 yaratık öldür', target: 500 }],
     moneyReward: 5000,
     friendshipReward: [{ npcId: 'yun_fei', amount: 30 }]
   },
@@ -520,10 +520,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_5_4',
     chapter: 5,
     order: 4,
-    title: '全能大师',
-    description: '林老说真正的大师是样样精通。把所有技能都提升到8级。',
+    title: 'Her Hünerde Usta',
+    description: 'Hekim Dede der ki gerçek usta her işte söz sahibidir. Bütün becerileri 8. düzeye çıkar.',
     npcId: 'lin_lao',
-    objectives: [{ type: 'allSkillsLevel', label: '所有技能达到8级', target: 8 }],
+    objectives: [{ type: 'allSkillsLevel', label: 'Bütün beceriler 8. düzeye ulaşsın', target: 8 }],
     moneyReward: 5000,
     friendshipReward: [{ npcId: 'lin_lao', amount: 30 }]
   },
@@ -531,10 +531,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_5_5',
     chapter: 5,
     order: 5,
-    title: '御厨',
-    description: '王大婶说你的厨艺已臻化境，向着百菜目标前进！',
+    title: 'Saray Sofrası',
+    description: 'Fatma Teyze der ki aşçılığın kemale erdi. Yüz türlü yemeğe doğru yürü.',
     npcId: 'wang_dashen',
-    objectives: [{ type: 'cookRecipes', label: '累计烹饪80道菜', target: 80 }],
+    objectives: [{ type: 'cookRecipes', label: 'Toplam 80 yemek pişir', target: 80 }],
     moneyReward: 3000,
     friendshipReward: [{ npcId: 'wang_dashen', amount: 30 }]
   },
@@ -542,10 +542,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_5_6',
     chapter: 5,
     order: 6,
-    title: '天伦之乐',
-    description: '柳村长笑着说，成家之后也该添个孩子了。',
+    title: 'Soyun Devamı',
+    description: 'Muhtar Mehmet güler: Yuva kurduysan bir evlat da yakışır.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'hasChild', label: '迎来第一个孩子' }],
+    objectives: [{ type: 'hasChild', label: 'İlk çocuğunu kucağına al' }],
     moneyReward: 3000,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
@@ -553,10 +553,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_5_7',
     chapter: 5,
     order: 7,
-    title: '桃源之友',
-    description: '柳村长希望你能和村里每一个人都成为朋友。',
+    title: 'gaKöy’ün Dostu',
+    description: 'Muhtar Mehmet ister ki köydeki herkesle gönül bağı kurasın.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'npcAllFriendly', label: '与所有村民成为相知', friendshipLevel: 'friendly' }],
+    objectives: [{ type: 'npcAllFriendly', label: 'Bütün köylülerle sıcak dost ol', friendshipLevel: 'friendly' }],
     moneyReward: 5000,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
@@ -564,10 +564,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_5_8',
     chapter: 5,
     order: 8,
-    title: '出货全鉴',
-    description: '何掌柜希望你能把桃源乡所有物产都出货一遍。',
+    title: 'Sevk Defterinin Tamamı',
+    description: 'Kahveci Bekir ister ki gaKöy’ün her nimeti en az bir kez senin elinden sevk edilmiş olsun.',
     npcId: 'he_zhanggui',
-    objectives: [{ type: 'shipItems', label: '出货50种不同物品', target: 50 }],
+    objectives: [{ type: 'shipItems', label: '50 farklı eşya sevk et', target: 50 }],
     moneyReward: 5000,
     friendshipReward: [{ npcId: 'he_zhanggui', amount: 30 }]
   },
@@ -575,10 +575,10 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_5_9',
     chapter: 5,
     order: 9,
-    title: '祠堂圆满',
-    description: '柳村长说祠堂任务板上的所有任务都靠你了。前往图鉴中的「祠堂」完成剩余任务。',
+    title: 'Mabedin Tamamı',
+    description: 'Muhtar Mehmet der ki mabet levhasındaki bütün işler artık sana bakıyor. Rehberdeki “Mabet”e gidip kalanları tamamla.',
     npcId: 'liu_cunzhang',
-    objectives: [{ type: 'completeBundles', label: '完成全部6个祠堂任务', target: 6 }],
+    objectives: [{ type: 'completeBundles', label: 'Bütün 6 mabet görevini tamamla', target: 6 }],
     moneyReward: 8000,
     friendshipReward: [{ npcId: 'liu_cunzhang', amount: 30 }]
   },
@@ -586,12 +586,12 @@ export const STORY_QUESTS: MainQuestDef[] = [
     id: 'main_5_10',
     chapter: 5,
     order: 10,
-    title: '桃源之主',
-    description: '你已经成为桃源乡真正的主人。所有技能满级，财富冠绝乡里。这是最终的挑战。',
+    title: 'gaKöy’ün Beği',
+    description: 'Artık gerçekten gaKöy’ün sahibisin. Bütün beceriler dorukta, servetin dillere destan. İşte son meydan okuma.',
     npcId: 'liu_cunzhang',
     objectives: [
-      { type: 'earnMoney', label: '累计获得300000文', target: 300000 },
-      { type: 'allSkillsLevel', label: '所有技能达到10级', target: 10 }
+      { type: 'earnMoney', label: 'Toplam 300000 akçe kazan', target: 300000 },
+      { type: 'allSkillsLevel', label: 'Bütün beceriler 10. düzeye ulaşsın', target: 10 }
     ],
     moneyReward: 10000,
     itemReward: [{ itemId: 'prismatic_shard', quantity: 1 }],
@@ -599,29 +599,29 @@ export const STORY_QUESTS: MainQuestDef[] = [
   }
 ]
 
-/** 根据ID获取主线任务 */
+/** ID ile ana görev getir */
 export const getStoryQuestById = (id: string): MainQuestDef | undefined => {
   return STORY_QUESTS.find(q => q.id === id)
 }
 
-/** 根据章节和序号获取主线任务 */
+/** Bölüm ve sıra ile ana görev getir */
 export const getStoryQuestByOrder = (chapter: number, order: number): MainQuestDef | undefined => {
   return STORY_QUESTS.find(q => q.chapter === chapter && q.order === order)
 }
 
-/** 获取下一个主线任务 */
+/** Sonraki ana görevi getir */
 export const getNextStoryQuest = (currentId: string): MainQuestDef | undefined => {
   const idx = STORY_QUESTS.findIndex(q => q.id === currentId)
   if (idx === -1 || idx >= STORY_QUESTS.length - 1) return undefined
   return STORY_QUESTS[idx + 1]
 }
 
-/** 获取某章的所有主线任务 */
+/** Bir bölümdeki bütün ana görevleri getir */
 export const getChapterQuests = (chapter: number): MainQuestDef[] => {
   return STORY_QUESTS.filter(q => q.chapter === chapter)
 }
 
-/** 获取第一个主线任务 */
+/** İlk ana görevi getir */
 export const getFirstStoryQuest = (): MainQuestDef => {
   return STORY_QUESTS[0]!
 }
