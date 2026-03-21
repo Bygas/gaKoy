@@ -1,48 +1,48 @@
 import type { WalletItemDef } from '@/types'
 
-/** 钱袋物品定义 */
+/** Para kesesi eşya tanımları */
 export const WALLET_ITEMS: WalletItemDef[] = [
   {
     id: 'merchant_seal',
-    name: '商人印章',
-    description: '商店购物价格降低10%。',
+    name: 'Tüccar Mührü',
+    description: 'Dükkândaki alışveriş fiyatları %10 düşer.',
     effect: { type: 'shopDiscount', value: 0.1 },
-    unlockCondition: '累计赚取10000文'
+    unlockCondition: 'Toplam 10000 akçe kazan'
   },
   {
     id: 'herb_guide',
-    name: '神农本草',
-    description: '采集物品质提升1档。',
+    name: 'Şifalı Ot Defteri',
+    description: 'Toplanan kır ürünlerinin niteliği 1 kademe artar.',
     effect: { type: 'forageQuality', value: 1 },
-    unlockCondition: '采集等级达到8'
+    unlockCondition: 'Toplayıcılık seviyesi 8 olsun'
   },
   {
     id: 'miners_charm',
-    name: '矿工护符',
-    description: '挖矿体力消耗降低15%。',
+    name: 'Madenci Muskası',
+    description: 'Madencilikte direnç tüketimi %15 azalır.',
     effect: { type: 'miningStamina', value: 0.15 },
-    unlockCondition: '矿洞到达50层'
+    unlockCondition: 'Maden ocağında 50. kata ulaş'
   },
   {
     id: 'anglers_token',
-    name: '钓翁令牌',
-    description: '钓鱼小游戏中鱼移动速度降低10%。',
+    name: 'Balıkçı Nişanı',
+    description: 'Balık tutma mini oyununda balığın hareket hızı %10 azalır.',
     effect: { type: 'fishingCalm', value: 0.1 },
-    unlockCondition: '钓到30种不同的鱼'
+    unlockCondition: '30 farklı balık türü yakala'
   },
   {
     id: 'chefs_hat',
-    name: '厨师帽',
-    description: '烹饪食物恢复量+25%。',
+    name: 'Aşçı Külahı',
+    description: 'Pişirilen yemeklerin iyileştirme miktarı %25 artar.',
     effect: { type: 'cookingRestore', value: 0.25 },
-    unlockCondition: '烹饪10道不同的食谱'
+    unlockCondition: '10 farklı yemek tarifi pişir'
   },
   {
     id: 'earth_totem',
-    name: '土地图腾',
-    description: '作物生长速度+10%。',
+    name: 'Toprak Tılsımı',
+    description: 'Ürünlerin büyüme hızı %10 artar.',
     effect: { type: 'cropGrowth', value: 0.1 },
-    unlockCondition: '收获100次作物'
+    unlockCondition: '100 kez ürün hasat et'
   }
 ]
 
