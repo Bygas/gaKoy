@@ -1,7 +1,7 @@
 import type { Weather, Season, Weekday } from '@/types'
 import { getWeekday } from './timeConstants'
 
-/** 商铺定义 */
+/** Dükkân tanımı */
 export interface ShopDef {
   id: string
   name: string
@@ -14,13 +14,13 @@ export interface ShopDef {
   closedSeasons: Season[]
 }
 
-/** 六大商铺 */
+/** gaKöy'deki altı dükkân */
 export const SHOPS: ShopDef[] = [
   {
     id: 'wanwupu',
-    name: '万物铺',
-    description: '陈伯经营的杂货铺，出售种子和日用品。',
-    npcName: '陈伯',
+    name: 'Her Şey Dükkânı',
+    description: 'Hasan Enişte’nin işlettiği dükkân; tohum ve gündelik eşya satar.',
+    npcName: 'Hasan Enişte',
     closedDays: ['wed'],
     openHour: 8,
     closeHour: 20,
@@ -29,9 +29,9 @@ export const SHOPS: ShopDef[] = [
   },
   {
     id: 'tiejiangpu',
-    name: '铁匠铺',
-    description: '孙铁匠的铁匠铺，出售矿石和金属制品。',
-    npcName: '孙铁匠',
+    name: 'Demirci Ocağı',
+    description: 'Ali Usta’nın ocağı; maden ve demir işleri satar.',
+    npcName: 'Ali Usta',
     closedDays: ['sun'],
     openHour: 7,
     closeHour: 18,
@@ -40,9 +40,9 @@ export const SHOPS: ShopDef[] = [
   },
   {
     id: 'biaoju',
-    name: '镖局',
-    description: '云飞开设的镖局，出售武器和战斗用品。',
-    npcName: '云飞',
+    name: 'Yiğitler Ocağı',
+    description: 'Baran’ın işlettiği ocak; silah ve dövüş levazımı satar.',
+    npcName: 'Baran',
     closedDays: [],
     openHour: 10,
     closeHour: 22,
@@ -51,9 +51,9 @@ export const SHOPS: ShopDef[] = [
   },
   {
     id: 'yugupu',
-    name: '渔具铺',
-    description: '秋月的渔具小店，出售鱼饵和浮漂。',
-    npcName: '秋月',
+    name: 'Olta Dükkânı',
+    description: 'Aylin’in küçük dükkânı; yem ve şamandıra satar.',
+    npcName: 'Aylin',
     closedDays: ['mon', 'tue'],
     openHour: 6,
     closeHour: 17,
@@ -62,9 +62,9 @@ export const SHOPS: ShopDef[] = [
   },
   {
     id: 'yaopu',
-    name: '药铺',
-    description: '林老的药铺，出售肥料和草药。',
-    npcName: '林老',
+    name: 'Şifa Ocağı',
+    description: 'Hekim Dede’nin dükkânı; gübre ve şifalı otlar satar.',
+    npcName: 'Hekim Dede',
     closedDays: [],
     openHour: 8,
     closeHour: 20,
@@ -73,9 +73,9 @@ export const SHOPS: ShopDef[] = [
   },
   {
     id: 'chouduanzhuang',
-    name: '绸缎庄',
-    description: '素素的绸缎庄，出售布匹和精美礼品。',
-    npcName: '素素',
+    name: 'Kumaş Konağı',
+    description: 'Suna’nın konağı; kumaş ve zarif armağanlar satar.',
+    npcName: 'Suna',
     closedDays: ['sat', 'sun'],
     openHour: 9,
     closeHour: 18,
@@ -84,13 +84,19 @@ export const SHOPS: ShopDef[] = [
   }
 ]
 
-/** 根据 ID 查找商铺 */
+/** ID’ye göre dükkân bul */
 export const getShopById = (id: string): ShopDef | undefined => {
   return SHOPS.find(s => s.id === id)
 }
 
-/** 判断商铺是否营业中 */
-export const isShopAvailable = (shop: ShopDef, day: number, hour: number, weather: Weather, season: Season): boolean => {
+/** Dükkân açık mı kontrol et */
+export const isShopAvailable = (
+  shop: ShopDef,
+  day: number,
+  hour: number,
+  weather: Weather,
+  season: Season
+): boolean => {
   const weekday = getWeekday(day)
   if (shop.closedDays.includes(weekday)) return false
   if (hour < shop.openHour || hour >= shop.closeHour) return false
@@ -99,23 +105,31 @@ export const isShopAvailable = (shop: ShopDef, day: number, hour: number, weathe
   return true
 }
 
-/** 获取商铺关闭原因 */
-export const getShopClosedReason = (shop: ShopDef, day: number, hour: number, weather: Weather, season: Season): string => {
+/** Dükkânın neden kapalı olduğunu getir */
+export const getShopClosedReason = (
+  shop: ShopDef,
+  day: number,
+  hour: number,
+  weather: Weather,
+  season: Season
+): string => {
   const weekday = getWeekday(day)
+
   if (shop.closedSeasons.length > 0 && shop.closedSeasons.includes(season)) {
-    return '本季休业'
+    return 'Bu mevsimde kapalı'
   }
   if (shop.closedWeathers.length > 0 && shop.closedWeathers.includes(weather)) {
-    return '天气原因休息'
+    return 'Hava muhalefeti yüzünden kapalı'
   }
   if (shop.closedDays.includes(weekday)) {
-    return '今日休息'
+    return 'Bugün kapalı'
   }
   if (hour < shop.openHour) {
-    return `${shop.openHour}点开门`
+    return `${shop.openHour}'de açılır`
   }
   if (hour >= shop.closeHour) {
-    return '已打烊'
+    return 'Dükkân kapandı'
   }
+
   return ''
 }
