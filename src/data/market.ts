@@ -1,6 +1,6 @@
-/** 每日行情系统 — 季节系数 × 供需系数 × 随机波动(±5%)，clamp [0.5, 2.0] */
+/** Günlük pazar düzeni — mevsim katsayısı × arz-talep katsayısı × rastgele dalgalanma (±%5), sınır [0.5, 2.0] */
 
-// === 类型 ===
+// === Türler ===
 
 export type MarketCategory = 'crop' | 'fish' | 'animal_product' | 'processed' | 'fruit' | 'ore' | 'gem'
 export type MarketTrend = 'boom' | 'rising' | 'stable' | 'falling' | 'crash'
@@ -11,22 +11,22 @@ export interface CategoryMarketInfo {
   trend: MarketTrend
 }
 
-// === 常量 ===
+// === Sabitler ===
 
 const MARKET_CATEGORIES: MarketCategory[] = ['crop', 'fish', 'animal_product', 'processed', 'fruit', 'ore', 'gem']
 
-/** 季节系数：[spring, summer, autumn, winter] */
+/** Mevsim katsayıları: [ilkbahar, yaz, güz, kış] */
 const SEASON_COEFFICIENTS: Record<MarketCategory, [number, number, number, number]> = {
-  crop: [1.0, 0.9, 0.85, 1.2], // 秋收最便宜，冬季最贵
-  fish: [1.0, 0.9, 1.0, 1.15], // 夏季鱼多便宜，冬季贵
-  animal_product: [1.0, 0.95, 1.0, 1.1], // 冬季畜产品需求高
-  processed: [0.95, 1.0, 1.1, 1.05], // 秋季加工品需求旺
-  fruit: [1.1, 0.85, 0.9, 1.2], // 夏季水果多便宜，冬季贵
-  ore: [1.0, 1.05, 1.0, 0.9], // 冬季矿多便宜
-  gem: [1.0, 1.05, 1.0, 0.9] // 同矿石
+  crop: [1.0, 0.9, 0.85, 1.2], // Hasat zamanı en ucuz, kışın en pahalı
+  fish: [1.0, 0.9, 1.0, 1.15], // Yazın balık bol olur, kışın değerlenir
+  animal_product: [1.0, 0.95, 1.0, 1.1], // Kışın hayvansal ürüne talep artar
+  processed: [0.95, 1.0, 1.1, 1.05], // Güzde işlenmiş mallar daha çok aranır
+  fruit: [1.1, 0.85, 0.9, 1.2], // Yazın meyve bol, kışın kıymetli
+  ore: [1.0, 1.05, 1.0, 0.9], // Kışın maden bol bulunduğundan ucuzlar
+  gem: [1.0, 1.05, 1.0, 0.9] // Madenle aynı gidiş
 }
 
-/** 供需阈值：7天累计出货量 */
+/** Arz-talep eşikleri: son 7 günde sevk edilen toplam miktar */
 const SUPPLY_THRESHOLDS: Record<MarketCategory, { low: number; mid: number; high: number }> = {
   crop: { low: 20, mid: 50, high: 100 },
   fish: { low: 10, mid: 25, high: 50 },
@@ -38,11 +38,11 @@ const SUPPLY_THRESHOLDS: Record<MarketCategory, { low: number; mid: number; high
 }
 
 export const TREND_NAMES: Record<MarketTrend, string> = {
-  boom: '大涨',
-  rising: '上涨',
-  stable: '平稳',
-  falling: '下跌',
-  crash: '暴跌'
+  boom: 'Coşkun Artış',
+  rising: 'Yükselişte',
+  stable: 'Dengede',
+  falling: 'Düşüşte',
+  crash: 'Sert Çöküş'
 }
 
 export const TREND_COLORS: Record<MarketTrend, string> = {
@@ -54,16 +54,16 @@ export const TREND_COLORS: Record<MarketTrend, string> = {
 }
 
 export const MARKET_CATEGORY_NAMES: Record<MarketCategory, string> = {
-  crop: '农产品',
-  fish: '鱼类',
-  animal_product: '畜产品',
-  processed: '加工品',
-  fruit: '水果',
-  ore: '矿石',
-  gem: '宝石'
+  crop: 'Tarla Ürünü',
+  fish: 'Balık',
+  animal_product: 'Hayvansal Ürün',
+  processed: 'İşlenmiş Mal',
+  fruit: 'Meyve',
+  ore: 'Maden',
+  gem: 'Mücevher'
 }
 
-// === 伪随机 ===
+// === Sözde rastgelelik ===
 
 const seededRandom = (seed: number): (() => number) => {
   let s = seed
@@ -73,7 +73,7 @@ const seededRandom = (seed: number): (() => number) => {
   }
 }
 
-// === 内部计算 ===
+// === İç hesaplar ===
 
 const _isMarketCategory = (category: string): category is MarketCategory => {
   return MARKET_CATEGORIES.includes(category as MarketCategory)
@@ -83,13 +83,13 @@ const _clamp = (value: number, min: number, max: number): number => {
   return Math.min(Math.max(value, min), max)
 }
 
-/** 线性插值 */
+/** Doğrusal ara değer hesabı */
 const _lerp = (v: number, fromMin: number, fromMax: number, toMin: number, toMax: number): number => {
   const t = (v - fromMin) / (fromMax - fromMin)
   return toMin + t * (toMax - toMin)
 }
 
-/** 供需系数：出货越多价格越低 */
+/** Arz-talep katsayısı: sevk arttıkça fiyat düşer */
 const _computeSupplyDemand = (category: MarketCategory, recentVolume: number): number => {
   const th = SUPPLY_THRESHOLDS[category]
   if (recentVolume <= 0) return 1.1
@@ -99,7 +99,7 @@ const _computeSupplyDemand = (category: MarketCategory, recentVolume: number): n
   return 0.8
 }
 
-/** 三因子计算：季节 × 供需 × 随机(±5%) */
+/** Üç çarpan hesabı: mevsim × arz-talep × rastgelelik (±%5) */
 const _computeMultiplier = (category: MarketCategory, seasonIndex: number, rng: () => number, recentVolume: number): number => {
   const season = SEASON_COEFFICIENTS[category][seasonIndex] ?? 1.0
   const supply = _computeSupplyDemand(category, recentVolume)
@@ -115,9 +115,9 @@ const _toTrend = (multiplier: number): MarketTrend => {
   return 'stable'
 }
 
-// === 公开 API ===
+// === Açık API ===
 
-/** 获取某品类当日价格系数（非波动品类返回 1.0） */
+/** Bir kategorinin o günkü fiyat katsayısını getirir (dalgalanmayan türlerde 1.0 döner) */
 export const getMarketMultiplier = (
   category: string,
   year: number,
@@ -135,10 +135,10 @@ export const getMarketMultiplier = (
   return info.find(i => i.category === category)?.multiplier ?? 1.0
 }
 
-/** 缓存 */
+/** Önbellek */
 let _cache: { key: string; data: CategoryMarketInfo[] } | null = null
 
-/** 获取当日所有品类行情 */
+/** Günün tüm kategori pazar bilgisini getirir */
 export const getDailyMarketInfo = (
   year: number,
   seasonIndex: number,
