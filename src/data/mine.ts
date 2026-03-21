@@ -1,10 +1,10 @@
 import type { MonsterDef, MineFloorDef } from '@/types'
 import { getItemById } from './items'
 
-/** 矿洞总层数 */
+/** Madenin toplam kat sayısı */
 export const MAX_MINE_FLOOR = 120
 
-/** 区域矿石/宝石映射（铜1-40/铁41-80/金81-120，各区附加特色矿石） */
+/** Bölgelere göre maden/taş eşleşmeleri (bakır 1-40 / demir 41-80 / altın 81-120, her bölgede kendine özgü cevherler de vardır) */
 const ZONE_ORES: Record<MineFloorDef['zone'], string[]> = {
   shallow: ['copper_ore', 'quartz'],
   frost: ['copper_ore', 'jade'],
@@ -14,7 +14,7 @@ const ZONE_ORES: Record<MineFloorDef['zone'], string[]> = {
   abyss: ['gold_ore', 'void_ore', 'dragon_jade']
 }
 
-/** 蘑菇层奖励 */
+/** Mantar katı ödülleri */
 export const getMushroomRewards = (floor: number): { itemId: string; quantity: number }[] => {
   if (floor <= 20) {
     return [
@@ -55,7 +55,7 @@ export const getMushroomRewards = (floor: number): { itemId: string; quantity: n
   ]
 }
 
-/** 宝箱层奖励 */
+/** Sandık katı ödülleri */
 export const getTreasureRewards = (floor: number): { items: { itemId: string; quantity: number }[]; money: number } => {
   const zoneIndex = Math.floor((floor - 1) / 20)
   const zones: MineFloorDef['zone'][] = ['shallow', 'frost', 'lava', 'crystal', 'shadow', 'abyss']
@@ -74,7 +74,7 @@ export const getTreasureRewards = (floor: number): { items: { itemId: string; qu
   const r = rewardTable[zone]!
   const items: { itemId: string; quantity: number }[] = [{ itemId: ore, quantity: r.qty }]
 
-  // 化石/古物掉落（20%概率，按区域抽取）
+  // Fosil / eski eşya düşmesi (%20 olasılık, bölgeye göre seçilir)
   if (Math.random() < 0.2) {
     const ZONE_TREASURE_DROPS: Record<string, string[]> = {
       shallow: ['trilobite_fossil', 'shell_fossil'],
@@ -91,7 +91,7 @@ export const getTreasureRewards = (floor: number): { items: { itemId: string; qu
     }
   }
 
-  // 深渊层宝箱极小概率掉落仙桃
+  // Uçurum katı sandıklarında çok düşük ihtimalle can meyvesi çıkar
   if (zone === 'abyss' && Math.random() < 0.02) {
     items.push({ itemId: 'stamina_fruit', quantity: 1 })
   }
@@ -102,7 +102,7 @@ export const getTreasureRewards = (floor: number): { items: { itemId: string; qu
   }
 }
 
-/** 暗河层奖励 - 可获得稀有矿石（无视区域限制） */
+/** Kara su katı ödülleri - nadir cevherler çıkabilir (bölge sınırı olmadan) */
 export const getDarkFloorOres = (): string[] => {
   return [
     'copper_ore',
@@ -120,7 +120,7 @@ export const getDarkFloorOres = (): string[] => {
   ]
 }
 
-/** 暗河层陷阱伤害（随深度增加） */
+/** Kara su katı tuzak hasarı (derine indikçe artar) */
 export const getDarkFloorTrapDamage = (floor: number): number => {
   const zoneIndex = Math.floor((floor - 1) / 20)
   const base = 5 + zoneIndex * 5
@@ -128,7 +128,7 @@ export const getDarkFloorTrapDamage = (floor: number): number => {
   return base + Math.floor(Math.random() * (range + 1))
 }
 
-/** 暗河层隐藏宝藏铜钱 */
+/** Kara su katında saklı bakır para ödülü */
 export const getDarkFloorTreasureMoney = (floor: number): number => {
   const zoneIndex = Math.floor((floor - 1) / 20)
   const base = 50 + zoneIndex * 50
@@ -136,13 +136,13 @@ export const getDarkFloorTreasureMoney = (floor: number): number => {
   return base + Math.floor(Math.random() * (range + 1))
 }
 
-/** 感染层清除奖励 */
+/** Musallatlı kat temizleme ödülü */
 export const getInfestedClearRewards = (floor: number): { items: { itemId: string; quantity: number }[]; money: number } => {
   const zoneIndex = Math.floor((floor - 1) / 20)
   const zones: MineFloorDef['zone'][] = ['shallow', 'frost', 'lava', 'crystal', 'shadow', 'abyss']
   const zone = zones[zoneIndex] ?? 'abyss'
   const orePool = ZONE_ORES[zone]!
-  const ore = orePool[0]! // 主矿石
+  const ore = orePool[0]! // Ana cevher
 
   const moneyTable = [
     { min: 30, max: 50 },
@@ -159,7 +159,7 @@ export const getInfestedClearRewards = (floor: number): { items: { itemId: strin
   }
 }
 
-/** 获取奖励物品名称列表 */
+/** Ödül nesnelerinin adlarını getir */
 export const getRewardNames = (items: { itemId: string; quantity: number }[]): string => {
   return items
     .map(r => {
@@ -169,14 +169,14 @@ export const getRewardNames = (items: { itemId: string; quantity: number }[]): s
     .join('、')
 }
 
-// ==================== 怪物定义 ====================
+// ==================== Yaratık tanımları ====================
 
-/** 普通怪物定义 */
+/** Sıradan yaratıklar */
 export const MONSTERS: Record<string, MonsterDef> = {
-  // 浅矿 (1-20)
+  // Sığ maden (1-20)
   mud_worm: {
     id: 'mud_worm',
-    name: '泥虫',
+    name: 'Çamur Kurdu',
     hp: 15,
     attack: 5,
     defense: 1,
@@ -185,11 +185,11 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'copper_ore', chance: 0.5 },
       { itemId: 'quartz', chance: 0.1 }
     ],
-    description: '蠕动的泥虫，不太危险。'
+    description: 'Toprağın içinde kıvranan bir kurtçuk; pek tehlikeli sayılmaz.'
   },
   stone_crab: {
     id: 'stone_crab',
-    name: '石蟹',
+    name: 'Taş Yengeci',
     hp: 25,
     attack: 6,
     defense: 3,
@@ -198,12 +198,13 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'copper_ore', chance: 0.6 },
       { itemId: 'iron_ore', chance: 0.15 }
     ],
-    description: '硬壳甲虫，防御较高。'
+    description: 'Kabuğu taş gibi serttir; savunması yüksektir.'
   },
-  // 冰霜 (21-40)
+
+  // Buz (21-40)
   ice_bat: {
     id: 'ice_bat',
-    name: '冰蝠',
+    name: 'Ayaz Yarasa',
     hp: 30,
     attack: 8,
     defense: 2,
@@ -212,11 +213,11 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'iron_ore', chance: 0.5 },
       { itemId: 'jade', chance: 0.1 }
     ],
-    description: '寒冰中飞舞的蝙蝠。'
+    description: 'Soğuk karanlıkta çırpınan kanatlı bir uğursuzluk.'
   },
   ghost: {
     id: 'ghost',
-    name: '幽灵',
+    name: 'Hortlak',
     hp: 20,
     attack: 10,
     defense: 0,
@@ -225,12 +226,13 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'jade', chance: 0.2 },
       { itemId: 'quartz', chance: 0.3 }
     ],
-    description: '飘忽不定的幽灵，攻高防低。'
+    description: 'Eline avuca sığmaz; vurması serttir ama dayanıksızdır.'
   },
-  // 熔岩 (41-60)
+
+  // Lav (41-60)
   fire_bat: {
     id: 'fire_bat',
-    name: '火蝠',
+    name: 'Kor Yarasa',
     hp: 35,
     attack: 9,
     defense: 3,
@@ -239,11 +241,11 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'gold_ore', chance: 0.55 },
       { itemId: 'ruby', chance: 0.15 }
     ],
-    description: '浑身燃烧的蝙蝠。'
+    description: 'Kanatlarından ateş saçan kızgın bir yaratık.'
   },
   shadow_warrior: {
     id: 'shadow_warrior',
-    name: '暗影武士',
+    name: 'Gölge Cengâveri',
     hp: 50,
     attack: 10,
     defense: 4,
@@ -252,12 +254,13 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'gold_ore', chance: 0.65 },
       { itemId: 'ruby', chance: 0.25 }
     ],
-    description: '矿洞深处的强大敌人。'
+    description: 'Madenin derinlerinde gezen kudretli bir düşman.'
   },
-  // 水晶 (61-80)
+
+  // Kristal (61-80)
   crystal_golem: {
     id: 'crystal_golem',
-    name: '水晶魔像',
+    name: 'Billur Heyula',
     hp: 110,
     attack: 18,
     defense: 10,
@@ -266,11 +269,11 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'crystal_ore', chance: 0.55 },
       { itemId: 'moonstone', chance: 0.15 }
     ],
-    description: '水晶凝聚成的魔像，闪耀刺眼光芒。'
+    description: 'Billurdan yoğrulmuş gibidir; göz alan bir ışıltıyla parlar.'
   },
   prism_spider: {
     id: 'prism_spider',
-    name: '棱镜蛛',
+    name: 'Işık Ağı Örümceği',
     hp: 75,
     attack: 22,
     defense: 5,
@@ -279,12 +282,13 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'crystal_ore', chance: 0.5 },
       { itemId: 'moonstone', chance: 0.2 }
     ],
-    description: '编织光线的巨型蜘蛛。'
+    description: 'Ağ yerine ışık dokuyan iri bir örümcektir.'
   },
-  // 暗影 (81-100)
+
+  // Gölge (81-100)
   shadow_lurker: {
     id: 'shadow_lurker',
-    name: '暗影潜伏者',
+    name: 'Gölge Pusucusu',
     hp: 150,
     attack: 28,
     defense: 10,
@@ -293,11 +297,11 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'shadow_ore', chance: 0.55 },
       { itemId: 'obsidian', chance: 0.15 }
     ],
-    description: '藏匿于黑暗中的捕猎者。'
+    description: 'Karanlığa sinip av kollayan bir beladır.'
   },
   void_wraith: {
     id: 'void_wraith',
-    name: '虚空幽魂',
+    name: 'Boşluk Ruhu',
     hp: 100,
     attack: 35,
     defense: 4,
@@ -306,12 +310,13 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'shadow_ore', chance: 0.5 },
       { itemId: 'obsidian', chance: 0.2 }
     ],
-    description: '虚空中飘荡的怨灵，攻高防低。'
+    description: 'Boşlukta salınan kinli bir ruh; sert vurur ama narindir.'
   },
-  // 深渊 (101-120)
+
+  // Uçurum (101-120)
   abyss_serpent: {
     id: 'abyss_serpent',
-    name: '深渊巨蟒',
+    name: 'Uçurum Yılanı',
     hp: 200,
     attack: 35,
     defense: 14,
@@ -320,11 +325,11 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'void_ore', chance: 0.55 },
       { itemId: 'dragon_jade', chance: 0.15 }
     ],
-    description: '盘踞深渊的远古巨蛇。'
+    description: 'Uçurumun bağrında çöreklenmiş kadim bir yılandır.'
   },
   bone_dragon: {
     id: 'bone_dragon',
-    name: '骨龙',
+    name: 'Kemik Ejder',
     hp: 250,
     attack: 40,
     defense: 16,
@@ -333,15 +338,15 @@ export const MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'void_ore', chance: 0.6 },
       { itemId: 'dragon_jade', chance: 0.25 }
     ],
-    description: '龙骨复苏的恐怖存在。'
+    description: 'Eski bir ejderin kemiklerinden dirilmiş dehşet.'
   }
 }
 
-/** 骷髅矿穴专属怪物 */
+/** Kuru Kafa Mağarası'na özgü yaratıklar */
 export const SKULL_CAVERN_MONSTERS: Record<string, MonsterDef> = {
   iridium_golem: {
     id: 'iridium_golem',
-    name: '铱金魔像',
+    name: 'İridyum Heyulası',
     hp: 400,
     attack: 55,
     defense: 30,
@@ -350,11 +355,11 @@ export const SKULL_CAVERN_MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'iridium_ore', chance: 0.6 },
       { itemId: 'prismatic_shard', chance: 0.03 }
     ],
-    description: '铱金铸就的不朽卫兵。'
+    description: 'İridyumdan dökülmüş, sarsılmaz bir nöbetçidir.'
   },
   skull_serpent: {
     id: 'skull_serpent',
-    name: '骷髅飞蛇',
+    name: 'Kuru Kafa Yılanı',
     hp: 300,
     attack: 65,
     defense: 14,
@@ -363,11 +368,11 @@ export const SKULL_CAVERN_MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'iridium_ore', chance: 0.5 },
       { itemId: 'shadow_ore', chance: 0.2 }
     ],
-    description: '骷髅矿穴中飞舞的毒蛇。'
+    description: 'Kuru Kafa Mağarası’nda havada süzülen zehirli bir yılan.'
   },
   ancient_mummy: {
     id: 'ancient_mummy',
-    name: '远古木乃伊',
+    name: 'Kadim Mumya',
     hp: 550,
     attack: 45,
     defense: 35,
@@ -376,11 +381,11 @@ export const SKULL_CAVERN_MONSTERS: Record<string, MonsterDef> = {
       { itemId: 'iridium_ore', chance: 0.65 },
       { itemId: 'prismatic_shard', chance: 0.05 }
     ],
-    description: '远古文明的不死守卫。'
+    description: 'Unutulmuş bir uygarlığın ölümsüz bekçisi.'
   }
 }
 
-/** 区域怪物映射 */
+/** Bölgelere göre yaratık listesi */
 export const ZONE_MONSTERS: Record<MineFloorDef['zone'], MonsterDef[]> = {
   shallow: [MONSTERS.mud_worm!, MONSTERS.stone_crab!],
   frost: [MONSTERS.ice_bat!, MONSTERS.ghost!],
@@ -390,13 +395,13 @@ export const ZONE_MONSTERS: Record<MineFloorDef['zone'], MonsterDef[]> = {
   abyss: [MONSTERS.abyss_serpent!, MONSTERS.bone_dragon!]
 }
 
-// ==================== BOSS 定义 ====================
+// ==================== BOSS tanımları ====================
 
-/** BOSS 怪物定义 */
+/** BOSS yaratıkları */
 export const BOSS_MONSTERS: Record<number, MonsterDef> = {
   20: {
     id: 'mud_golem',
-    name: '泥岩巨兽',
+    name: 'Balçık Dev’i',
     hp: 80,
     attack: 8,
     defense: 5,
@@ -405,11 +410,11 @@ export const BOSS_MONSTERS: Record<number, MonsterDef> = {
       { itemId: 'copper_ore', chance: 1.0 },
       { itemId: 'quartz', chance: 1.0 }
     ],
-    description: '浅矿区域的霸主，岩石般的巨大身躯。'
+    description: 'Sığ madenin efendisi; koca gövdesi kaya gibidir.'
   },
   40: {
     id: 'frost_queen',
-    name: '冰霜女王',
+    name: 'Ayaz Hanım',
     hp: 120,
     attack: 12,
     defense: 6,
@@ -418,11 +423,11 @@ export const BOSS_MONSTERS: Record<number, MonsterDef> = {
       { itemId: 'iron_ore', chance: 1.0 },
       { itemId: 'jade', chance: 1.0 }
     ],
-    description: '冰霜暗河的统治者，寒气逼人。'
+    description: 'Buzlu yeraltı sularının hükümranıdır; nefesi bile dondurur.'
   },
   60: {
     id: 'lava_lord',
-    name: '熔岩君主',
+    name: 'Kor Beyi',
     hp: 180,
     attack: 16,
     defense: 8,
@@ -431,11 +436,11 @@ export const BOSS_MONSTERS: Record<number, MonsterDef> = {
       { itemId: 'gold_ore', chance: 1.0 },
       { itemId: 'ruby', chance: 1.0 }
     ],
-    description: '熔岩层最深处的存在，烈焰之王。'
+    description: 'Ateş katının derinliklerinde oturan alev efendisi.'
   },
   80: {
     id: 'crystal_king',
-    name: '水晶之王',
+    name: 'Billur Han',
     hp: 400,
     attack: 32,
     defense: 16,
@@ -444,11 +449,11 @@ export const BOSS_MONSTERS: Record<number, MonsterDef> = {
       { itemId: 'crystal_ore', chance: 1.0 },
       { itemId: 'moonstone', chance: 1.0 }
     ],
-    description: '万千水晶聚合的意志体，折射光芒致命。'
+    description: 'Sayısız billurun tek irade olmuş hâli; ışığı bile öldürücüdür.'
   },
   100: {
     id: 'shadow_sovereign',
-    name: '暗影君主',
+    name: 'Gölge Hükümdarı',
     hp: 600,
     attack: 42,
     defense: 20,
@@ -457,11 +462,11 @@ export const BOSS_MONSTERS: Record<number, MonsterDef> = {
       { itemId: 'shadow_ore', chance: 1.0 },
       { itemId: 'obsidian', chance: 1.0 }
     ],
-    description: '暗影裂隙深处的至高统治者。'
+    description: 'Gölge yarığının en derininde oturan ulu karanlık.'
   },
   120: {
     id: 'abyss_dragon',
-    name: '深渊龙王',
+    name: 'Uçurum Ejderi',
     hp: 900,
     attack: 55,
     defense: 25,
@@ -470,11 +475,11 @@ export const BOSS_MONSTERS: Record<number, MonsterDef> = {
       { itemId: 'void_ore', chance: 1.0 },
       { itemId: 'dragon_jade', chance: 1.0 }
     ],
-    description: '沉睡于无底深渊的远古龙王，终极敌人。'
+    description: 'Dipsiz karanlıkta uyuyan kadim ejder; son sınavın kendisidir.'
   }
 }
 
-/** BOSS 额外掉落铜钱 */
+/** BOSS ek bakır para ödülü */
 export const BOSS_MONEY_REWARDS: Record<number, number> = {
   20: 100,
   40: 200,
@@ -484,7 +489,7 @@ export const BOSS_MONEY_REWARDS: Record<number, number> = {
   120: 3000
 }
 
-/** BOSS 额外掉落矿石 */
+/** BOSS ek cevher ödülleri */
 export const BOSS_ORE_REWARDS: Record<number, { itemId: string; quantity: number }[]> = {
   20: [{ itemId: 'copper_ore', quantity: 3 }],
   40: [{ itemId: 'iron_ore', quantity: 3 }],
@@ -494,7 +499,7 @@ export const BOSS_ORE_REWARDS: Record<number, { itemId: string; quantity: number
   120: [{ itemId: 'void_ore', quantity: 5 }]
 }
 
-/** 获取弱化版 BOSS（重进时降低 30% 属性） */
+/** Zayıflatılmış BOSS getirir (yeniden girişte nitelikleri %30 düşer) */
 export const getWeakenedBoss = (floor: number): MonsterDef | undefined => {
   const boss = BOSS_MONSTERS[floor]
   if (!boss) return undefined
@@ -506,9 +511,9 @@ export const getWeakenedBoss = (floor: number): MonsterDef | undefined => {
   }
 }
 
-// ==================== 楼层生成 ====================
+// ==================== Kat oluşturma ====================
 
-/** 生成矿洞层数据（120层） */
+/** Maden katlarını oluşturur (120 kat) */
 const generateFloors = (): MineFloorDef[] => {
   const floors: MineFloorDef[] = []
   const zones: MineFloorDef['zone'][] = ['shallow', 'frost', 'lava', 'crystal', 'shadow', 'abyss']
@@ -516,8 +521,8 @@ const generateFloors = (): MineFloorDef[] => {
   for (let i = 1; i <= MAX_MINE_FLOOR; i++) {
     const zoneIndex = Math.floor((i - 1) / 20)
     const zone = zones[zoneIndex]!
-    const posInZone = ((i - 1) % 20) + 1 // 1-20
-    const posInHalf = ((i - 1) % 10) + 1 // 1-10（每10层重复模式）
+    const posInZone = ((i - 1) % 20) + 1
+    const posInHalf = ((i - 1) % 10) + 1
 
     let specialType: MineFloorDef['specialType'] = null
     if (posInZone === 20) specialType = 'boss'
@@ -540,24 +545,24 @@ const generateFloors = (): MineFloorDef[] => {
 
 export const MINE_FLOORS = generateFloors()
 
-/** 获取指定层数据 */
+/** Belirli katın verisini getir */
 export const getFloor = (floor: number): MineFloorDef | undefined => {
   return MINE_FLOORS[floor - 1]
 }
 
-/** 矿洞区域中文名 */
+/** Maden bölgelerinin Türkçe adları */
 export const ZONE_NAMES: Record<MineFloorDef['zone'], string> = {
-  shallow: '浅矿·土石洞穴',
-  frost: '冰窟·冰霜暗河',
-  lava: '熔岩层·地火暗涌',
-  crystal: '晶窟·水晶迷宫',
-  shadow: '幽境·暗影裂隙',
-  abyss: '深渊·无底深渊'
+  shallow: 'Sığ Kat · Toprak Taş Kovuğu',
+  frost: 'Ayaz Katı · Buzlu Yeraltı Suyu',
+  lava: 'Kor Katı · Yer Ateşi Yatağı',
+  crystal: 'Billur Katı · Kristal Dolambaç',
+  shadow: 'Gölge Katı · Karanlık Yarık',
+  abyss: 'Uçurum Katı · Dipsiz Karanlık'
 }
 
-// ==================== 骷髅矿穴 ====================
+// ==================== Kuru Kafa Mağarası ====================
 
-/** 骷髅矿穴楼层数据（运行时生成） */
+/** Kuru Kafa Mağarası kat verisi (çalışma anında üretilir) */
 export interface SkullCavernFloorDef {
   floor: number
   ores: string[]
@@ -567,7 +572,7 @@ export interface SkullCavernFloorDef {
   isSafePoint: false
 }
 
-/** 骷髅矿穴矿石池 */
+/** Kuru Kafa Mağarası cevher havuzu */
 const SKULL_CAVERN_BASE_ORES = [
   'copper_ore',
   'iron_ore',
@@ -584,11 +589,11 @@ const SKULL_CAVERN_BASE_ORES = [
   'iridium_ore'
 ]
 
-/** 生成骷髅矿穴楼层 */
+/** Kuru Kafa Mağarası katı oluşturur */
 export const generateSkullCavernFloor = (floor: number): SkullCavernFloorDef => {
   const scaleFactor = 1 + (floor - 1) * 0.03
 
-  // 矿石池：深层增加铱矿权重
+  // Cevher havuzu: derinlerde iridyum daha sık çıkar
   const ores = [...SKULL_CAVERN_BASE_ORES]
   if (floor > 20) ores.push('iridium_ore')
   if (floor > 50) ores.push('iridium_ore')
@@ -596,13 +601,13 @@ export const generateSkullCavernFloor = (floor: number): SkullCavernFloorDef => 
     ores.push('prismatic_shard')
   }
 
-  // 怪物池
+  // Yaratık havuzu
   const monsterPool: MonsterDef[] = Object.values(SKULL_CAVERN_MONSTERS)
   if (floor > 10) {
     monsterPool.push(MONSTERS.shadow_lurker!, MONSTERS.bone_dragon!)
   }
 
-  // 特殊层
+  // Özel katlar
   let specialType: MineFloorDef['specialType'] = null
   if (floor % 25 === 0) specialType = 'boss'
   else if (floor % 10 === 3) specialType = 'mushroom'
@@ -619,7 +624,7 @@ export const generateSkullCavernFloor = (floor: number): SkullCavernFloorDef => 
   }
 }
 
-/** 缩放怪物属性（骷髅矿穴用） */
+/** Yaratık gücünü ölçekler (Kuru Kafa Mağarası için) */
 export const scaleMonster = (monster: MonsterDef, scaleFactor: number): MonsterDef => {
   return {
     ...monster,
@@ -630,7 +635,7 @@ export const scaleMonster = (monster: MonsterDef, scaleFactor: number): MonsterD
   }
 }
 
-/** 获取骷髅矿穴小BOSS（每25层，随机BOSS×2倍缩放） */
+/** Kuru Kafa Mağarası küçük BOSS'unu getirir (her 25 katta, rastgele BOSS ×2 ölçek) */
 export const getSkullCavernBoss = (floor: number): MonsterDef | undefined => {
   if (floor % 25 !== 0) return undefined
   const bossFloors = Object.keys(BOSS_MONSTERS).map(Number)
@@ -640,12 +645,12 @@ export const getSkullCavernBoss = (floor: number): MonsterDef | undefined => {
   return scaleMonster(boss, scaleFactor)
 }
 
-// ==================== 格子探索系统 ====================
+// ==================== Kare keşif sistemi ====================
 
 import type { MineTile, MineTileData, FloorTileDistribution, FloorSpecialType } from '@/types'
 import { GRID_SIZE, GRID_TOTAL, MIN_STAIRS_DISTANCE } from '@/types'
 
-/** 获取 6×6 边缘位置索引（第一行/最后一行/第一列/最后列） */
+/** 6×6 kenar kare indekslerini getirir (ilk satır / son satır / ilk sütun / son sütun) */
 export const getEdgeIndices = (): number[] => {
   const edges: number[] = []
   for (let i = 0; i < GRID_TOTAL; i++) {
@@ -658,7 +663,7 @@ export const getEdgeIndices = (): number[] => {
   return edges
 }
 
-/** 获取相邻格子索引（上下左右） */
+/** Komşu kare indekslerini getirir (yukarı, aşağı, sol, sağ) */
 export const getAdjacentIndices = (index: number): number[] => {
   const row = Math.floor(index / GRID_SIZE)
   const col = index % GRID_SIZE
@@ -670,7 +675,7 @@ export const getAdjacentIndices = (index: number): number[] => {
   return adj
 }
 
-/** 曼哈顿距离 */
+/** Manhattan uzaklığı */
 export const manhattanDistance = (a: number, b: number): number => {
   const ar = Math.floor(a / GRID_SIZE)
   const ac = a % GRID_SIZE
@@ -679,7 +684,7 @@ export const manhattanDistance = (a: number, b: number): number => {
   return Math.abs(ar - br) + Math.abs(ac - bc)
 }
 
-/** 获取炸弹范围内的索引 */
+/** Bomba etki alanındaki indeksleri getirir */
 export const getBombIndices = (center: number, bombId: string): number[] => {
   const cr = Math.floor(center / GRID_SIZE)
   const cc = center % GRID_SIZE
@@ -697,19 +702,19 @@ export const getBombIndices = (center: number, bombId: string): number[] => {
       }
     }
   } else if (bombId === 'bomb') {
-    // 曼哈顿距离 ≤ 2（十字+菱形）
+    // Manhattan uzaklığı ≤ 2
     for (let i = 0; i < GRID_TOTAL; i++) {
       if (manhattanDistance(center, i) <= 2) indices.push(i)
     }
   } else if (bombId === 'mega_bomb') {
-    // 全部 36 格
+    // Tüm 36 kare
     for (let i = 0; i < GRID_TOTAL; i++) indices.push(i)
   }
 
   return indices
 }
 
-/** 获取楼层格子分布配置 */
+/** Kat kare dağılımını getirir */
 export const getFloorDistribution = (specialType: FloorSpecialType): FloorTileDistribution => {
   switch (specialType) {
     case 'mushroom':
@@ -751,7 +756,7 @@ export const getFloorDistribution = (specialType: FloorSpecialType): FloorTileDi
         stairsHiddenUntilClear: true
       }
     default:
-      // 普通层
+      // Olağan kat
       return {
         oreCount: [3, 4],
         monsterCount: [3, 4],
@@ -761,13 +766,13 @@ export const getFloorDistribution = (specialType: FloorSpecialType): FloorTileDi
   }
 }
 
-/** 范围内随机整数 [min, max] */
+/** Belirli aralıkta rastgele tam sayı [min, max] */
 const randInt = (min: number, max: number): number => min + Math.floor(Math.random() * (max - min + 1))
 
-/** 从数组中随机选一个 */
+/** Diziden rastgele bir öğe seçer */
 const randPick = <T>(arr: T[]): T => arr[Math.floor(Math.random() * arr.length)]!
 
-/** 生成楼层 6×6 格子 */
+/** Katın 6×6 karelerini oluşturur */
 export const generateFloorGrid = (
   floorData: MineFloorDef,
   floorNum: number,
@@ -777,17 +782,17 @@ export const generateFloorGrid = (
   const dist = getFloorDistribution(floorData.specialType)
   const tiles: MineTile[] = []
 
-  // 1. 创建 36 个 hidden/empty 格
+  // 1. 36 gizli / boş kare oluştur
   for (let i = 0; i < GRID_TOTAL; i++) {
     tiles.push({ index: i, type: 'empty', state: 'hidden' })
   }
 
-  // 2. 入口：随机边缘格
+  // 2. Giriş: rastgele kenar kare
   const edges = getEdgeIndices()
   const entryIndex = randPick(edges)
   tiles[entryIndex]!.state = 'revealed'
 
-  // 3. 放置楼梯（距入口 ≥ MIN_STAIRS_DISTANCE）
+  // 3. Merdiveni yerleştir (girişten uzaklık en az MIN_STAIRS_DISTANCE)
   const stairsCandidates = []
   for (let i = 0; i < GRID_TOTAL; i++) {
     if (i !== entryIndex && manhattanDistance(entryIndex, i) >= MIN_STAIRS_DISTANCE) {
@@ -797,10 +802,10 @@ export const generateFloorGrid = (
   const stairsIndex = randPick(stairsCandidates)
   tiles[stairsIndex]!.type = 'stairs'
 
-  // 已占用位置集合
+  // Kullanılmış konumlar
   const used = new Set<number>([entryIndex, stairsIndex])
 
-  /** 在随机空闲位置放置格子 */
+  /** Rastgele boş bir konuma kare yerleştir */
   const placeRandom = (type: MineTile['type'], data?: MineTileData): number => {
     const candidates = []
     for (let i = 0; i < GRID_TOTAL; i++) {
@@ -814,24 +819,24 @@ export const generateFloorGrid = (
     return idx
   }
 
-  // 4. BOSS 层：放 boss 格在中心区域
+  // 4. BOSS katıysa boss’u orta bölgeye yerleştir
   const bossCount = dist.bossCount ? randInt(dist.bossCount[0], dist.bossCount[1]) : 0
   let totalMonsters = 0
   if (bossCount > 0) {
-    // 中心 2×2 区域（行2-3，列2-3）
+    // Merkez 2×2 alan
     const centerCandidates = [2 * GRID_SIZE + 2, 2 * GRID_SIZE + 3, 3 * GRID_SIZE + 2, 3 * GRID_SIZE + 3].filter(i => !used.has(i))
 
     if (centerCandidates.length > 0) {
       const bossIdx = randPick(centerCandidates)
       used.add(bossIdx)
 
-      // 获取 BOSS 数据
+      // BOSS verisini al
       let bossMonster: MonsterDef | undefined
       if (isSkullCavern) {
         bossMonster = getSkullCavernBoss(floorNum)
       } else {
         const bossId = BOSS_MONSTERS[floorNum]?.id
-        const isFirstKill = bossId ? true : true // 首杀检测在 store 中处理
+        const isFirstKill = bossId ? true : true
         bossMonster = isFirstKill ? BOSS_MONSTERS[floorNum] : getWeakenedBoss(floorNum)
       }
 
@@ -843,16 +848,15 @@ export const generateFloorGrid = (
     }
   }
 
-  // 5. 放置矿石
+  // 5. Cevher yerleştir
   const oreCount = randInt(dist.oreCount[0], dist.oreCount[1])
-  // 暗河层使用特殊矿石池
   const orePool = floorData.specialType === 'dark' ? getDarkFloorOres() : floorData.ores
   for (let i = 0; i < oreCount; i++) {
     const oreId = randPick(orePool)
     placeRandom('ore', { oreId, oreQuantity: 1 })
   }
 
-  // 6. 放置怪物
+  // 6. Yaratık yerleştir
   const monsterCount = randInt(dist.monsterCount[0], dist.monsterCount[1])
   for (let i = 0; i < monsterCount; i++) {
     if (floorData.monsters.length === 0) break
@@ -864,14 +868,14 @@ export const generateFloorGrid = (
     totalMonsters++
   }
 
-  // 7. 放置陷阱
+  // 7. Tuzak yerleştir
   const trapCount = randInt(dist.trapCount[0], dist.trapCount[1])
   for (let i = 0; i < trapCount; i++) {
     const trapDamage = getDarkFloorTrapDamage(floorNum)
     placeRandom('trap', { trapDamage })
   }
 
-  // 8. 放置宝箱
+  // 8. Sandık yerleştir
   if (dist.treasureCount) {
     const treasureCount = randInt(dist.treasureCount[0], dist.treasureCount[1])
     for (let i = 0; i < treasureCount; i++) {
@@ -880,11 +884,10 @@ export const generateFloorGrid = (
     }
   }
 
-  // 9. 放置蘑菇
+  // 9. Mantar yerleştir
   if (dist.mushroomCount) {
     const mushCount = randInt(dist.mushroomCount[0], dist.mushroomCount[1])
     for (let i = 0; i < mushCount; i++) {
-      // 每格 1-2 个蘑菇/药草
       const items: { itemId: string; quantity: number }[] = []
       if (floorNum <= 40) {
         items.push({ itemId: Math.random() < 0.7 ? 'wild_mushroom' : 'herb', quantity: 1 })
@@ -898,9 +901,7 @@ export const generateFloorGrid = (
     }
   }
 
-  // 10. 入口格的邻居如果都是 hidden，自动翻开入口的空格邻居（让玩家有可操作选择）
-  // 入口本身已经 revealed，玩家可以点击其邻格
-
+  // 10. Giriş karesinin komşuları hep gizliyse, istenirse burada açılabilir
   const stairsUsable = !dist.stairsHiddenUntilClear
   return { tiles, entryIndex, totalMonsters, stairsUsable }
 }
