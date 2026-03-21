@@ -1,6 +1,6 @@
 import type { PondLevel, PondableFishDef, FishGenetics } from '@/types/fishPond'
 
-// === 建造/升级费用 ===
+// === İnşa / Yükseltme Bedelleri ===
 
 export const POND_BUILD_COST = {
   money: 5000,
@@ -28,7 +28,7 @@ export const POND_UPGRADE_COSTS: Record<2 | 3, { money: number; materials: { ite
   }
 }
 
-// === 容量 ===
+// === Kapasite ===
 
 export const POND_CAPACITY: Record<PondLevel, number> = {
   1: 5,
@@ -36,38 +36,38 @@ export const POND_CAPACITY: Record<PondLevel, number> = {
   3: 20
 }
 
-// === 水质参数 ===
+// === Su Kalitesi Parametreleri ===
 
-/** 基础水质衰减/天 */
+/** Günlük temel su kalitesi düşüşü */
 export const WATER_QUALITY_DECAY_BASE = 2
-/** 密度 > 50% 额外衰减 */
+/** Yoğunluk %50 üstündeyse ek düşüş */
 export const WATER_QUALITY_DECAY_HALF = 2
-/** 密度 > 80% 额外衰减 */
+/** Yoğunluk %80 üstündeyse ek düşüş */
 export const WATER_QUALITY_DECAY_CROWDED = 3
-/** 未喂食额外衰减 */
+/** Yem verilmezse ek düşüş */
 export const WATER_QUALITY_DECAY_HUNGRY = 5
 
-/** 水质低于此值开始有生病概率 */
+/** Su kalitesi bunun altına inerse hastalık ihtimali başlar */
 export const DISEASE_THRESHOLD = 30
-/** 每日生病基础概率 */
+/** Günlük temel hastalanma ihtimali */
 export const DISEASE_CHANCE_BASE = 0.05
-/** 连续生病致死天数 */
+/** Art arda hasta kalınca ölüm günü */
 export const SICK_DEATH_DAYS = 5
 
-/** 喂食恢复水质 */
+/** Yem vermek su kalitesini toparlar */
 export const FEED_WATER_RESTORE = 10
-/** 水质改良剂恢复水质 */
+/** Su arıtıcısı su kalitesini toparlar */
 export const PURIFIER_WATER_RESTORE = 30
 
-/** 繁殖周期（天） */
+/** Üreme döngüsü (gün) */
 export const FISH_BREEDING_DAYS = 3
 
-/** 遗传常量 */
+/** Genetik sabitler */
 export const GENETICS_FLUCTUATION_BASE = 15
 export const POND_MUTATION_JUMP_MIN = 15
 export const POND_MUTATION_JUMP_MAX = 30
 
-// === 可养殖鱼种 (13种) ===
+// === Yetiştirilebilir Balık Türleri (13 tür) ===
 
 const defaultGene = (overrides: Partial<FishGenetics> = {}): FishGenetics => ({
   weight: 50,
@@ -79,10 +79,10 @@ const defaultGene = (overrides: Partial<FishGenetics> = {}): FishGenetics => ({
 })
 
 export const PONDABLE_FISH: PondableFishDef[] = [
-  // 溪流
+  // Dere
   {
     fishId: 'crucian',
-    name: '鲫鱼',
+    name: 'Gümüş Balığı',
     maturityDays: 3,
     baseProductionRate: 0.4,
     productItemId: 'crucian',
@@ -90,7 +90,7 @@ export const PONDABLE_FISH: PondableFishDef[] = [
   },
   {
     fishId: 'carp',
-    name: '鲤鱼',
+    name: 'Sazan',
     maturityDays: 4,
     baseProductionRate: 0.35,
     productItemId: 'carp',
@@ -98,16 +98,16 @@ export const PONDABLE_FISH: PondableFishDef[] = [
   },
   {
     fishId: 'grass_carp',
-    name: '草鱼',
+    name: 'Ot Sazanı',
     maturityDays: 5,
     baseProductionRate: 0.3,
     productItemId: 'grass_carp',
     defaultGenetics: defaultGene({ weight: 60, growthRate: 45, diseaseRes: 50 })
   },
-  // 池塘
+  // Göl
   {
     fishId: 'golden_carp',
-    name: '金鲤',
+    name: 'Altın Sazan',
     maturityDays: 7,
     baseProductionRate: 0.2,
     productItemId: 'golden_carp',
@@ -115,7 +115,7 @@ export const PONDABLE_FISH: PondableFishDef[] = [
   },
   {
     fishId: 'koi',
-    name: '锦鲤',
+    name: 'Benekli Süs Sazanı',
     maturityDays: 6,
     baseProductionRate: 0.25,
     productItemId: 'koi',
@@ -123,16 +123,16 @@ export const PONDABLE_FISH: PondableFishDef[] = [
   },
   {
     fishId: 'pond_turtle',
-    name: '乌龟',
+    name: 'Kaplumbağa',
     maturityDays: 8,
     baseProductionRate: 0.15,
     productItemId: 'pond_turtle',
     defaultGenetics: defaultGene({ weight: 70, growthRate: 25, diseaseRes: 80, qualityGene: 40 })
   },
-  // 江河
+  // Irmak
   {
     fishId: 'bass',
-    name: '鲈鱼',
+    name: 'Levrek',
     maturityDays: 5,
     baseProductionRate: 0.3,
     productItemId: 'bass',
@@ -140,7 +140,7 @@ export const PONDABLE_FISH: PondableFishDef[] = [
   },
   {
     fishId: 'catfish',
-    name: '鲶鱼',
+    name: 'Yayın Balığı',
     maturityDays: 5,
     baseProductionRate: 0.3,
     productItemId: 'catfish',
@@ -148,25 +148,25 @@ export const PONDABLE_FISH: PondableFishDef[] = [
   },
   {
     fishId: 'yellow_eel',
-    name: '黄鳝',
+    name: 'Sarı Yılan Balığı',
     maturityDays: 6,
     baseProductionRate: 0.25,
     productItemId: 'yellow_eel',
     defaultGenetics: defaultGene({ weight: 50, growthRate: 40, diseaseRes: 55, qualityGene: 45 })
   },
-  // 瀑布
+  // Şelale
   {
     fishId: 'rainbow_trout',
-    name: '虹鳟',
+    name: 'Gökkuşağı Alabalığı',
     maturityDays: 6,
     baseProductionRate: 0.25,
     productItemId: 'rainbow_trout',
     defaultGenetics: defaultGene({ weight: 50, growthRate: 45, diseaseRes: 40, qualityGene: 50 })
   },
-  // 沼泽
+  // Bataklık
   {
     fishId: 'mud_loach',
-    name: '沼泽泥鳅',
+    name: 'Bataklık Çamur Balığı',
     maturityDays: 3,
     baseProductionRate: 0.4,
     productItemId: 'mud_loach',
@@ -174,16 +174,16 @@ export const PONDABLE_FISH: PondableFishDef[] = [
   },
   {
     fishId: 'pond_snail',
-    name: '田螺',
+    name: 'Su Salyangozu',
     maturityDays: 2,
     baseProductionRate: 0.5,
     productItemId: 'pond_snail',
     defaultGenetics: defaultGene({ weight: 15, growthRate: 80, diseaseRes: 75, qualityGene: 20 })
   },
-  // 矿洞
+  // Maden Ocağı
   {
     fishId: 'cave_blindfish',
-    name: '洞穴盲鱼',
+    name: 'Mağara Kör Balığı',
     maturityDays: 8,
     baseProductionRate: 0.15,
     productItemId: 'cave_blindfish',
@@ -191,12 +191,12 @@ export const PONDABLE_FISH: PondableFishDef[] = [
   }
 ]
 
-/** 根据鱼种ID查找可养殖定义 */
+/** Balık kimliğine göre yetiştirilebilir türü bulur */
 export const getPondableFish = (fishId: string): PondableFishDef | undefined => {
   return PONDABLE_FISH.find(f => f.fishId === fishId)
 }
 
-/** 判断鱼是否可养殖 */
+/** Balığın havuzda yetiştirilebilir olup olmadığını kontrol eder */
 export const isPondableFish = (fishId: string): boolean => {
   return PONDABLE_FISH.some(f => f.fishId === fishId)
-}
+    }
