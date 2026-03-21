@@ -1,20 +1,20 @@
-// === 晨间随机事件数据 ===
-// 设计理念：不是系统，是"早晨的一句旁白"
+// === Sabah Rastlantı Olayları Verisi ===
+// Tasarım anlayışı: bir sistem bildirisi değil, "sabahın kısa bir anlatısı"
 
-/** 效果类型 */
+/** Etki türleri */
 export type MorningEffect =
   | { type: 'loseCrop' }
   | { type: 'gainItem'; itemId: string; qty: number }
   | { type: 'gainMoney'; amount: number }
   | { type: 'gainFriendship'; amount: number }
 
-/** 小偷/动物旁白（4%） */
+/** Hırsız / hayvan anlatıları (%4) */
 export interface MorningNarration {
   message: string
   effect?: MorningEffect
 }
 
-/** 带选项事件（0.8%） */
+/** Seçenekli olaylar (%0,8) */
 export interface MorningChoiceEvent {
   id: string
   message: string
@@ -25,246 +25,248 @@ export interface MorningChoiceEvent {
   }[]
 }
 
-/** 彩蛋旁白（0.2%） */
+/** Sürpriz anlatılar (%0,2) */
 export interface MorningEasterEgg {
   message: string
   effect?: MorningEffect
 }
 
-// ==================== 4% 小偷/动物旁白（25条） ====================
+// ==================== %4 Hırsız / hayvan anlatıları (25 adet) ====================
 
 export const MORNING_NARRATIONS: MorningNarration[] = [
-  // —— 有轻微损失 ——
-  { message: '地里的菜被什么啃了一口，旁边留下一串小爪印。', effect: { type: 'loseCrop' } },
-  { message: '一只乌鸦叼走了一颗刚熟的果子，在枝头得意地叫了两声。', effect: { type: 'loseCrop' } },
-  { message: '田里有一株作物被连根拔起扔在旁边，像是野猪干的。', effect: { type: 'loseCrop' } },
-  { message: '角落里的一棵苗不知被谁踩断了，地上还留着蹄印。', effect: { type: 'loseCrop' } },
-  // —— 有轻微收获 ——
-  { message: '好像有人摘走了一把野菜，但在门口留了三文钱。', effect: { type: 'gainMoney', amount: 3 } },
-  { message: '篱笆外有个草编的小篮子，里面放着几根草药，不知是谁留的。', effect: { type: 'gainItem', itemId: 'herb', qty: 1 } },
-  { message: '屋后的柴堆旁多了一小捆竹子，整整齐齐的。大概是哪个好心的樵夫。', effect: { type: 'gainItem', itemId: 'bamboo', qty: 2 } },
-  // —— 纯旁白 ——
-  { message: '篱笆上挂着几根兔毛，看来夜里有不速之客。' },
-  { message: '一只野猫在田埂上打盹，看样子已经赖了一夜了。' },
-  { message: '菜地边上发现一堆松鼠藏的坚果壳，它们似乎很喜欢你的农场。' },
-  { message: '清晨出门，发现地上有一串小脚印从菜地延伸到篱笆外。' },
-  { message: '有只刺猬在堆肥堆里安了家，它看起来很满意现在的住所。' },
-  { message: '田边的稻草人歪了，像是被什么撞了一下。大概是夜里路过的野鹿。' },
-  { message: '水井旁发现了几根散落的羽毛，可能是野鸡来喝过水。' },
-  { message: '屋顶上蹲着一只猫头鹰，正歪头打量你。你一动，它就飞走了。' },
-  { message: '田坎边多了一个小洞，看着像是田鼠挖的。好在没伤到作物。' },
-  { message: '晨雾散去，篱笆上挂着一张蜘蛛网，露珠在阳光下闪闪发亮。' },
-  { message: '几只麻雀在屋檐下吵作一团，不知道在争什么。' },
-  { message: '水渠里多了几条小蝌蚪，看来青蛙也喜欢你的农场。' },
-  { message: '地头的大石头上趴着一只壁虎，一动不动地晒太阳。' },
-  { message: '风吹过来一股桂花香，不知是谁家院子里飘来的。' },
-  { message: '你的稻草人歪得更厉害了。说不定它晚上偷偷活动过。' },
-  { message: '清晨有只蜻蜓落在你的锄头上，翅膀薄得透光。' },
-  { message: '一群蚂蚁正搬着什么东西穿过田埂，队伍长得看不到尾。' },
-  { message: '农场角落里多了一个小鸟窝，看来有鸟儿打算在这安家了。' }
+  // —— Küçük kayıp var ——
+  { message: 'Tarladaki sebzelerden biri bir ağız kemirilmiş; yanında da minik pençe izleri kalmış.', effect: { type: 'loseCrop' } },
+  { message: 'Bir kara karga daha yeni olgunlaşmış bir meyveyi kapıp götürmüş; dal üstünde iki kez ötüp hava atmış.', effect: { type: 'loseCrop' } },
+  { message: 'Tarlada bir ekin kökünden sökülüp yana atılmış. Bunu ancak bir yaban domuzu yapmış olabilir.', effect: { type: 'loseCrop' } },
+  { message: 'Köşedeki bir fide kim bilir kimin ayağı altında kırılmış; toprakta toynak izi duruyor.', effect: { type: 'loseCrop' } },
+
+  // —— Küçük kazanç var ——
+  { message: 'Birileri ot demetinden biraz almış gibi, ama kapının önüne üç bakır sikke bırakmış.', effect: { type: 'gainMoney', amount: 3 } },
+  { message: 'Çitin dışında ottan örülmüş küçük bir sepet duruyor; içinde birkaç şifalı ot var. Kimin bıraktığı bilinmiyor.', effect: { type: 'gainItem', itemId: 'herb', qty: 1 } },
+  { message: 'Evin arkasındaki odun yığınının yanında ufak bir bambu demeti belirmiş; muntazam bağlanmış. Herhâlde iyi yürekli bir oduncunun işi.', effect: { type: 'gainItem', itemId: 'bamboo', qty: 2 } },
+
+  // —— Sadece anlatı ——
+  { message: 'Çitin üstüne birkaç tavşan tüyü takılmış; gece vakti davetsiz misafir uğramış olmalı.' },
+  { message: 'Bir yabani kedi tarla setinde kestiriyor; belli ki geceyi orada geçirmiş.' },
+  { message: 'Sebze bahçesinin kıyısında sincapların sakladığı ceviz kabukları bulunmuş. Görünüşe bakılırsa çiftliğini seviyorlar.' },
+  { message: 'Şafakta dışarı çıkınca, tarladan çitin ötesine uzanan bir sıra minik ayak izi gördün.' },
+  { message: 'Bir kirpi gübre yığınının dibine yuva kurmuş; yeni evinden pek memnun görünüyor.' },
+  { message: 'Tarla kıyısındaki korkuluk yana eğilmiş; sanki gece bir şey çarpıp geçmiş. Belki dağ geyiğidir.' },
+  { message: 'Kuyunun yanında birkaç dağınık tüy bulundu; anlaşılan yabani tavuklar su içmeye uğramış.' },
+  { message: 'Damın üstünde bir baykuş çömelmiş, başını yana yatırıp seni süzüyor. Sen kıpırdayınca da sessizce uçup gidiyor.' },
+  { message: 'Tarla tümseğinin kıyısında küçük bir oyuk açılmış; tarla faresinin kazdığına benziyor. Neyse ki ekinlere değmemiş.' },
+  { message: 'Sabah sisi çekilirken, çitin üstünde asılı bir örümcek ağı belirdi; çiy damlaları güneşte pırıl pırıl yanıyor.' },
+  { message: 'Birkaç serçe saçak altında birbirine girmiş, neyin kavgasını ettikleri anlaşılmıyor.' },
+  { message: 'Sulama arkında birkaç iribaş dolaşıyor; demek ki kurbağalar da bu çiftliği beğenmiş.' },
+  { message: 'Tarlanın başındaki büyük kayanın üstünde bir keler kımıldamadan güneşleniyor.' },
+  { message: 'Rüzgârla birlikte tatlı bir çiçek kokusu geldi; belli ki gaKöy’de bir avludan savrulmuş.' },
+  { message: 'Korkuluğun bugün daha da eğrilmiş. Belki gece kimse bakmaz sanıp kendi başına dolaşmıştır.' },
+  { message: 'Sabahın ilk ışığında bir yusufçuk gelip çapanın sapına kondu; kanatları ışığı geçiriyor.' },
+  { message: 'Bir karınca alayı tarla setini boydan boya geçiyor; taşıdıkları şey gözden seçilmiyor, kuyruğu da görünmüyor.' },
+  { message: 'Çiftliğin bir köşesinde küçük bir kuş yuvası peyda olmuş; belli ki bazı kuşlar burayı yurt edinmeye niyetli.' }
 ]
 
-/** 纯旁白（无 loseCrop）的子集，空农场回退用 */
+/** Yalın anlatılar (loseCrop yok); boş çiftlikte geri dönüş için kullanılır */
 export const NARRATIONS_NO_LOSS: MorningNarration[] = MORNING_NARRATIONS.filter(n => !n.effect || n.effect.type !== 'loseCrop')
 
-// ==================== 0.8% 带选项事件（15条） ====================
+// ==================== %0,8 Seçenekli olaylar (15 adet) ====================
 
 export const MORNING_CHOICE_EVENTS: MorningChoiceEvent[] = [
   {
     id: 'injured_bird',
-    message: '清晨，你在田边发现一只受伤的小鸟，它用黑豆般的眼睛望着你。',
+    message: 'Seher vakti tarla kıyısında yaralı bir kuş buldun; kara boncuk gibi gözleriyle sana bakıyor.',
     choices: [
       {
-        label: '包扎伤口，放它养一阵',
-        result: '你小心地包扎了小鸟的翅膀。村民们听说了这件事，都夸你心善。',
+        label: 'Yarasını sar, bir süre iyileştir',
+        result: 'Kuşun kanadını dikkatle sardın. gaKöy halkı bunu duyunca yüreğinin iyiliğini öve öve bitirmedi.',
         effect: { type: 'gainFriendship', amount: 10 }
       },
-      { label: '把它放回树丛', result: '小鸟扑棱着翅膀飞走了，临走前叫了两声，像是在道谢。' }
+      { label: 'Onu çalılığa bırak', result: 'Kuş kanat çırpa çırpa uzaklaştı. Gitmeden önce iki kez öttü; sanki minnet etti.' }
     ]
   },
   {
     id: 'hungry_traveler',
-    message: '农场外来了个风尘仆仆的旅人，看起来又累又饿。',
+    message: 'Çiftliğin önüne toz toprak içinde bir yolcu uğradı; hem bitkin hem aç görünüyor.',
     choices: [
       {
-        label: '请他吃顿饭',
-        result: '旅人吃饱后千恩万谢，临走时从包袱里掏出一把草药送你。',
+        label: 'Ona bir kap yemek ver',
+        result: 'Karnını doyuran yolcu bin bir dua etti; giderken heybesinden bir tutam şifalı ot çıkarıp sana uzattı.',
         effect: { type: 'gainItem', itemId: 'herb', qty: 3 }
       },
-      { label: '指路给他去村里', result: '旅人朝你鞠了一躬，沿着小路往村子走去了。' }
+      { label: 'Yolu göster, köye yönlendir', result: 'Yolcu sana eğilerek selam verdi, sonra patikadan gaKöy’e doğru yürüdü.' }
     ]
   },
   {
     id: 'stealing_child',
-    message: '一个小孩正偷偷在你地里拔萝卜，见你出来吓得愣住了。',
+    message: 'Bir çocuk usulca tarlana girip turp çekiyor; seni görünce donup kaldı.',
     choices: [
       {
-        label: '多送他几个',
-        result: '小孩红着脸接过菜，鞠了个躬跑了。后来他娘专门来道谢。',
+        label: 'Biraz daha ver',
+        result: 'Çocuk yüzü kızararak sebzeleri aldı, eğilip selam verdi ve koşarak uzaklaştı. Sonradan anası gelip teşekkür etti.',
         effect: { type: 'gainFriendship', amount: 15 }
       },
-      { label: '假装没看见', result: '你转身回屋，听到身后一阵窸窣声，然后是远去的脚步声。' }
+      { label: 'Görmemiş gibi davran', result: 'Sessizce arkanı dönüp eve girdin. Arkanda önce hafif bir hışırtı, sonra da uzaklaşan ayak sesleri kaldı.' }
     ]
   },
   {
     id: 'mysterious_cat',
-    message: '一只从没见过的黑猫蹲在田里，面前整齐地放着一颗松果。',
+    message: 'Daha önce hiç görmediğin kara bir kedi tarlanın ortasında çömelmiş; önünde de muntazam bırakılmış bir kozalak var.',
     choices: [
       {
-        label: '收下松果',
-        result: '你弯腰捡起松果，黑猫喵了一声，慢悠悠地消失在晨雾中。',
+        label: 'Kozalağı al',
+        result: 'Eğilip kozalağı aldın. Kara kedi bir kez miyavladı, sonra sabah sisi içinde ağır ağır gözden kayboldu.',
         effect: { type: 'gainItem', itemId: 'pine_cone', qty: 1 }
       },
-      { label: '摸摸它的头', result: '黑猫咕噜咕噜叫了几声，蹭了蹭你的手，然后翻墙走了。' }
+      { label: 'Başını okşa', result: 'Kedi boğuk bir mırıltı çıkardı, eline sürtündü, sonra duvardan atlayıp gitti.' }
     ]
   },
   {
     id: 'old_man_fishing',
-    message: '一位白胡子老伯在你农场边的水渠钓鱼，看到你出来笑着打了声招呼。',
+    message: 'Ak sakallı bir ihtiyar, çiftliğinin kıyısındaki su yolunda olta sallıyor. Seni görünce gülümseyip selam verdi.',
     choices: [
-      { label: '坐下来聊一会', result: '老伯讲了不少种地的门道。你觉得受益匪浅。', effect: { type: 'gainFriendship', amount: 8 } },
-      { label: '给他泡杯茶', result: '老伯高兴地喝了茶，走前留了几条鱼在桶里给你。', effect: { type: 'gainMoney', amount: 50 } }
+      { label: 'Yanına otur, biraz sohbet et', result: 'İhtiyar toprağın ve mevsimin dilinden uzun uzun söz etti. Dinledikçe çok şey öğrendiğini hissettin.', effect: { type: 'gainFriendship', amount: 8 } },
+      { label: 'Ona bir tas çay ver', result: 'İhtiyar çayı sevinçle içti; giderken kovasındaki birkaç balığı sana bıraktı.', effect: { type: 'gainMoney', amount: 50 } }
     ]
   },
   {
     id: 'lost_dog',
-    message: '一条脏兮兮的小狗蜷在你家门口，看起来走丢了很久。',
+    message: 'Kir pas içindeki küçük bir köpek kapının önünde büzülmüş yatıyor; epey zamandır kayıp olduğu belli.',
     choices: [
       {
-        label: '给它洗个澡喂点吃的',
-        result: '小狗摇着尾巴舔你的手。它在你家待了一天，傍晚被主人领走了。主人留了些钱表示感谢。',
+        label: 'Yıka, karnını doyur',
+        result: 'Köpek kuyruğunu sallayıp elini yaladı. Bir gün boyunca yanında kaldı; akşamüstü sahibi gelip onu aldı ve şükran nişanesi olarak birkaç sikke bıraktı.',
         effect: { type: 'gainMoney', amount: 30 }
       },
       {
-        label: '带它去村里找主人',
-        result: '你带着小狗在村里转了一圈，很快找到了它的主人。大家都说你热心。',
+        label: 'Köye götür, sahibini ara',
+        result: 'Köpekle birlikte gaKöy sokaklarını dolaştın; çok geçmeden sahibi bulundu. Herkes yardımseverliğini konuştu.',
         effect: { type: 'gainFriendship', amount: 8 }
       }
     ]
   },
   {
     id: 'herb_woman',
-    message: '一位背着竹篓的老婆婆路过，问你能不能讨碗水喝。',
+    message: 'Sırtında bambu küfesiyle yaşlı bir kadın yoldan geçerken senden bir tas su istedi.',
     choices: [
       {
-        label: '端碗水给她',
-        result: '老婆婆喝完水道了谢，临走从竹篓里抓了一把草药给你。',
+        label: 'Ona su ver',
+        result: 'Kadın suyu içip dua etti; giderken küfesinden bir avuç şifalı ot çıkarıp sana verdi.',
         effect: { type: 'gainItem', itemId: 'herb', qty: 2 }
       },
       {
-        label: '请她歇歇脚',
-        result: '老婆婆坐了会儿，念叨着年轻人心好。你隐约觉得她有点面善。',
+        label: 'Biraz dinlenmesini söyle',
+        result: 'Yaşlı kadın biraz oturdu, gençlerin gönlünün temiz kaldığını söyleyip durdu. Yüzü sana bir yerden tanıdık geldi.',
         effect: { type: 'gainFriendship', amount: 5 }
       }
     ]
   },
   {
     id: 'fox_standoff',
-    message: '一只狐狸叼着什么东西蹲在菜地里，见你出来也不跑，就那么对视着。',
+    message: 'Bir tilki ağzında bir şey taşıyarak tarlada çömelmiş; sen çıkınca kaçmadı, sadece sana baktı.',
     choices: [
-      { label: '挥挥手赶走它', result: '狐狸不紧不慢地跑了。你检查了一圈，菜地倒是没什么损失。' },
+      { label: 'El sallayıp kov', result: 'Tilki ağır ağır uzaklaştı. Tarlayı dolaşıp baktın; neyse ki gözle görülür bir zarar yok.' },
       {
-        label: '丢块饼子给它',
-        result: '狐狸丢下嘴里的东西，叼起饼跑了。你捡起来一看，是颗松果。',
+        label: 'Ona bir parça çörek at',
+        result: 'Tilki ağzındaki şeyi bırakıp çöreği kaptı ve kaçtı. Yerde kalan şeye bakınca onun bir kozalak olduğunu gördün.',
         effect: { type: 'gainItem', itemId: 'pine_cone', qty: 1 }
       }
     ]
   },
   {
     id: 'broken_fence',
-    message: '篱笆有一段被什么拱开了个洞，几只野兔正在田里悠闲地吃草。',
+    message: 'Çitin bir yanı dürtülüp açılmış; birkaç yabani tavşan tarlada rahat rahat otluyor.',
     choices: [
-      { label: '先补篱笆', result: '你花了点功夫把篱笆补好了。野兔们慌慌张张地从缺口跑了出去。' },
-      { label: '看看它们吃的啥', result: '野兔在啃杂草，没碰作物。你笑了笑，由它们去了。它们反而帮你除了些杂草。' }
+      { label: 'Önce çiti onar', result: 'Biraz uğraşıp çiti kapattın. Tavşanlar da panikle açıklıktan dışarı kaçtı.' },
+      { label: 'Ne yediklerine bak', result: 'Tavşanlar ekin değil, yabani ot kemiriyor. Gülümsedin, bırakıp gittin. Hatta biraz ot temizlemiş oldular.' }
     ]
   },
   {
     id: 'rain_mushroom',
-    message: '昨夜下过雨，田埂边冒出了几个蘑菇。',
+    message: 'Gece yağan yağmurun ardından, tarla setinin dibinde birkaç mantar bitmiş.',
     choices: [
       {
-        label: '采一些',
-        result: '你认出这是可以吃的野蘑菇，顺手摘了几个。',
+        label: 'Biraz topla',
+        result: 'Bunların yenir türden yabani mantarlar olduğunu anladın; birkaçını hemen topladın.',
         effect: { type: 'gainItem', itemId: 'wild_mushroom', qty: 2 }
       },
-      { label: '留着别动', result: '你决定让它们长着。说不定过几天会长更多。' }
+      { label: 'Bırak, büyüsünler', result: 'Dokunmamaya karar verdin. Belki birkaç güne daha da çoğalırlar.' }
     ]
   },
   {
     id: 'painting_visitor',
-    message: '一个背着画板的年轻人站在田边，正在画你的农场。',
+    message: 'Sırtında resim tahtası taşıyan genç biri tarla kıyısında durmuş, çiftliğini çiziyor.',
     choices: [
       {
-        label: '过去看看',
-        result: '画得还挺好。年轻人说这里的景色让他很有灵感，送了你几个铜板表示感谢。',
+        label: 'Yanına gidip bak',
+        result: 'Ortaya çıkan resim hayli güzel. Genç, bu yerin ona ilham verdiğini söyleyip teşekkür için birkaç bakır sikke uzattı.',
         effect: { type: 'gainMoney', amount: 20 }
       },
       {
-        label: '送杯茶给他',
-        result: '年轻人感激地接过茶。他说会把画寄回来给你。你期待了好一阵。',
+        label: 'Ona bir kupa çay ver',
+        result: 'Genç çayı minnetle aldı. Resmi bir gün sana göndereceğini söyledi; sen de bir süre bunu bekleyip durdun.',
         effect: { type: 'gainFriendship', amount: 5 }
       }
     ]
   },
   {
     id: 'snake_shed',
-    message: '水渠边发现一条完整的蛇蜕，薄得近乎透明。',
+    message: 'Su arkının yanında, neredeyse ışık geçirir incelikte, bütün hâliyle bir yılan gömleği buldun.',
     choices: [
-      { label: '收起来', result: '老人说蛇蜕是好兆头。你把它挂在屋檐下，心情不错。' },
-      { label: '放回原处', result: '你把蛇蜕放好，转身离开。大自然的东西，还是留在大自然吧。' }
+      { label: 'Onu sakla', result: 'Köyün yaşlıları yılan gömleğinin uğur sayıldığını söyler. Sen de saçak altına astın, gönlün ferahladı.' },
+      { label: 'Olduğu yerde bırak', result: 'Gömleği usulca yerine koyup uzaklaştın. Tabiatın malı yine tabiata kalsın dedin.' }
     ]
   },
   {
     id: 'wild_bee_nest',
-    message: '屋后的老树上多了个小蜂巢，几只蜜蜂嗡嗡地忙碌着。',
+    message: 'Evin arkasındaki yaşlı ağaca küçük bir arı peteği kurulmuş; birkaç bal arısı durmadan çalışıyor.',
     choices: [
-      { label: '让它们待着', result: '蜜蜂对庄稼的授粉有好处。你决定和它们和平共处。' },
+      { label: 'Kalsınlar', result: 'Arıların ekinlere bereket getireceğini düşündün. Onlarla barış içinde yaşamaya karar verdin.' },
       {
-        label: '小心地取些蜜',
-        result: '你用烟熏法取了一小块蜂蜜。虽然不多，但味道很甜。',
+        label: 'Biraz bal al',
+        result: 'Duman yardımıyla azıcık bal çıkarabildin. Çok değil ama tadı pek güzeldi.',
         effect: { type: 'gainItem', itemId: 'honey', qty: 1 }
       }
     ]
   },
   {
     id: 'stone_buddha',
-    message: '翻地时挖出一个拳头大的石头，仔细看像个小佛像。',
+    message: 'Toprağı bellenirken yumruk kadar bir taş çıktı; dikkatle bakınca küçük bir putçuğu andırıyor.',
     choices: [
       {
-        label: '擦干净放在田边',
-        result: '你把小佛像擦净放好。路过的村民说这是好彩头，大伙儿的运气要好了。',
+        label: 'Temizleyip tarla kıyısına koy',
+        result: 'Taşı silip tarla kenarına yerleştirdin. Yoldan geçen köylüler bunun uğur getireceğini söyleyip sevindi.',
         effect: { type: 'gainFriendship', amount: 10 }
       },
-      { label: '收起来卖掉', result: '你拿去给村里的古董商看了看，换了些铜板。', effect: { type: 'gainMoney', amount: 66 } }
+      { label: 'Sakla, sonra sat', result: 'Onu gaKöy’de eski eşya alan birine gösterdin; karşılığında birkaç bakır sikke aldın.', effect: { type: 'gainMoney', amount: 66 } }
     ]
   },
   {
     id: 'bamboo_shoots',
-    message: '昨夜的雨后，篱笆根部冒出了几根竹笋。',
+    message: 'Gece yağmurundan sonra, çitin dibinde birkaç taze bambu filizi yükselmiş.',
     choices: [
-      { label: '挖出来', result: '新鲜的笋子，做菜一定不错。', effect: { type: 'gainItem', itemId: 'bamboo', qty: 3 } },
-      { label: '让它们长大', result: '你决定让竹笋长大。过不了多久，这里就会多几根竹子了。' }
+      { label: 'Söküp al', result: 'Taptaze filizler çıktı; iyi bir yemek olur diye düşündün.', effect: { type: 'gainItem', itemId: 'bamboo', qty: 3 } },
+      { label: 'Bırak, uzasınlar', result: 'Filizleri olduğu gibi bıraktın. Çok geçmeden burada birkaç yeni bambu boy verecek.' }
     ]
   }
 ]
 
-// ==================== 0.2% 彩蛋（10条） ====================
+// ==================== %0,2 Sürpriz anlatılar (10 adet) ====================
 
 export const MORNING_EASTER_EGGS: MorningEasterEgg[] = [
   {
-    message: '翻地时挖出了一枚古铜钱，上面的字迹已模糊不清，但隐约透着光泽。',
+    message: 'Toprağı kazarken eski bir bakır sikke buldun; üzerindeki yazılar silinmiş olsa da belli belirsiz ışıldıyor.',
     effect: { type: 'gainItem', itemId: 'ancient_coin', qty: 1 }
   },
-  { message: '一只金色的蝴蝶在田间飞舞，绕了你三圈后朝远山飞去。据说看到它的人会走好运。' },
-  { message: '夜里似乎下了一场花瓣雨，整个农场弥漫着淡淡的花香。谁也说不清花从哪来的。' },
-  { message: '你在水井底看到了自己的倒影，但倒影似乎对你笑了一下。大概是没睡醒吧。' },
-  { message: '清晨推门，发现门口放着一束不知名的野花，用草绳扎得整整齐齐。没人知道是谁放的。', effect: { type: 'gainMoney', amount: 88 } },
-  { message: '一只白鹤从天边飞来，在你的田里停了片刻，然后振翅而去。古人说白鹤是仙人的坐骑。' },
-  { message: '今天早上，所有的作物似乎都比昨天精神了一些。也许是你的错觉，也许不是。' },
+  { message: 'Altın renkli bir kelebek tarlanın üstünde dönüp üç kez çevrende dolandı, sonra uzak dağlara doğru süzüldü. Onu görenin talihinin açıldığı söylenir.' },
+  { message: 'Gece sanki yaprak ve çiçek yağmuru yağmış; bütün çiftliğe hafif bir koku sinmiş. O çiçeklerin nereden geldiğini kimse bilemez.' },
+  { message: 'Kuyunun dibinde kendi aksini gördün; ama yansıman sana gülümsedi sanki. Belki de daha tam ayılmadın.' },
+  { message: 'Sabah kapıyı açtığında eşikte kır çiçeklerinden bağlanmış düzenli bir demet buldun. Kimin bıraktığını bilen yok.', effect: { type: 'gainMoney', amount: 88 } },
+  { message: 'Bir ak turna gökyüzünden süzülüp tarlana kısa bir an kondu, sonra yeniden kanatlandı. Eskiler, ak turnanın ermişlerin habercisi olduğunu söyler.' },
+  { message: 'Bu sabah bütün ekinlerin dünkünden daha canlı göründüğünü fark ettin. Belki göz yanılmasıdır, belki değildir.' },
   {
-    message: '你在枕头底下发现了一枚不知道从哪来的铜板。仔细想想，昨晚好像做了个关于财神的梦。',
+    message: 'Yastığının altında nereden geldiği belli olmayan bir bakır sikke buldun. Düşününce, gece bereket tanrısı üzerine bir düş görmüş gibisin.',
     effect: { type: 'gainMoney', amount: 66 }
   },
-  { message: '稻草人今天面朝了一个不同的方向。你确定昨天它不是这样放的。……确定吗？' },
-  { message: '天还没亮时你听到远处传来几声笛声，悠扬得不像是凡人吹的。等你开门去看，什么也没有。' }
+  { message: 'Korkuluk bugün bambaşka bir yöne bakıyor. Dün böyle olmadığına eminsin. ...Yoksa değil misin?' },
+  { message: 'Gün daha doğmadan uzaktan ney benzeri birkaç ezgi işittin; öyle inceydi ki insan nefesine benzemezdi. Kapıyı açıp baktığında ortada kimse yoktu.' }
 ]
