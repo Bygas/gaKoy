@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* zpix 像素字体（支持中英文） */
+/* zpix piksel yazı tipi (Türkçe ve İngilizce desteğiyle) */
 @font-face {
   font-family: 'zpix';
   src: url('@/assets/fonts/zpix.woff2') format('woff2');
@@ -12,12 +12,12 @@
 }
 
 :root {
-  /* 主题色（RGB 数值，配合 Tailwind 透明度修饰符） */
+  /* Tema renkleri (RGB değerleri, Tailwind saydamlık ekleriyle uyumlu) */
   --color-bg: 26 26 26;
   --color-panel: 43 45 60;
   --color-text: 232 228 217;
 
-  /* 固定色（不随主题变化） */
+  /* Sabit renkler (temaya göre değişmez) */
   --color-accent: #c8a45c;
   --color-danger: #c34043;
   --color-success: #5a9e6f;
@@ -25,15 +25,15 @@
   --color-earth: #8b6914;
   --color-muted: #6b7280;
 
-  /* 品质颜色 */
+  /* Nitelik renkleri */
   --color-quality-fine: #d4976a;
   --color-quality-excellent: #a8c4d4;
   --color-quality-supreme: #ffd700;
 
-  /* 字体 */
+  /* Yazı tipi */
   --font-game: 'zpix', monospace;
 
-  /* 间距基准 4px */
+  /* Boşluk ölçüsü tabanı 4px */
   --spacing-1: 4px;
   --spacing-2: 8px;
   --spacing-3: 12px;
@@ -42,14 +42,14 @@
   --spacing-8: 32px;
 }
 
-/* 生产环境禁止选中和复制 */
+/* Üretim ortamında seçme ve kopyalama kapatılır */
 body.no-select {
   -webkit-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
 }
 
-/* 全局基础样式 */
+/* Genel temel biçimler */
 body {
   margin: 0;
   background-color: rgb(var(--color-bg));
@@ -81,7 +81,7 @@ button {
   }
 }
 
-/* 像素风按钮基础样式 */
+/* Piksel üsluplu düğmenin temel biçimi */
 .btn {
   display: inline-flex;
   justify-content: center;
@@ -103,7 +103,6 @@ button {
   @apply space-x-1.5
 }
 
-
 .btn:hover {
   background-color: var(--color-accent);
 }
@@ -116,7 +115,7 @@ button {
   background-color: var(--color-danger);
 }
 
-/* 像素风面板 */
+/* Piksel üsluplu panel */
 .game-panel {
   background-color: rgb(var(--color-panel));
   border: 1px solid rgba(200, 164, 92, 0.3);
@@ -131,7 +130,7 @@ button {
   }
 }
 
-/* 滚动条样式 */
+/* Kaydırma çubuğu biçimi */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -145,7 +144,7 @@ button {
   border-radius: 2px;
 }
 
-/* 隐藏 number 输入框的浏览器自带加减按钮 */
+/* Number giriş kutusundaki tarayıcıya ait artı-eksi düğmelerini gizle */
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -157,7 +156,7 @@ input[type='number'] {
   appearance: textfield;
 }
 
-/* 面板切换过渡 */
+/* Panel geçiş yumuşatması */
 .panel-fade-enter-active {
   transition: opacity 0.2s ease-in;
 }
@@ -171,7 +170,7 @@ input[type='number'] {
   opacity: 0;
 }
 
-/* 按钮禁用状态 */
+/* Düğmenin devre dışı durumu */
 .btn:disabled {
   opacity: 0.35;
   cursor: not-allowed;
@@ -202,7 +201,7 @@ input[type='number'] {
   white-space: nowrap !important;
 }
 
-/* 移动端安全区域：顶部通知避开状态栏 */
+/* Mobil güvenli alan: üst bildirimler durum çubuğundan taşmasın */
 .qmsg.qmsg-data-position-top,
 .qmsg.qmsg-data-position-topleft,
 .qmsg.qmsg-data-position-topright {
@@ -210,7 +209,7 @@ input[type='number'] {
   padding-top: calc(calc(0.25rem * 10) + env(safe-area-inset-top, 0px)) !important;
 }
 
-/* 移动端安全区域：底部通知避开三键导航栏 */
+/* Mobil güvenli alan: alt bildirimler gezinme çubuğundan taşmasın */
 .qmsg.qmsg-data-position-bottom,
 .qmsg.qmsg-data-position-bottomleft,
 .qmsg.qmsg-data-position-bottomright {
