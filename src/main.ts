@@ -7,8 +7,8 @@ import './app.css'
 const app = createApp(App)
 const pinia = createPinia()
 
-// 为 setup store 添加 $reset() 支持（Pinia 默认仅 option store 支持 $reset）
-// 使用 JSON 深拷贝而非 structuredClone，因为后者无法处理 Vue 的 reactive Proxy
+// setup store'lara $reset() desteği ekler (Pinia varsayılan olarak sadece option store için destekler)
+// structuredClone yerine JSON derin kopya kullanılır, çünkü structuredClone Vue reactive Proxy'lerini işleyemez
 pinia.use(({ store }) => {
   const initialState = JSON.parse(JSON.stringify(toRaw(store.$state)))
   store.$reset = () => {
