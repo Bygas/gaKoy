@@ -2694,2267 +2694,2267 @@ export const CROPS: CropDef[] = [
 // === Dördüncü Nesil Melez Ürünler ===,
   {
     id: 'moon_hua_melon',
-    name: '月华瓜',
+    name: 'Ay Işıltı Kavunu',
     seedId: 'seed_moon_hua_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 800,
     seedPrice: 0,
     deepWatering: true,
-    description: '蜜茶果与金瓜在天光下交融，绽放华彩。'
+    description: 'Bal çayı meyvesi ile altın kabak göksel ışık altında birleşir, göz kamaştırıcı bir parlaklık yayar.'
   },
   {
     id: 'sun_hua_bean',
-    name: '日华豆',
+    name: 'Güneş Işıltı Fasulyesi',
     seedId: 'seed_sun_hua_bean',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 804,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与翡翠茶承日月精华，辉映四方。'
+    description: 'Bal çayı meyvesi ile yeşim çayı güneş ve ayın özünü taşır, dört yana ışık saçar.'
   },
   {
     id: 'sky_hua_rice',
-    name: '天华稻',
+    name: 'Göksel Işıltı Pirinci',
     seedId: 'seed_sky_hua_rice',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 808,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与凤凰椒凝天地灵气，瑞光盈盈。'
+    description: 'Bal çayı meyvesi ile anka biberi gök ve yerin ruhunu toplar, uğurlu bir ışıkla parlar.'
   },
   {
     id: 'gem_hua_tuber',
-    name: '玉华薯',
+    name: 'Yeşim Işıltı Yamı',
     seedId: 'seed_gem_hua_tuber',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 812,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与月光稻沐浴星辉，祥瑞之兆。'
+    description: 'Bal çayı meyvesi ile ay ışığı pirinci yıldız ışığında birleşir, uğurlu bir bereketin habercisidir.'
   },
   {
     id: 'prism_hua_green',
-    name: '琉华菜',
+    name: 'Prizma Işıltı Yeşilliği',
     seedId: 'seed_prism_hua_green',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 816,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与霜雪蒜在月华中蜕变，天赐之品。'
+    description: 'Bal çayı meyvesi ile don sarımsağı ay ışığında dönüşür, gökten gelen bir armağan gibidir.'
   },
   {
     id: 'silver_hua_fruit',
-    name: '银华果',
+    name: 'Gümüş Işıltı Meyvesi',
     seedId: 'seed_silver_hua_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 820,
     seedPrice: 0,
     deepWatering: true,
-    description: '蜜茶果与翡翠萝卜在天光下交融，绽放华彩。'
+    description: 'Bal çayı meyvesi ile zümrüt turp göksel ışık altında birleşir, göz kamaştırıcı bir parlaklık yayar.'
   },
   {
     id: 'verdant_hua_bloom',
-    name: '翠华花',
+    name: 'Yeşil Işıltı Çiçeği',
     seedId: 'seed_verdant_hua_bloom',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 824,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与碧玉笋承日月精华，辉映四方。'
+    description: 'Bal çayı meyvesi ile yeşim bambu filizi güneş ve ayın özünü taşır, dört yana ışık saçar.'
   },
   {
     id: 'violet_hua_tea',
-    name: '紫华茶',
+    name: 'Mor Işıltı Çayı',
     seedId: 'seed_violet_hua_tea',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 829,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与金油薯凝天地灵气，瑞光盈盈。'
+    description: 'Bal çayı meyvesi ile altın patates gök ve yerin ruhunu toplar, uğurlu bir ışıkla parlar.'
   },
   {
     id: 'scarlet_hua_shoot',
-    name: '丹华笋',
+    name: 'Kızıl Işıltı Filizi',
     seedId: 'seed_scarlet_hua_shoot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 833,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与桃花茶沐浴星辉，祥瑞之兆。'
+    description: 'Bal çayı meyvesi ile şeftali çiçeği çayı yıldız ışığında birleşir, uğurlu bir bereketin işaretidir.'
   },
   {
     id: 'azure_hua_lotus',
-    name: '青华莲',
+    name: 'Gök Mavisi Işıltı Nilüferi',
     seedId: 'seed_azure_hua_lotus',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 837,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与红宝豆在月华中蜕变，天赐之品。'
+    description: 'Bal çayı meyvesi ile yakut fasulye ay ışığında dönüşür, gökten gelen bir armağan gibidir.'
   },
   {
     id: 'moon_shine_wheat',
-    name: '月辉麦',
+    name: 'Ay Parıltısı Buğdayı',
     seedId: 'seed_moon_shine_wheat',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 841,
     seedPrice: 0,
     deepWatering: true,
-    description: '蜜茶果与双子豆在天光下交融，绽放华彩。'
+    description: 'Bal çayı meyvesi ile ikiz fasulye göksel ışık altında birleşir, göz kamaştırıcı bir ihtişam yayar.'
   },
   {
     id: 'sun_shine_sesame',
-    name: '日辉芝',
+    name: 'Güneş Parıltısı Susamı',
     seedId: 'seed_sun_shine_sesame',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 845,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与碧玉瓜承日月精华，辉映四方。'
+    description: 'Bal çayı meyvesi ile yeşim kavun güneş ve ayın özünü taşır, dört yana ışık saçar.'
   },
   {
     id: 'sky_shine_pepper',
-    name: '天辉椒',
+    name: 'Göksel Parıltı Biberi',
     seedId: 'seed_sky_shine_pepper',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 849,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与珍珠谷凝天地灵气，瑞光盈盈。'
+    description: 'Bal çayı meyvesi ile inci tahıl gök ve yerin özünü birleştirir, uğurlu bir ışıkla parlar.'
   },
   {
     id: 'gem_shine_root',
-    name: '玉辉参',
+    name: 'Yeşim Parıltı Kökü',
     seedId: 'seed_gem_shine_root',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 853,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与金穗玉米沐浴星辉，祥瑞之兆。'
+    description: 'Bal çayı meyvesi ile altın başak mısır yıldız ışığında birleşir, uğurlu bir bereketin habercisidir.'
   },
   {
     id: 'prism_shine_sprout',
-    name: '琉辉芽',
+    name: 'Prizma Parıltı Filizi',
     seedId: 'seed_prism_shine_sprout',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 857,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与莲心茶在月华中蜕变，天赐之品。'
+    description: 'Bal çayı meyvesi ile nilüfer çayı ay ışığında dönüşür, gökten gelen bir armağan gibidir.'
   },
   {
     id: 'silver_shine_vine',
-    name: '银辉藤',
+    name: 'Gümüş Parıltı Asması',
     seedId: 'seed_silver_shine_vine',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 861,
     seedPrice: 0,
     deepWatering: true,
-    description: '蜜茶果与紫竹茄在天光下交融，绽放华彩。'
+    description: 'Bal çayı meyvesi ile mor bambu patlıcan göksel ışık altında birleşir, göz kamaştırıcı bir ihtişam yayar.'
   },
   {
     id: 'verdant_shine_bud',
-    name: '翠辉蕾',
+    name: 'Yeşil Parıltı Tomurcuğu',
     seedId: 'seed_verdant_shine_bud',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 865,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与蜜桃瓜承日月精华，辉映四方。'
+    description: 'Bal çayı meyvesi ile şeftali kavunu güneş ve ayın özünü taşır, dört yana ışık saçar.'
   },
   {
     id: 'violet_shine_orchid',
-    name: '紫辉兰',
+    name: 'Mor Parıltı Orkidesi',
     seedId: 'seed_violet_shine_orchid',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 869,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与火豆凝天地灵气，瑞光盈盈。'
+    description: 'Bal çayı meyvesi ile ateş fasulyesi gök ve yerin özünü birleştirir, uğurlu bir ışıkla parlar.'
   },
   {
     id: 'scarlet_shine_gourd',
-    name: '丹辉葫',
+    name: 'Kızıl Parıltı Kabağı',
     seedId: 'seed_scarlet_shine_gourd',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 873,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与丝豆沐浴星辉，祥瑞之兆。'
+    description: 'Bal çayı meyvesi ile ipek fasulye yıldız ışığında birleşir, uğurlu bir bereketin işaretidir.'
   },
   {
     id: 'azure_shine_herb',
-    name: '青辉草',
+    name: 'Gök Mavisi Parıltı Otu',
     seedId: 'seed_azure_shine_herb',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 878,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与双油籽在月华中蜕变，天赐之品。'
+    description: 'Bal çayı meyvesi ile çift yağ tohumu ay ışığında dönüşür, gökten gelen bir armağan gibidir.'
   },
   {
     id: 'moon_fortune_chestnut',
-    name: '月瑞栗',
+    name: 'Ay Uğur Kestanesi',
     seedId: 'seed_moon_fortune_chestnut',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 882,
     seedPrice: 0,
     deepWatering: true,
-    description: '蜜茶果与莲花薯在天光下交融，绽放华彩。'
+    description: 'Bal çayı meyvesi ile nilüfer patates göksel ışık altında birleşir, göz kamaştırıcı bir ihtişam yayar.'
   },
   {
     id: 'sun_fortune_apricot',
-    name: '日瑞杏',
+    name: 'Güneş Uğur Kayısısı',
     seedId: 'seed_sun_fortune_apricot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 886,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与翡翠南瓜承日月精华，辉映四方。'
+    description: 'Bal çayı meyvesi ile yeşim balkabağı güneş ve ayın özünü taşır, dört yana ışık saçar.'
   },
   {
     id: 'sky_fortune_pear',
-    name: '天瑞梨',
+    name: 'Göksel Uğur Armutu',
     seedId: 'seed_sky_fortune_pear',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 890,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与水晶山药凝天地灵气，瑞光盈盈。'
+    description: 'Bal çayı meyvesi ile kristal yam gök ve yerin özünü birleştirir, uğurlu bir ışıkla parlar.'
   },
   {
     id: 'gem_fortune_berry',
-    name: '玉瑞莓',
+    name: 'Yeşim Uğur Meyvesi',
     seedId: 'seed_gem_fortune_berry',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 894,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与桂花茶沐浴星辉，祥瑞之兆。'
+    description: 'Bal çayı meyvesi ile osmanthus çayı yıldız ışığında birleşir, uğurlu bir bereketin işaretidir.'
   },
   {
     id: 'prism_fortune_peach_t',
-    name: '琉瑞桃',
+    name: 'Prizma Uğur Şeftalisi',
     seedId: 'seed_prism_fortune_peach_t',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 898,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与山竹薯在月华中蜕变，天赐之品。'
+    description: 'Bal çayı meyvesi ile mangostan yamı ay ışığında dönüşür, gökten gelen bir armağan gibidir.'
   },
   {
     id: 'silver_fortune_melon',
-    name: '银瑞瓜',
+    name: 'Gümüş Uğur Kavunu',
     seedId: 'seed_silver_fortune_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 902,
     seedPrice: 0,
     deepWatering: true,
-    description: '蜜茶果与金秋果在天光下交融，绽放华彩。'
+    description: 'Bal çayı meyvesi ile altın sonbahar meyvesi göksel ışık altında birleşir, göz kamaştırıcı bir ihtişam yayar.'
   },
   {
     id: 'verdant_fortune_bean',
-    name: '翠瑞豆',
+    name: 'Yeşil Uğur Fasulyesi',
     seedId: 'seed_verdant_fortune_bean',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 906,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与花生薯承日月精华，辉映四方。'
+    description: 'Bal çayı meyvesi ile fıstıklı patates güneş ve ayın özünü taşır, dört yana ışık saçar.'
   },
   {
     id: 'violet_fortune_rice',
-    name: '紫瑞稻',
+    name: 'Mor Uğur Pirinci',
     seedId: 'seed_violet_fortune_rice',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 910,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与秋枣豆凝天地灵气，瑞光盈盈。'
+    description: 'Bal çayı meyvesi ile sonbahar hünnap fasulyesi gök ve yerin özünü birleştirir, uğurlu bir ışıkla parlar.'
   },
   {
     id: 'scarlet_fortune_tuber',
-    name: '丹瑞薯',
+    name: 'Kızıl Uğur Yumrusu',
     seedId: 'seed_scarlet_fortune_tuber',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 914,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与枣花桃沐浴星辉，祥瑞之兆。'
+    description: 'Bal çayı meyvesi ile hünnap çiçeği şeftalisi yıldız ışığında birleşir, uğurlu bir bereketin işaretidir.'
   },
   {
     id: 'azure_fortune_green',
-    name: '青瑞菜',
+    name: 'Gök Mavisi Uğur Yeşilliği',
     seedId: 'seed_azure_fortune_green',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 918,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与姜花菜在月华中蜕变，天赐之品。'
+    description: 'Bal çayı meyvesi ile zencefil çiçeği bitkisi ay ışığında dönüşür, gökten gelen bir armağan gibidir.'
   },
   {
     id: 'moon_glory_fruit',
-    name: '月祥果',
+    name: 'Ay Kut Meyvesi',
     seedId: 'seed_moon_glory_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 922,
     seedPrice: 0,
     deepWatering: true,
-    description: '蜜茶果与仙菊菜在天光下交融，绽放华彩。'
+    description: 'Bal çayı meyvesi ile kutsal krizantem otu göksel ışık altında birleşir, göz kamaştırıcı bir ihtişam yayar.'
   },
   {
     id: 'sun_glory_bloom',
-    name: '日祥花',
+    name: 'Güneş Kut Çiçeği',
     seedId: 'seed_sun_glory_bloom',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 927,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与御品白菜承日月精华，辉映四方。'
+    description: 'Bal çayı meyvesi ile imparator lahanası güneş ve ayın özünü taşır, dört yana ışık saçar.'
   },
   {
     id: 'sky_glory_tea',
-    name: '天祥茶',
+    name: 'Göksel Kut Çayı',
     seedId: 'seed_sky_glory_tea',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 931,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与蒜香萝卜凝天地灵气，瑞光盈盈。'
+    description: 'Bal çayı meyvesi ile sarımsaklı turp gök ve yerin özünü birleştirir, uğurlu bir ışıkla parlar.'
   },
   {
     id: 'gem_glory_shoot',
-    name: '玉祥笋',
+    name: 'Yeşim Kut Filizi',
     seedId: 'seed_gem_glory_shoot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 935,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与雪茶沐浴星辉，祥瑞之兆。'
+    description: 'Bal çayı meyvesi ile kar çayı yıldız ışığında birleşir, uğurlu bir bereketin işaretidir.'
   },
   {
     id: 'prism_glory_lotus',
-    name: '琉祥莲',
+    name: 'Prizma Kut Nilüferi',
     seedId: 'seed_prism_glory_lotus',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 939,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与春韭菜在月华中蜕变，天赐之品。'
+    description: 'Bal çayı meyvesi ile bahar frenk soğanı ay ışığında dönüşür, gökten gelen bir armağan gibidir.'
   },
   {
     id: 'silver_glory_wheat',
-    name: '银祥麦',
+    name: 'Gümüş Kut Buğdayı',
     seedId: 'seed_silver_glory_wheat',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 943,
     seedPrice: 0,
     deepWatering: true,
-    description: '蜜茶果与麦香薯在天光下交融，绽放华彩。'
+    description: 'Bal çayı meyvesi ile buğday kokulu patates göksel ışık altında birleşir, göz kamaştırıcı bir ihtişam yayar.'
   },
   {
     id: 'verdant_glory_sesame',
-    name: '翠祥芝',
+    name: 'Yeşil Kut Susamı',
     seedId: 'seed_verdant_glory_sesame',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 947,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与绿桃承日月精华，辉映四方。'
+    description: 'Bal çayı meyvesi ile yeşil şeftali güneş ve ayın özünü taşır, dört yana ışık saçar.'
   },
   {
     id: 'violet_glory_pepper',
-    name: '紫祥椒',
+    name: 'Mor Kut Biberi',
     seedId: 'seed_violet_glory_pepper',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 951,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与芥香豆凝天地灵气，瑞光盈盈。'
+    description: 'Bal çayı meyvesi ile hardal aromalı fasulye gök ve yerin özünü birleştirir, uğurlu bir ışıkla parlar.'
   },
   {
     id: 'scarlet_glory_root',
-    name: '丹祥参',
+    name: 'Kızıl Kut Kökü',
     seedId: 'seed_scarlet_glory_root',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 955,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与霜油菜沐浴星辉，祥瑞之兆。'
+    description: 'Bal çayı meyvesi ile kırağı kanola yıldız ışığında birleşir, uğurlu bir bereketin işaretidir.'
   },
   {
     id: 'azure_glory_sprout',
-    name: '青祥芽',
+    name: 'Gök Mavisi Kut Filizi',
     seedId: 'seed_azure_glory_sprout',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 959,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与紫晶瓜在月华中蜕变，天赐之品。'
+    description: 'Bal çayı meyvesi ile mor kristal kavun ay ışığında dönüşür, gökten gelen bir armağan gibidir.'
   },
   {
     id: 'moon_prism4_vine',
-    name: '月彩藤',
+    name: 'Ay Prizma Asması',
     seedId: 'seed_moon_prism4_vine',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 963,
     seedPrice: 0,
     deepWatering: true,
-    description: '蜜茶果与金芝稻在天光下交融，绽放华彩。'
+    description: 'Bal çayı meyvesi ile altın susam pirinci göksel ışık altında birleşir, göz kamaştırıcı bir ihtişam yayar.'
   },
   {
     id: 'sun_prism4_bud',
-    name: '日彩蕾',
+    name: 'Güneş Prizma Tomurcuğu',
     seedId: 'seed_sun_prism4_bud',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 967,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与双莲承日月精华，辉映四方。'
+    description: 'Bal çayı meyvesi ile çift nilüfer güneş ve ayın özünü taşır, dört yana ışık saçar.'
   },
   {
     id: 'sky_prism4_orchid',
-    name: '天彩兰',
+    name: 'Göksel Prizma Orkidesi',
     seedId: 'seed_sky_prism4_orchid',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 971,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与火麻仁凝天地灵气，瑞光盈盈。'
+    description: 'Bal çayı meyvesi ile ateş susamı gök ve yerin özünü birleştirir, uğurlu bir ışıkla parlar.'
   },
   {
     id: 'gem_prism4_gourd',
-    name: '玉彩葫',
+    name: 'Yeşim Prizma Kabağı',
     seedId: 'seed_gem_prism4_gourd',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 976,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与丝穗沐浴星辉，祥瑞之兆。'
+    description: 'Bal çayı meyvesi ile ipek başak yıldız ışığında birleşir, uğurlu bir bereketin işaretidir.'
   },
   {
     id: 'prism_prism4_herb',
-    name: '琉彩草',
+    name: 'Prizma Prizma Otu',
     seedId: 'seed_prism_prism4_herb',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 980,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与紫莲茄在月华中蜕变，天赐之品。'
+    description: 'Bal çayı meyvesi ile mor nilüfer patlıcan ay ışığında dönüşür, gökten gelen bir armağan gibidir.'
   },
   {
     id: 'silver_prism4_chestnut',
-    name: '银彩栗',
+    name: 'Gümüş Prizma Kestanesi',
     seedId: 'seed_silver_prism4_chestnut',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 984,
     seedPrice: 0,
     deepWatering: true,
-    description: '蜜茶果与菊瓜在天光下交融，绽放华彩。'
+    description: 'Bal çayı meyvesi ile krizantem kabağı göksel ışık altında birleşir, göz kamaştırıcı bir ihtişam yayar.'
   },
   {
     id: 'verdant_prism4_apricot',
-    name: '翠彩杏',
+    name: 'Yeşil Prizma Kayısısı',
     seedId: 'seed_verdant_prism4_apricot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 988,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与南瓜稻承日月精华，辉映四方。'
+    description: 'Bal çayı meyvesi ile balkabaklı pirinç güneş ve ayın özünü taşır, dört yana ışık saçar.'
   },
   {
     id: 'violet_prism4_pear',
-    name: '紫彩梨',
+    name: 'Mor Prizma Armutu',
     seedId: 'seed_violet_prism4_pear',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 992,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与山莲凝天地灵气，瑞光盈盈。'
+    description: 'Bal çayı meyvesi ile dağ nilüferi gök ve yerin özünü birleştirir, uğurlu bir ışıkla parlar.'
   },
   {
     id: 'scarlet_prism4_berry',
-    name: '丹彩莓',
+    name: 'Kızıl Prizma Meyvesi',
     seedId: 'seed_scarlet_prism4_berry',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 996,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与双果仁沐浴星辉，祥瑞之兆。'
+    description: 'Bal çayı meyvesi ile çift çekirdek yıldız ışığında birleşir, uğurlu bir bereketin işaretidir.'
   },
   {
     id: 'azure_prism4_peach_t',
-    name: '青彩桃',
+    name: 'Gök Mavisi Prizma Şeftalisi',
     seedId: 'seed_azure_prism4_peach_t',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1000,
     seedPrice: 0,
     deepWatering: false,
-    description: '蜜茶果与甜丝瓜在月华中蜕变，天赐之品。'
+    description: 'Bal çayı meyvesi ile tatlı kabak ay ışığında dönüşür, gökten gelen bir armağan gibidir.'
   },
-  // === 五代杂交作物 ===,
+// === Beşinci Nesil Melez Ürünler ===,
   {
     id: 'precious_light5_melon',
-    name: '瑶光瓜',
+    name: 'Kutsal Işık Kavunu',
     seedId: 'seed_precious_light5_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 1000,
     seedPrice: 0,
     deepWatering: true,
-    description: '风瓜与蜜茶果的精华凝结，珍贵异常。'
+    description: 'Rüzgar kavunu ile bal çayı meyvesinin özü birleşir, son derece nadide bir üründür.'
   },
   {
     id: 'rare_light5_bean',
-    name: '琼光豆',
+    name: 'Nadir Işık Fasulyesi',
     seedId: 'seed_rare_light5_bean',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 1010,
     seedPrice: 0,
     deepWatering: false,
-    description: '风瓜与龙火椒在晨曦中绽放瑶光。'
+    description: 'Rüzgar kavunu ile ejder ateş biberi şafak ışığında birleşir, kutsal bir parıltı yayar.'
   },
   {
     id: 'magnif_light5_rice',
-    name: '瑰光稻',
+    name: 'Görkem Işığı Pirinci',
     seedId: 'seed_magnif_light5_rice',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 1021,
     seedPrice: 0,
     deepWatering: false,
-    description: '风瓜与天香稻汇聚琼露，锦绣天成。'
+    description: 'Rüzgar kavunu ile göksel pirinç birleşir, gökten damlayan çiy gibi kusursuz bir üründür.'
   },
   {
     id: 'radiant_light5_tuber',
-    name: '曦光薯',
+    name: 'Şafak Işığı Yumrusu',
     seedId: 'seed_radiant_light5_tuber',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 1031,
     seedPrice: 0,
     deepWatering: false,
-    description: '风瓜与冰莲璃光交映，绮丽非凡。'
+    description: 'Rüzgar kavunu ile buz nilüferinin ışıltısı birleşir, büyüleyici bir güzellik sunar.'
   },
   {
     id: 'lustrous_light5_green',
-    name: '璃光菜',
+    name: 'Işıltılı Yeşim Otu',
     seedId: 'seed_lustrous_light5_green',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1042,
     seedPrice: 0,
     deepWatering: false,
-    description: '风瓜与翠桃茶凝珊瑚之精，琳琅之品。'
+    description: 'Rüzgar kavunu ile yeşim şeftali çayı birleşir, nadide ve göz alıcı bir ürün ortaya çıkar.'
   },
   {
     id: 'precious_hua5_fruit',
-    name: '瑶华果',
+    name: 'Kutsal Işıltı Meyvesi',
     seedId: 'seed_precious_hua5_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1052,
     seedPrice: 0,
     deepWatering: true,
-    description: '风瓜与金龙果的精华凝结，珍贵异常。'
+    description: 'Rüzgar kavunu ile altın ejder meyvesinin özü birleşir, son derece değerli bir meyve oluşur.'
   },
   {
     id: 'rare_hua5_bloom',
-    name: '琼华花',
+    name: 'Nadir Işıltı Çiçeği',
     seedId: 'seed_rare_hua5_bloom',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1063,
     seedPrice: 0,
     deepWatering: false,
-    description: '风瓜与月霜稻在晨曦中绽放瑶光。'
+    description: 'Rüzgar kavunu ile ay kırağı pirinci şafak ışığında birleşir, kutsal bir parıltı yayar.'
   },
   {
     id: 'magnif_hua5_tea',
-    name: '瑰华茶',
+    name: 'Görkem Işıltı Çayı',
     seedId: 'seed_magnif_hua5_tea',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1073,
     seedPrice: 0,
     deepWatering: false,
-    description: '风瓜与翡翠金瓜汇聚琼露，锦绣天成。'
+    description: 'Rüzgar kavunu ile yeşim altın kabak birleşir, göksel çiyin özüyle kusursuz bir uyum yakalar.'
   },
   {
     id: 'radiant_hua5_shoot',
-    name: '曦华笋',
+    name: 'Şafak Işıltı Filizi',
     seedId: 'seed_radiant_hua5_shoot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1083,
     seedPrice: 0,
     deepWatering: false,
-    description: '风瓜与仙人花璃光交映，绮丽非凡。'
+    description: 'Rüzgar kavunu ile ölümsüz çiçeği ışık içinde birleşir, büyüleyici bir güzellik ortaya çıkar.'
   },
   {
     id: 'lustrous_hua5_lotus',
-    name: '璃华莲',
+    name: 'Işıltılı Nilüfer',
     seedId: 'seed_lustrous_hua5_lotus',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1094,
     seedPrice: 0,
     deepWatering: false,
-    description: '风瓜与龙珠凝珊瑚之精，琳琅之品。'
+    description: 'Rüzgar kavunu ile ejder incisi birleşir, nadide ve göz kamaştırıcı bir ürün oluşur.'
   },
   {
     id: 'precious_dewdrop_wheat',
-    name: '瑶露麦',
+    name: 'Kutsal Çiy Buğdayı',
     seedId: 'seed_precious_dewdrop_wheat',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1104,
     seedPrice: 0,
     deepWatering: true,
-    description: '云豆与冰莲的精华凝结，珍贵异常。'
+    description: 'Bulut fasulyesi ile buz nilüferinin özü birleşir, son derece değerli bir ürün ortaya çıkar.'
   },
   {
-    id: 'rare_dewdrop_sesame',
-    name: '琼露芝',
+   id: 'rare_dewdrop_sesame',
+    name: 'Nadir Çiy Susamı',
     seedId: 'seed_rare_dewdrop_sesame',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1115,
     seedPrice: 0,
     deepWatering: false,
-    description: '云豆与翠桃茶在晨曦中绽放瑶光。'
+    description: 'Bulut fasulyesi ile yeşim şeftali çayı şafak ışığında birleşir, kutsal bir parıltı yayar.'
   },
   {
     id: 'magnif_dewdrop_pepper',
-    name: '瑰露椒',
+    name: 'Görkem Çiy Biberi',
     seedId: 'seed_magnif_dewdrop_pepper',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1125,
     seedPrice: 0,
     deepWatering: false,
-    description: '云豆与金龙果汇聚琼露，锦绣天成。'
+    description: 'Bulut fasulyesi ile altın ejder meyvesi birleşir, göksel çiyin özüyle kusursuz bir uyum yakalar.'
   },
   {
     id: 'radiant_dewdrop_root',
-    name: '曦露参',
+    name: 'Şafak Çiy Kökü',
     seedId: 'seed_radiant_dewdrop_root',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1135,
     seedPrice: 0,
     deepWatering: false,
-    description: '云豆与月霜稻璃光交映，绮丽非凡。'
+    description: 'Bulut fasulyesi ile ay kırağı pirinci ışık içinde birleşir, büyüleyici bir güzellik sunar.'
   },
   {
     id: 'lustrous_dewdrop_sprout',
-    name: '璃露芽',
+    name: 'Işıltılı Çiy Filizi',
     seedId: 'seed_lustrous_dewdrop_sprout',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1146,
     seedPrice: 0,
     deepWatering: false,
-    description: '云豆与翡翠金瓜凝珊瑚之精，琳琅之品。'
-  },
+    description: 'Bulut fasulyesi ile yeşim altın kabak birleşir, nadide ve göz kamaştırıcı bir ürün ortaya çıkar.'
+  }, 
   {
     id: 'precious_soul_vine',
-    name: '瑶灵藤',
+    name: 'Kutsal Ruh Asması',
     seedId: 'seed_precious_soul_vine',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1156,
     seedPrice: 0,
     deepWatering: true,
-    description: '云豆与仙人花的精华凝结，珍贵异常。'
+    description: 'Bulut fasulyesi ile ölümsüz çiçeğinin özü birleşir, son derece nadide bir ürün ortaya çıkar.'
   },
   {
     id: 'rare_soul_bud',
-    name: '琼灵蕾',
+    name: 'Nadir Ruh Tomurcuğu',
     seedId: 'seed_rare_soul_bud',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1167,
     seedPrice: 0,
     deepWatering: false,
-    description: '云豆与龙珠在晨曦中绽放瑶光。'
+    description: 'Bulut fasulyesi ile ejder incisi şafak ışığında birleşir, kutsal bir parıltı yayar.'
   },
   {
     id: 'magnif_soul_orchid',
-    name: '瑰灵兰',
+    name: 'Görkemli Ruh Orkidesi',
     seedId: 'seed_magnif_soul_orchid',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1177,
     seedPrice: 0,
     deepWatering: false,
-    description: '云豆与蜜茶果汇聚琼露，锦绣天成。'
+    description: 'Bulut fasulyesi ile bal çayı meyvesi birleşir, göksel çiyin özüyle kusursuz bir uyum yakalar.'
   },
   {
     id: 'radiant_soul_gourd',
-    name: '曦灵葫',
+    name: 'Şafak Ruh Kabağı',
     seedId: 'seed_radiant_soul_gourd',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1188,
     seedPrice: 0,
     deepWatering: false,
-    description: '云豆与龙火椒璃光交映，绮丽非凡。'
+    description: 'Bulut fasulyesi ile ejder ateş biberi ışık içinde birleşir, büyüleyici bir güzellik sunar.'
   },
   {
     id: 'lustrous_soul_herb',
-    name: '璃灵草',
+    name: 'Işıltılı Ruh Otu',
     seedId: 'seed_lustrous_soul_herb',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1198,
     seedPrice: 0,
     deepWatering: false,
-    description: '云豆与天香稻凝珊瑚之精，琳琅之品。'
+    description: 'Bulut fasulyesi ile göksel pirinç birleşir, nadide ve göz kamaştırıcı bir ürün ortaya çıkar.'
   },
   {
     id: 'precious_silk5_chestnut',
-    name: '瑶锦栗',
+    name: 'Kutsal İpek Kestanesi',
     seedId: 'seed_precious_silk5_chestnut',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1208,
     seedPrice: 0,
     deepWatering: true,
-    description: '雨稻与月霜稻的精华凝结，珍贵异常。'
+    description: 'Yağmur pirinci ile ay kırağı pirincinin özü birleşir, son derece değerli bir ürün ortaya çıkar.'
   },
   {
     id: 'rare_silk5_apricot',
-    name: '琼锦杏',
+    name: 'Nadir İpek Kayısısı',
     seedId: 'seed_rare_silk5_apricot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1219,
     seedPrice: 0,
     deepWatering: false,
-    description: '雨稻与翡翠金瓜在晨曦中绽放瑶光。'
+    description: 'Yağmur pirinci ile yeşim altın kabak şafak ışığında birleşir, kutsal bir parıltı yayar.'
   },
   {
     id: 'magnif_silk5_pear',
-    name: '瑰锦梨',
+    name: 'Görkemli İpek Armutu',
     seedId: 'seed_magnif_silk5_pear',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1229,
     seedPrice: 0,
     deepWatering: false,
-    description: '雨稻与仙人花汇聚琼露，锦绣天成。'
+    description: 'Yağmur pirinci ile ölümsüz çiçeği birleşir, göksel çiyin özüyle kusursuz bir uyum yakalar.'
   },
   {
     id: 'radiant_silk5_berry',
-    name: '曦锦莓',
+    name: 'Şafak İpek Meyvesi',
     seedId: 'seed_radiant_silk5_berry',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1240,
     seedPrice: 0,
     deepWatering: false,
-    description: '雨稻与龙珠璃光交映，绮丽非凡。'
+    description: 'Yağmur pirinci ile ejder incisi ışık içinde birleşir, büyüleyici bir güzellik sunar.'
   },
   {
     id: 'lustrous_silk5_peach_t',
-    name: '璃锦桃',
+    name: 'Işıltılı İpek Şeftalisi',
     seedId: 'seed_lustrous_silk5_peach_t',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1250,
     seedPrice: 0,
     deepWatering: false,
-    description: '雨稻与蜜茶果凝珊瑚之精，琳琅之品。'
+    description: 'Yağmur pirinci ile bal çayı meyvesi birleşir, nadide ve göz kamaştırıcı bir ürün ortaya çıkar.'
   },
-  // === 六代杂交作物 ===,
+// === Altıncı Nesil Melez Ürünler ===,
   {
     id: 'spirit_wonder_melon',
-    name: '灵妙瓜',
+    name: 'Ruhani Harika Kavun',
     seedId: 'seed_spirit_wonder_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1200,
     seedPrice: 0,
     deepWatering: true,
-    description: '月华瓜与风瓜灵气交汇，仙韵天成。'
+    description: 'Ay ışıltı kavunu ile rüzgar kavunu birleşir, ruhani bir uyumla göksel bir tat oluşturur.'
   },
   {
     id: 'fairy_wonder_bean',
-    name: '仙妙豆',
+    name: 'Peri Harika Fasulyesi',
     seedId: 'seed_fairy_wonder_bean',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1213,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与云豆圣华流转，超凡入圣。'
+    description: 'Ay ışıltı kavunu ile bulut fasulyesi kutsal bir döngü içinde birleşir, olağanüstü bir lezzet sunar.'
   },
   {
     id: 'holy_wonder_rice',
-    name: '圣妙稻',
+    name: 'Kutsal Harika Pirinci',
     seedId: 'seed_holy_wonder_rice',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1225,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与雨稻神妙莫测，真灵之品。'
+    description: 'Ay ışıltı kavunu ile yağmur pirinci birleşir, gizemli ve ruhani bir ürün ortaya çıkar.'
   },
   {
     id: 'divine_wonder_tuber',
-    name: '神妙薯',
+    name: 'İlahi Harika Yumrusu',
     seedId: 'seed_divine_wonder_tuber',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1238,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与霜薯幻梦交织，禅意盎然。'
+    description: 'Ay ışıltı kavunu ile kırağı yumrusu rüya gibi birleşir, huzur dolu bir tat sunar.'
   },
   {
     id: 'trueth_wonder_green',
-    name: '真妙菜',
+    name: 'Hakiki Harika Yeşilliği',
     seedId: 'seed_trueth_wonder_green',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1250,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与雷菜仙灵缭绕，不染尘埃。'
+    description: 'Ay ışıltı kavunu ile yıldırım yeşilliği birleşir, saf ve dünyevi olmayan bir öz taşır.'
   },
   {
     id: 'spirit_grace6_fruit',
-    name: '灵华果',
+    name: 'Ruhani Lütuf Meyvesi',
     seedId: 'seed_spirit_grace6_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1263,
     seedPrice: 0,
     deepWatering: true,
-    description: '月华瓜与虹果灵气交汇，仙韵天成。'
+    description: 'Ay ışıltı kavunu ile gökkuşağı meyvesi birleşir, ruhani bir uyumla eşsiz bir lezzet sunar.'
   },
   {
     id: 'fairy_grace6_bloom',
-    name: '仙华花',
+    name: 'Peri Lütuf Çiçeği',
     seedId: 'seed_fairy_grace6_bloom',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1275,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与露花圣华流转，超凡入圣。'
+    description: 'Ay ışıltı kavunu ile çiy çiçeği birleşir, kutsal bir döngüyle ilahi bir güzellik yayar.'
   },
   {
     id: 'holy_grace6_tea',
-    name: '圣华茶',
+    name: 'Kutsal Lütuf Çayı',
     seedId: 'seed_holy_grace6_tea',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1288,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与晨茶神妙莫测，真灵之品。'
+    description: 'Ay ışıltı kavunu ile şafak çayı birleşir, gizemli ve ruhani bir öz taşır.'
   },
   {
     id: 'divine_grace6_shoot',
-    name: '神华笋',
+    name: 'İlahi Lütuf Filizi',
     seedId: 'seed_divine_grace6_shoot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1300,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与暮笋幻梦交织，禅意盎然。'
+    description: 'Ay ışıltı kavunu ile alacakaranlık filizi rüya gibi birleşir, derin bir huzur sunar.'
   },
   {
     id: 'trueth_grace6_lotus',
-    name: '真华莲',
+    name: 'Hakiki Lütuf Nilüferi',
     seedId: 'seed_trueth_grace6_lotus',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1313,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与星莲仙灵缭绕，不染尘埃。'
+    description: 'Ay ışıltı kavunu ile yıldız nilüferi birleşir, saf ve dünyevi olmayan bir güzellik yayar.'
   },
   {
     id: 'spirit_phantom_wheat',
-    name: '灵幻麦',
+    name: 'Ruhani Hayalet Buğdayı',
     seedId: 'seed_spirit_phantom_wheat',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1325,
     seedPrice: 0,
     deepWatering: true,
-    description: '月华瓜与风华麦灵气交汇，仙韵天成。'
+    description: 'Ay ışıltı kavunu ile rüzgârın ihtişamlı buğdayı birleşir, ruhani bir uyumla göksel bir ürün ortaya çıkar.'
   },
   {
     id: 'fairy_phantom_sesame',
-    name: '仙幻芝',
+    name: 'Peri Hayalet Susamı',
     seedId: 'seed_fairy_phantom_sesame',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1338,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与云华芝圣华流转，超凡入圣。'
+    description: 'Ay ışıltı kavunu ile bulut ihtişamlı susam birleşir, kutsal bir döngüyle ilahi bir varlık kazanır.'
   },
   {
     id: 'holy_phantom_pepper',
-    name: '圣幻椒',
+    name: 'Kutsal Hayalet Biberi',
     seedId: 'seed_holy_phantom_pepper',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1350,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与雨华椒神妙莫测，真灵之品。'
+    description: 'Ay ışıltı kavunu ile yağmur ihtişamlı biber birleşir, gizemli ve ruhani bir öz taşır.'
   },
   {
     id: 'divine_phantom_root',
-    name: '神幻参',
+    name: 'İlahi Hayalet Kökü',
     seedId: 'seed_divine_phantom_root',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1363,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与霜华参幻梦交织，禅意盎然。'
+    description: 'Ay ışıltı kavunu ile kırağı ihtişamlı kök rüya gibi birleşir, derin bir huzur ve bilgelik sunar.'
   },
   {
     id: 'trueth_phantom_sprout',
-    name: '真幻芽',
+    name: 'Hakiki Hayalet Filizi',
     seedId: 'seed_trueth_phantom_sprout',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1375,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与雷华芽仙灵缭绕，不染尘埃。'
+    description: 'Ay ışıltı kavunu ile yıldırım ihtişamlı filiz birleşir, saf ve dünyevi olmayan bir öz yayar.'
   },
   {
     id: 'spirit_dream_vine',
-    name: '灵梦藤',
+    name: 'Ruhani Düş Asması',
     seedId: 'seed_spirit_dream_vine',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1388,
     seedPrice: 0,
     deepWatering: true,
-    description: '月华瓜与虹华藤灵气交汇，仙韵天成。'
+    description: 'Ay ışıltı kavunu ile gökkuşağı ihtişamlı sarmaşık birleşir, ruhani bir uyumla göksel bir güzellik doğar.'
   },
   {
     id: 'fairy_dream_bud',
-    name: '仙梦蕾',
+    name: 'Peri Düş Tomurcuğu',
     seedId: 'seed_fairy_dream_bud',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1400,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与露华蕾圣华流转，超凡入圣。'
+    description: 'Ay ışıltı kavunu ile çiy ihtişamlı tomurcuk birleşir, kutsal bir döngüyle ilahi bir varlık kazanır.'
   },
   {
     id: 'holy_dream_orchid',
-    name: '圣梦兰',
+    name: 'Kutsal Düş Orkidesi',
     seedId: 'seed_holy_dream_orchid',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1413,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与晨华兰神妙莫测，真灵之品。'
+    description: 'Ay ışıltı kavunu ile şafak ihtişamlı orkide birleşir, gizemli ve ruhani bir öz taşır.'
   },
   {
     id: 'divine_dream_gourd',
-    name: '神梦葫',
+    name: 'İlahi Düş Kabağı',
     seedId: 'seed_divine_dream_gourd',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1425,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与暮华葫幻梦交织，禅意盎然。'
+    description: 'Ay ışıltı kavunu ile alacakaranlık ihtişamlı kabak rüya gibi birleşir, derin bir huzur ve bilgelik sunar.'
   },
   {
     id: 'trueth_dream_herb',
-    name: '真梦草',
+    name: 'Hakiki Düş Otu',
     seedId: 'seed_trueth_dream_herb',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1438,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与星华草仙灵缭绕，不染尘埃。'
+    description: 'Ay ışıltı kavunu ile yıldız ihtişamlı ot birleşir, saf ve dünyevi olmayan bir öz yayar.'
   },
   {
     id: 'spirit_zen_chestnut',
-    name: '灵禅栗',
+    name: 'Ruhani Zen Kestanesi',
     seedId: 'seed_spirit_zen_chestnut',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 1450,
     seedPrice: 0,
     deepWatering: true,
-    description: '月华瓜与风翠栗灵气交汇，仙韵天成。'
+    description: 'Ay ışıltı kavunu ile rüzgâr yeşim kestanesi birleşir, ruhani bir uyumla göksel bir güzellik doğar.'
   },
   {
     id: 'fairy_zen_apricot',
-    name: '仙禅杏',
+    name: 'Peri Zen Kayısısı',
     seedId: 'seed_fairy_zen_apricot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 1463,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与云翠杏圣华流转，超凡入圣。'
+    description: 'Ay ışıltı kavunu ile bulut yeşim kayısısı birleşir, kutsal bir döngüyle ilahi bir varlık kazanır.'
   },
   {
     id: 'holy_zen_pear',
-    name: '圣禅梨',
+    name: 'Kutsal Zen Armutu',
     seedId: 'seed_holy_zen_pear',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 1475,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与雨翠梨神妙莫测，真灵之品。'
+    description: 'Ay ışıltı kavunu ile yağmur yeşim armudu birleşir, gizemli ve ruhani bir öz taşır.'
   },
   {
     id: 'divine_zen_berry',
-    name: '神禅莓',
+    name: 'İlahi Zen Meyvesi',
     seedId: 'seed_divine_zen_berry',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 1488,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与霜翠莓幻梦交织，禅意盎然。'
+    description: 'Ay ışıltı kavunu ile kırağı yeşim meyvesi rüya gibi birleşir, derin bir huzur ve bilgelik sunar.'
   },
   {
     id: 'trueth_zen_peach_t',
-    name: '真禅桃',
+    name: 'Hakiki Zen Şeftalisi',
     seedId: 'seed_trueth_zen_peach_t',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 1500,
     seedPrice: 0,
     deepWatering: false,
-    description: '月华瓜与雷翠桃仙灵缭绕，不染尘埃。'
+    description: 'Ay ışıltı kavunu ile yıldırım yeşim şeftali birleşir, saf ve dünyevi olmayan bir öz yayar.'
   },
-  // === 七代杂交作物 ===,
+// === Yedinci Nesil Melez Ürünler ===,
   {
     id: 'draco_song_melon',
-    name: '龙吟瓜',
+    name: 'Ejder Ezgisi Kavunu',
     seedId: 'seed_draco_song_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1500,
     seedPrice: 0,
     deepWatering: true,
-    description: '瑶光瓜与月华瓜的神力融合，有神兽之威。'
+    description: 'Kutsal ışık kavunu ile ay ışıltı kavununun gücü birleşir, efsanevi bir kudret taşır.'
   },
   {
     id: 'fenghuang_song_bean',
-    name: '凤吟豆',
+    name: 'Anka Ezgisi Fasulyesi',
     seedId: 'seed_fenghuang_song_bean',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1513,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与日华豆龙吟凤鸣，瑞兽降世。'
+    description: 'Kutsal ışık kavunu ile güneş ışıltı fasulyesi birleşir, ejder ve ankanın kutsal yankısını taşır.'
   },
   {
     id: 'qilin_song_rice',
-    name: '麟吟稻',
+    name: 'Kutsal Qilin Ezgisi Pirinci',
     seedId: 'seed_qilin_song_rice',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1525,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与天华稻虎啸山林，鹤舞九天。'
+    description: 'Kutsal ışık kavunu ile göksel pirinç birleşir, dağlar yankılanır, göklerde kutsal dans başlar.'
   },
   {
     id: 'crane_song_tuber',
-    name: '鹤吟薯',
+    name: 'Turna Ezgisi Yumrusu',
     seedId: 'seed_crane_song_tuber',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 1538,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与玉华薯麟光闪耀，百兽朝拜。'
+    description: 'Kutsal ışık kavunu ile yeşim ışıltı yumrusu birleşir, kutsal ışık yayılır, tüm varlıklar hayran kalır.'
   },
   {
     id: 'tiger_song_green',
-    name: '虎吟菜',
+    name: 'Kaplan Ezgisi Yeşilliği',
     seedId: 'seed_tiger_song_green',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1550,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与琉华菜蛟龙出水，威震八方。'
+    description: 'Kutsal ışık kavunu ile prizma ışıltı yeşilliği birleşir, ejder uyanır, kudret dört yana yayılır.'
   },
   {
     id: 'draco_dance_fruit',
-    name: '龙舞果',
+    name: 'Ejder Dansı Meyvesi',
     seedId: 'seed_draco_dance_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1563,
     seedPrice: 0,
     deepWatering: true,
-    description: '瑶光瓜与银华果的神力融合，有神兽之威。'
+    description: 'Kutsal ışık kavunu ile gümüş ışıltı meyvesi birleşir, efsanevi yaratıkların kudreti içinde barınır.'
   },
   {
     id: 'fenghuang_dance_bloom',
-    name: '凤舞花',
+    name: 'Anka Dansı Çiçeği',
     seedId: 'seed_fenghuang_dance_bloom',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1575,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与翠华花龙吟凤鸣，瑞兽降世。'
+    description: 'Kutsal ışık kavunu ile yeşil ışıltı çiçeği birleşir, ejder ve anka ezgisiyle kutsal bir doğuş gerçekleşir.'
   },
   {
     id: 'qilin_dance_tea',
-    name: '麟舞茶',
+    name: 'Qilin Dansı Çayı',
     seedId: 'seed_qilin_dance_tea',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1588,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与紫华茶虎啸山林，鹤舞九天。'
+    description: 'Kutsal ışık kavunu ile mor ışıltı çayı birleşir, dağlar yankılanır, göklerde kutsal dans başlar.'
   },
   {
     id: 'crane_dance_shoot',
-    name: '鹤舞笋',
+    name: 'Turna Dansı Filizi',
     seedId: 'seed_crane_dance_shoot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1600,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与丹华笋麟光闪耀，百兽朝拜。'
+    description: 'Kutsal ışık kavunu ile kızıl ışıltı filizi birleşir, kutsal ışık yayılır, tüm varlıklar hayran kalır.'
   },
   {
     id: 'tiger_dance_lotus',
-    name: '虎舞莲',
+    name: 'Kaplan Dansı Nilüferi',
     seedId: 'seed_tiger_dance_lotus',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1613,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与青华莲蛟龙出水，威震八方。'
+    description: 'Kutsal ışık kavunu ile gök mavisi ışıltı nilüferi birleşir, ejder uyanır, kudret dört yana yayılır.'
   },
   {
     id: 'draco_gleam7_wheat',
-    name: '龙辉麦',
+    name: 'Ejder Işıltı Buğdayı',
     seedId: 'seed_draco_gleam7_wheat',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1625,
     seedPrice: 0,
     deepWatering: true,
-    description: '瑶光瓜与月辉麦的神力融合，有神兽之威。'
+    description: 'Kutsal ışık kavunu ile ay parıltısı buğdayı birleşir, efsanevi yaratıkların kudreti içinde barınır.'
   },
   {
     id: 'fenghuang_gleam7_sesame',
-    name: '凤辉芝',
+    name: 'Anka Işıltı Susamı',
     seedId: 'seed_fenghuang_gleam7_sesame',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1638,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与日辉芝龙吟凤鸣，瑞兽降世。'
+    description: 'Kutsal ışık kavunu ile güneş parıltısı susamı birleşir, ejder ve ankanın kutsal yankısı yeryüzüne iner.'
   },
   {
     id: 'qilin_gleam7_pepper',
-    name: '麟辉椒',
+    name: 'Qilin Işıltı Biberi',
     seedId: 'seed_qilin_gleam7_pepper',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1650,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与天辉椒虎啸山林，鹤舞九天。'
+    description: 'Kutsal ışık kavunu ile göksel parıltı biberi birleşir, dağlar yankılanır, göklerde kutsal dans başlar.'
   },
   {
     id: 'crane_gleam7_root',
-    name: '鹤辉参',
+    name: 'Turna Işıltı Kökü',
     seedId: 'seed_crane_gleam7_root',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1663,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与玉辉参麟光闪耀，百兽朝拜。'
+    description: 'Kutsal ışık kavunu ile yeşim parıltı kökü birleşir, kutsal ışık yayılır, tüm varlıklar hayran kalır.'
   },
   {
     id: 'tiger_gleam7_sprout',
-    name: '虎辉芽',
+    name: 'Kaplan Işıltı Filizi',
     seedId: 'seed_tiger_gleam7_sprout',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1675,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与琉辉芽蛟龙出水，威震八方。'
+    description: 'Kutsal ışık kavunu ile prizma parıltı filizi birleşir, ejder uyanır, kudret dört yana yayılır.'
   },
   {
     id: 'draco_shadow_vine',
-    name: '龙影藤',
+    name: 'Ejder Gölge Asması',
     seedId: 'seed_draco_shadow_vine',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1688,
     seedPrice: 0,
     deepWatering: true,
-    description: '瑶光瓜与银辉藤的神力融合，有神兽之威。'
+    description: 'Kutsal ışık kavunu ile gümüş parıltı asması birleşir, efsanevi yaratıkların kudreti içinde barınır.'
   },
   {
     id: 'fenghuang_shadow_bud',
-    name: '凤影蕾',
+    name: 'Anka Gölge Tomurcuğu',
     seedId: 'seed_fenghuang_shadow_bud',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1700,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与翠辉蕾龙吟凤鸣，瑞兽降世。'
+    description: 'Kutsal ışık kavunu ile yeşil parıltı tomurcuğu birleşir, ejder ve ankanın kutsal yankısı yeryüzüne iner.'
   },
   {
     id: 'qilin_shadow_orchid',
-    name: '麟影兰',
+    name: 'Qilin Gölge Orkidesi',
     seedId: 'seed_qilin_shadow_orchid',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1713,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与紫辉兰虎啸山林，鹤舞九天。'
+    description: 'Kutsal ışık kavunu ile mor parıltı orkidesi birleşir, dağlar yankılanır, göklerde kutsal dans başlar.'
   },
   {
     id: 'crane_shadow_gourd',
-    name: '鹤影葫',
+    name: 'Turna Gölge Kabağı',
     seedId: 'seed_crane_shadow_gourd',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1725,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与丹辉葫麟光闪耀，百兽朝拜。'
+    description: 'Kutsal ışık kavunu ile kızıl parıltı kabağı birleşir, kutsal ışık yayılır, tüm varlıklar hayran kalır.'
   },
   {
     id: 'tiger_shadow_herb',
-    name: '虎影草',
+    name: 'Kaplan Gölge Otu',
     seedId: 'seed_tiger_shadow_herb',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1738,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与青辉草蛟龙出水，威震八方。'
+    description: 'Kutsal ışık kavunu ile gök mavisi parıltı otu birleşir, ejder uyanır, kudret dört yana yayılır.'
   },
   {
     id: 'draco_roar_chestnut',
-    name: '龙啸栗',
+    name: 'Ejder Kükreyiş Kestanesi',
     seedId: 'seed_draco_roar_chestnut',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 1750,
     seedPrice: 0,
     deepWatering: true,
-    description: '瑶光瓜与月瑞栗的神力融合，有神兽之威。'
+    description: 'Kutsal ışık kavunu ile ay uğur kestanesi birleşir, efsanevi yaratıkların kudreti içinde barınır.'
   },
   {
     id: 'fenghuang_roar_apricot',
-    name: '凤啸杏',
+    name: 'Anka Kükreyiş Kayısısı',
     seedId: 'seed_fenghuang_roar_apricot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 1763,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与日瑞杏龙吟凤鸣，瑞兽降世。'
+    description: 'Kutsal ışık kavunu ile güneş uğur kayısısı birleşir, ejder ve ankanın kutsal yankısı yeryüzüne iner.'
   },
   {
     id: 'qilin_roar_pear',
-    name: '麟啸梨',
+    name: 'Qilin Kükreyiş Armutu',
     seedId: 'seed_qilin_roar_pear',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 1775,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与天瑞梨虎啸山林，鹤舞九天。'
+    description: 'Kutsal ışık kavunu ile göksel uğur armudu birleşir, dağlar yankılanır, göklerde kutsal dans başlar.'
   },
   {
     id: 'crane_roar_berry',
-    name: '鹤啸莓',
+    name: 'Turna Kükreyiş Meyvesi',
     seedId: 'seed_crane_roar_berry',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 1788,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与玉瑞莓麟光闪耀，百兽朝拜。'
+    description: 'Kutsal ışık kavunu ile yeşim uğur meyvesi birleşir, kutsal ışık yayılır, tüm varlıklar hayran kalır.'
   },
   {
     id: 'tiger_roar_peach_t',
-    name: '虎啸桃',
+    name: 'Kaplan Kükreyiş Şeftalisi',
     seedId: 'seed_tiger_roar_peach_t',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 1800,
     seedPrice: 0,
     deepWatering: false,
-    description: '瑶光瓜与琉瑞桃蛟龙出水，威震八方。'
+    description: 'Kutsal ışık kavunu ile prizma uğur şeftalisi birleşir, ejder uyanır, kudret dört yana yayılır.'
   },
-  // === 八代杂交作物 ===,
+// === Sekizinci Nesil Melez Ürünler ===,
   {
     id: 'supreme_origin_melon',
-    name: '太初瓜',
+    name: 'İlk Öz Kavunu',
     seedId: 'seed_supreme_origin_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1800,
     seedPrice: 0,
     deepWatering: true,
-    description: '灵妙瓜与瑶光瓜天地之气凝聚，元气充沛。'
+    description: 'Ruhani harika kavun ile kutsal ışık kavunu birleşir, gök ve yerin özüyle dolup taşar.'
   },
   {
     id: 'firmament_origin_bean',
-    name: '乾初豆',
+    name: 'Gök Öz Fasulyesi',
     seedId: 'seed_firmament_origin_bean',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1817,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与琼光豆乾坤交泰，阴阳和合。'
+    description: 'Ruhani harika kavun ile nadir ışık fasulyesi birleşir, yin ve yang dengesiyle kusursuz uyum doğar.'
   },
   {
     id: 'terra_origin_rice',
-    name: '坤初稻',
+    name: 'Toprak Öz Pirinci',
     seedId: 'seed_terra_origin_rice',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1833,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与瑰光稻太初之力觉醒，混元归一。'
+    description: 'Ruhani harika kavun ile görkem ışığı pirinci birleşir, kadim öz uyanır ve birlik doğar.'
   },
   {
     id: 'primal_origin_tuber',
-    name: '元初薯',
+    name: 'İlksel Öz Yumrusu',
     seedId: 'seed_primal_origin_tuber',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 1850,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与曦光薯天极之光降临，万物归元。'
+    description: 'Ruhani harika kavun ile şafak ışığı yumrusu birleşir, göksel ışık iner ve her şey özüne döner.'
   },
   {
     id: 'chaos_origin_green',
-    name: '混初菜',
+    name: 'Kaos Öz Yeşilliği',
     seedId: 'seed_chaos_origin_green',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1867,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与璃光菜元气混沌初开，太一显化。'
+    description: 'Ruhani harika kavun ile ışıltılı yeşim otu birleşir, kaosun başlangıcıyla varlık tezahür eder.'
   },
   {
     id: 'supreme_vital8_fruit',
-    name: '太灵果',
+    name: 'Yüce Ruh Meyvesi',
     seedId: 'seed_supreme_vital8_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1883,
     seedPrice: 0,
     deepWatering: true,
-    description: '灵妙瓜与瑶华果天地之气凝聚，元气充沛。'
+    description: 'Ruhani harika kavun ile kutsal ışıltı meyvesi birleşir, gök ve yerin özü içinde toplanır.'
   },
   {
     id: 'firmament_vital8_bloom',
-    name: '乾灵花',
+    name: 'Gök Ruh Çiçeği',
     seedId: 'seed_firmament_vital8_bloom',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1900,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与琼华花乾坤交泰，阴阳和合。'
+    description: 'Ruhani harika kavun ile nadir ışıltı çiçeği birleşir, yin ve yang dengesiyle kutsal uyum doğar.'
   },
   {
     id: 'terra_vital8_tea',
-    name: '坤灵茶',
+    name: 'Toprak Ruh Çayı',
     seedId: 'seed_terra_vital8_tea',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1917,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与瑰华茶太初之力觉醒，混元归一。'
+    description: 'Ruhani harika kavun ile görkem ışıltı çayı birleşir, kadim güç uyanır ve birlik doğar.'
   },
   {
     id: 'primal_vital8_shoot',
-    name: '元灵笋',
+    name: 'İlksel Ruh Filizi',
     seedId: 'seed_primal_vital8_shoot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1933,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与曦华笋天极之光降临，万物归元。'
+    description: 'Ruhani harika kavun ile şafak ışıltı filizi birleşir, göksel ışık iner ve her şey özüne döner.'
   },
   {
     id: 'chaos_vital8_lotus',
-    name: '混灵莲',
+    name: 'Kaos Ruh Nilüferi',
     seedId: 'seed_chaos_vital8_lotus',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1950,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与璃华莲元气混沌初开，太一显化。'
+    description: 'Ruhani harika kavun ile ışıltılı nilüfer birleşir, kaosun başlangıcıyla varlık tezahür eder.'
   },
   {
     id: 'supreme_glory8_wheat',
-    name: '太华麦',
+    name: 'Yüce İhtişam Buğdayı',
     seedId: 'seed_supreme_glory8_wheat',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1967,
     seedPrice: 0,
     deepWatering: true,
-    description: '灵妙瓜与瑶露麦天地之气凝聚，元气充沛。'
+    description: 'Ruhani harika kavun ile kutsal çiy buğdayı birleşir, gök ve yerin özü içinde toplanır.'
   },
   {
     id: 'firmament_glory8_sesame',
-    name: '乾华芝',
+    name: 'Gök İhtişam Susamı',
     seedId: 'seed_firmament_glory8_sesame',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 1983,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与琼露芝乾坤交泰，阴阳和合。'
+    description: 'Ruhani harika kavun ile nadir çiy susamı birleşir, yin ve yang dengesiyle kutsal uyum doğar.'
   },
   {
     id: 'terra_glory8_pepper',
-    name: '坤华椒',
+    name: 'Toprak İhtişam Biberi',
     seedId: 'seed_terra_glory8_pepper',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2000,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与瑰露椒太初之力觉醒，混元归一。'
+    description: 'Ruhani harika kavun ile görkem çiy biberi birleşir, kadim güç uyanır ve birlik doğar.'
   },
   {
     id: 'primal_glory8_root',
-    name: '元华参',
+    name: 'İlksel İhtişam Kökü',
     seedId: 'seed_primal_glory8_root',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2017,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与曦露参天极之光降临，万物归元。'
+    description: 'Ruhani harika kavun ile şafak çiy kökü birleşir, göksel ışık iner ve her şey özüne döner.'
   },
   {
     id: 'chaos_glory8_sprout',
-    name: '混华芽',
+    name: 'Kaos İhtişam Filizi',
     seedId: 'seed_chaos_glory8_sprout',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2033,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与璃露芽元气混沌初开，太一显化。'
+    description: 'Ruhani harika kavun ile ışıltılı çiy filizi birleşir, kaosun başlangıcıyla varlık tezahür eder.'
   },
   {
     id: 'supreme_zenith_vine',
-    name: '太极藤',
+    name: 'Yüce Zirve Asması',
     seedId: 'seed_supreme_zenith_vine',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2050,
     seedPrice: 0,
     deepWatering: true,
-    description: '灵妙瓜与瑶灵藤天地之气凝聚，元气充沛。'
+    description: 'Ruhani harika kavun ile kutsal ruh asması birleşir, gök ve yerin özü içinde toplanır.'
   },
   {
     id: 'firmament_zenith_bud',
-    name: '乾极蕾',
+    name: 'Gök Zirve Tomurcuğu',
     seedId: 'seed_firmament_zenith_bud',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2067,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与琼灵蕾乾坤交泰，阴阳和合。'
+    description: 'Ruhani harika kavun ile nadir ruh tomurcuğu birleşir, yin ve yang dengesiyle kutsal uyum doğar.'
   },
   {
     id: 'terra_zenith_orchid',
-    name: '坤极兰',
+    name: 'Toprak Zirve Orkidesi',
     seedId: 'seed_terra_zenith_orchid',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2083,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与瑰灵兰太初之力觉醒，混元归一。'
+    description: 'Ruhani harika kavun ile görkemli ruh orkidesi birleşir, kadim güç uyanır ve birlik doğar.'
   },
   {
     id: 'primal_zenith_gourd',
-    name: '元极葫',
+    name: 'İlksel Zirve Kabağı',
     seedId: 'seed_primal_zenith_gourd',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2100,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与曦灵葫天极之光降临，万物归元。'
+    description: 'Ruhani harika kavun ile şafak ruh kabağı birleşir, göksel ışık iner ve her şey özüne döner.'
   },
   {
     id: 'chaos_zenith_herb',
-    name: '混极草',
+    name: 'Kaos Zirve Otu',
     seedId: 'seed_chaos_zenith_herb',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2117,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与璃灵草元气混沌初开，太一显化。'
+    description: 'Ruhani harika kavun ile ışıltılı ruh otu birleşir, kaosun başlangıcıyla varlık tezahür eder.'
   },
   {
     id: 'supreme_core_chestnut',
-    name: '太元栗',
+    name: 'Yüce Öz Kestanesi',
     seedId: 'seed_supreme_core_chestnut',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 2133,
     seedPrice: 0,
     deepWatering: true,
-    description: '灵妙瓜与瑶锦栗天地之气凝聚，元气充沛。'
+    description: 'Ruhani harika kavun ile kutsal ipek kestanesi birleşir, gök ve yerin özü yoğunlaşır, yaşam enerjisi taşar.'
   },
   {
     id: 'firmament_core_apricot',
-    name: '乾元杏',
+    name: 'Gök Öz Kayısısı',
     seedId: 'seed_firmament_core_apricot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 2150,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与琼锦杏乾坤交泰，阴阳和合。'
+    description: 'Ruhani harika kavun ile nadir ipek kayısısı birleşir, yin ve yang dengesiyle kutsal uyum doğar.'
   },
   {
     id: 'terra_core_pear',
-    name: '坤元梨',
+    name: 'Toprak Öz Armutu',
     seedId: 'seed_terra_core_pear',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 2167,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与瑰锦梨太初之力觉醒，混元归一。'
+    description: 'Ruhani harika kavun ile görkemli ipek armudu birleşir, kadim güç uyanır ve birlik doğar.'
   },
   {
     id: 'primal_core_berry',
-    name: '元元莓',
+    name: 'İlksel Öz Meyvesi',
     seedId: 'seed_primal_core_berry',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 2183,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与曦锦莓天极之光降临，万物归元。'
+    description: 'Ruhani harika kavun ile şafak ipek meyvesi birleşir, göksel ışık iner ve her şey özüne döner.'
   },
   {
     id: 'chaos_core_peach_t',
-    name: '混元桃',
+    name: 'Kaos Öz Şeftalisi',
     seedId: 'seed_chaos_core_peach_t',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 2200,
     seedPrice: 0,
     deepWatering: false,
-    description: '灵妙瓜与璃锦桃元气混沌初开，太一显化。'
+    description: 'Ruhani harika kavun ile ışıltılı ipek şeftali birleşir, kaosun başlangıcıyla varlık tezahür eder.'
   },
-  // === 九代杂交作物 ===,
+  // === Dokuzuncu Nesil Melez Ürünler ===,
   {
     id: 'vast_meng_melon',
-    name: '鸿蒙瓜',
+    name: 'Kadim Öz Kavunu',
     seedId: 'seed_vast_meng_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 2200,
     seedPrice: 0,
     deepWatering: true,
-    description: '龙吟瓜与灵妙瓜鸿蒙之力交汇，通灵化境。'
+    description: 'Ejder ezgisi kavunu ile ruhani harika kavun birleşir, kadim varlığın özüyle ruhsal bir dönüşüm doğar.'
   },
   {
     id: 'ancient_meng_bean',
-    name: '古蒙豆',
+    name: 'Kadim Fasulye',
     seedId: 'seed_ancient_meng_bean',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 2225,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与仙妙豆太古洪荒之气，开天辟地。'
+    description: 'Ejder ezgisi kavunu ile peri harika fasulyesi birleşir, yaratılışın ilk nefesi yeniden canlanır.'
   },
   {
     id: 'infinite_meng_rice',
-    name: '无蒙稻',
+    name: 'Sonsuz Öz Pirinci',
     seedId: 'seed_infinite_meng_rice',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 2250,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与圣妙稻无极之道显现，玄之又玄。'
+    description: 'Ejder ezgisi kavunu ile kutsal harika pirinci birleşir, sonsuz yolun sırrı ortaya çıkar.'
   },
   {
     id: 'primeval_meng_tuber',
-    name: '洪蒙薯',
+    name: 'İlksel Öz Yumrusu',
     seedId: 'seed_primeval_meng_tuber',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 2275,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与神妙薯洪荒大力，超越万物。'
+    description: 'Ejder ezgisi kavunu ile ilahi harika yumrusu birleşir, kadim gücün özü tüm varlıkları aşar.'
   },
   {
     id: 'genesis_meng_green',
-    name: '开蒙菜',
+    name: 'Uyanış Öz Yeşilliği',
     seedId: 'seed_genesis_meng_green',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2300,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与真妙菜鸿蒙初判，天地为之变色。'
+    description: 'Ejder ezgisi kavunu ile hakiki harika yeşillik birleşir, varoluşun başlangıcıyla gök ve yer değişir.'
   },
   {
     id: 'vast_apex9_fruit',
-    name: '鸿极果',
+    name: 'Yüce Kadim Meyve',
     seedId: 'seed_vast_apex9_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2325,
     seedPrice: 0,
     deepWatering: true,
-    description: '龙吟瓜与灵华果鸿蒙之力交汇，通灵化境。'
+    description: 'Ejder ezgisi kavunu ile ruhani lütuf meyvesi birleşir, kadim özün gücüyle ruhsal dönüşüm doğar.'
   },
   {
     id: 'ancient_apex9_bloom',
-    name: '古极花',
+    name: 'Kadim Zirve Çiçeği',
     seedId: 'seed_ancient_apex9_bloom',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2350,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与仙华花太古洪荒之气，开天辟地。'
+    description: 'Ejder ezgisi kavunu ile peri lütuf çiçeği birleşir, yaratılışın ilk nefesi yeniden canlanır.'
   },
   {
     id: 'infinite_apex9_tea',
-    name: '无极茶',
+    name: 'Sonsuz Zirve Çayı',
     seedId: 'seed_infinite_apex9_tea',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2375,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与圣华茶无极之道显现，玄之又玄。'
+    description: 'Ejder ezgisi kavunu ile kutsal lütuf çayı birleşir, sonsuz yolun gizemi ortaya çıkar.'
   },
   {
     id: 'primeval_apex9_shoot',
-    name: '洪极笋',
+    name: 'İlksel Zirve Filizi',
     seedId: 'seed_primeval_apex9_shoot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2400,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与神华笋洪荒大力，超越万物。'
+    description: 'Ejder ezgisi kavunu ile ilahi lütuf filizi birleşir, kadim gücün özü tüm varlıkları aşar.'
   },
   {
     id: 'genesis_apex9_lotus',
-    name: '开极莲',
+    name: 'Uyanış Zirve Nilüferi',
     seedId: 'seed_genesis_apex9_lotus',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2425,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与真华莲鸿蒙初判，天地为之变色。'
+    description: 'Ejder ezgisi kavunu ile hakiki lütuf nilüferi birleşir, varoluşun başlangıcıyla gök ve yer değişir.'
   },
   {
     id: 'vast_wilder_wheat',
-    name: '鸿荒麦',
+    name: 'Kadim Vahşi Buğday',
     seedId: 'seed_vast_wilder_wheat',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2450,
     seedPrice: 0,
     deepWatering: true,
-    description: '龙吟瓜与灵幻麦鸿蒙之力交汇，通灵化境。'
+    description: 'Ejder ezgisi kavunu ile ruhani hayalet buğdayı birleşir, kadim özün gücüyle ruhsal dönüşüm doğar.'
   },
   {
     id: 'ancient_wilder_sesame',
-    name: '古荒芝',
+    name: 'Kadim Vahşi Susam',
     seedId: 'seed_ancient_wilder_sesame',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2475,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与仙幻芝太古洪荒之气，开天辟地。'
+    description: 'Ejder ezgisi kavunu ile peri hayalet susamı birleşir, yaratılışın ilk nefesi yeniden canlanır.'
   },
   {
     id: 'infinite_wilder_pepper',
-    name: '无荒椒',
+    name: 'Sonsuz Vahşi Biber',
     seedId: 'seed_infinite_wilder_pepper',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2500,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与圣幻椒无极之道显现，玄之又玄。'
+    description: 'Ejder ezgisi kavunu ile kutsal hayalet biberi birleşir, sonsuz yolun gizemi ortaya çıkar.'
   },
   {
     id: 'primeval_wilder_root',
-    name: '洪荒参',
+    name: 'İlksel Vahşi Kök',
     seedId: 'seed_primeval_wilder_root',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2525,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与神幻参洪荒大力，超越万物。'
+    description: 'Ejder ezgisi kavunu ile ilahi hayalet kökü birleşir, kadim gücün özü tüm varlıkları aşar.'
   },
   {
     id: 'genesis_wilder_sprout',
-    name: '开荒芽',
+    name: 'Uyanış Vahşi Filizi',
     seedId: 'seed_genesis_wilder_sprout',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2550,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与真幻芽鸿蒙初判，天地为之变色。'
+    description: 'Ejder ezgisi kavunu ile hakiki hayalet filizi birleşir, varoluşun başlangıcıyla gök ve yer değişir.'
   },
   {
     id: 'vast_empyrean_vine',
-    name: '鸿天藤',
+    name: 'Kadim Göksel Asma',
     seedId: 'seed_vast_empyrean_vine',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2575,
     seedPrice: 0,
     deepWatering: true,
-    description: '龙吟瓜与灵梦藤鸿蒙之力交汇，通灵化境。'
+    description: 'Ejder ezgisi kavunu ile ruhani düş asması birleşir, kadim özün gücüyle ruhsal dönüşüm doğar.'
   },
   {
     id: 'ancient_empyrean_bud',
-    name: '古天蕾',
+    name: 'Kadim Göksel Tomurcuk',
     seedId: 'seed_ancient_empyrean_bud',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2600,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与仙梦蕾太古洪荒之气，开天辟地。'
+    description: 'Ejder ezgisi kavunu ile peri düş tomurcuğu birleşir, yaratılışın ilk nefesi yeniden canlanır.'
   },
   {
     id: 'infinite_empyrean_orchid',
-    name: '无天兰',
+    name: 'Sonsuz Göksel Orkide',
     seedId: 'seed_infinite_empyrean_orchid',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2625,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与圣梦兰无极之道显现，玄之又玄。'
+    description: 'Ejder ezgisi kavunu ile kutsal düş orkidesi birleşir, sonsuz yolun gizemi ortaya çıkar.'
   },
   {
     id: 'primeval_empyrean_gourd',
-    name: '洪天葫',
+    name: 'İlksel Göksel Kabak',
     seedId: 'seed_primeval_empyrean_gourd',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2650,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与神梦葫洪荒大力，超越万物。'
+    description: 'Ejder ezgisi kavunu ile ilahi düş kabağı birleşir, kadim gücün özü tüm varlıkları aşar.'
   },
   {
     id: 'genesis_empyrean_herb',
-    name: '开天草',
+    name: 'Yaratılış Göksel Otu',
     seedId: 'seed_genesis_empyrean_herb',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2675,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与真梦草鸿蒙初判，天地为之变色。'
+    description: 'Ejder ezgisi kavunu ile hakiki düş otu birleşir, varoluşun başlangıcıyla gök ve yer değişir.'
   },
   {
     id: 'vast_spirit9_chestnut',
-    name: '鸿灵栗',
+    name: 'Kadim Ruh Kestanesi',
     seedId: 'seed_vast_spirit9_chestnut',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 2700,
     seedPrice: 0,
     deepWatering: true,
-    description: '龙吟瓜与灵禅栗鸿蒙之力交汇，通灵化境。'
+    description: 'Ejder ezgisi kavunu ile ruhani zen kestanesi birleşir, kadim özün gücüyle ruhsal dönüşüm doğar.'
   },
   {
     id: 'ancient_spirit9_apricot',
-    name: '古灵杏',
+    name: 'Kadim Ruh Kayısısı',
     seedId: 'seed_ancient_spirit9_apricot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 2725,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与仙禅杏太古洪荒之气，开天辟地。'
+    description: 'Ejder ezgisi kavunu ile peri zen kayısısı birleşir, yaratılışın ilk nefesi yeniden canlanır.'
   },
   {
     id: 'infinite_spirit9_pear',
-    name: '无灵梨',
+    name: 'Sonsuz Ruh Armutu',
     seedId: 'seed_infinite_spirit9_pear',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 2750,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与圣禅梨无极之道显现，玄之又玄。'
+    description: 'Ejder ezgisi kavunu ile kutsal zen armudu birleşir, sonsuz yolun gizemi ortaya çıkar.'
   },
   {
     id: 'primeval_spirit9_berry',
-    name: '洪灵莓',
+    name: 'İlksel Ruh Meyvesi',
     seedId: 'seed_primeval_spirit9_berry',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 2775,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与神禅莓洪荒大力，超越万物。'
+    description: 'Ejder ezgisi kavunu ile ilahi zen meyvesi birleşir, kadim gücün özü tüm varlıkları aşar.'
   },
   {
     id: 'genesis_spirit9_peach_t',
-    name: '开灵桃',
+    name: 'Uyanış Ruh Şeftalisi',
     seedId: 'seed_genesis_spirit9_peach_t',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 2800,
     seedPrice: 0,
     deepWatering: false,
-    description: '龙吟瓜与真禅桃鸿蒙初判，天地为之变色。'
+    description: 'Ejder ezgisi kavunu ile hakiki zen şeftalisi birleşir, varoluşun başlangıcıyla gök ve yer değişir.'
   },
-  // === 十代杂交作物 ===,
+// === Onuncu Nesil Melez Ürünler ===,
   {
     id: 'creation_change_melon',
-    name: '造化瓜',
+    name: 'Yaratılış Kavunu',
     seedId: 'seed_creation_change_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2800,
     seedPrice: 0,
     deepWatering: true,
-    description: '太初瓜与龙吟瓜造化之力成就，永恒不朽之品。'
+    description: 'İlk öz kavunu ile ejder ezgisi kavunu birleşir, yaratılışın kudretiyle ölümsüz bir ürün doğar.'
   },
   {
     id: 'eternal_change_bean',
-    name: '永化豆',
+    name: 'Ebedi Dönüşüm Fasulyesi',
     seedId: 'seed_eternal_change_bean',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2829,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与凤吟豆天命所归，万象更新。'
+    description: 'İlk öz kavunu ile anka ezgisi fasulyesi birleşir, kaderin hükmüyle varlıklar yeniden şekillenir.'
   },
   {
     id: 'undying_change_rice',
-    name: '不化稻',
+    name: 'Ölümsüz Dönüşüm Pirinci',
     seedId: 'seed_undying_change_rice',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2858,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与麟吟稻不朽轮回，涅槃重生。'
+    description: 'İlk öz kavunu ile qilin ezgisi pirinci birleşir, ölümsüz döngü içinde yeniden doğuş yaşanır.'
   },
   {
     id: 'heavenly_change_tuber',
-    name: '天化薯',
+    name: 'Göksel Dönüşüm Yumrusu',
     seedId: 'seed_heavenly_change_tuber',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 11,
     sellPrice: 2888,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与鹤吟薯造化弄人，终成至宝。'
+    description: 'İlk öz kavunu ile turna ezgisi yumrusu birleşir, kaderin oyunu sonunda kutsal bir hazineye dönüşür.'
   },
   {
     id: 'myriad_change_green',
-    name: '万化菜',
+    name: 'Bin Dönüşüm Yeşilliği',
     seedId: 'seed_myriad_change_green',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2917,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与虎吟菜永恒不灭之光，照耀天地。'
+    description: 'İlk öz kavunu ile kaplan ezgisi yeşilliği birleşir, sönmeyen bir ışıkla gök ve yeri aydınlatır.'
   },
   {
     id: 'creation_lasting_fruit',
-    name: '造恒果',
+    name: 'Ebedi Yaratılış Meyvesi',
     seedId: 'seed_creation_lasting_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2946,
     seedPrice: 0,
     deepWatering: true,
-    description: '太初瓜与龙舞果造化之力成就，永恒不朽之品。'
+    description: 'İlk öz kavunu ile ejder dansı meyvesi birleşir, yaratılışın kudretiyle ölümsüz bir ürün doğar.'
   },
   {
     id: 'eternal_lasting_bloom',
-    name: '永恒花',
+    name: 'Ebedi Çiçek',
     seedId: 'seed_eternal_lasting_bloom',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 2975,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与凤舞花天命所归，万象更新。'
+    description: 'İlk öz kavunu ile anka dansı çiçeği birleşir, kaderin hükmüyle varlıklar yeniden şekillenir.'
   },
   {
     id: 'undying_lasting_tea',
-    name: '不恒茶',
+    name: 'Ölümsüz Ebedi Çay',
     seedId: 'seed_undying_lasting_tea',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 3004,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与麟舞茶不朽轮回，涅槃重生。'
+    description: 'İlk öz kavunu ile qilin dansı çayı birleşir, ölümsüz döngü içinde yeniden doğuş gerçekleşir.'
   },
   {
     id: 'heavenly_lasting_shoot',
-    name: '天恒笋',
+    name: 'Göksel Ebedi Filiz',
     seedId: 'seed_heavenly_lasting_shoot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 3033,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与鹤舞笋造化弄人，终成至宝。'
+    description: 'İlk öz kavunu ile turna dansı filizi birleşir, kaderin oyunu sonunda kutsal bir hazineye dönüşür.'
   },
   {
     id: 'myriad_lasting_lotus',
-    name: '万恒莲',
+    name: 'Bin Ebedi Nilüfer',
     seedId: 'seed_myriad_lasting_lotus',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 3063,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与虎舞莲永恒不灭之光，照耀天地。'
+    description: 'İlk öz kavunu ile kaplan dansı nilüferi birleşir, sönmeyen bir ışıkla gök ve yeri aydınlatır.'
   },
   {
     id: 'creation_timeless_wheat',
-    name: '造朽麦',
+    name: 'Ebedi Yaratılış Buğdayı',
     seedId: 'seed_creation_timeless_wheat',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 3092,
     seedPrice: 0,
     deepWatering: true,
-    description: '太初瓜与龙辉麦造化之力成就，永恒不朽之品。'
+    description: 'İlk öz kavunu ile ejder ışıltı buğdayı birleşir, yaratılışın kudretiyle ölümsüz bir ürün doğar.'
   },
   {
     id: 'eternal_timeless_sesame',
-    name: '永朽芝',
+    name: 'Ebedi Sonsuz Susam',
     seedId: 'seed_eternal_timeless_sesame',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 12,
     sellPrice: 3121,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与凤辉芝天命所归，万象更新。'
+    description: 'İlk öz kavunu ile anka ışıltı susamı birleşir, kaderin hükmüyle varlıklar yeniden şekillenir.'
   },
   {
     id: 'undying_timeless_pepper',
-    name: '不朽椒',
+    name: 'Ölümsüz Sonsuz Biber',
     seedId: 'seed_undying_timeless_pepper',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 3150,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与麟辉椒不朽轮回，涅槃重生。'
+    description: 'İlk öz kavunu ile qilin ışıltı biberi birleşir, ölümsüz döngü içinde yeniden doğuş gerçekleşir.'
   },
   {
     id: 'heavenly_timeless_root',
-    name: '天朽参',
+    name: 'Göksel Sonsuz Kök',
     seedId: 'seed_heavenly_timeless_root',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 3179,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与鹤辉参造化弄人，终成至宝。'
+    description: 'İlk öz kavunu ile turna ışıltı kökü birleşir, kaderin oyunu sonunda kutsal bir hazineye dönüşür.'
   },
   {
     id: 'myriad_timeless_sprout',
-    name: '万朽芽',
+    name: 'Bin Sonsuz Filiz',
     seedId: 'seed_myriad_timeless_sprout',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 3208,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与虎辉芽永恒不灭之光，照耀天地。'
+    description: 'İlk öz kavunu ile kaplan ışıltı filizi birleşir, sönmeyen bir ışıkla gök ve yeri aydınlatır.'
   },
   {
     id: 'creation_destiny_vine',
-    name: '造命藤',
+    name: 'Kader Yaratım Asması',
     seedId: 'seed_creation_destiny_vine',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 3238,
     seedPrice: 0,
     deepWatering: true,
-    description: '太初瓜与龙影藤造化之力成就，永恒不朽之品。'
+    description: 'İlk öz kavunu ile ejder gölge asması birleşir, yaratılışın kudretiyle ölümsüz bir varlık doğar.'
   },
   {
     id: 'eternal_destiny_bud',
-    name: '永命蕾',
+    name: 'Ebedi Kader Tomurcuğu',
     seedId: 'seed_eternal_destiny_bud',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 3267,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与凤影蕾天命所归，万象更新。'
+    description: 'İlk öz kavunu ile anka gölge tomurcuğu birleşir, kaderin hükmüyle varlıklar yeniden şekillenir.'
   },
   {
     id: 'undying_destiny_orchid',
-    name: '不命兰',
+    name: 'Ölümsüz Kader Orkidesi',
     seedId: 'seed_undying_destiny_orchid',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 3296,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与麟影兰不朽轮回，涅槃重生。'
+    description: 'İlk öz kavunu ile qilin gölge orkidesi birleşir, ölümsüz döngü içinde yeniden doğuş gerçekleşir.'
   },
   {
     id: 'heavenly_destiny_gourd',
-    name: '天命葫',
+    name: 'Göksel Kader Kabağı',
     seedId: 'seed_heavenly_destiny_gourd',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 3325,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与鹤影葫造化弄人，终成至宝。'
+    description: 'İlk öz kavunu ile turna gölge kabağı birleşir, kaderin oyunu sonunda kutsal bir hazineye dönüşür.'
   },
   {
     id: 'myriad_destiny_herb',
-    name: '万命草',
+    name: 'Bin Kader Otu',
     seedId: 'seed_myriad_destiny_herb',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 13,
     sellPrice: 3354,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与虎影草永恒不灭之光，照耀天地。'
+    description: 'İlk öz kavunu ile kaplan gölge otu birleşir, sönmeyen bir ışıkla gök ve yeri aydınlatır.'
   },
   {
     id: 'creation_form_chestnut',
-    name: '造象栗',
+    name: 'Yaratım Suret Kestanesi',
     seedId: 'seed_creation_form_chestnut',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 14,
     sellPrice: 3383,
     seedPrice: 0,
     deepWatering: true,
-    description: '太初瓜与龙啸栗造化之力成就，永恒不朽之品。'
+    description: 'İlk öz kavunu ile ejder kükreyiş kestanesi birleşir, yaratılışın kudretiyle ölümsüz bir varlık doğar.'
   },
   {
     id: 'eternal_form_apricot',
-    name: '永象杏',
+    name: 'Ebedi Suret Kayısısı',
     seedId: 'seed_eternal_form_apricot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 14,
     sellPrice: 3413,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与凤啸杏天命所归，万象更新。'
+    description: 'İlk öz kavunu ile anka kükreyiş kayısısı birleşir, kaderin hükmüyle varlıklar yeniden şekillenir.'
   },
   {
     id: 'undying_form_pear',
-    name: '不象梨',
+    name: 'Ölümsüz Suret Armutu',
     seedId: 'seed_undying_form_pear',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 14,
     sellPrice: 3442,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与麟啸梨不朽轮回，涅槃重生。'
+    description: 'İlk öz kavunu ile qilin kükreyiş armudu birleşir, ölümsüz döngü içinde yeniden doğuş gerçekleşir.'
   },
   {
     id: 'heavenly_form_berry',
-    name: '天象莓',
+    name: 'Göksel Suret Meyvesi',
     seedId: 'seed_heavenly_form_berry',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 14,
     sellPrice: 3471,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与鹤啸莓造化弄人，终成至宝。'
+    description: 'İlk öz kavunu ile turna kükreyiş meyvesi birleşir, kaderin oyunu sonunda kutsal bir hazineye dönüşür.'
   },
   {
     id: 'myriad_form_peach_t',
-    name: '万象桃',
+    name: 'Bin Suret Şeftalisi',
     seedId: 'seed_myriad_form_peach_t',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 14,
     sellPrice: 3500,
     seedPrice: 0,
     deepWatering: false,
-    description: '太初瓜与虎啸桃永恒不灭之光，照耀天地。'
+    description: 'İlk öz kavunu ile kaplan kükreyiş şeftalisi birleşir, sönmeyen bir ışıkla gök ve yeri aydınlatır.'
   },
-  // === 远古作物 ===
+// === Kadim Ürünler ===
   {
     id: 'ancient_fruit',
-    name: '远古水果',
+    name: 'Kadim Meyve',
     seedId: 'ancient_seed',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 28,
     sellPrice: 4000,
     seedPrice: 0,
     deepWatering: false,
-    description: '远古种子孕育的神秘果实，蕴含亘古生命力，四季皆可生长。',
+    description: 'Kadim tohumlardan doğan gizemli bir meyve; içinde çağlar öncesinden gelen yaşam gücü taşır, dört mevsim yetişir.',
     regrowth: true,
     regrowthDays: 7,
     maxHarvests: 6
   },
-  // === 瀚海作物 ===
+// === Gaköy Çöl Diyarı Ürünleri ===
   {
     id: 'hanhai_cactus',
-    name: '仙人掌',
+    name: 'Çöl Diken',
     seedId: 'hanhai_cactus_seed',
     season: ['summer'],
     growthDays: 12,
     sellPrice: 750,
     seedPrice: 0,
     deepWatering: false,
-    description: '来自西域的奇特植物，耐旱耐热，夏季可种植。',
+    description: 'Gaköy’ün güneyindeki kızıl kumlardan gelen dayanıklı bitki; susuzluğa ve sıcağa dirençlidir.',
     regrowth: true,
     regrowthDays: 5,
     maxHarvests: 3
   },
   {
     id: 'hanhai_date',
-    name: '椰枣',
+    name: 'Kum Hurması',
     seedId: 'hanhai_date_seed',
     season: ['summer', 'autumn'],
     growthDays: 10,
     sellPrice: 500,
     seedPrice: 0,
     deepWatering: false,
-    description: '丝绸之路带来的西域果实，夏秋可种植。',
+    description: 'Kadim ticaret yollarından Gaköy’e ulaşan tatlı meyve; yaz ve güz mevsiminde yetişir.',
     regrowth: true,
     regrowthDays: 4,
     maxHarvests: 4
   }
 ]
 
-/** 根据ID查找作物 */
+/** ID'ye göre ürünleri bulma */
 export const getCropById = (id: string): CropDef | undefined => {
   return CROPS.find(c => c.id === id)
 }
 
-/** 根据种子ID获取作物定义 */
+/** Tohum kimliğine dayalı mahsul tanımlarını elde edin. */
 export const getCropBySeedId = (seedId: string): CropDef | undefined => {
   return CROPS.find(c => c.seedId === seedId)
 }
 
-/** 根据季节获取可种作物 */
+/** Mevsimlere göre ekilebilir ürünler elde edin. */
 export const getCropsBySeason = (season: string): CropDef[] => {
   return CROPS.filter(c => c.season.includes(season as any))
 }
