@@ -997,1701 +997,1701 @@ export const CROPS: CropDef[] = [
   },
   {
     id: 'sweet_gourd',
-    name: '甜丝瓜',
+    name: 'Tatlı Kabak',
     seedId: 'seed_sweet_gourd',
     season: ['summer', 'autumn'],
     growthDays: 7,
     sellPrice: 170,
     seedPrice: 0,
     deepWatering: false,
-    description: '丝瓜的嫩滑与红薯的甜蜜碰撞，瓜肉甘甜。',
+    description: 'Kabağın yumuşak dokusu ile tatlı patatesin şekerli tadı birleşir, meyvesi hoş bir tatlılık sunar.',
     regrowth: true,
     regrowthDays: 3,
     maxHarvests: 3
   },
   {
     id: 'purple_persimmon',
-    name: '紫柿',
+    name: 'Mor Hurma Meyvesi',
     seedId: 'seed_purple_persimmon',
     season: ['summer', 'autumn'],
     growthDays: 8,
     sellPrice: 210,
     seedPrice: 0,
     deepWatering: false,
-    description: '茄子的紫润与柿子的甜蜜融合，果实紫红。'
+    description: 'Patlıcanın mor parlaklığı ile hurmanın tatlılığı birleşir, meyvesi mor-kırmızı tonlardadır.'
   },
   {
     id: 'fire_ginger',
-    name: '火姜',
+    name: 'Ateş Zencefili',
     seedId: 'seed_fire_ginger',
     season: ['summer', 'autumn', 'winter'],
     growthDays: 6,
     sellPrice: 175,
     seedPrice: 0,
     deepWatering: false,
-    description: '辣椒的火辣与生姜的辛暖交汇，暖意十足。'
+    description: 'Acı biberin yakıcılığı ile zencefilin sıcaklığı birleşir, iç ısıtan güçlü bir tat sunar.'
   },
   {
     id: 'osmanthus_lotus',
-    name: '桂莲',
+    name: 'Osmanthus Nilüferi',
     seedId: 'seed_osmanthus_lotus',
     season: ['summer', 'autumn'],
     growthDays: 9,
     sellPrice: 270,
     seedPrice: 0,
     deepWatering: true,
-    description: '莲子的清心与桂花的芬芳共鸣，如入仙境。'
+    description: 'Nilüfer tohumunun huzur veren tadı ile osmanthus çiçeğinin hoş kokusu birleşir, adeta bir cennet hissi verir.'
   },
   {
     id: 'golden_sweet',
-    name: '金薯',
+    name: 'Altın Tatlı Patates',
     seedId: 'seed_golden_sweet',
     season: ['summer', 'autumn'],
     growthDays: 7,
     sellPrice: 175,
     seedPrice: 0,
     deepWatering: false,
-    description: '玉米的金色与红薯的甜蜜合一，通体金黄。'
+    description: 'Mısırın altın rengi ile tatlı patatesin tatlılığı birleşir, tamamı altın sarısıdır.'
   },
   {
     id: 'ruby_melon',
-    name: '红宝瓜',
+    name: 'Yakut Kavun',
     seedId: 'seed_ruby_melon',
     season: ['summer', 'autumn'],
     growthDays: 7,
     sellPrice: 195,
     seedPrice: 0,
     deepWatering: false,
-    description: '西瓜的多汁与红枣的甜蜜碰撞，果肉红如宝石。'
+    description: 'Karpuzun sulu yapısı ile hünnabın tatlılığı birleşir, içi yakut gibi kızıldır.'
   },
   {
     id: 'chrysanthemum_rice',
-    name: '菊稻',
+    name: 'Krizantem Pirinci',
     seedId: 'seed_chrysanthemum_rice',
     season: ['summer', 'autumn'],
     growthDays: 8,
     sellPrice: 190,
     seedPrice: 0,
     deepWatering: false,
-    description: '稻谷与菊花的田园融合，米饭带着淡淡菊香。'
+    description: 'Pirinç ile krizantemin kır uyumu birleşir, pilavda hafif bir çiçek kokusu hissedilir.'
   },
   {
     id: 'nut_corn',
-    name: '花生玉米',
+    name: 'Fıstıklı Mısır',
     seedId: 'seed_nut_corn',
     season: ['summer', 'autumn'],
     growthDays: 8,
     sellPrice: 185,
     seedPrice: 0,
     deepWatering: false,
-    description: '玉米与花生的粗粮结合，每穗夹带花生香。',
+    description: 'Mısır ile yer fıstığının birleşimi, her koçanda fıstık aroması taşır.',
     regrowth: true,
     regrowthDays: 4,
     maxHarvests: 3
   },
   {
     id: 'frost_melon',
-    name: '霜甜瓜',
+    name: 'Kırağı Kavunu',
     seedId: 'seed_frost_melon',
     season: ['summer', 'winter'],
     growthDays: 7,
     sellPrice: 185,
     seedPrice: 0,
     deepWatering: false,
-    description: '西瓜的甜与白菜的耐寒交融，冬日也能品尝的甜蜜。'
+    description: 'Karpuzun tatlılığı ile lahananın soğuğa dayanıklılığı birleşir, kışın bile tadılabilen bir lezzet sunar.'
   },
   {
     id: 'twin_grain',
-    name: '双谷',
+    name: 'Çifte Tahıl',
     seedId: 'seed_twin_grain',
     season: ['summer', 'winter'],
     growthDays: 9,
     sellPrice: 180,
     seedPrice: 0,
     deepWatering: false,
-    description: '稻谷与冬小麦的谷物联姻，南北交融。'
+    description: 'Pirinç ile kış buğdayının birleşimi, kuzey ve güneyin tahıllarını bir araya getirir.'
   },
   {
     id: 'lotus_cabbage',
-    name: '莲白菜',
+    name: 'Nilüfer Lahanası',
     seedId: 'seed_lotus_cabbage',
     season: ['summer', 'winter'],
     growthDays: 8,
     sellPrice: 185,
     seedPrice: 0,
     deepWatering: false,
-    description: '莲藕的清润与白菜的质朴合一，冬日清补。'
+    description: 'Nilüfer kökünün ferahlığı ile lahananın sadeliği birleşir, kış için hafif ve besleyici bir üründür.'
   },
   {
     id: 'garlic_sesame',
-    name: '蒜芝',
+    name: 'Sarımsaklı Susam',
     seedId: 'seed_garlic_sesame',
     season: ['summer', 'winter'],
     growthDays: 6,
     sellPrice: 160,
     seedPrice: 0,
     deepWatering: false,
-    description: '芝麻的香浓与大蒜的辛辣碰撞，调味圣品。'
+    description: 'Susamın yoğun aroması ile sarımsağın keskinliği birleşir, eşsiz bir baharat olur.'
   },
   {
     id: 'chive_gourd',
-    name: '韭丝瓜',
+    name: 'Frenk Soğanlı Kabak',
     seedId: 'seed_chive_gourd',
     season: ['summer', 'winter', 'spring'],
     growthDays: 6,
     sellPrice: 160,
     seedPrice: 0,
     deepWatering: false,
-    description: '丝瓜的嫩滑与韭菜的浓郁交织，三季可种。',
+    description: 'Kabağın yumuşak dokusu ile frenk soğanının yoğun aroması birleşir, üç mevsim yetiştirilebilir.',
     regrowth: true,
     regrowthDays: 3,
     maxHarvests: 4
   },
   {
     id: 'mustard_eggplant',
-    name: '芥茄',
+    name: 'Hardallı Patlıcan',
     seedId: 'seed_mustard_eggplant',
     season: ['summer', 'winter'],
     growthDays: 7,
     sellPrice: 175,
     seedPrice: 0,
     deepWatering: false,
-    description: '茄子的紫韵裹上芥菜的微辣，别有风味。'
+    description: 'Patlıcanın mor zarafeti, hardalın hafif acılığıyla birleşir, kendine has bir lezzet sunar.'
   },
   {
     id: 'snow_fire_pepper',
-    name: '冰火椒',
+    name: 'Buz Ateş Biberi',
     seedId: 'seed_snow_fire_pepper',
     season: ['summer', 'winter'],
     growthDays: 9,
     sellPrice: 285,
     seedPrice: 0,
     deepWatering: true,
-    description: '辣椒的火焰与雪莲的冰霜碰撞，冰火两重天。'
+    description: 'Biberin ateşi ile kar lotusunun soğuğu çarpışır, buz ve ateşin iki zıt gücünü taşır.'
   },
   {
     id: 'winter_corn',
-    name: '冬玉米',
+    name: 'Kış Mısırı',
     seedId: 'seed_winter_corn',
     season: ['summer', 'autumn', 'winter'],
     growthDays: 8,
     sellPrice: 180,
     seedPrice: 0,
     deepWatering: false,
-    description: '玉米不畏严寒，叶绿如冬日常青松。',
+    description: 'Mısır sert soğuklardan etkilenmez, yaprakları kışın yeşil çam gibi kalır.',
     regrowth: true,
     regrowthDays: 4,
     maxHarvests: 3
   },
   {
     id: 'amber_yam',
-    name: '琥珀薯',
+    name: 'Kehribar Yamı',
     seedId: 'seed_amber_yam',
     season: ['autumn'],
     growthDays: 7,
     sellPrice: 195,
     seedPrice: 0,
     deepWatering: false,
-    description: '山药的滋补与红薯的甜糯交融，色如琥珀。'
+    description: 'Yamın besleyiciliği ile tatlı patatesin yumuşak tatlılığı birleşir, rengi kehribar gibi parlar.'
   },
   {
     id: 'twin_blossom',
-    name: '双花',
+    name: 'Çifte Çiçek',
     seedId: 'seed_twin_blossom',
     season: ['autumn'],
     growthDays: 8,
     sellPrice: 240,
     seedPrice: 0,
     deepWatering: false,
-    description: '菊花与桂花竞相绽放，双花争艳。'
+    description: 'Krizantem ile osmanthus çiçekleri birlikte açar, iki çiçek güzellikte yarışır.'
   },
   {
     id: 'mountain_nut',
-    name: '山花生',
+    name: 'Dağ Fıstığı',
     seedId: 'seed_mountain_nut',
     season: ['autumn'],
     growthDays: 7,
     sellPrice: 180,
     seedPrice: 0,
     deepWatering: false,
-    description: '山药的绵密与花生的香脆碰撞，山中奇珍。'
+    description: 'Yamın yumuşak dokusu ile yer fıstığının çıtırlığı birleşir, dağların nadide lezzetidir.'
   },
   {
     id: 'autumn_gem',
-    name: '秋桂南瓜',
+    name: 'Sonbahar Mücevheri',
     seedId: 'seed_autumn_gem',
     season: ['autumn'],
     growthDays: 8,
     sellPrice: 230,
     seedPrice: 0,
     deepWatering: false,
-    description: '南瓜的丰满与桂花的馨香融合，金秋瑰宝。',
+    description: 'Balkabağının dolgunluğu ile osmanthus çiçeğinin hoş kokusu birleşir, sonbaharın değerli hazinesi.',
     giantCropEligible: true
   },
   {
     id: 'ginger_yam',
-    name: '姜山药',
+    name: 'Zencefilli Yam',
     seedId: 'seed_ginger_yam',
     season: ['autumn', 'winter'],
     growthDays: 8,
     sellPrice: 200,
     seedPrice: 0,
     deepWatering: false,
-    description: '生姜的辛暖与山药的滋补合一，冬日滋补圣品。'
+    description: 'Zencefilin sıcaklığı ile yamın besleyiciliği birleşir, kış için güçlü bir besindir.'
   },
   {
     id: 'golden_persimmon',
-    name: '金柿',
+    name: 'Altın Hurma',
     seedId: 'seed_golden_persimmon',
     season: ['autumn'],
     growthDays: 8,
     sellPrice: 220,
     seedPrice: 0,
     deepWatering: false,
-    description: '柿子的甜软与南瓜的金黄交融，如金似蜜。'
+    description: 'Hurmanın yumuşak tatlılığı ile balkabağının altın rengi birleşir, bal gibi parlak ve tatlıdır.'
   },
   {
     id: 'chrysanthemum_jujube',
-    name: '菊枣',
+    name: 'Krizantem Hünnabı',
     seedId: 'seed_chrysanthemum_jujube',
     season: ['autumn'],
     growthDays: 7,
     sellPrice: 185,
     seedPrice: 0,
     deepWatering: false,
-    description: '菊花的清雅与红枣的甜蜜合一，花中带果。'
+    description: 'Krizantemin zarif kokusu ile hünnabın tatlılığı birleşir, çiçek ve meyve aroması iç içedir.'
   },
   {
     id: 'osmanthus_yam',
-    name: '桂薯',
+    name: 'Osmanthus Tatlı Patatesi',
     seedId: 'seed_osmanthus_yam',
     season: ['autumn'],
     growthDays: 8,
     sellPrice: 210,
     seedPrice: 0,
     deepWatering: false,
-    description: '桂花的馨香渗入红薯的甜糯，满口桂香。'
+    description: 'Osmanthus çiçeğinin hoş kokusu tatlı patatesin yumuşak tatlılığına işler, ağızda kalıcı bir aroma bırakır.'
   },
   {
     id: 'winter_pumpkin',
-    name: '冬南瓜',
+    name: 'Kış Balkabağı',
     seedId: 'seed_winter_pumpkin',
     season: ['autumn', 'winter'],
     growthDays: 8,
     sellPrice: 195,
     seedPrice: 0,
     deepWatering: false,
-    description: '南瓜的丰硕与白菜的耐寒结合，冬日暖食。',
+    description: 'Balkabağının bolluğu ile lahananın soğuğa dayanıklılığı birleşir, kışın iç ısıtan bir besindir.',
     giantCropEligible: true
   },
   {
     id: 'emerald_yam',
-    name: '翡翠山药',
+    name: 'Zümrüt Yamı',
     seedId: 'seed_emerald_yam',
     season: ['autumn', 'winter'],
     growthDays: 8,
     sellPrice: 195,
     seedPrice: 0,
     deepWatering: false,
-    description: '山药的滋补与菠菜的翠绿交融，切面翡翠般碧绿。'
+    description: 'Yamın besleyiciliği ile ıspanağın yeşilliği birleşir, kesildiğinde zümrüt gibi parlar.'
   },
   {
     id: 'snow_chrysanthemum',
-    name: '雪菊',
+    name: 'Kar Krizantemi',
     seedId: 'seed_snow_chrysanthemum',
     season: ['autumn', 'winter'],
     growthDays: 10,
     sellPrice: 310,
     seedPrice: 0,
     deepWatering: true,
-    description: '菊花的清雅与雪莲的纯净合一，花瓣如雪。'
+    description: 'Krizantemin zarafeti ile kar lotusunun saflığı birleşir, yaprakları kar gibi beyazdır.'
   },
   {
     id: 'osmanthus_garlic',
-    name: '桂蒜',
+    name: 'Osmanthus Sarımsağı',
     seedId: 'seed_osmanthus_garlic',
     season: ['autumn', 'winter'],
     growthDays: 7,
     sellPrice: 195,
     seedPrice: 0,
     deepWatering: false,
-    description: '桂花的馨香中和大蒜的辛辣，芳香四溢。'
+    description: 'Osmanthus çiçeğinin hoş kokusu sarımsağın keskinliğini dengeler, etrafa güzel bir aroma yayar.'
   },
   {
     id: 'wheat_yam',
-    name: '麦山药',
+    name: 'Buğday Yamı',
     seedId: 'seed_wheat_yam',
     season: ['autumn', 'winter'],
     growthDays: 9,
     sellPrice: 190,
     seedPrice: 0,
     deepWatering: false,
-    description: '山药与冬小麦的跨季联姻，营养丰富。'
+    description: 'Yam ile kış buğdayının mevsimler arası birleşimi, oldukça besleyicidir.'
   },
   {
     id: 'cream_peanut',
-    name: '白花生',
+    name: 'Beyaz Yer Fıstığı',
     seedId: 'seed_cream_peanut',
     season: ['autumn', 'winter'],
     growthDays: 7,
     sellPrice: 170,
     seedPrice: 0,
     deepWatering: false,
-    description: '花生的香脆与白菜的素净合一，壳白如雪。'
+    description: 'Yer fıstığının çıtırlığı ile lahananın sadeliği birleşir, kabuğu kar gibi beyazdır.'
   },
   {
     id: 'garlic_jujube',
-    name: '蒜枣',
+    name: 'Sarımsaklı Hünnap',
     seedId: 'seed_garlic_jujube',
     season: ['autumn', 'winter'],
     growthDays: 7,
     sellPrice: 180,
     seedPrice: 0,
     deepWatering: false,
-    description: '红枣的甜与大蒜的辛碰撞，味道出人意料。'
+    description: 'Hünnabın tatlılığı ile sarımsağın keskinliği çarpışır, beklenmedik bir lezzet ortaya çıkar.'
   },
   {
     id: 'chive_persimmon',
-    name: '韭柿',
+    name: 'Frenk Soğanlı Hurma',
     seedId: 'seed_chive_persimmon',
     season: ['autumn', 'winter', 'spring'],
     growthDays: 7,
     sellPrice: 185,
     seedPrice: 0,
     deepWatering: false,
-    description: '柿子的甜蜜与韭菜的浓郁交融，三季可收。',
+    description: 'Hurmanın tatlılığı ile frenk soğanının yoğun aroması birleşir, üç mevsim hasat edilebilir.',
     regrowth: true,
     regrowthDays: 4,
     maxHarvests: 3
   },
   {
     id: 'mustard_ginger',
-    name: '芥姜',
+    name: 'Hardallı Zencefil',
     seedId: 'seed_mustard_ginger',
     season: ['autumn', 'winter'],
     growthDays: 6,
     sellPrice: 170,
     seedPrice: 0,
     deepWatering: false,
-    description: '生姜的辛暖与芥菜的微辣合一，驱寒神品。'
+    description: 'Zencefilin sıcaklığı ile hardalın hafif acılığı birleşir, soğuğa karşı güçlü bir besindir.'
   },
   {
     id: 'snow_pumpkin',
-    name: '雪南瓜',
+    name: 'Kar Balkabağı',
     seedId: 'seed_snow_pumpkin',
     season: ['autumn', 'winter'],
     growthDays: 10,
     sellPrice: 320,
     seedPrice: 0,
     deepWatering: true,
-    description: '南瓜的丰硕与雪莲的纯净交融，白色巨瓜传说。',
+    description: 'Balkabağının bolluğu ile kar lotusunun saflığı birleşir, beyaz dev kabakların efsanesi anlatılır.',
     giantCropEligible: true
   },
   {
     id: 'jade_white',
-    name: '碧白菜',
+    name: 'Zümrüt Lahana',
     seedId: 'seed_jade_white',
     season: ['winter'],
     growthDays: 6,
     sellPrice: 150,
     seedPrice: 0,
     deepWatering: false,
-    description: '白菜的质朴与菠菜的翠绿融合，叶片碧绿晶莹。',
+    description: 'Lahananın sadeliği ile ıspanağın yeşilliği birleşir, yaprakları zümrüt gibi parlaktır.',
     giantCropEligible: true
   },
   {
     id: 'garlic_cabbage',
-    name: '蒜白菜',
+    name: 'Sarımsaklı Lahana',
     seedId: 'seed_garlic_cabbage',
     season: ['winter'],
     growthDays: 7,
     sellPrice: 155,
     seedPrice: 0,
     deepWatering: false,
-    description: '大蒜的辛与白菜的甜合一，冬储佳品。'
+    description: 'Sarımsağın keskinliği ile lahananın hafif tatlılığı birleşir, kış için saklamaya uygun bir üründür.'
   },
   {
     id: 'evergreen_herb',
-    name: '长青菜',
+    name: 'Ebedi Yeşil Ot',
     seedId: 'seed_evergreen_herb',
     season: ['winter'],
     growthDays: 6,
     sellPrice: 150,
     seedPrice: 0,
     deepWatering: false,
-    description: '菠菜与芥菜不畏严寒，四季常青。'
+    description: 'Ispanak ile hardal otu soğuktan etkilenmez, yıl boyunca yemyeşil kalır.'
   },
   {
     id: 'wheat_mustard',
-    name: '麦芥菜',
+    name: 'Buğday Hardalı',
     seedId: 'seed_wheat_mustard',
     season: ['winter'],
     growthDays: 8,
     sellPrice: 160,
     seedPrice: 0,
     deepWatering: false,
-    description: '冬小麦的醇厚与芥菜的辛辣交融，面中带辛。'
+    description: 'Kış buğdayının dolgunluğu ile hardalın keskinliği birleşir, tahılda hafif bir acılık hissedilir.'
   },
   {
     id: 'allium_king',
-    name: '百蒜王',
+    name: 'Soğanlar Kralı',
     seedId: 'seed_allium_king',
     season: ['winter', 'spring'],
     growthDays: 6,
     sellPrice: 165,
     seedPrice: 0,
     deepWatering: false,
-    description: '大蒜与韭菜的葱属之王，辛香无敌。',
+    description: 'Sarımsak ile frenk soğanının birleşimi, allium ailesinin kralıdır; keskin aroması eşsizdir.',
     regrowth: true,
     regrowthDays: 3,
     maxHarvests: 4
   },
   {
     id: 'green_wheat',
-    name: '翠麦',
+    name: 'Zümrüt Buğday',
     seedId: 'seed_green_wheat',
     season: ['winter'],
     growthDays: 9,
     sellPrice: 165,
     seedPrice: 0,
     deepWatering: false,
-    description: '菠菜的翠绿渗入冬小麦，青翠麦穗随风摇。'
+    description: 'Ispanağın yeşilliği kış buğdayına işler, yemyeşil başaklar rüzgârda salınır.'
   },
   {
     id: 'chive_mustard',
-    name: '韭芥',
+    name: 'Frenk Soğanlı Hardal',
     seedId: 'seed_chive_mustard',
     season: ['winter', 'spring'],
     growthDays: 5,
     sellPrice: 155,
     seedPrice: 0,
     deepWatering: false,
-    description: '韭菜与芥菜的辛辣同盟，开胃下饭。',
+    description: 'Frenk soğanı ile hardalın keskin birlikteliği, iştah açıcı güçlü bir lezzet sunar.',
     regrowth: true,
     regrowthDays: 3,
     maxHarvests: 4
   },
   {
     id: 'jade_bamboo_corn',
-    name: '玉笋棒',
+    name: 'Yeşim Bambu Mısırı',
     seedId: 'seed_jade_bamboo_corn',
     season: ['spring', 'summer'],
     growthDays: 6,
     sellPrice: 170,
     seedPrice: 0,
     deepWatering: false,
-    description: '春笋的鲜脆与玉米的甜糯交融，翠玉般的穗棒清甜可口。'
+    description: 'Bambu filizinin tazeliği ile mısırın tatlılığı birleşir, yeşim gibi parlak ve hoş bir lezzet sunar.'
   },
   {
     id: 'ginger_jade_green',
-    name: '姜翠菜',
+    name: 'Zencefilli Yeşim Yeşilliği',
     seedId: 'seed_ginger_jade_green',
     season: ['spring', 'summer'],
     growthDays: 5,
     sellPrice: 155,
     seedPrice: 0,
     deepWatering: false,
-    description: '青菜的清爽与生姜的暖辣相遇，暖胃又解腻。'
+    description: 'Yeşil sebzenin ferahlığı ile zencefilin sıcak acılığı buluşur, mideyi ısıtır ve ağırlığı alır.'
   },
   {
     id: 'spicy_sesame',
-    name: '麻辣仁',
+    name: 'Acılı Susam Tanesi',
     seedId: 'seed_spicy_sesame',
     season: ['summer', 'autumn'],
     growthDays: 7,
     sellPrice: 175,
     seedPrice: 0,
     deepWatering: false,
-    description: '辣椒的火热与芝麻的醇香碰撞，一口入魂。'
+    description: 'Acı biberin ateşi ile susamın yoğun aroması çarpışır, tek lokmada etkileyici bir tat bırakır.'
   },
   {
     id: 'honey_gourd',
-    name: '蜜丝瓜',
+    name: 'Ballı Kabak',
     seedId: 'seed_honey_gourd',
     season: ['summer'],
     growthDays: 7,
     sellPrice: 165,
     seedPrice: 0,
     deepWatering: false,
-    description: '丝瓜的柔滑与花生的醇甜相逢，蜜意绵绵。'
+    description: 'Kabağın ipeksi dokusu ile yer fıstığının tatlı aroması buluşur, ağızda bal gibi yumuşak bir tat bırakır.'
   },
   {
     id: 'golden_peanut_yam',
-    name: '花薯',
+    name: 'Fıstıklı Tatlı Patates',
     seedId: 'seed_golden_peanut_yam',
     season: ['summer', 'autumn'],
     growthDays: 6,
     sellPrice: 170,
     seedPrice: 0,
     deepWatering: false,
-    description: '花生的酥香与红薯的绵密交融，香甜可口。'
+    description: 'Yer fıstığının gevrek aroması ile tatlı patatesin yumuşak dokusu birleşir, hoş ve tatlı bir lezzet sunar.'
   },
   {
     id: 'spice_jujube',
-    name: '辛枣',
+    name: 'Baharatlı Hünnap',
     seedId: 'seed_spice_jujube',
     season: ['autumn', 'winter'],
     growthDays: 8,
     sellPrice: 180,
     seedPrice: 0,
     deepWatering: false,
-    description: '红枣的甜蜜与大蒜的辛辣奇异融合，回味无穷。'
+    description: 'Hünnabın tatlılığı ile sarımsağın keskin baharatlı tadı sıra dışı bir şekilde birleşir, uzun süre damakta kalır.'
   },
   {
     id: 'bean_eggplant',
-    name: '豆茄',
+    name: 'Fasulyeli Patlıcan',
     seedId: 'seed_bean_eggplant',
     season: ['summer', 'autumn'],
     growthDays: 6,
     sellPrice: 160,
     seedPrice: 0,
     deepWatering: false,
-    description: '豆角的鲜嫩与茄子的绵软合一，田间双宝。'
+    description: 'Taze fasulyenin yumuşaklığı ile patlıcanın kremamsı dokusu birleşir, tarlanın iki değerli ürünü bir aradadır.'
   },
   {
     id: 'chrysanthemum_persimmon',
-    name: '菊柿',
+    name: 'Krizantem Hurması',
     seedId: 'seed_chrysanthemum_persimmon',
     season: ['autumn'],
     growthDays: 8,
     sellPrice: 190,
     seedPrice: 0,
     deepWatering: false,
-    description: '柿子的甘甜与菊花的清香交融，秋日极品。'
+    description: 'Hurmanın tatlılığı ile krizantemin zarif kokusu birleşir, sonbaharın en seçkin lezzetlerinden biridir.'
   },
   {
     id: 'purple_yam',
-    name: '紫玉薯',
+    name: 'Mor Yeşim Yamı',
     seedId: 'seed_purple_yam',
     season: ['autumn', 'winter'],
     growthDays: 7,
     sellPrice: 175,
     seedPrice: 0,
     deepWatering: false,
-    description: '山药的润滑与茄子的紫韵交融，通体泛紫光泽。'
+    description: 'Yamın yumuşak dokusu ile patlıcanın mor ışıltısı birleşir, tamamı mor bir parlaklıkla kaplıdır.'
   },
   {
     id: 'snow_lotus_pearl',
-    name: '雪莲子',
+    name: 'Kar Nilüfer İncisi',
     seedId: 'seed_snow_lotus_pearl',
     season: ['winter'],
     growthDays: 9,
     sellPrice: 200,
     seedPrice: 0,
     deepWatering: true,
-    description: '莲子的清心与雪莲的纯净合一，寒冬明珠。'
+    description: 'Nilüfer tohumunun huzur veren özü ile kar lotusunun saflığı birleşir, kışın parlayan bir inci gibidir.'
   },
-  // === 二代杂交作物 ===,
+  // === İkinci Nesil Melez Ürünler ===,
   {
     id: 'melon_tea_fruit',
-    name: '蜜茶果',
+    name: 'Bal Çayı Meyvesi',
     seedId: 'seed_melon_tea_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 480,
     seedPrice: 0,
     deepWatering: false,
-    description: '金蜜瓜的甘甜与茶叶的清雅在最高境界融合，传说中的仙果！'
+    description: 'Altın bal kavununun tatlılığı ile çayın zarif aroması en üst düzeyde birleşir, efsanevi bir kutsal meyvedir!'
   },
   {
     id: 'dragon_fire',
-    name: '龙火椒',
+    name: 'Ejder Ateşi Biberi',
     seedId: 'seed_dragon_fire',
     season: ['summer', 'autumn', 'winter'],
     growthDays: 8,
     sellPrice: 450,
     seedPrice: 0,
     deepWatering: false,
-    description: '凤凰椒的烈焰与生姜的辛暖碰撞，如龙息般灼热！'
+    description: 'Anka biberinin alevi ile zencefilin yakıcı sıcaklığı çarpışır, ejder nefesi gibi kavurur!'
   },
   {
     id: 'celestial_rice',
-    name: '天香稻',
+    name: 'Gök Kokulu Pirinç',
     seedId: 'seed_celestial_rice',
     season: ['summer', 'autumn'],
     growthDays: 10,
     sellPrice: 500,
     seedPrice: 0,
     deepWatering: false,
-    description: '月光稻的银辉与桂花的馨香交融，天上仙稻！'
+    description: 'Ay ışığı pirincinin gümüş parıltısı ile osmanthus çiçeğinin hoş kokusu birleşir, göksel bir pirinçtir!'
   },
   {
     id: 'ice_lotus',
-    name: '冰莲',
+    name: 'Buz Nilüferi',
     seedId: 'seed_ice_lotus',
     season: ['summer', 'autumn', 'winter'],
     growthDays: 10,
     sellPrice: 520,
     seedPrice: 0,
     deepWatering: true,
-    description: '霜雪蒜的冰霜与莲子的清心合一，冰莲花开永不凋！'
+    description: 'Don sarımsağının buz gibi soğuğu ile nilüfer tohumunun huzuru birleşir, buz nilüferi asla solmaz!'
   },
   {
     id: 'jade_peach_tea',
-    name: '翠桃茶',
+    name: 'Yeşim Şeftali Çayı',
     seedId: 'seed_jade_peach_tea',
     season: ['spring', 'autumn'],
     growthDays: 9,
     sellPrice: 470,
     seedPrice: 0,
     deepWatering: false,
-    description: '翡翠茶的碧绿与蜜桃的甜润交融，茶中极品！'
+    description: 'Yeşim çayının zümrüt yeşili ile şeftalinin tatlılığı birleşir, çayların en değerlilerindendir!'
   },
   {
     id: 'golden_dragon',
-    name: '金龙果',
+    name: 'Altın Ejder Meyvesi',
     seedId: 'seed_golden_dragon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 550,
     seedPrice: 0,
     deepWatering: false,
-    description: '金蜜瓜的尊贵与凤凰椒的烈焰碰撞，果中之龙！',
+    description: 'Altın bal kavununun asaleti ile anka biberinin alevi çarpışır, meyvelerin ejderi!',
     giantCropEligible: true
   },
   {
     id: 'moonlight_frost',
-    name: '月霜稻',
+    name: 'Ay Işığı Kırağı Pirinci',
     seedId: 'seed_moonlight_frost',
     season: ['summer', 'autumn', 'winter'],
     growthDays: 10,
     sellPrice: 530,
     seedPrice: 0,
     deepWatering: false,
-    description: '月光稻的银辉与霜雪蒜的冰霜交织，月下霜华！'
+    description: 'Ay ışığı pirincinin gümüş parıltısı ile don sarımsağının kırağısı birleşir, ay altında don gibi parlar!'
   },
   {
     id: 'jade_golden_melon',
-    name: '翡翠金瓜',
+    name: 'Yeşim Altın Kavun',
     seedId: 'seed_jade_golden_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 560,
     seedPrice: 0,
     deepWatering: false,
-    description: '翡翠茶的碧绿与金蜜瓜的金黄交融，翡翠包金！',
+    description: 'Yeşim çayının zümrüt yeşili ile altın bal kavununun altın rengi birleşir, altınla kaplı yeşim gibi parlar!',
     giantCropEligible: true
   },
   {
     id: 'immortal_flower',
-    name: '仙人花',
+    name: 'Ölümsüz Çiçeği',
     seedId: 'seed_immortal_flower',
     season: ['spring', 'autumn', 'winter'],
     growthDays: 11,
     sellPrice: 580,
     seedPrice: 0,
     deepWatering: true,
-    description: '霜雪蒜的冰霜与翡翠茶的碧绿交融，传说中的仙人之花！'
+    description: 'Don sarımsağının buzlu soğuğu ile yeşim çayının zümrüt yeşili birleşir, efsanevi ölümsüzlerin çiçeğidir!'
   },
   {
     id: 'dragon_pearl',
-    name: '龙珠',
+    name: 'Ejder İncisi',
     seedId: 'seed_dragon_pearl',
     season: ['summer', 'autumn'],
     growthDays: 11,
     sellPrice: 600,
     seedPrice: 0,
     deepWatering: false,
-    description: '凤凰椒的烈焰与月光稻的银辉碰撞，果实圆润如龙珠，至宝！'
+    description: 'Anka biberinin alevi ile ay ışığı pirincinin gümüş parıltısı birleşir, meyvesi ejder incisi gibi yuvarlak ve değerlidir!'
   },
-  // --- 新增二代杂交 ---
+  // --- Yeni İkinci Nesil Melezler ---
   {
     id: 'emerald_jade_tea',
-    name: '翠玉茗',
+    name: 'Zümrüt Yeşim Çayı',
     seedId: 'seed_emerald_jade_tea',
     season: ['spring', 'summer'],
     growthDays: 8,
     sellPrice: 420,
     seedPrice: 0,
     deepWatering: false,
-    description: '翡翠萝卜的碧绿与茶叶的清雅相融，翠色茗香沁人心脾。'
+    description: 'Zümrüt turpunun canlı yeşili ile çayın zarif aroması birleşir, ferahlatıcı ve huzur verici bir tat sunar.'
   },
   {
     id: 'pearl_osmanthus',
-    name: '桂珠谷',
+    name: 'Osmanthus İncili Tahıl',
     seedId: 'seed_pearl_osmanthus',
     season: ['autumn'],
     growthDays: 9,
     sellPrice: 460,
     seedPrice: 0,
     deepWatering: false,
-    description: '珍珠谷的晶莹与桂花的芬芳合一，颗颗桂香满溢。'
+    description: 'İnci tahılın parlaklığı ile osmanthus çiçeğinin hoş kokusu birleşir, her tanesi mis gibi kokar.'
   },
   {
     id: 'ruby_fire',
-    name: '红宝椒',
+    name: 'Yakut Ateş Biberi',
     seedId: 'seed_ruby_fire',
     season: ['spring', 'summer'],
     growthDays: 8,
     sellPrice: 430,
     seedPrice: 0,
     deepWatering: false,
-    description: '红宝豆的红润与辣椒的火热碰撞，如烈焰红宝石。'
+    description: 'Yakut fasulyesinin kızıllığı ile acı biberin ateşi birleşir, alev gibi parlayan bir yakutu andırır.'
   },
   {
     id: 'golden_corn_king',
-    name: '金穗王',
+    name: 'Altın Başak Kralı',
     seedId: 'seed_golden_corn_king',
     season: ['summer', 'autumn'],
     growthDays: 9,
     sellPrice: 470,
     seedPrice: 0,
     deepWatering: false,
-    description: '金穗玉米的丰硕与稻谷的质朴融合，五谷之王！'
+    description: 'Altın başaklı mısırın bolluğu ile pirincin sadeliği birleşir, tahılların kralıdır!'
   },
   {
     id: 'jade_melon_tea',
-    name: '碧茗瓜',
+    name: 'Yeşim Kavun Çayı',
     seedId: 'seed_jade_melon_tea',
     season: ['summer'],
     growthDays: 9,
     sellPrice: 450,
     seedPrice: 0,
     deepWatering: false,
-    description: '碧玉瓜的翠绿与茶叶的清香交融，清凉消暑。'
+    description: 'Yeşim kavununun zümrüt yeşili ile çayın ferah kokusu birleşir, serinletici ve rahatlatıcıdır.'
   },
   {
     id: 'twin_golden_bean',
-    name: '金双豆',
+    name: 'Altın İkiz Fasulye',
     seedId: 'seed_twin_golden_bean',
     season: ['spring', 'summer'],
     growthDays: 7,
     sellPrice: 400,
     seedPrice: 0,
     deepWatering: false,
-    description: '双子豆的双生与花生的饱满结合，金灿灿成双成对。'
+    description: 'İkiz fasulyenin çift yapısı ile yer fıstığının dolgunluğu birleşir, altın gibi parlayan çift taneler oluşturur.'
   },
   {
     id: 'peach_rice',
-    name: '桃花饭',
+    name: 'Şeftali Çiçeği Pirinci',
     seedId: 'seed_peach_rice',
     season: ['spring', 'summer'],
     growthDays: 9,
     sellPrice: 460,
     seedPrice: 0,
     deepWatering: false,
-    description: '桃花茶的芬芳渗入稻谷，煮出的米饭泛着桃粉。'
+    description: 'Şeftali çiçeği çayının hoş kokusu pirince işler, pişen pilav hafif pembe bir renk alır.'
   },
   {
     id: 'jade_shoot_ginger',
-    name: '玉笋姜',
+    name: 'Yeşim Sürgün Zencefili',
     seedId: 'seed_jade_shoot_ginger',
     season: ['spring'],
     growthDays: 8,
     sellPrice: 420,
     seedPrice: 0,
     deepWatering: false,
-    description: '玉竹芽的鲜嫩与生姜的暖辣碰撞，驱寒暖身。'
+    description: 'Yeşim sürgününün tazeliği ile zencefilin sıcak acılığı birleşir, bedeni ısıtır ve soğuğu uzaklaştırır.'
   },
   {
     id: 'golden_tuber_lotus',
-    name: '金莲薯',
+    name: 'Altın Nilüfer Patatesi',
     seedId: 'seed_golden_tuber_lotus',
     season: ['summer', 'autumn'],
     growthDays: 8,
     sellPrice: 440,
     seedPrice: 0,
     deepWatering: false,
-    description: '金油薯的金黄与莲藕的清润交融，甜糯清香。'
+    description: 'Altın patatesin parlak rengi ile nilüfer kökünün ferahlığı birleşir, tatlı ve hoş bir aroma sunar.'
   },
   {
     id: 'frost_chrysanthemum',
-    name: '霜菊',
+    name: 'Kırağı Krizantemi',
     seedId: 'seed_frost_chrysanthemum',
     season: ['autumn', 'winter'],
     growthDays: 10,
     sellPrice: 500,
     seedPrice: 0,
     deepWatering: true,
-    description: '霜雪蒜的寒气与菊花的傲骨合一，霜中怒放。'
+    description: 'Don sarımsağının soğuğu ile krizantemin direnci birleşir, kırağı içinde bile gururla açar.'
   },
   {
     id: 'phoenix_sesame',
-    name: '凤仁',
+    name: 'Anka Susamı',
     seedId: 'seed_phoenix_sesame',
     season: ['summer', 'autumn'],
     growthDays: 9,
     sellPrice: 450,
     seedPrice: 0,
     deepWatering: false,
-    description: '凤凰椒的烈焰与芝麻的醇香熔于一体，麻辣仙果。'
+    description: 'Anka biberinin alevi ile susamın yoğun aroması birleşir, acı ve büyüleyici bir efsane meyvesidir.'
   },
   {
     id: 'moonlight_lotus',
-    name: '月莲',
+    name: 'Ay Işığı Nilüferi',
     seedId: 'seed_moonlight_lotus',
     season: ['summer'],
     growthDays: 10,
     sellPrice: 490,
     seedPrice: 0,
     deepWatering: true,
-    description: '月光稻的银辉与莲子的清心交融，月下白莲悄然开放。'
+    description: 'Ay ışığı pirincinin gümüş parıltısı ile nilüfer tohumunun huzuru birleşir, ay altında beyaz nilüfer sessizce açar.'
   },
   {
     id: 'jade_snow',
-    name: '翠雪芽',
+    name: 'Yeşim Kar Filizi',
     seedId: 'seed_jade_snow',
     season: ['winter', 'spring'],
     growthDays: 10,
     sellPrice: 500,
     seedPrice: 0,
     deepWatering: true,
-    description: '翡翠茶的碧绿遇上雪莲的纯白，冰清玉洁。'
+    description: 'Yeşim çayının zümrüt yeşili ile kar lotusunun saf beyazı birleşir, tertemiz ve zarif bir güzellik sunar.'
   },
   {
     id: 'golden_pumpkin',
-    name: '金瓜王',
+    name: 'Altın Kabak Kralı',
     seedId: 'seed_golden_pumpkin',
     season: ['autumn'],
     growthDays: 10,
     sellPrice: 510,
     seedPrice: 0,
     deepWatering: false,
-    description: '金蜜瓜的甘甜与南瓜的醇厚碰撞，金色大瓜威风凛凛。',
+    description: 'Altın bal kavununun tatlılığı ile balkabağının dolgunluğu birleşir, altın dev kabak görkemiyle öne çıkar.',
     giantCropEligible: true
   },
   {
     id: 'phoenix_corn',
-    name: '火穗',
+    name: 'Anka Ateş Mısırı',
     seedId: 'seed_phoenix_corn',
     season: ['summer'],
     growthDays: 9,
     sellPrice: 460,
     seedPrice: 0,
     deepWatering: false,
-    description: '凤凰椒的烈焰点燃玉米穗，火红穗粒甜中带辣。'
+    description: 'Anka biberinin alevi mısır başaklarını tutuşturur, kızıl taneleri tatlı ve hafif acıdır.'
   },
   {
     id: 'moonlight_yam',
-    name: '月光薯',
+    name: 'Ay Işığı Yamı',
     seedId: 'seed_moonlight_yam',
     season: ['autumn', 'winter'],
     growthDays: 9,
     sellPrice: 470,
     seedPrice: 0,
     deepWatering: false,
-    description: '月光稻的银辉照耀红薯，通体泛着月白柔光。'
+    description: 'Ay ışığı pirincinin gümüş parıltısı tatlı patatesi aydınlatır, tamamı yumuşak ay ışığı gibi parlar.'
   },
   {
     id: 'jade_peanut',
-    name: '翠仁果',
+    name: 'Yeşim Fıstığı',
     seedId: 'seed_jade_peanut',
     season: ['summer'],
     growthDays: 8,
     sellPrice: 420,
     seedPrice: 0,
     deepWatering: false,
-    description: '翡翠茶的碧绿渗入花生，壳内仁翠如玉。'
+    description: 'Yeşim çayının zümrüt yeşili yer fıstığına işler, kabuğun içindeki taneler yeşim gibi parlar.'
   },
   {
     id: 'frost_radish',
-    name: '霜玉萝卜',
+    name: 'Kırağı Yeşim Turpu',
     seedId: 'seed_frost_radish',
     season: ['winter', 'spring'],
     growthDays: 9,
     sellPrice: 460,
     seedPrice: 0,
     deepWatering: false,
-    description: '霜雪蒜的冰霜渗入萝卜，根茎晶莹如冰玉。'
+    description: 'Don sarımsağının kırağısı turpa işler, kökü buz yeşimi gibi saydam ve parlaktır.'
   },
   {
     id: 'golden_jujube',
-    name: '金蜜枣',
+    name: 'Altın Bal Hünnabı',
     seedId: 'seed_golden_jujube',
     season: ['autumn'],
     growthDays: 10,
     sellPrice: 530,
     seedPrice: 0,
     deepWatering: false,
-    description: '金蜜瓜的甘甜注入红枣，颗颗蜜汁饱满。'
+    description: 'Altın bal kavununun tatlılığı hünnaba işler, her tanesi bal dolu gibi sulu ve lezzetlidir.'
   },
   {
     id: 'phoenix_eggplant',
-    name: '火焰茄',
+    name: 'Anka Alev Patlıcanı',
     seedId: 'seed_phoenix_eggplant',
     season: ['summer', 'autumn'],
     growthDays: 8,
     sellPrice: 430,
     seedPrice: 0,
     deepWatering: false,
-    description: '凤凰椒的烈焰与茄子的紫韵碰撞，紫皮之下火辣鲜美。'
+    description: 'Anka biberinin alevi ile patlıcanın mor zarafeti birleşir, mor kabuğun altında yakıcı ve lezzetli bir tat saklıdır.'
   },
   {
     id: 'moonlight_spinach',
-    name: '银叶菜',
+    name: 'Gümüş Yaprak Ispanak',
     seedId: 'seed_moonlight_spinach',
     season: ['winter', 'spring'],
     growthDays: 8,
     sellPrice: 440,
     seedPrice: 0,
     deepWatering: false,
-    description: '月光稻的银辉浸润菠菜叶脉，叶片泛着银光。'
+    description: 'Ay ışığı pirincinin gümüş parıltısı ıspanak damarlarına işler, yapraklar gümüş gibi parlar.'
   },
   {
     id: 'jade_loofah',
-    name: '翠丝瓜',
+    name: 'Yeşim Kabak',
     seedId: 'seed_jade_loofah',
     season: ['summer'],
     growthDays: 8,
     sellPrice: 430,
     seedPrice: 0,
     deepWatering: false,
-    description: '翡翠茶的碧色融入丝瓜，瓜身翠绿如玉。'
+    description: 'Yeşim çayının zümrüt rengi kabağa işler, gövdesi yeşim gibi parlak ve canlıdır.'
   },
   {
     id: 'frost_winter_wheat',
-    name: '霜麦',
+    name: 'Kırağı Buğdayı',
     seedId: 'seed_frost_winter_wheat',
     season: ['winter'],
     growthDays: 10,
     sellPrice: 470,
     seedPrice: 0,
     deepWatering: false,
-    description: '霜雪蒜的寒冰渗入冬小麦，麦穗挂满霜花。'
+    description: 'Don sarımsağının buzlu soğuğu kış buğdayına işler, başaklar kırağı çiçekleriyle kaplanır.'
   },
   {
     id: 'golden_sesame',
-    name: '金芝',
+    name: 'Altın Susam',
     seedId: 'seed_golden_sesame',
     season: ['summer'],
     growthDays: 9,
     sellPrice: 480,
     seedPrice: 0,
     deepWatering: false,
-    description: '金蜜瓜的金色光辉注入芝麻，粒粒金灿如砂金。'
+    description: 'Altın bal kavununun parlak ışığı susama işler, her tanesi altın gibi parlar.'
   },
   {
     id: 'phoenix_garlic',
-    name: '火蒜',
+    name: 'Anka Ateş Sarımsağı',
     seedId: 'seed_phoenix_garlic',
     season: ['winter', 'spring'],
     growthDays: 9,
     sellPrice: 450,
     seedPrice: 0,
     deepWatering: false,
-    description: '凤凰椒的烈焰灼烧大蒜，辛辣之上更添火意。'
+    description: 'Anka biberinin alevi sarımsağı kavurur, keskinliğine ateş gibi bir yoğunluk katar.'
   },
   {
     id: 'moonlight_cabbage',
-    name: '月白菜',
+    name: 'Ay Işığı Lahanası',
     seedId: 'seed_moonlight_cabbage',
     season: ['autumn', 'winter'],
     growthDays: 9,
     sellPrice: 470,
     seedPrice: 0,
     deepWatering: false,
-    description: '月光稻的银辉洒落白菜叶，月白如绢清甜无比。'
+    description: 'Ay ışığı pirincinin gümüş parıltısı lahana yapraklarına düşer, ipek gibi açık renkli ve tatlıdır.'
   },
   {
     id: 'jade_persimmon',
-    name: '翠柿',
+    name: 'Yeşim Hurma',
     seedId: 'seed_jade_persimmon',
     season: ['autumn'],
     growthDays: 9,
     sellPrice: 450,
     seedPrice: 0,
     deepWatering: false,
-    description: '翡翠茶的碧绿渗入柿子，果肉翡翠色泽甘甜馥郁。'
+    description: 'Yeşim çayının zümrüt yeşili hurmaya işler, meyvesi yeşim gibi parlak ve yoğun tatlıdır.'
   },
   {
     id: 'frost_bamboo',
-    name: '冰笋',
+    name: 'Buz Bambu Filizi',
     seedId: 'seed_frost_bamboo',
     season: ['winter', 'spring'],
     growthDays: 9,
     sellPrice: 450,
     seedPrice: 0,
     deepWatering: false,
-    description: '霜雪蒜的冰霜封住春笋鲜味，冰镇之鲜。'
+    description: 'Don sarımsağının kırağısı bambu filizinin tazeliğini mühürler, buz gibi serin ve tazedir.'
   },
   {
     id: 'golden_watermelon',
-    name: '帝瓜',
+    name: 'İmparator Kavunu',
     seedId: 'seed_golden_watermelon',
     season: ['summer'],
     growthDays: 11,
     sellPrice: 560,
     seedPrice: 0,
     deepWatering: false,
-    description: '金蜜瓜回归西瓜之源，甜度登峰造极，瓜中帝王。',
+    description: 'Altın bal kavunu köküne dönerek karpuzun özünü yükseltir, tatlılık zirveye ulaşır, meyvelerin imparatorudur.',
     giantCropEligible: true
   },
   {
     id: 'phoenix_peach',
-    name: '火桃',
+    name: 'Anka Ateş Şeftalisi',
     seedId: 'seed_phoenix_peach',
     season: ['spring', 'summer'],
     growthDays: 10,
     sellPrice: 480,
     seedPrice: 0,
     deepWatering: false,
-    description: '凤凰椒的火焰亲吻蜜桃，红如烈焰甜中带辛。'
+    description: 'Anka biberinin alevi şeftaliye dokunur, alev gibi kızıl ve tatlı-acı bir lezzet sunar.'
   },
   {
     id: 'moonlight_corn',
-    name: '月穗',
+    name: 'Ay Işığı Mısırı',
     seedId: 'seed_moonlight_corn',
     season: ['summer', 'autumn'],
     growthDays: 9,
     sellPrice: 490,
     seedPrice: 0,
     deepWatering: false,
-    description: '月光稻的银辉照耀玉米穗，月下银穗丰收满仓。'
+    description: 'Ay ışığı pirincinin gümüş parıltısı mısır başaklarını aydınlatır, ay altında gümüş gibi bir hasat sunar.'
   },
   {
     id: 'jade_chive',
-    name: '翠韭',
+    name: 'Yeşim Frenk Soğanı',
     seedId: 'seed_jade_chive',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 7,
     sellPrice: 420,
     seedPrice: 0,
     deepWatering: false,
-    description: '翡翠茶的碧色浸入韭菜，翠色欲滴辛香四溢。',
+    description: 'Yeşim çayının zümrüt rengi frenk soğanına işler, canlı yeşil görünümü ve keskin aromasıyla dikkat çeker.',
     regrowth: true,
     regrowthDays: 3,
     maxHarvests: 5
   },
   {
     id: 'frost_pumpkin',
-    name: '霜南瓜',
+    name: 'Kırağı Balkabağı',
     seedId: 'seed_frost_pumpkin',
     season: ['autumn', 'winter'],
     growthDays: 10,
     sellPrice: 470,
     seedPrice: 0,
     deepWatering: false,
-    description: '霜雪蒜的寒气凝于南瓜之上，冰镇南瓜甜如蜜。'
+    description: 'Don sarımsağının soğuğu balkabağının üzerine çöker, buz gibi serin ama bal gibi tatlıdır.'
   },
   {
     id: 'emerald_rice',
-    name: '翠粒稻',
+    name: 'Zümrüt Taneli Pirinç',
     seedId: 'seed_emerald_rice',
     season: ['summer'],
     growthDays: 8,
     sellPrice: 400,
     seedPrice: 0,
     deepWatering: false,
-    description: '翡翠萝卜的碧绿渗入稻谷，翠色米粒清香扑鼻。'
+    description: 'Zümrüt turpunun yeşilliği pirince işler, taneleri yeşilimsi ve hoş kokuludur.'
   },
   {
     id: 'pearl_peach',
-    name: '珠桃',
+    name: 'İnci Şeftali',
     seedId: 'seed_pearl_peach',
     season: ['spring', 'summer'],
     growthDays: 9,
     sellPrice: 460,
     seedPrice: 0,
     deepWatering: false,
-    description: '珍珠谷的晶莹与蜜桃的红润交融，果实圆润如明珠。'
+    description: 'İnci tahılın parlaklığı ile şeftalinin kızıllığı birleşir, meyvesi inci gibi yuvarlak ve pürüzsüzdür.'
   },
   {
     id: 'golden_lotus',
-    name: '金莲',
+    name: 'Altın Nilüfer',
     seedId: 'seed_golden_lotus',
     season: ['summer'],
     growthDays: 10,
     sellPrice: 490,
     seedPrice: 0,
     deepWatering: true,
-    description: '金蜜瓜的金辉照耀莲子，金莲绽放熠熠生辉。'
+    description: 'Altın bal kavununun ışığı nilüfer tohumlarını aydınlatır, altın nilüfer parlayarak açar.'
   },
   {
     id: 'phoenix_broad_bean',
-    name: '凤豆',
+    name: 'Anka Baklası',
     seedId: 'seed_phoenix_broad_bean',
     season: ['spring', 'summer'],
     growthDays: 8,
     sellPrice: 420,
     seedPrice: 0,
     deepWatering: false,
-    description: '凤凰椒的烈焰烤炙蚕豆，火中淬炼的豆中珍品。'
+    description: 'Anka biberinin alevi baklayı kavurur, ateşte şekillenen nadide bir lezzet olur.'
   },
   {
     id: 'moonlight_tea',
-    name: '月芽茶',
+    name: 'Ay Filizi Çayı',
     seedId: 'seed_moonlight_tea',
     season: ['spring', 'summer'],
     growthDays: 10,
     sellPrice: 500,
     seedPrice: 0,
     deepWatering: false,
-    description: '月光稻的银辉与茶叶的清雅交融，月芽形茶叶清香悠长。'
+    description: 'Ay ışığı pirincinin gümüş parıltısı ile çayın zarif aroması birleşir, hilal gibi yaprakları uzun süre kokusunu korur.'
   },
   {
     id: 'jade_rapeseed',
-    name: '翠金菜',
+    name: 'Yeşim Altın Kanola',
     seedId: 'seed_jade_rapeseed',
     season: ['spring'],
     growthDays: 8,
     sellPrice: 430,
     seedPrice: 0,
     deepWatering: false,
-    description: '翡翠茶的碧绿与油菜的金黄交融，翠金相映。'
+    description: 'Yeşim çayının zümrüt yeşili ile kanolanın altın sarısı birleşir, yeşil ile altın iç içe parlar.'
   },
   {
     id: 'frost_yam',
-    name: '霜山药',
+    name: 'Kırağı Yamı',
     seedId: 'seed_frost_yam',
     season: ['autumn', 'winter'],
     growthDays: 10,
     sellPrice: 470,
     seedPrice: 0,
     deepWatering: false,
-    description: '霜雪蒜的寒意渗入山药，冰润滑腻入口即化。'
+    description: 'Don sarımsağının soğuğu yama işler, serin ve kaygan dokusuyla ağızda erir.'
   },
-  // === 三代杂交作物 ===,
+  // === Üçüncü Nesil Melez Ürünler ===,
   {
     id: 'wind_melon',
-    name: '风瓜',
+    name: 'Rüzgar Kavunu',
     seedId: 'seed_wind_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 7,
     sellPrice: 650,
     seedPrice: 0,
     deepWatering: true,
-    description: '金瓜与翡翠茶经风雨淬炼而成的珍品。'
+    description: 'Altın kabak ile yeşim çayı rüzgar ve yağmurla yoğrularak oluşmuş nadide bir üründür.'
   },
   {
     id: 'cloud_bean',
-    name: '云豆',
+    name: 'Bulut Fasulyesi',
     seedId: 'seed_cloud_bean',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 7,
     sellPrice: 654,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与凤凰椒在清风中交融，自然之韵。'
+    description: 'Altın kabak ile anka biberi esen rüzgârda birleşir, doğanın ahengini taşır.'
   },
   {
     id: 'rain_rice',
-    name: '雨稻',
+    name: 'Yağmur Pirinci',
     seedId: 'seed_rain_rice',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 7,
     sellPrice: 658,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与月光稻沐浴露霜，天地灵气所化。'
+    description: 'Altın kabak ile ay ışığı pirinci çiğ ve yağmurla beslenir, gök ve yerin özünden doğar.'
   },
   {
     id: 'hoar_tuber',
-    name: '霜薯',
+    name: 'Kırağı Yumrusu',
     seedId: 'seed_hoar_tuber',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 7,
     sellPrice: 662,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与霜雪蒜在星光下蜕变，风物之精。'
+    description: 'Altın kabak ile don sarımsağı yıldız ışığında dönüşür, doğanın özü haline gelir.'
   },
   {
     id: 'thunder_green',
-    name: '雷菜',
+    name: 'Yıldırım Yeşilliği',
     seedId: 'seed_thunder_green',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 7,
     sellPrice: 666,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与翡翠萝卜汇聚山川之气，化为珍品。'
+    description: 'Altın kabak ile zümrüt turp dağların ve nehirlerin gücünü toplar, nadide bir ürüne dönüşür.'
   },
   {
     id: 'rainbow_fruit',
-    name: '虹果',
+    name: 'Gökkuşağı Meyvesi',
     seedId: 'seed_rainbow_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 7,
     sellPrice: 670,
     seedPrice: 0,
     deepWatering: true,
-    description: '金瓜与碧玉笋经风雨淬炼而成的珍品。'
+    description: 'Altın kabak ile yeşim bambu filizi rüzgar ve yağmurla yoğrularak oluşmuş eşsiz bir üründür.'
   },
   {
     id: 'dew_bloom',
-    name: '露花',
+    name: 'Çiy Çiçeği',
     seedId: 'seed_dew_bloom',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 7,
     sellPrice: 674,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与金油薯在清风中交融，自然之韵。'
+    description: 'Altın kabak ile altın patates hafif rüzgârda birleşir, doğanın zarif uyumunu taşır.'
   },
   {
     id: 'dawn_tea',
-    name: '晨茶',
+    name: 'Şafak Çayı',
     seedId: 'seed_dawn_tea',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 7,
     sellPrice: 679,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与桃花茶沐浴露霜，天地灵气所化。'
+    description: 'Altın kabak ile şeftali çiçeği çayı çiy ve ışıkla beslenir, gök ile yerin özünden doğar.'
   },
   {
     id: 'dusk_shoot',
-    name: '暮笋',
+    name: 'Alacakaranlık Filizi',
     seedId: 'seed_dusk_shoot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 7,
     sellPrice: 683,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与红宝豆在星光下蜕变，风物之精。'
+    description: 'Altın kabak ile yakut fasulye yıldız ışığında dönüşür, doğanın özü haline gelir.'
   },
   {
     id: 'star_lotus',
-    name: '星莲',
+    name: 'Yıldız Nilüferi',
     seedId: 'seed_star_lotus',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 687,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与双子豆汇聚山川之气，化为珍品。'
+    description: 'Altın kabak ile ikiz fasulye dağların ve nehirlerin gücünü toplar, nadide bir ürüne dönüşür.'
   },
   {
     id: 'wind_splendor_wheat',
-    name: '风华麦',
+    name: 'Rüzgar İhtişamı Buğdayı',
     seedId: 'seed_wind_splendor_wheat',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 691,
     seedPrice: 0,
     deepWatering: true,
-    description: '金瓜与碧玉瓜经风雨淬炼而成的珍品。'
+    description: 'Altın kabak ile yeşim kavun rüzgar ve yağmurla yoğrularak oluşmuş nadide bir üründür.'
   },
   {
     id: 'cloud_splendor_sesame',
-    name: '云华芝',
+    name: 'Bulut İhtişamı Susamı',
     seedId: 'seed_cloud_splendor_sesame',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 695,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与珍珠谷在清风中交融，自然之韵。'
+    description: 'Altın kabak ile inci tahıl hafif rüzgârda birleşir, doğanın zarif uyumunu taşır.'
   },
   {
     id: 'rain_splendor_pepper',
-    name: '雨华椒',
+    name: 'Yağmur İhtişamı Biberi',
     seedId: 'seed_rain_splendor_pepper',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 699,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与金穗玉米沐浴露霜，天地灵气所化。'
+    description: 'Altın kabak ile altın başak mısır çiy ve yağmurla beslenir, gök ve yerin özünden doğar.'
   },
   {
     id: 'hoar_splendor_root',
-    name: '霜华参',
+    name: 'Kırağı İhtişamı Kökü',
     seedId: 'seed_hoar_splendor_root',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 703,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与莲心茶在星光下蜕变，风物之精。'
+    description: 'Altın kabak ile nilüfer çayı yıldız ışığında dönüşür, doğanın özü haline gelir.'
   },
   {
     id: 'thunder_splendor_sprout',
-    name: '雷华芽',
+    name: 'Yıldırım İhtişamı Filizi',
     seedId: 'seed_thunder_splendor_sprout',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 707,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与紫竹茄汇聚山川之气，化为珍品。'
+    description: 'Altın kabak ile mor bambu patlıcan dağların ve nehirlerin gücünü toplar, nadide bir ürüne dönüşür.'
   },
   {
     id: 'rainbow_splendor_vine',
-    name: '虹华藤',
+    name: 'Gökkuşağı İhtişamı Asması',
     seedId: 'seed_rainbow_splendor_vine',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 711,
     seedPrice: 0,
     deepWatering: true,
-    description: '金瓜与蜜桃瓜经风雨淬炼而成的珍品。'
+    description: 'Altın kabak ile şeftali kavunu rüzgar ve yağmurla yoğrularak oluşmuş eşsiz bir üründür.'
   },
   {
     id: 'dew_splendor_bud',
-    name: '露华蕾',
+    name: 'Çiy İhtişamı Tomurcuğu',
     seedId: 'seed_dew_splendor_bud',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 715,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与火豆在清风中交融，自然之韵。'
+    description: 'Altın kabak ile ateş fasulyesi hafif rüzgârda birleşir, doğanın zarif uyumunu taşır.'
   },
   {
     id: 'dawn_splendor_orchid',
-    name: '晨华兰',
+    name: 'Şafak İhtişamı Orkidesi',
     seedId: 'seed_dawn_splendor_orchid',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 719,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与丝豆沐浴露霜，天地灵气所化。'
+    description: 'Altın kabak ile ipek fasulye çiy ve ışıkla beslenir, gök ile yerin özünden doğar.'
   },
   {
     id: 'dusk_splendor_gourd',
-    name: '暮华葫',
+    name: 'Alacakaranlık İhtişamı Kabak',
     seedId: 'seed_dusk_splendor_gourd',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 723,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与双油籽在星光下蜕变，风物之精。'
+    description: 'Altın kabak ile çift yağ tohumu yıldız ışığında dönüşür, doğanın özü haline gelir.'
   },
   {
     id: 'star_splendor_herb',
-    name: '星华草',
+    name: 'Yıldız İhtişamı Otu',
     seedId: 'seed_star_splendor_herb',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 728,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与莲花薯汇聚山川之气，化为珍品。'
+    description: 'Altın kabak ile nilüfer patates dağların ve nehirlerin gücünü toplar, nadide bir ürüne dönüşür.'
   },
   {
     id: 'wind_jade3_chestnut',
-    name: '风翠栗',
+    name: 'Rüzgar Yeşim Kestanesi',
     seedId: 'seed_wind_jade3_chestnut',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 732,
     seedPrice: 0,
     deepWatering: true,
-    description: '金瓜与翡翠南瓜经风雨淬炼而成的珍品。'
+    description: 'Altın kabak ile yeşim balkabağı rüzgar ve yağmurla yoğrularak oluşmuş nadide bir üründür.'
   },
   {
     id: 'cloud_jade3_apricot',
-    name: '云翠杏',
+    name: 'Bulut Yeşim Kayısısı',
     seedId: 'seed_cloud_jade3_apricot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 736,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与水晶山药在清风中交融，自然之韵。'
+    description: 'Altın kabak ile kristal yam hafif rüzgârda birleşir, doğanın zarif uyumunu taşır.'
   },
   {
     id: 'rain_jade3_pear',
-    name: '雨翠梨',
+    name: 'Yağmur Yeşim Armutu',
     seedId: 'seed_rain_jade3_pear',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 740,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与桂花茶沐浴露霜，天地灵气所化。'
+    description: 'Altın kabak ile osmanthus çayı çiy ve yağmurla beslenir, gök ile yerin özünden doğar.'
   },
   {
     id: 'hoar_jade3_berry',
-    name: '霜翠莓',
+    name: 'Kırağı Yeşim Meyvesi',
     seedId: 'seed_hoar_jade3_berry',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 744,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与山竹薯在星光下蜕变，风物之精。'
+    description: 'Altın kabak ile dağ bambu patatesi yıldız ışığında dönüşür, doğanın özü haline gelir.'
   },
   {
     id: 'thunder_jade3_peach_t',
-    name: '雷翠桃',
+    name: 'Yıldırım Yeşim Şeftalisi',
     seedId: 'seed_thunder_jade3_peach_t',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 8,
     sellPrice: 748,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与金秋果汇聚山川之气，化为珍品。'
+    description: 'Altın kabak ile altın sonbahar meyvesi dağların ve nehirlerin gücünü toplar, nadide bir ürüne dönüşür.'
   },
   {
     id: 'rainbow_jade3_melon',
-    name: '虹翠瓜',
+    name: 'Gökkuşağı Yeşim Kavunu',
     seedId: 'seed_rainbow_jade3_melon',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 752,
     seedPrice: 0,
     deepWatering: true,
-    description: '金瓜与花生薯经风雨淬炼而成的珍品。'
+    description: 'Altın kabak ile fıstıklı patates rüzgar ve yağmurla yoğrularak oluşmuş eşsiz bir üründür.'
   },
   {
     id: 'dew_jade3_bean',
-    name: '露翠豆',
+    name: 'Çiy Yeşim Fasulyesi',
     seedId: 'seed_dew_jade3_bean',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 756,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与秋枣豆在清风中交融，自然之韵。'
+    description: 'Altın kabak ile sonbahar hünnap fasulyesi hafif rüzgârda birleşir, doğanın zarif uyumunu taşır.'
   },
   {
     id: 'dawn_jade3_rice',
-    name: '晨翠稻',
+    name: 'Şafak Yeşim Pirinci',
     seedId: 'seed_dawn_jade3_rice',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 760,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与枣花桃沐浴露霜，天地灵气所化。'
+    description: 'Altın kabak ile hünnap çiçeği şeftalisi çiy ve ışıkla beslenir, gök ile yerin özünden doğar.'
   },
   {
     id: 'dusk_jade3_tuber',
-    name: '暮翠薯',
+    name: 'Alacakaranlık Yeşim Yamı',
     seedId: 'seed_dusk_jade3_tuber',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 764,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与姜花菜在星光下蜕变，风物之精。'
+    description: 'Altın kabak ile zencefil çiçeği bitkisi yıldız ışığında dönüşür, doğanın özü haline gelir.'
   },
   {
     id: 'star_jade3_green',
-    name: '星翠菜',
+    name: 'Yıldız Yeşim Yeşilliği',
     seedId: 'seed_star_jade3_green',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 768,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与仙菊菜汇聚山川之气，化为珍品。'
+    description: 'Altın kabak ile peri krizantem otu dağların ve nehirlerin gücünü toplar, nadide bir ürüne dönüşür.'
   },
   {
     id: 'wind_aura_fruit',
-    name: '风灵果',
+    name: 'Rüzgar Ruh Meyvesi',
     seedId: 'seed_wind_aura_fruit',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 772,
     seedPrice: 0,
     deepWatering: true,
-    description: '金瓜与御品白菜经风雨淬炼而成的珍品。'
+    description: 'Altın kabak ile imparator lahanası rüzgar ve yağmurla yoğrularak oluşmuş eşsiz bir üründür.'
   },
   {
     id: 'cloud_aura_bloom',
-    name: '云灵花',
+    name: 'Bulut Ruh Çiçeği',
     seedId: 'seed_cloud_aura_bloom',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 777,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与蒜香萝卜在清风中交融，自然之韵。'
+    description: 'Altın kabak ile sarımsaklı turp hafif rüzgârda birleşir, doğanın zarif uyumunu taşır.'
   },
   {
     id: 'rain_aura_tea',
-    name: '雨灵茶',
+    name: 'Yağmur Ruh Çayı',
     seedId: 'seed_rain_aura_tea',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 781,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与雪茶沐浴露霜，天地灵气所化。'
+    description: 'Altın kabak ile kar çayı çiy ve yağmurla beslenir, gök ile yerin özünden doğar.'
   },
   {
     id: 'hoar_aura_shoot',
-    name: '霜灵笋',
+    name: 'Kırağı Ruh Filizi',
     seedId: 'seed_hoar_aura_shoot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 785,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与春韭菜在星光下蜕变，风物之精。'
+    description: 'Altın kabak ile bahar frenk soğanı yıldız ışığında dönüşür, doğanın özü haline gelir.'
   },
   {
     id: 'thunder_aura_lotus',
-    name: '雷灵莲',
+    name: 'Yıldırım Ruh Nilüferi',
     seedId: 'seed_thunder_aura_lotus',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 789,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与麦香薯汇聚山川之气，化为珍品。'
+    description: 'Altın kabak ile buğday kokulu patates dağların ve nehirlerin gücünü toplar, nadide bir ürüne dönüşür.'
   },
   {
     id: 'rainbow_aura_wheat',
-    name: '虹灵麦',
+    name: 'Gökkuşağı Ruh Buğdayı',
     seedId: 'seed_rainbow_aura_wheat',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 793,
     seedPrice: 0,
     deepWatering: true,
-    description: '金瓜与绿桃经风雨淬炼而成的珍品。'
+    description: 'Altın kabak ile yeşil şeftali rüzgar ve yağmurla yoğrularak oluşmuş eşsiz bir üründür.'
   },
   {
     id: 'dew_aura_sesame',
-    name: '露灵芝',
+    name: 'Çiy Ruh Susamı',
     seedId: 'seed_dew_aura_sesame',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 797,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与芥香豆在清风中交融，自然之韵。'
+    description: 'Altın kabak ile hardal aromalı fasulye hafif rüzgârda birleşir, doğanın zarif uyumunu taşır.'
   },
   {
     id: 'dawn_aura_pepper',
-    name: '晨灵椒',
+    name: 'Şafak Ruh Biberi',
     seedId: 'seed_dawn_aura_pepper',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 801,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与霜油菜沐浴露霜，天地灵气所化。'
+    description: 'Altın kabak ile kırağı kanola çiy ve ışıkla beslenir, gök ile yerin özünden doğar.'
   },
   {
     id: 'dusk_aura_root',
-    name: '暮灵参',
+    name: 'Alacakaranlık Ruh Kökü',
     seedId: 'seed_dusk_aura_root',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 805,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与紫晶瓜在星光下蜕变，风物之精。'
+    description: 'Altın kabak ile mor kristal kavun yıldız ışığında dönüşür, doğanın özü haline gelir.'
   },
   {
     id: 'star_aura_sprout',
-    name: '星灵芽',
+    name: 'Yıldız Ruh Filizi',
     seedId: 'seed_star_aura_sprout',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 809,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与金芝稻汇聚山川之气，化为珍品。'
+    description: 'Altın kabak ile altın susam pirinci dağların ve nehirlerin gücünü toplar, nadide bir ürüne dönüşür.'
   },
   {
     id: 'wind_glow_vine',
-    name: '风光藤',
+    name: 'Rüzgar Işıltı Asması',
     seedId: 'seed_wind_glow_vine',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 9,
     sellPrice: 813,
     seedPrice: 0,
     deepWatering: true,
-    description: '金瓜与双莲经风雨淬炼而成的珍品。'
+    description: 'Altın kabak ile çift nilüfer rüzgar ve yağmurla yoğrularak oluşmuş nadide bir üründür.'
   },
   {
     id: 'cloud_glow_bud',
-    name: '云光蕾',
+    name: 'Bulut Işıltı Tomurcuğu',
     seedId: 'seed_cloud_glow_bud',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 817,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与火麻仁在清风中交融，自然之韵。'
+    description: 'Altın kabak ile ateş susamı hafif rüzgârda birleşir, doğanın zarif uyumunu taşır.'
   },
   {
     id: 'rain_glow_orchid',
-    name: '雨光兰',
+    name: 'Yağmur Işıltı Orkidesi',
     seedId: 'seed_rain_glow_orchid',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 821,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与丝穗沐浴露霜，天地灵气所化。'
+    description: 'Altın kabak ile ipek başak çiy ve yağmurla beslenir, gök ile yerin özünden doğar.'
   },
   {
     id: 'hoar_glow_gourd',
-    name: '霜光葫',
+    name: 'Kırağı Işıltı Kabağı',
     seedId: 'seed_hoar_glow_gourd',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 826,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与紫莲茄在星光下蜕变，风物之精。'
+    description: 'Altın kabak ile mor nilüfer patlıcan yıldız ışığında dönüşür, doğanın özü haline gelir.'
   },
   {
     id: 'thunder_glow_herb',
-    name: '雷光草',
+    name: 'Yıldırım Işıltı Otu',
     seedId: 'seed_thunder_glow_herb',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 830,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与菊瓜汇聚山川之气，化为珍品。'
+    description: 'Altın kabak ile krizantem kavunu dağların ve nehirlerin gücünü toplar, nadide bir ürüne dönüşür.'
   },
   {
     id: 'rainbow_glow_chestnut',
-    name: '虹光栗',
+    name: 'Gökkuşağı Işıltı Kestanesi',
     seedId: 'seed_rainbow_glow_chestnut',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 834,
     seedPrice: 0,
     deepWatering: true,
-    description: '金瓜与南瓜稻经风雨淬炼而成的珍品。'
+    description: 'Altın kabak ile balkabaklı pirinç rüzgar ve yağmurla yoğrularak oluşmuş eşsiz bir üründür.'
   },
   {
     id: 'dew_glow_apricot',
-    name: '露光杏',
+    name: 'Çiy Işıltı Kayısısı',
     seedId: 'seed_dew_glow_apricot',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 838,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与山莲在清风中交融，自然之韵。'
+    description: 'Altın kabak ile dağ nilüferi hafif rüzgârda birleşir, doğanın zarif uyumunu taşır.'
   },
   {
     id: 'dawn_glow_pear',
-    name: '晨光梨',
+    name: 'Şafak Işıltı Armutu',
     seedId: 'seed_dawn_glow_pear',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 842,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与双果仁沐浴露霜，天地灵气所化。'
+    description: 'Altın kabak ile çift çekirdek çiy ve ışıkla beslenir, gök ile yerin özünden doğar.'
   },
   {
     id: 'dusk_glow_berry',
-    name: '暮光莓',
+    name: 'Alacakaranlık Işıltı Meyvesi',
     seedId: 'seed_dusk_glow_berry',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 846,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与甜丝瓜在星光下蜕变，风物之精。'
+    description: 'Altın kabak ile tatlı kabak yıldız ışığında dönüşür, doğanın özü haline gelir.'
   },
   {
     id: 'star_glow_peach_t',
-    name: '星光桃',
+    name: 'Yıldız Işıltı Şeftalisi',
     seedId: 'seed_star_glow_peach_t',
     season: ['spring', 'summer', 'autumn'],
     growthDays: 10,
     sellPrice: 850,
     seedPrice: 0,
     deepWatering: false,
-    description: '金瓜与紫柿汇聚山川之气，化为珍品。'
+    description: 'Altın kabak ile mor hurma dağların ve nehirlerin gücünü toplar, nadide bir ürüne dönüşür.'
   },
-  // === 四代杂交作物 ===,
+// === Dördüncü Nesil Melez Ürünler ===,
   {
     id: 'moon_hua_melon',
     name: '月华瓜',
