@@ -5,28 +5,26 @@
     :class="{ 'py-10': Capacitor.isNativePlatform() }"
     @click="slotMenuOpen = null"
   >
-    <!-- 标题 -->
+    <!-- Başlık -->
     <div class="flex items-center space-x-3">
       <div class="logo" />
       <h1 class="text-accent text-2xl md:text-4xl tracking-widest">{{ pkg.title }}</h1>
     </div>
 
-    <!-- 主菜单 -->
+    <!-- Ana menü -->
     <div class="flex flex-col space-y-3 w-full md:w-6/12">
-      <Button class="text-center justify-center py-3" :icon="Play" @click="showPrivacy = true">新的旅程</Button>
+      <Button class="text-center justify-center py-3" :icon="Play" @click="showPrivacy = true">Yeni Yolculuk</Button>
 
-      <!-- 存档列表 -->
+      <!-- Kayıt listesi -->
       <div v-for="info in slots" :key="info.slot" class="w-full">
         <div v-if="info.exists" class="flex space-x-1 w-full">
           <button class="btn flex-1 !justify-between" @click="handleLoadGame(info.slot)">
             <span class="inline-flex items-center space-x-1">
               <FolderOpen :size="14" />
-              <span>存档 {{ info.slot + 1 }}</span>
+              <span>Kayıt {{ info.slot + 1 }}</span>
             </span>
             <span class="text-muted text-xs">
-              {{ info.playerName ?? '未命名' }} · 第{{ info.year }}年 {{ SEASON_NAMES[info.season as keyof typeof SEASON_NAMES] }} 第{{
-                info.day
-              }}天
+              {{ info.playerName ?? 'Adsız' }} · {{ info.year }}. yıl {{ SEASON_NAMES[info.season as keyof typeof SEASON_NAMES] }} {{ info.day }}. gün
             </span>
           </button>
           <div class="relative">
@@ -47,7 +45,7 @@
                 :icon-size="12"
                 @click="handleExportSlot(info.slot)"
               >
-                导出
+                Dışa Aktar
               </Button>
               <Button
                 class="btn-danger !rounded-none text-center justify-center !text-sm"
@@ -55,31 +53,31 @@
                 :icon-size="12"
                 @click="handleDeleteSlot(info.slot)"
               >
-                删除
+                Sil
               </Button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 导入存档 -->
+      <!-- Kayıt içe aktarma -->
       <template v-if="!Capacitor.isNativePlatform()">
-        <Button class="text-center justify-center" :icon="Upload" @click="triggerImport">导入存档</Button>
+        <Button class="text-center justify-center" :icon="Upload" @click="triggerImport">Kayıt İçe Aktar</Button>
         <input ref="fileInputRef" type="file" accept=".tyx" class="hidden" @change="handleImportFile" />
       </template>
-      <!-- 关于 -->
-      <Button class="text-center justify-center text-muted" :icon="Info" @click="showAbout = true">关于游戏</Button>
+      <!-- Hakkında -->
+      <Button class="text-center justify-center text-muted" :icon="Info" @click="showAbout = true">Oyun Hakkında</Button>
     </div>
 
-    <!-- 关于弹窗 -->
+    <!-- Hakkında penceresi -->
     <Transition name="panel-fade">
       <div v-if="showAbout" class="fixed inset-0 z-50 flex items-center justify-center bg-bg/80" @click.self="showAbout = false">
         <div class="game-panel w-full max-w-md mx-4 text-center relative">
           <button class="absolute top-2 right-2 text-muted hover:text-text" @click="showAbout = false">
             <X :size="14" />
           </button>
-          <h2 class="text-accent text-lg mb-3">关于{{ pkg.title }}</h2>
-          <!-- 分区标签 -->
+          <h2 class="text-accent text-lg mb-3">{{ pkg.title }} Hakkında</h2>
+          <!-- Bölüm sekmeleri -->
           <div class="flex space-x-1.5 mb-3">
             <Button
               class="flex-1 justify-center"
@@ -87,7 +85,7 @@
               :icon="Info"
               @click="aboutTab = 'about'"
             >
-              关于游戏
+              Oyun Hakkında
             </Button>
             <Button
               class="flex-1 justify-center"
@@ -95,24 +93,24 @@
               :icon="UserRound"
               @click="aboutTab = 'author'"
             >
-              赞助作者
+              Ozanı Destekle
             </Button>
           </div>
-          <!-- 关于 -->
+          <!-- Hakkında -->
           <div v-if="aboutTab === 'about'" class="flex flex-col space-y-3 text-sm">
-            <p class="text-xs text-muted">游戏灵感来自 Stardew Valley</p>
+            <p class="text-xs text-muted">Bu oyunun esini Stardew Valley’den doğmuştur.</p>
             <div class="border border-accent/20 rounded-xs p-3">
-              <p class="text-muted text-xs mb-1">当前版本</p>
+              <p class="text-muted text-xs mb-1">Şimdiki sürüm</p>
               <p class="text-accent">v{{ pkg.version }}</p>
             </div>
             <div class="border border-accent/20 rounded-xs p-3">
-              <p class="text-muted text-xs mb-1">QQ 交流群</p>
+              <p class="text-muted text-xs mb-1">QQ sohbet obası</p>
               <a href="https://qm.qq.com/q/2BVaTTwDkI" target="_blank" class="text-accent underline break-all">
                 {{ pkg.qq }}
               </a>
             </div>
             <div class="border border-accent/20 rounded-xs p-3">
-              <p class="text-muted text-xs mb-1">GitHub 仓库</p>
+              <p class="text-muted text-xs mb-1">GitHub ambarı</p>
               <a :href="`https://github.com/${pkg.author}/${pkg.name}`" target="_blank" class="text-accent underline break-all">
                 https://github.com/{{ pkg.author }}/{{ pkg.name }}
               </a>
@@ -124,26 +122,26 @@
               </a>
             </div>
           </div>
-          <!-- 赞助作者 -->
+          <!-- Ozanı destekle -->
           <div v-if="aboutTab === 'author'" class="flex flex-col space-y-3 text-sm">
-            <p class="text-xs text-muted">如果你喜欢这款游戏，可以请作者喝杯奶茶、吃顿 KFC，你的支持是作者继续更新的最大动力！</p>
+            <p class="text-xs text-muted">Bu oyunu sevdiysen, ozana bir tas süt ya da sıcak bir öğün ısmarlayabilirsin; desteğin yeni güncellemelerin en büyük kuvvetidir.</p>
             <div class="flex space-x-3">
               <div class="flex-1 border border-accent/20 rounded-xs p-3">
-                <p class="text-muted text-xs mb-2">支付宝</p>
+                <p class="text-muted text-xs mb-2">Alipay</p>
                 <img
                   src="@/assets/alipay.png"
-                  alt="支付宝"
+                  alt="Alipay"
                   class="mx-auto"
                   style="width: 120px; height: 120px; image-rendering: pixelated"
                 />
               </div>
               <div class="flex-1 border border-accent/20 rounded-xs p-3">
-                <p class="text-muted text-xs mb-2">微信</p>
-                <img src="@/assets/wechat.png" alt="微信" class="mx-auto" style="width: 120px; height: 120px; image-rendering: pixelated" />
+                <p class="text-muted text-xs mb-2">WeChat</p>
+                <img src="@/assets/wechat.png" alt="WeChat" class="mx-auto" style="width: 120px; height: 120px; image-rendering: pixelated" />
               </div>
             </div>
             <div class="border border-accent/20 rounded-xs p-3">
-              <p class="text-muted text-xs mb-1">爱发电</p>
+              <p class="text-muted text-xs mb-1">Aifadian</p>
               <a :href="`https://afdian.com/a/${pkg.author}`" target="_blank" class="text-accent underline break-all">
                 https://afdian.com/a/{{ pkg.author }}
               </a>
@@ -153,63 +151,63 @@
       </div>
     </Transition>
 
-    <!-- 角色创建弹窗 -->
+    <!-- Karakter oluşturma penceresi -->
     <Transition name="panel-fade">
       <div v-if="showCharCreate && !showFarmSelect" class="fixed inset-0 z-50 flex items-center justify-center bg-bg/80">
         <div class="game-panel w-full max-w-xs mx-4 relative">
           <button class="absolute top-2 right-2 text-muted hover:text-text" @click="handleBackToMenu">
             <X :size="14" />
           </button>
-          <p class="text-accent text-sm mb-4 text-center">创建你的角色</p>
+          <p class="text-accent text-sm mb-4 text-center">Kişini Kur</p>
           <div class="flex flex-col space-y-4">
-            <!-- 名字输入 -->
+            <!-- Ad girişi -->
             <div>
-              <label class="text-xs text-muted mb-1 block">你的名字</label>
+              <label class="text-xs text-muted mb-1 block">Adın</label>
               <input
                 v-model="charName"
                 type="text"
                 maxlength="4"
-                placeholder="请输入你的名字"
+                placeholder="Adını yaz"
                 class="w-full px-3 py-2 bg-bg border border-accent/30 rounded-xs text-sm focus:border-accent outline-none"
               />
             </div>
-            <!-- 性别选择 -->
+            <!-- Cinsiyet seçimi -->
             <div>
-              <label class="text-xs text-muted mb-1 block">性别</label>
+              <label class="text-xs text-muted mb-1 block">Cinsiyet</label>
               <div class="flex space-x-3">
                 <Button
                   class="flex-1 justify-center py-2"
                   :class="charGender === 'male' ? '!border-accent !bg-accent/10' : ''"
                   @click="charGender = 'male'"
                 >
-                  男
+                  Erkek
                 </Button>
                 <Button
                   class="flex-1 justify-center py-2"
                   :class="charGender === 'female' ? '!border-accent !bg-accent/10' : ''"
                   @click="charGender = 'female'"
                 >
-                  女
+                  Kadın
                 </Button>
               </div>
             </div>
           </div>
           <div class="flex space-x-3 justify-center mt-4">
-            <Button :icon-size="12" :icon="ArrowLeft" @click="handleBackToMenu">返回</Button>
-            <Button class="px-6" :disabled="!charName.trim()" :icon-size="12" :icon="Play" @click="handleCharCreateNext">下一步</Button>
+            <Button :icon-size="12" :icon="ArrowLeft" @click="handleBackToMenu">Geri Dön</Button>
+            <Button class="px-6" :disabled="!charName.trim()" :icon-size="12" :icon="Play" @click="handleCharCreateNext">Sonraki</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 农场选择弹窗 -->
+    <!-- Çiftlik seçimi penceresi -->
     <Transition name="panel-fade">
       <div v-if="showFarmSelect" class="fixed inset-0 z-50 flex items-center justify-center bg-bg/80 p-4">
         <div class="game-panel w-full max-w-xl max-h-[80vh] flex flex-col relative">
           <button class="absolute top-2 right-2 text-muted hover:text-text z-10" @click="handleBackToCharCreate">
             <X :size="14" />
           </button>
-          <p class="text-accent text-sm mb-3 text-center shrink-0">选择你的田庄类型</p>
+          <p class="text-accent text-sm mb-3 text-center shrink-0">Çiftlik Türünü Seç</p>
           <div class="flex-1 overflow-y-auto min-h-0">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
               <button
@@ -225,11 +223,11 @@
             </div>
           </div>
           <div class="flex justify-center mt-3 shrink-0">
-            <Button :icon-size="12" :icon="ArrowLeft" @click="handleBackToCharCreate">返回</Button>
+            <Button :icon-size="12" :icon="ArrowLeft" @click="handleBackToCharCreate">Geri Dön</Button>
           </div>
         </div>
 
-        <!-- 田庄确认弹窗 -->
+        <!-- Çiftlik onay penceresi -->
         <Transition name="panel-fade">
           <div
             v-if="showFarmConfirm"
@@ -244,8 +242,8 @@
               <p class="text-xs text-muted mb-2">{{ selectedFarmDef?.description }}</p>
               <p class="text-xs text-accent mb-4">{{ selectedFarmDef?.bonus }}</p>
               <div class="flex space-x-3 justify-center">
-                <Button :icon-size="12" :icon="ArrowLeft" @click="showFarmConfirm = false">取消</Button>
-                <Button class="px-6" :icon-size="12" :icon="Play" @click="handleNewGame">开始旅程</Button>
+                <Button :icon-size="12" :icon="ArrowLeft" @click="showFarmConfirm = false">Vazgeç</Button>
+                <Button class="px-6" :icon-size="12" :icon="Play" @click="handleNewGame">Yola Çık</Button>
               </div>
             </div>
           </div>
@@ -253,53 +251,53 @@
       </div>
     </Transition>
 
-    <!-- 旧存档身份设置弹窗 -->
+    <!-- Eski kayıt kimlik ayarı penceresi -->
     <Transition name="panel-fade">
       <div v-if="showIdentitySetup" class="fixed inset-0 z-50 flex items-center justify-center bg-bg/80">
         <div class="game-panel w-full max-w-xs mx-4 relative">
-          <p class="text-accent text-sm mb-2 text-center">设置角色信息</p>
-          <p class="text-xs text-muted mb-4 text-center">检测到角色信息为空，请设置你的角色信息</p>
+          <p class="text-accent text-sm mb-2 text-center">Kişi Bilgilerini Kur</p>
+          <p class="text-xs text-muted mb-4 text-center">Kişi bilgisi boş bulundu, lütfen bilgilerini kur.</p>
           <div class="flex flex-col space-y-4">
             <div>
-              <label class="text-xs text-muted mb-1 block">你的名字</label>
+              <label class="text-xs text-muted mb-1 block">Adın</label>
               <input
                 v-model="charName"
                 type="text"
                 maxlength="4"
-                placeholder="请输入你的名字"
+                placeholder="Adını yaz"
                 class="w-full px-3 py-2 bg-bg border border-accent/30 rounded-xs text-sm focus:border-accent outline-none"
               />
             </div>
             <div>
-              <label class="text-xs text-muted mb-1 block">性别</label>
+              <label class="text-xs text-muted mb-1 block">Cinsiyet</label>
               <div class="flex space-x-3">
                 <Button
                   class="flex-1 justify-center py-2"
                   :class="charGender === 'male' ? '!border-accent !bg-accent/10' : ''"
                   @click="charGender = 'male'"
                 >
-                  男
+                  Erkek
                 </Button>
                 <Button
                   class="flex-1 justify-center py-2"
                   :class="charGender === 'female' ? '!border-accent !bg-accent/10' : ''"
                   @click="charGender = 'female'"
                 >
-                  女
+                  Kadın
                 </Button>
               </div>
             </div>
           </div>
           <div class="flex justify-center mt-4">
             <Button class="px-6" :disabled="!charName.trim()" :icon-size="12" :icon="Play" @click="handleIdentityConfirm">
-              确认并继续
+              Onayla ve Sürdür
             </Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 删除存档确认弹窗 -->
+    <!-- Kayıt silme onay penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="deleteTargetSlot !== null"
@@ -307,46 +305,46 @@
         @click.self="deleteTargetSlot = null"
       >
         <div class="game-panel w-full max-w-xs mx-4 text-center">
-          <p class="text-danger text-sm mb-3">确定删除存档 {{ deleteTargetSlot + 1 }}？</p>
-          <p class="text-xs text-muted mb-4">此操作不可恢复。</p>
+          <p class="text-danger text-sm mb-3">Kayıt {{ deleteTargetSlot + 1 }} silinsin mi?</p>
+          <p class="text-xs text-muted mb-4">Bu iş geri alınmaz.</p>
           <div class="flex space-x-3 justify-center">
-            <Button @click="deleteTargetSlot = null">取消</Button>
-            <Button class="btn-danger" @click="confirmDeleteSlot">确认删除</Button>
+            <Button @click="deleteTargetSlot = null">Vazgeç</Button>
+            <Button class="btn-danger" @click="confirmDeleteSlot">Sil</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 隐私协议弹窗 -->
+    <!-- Mahremiyet sözleşmesi penceresi -->
     <Transition name="panel-fade">
       <div v-if="showPrivacy" class="fixed inset-0 z-50 flex items-center justify-center bg-bg/80" @click.self="handlePrivacyDecline">
         <div class="game-panel w-full max-w-md mx-4 max-h-[80vh] flex flex-col">
           <h2 class="text-accent text-lg mb-3 text-center">
             <ShieldCheck :size="14" class="inline" />
-            隐私协议
+            Mahremiyet Sözü
           </h2>
           <div class="flex-1 overflow-y-auto text-xs text-muted space-y-2 mb-4 pr-1">
-            <p>欢迎来到桃源乡！在开始游戏之前，请阅读以下隐私协议：</p>
-            <p class="text-text">1. 数据存储</p>
-            <p>本游戏的存档、设置等数据保存在您的浏览器本地存储（localStorage）中。存档数据不会上传至服务器。</p>
-            <p class="text-text">2. 流量统计</p>
+            <p>gaKöy’e hoş geldin! Oyuna başlamadan önce şu mahremiyet sözünü oku:</p>
+            <p class="text-text">1. Veri saklama</p>
+            <p>Oyunun kayıtları ve ayarları tarayıcının yerel saklamasında (localStorage) tutulur. Kayıt verileri hiçbir sunucuya gönderilmez.</p>
+            <p class="text-text">2. Trafik sayımı</p>
             <p>
-              本游戏使用第三方统计服务收集匿名访问数据（如页面浏览量、访问时间、设备类型、浏览器信息等），用于分析游戏使用情况和改进体验。这些数据不包含您的个人身份信息。
+              Oyun, kullanım durumunu anlamak ve deneyimi iyileştirmek için üçüncü taraf sayım hizmetiyle adsız ziyaret verileri toplar (sayfa görüntüsü, ziyaret vakti, aygıt türü, tarayıcı bilgisi gibi). Bu veriler kişisel kimlik bilgilerini içermez.
             </p>
-            <p class="text-text">3. 网络通信</p>
-            <p>除流量统计外，游戏核心功能均在本地运行，不会将您的游戏存档或操作数据发送至任何服务器。</p>
-            <p class="text-text">4. 数据安全</p>
-            <p>清除浏览器数据或更换设备可能导致存档丢失，建议定期使用导出功能备份存档。</p>
-            <p class="text-text">5. 第三方服务</p>
+            <p class="text-text">3. Ağ ile haberleşme</p>
+            <p>Sayım hizmeti dışında oyunun öz işleri yerelde yürür; kayıtların ya da hareket verilerin hiçbir sunucuya gönderilmez.</p>
+            <p class="text-text">4. Veri güveni</p>
+            <p>Tarayıcı verisini silmek ya da aygıt değiştirmek kayıt kaybına yol açabilir; bu yüzden kayıtlarını vakit vakit dışa aktarıp yedeklemen öğütlenir.</p>
+            <p class="text-text">5. Üçüncü taraf hizmetler</p>
             <p>
-              本游戏使用的第三方统计服务有其独立的隐私政策，我们不对其数据处理方式负责。游戏中的外部链接指向的第三方网站亦不受本协议约束。
+              Oyunda kullanılan üçüncü taraf sayım hizmetlerinin kendi mahremiyet kuralları vardır; onların veri işleyişinden biz sorumlu olmayız. Oyundaki dış bağlantılarla gidilen öteki siteler de bu sözün kapsamına girmez.
             </p>
-            <p class="text-text">6. 协议变更</p>
-            <p>本协议可能随版本更新而调整，届时将在游戏内重新提示。继续使用即视为同意最新版本的协议。</p>
+            <p class="text-text">6. Söz değişikliği</p>
+            <p>Bu söz, yeni sürümlerde değişebilir; değiştiğinde oyun içinde yeniden bildirilir. Oyunu sürdürmek en güncel sözü kabul ettiğin anlamına gelir.</p>
           </div>
           <div class="flex space-x-3 justify-center">
-            <Button class="!text-sm" :icon="ArrowLeft" @click="handlePrivacyDecline">不同意</Button>
-            <Button class="!text-sm px-6" :icon="ShieldCheck" @click="handlePrivacyAgree">同意并继续</Button>
+            <Button class="!text-sm" :icon="ArrowLeft" @click="handlePrivacyDecline">Razı Değilim</Button>
+            <Button class="!text-sm px-6" :icon="ShieldCheck" @click="handlePrivacyAgree">Razıyım, Sürdür</Button>
           </div>
         </div>
       </div>
@@ -442,21 +440,21 @@
   }
 
   const handleNewGame = () => {
-    // 分配空闲存档槽位
+    // Boş kayıt yuvası ayır
     const slot = saveStore.assignNewSlot()
     if (slot < 0) {
-      showFloat('存档槽位已满，请先删除一个旧存档。')
+      showFloat('Kayıt yuvaları dolu, önce eski bir kaydı sil.')
       return
     }
-    // 重置所有游戏 store 到初始状态，防止上一个存档数据残留
+    // Yeni oyunda önceki kaydın izi kalmasın diye tüm store’ları başa sar
     resetAllStoresForNewGame()
-    playerStore.setIdentity((charName.value.trim() || '未命名').slice(0, 4), charGender.value)
+    playerStore.setIdentity((charName.value.trim() || 'Adsız').slice(0, 4), charGender.value)
     gameStore.startNewGame(selectedMap.value)
-    // 标准农场初始6×6，其余4×4
+    // Standart çiftlik başlangıçta 6x6, ötekiler 4x4
     farmStore.resetFarm(selectedMap.value === 'standard' ? 6 : 4)
-    // 新手赠送：10个青菜种子
+    // İlk armağan: 10 lahana tohumu
     inventoryStore.addItem('seed_cabbage', 10)
-    // 草地农场：免费鸡舍 + 2只鸡
+    // Çayırlık çiftliği: bedelsiz kümes + 2 tavuk
     if (selectedMap.value === 'meadowlands') {
       const coop = animalStore.buildings.find(b => b.type === 'coop')
       if (coop) {
@@ -467,7 +465,7 @@
         {
           id: 'chicken_init_1',
           type: 'chicken',
-          name: '小花',
+          name: 'Alaca',
           friendship: 100,
           mood: 200,
           daysOwned: 0,
@@ -482,7 +480,7 @@
         {
           id: 'chicken_init_2',
           type: 'chicken',
-          name: '小白',
+          name: 'Akça',
           friendship: 100,
           mood: 200,
           daysOwned: 0,
@@ -497,10 +495,10 @@
       )
     }
     questStore.initMainQuest()
-    // 新手引导：游戏开始时立即显示欢迎提示
+    // Başlangıç öğüdü: oyun başlar başlamaz görünür
     const tutorialStore = useTutorialStore()
     if (tutorialStore.enabled) {
-      addLog('柳村长说：「欢迎来到桃源乡！背包里有白菜种子，去农场开垦土地、播种吧。」')
+      addLog('Muhtar Kutalmış dedi ki: “gaKöy’e hoş geldin! Heybende lahana tohumu var; var çiftliğe, toprağı sür ve tohumunu saç.”')
       tutorialStore.markTipShown('tip_welcome')
     }
     void router.push('/game')
@@ -509,7 +507,7 @@
   const handleLoadGame = (slot: number) => {
     if (saveStore.loadFromSlot(slot)) {
       if (playerStore.needsIdentitySetup) {
-        // 旧存档没有性别/名字数据，先让玩家设置
+        // Eski kayıtta ad/cinsiyet verisi yoksa önce oyuncu kursun
         showIdentitySetup.value = true
       } else {
         void router.push('/game')
@@ -517,9 +515,9 @@
     }
   }
 
-  /** 旧存档身份设置完成 */
+  /** Eski kayıt kimlik ayarı tamamlandı */
   const handleIdentityConfirm = () => {
-    playerStore.setIdentity((charName.value.trim() || '未命名').slice(0, 4), charGender.value)
+    playerStore.setIdentity((charName.value.trim() || 'Adsız').slice(0, 4), charGender.value)
     showIdentitySetup.value = false
     void router.push('/game')
   }
@@ -539,7 +537,7 @@
 
   const handleExportSlot = (slot: number) => {
     if (!saveStore.exportSave(slot)) {
-      showFloat('导出失败。', 'danger')
+      showFloat('Dışa aktarma başarısız oldu.', 'danger')
     }
   }
 
@@ -556,15 +554,15 @@
     const reader = new FileReader()
     reader.onload = () => {
       const content = reader.result as string
-      // 找到第一个空槽位导入，没有则提示
+      // İlk boş yuvaya içe aktar, yoksa bildir
       const emptySlot = slots.value.find(s => !s.exists)
       if (!emptySlot) {
-        showFloat('存档槽位已满，请先删除一个旧存档。')
+        showFloat('Kayıt yuvaları dolu, önce eski bir kaydı sil.')
       } else if (saveStore.importSave(emptySlot.slot, content)) {
         refreshSlots()
-        showFloat(`已导入到存档 ${emptySlot.slot + 1}。`, 'success')
+        showFloat(`Kayıt ${emptySlot.slot + 1} yuvasına aktarıldı.`, 'success')
       } else {
-        showFloat('存档文件无效或已损坏。', 'danger')
+        showFloat('Kayıt dosyası geçersiz ya da bozulmuş.', 'danger')
       }
       input.value = ''
     }
