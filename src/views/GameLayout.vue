@@ -4,14 +4,14 @@
     class="flex flex-col space-y-2 md:space-y-4 h-screen p-2 md:p-4"
     :class="{ 'py-10': Capacitor.isNativePlatform() }"
   >
-    <!-- 状态栏 -->
+    <!-- Durum çubuğu -->
     <StatusBar @request-sleep="showSleepConfirm = true" />
 
     <Button class="text-center justify-center !text-sm" :icon="Moon" :icon-size="12" @click.stop="showSleepConfirm = true">
       {{ sleepLabel }}
     </Button>
 
-    <!-- 内容 -->
+    <!-- İçerik -->
     <div class="game-panel flex-1 min-h-0 overflow-y-auto">
       <router-view v-slot="{ Component }">
         <Transition name="panel-fade" mode="out-in">
@@ -20,38 +20,38 @@
       </router-view>
     </div>
 
-    <!-- 移动端地图按钮 -->
+    <!-- Taşınır aygıtta harita düğmesi -->
     <button class="mobile-map-btn" @click="showMobileMap = true">
       <Map :size="20" />
     </button>
     <button class="mobile-setting-btn" @click="showSettings = true">
       <SettingsIcon :size="20" />
     </button>
-    <!-- 虚空箱远程访问按钮 -->
+    <!-- Boşluk sandığı uzaktan erişim düğmesi -->
     <button v-if="warehouseStore.hasVoidChest" class="mobile-void-btn" @click="showVoidModal = true">
       <Archive :size="20" />
     </button>
-    <!-- 日志按钮 -->
+    <!-- Günce düğmesi -->
     <button class="mobile-log-btn" :class="{ 'with-void': warehouseStore.hasVoidChest }" @click="showLogModal = true">
       <History :size="20" />
     </button>
 
     <SettingsDialog :open="showSettings" @close="showSettings = false" />
 
-    <!-- 移动端地图菜单 -->
+    <!-- Taşınır aygıt harita menüsü -->
     <MobileMapMenu :open="showMobileMap" :current="currentPanel" @close="showMobileMap = false" />
 
-    <!-- 季节事件弹窗 -->
+    <!-- Mevsim olayı penceresi -->
     <Transition name="panel-fade">
       <EventDialog v-if="currentEvent" :event="currentEvent" @close="closeEvent" />
     </Transition>
 
-    <!-- 心事件弹窗 -->
+    <!-- Gönül olayı penceresi -->
     <Transition name="panel-fade">
       <HeartEventDialog v-if="pendingHeartEvent" :event="pendingHeartEvent" @close="closeHeartEvent" />
     </Transition>
 
-    <!-- 仙灵发现场景弹窗 -->
+    <!-- Ruhânî varlık keşif sahnesi -->
     <Transition name="panel-fade">
       <DiscoveryScene
         v-if="pendingDiscoveryScene"
@@ -61,7 +61,7 @@
       />
     </Transition>
 
-    <!-- 互动节日 -->
+    <!-- Etkileşimli bayramlar -->
     <Transition name="panel-fade">
       <div v-if="currentFestival" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <FishingContestView v-if="currentFestival === 'fishing_contest'" @complete="closeFestival" />
@@ -76,51 +76,51 @@
       </div>
     </Transition>
 
-    <!-- 技能专精选择弹窗 -->
+    <!-- Yetenek uzmanlığı seçimi penceresi -->
     <Transition name="panel-fade">
       <PerkSelectDialog v-if="pendingPerk" :skill-type="pendingPerk.skillType" :level="pendingPerk.level" @select="handlePerkSelect" />
     </Transition>
 
-    <!-- 宠物领养弹窗 -->
+    <!-- Evcil hayvan sahiplenme penceresi -->
     <Transition name="panel-fade">
       <div v-if="pendingPetAdoption" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <div class="game-panel max-w-xs w-full text-center">
-          <Divider title label="小动物来访" />
-          <p class="text-xs leading-relaxed mb-3">一只小动物在你家门口徘徊，看起来很想有个家。你要收养它吗？</p>
+          <Divider title label="Minik Canlı Geldi" />
+          <p class="text-xs leading-relaxed mb-3">Bir minik canlı kapında dolanıp duruyor; belli ki bir yuvaya kavuşmak istiyor. Onu sahiplenir misin?</p>
           <div class="flex space-x-3 justify-center mb-3">
-            <Button :class="petChoice === 'cat' ? '!bg-accent !text-bg' : ''" @click="petChoice = 'cat'">猫</Button>
-            <Button :class="petChoice === 'dog' ? '!bg-accent !text-bg' : ''" @click="petChoice = 'dog'">狗</Button>
+            <Button :class="petChoice === 'cat' ? '!bg-accent !text-bg' : ''" @click="petChoice = 'cat'">Kedi</Button>
+            <Button :class="petChoice === 'dog' ? '!bg-accent !text-bg' : ''" @click="petChoice = 'dog'">Köpek</Button>
           </div>
           <div v-if="petChoice" class="mb-3">
-            <p class="text-xs text-muted mb-1">给它取个名字：</p>
+            <p class="text-xs text-muted mb-1">Ona bir ad ver:</p>
             <input
               v-model="petNameInput"
               class="w-full bg-bg border border-accent/30 rounded-xs px-2 py-1 text-xs text-text"
-              :placeholder="petChoice === 'cat' ? '小花' : '旺财'"
+              :placeholder="petChoice === 'cat' ? 'Minnak' : 'Karabaş'"
               maxlength="8"
             />
           </div>
-          <Button :disabled="!petChoice" @click="confirmPetAdoption">领养</Button>
+          <Button :disabled="!petChoice" @click="confirmPetAdoption">Sahiplen</Button>
         </div>
       </div>
     </Transition>
 
-    <!-- 子女提议弹窗 -->
+    <!-- Çocuk teklifi penceresi -->
     <Transition name="panel-fade">
       <div v-if="childProposalVisible" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <div class="game-panel max-w-xs w-full text-center">
-          <Divider title label="家庭提议" />
-          <p class="text-xs leading-relaxed mb-4">{{ proposalSpouseName }}轻声说道：「最近我在想，我们是不是该要个孩子了？」</p>
+          <Divider title label="Ocak Sözü" />
+          <p class="text-xs leading-relaxed mb-4">{{ proposalSpouseName }} alçak sesle dedi ki: 「Son günlerde düşünüyorum da… Bizim de bir çocuğumuz olsa ya?」</p>
           <div class="flex flex-col space-y-1.5">
-            <Button class="w-full justify-center" @click="handleChildProposalResponse('accept')">「我也这么想。」</Button>
-            <Button class="w-full justify-center" @click="handleChildProposalResponse('wait')">「再等等吧。」</Button>
-            <Button class="w-full justify-center text-muted" @click="handleChildProposalResponse('decline')">「现在还不是时候。」</Button>
+            <Button class="w-full justify-center" @click="handleChildProposalResponse('accept')">「Ben de bunu isterim。」</Button>
+            <Button class="w-full justify-center" @click="handleChildProposalResponse('wait')">「Biraz daha bekleyelim。」</Button>
+            <Button class="w-full justify-center text-muted" @click="handleChildProposalResponse('decline')">「Şimdi vakti değil。」</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 晨间选项事件弹窗 -->
+    <!-- Sabah seçim olayı penceresi -->
     <Transition name="panel-fade">
       <div v-if="pendingFarmEvent" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <div class="game-panel max-w-xs w-full text-center">
@@ -134,7 +134,7 @@
       </div>
     </Transition>
 
-    <!-- 虚空箱远程存取弹窗 -->
+    <!-- Boşluk sandığı uzaktan alma-verme penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showVoidModal"
@@ -145,12 +145,12 @@
           <div class="flex items-center justify-between mb-2">
             <p class="text-sm text-accent">
               <Archive :size="14" class="inline" />
-              虚空箱
+              Boşluk Sandığı
             </p>
             <Button class="py-0 px-1" :icon="X" :icon-size="12" @click="showVoidModal = false" />
           </div>
 
-          <!-- 虚空箱列表 -->
+          <!-- Boşluk sandığı listesi -->
           <div class="flex flex-col space-y-1.5">
             <div
               v-for="vc in voidChests"
@@ -161,15 +161,15 @@
               <div class="flex items-center justify-between mb-1">
                 <div class="flex items-center space-x-1.5">
                   <span class="text-xs text-quality-supreme">{{ vc.label }}</span>
-                  <span v-if="vc.voidRole === 'input'" class="text-[10px] px-1 border border-accent/30 rounded-xs text-accent">原料箱</span>
+                  <span v-if="vc.voidRole === 'input'" class="text-[10px] px-1 border border-accent/30 rounded-xs text-accent">Hammadde Sandığı</span>
                   <span v-if="vc.voidRole === 'output'" class="text-[10px] px-1 border border-accent/30 rounded-xs text-accent">
-                    成品箱
+                    Mamul Sandığı
                   </span>
                 </div>
                 <span class="text-[10px] text-muted">{{ vc.items.length }}/{{ voidChestCapacity }}</span>
               </div>
 
-              <!-- 展开的物品列表 -->
+              <!-- Açılmış eşya listesi -->
               <template v-if="expandedVoidChestId === vc.id">
                 <div v-if="vc.items.length > 0" class="flex flex-col space-y-0.5 mb-1.5 max-h-36 overflow-y-auto">
                   <div
@@ -187,15 +187,15 @@
                         class="py-0 px-1 text-[10px]"
                         @click.stop="openVoidQtyModal('withdraw', vc.id, item.itemId, item.quality, item.quantity)"
                       >
-                        取出
+                        Al
                       </Button>
                     </div>
                   </div>
                 </div>
                 <div v-else class="flex flex-col items-center justify-center py-4">
                   <Archive :size="28" class="text-accent/20 mb-1.5" />
-                  <p class="text-[10px] text-muted">箱子是空的</p>
-                  <p class="text-[10px] text-muted/50 mt-0.5">点击下方「存入」添加</p>
+                  <p class="text-[10px] text-muted">Sandık boş</p>
+                  <p class="text-[10px] text-muted/50 mt-0.5">Aşağıdaki “Koy” düğmesiyle eşya ekle</p>
                 </div>
                 <Button
                   v-if="voidDuplicateDepositItems.length > 0"
@@ -204,7 +204,7 @@
                   :icon-size="10"
                   @click.stop="handleVoidDepositDuplicates"
                 >
-                  一键存入重复物品
+                  Benzerleri Bir Seferde Koy
                 </Button>
                 <Button
                   v-if="voidDepositableItems.length > 0"
@@ -213,21 +213,21 @@
                   :icon-size="10"
                   @click.stop="openVoidDeposit(vc.id)"
                 >
-                  存入
+                  Koy
                 </Button>
               </template>
             </div>
           </div>
           <div v-if="voidChests.length === 0" class="flex flex-col items-center justify-center py-8">
             <Archive :size="40" class="text-accent/20 mb-2" />
-            <p class="text-xs text-muted">还没有虚空箱</p>
-            <p class="text-[10px] text-muted/50 mt-0.5">在仓库中制作虚空箱后即可远程存取</p>
+            <p class="text-xs text-muted">Henüz boşluk sandığın yok</p>
+            <p class="text-[10px] text-muted/50 mt-0.5">Ambarında boşluk sandığı yaptıktan sonra uzaktan alma-verme açılır</p>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 虚空箱存入弹窗 -->
+    <!-- Boşluk sandığına koyma penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showVoidDepositModal && voidDepositChestId"
@@ -236,7 +236,7 @@
       >
         <div class="game-panel max-w-sm w-full">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-sm text-accent">存入物品</p>
+            <p class="text-sm text-accent">Eşya Koy</p>
             <Button class="py-0 px-1" :icon="X" :icon-size="12" @click="showVoidDepositModal = false" />
           </div>
           <div class="flex flex-col space-y-1 max-h-60 overflow-y-auto">
@@ -257,7 +257,7 @@
       </div>
     </Transition>
 
-    <!-- 虚空箱数量选择弹窗 -->
+    <!-- Boşluk sandığı miktar seçimi penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="voidQtyModal"
@@ -266,7 +266,7 @@
       >
         <div class="game-panel max-w-xs w-full">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-sm text-accent">{{ voidQtyModal.mode === 'withdraw' ? '取出' : '存入' }}</p>
+            <p class="text-sm text-accent">{{ voidQtyModal.mode === 'withdraw' ? 'Al' : 'Koy' }}</p>
             <Button class="py-0 px-1" :icon="X" :icon-size="12" @click="voidQtyModal = null" />
           </div>
           <p class="text-xs mb-2" :class="voidQualityClass(voidQtyModal.quality)">
@@ -275,7 +275,7 @@
           </p>
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between mb-1.5">
-              <span class="text-xs text-muted">数量</span>
+              <span class="text-xs text-muted">Sayı</span>
               <div class="flex items-center space-x-1">
                 <Button class="h-6 px-1.5 py-0.5 text-xs justify-center" :disabled="voidQty <= 1" @click="addVoidQty(-1)">-</Button>
                 <input
@@ -292,20 +292,20 @@
               </div>
             </div>
             <div class="flex space-x-1">
-              <Button class="flex-1 justify-center" :disabled="voidQty <= 1" @click="setVoidQty(1)">最少</Button>
+              <Button class="flex-1 justify-center" :disabled="voidQty <= 1" @click="setVoidQty(1)">En Az</Button>
               <Button class="flex-1 justify-center" :disabled="voidQty >= voidQtyModal.max" @click="setVoidQty(voidQtyModal!.max)">
-                最多
+                En Çok
               </Button>
             </div>
           </div>
           <Button class="w-full justify-center !bg-accent !text-bg" @click="confirmVoidQty">
-            {{ voidQtyModal.mode === 'withdraw' ? '取出' : '存入' }} &times;{{ voidQty }}
+            {{ voidQtyModal.mode === 'withdraw' ? 'Al' : 'Koy' }} &times;{{ voidQty }}
           </Button>
         </div>
       </div>
     </Transition>
 
-    <!-- 虚空箱道具信息弹窗 -->
+    <!-- Boşluk sandığı eşya bilgisi penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="voidItemDetail && voidItemDef"
@@ -324,24 +324,24 @@
           </div>
           <div class="border border-accent/10 rounded-xs p-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">数量</span>
+              <span class="text-xs text-muted">Sayı</span>
               <span class="text-xs">×{{ voidItemDetail.quantity }}</span>
             </div>
             <div v-if="voidItemDetail.quality !== 'normal'" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">品质</span>
+              <span class="text-xs text-muted">Nitelik</span>
               <span class="text-xs" :class="voidQualityClass(voidItemDetail.quality)">
                 {{ VOID_QUALITY_LABEL[voidItemDetail.quality] }}
               </span>
             </div>
             <div v-if="voidItemDef.sellPrice" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">售价</span>
-              <span class="text-xs text-accent">{{ voidItemDef.sellPrice }}文</span>
+              <span class="text-xs text-muted">Satış bedeli</span>
+              <span class="text-xs text-accent">{{ voidItemDef.sellPrice }} akçe</span>
             </div>
             <div v-if="voidItemDef.staminaRestore" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">恢复</span>
+              <span class="text-xs text-muted">Yenileme</span>
               <span class="text-xs text-success">
-                +{{ voidItemDef.staminaRestore }}体力
-                <template v-if="voidItemDef.healthRestore">/ +{{ voidItemDef.healthRestore }}HP</template>
+                +{{ voidItemDef.staminaRestore }} güç
+                <template v-if="voidItemDef.healthRestore">/ +{{ voidItemDef.healthRestore }} HP</template>
               </span>
             </div>
           </div>
@@ -349,7 +349,7 @@
       </div>
     </Transition>
 
-    <!-- 日志弹窗 -->
+    <!-- Günce penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showLogModal"
@@ -363,7 +363,7 @@
           <div class="flex items-center justify-between mb-3">
             <p class="text-sm text-accent">
               <History :size="14" class="inline" />
-              日志
+              Günce
             </p>
             <Button
               v-if="groupedLogs.length > 0"
@@ -372,20 +372,20 @@
               :icon-size="10"
               @click="requestClearLogs(null)"
             >
-              清空全部
+              Hepsini Sil
             </Button>
           </div>
           <div class="flex-1 overflow-y-auto min-h-0">
             <div v-if="groupedLogs.length === 0" class="flex flex-col items-center justify-center py-8 text-muted">
               <History :size="32" class="mb-2" />
-              <p class="text-xs">暂无日志记录</p>
+              <p class="text-xs">Henüz günce kaydı yok</p>
             </div>
             <div v-for="(group, gi) in groupedLogs" :key="gi" class="mb-3">
               <div class="flex items-center justify-between">
                 <Divider :label="group.label" class="flex-1" />
                 <button
                   class="text-muted hover:text-danger ml-1.5 flex-shrink-0"
-                  title="清空该日日志"
+                  title="O günün güncesini sil"
                   @click="requestClearLogs(group.label)"
                 >
                   <X :size="12" />
@@ -400,22 +400,22 @@
       </div>
     </Transition>
 
-    <!-- 日志清空确认 -->
+    <!-- Günce silme onayı -->
     <Transition name="panel-fade">
       <div v-if="clearLogTarget !== undefined" class="fixed inset-0 bg-black/70 flex items-center justify-center z-[60] p-4">
         <div class="game-panel max-w-xs w-full text-center">
           <p class="text-xs leading-relaxed mb-4">
-            {{ clearLogTarget === null ? '确认清空全部日志？' : `确认清空「${clearLogTarget}」的日志？` }}
+            {{ clearLogTarget === null ? 'Bütün günce kayıtları silinsin mi?' : `「${clearLogTarget}」 güncesi silinsin mi?` }}
           </p>
           <div class="flex space-x-3 justify-center">
-            <Button @click="clearLogTarget = undefined">取消</Button>
-            <Button class="btn-danger" :icon="Trash2" :icon-size="12" @click="executeClearLogs">确认</Button>
+            <Button @click="clearLogTarget = undefined">Vazgeç</Button>
+            <Button class="btn-danger" :icon="Trash2" :icon-size="12" @click="executeClearLogs">Onayla</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 休息确认 -->
+    <!-- Dinlenme onayı -->
     <Transition name="panel-fade">
       <div v-if="showSleepConfirm" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <div class="game-panel max-w-xs w-full text-center">
@@ -423,7 +423,7 @@
           <p class="text-xs leading-relaxed mb-1">{{ sleepSummary }}</p>
           <p v-for="(warn, wi) in sleepWarning.split('\n').filter(Boolean)" :key="wi" class="text-danger text-xs mb-1">{{ warn }}</p>
           <div class="flex space-x-3 justify-center mt-4">
-            <Button :icon="X" :icon-size="12" @click="showSleepConfirm = false">再等等</Button>
+            <Button :icon="X" :icon-size="12" @click="showSleepConfirm = false">Biraz Daha Bekle</Button>
             <Button class="btn-danger" :icon="Moon" :icon-size="12" @click="confirmSleep">{{ sleepLabel }}</Button>
           </div>
         </div>
@@ -487,7 +487,7 @@
   const farmStore = useFarmStore()
   const { switchToSeasonalBgm } = useAudio()
 
-  // 游戏未开始时重定向到主菜单
+  // Oyun başlamadıysa ana menüye dön
   if (!gameStore.isGameStarted) {
     void router.replace('/')
   }
@@ -515,18 +515,18 @@
 
   const { startClock, stopClock, pauseClock, resumeClock } = useGameClock()
 
-  /** 移动端地图菜单 */
+  /** Taşınır aygıt harita menüsü */
   const showMobileMap = ref(false)
 
-  /** 休息确认弹窗 */
+  /** Dinlenme onay penceresi */
   const showSleepConfirm = ref(false)
 
-  /** 设置弹窗 */
+  /** Ayarlar penceresi */
   const showSettings = ref(false)
 
-  /** 日志弹窗 */
+  /** Günce penceresi */
   const showLogModal = ref(false)
-  /** 日志清空确认：undefined=不显示, null=清空全部, string=清空指定天 */
+  /** Günce silme onayı: undefined=görünmez, null=hepsini sil, string=belli bir günü sil */
   const clearLogTarget = ref<string | null | undefined>(undefined)
   const requestClearLogs = (dayLabel: string | null) => {
     clearLogTarget.value = dayLabel
@@ -540,10 +540,10 @@
     if (!v) clearLogTarget.value = undefined
   })
 
-  // 注册天数标签获取器
-  _registerDayLabelGetter(() => `第${gameStore.year}年 ${SEASON_NAMES[gameStore.season]} 第${gameStore.day}天`)
+  // Gün etiketi alıcısını kaydet
+  _registerDayLabelGetter(() => `${gameStore.year}. yıl ${SEASON_NAMES[gameStore.season]} ${gameStore.day}. gün`)
 
-  /** 按天分组的日志（最新天在前） */
+  /** Günlere göre kümelenmiş günlük kayıtları (en yeni gün başta) */
   const groupedLogs = computed(() => {
     const groups: { label: string; messages: string[] }[] = []
     let currentLabel: string | null = null
@@ -557,11 +557,11 @@
     return groups.reverse()
   })
 
-  // 实时时钟生命周期
+  // Gerçek zaman saati ömrü
   onMounted(() => startClock())
   onUnmounted(() => stopClock())
 
-  // 弹窗打开时自动暂停时钟，全部关闭后恢复
+  // Pencere açılınca saati durdur, hepsi kapanınca yeniden yürüt
   watch(
     () =>
       !!(
@@ -581,25 +581,25 @@
     }
   )
 
-  /** 从路由名称获取当前面板标识 */
+  /** Yol adına göre şimdiki bölmeyi al */
   const currentPanel = computed(() => {
     return (route.name as string) ?? 'farm'
   })
 
   const sleepLabel = computed(() => {
-    if (gameStore.hour >= 24) return '倒头就睡'
-    if (gameStore.hour >= 20) return '回家休息'
-    return '休息'
+    if (gameStore.hour >= 24) return 'Yığılıp Uyu'
+    if (gameStore.hour >= 20) return 'Eve Dönüp Dinlen'
+    return 'Dinlen'
   })
 
   const sleepSummary = computed(() => {
     if (playerStore.stamina <= 0 || gameStore.hour >= 26) {
-      return '你已经精疲力竭……将在原地昏倒。'
+      return 'Büsbütün tükenmişsin… Olduğun yerde bayılıp kalacaksın.'
     }
     if (gameStore.hour >= 24) {
-      return '已经过了午夜，拖着疲惫的身体回家……'
+      return 'Gece yarısı geçti; bitkin bedeninle eve dönüyorsun…'
     }
-    return '回到家中，安稳入睡。明日又是新的一天。'
+    return 'Evine dönüp dingin bir uykuya dalıyorsun. Yarın yine yeni bir gün.'
   })
 
   const sleepWarning = computed(() => {
@@ -610,9 +610,9 @@
       const pct = Math.round(Math.min(PASSOUT_STAMINA_RECOVERY + staminaBonus, 1) * 100)
       const penaltyPct = Math.round(PASSOUT_MONEY_PENALTY_RATE * 100)
       if (pct < 100) {
-        warnings.push(`体力仅恢复${pct}%，并损失${penaltyPct}%铜钱（上限${PASSOUT_MONEY_PENALTY_CAP}文）`)
+        warnings.push(`Gücün yalnızca %${pct} geri gelir; ayrıca akçenin %${penaltyPct} kadarını yitirirsin (üst sınır ${PASSOUT_MONEY_PENALTY_CAP} akçe)`)
       } else {
-        warnings.push(`损失${penaltyPct}%铜钱（上限${PASSOUT_MONEY_PENALTY_CAP}文）`)
+        warnings.push(`Akçenin %${penaltyPct} kadarını yitirirsin (üst sınır ${PASSOUT_MONEY_PENALTY_CAP} akçe)`)
       }
     } else if (gameStore.hour >= 24) {
       const t = Math.min(Math.max(gameStore.hour - 24, 0), 1)
@@ -620,10 +620,10 @@
         Math.min(LATE_NIGHT_RECOVERY_MAX - t * (LATE_NIGHT_RECOVERY_MAX - LATE_NIGHT_RECOVERY_MIN) + staminaBonus, 1) * 100
       )
       if (pct < 100) {
-        warnings.push(`体力仅恢复${pct}%`)
+        warnings.push(`Gücün yalnızca %${pct} geri gelir`)
       }
     }
-    // 第28天换季警告：统计将枯萎的作物
+    // 28. gün mevsim dönüşü uyarısı: kuruyacak ürünleri say
     if (gameStore.day === 28) {
       const SEASON_ORDER = ['spring', 'summer', 'autumn', 'winter'] as const
       const nextSeason = SEASON_ORDER[(SEASON_ORDER.indexOf(gameStore.season) + 1) % 4]!
@@ -640,9 +640,9 @@
       }
       if (willWitherCount > 0) {
         const nextName = SEASON_NAMES[nextSeason]
-        let msg = `明天进入${nextName}季，${willWitherCount}株作物将会枯萎！`
+        let msg = `Yarın ${nextName} başlayacak; ${willWitherCount} kök ürün kuruyacak!`
         if (harvestableCount > 0) {
-          msg += `（其中${harvestableCount}株已可收获）`
+          msg += ` (${harvestableCount} kökü şimdiden devşirebilirsin)`
         }
         warnings.push(msg)
       }
@@ -650,14 +650,14 @@
     return warnings.join('\n')
   })
 
-  /** 宠物领养 */
+  /** Evcil hayvan sahiplenme */
   const petChoice = ref<'cat' | 'dog' | null>(null)
   const petNameInput = ref('')
 
   const confirmPetAdoption = () => {
     if (!petChoice.value) return
     const animalStore = useAnimalStore()
-    const defaultName = petChoice.value === 'cat' ? '小花' : '旺财'
+    const defaultName = petChoice.value === 'cat' ? 'Minnak' : 'Karabaş'
     const name = petNameInput.value.trim() || defaultName
     animalStore.adoptPet(petChoice.value, name)
     closePetAdoption()
@@ -665,18 +665,18 @@
     petNameInput.value = ''
   }
 
-  /** 子女提议回应 */
+  /** Çocuk teklifi yanıtı */
   const proposalSpouseName = computed(() => {
     const spouse = npcStore.getSpouse()
-    if (!spouse) return '配偶'
-    return getNpcById(spouse.npcId)?.name ?? '配偶'
+    if (!spouse) return 'Eşin'
+    return getNpcById(spouse.npcId)?.name ?? 'Eşin'
   })
 
   const handleChildProposalResponse = (response: 'accept' | 'decline' | 'wait') => {
     const result = npcStore.respondToChildProposal(response)
     addLog(result.message)
     if (result.friendshipChange !== 0) {
-      addLog(`(好感${result.friendshipChange > 0 ? '+' : ''}${result.friendshipChange})`)
+      addLog(`(Gönül bağı ${result.friendshipChange > 0 ? '+' : ''}${result.friendshipChange})`)
     }
     closeChildProposal()
   }
@@ -704,7 +704,7 @@
     closeFarmEvent()
   }
 
-  // === 虚空箱远程访问 ===
+  // === Boşluk sandığı uzaktan erişim ===
   const showVoidModal = ref(false)
   const showVoidDepositModal = ref(false)
   const expandedVoidChestId = ref<string | null>(null)
@@ -716,10 +716,10 @@
   const getItemName = (itemId: string): string => getItemById(itemId)?.name ?? itemId
 
   const VOID_QUALITY_LABEL: Record<Quality, string> = {
-    normal: '普通',
-    fine: '优良',
-    excellent: '精品',
-    supreme: '极品'
+    normal: 'Sade',
+    fine: 'İyi',
+    excellent: 'Seçkin',
+    supreme: 'Ulu'
   }
 
   const voidQualityClass = (q: Quality): string => {
@@ -746,7 +746,7 @@
     })
   )
 
-  /** 背包中可一键存入的重复物品（虚空箱中已有且未锁定、非种子） */
+  /** Heybede bir seferde konabilecek benzer eşyalar (boşluk sandığında zaten var olan, kilitsiz, tohum olmayan) */
   const voidDuplicateDepositItems = computed(() => {
     if (!expandedVoidChestId.value) return []
     const chest = warehouseStore.getChest(expandedVoidChestId.value)
@@ -760,7 +760,7 @@
     })
   })
 
-  /** 一键存入重复物品到虚空箱 */
+  /** Benzer eşyaları bir seferde boşluk sandığına koy */
   const handleVoidDepositDuplicates = () => {
     if (!expandedVoidChestId.value) return
     const chestId = expandedVoidChestId.value
@@ -775,20 +775,20 @@
       }
     }
     if (totalDeposited > 0) {
-      addLog(`一键存入了${kindCount}种物品，共${totalDeposited}个到虚空箱。`)
+      addLog(`Boşluk sandığına ${kindCount} türden toplam ${totalDeposited} eşya koydun.`)
     } else {
-      addLog('虚空箱已满，无法存入。')
+      addLog('Boşluk sandığı dolu; eşya konamadı.')
     }
   }
 
-  /** 虚空箱道具信息弹窗 */
+  /** Boşluk sandığı eşya bilgisi penceresi */
   const voidItemDetail = ref<{ itemId: string; quality: Quality; quantity: number } | null>(null)
   const voidItemDef = computed(() => {
     if (!voidItemDetail.value) return null
     return getItemById(voidItemDetail.value.itemId) ?? null
   })
 
-  // === 虚空箱数量选择 ===
+  // === Boşluk sandığı miktar seçimi ===
   interface VoidQtyModalData {
     mode: 'withdraw' | 'deposit'
     chestId: string
@@ -801,7 +801,7 @@
 
   const openVoidQtyModal = (mode: 'withdraw' | 'deposit', chestId: string, itemId: string, quality: Quality, max: number) => {
     if (max <= 1) {
-      // 数量为1时直接执行，不弹窗
+      // Sayı 1 ise pencere açmadan doğrudan işle
       if (mode === 'withdraw') executeVoidWithdraw(chestId, itemId, quality, 1)
       else executeVoidDeposit(chestId, itemId, quality, 1)
       return
@@ -822,19 +822,19 @@
 
   const executeVoidWithdraw = (chestId: string, itemId: string, quality: Quality, qty: number) => {
     if (!warehouseStore.withdrawFromChest(chestId, itemId, qty, quality)) {
-      addLog('背包已满，无法取出。')
+      addLog('Heybe dolu; eşya alınamadı.')
       return
     }
-    addLog(`从虚空箱取出了${getItemName(itemId)}×${qty}。`)
+    addLog(`Boşluk sandığından ${getItemName(itemId)} ×${qty} aldın.`)
   }
 
   const executeVoidDeposit = (chestId: string, itemId: string, quality: Quality, qty: number) => {
     const actualQty = warehouseStore.depositToChest(chestId, itemId, qty, quality)
     if (actualQty <= 0) {
-      addLog('虚空箱已满，无法存入。')
+      addLog('Boşluk sandığı dolu; eşya konamadı.')
       return
     }
-    addLog(`存入了${getItemName(itemId)}×${actualQty}到虚空箱。`)
+    addLog(`${getItemName(itemId)} ×${actualQty} boşluk sandığına kondu.`)
     if (voidDepositableItems.value.length === 0 || warehouseStore.isChestFull(chestId)) {
       showVoidDepositModal.value = false
     }
@@ -858,7 +858,7 @@
 </script>
 
 <style scoped>
-  /* 移动端地图按钮 */
+  /* Taşınır aygıt harita düğmesi */
   .mobile-map-btn,
   .mobile-setting-btn {
     position: fixed;
