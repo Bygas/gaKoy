@@ -2747,1905 +2747,1905 @@ export const HYBRID_DEFS: HybridDef[] = [
   },
   {
     id: 'scarlet_fortune_tuber',
-    name: '丹瑞薯',
+    name: 'Kızıl Uğur Yumrusu',
     parentCropA: 'wind_melon',
     parentCropB: 'jujube_blossom',
     minSweetness: 59,
     minYield: 59,
     resultCropId: 'scarlet_fortune_tuber',
     baseGenetics: { sweetness: 71, yield: 71, resistance: 62 },
-    discoveryText: '蜜茶果与枣花桃沐浴星辉，祥瑞之兆。'
+    discoveryText: 'Bal çay meyvesi ile hünnap çiçeği yıldız ışığında kutsanır, gaKöy toprağında uğur getiren bir yumru doğar.'
   },
   {
     id: 'azure_fortune_green',
-    name: '青瑞菜',
+    name: 'Gök Uğur Otu',
     parentCropA: 'wind_melon',
     parentCropB: 'ginger_blossom',
     minSweetness: 59,
     minYield: 59,
     resultCropId: 'azure_fortune_green',
     baseGenetics: { sweetness: 71, yield: 71, resistance: 63 },
-    discoveryText: '蜜茶果与姜花菜在月华中蜕变，天赐之品。'
+    discoveryText: 'Bal çay meyvesi ile zencefil çiçeği ay ışığında dönüşür, gaKöy’de göğün armağanı bir bitki doğar.'
   },
   {
     id: 'moon_glory_fruit',
-    name: '月祥果',
+    name: 'Ay Kutlu Meyvesi',
     parentCropA: 'wind_melon',
     parentCropB: 'fairy_chrysanthemum',
     minSweetness: 59,
     minYield: 59,
     resultCropId: 'moon_glory_fruit',
     baseGenetics: { sweetness: 72, yield: 72, resistance: 63 },
-    discoveryText: '蜜茶果与仙菊菜在天光下交融，绽放华彩。'
+    discoveryText: 'Bal çay meyvesi ile peri kasımpatı gök ışığında birleşir, gaKöy’de ışık saçan bir meyve doğar.'
   },
   {
     id: 'sun_glory_bloom',
-    name: '日祥花',
+    name: 'Güneş Kutlu Çiçeği',
     parentCropA: 'wind_melon',
     parentCropB: 'imperial_cabbage',
     minSweetness: 59,
     minYield: 59,
     resultCropId: 'sun_glory_bloom',
     baseGenetics: { sweetness: 72, yield: 72, resistance: 63 },
-    discoveryText: '蜜茶果与御品白菜承日月精华，辉映四方。'
+    discoveryText: 'Bal çay meyvesi ile saray lahanası gün ile ayın özünü taşır, gaKöy’de kutsal bir çiçek açar.'
   },
   {
     id: 'sky_glory_tea',
-    name: '天祥茶',
+    name: 'Gök Kutlu Çayı',
     parentCropA: 'wind_melon',
     parentCropB: 'spicy_radish',
     minSweetness: 60,
     minYield: 60,
     resultCropId: 'sky_glory_tea',
     baseGenetics: { sweetness: 72, yield: 72, resistance: 64 },
-    discoveryText: '蜜茶果与蒜香萝卜凝天地灵气，瑞光盈盈。'
+    discoveryText: 'Bal çay meyvesi ile acı turp gök ile yerin gücünü toplar, gaKöy’de kutsal sayılan bir çay doğar.'
   },
   {
     id: 'gem_glory_shoot',
-    name: '玉祥笋',
+    name: 'Yeşim Kutlu Filizi',
     parentCropA: 'wind_melon',
     parentCropB: 'snow_tea',
     minSweetness: 60,
     minYield: 60,
     resultCropId: 'gem_glory_shoot',
     baseGenetics: { sweetness: 73, yield: 73, resistance: 64 },
-    discoveryText: '蜜茶果与雪茶沐浴星辉，祥瑞之兆。'
+    discoveryText: 'Bal çay meyvesi ile kar çayı yıldız ışığıyla yoğrulur, gaKöy’de uğur getiren bir filiz doğar.'
   },
   {
     id: 'prism_glory_lotus',
-    name: '琉祥莲',
+    name: 'Prizma Kutlu Nilüferi',
     parentCropA: 'wind_melon',
     parentCropB: 'spring_chive',
     minSweetness: 60,
     minYield: 60,
     resultCropId: 'prism_glory_lotus',
     baseGenetics: { sweetness: 73, yield: 73, resistance: 64 },
-    discoveryText: '蜜茶果与春韭菜在月华中蜕变，天赐之品。'
+    discoveryText: 'Bal çay meyvesi ile bahar soğanı ay ışığında dönüşür, gaKöy’de göksel bir nilüfer doğar.'
   },
   {
     id: 'silver_glory_wheat',
-    name: '银祥麦',
+    name: 'Gümüş Kutlu Buğday',
     parentCropA: 'wind_melon',
     parentCropB: 'wheat_potato',
     minSweetness: 61,
     minYield: 61,
     resultCropId: 'silver_glory_wheat',
     baseGenetics: { sweetness: 73, yield: 73, resistance: 65 },
-    discoveryText: '蜜茶果与麦香薯在天光下交融，绽放华彩。'
+    discoveryText: 'Bal çay meyvesi ile buğday kökü gök ışığında birleşir, gaKöy tarlalarında gümüş gibi parlayan başaklar verir.'
   },
   {
     id: 'verdant_glory_sesame',
-    name: '翠祥芝',
+    name: 'Yeşil Kutlu Susam',
     parentCropA: 'wind_melon',
     parentCropB: 'spring_green_peach',
     minSweetness: 61,
     minYield: 61,
     resultCropId: 'verdant_glory_sesame',
     baseGenetics: { sweetness: 74, yield: 74, resistance: 65 },
-    discoveryText: '蜜茶果与绿桃承日月精华，辉映四方。'
+    discoveryText: 'Bal çay meyvesi ile yeşil şeftali gün ile ayın özünü taşır, gaKöy’de bereketli susamlar doğar.'
   },
   {
     id: 'violet_glory_pepper',
-    name: '紫祥椒',
+    name: 'Mor Kutlu Biber',
     parentCropA: 'wind_melon',
     parentCropB: 'mustard_bean',
     minSweetness: 61,
     minYield: 61,
     resultCropId: 'violet_glory_pepper',
     baseGenetics: { sweetness: 74, yield: 74, resistance: 66 },
-    discoveryText: '蜜茶果与芥香豆凝天地灵气，瑞光盈盈。'
+    discoveryText: 'Bal çay meyvesi ile hardal fasulyesi gök ile yerin gücünü toplar, gaKöy’de mor parıltılı bir biber doğar.'
   },
   {
     id: 'scarlet_glory_root',
-    name: '丹祥参',
+    name: 'Kızıl Kutlu Kök',
     parentCropA: 'wind_melon',
     parentCropB: 'frost_rapeseed',
     minSweetness: 62,
     minYield: 62,
     resultCropId: 'scarlet_glory_root',
     baseGenetics: { sweetness: 74, yield: 74, resistance: 66 },
-    discoveryText: '蜜茶果与霜油菜沐浴星辉，祥瑞之兆。'
+    discoveryText: 'Bal çay meyvesi ile kırağı kolza yıldız ışığıyla kutsanır, gaKöy’de uğur getiren bir kök doğar.'
   },
   {
     id: 'azure_glory_sprout',
-    name: '青祥芽',
+    name: 'Gök Kutlu Filiz',
     parentCropA: 'wind_melon',
     parentCropB: 'purple_melon',
     minSweetness: 62,
     minYield: 62,
     resultCropId: 'azure_glory_sprout',
     baseGenetics: { sweetness: 75, yield: 75, resistance: 66 },
-    discoveryText: '蜜茶果与紫晶瓜在月华中蜕变，天赐之品。'
+    discoveryText: 'Bal çay meyvesi ile mor kristal kavun ay ışığında dönüşür, gaKöy’de göksel bir filiz doğar.'
   },
   {
     id: 'moon_prism4_vine',
-    name: '月彩藤',
+    name: 'Ay Renk Asması',
     parentCropA: 'wind_melon',
     parentCropB: 'golden_rice',
     minSweetness: 62,
     minYield: 62,
     resultCropId: 'moon_prism4_vine',
     baseGenetics: { sweetness: 75, yield: 75, resistance: 67 },
-    discoveryText: '蜜茶果与金芝稻在天光下交融，绽放华彩。'
+    discoveryText: 'Bal çay meyvesi ile altın pirinç gök ışığında birleşir, gaKöy’de renk saçan bir asma doğar.'
   },
   {
     id: 'sun_prism4_bud',
-    name: '日彩蕾',
+    name: 'Güneş Renk Tomurcuğu',
     parentCropA: 'wind_melon',
     parentCropB: 'double_lotus',
     minSweetness: 63,
     minYield: 63,
     resultCropId: 'sun_prism4_bud',
     baseGenetics: { sweetness: 75, yield: 75, resistance: 67 },
-    discoveryText: '蜜茶果与双莲承日月精华，辉映四方。'
+    discoveryText: 'Bal çay meyvesi ile ikiz nilüfer gün ile ayın özünü taşır, gaKöy’de ışık saçan bir tomurcuk doğar.'
   },
   {
     id: 'sky_prism4_orchid',
-    name: '天彩兰',
+    name: 'Gök Renk Orkidesi',
     parentCropA: 'wind_melon',
     parentCropB: 'fire_sesame',
     minSweetness: 63,
     minYield: 63,
     resultCropId: 'sky_prism4_orchid',
     baseGenetics: { sweetness: 76, yield: 76, resistance: 67 },
-    discoveryText: '蜜茶果与火麻仁凝天地灵气，瑞光盈盈。'
+    discoveryText: 'Bal çay meyvesi ile ateş susamı gök ile yerin gücünü toplar, gaKöy’de kutsal bir orkide açar.'
   },
   {
     id: 'gem_prism4_gourd',
-    name: '玉彩葫',
+    name: 'Yeşim Renk Kabağı',
     parentCropA: 'wind_melon',
     parentCropB: 'silk_corn',
     minSweetness: 63,
     minYield: 63,
     resultCropId: 'gem_prism4_gourd',
     baseGenetics: { sweetness: 76, yield: 76, resistance: 68 },
-    discoveryText: '蜜茶果与丝穗沐浴星辉，祥瑞之兆。'
+    discoveryText: 'Bal çay meyvesi ile ipek mısır yıldız ışığıyla yoğrulur, gaKöy’de uğur getiren bir kabak doğar.'
   },
   {
     id: 'prism_prism4_herb',
-    name: '琉彩草',
+    name: 'Prizma Renk Otu',
     parentCropA: 'wind_melon',
     parentCropB: 'purple_lotus',
     minSweetness: 63,
     minYield: 63,
     resultCropId: 'prism_prism4_herb',
     baseGenetics: { sweetness: 76, yield: 76, resistance: 68 },
-    discoveryText: '蜜茶果与紫莲茄在月华中蜕变，天赐之品。'
+    discoveryText: 'Bal çay meyvesi ile mor nilüfer ay ışığında dönüşür, gaKöy’de göksel bir ot doğar.'
   },
   {
     id: 'silver_prism4_chestnut',
-    name: '银彩栗',
+    name: 'Gümüş Renk Kestanesi',
     parentCropA: 'wind_melon',
     parentCropB: 'chrysanthemum_melon',
     minSweetness: 64,
     minYield: 64,
     resultCropId: 'silver_prism4_chestnut',
     baseGenetics: { sweetness: 77, yield: 77, resistance: 69 },
-    discoveryText: '蜜茶果与菊瓜在天光下交融，绽放华彩。'
+    discoveryText: 'Bal çay meyvesi ile krizantem kavunu gök ışığında birleşir, gaKöy’de parıltılı bir kestane doğar.'
   },
   {
     id: 'verdant_prism4_apricot',
-    name: '翠彩杏',
+    name: 'Yeşil Renk Kayısısı',
     parentCropA: 'wind_melon',
     parentCropB: 'pumpkin_rice',
     minSweetness: 64,
     minYield: 64,
     resultCropId: 'verdant_prism4_apricot',
     baseGenetics: { sweetness: 77, yield: 77, resistance: 69 },
-    discoveryText: '蜜茶果与南瓜稻承日月精华，辉映四方。'
+    discoveryText: 'Bal çay meyvesi ile kabak pirinci gün ile ayın özünü taşır, gaKöy’de bereketli bir kayısı doğar.'
   },
   {
     id: 'violet_prism4_pear',
-    name: '紫彩梨',
+    name: 'Mor Renk Armutu',
     parentCropA: 'wind_melon',
     parentCropB: 'mountain_lotus',
     minSweetness: 64,
     minYield: 64,
     resultCropId: 'violet_prism4_pear',
     baseGenetics: { sweetness: 77, yield: 77, resistance: 69 },
-    discoveryText: '蜜茶果与山莲凝天地灵气，瑞光盈盈。'
+    discoveryText: 'Bal çay meyvesi ile dağ nilüferi gök ile yerin gücünü toplar, gaKöy’de parıltılı bir armut doğar.'
   },
   {
     id: 'scarlet_prism4_berry',
-    name: '丹彩莓',
+    name: 'Kızıl Renk Meyvesi',
     parentCropA: 'wind_melon',
     parentCropB: 'double_nut',
     minSweetness: 65,
     minYield: 65,
     resultCropId: 'scarlet_prism4_berry',
     baseGenetics: { sweetness: 78, yield: 78, resistance: 70 },
-    discoveryText: '蜜茶果与双果仁沐浴星辉，祥瑞之兆。'
+    discoveryText: 'Bal çay meyvesi ile çift çekirdek yıldız ışığıyla kutsanır, gaKöy’de uğur getiren bir meyve doğar.'
   },
   {
     id: 'azure_prism4_peach_t',
-    name: '青彩桃',
+    name: 'Gök Renk Şeftalisi',
     parentCropA: 'wind_melon',
     parentCropB: 'sweet_gourd',
     minSweetness: 65,
     minYield: 65,
     resultCropId: 'azure_prism4_peach_t',
     baseGenetics: { sweetness: 78, yield: 78, resistance: 70 },
-    discoveryText: '蜜茶果与甜丝瓜在月华中蜕变，天赐之品。'
+    discoveryText: 'Bal çay meyvesi ile tatlı kabak ay ışığında dönüşür, gaKöy’de göksel bir şeftali doğar.'
   },
-  // === 五代杂交作物 ===,
+  // === Beşinci Nesil Melez Ürünler ===,
   {
     id: 'precious_light5_melon',
-    name: '瑶光瓜',
+    name: 'Mukaddes Işık Kavunu',
     parentCropA: 'moon_hua_melon',
     parentCropB: 'melon_tea_fruit',
     minSweetness: 60,
     minYield: 60,
     resultCropId: 'precious_light5_melon',
     baseGenetics: { sweetness: 70, yield: 70, resistance: 60 },
-    discoveryText: '风瓜与蜜茶果的精华凝结，珍贵异常。'
+    discoveryText: 'Rüzgâr kavunu ile bal çay meyvesinin özü birleşir, gaKöy’de nadide bir kavun doğar.'
   },
   {
     id: 'rare_light5_bean',
-    name: '琼光豆',
+    name: 'Nadir Işık Fasulyesi',
     parentCropA: 'moon_hua_melon',
     parentCropB: 'dragon_fire',
     minSweetness: 61,
     minYield: 61,
     resultCropId: 'rare_light5_bean',
     baseGenetics: { sweetness: 71, yield: 71, resistance: 61 },
-    discoveryText: '风瓜与龙火椒在晨曦中绽放瑶光。'
+    discoveryText: 'Rüzgâr kavunu ile ejder ateşi biberi şafakta birleşir, gaKöy’de kutsal bir fasulye doğar.'
   },
   {
     id: 'magnif_light5_rice',
-    name: '瑰光稻',
+    name: 'Yüce Işık Pirinci',
     parentCropA: 'moon_hua_melon',
     parentCropB: 'celestial_rice',
     minSweetness: 61,
     minYield: 61,
     resultCropId: 'magnif_light5_rice',
     baseGenetics: { sweetness: 71, yield: 71, resistance: 62 },
-    discoveryText: '风瓜与天香稻汇聚琼露，锦绣天成。'
+    discoveryText: 'Rüzgâr kavunu ile göksel pirinç birleşir, gaKöy’de kutsal bereket taşıyan bir pirinç doğar.'
   },
   {
     id: 'radiant_light5_tuber',
-    name: '曦光薯',
+    name: 'Parlak Işık Yumrusu',
     parentCropA: 'moon_hua_melon',
     parentCropB: 'ice_lotus',
     minSweetness: 62,
     minYield: 62,
     resultCropId: 'radiant_light5_tuber',
     baseGenetics: { sweetness: 72, yield: 72, resistance: 62 },
-    discoveryText: '风瓜与冰莲璃光交映，绮丽非凡。'
+    discoveryText: 'Rüzgâr kavunu ile buz nilüferi birleşir, gaKöy’de ışıldayan bir yumru doğar.'
   },
   {
     id: 'lustrous_light5_green',
-    name: '璃光菜',
+    name: 'Parıltılı Işık Otu',
     parentCropA: 'moon_hua_melon',
     parentCropB: 'jade_peach_tea',
     minSweetness: 63,
     minYield: 63,
     resultCropId: 'lustrous_light5_green',
     baseGenetics: { sweetness: 73, yield: 73, resistance: 63 },
-    discoveryText: '风瓜与翠桃茶凝珊瑚之精，琳琅之品。'
+    discoveryText: 'Rüzgâr kavunu ile yeşim şeftali çayı birleşir, gaKöy’de nadide bir bitki doğar.'
   },
   {
     id: 'precious_hua5_fruit',
-    name: '瑶华果',
+    name: 'Mukaddes Işık Meyvesi',
     parentCropA: 'moon_hua_melon',
     parentCropB: 'golden_dragon',
     minSweetness: 63,
     minYield: 63,
     resultCropId: 'precious_hua5_fruit',
     baseGenetics: { sweetness: 73, yield: 73, resistance: 64 },
-    discoveryText: '风瓜与金龙果的精华凝结，珍贵异常。'
+    discoveryText: 'Rüzgâr kavunu ile altın ejder meyvesinin özü birleşir, gaKöy’de çok kıymetli bir meyve doğar.'
   },
   {
     id: 'rare_hua5_bloom',
-    name: '琼华花',
+    name: 'Nadir Işık Çiçeği',
     parentCropA: 'moon_hua_melon',
     parentCropB: 'moonlight_frost',
     minSweetness: 64,
     minYield: 64,
     resultCropId: 'rare_hua5_bloom',
     baseGenetics: { sweetness: 74, yield: 74, resistance: 65 },
-    discoveryText: '风瓜与月霜稻在晨曦中绽放瑶光。'
+    discoveryText: 'Rüzgâr kavunu ile ay kırağısı pirinci şafakta birleşir, gaKöy’de kutsal bir çiçek açar.'
   },
   {
     id: 'magnif_hua5_tea',
-    name: '瑰华茶',
+    name: 'Yüce Işık Çayı',
     parentCropA: 'moon_hua_melon',
     parentCropB: 'jade_golden_melon',
     minSweetness: 64,
     minYield: 64,
     resultCropId: 'magnif_hua5_tea',
     baseGenetics: { sweetness: 74, yield: 74, resistance: 65 },
-    discoveryText: '风瓜与翡翠金瓜汇聚琼露，锦绣天成。'
+    discoveryText: 'Rüzgâr kavunu ile yeşim altın kavun birleşir, gaKöy’de kutsal bir çay doğar.'
   },
   {
     id: 'radiant_hua5_shoot',
-    name: '曦华笋',
+    name: 'Parlak Işık Filizi',
     parentCropA: 'moon_hua_melon',
     parentCropB: 'immortal_flower',
     minSweetness: 65,
     minYield: 65,
     resultCropId: 'radiant_hua5_shoot',
     baseGenetics: { sweetness: 75, yield: 75, resistance: 66 },
-    discoveryText: '风瓜与仙人花璃光交映，绮丽非凡。'
+    discoveryText: 'Rüzgâr kavunu ile ölümsüz çiçek birleşir, gaKöy’de ışıldayan bir filiz doğar.'
   },
   {
     id: 'lustrous_hua5_lotus',
-    name: '璃华莲',
+    name: 'Parıltılı Işık Nilüferi',
     parentCropA: 'moon_hua_melon',
     parentCropB: 'dragon_pearl',
     minSweetness: 66,
     minYield: 66,
     resultCropId: 'lustrous_hua5_lotus',
     baseGenetics: { sweetness: 76, yield: 76, resistance: 67 },
-    discoveryText: '风瓜与龙珠凝珊瑚之精，琳琅之品。'
+    discoveryText: 'Rüzgâr kavunu ile ejder incisi birleşir, gaKöy’de nadide bir nilüfer açar.'
   },
   {
     id: 'precious_dewdrop_wheat',
-    name: '瑶露麦',
+    name: 'Mukaddes Çiy Buğdayı',
     parentCropA: 'sun_hua_bean',
     parentCropB: 'ice_lotus',
     minSweetness: 66,
     minYield: 66,
     resultCropId: 'precious_dewdrop_wheat',
     baseGenetics: { sweetness: 76, yield: 76, resistance: 68 },
-    discoveryText: '云豆与冰莲的精华凝结，珍贵异常。'
+    discoveryText: 'Bulut fasulyesi ile buz nilüferinin özü birleşir, gaKöy’de çok kıymetli bir buğday doğar.'
   },
   {
     id: 'rare_dewdrop_sesame',
-    name: '琼露芝',
+    name: 'Nadir Çiy Susamı',
     parentCropA: 'sun_hua_bean',
     parentCropB: 'jade_peach_tea',
     minSweetness: 67,
     minYield: 67,
     resultCropId: 'rare_dewdrop_sesame',
     baseGenetics: { sweetness: 77, yield: 77, resistance: 68 },
-    discoveryText: '云豆与翠桃茶在晨曦中绽放瑶光。'
+    discoveryText: 'Bulut fasulyesi ile yeşim şeftali çayı şafakta birleşir, gaKöy’de kutsal bir susam doğar.'
   },
   {
     id: 'magnif_dewdrop_pepper',
-    name: '瑰露椒',
+    name: 'Yüce Çiy Biberi',
     parentCropA: 'sun_hua_bean',
     parentCropB: 'golden_dragon',
     minSweetness: 68,
     minYield: 68,
     resultCropId: 'magnif_dewdrop_pepper',
     baseGenetics: { sweetness: 78, yield: 78, resistance: 69 },
-    discoveryText: '云豆与金龙果汇聚琼露，锦绣天成。'
+    discoveryText: 'Bulut fasulyesi ile altın ejder meyvesi birleşir, gaKöy’de kudretli bir biber doğar.'
   },
   {
     id: 'radiant_dewdrop_root',
-    name: '曦露参',
+    name: 'Parlak Çiy Kökü',
     parentCropA: 'sun_hua_bean',
     parentCropB: 'moonlight_frost',
     minSweetness: 68,
     minYield: 68,
     resultCropId: 'radiant_dewdrop_root',
     baseGenetics: { sweetness: 78, yield: 78, resistance: 70 },
-    discoveryText: '云豆与月霜稻璃光交映，绮丽非凡。'
+    discoveryText: 'Bulut fasulyesi ile ay kırağısı pirinci birleşir, gaKöy’de ışıldayan bir kök doğar.'
   },
   {
     id: 'lustrous_dewdrop_sprout',
-    name: '璃露芽',
+    name: 'Parıltılı Çiy Filizi',
     parentCropA: 'sun_hua_bean',
     parentCropB: 'jade_golden_melon',
     minSweetness: 69,
     minYield: 69,
     resultCropId: 'lustrous_dewdrop_sprout',
     baseGenetics: { sweetness: 79, yield: 79, resistance: 71 },
-    discoveryText: '云豆与翡翠金瓜凝珊瑚之精，琳琅之品。'
+    discoveryText: 'Bulut fasulyesi ile yeşim altın kavun birleşir, gaKöy’de nadide bir filiz doğar.'
   },
   {
     id: 'precious_soul_vine',
-    name: '瑶灵藤',
+    name: 'Mukaddes Ruh Asması',
     parentCropA: 'sun_hua_bean',
     parentCropB: 'immortal_flower',
     minSweetness: 69,
     minYield: 69,
     resultCropId: 'precious_soul_vine',
     baseGenetics: { sweetness: 79, yield: 79, resistance: 71 },
-    discoveryText: '云豆与仙人花的精华凝结，珍贵异常。'
+    discoveryText: 'Bulut fasulyesi ile ölümsüz çiçeğin özü birleşir, gaKöy’de çok kıymetli bir asma doğar.'
   },
   {
     id: 'rare_soul_bud',
-    name: '琼灵蕾',
+    name: 'Nadir Ruh Tomurcuğu',
     parentCropA: 'sun_hua_bean',
     parentCropB: 'dragon_pearl',
     minSweetness: 70,
     minYield: 70,
     resultCropId: 'rare_soul_bud',
     baseGenetics: { sweetness: 80, yield: 80, resistance: 72 },
-    discoveryText: '云豆与龙珠在晨曦中绽放瑶光。'
+    discoveryText: 'Bulut fasulyesi ile ejder incisi şafakta birleşir, gaKöy’de kutsal bir tomurcuk doğar.'
   },
   {
     id: 'magnif_soul_orchid',
-    name: '瑰灵兰',
+    name: 'Yüce Ruh Orkidesi',
     parentCropA: 'sun_hua_bean',
     parentCropB: 'melon_tea_fruit',
     minSweetness: 71,
     minYield: 71,
     resultCropId: 'magnif_soul_orchid',
     baseGenetics: { sweetness: 81, yield: 81, resistance: 73 },
-    discoveryText: '云豆与蜜茶果汇聚琼露，锦绣天成。'
+    discoveryText: 'Bulut fasulyesi ile bal çay meyvesi birleşir, gaKöy’de kudretli bir orkide doğar.'
   },
   {
     id: 'radiant_soul_gourd',
-    name: '曦灵葫',
+    name: 'Parlak Ruh Kabağı',
     parentCropA: 'sun_hua_bean',
     parentCropB: 'dragon_fire',
     minSweetness: 71,
     minYield: 71,
     resultCropId: 'radiant_soul_gourd',
     baseGenetics: { sweetness: 81, yield: 81, resistance: 74 },
-    discoveryText: '云豆与龙火椒璃光交映，绮丽非凡。'
+    discoveryText: 'Bulut fasulyesi ile ejder ateşi birleşir, gaKöy’de ışıldayan bir kabak doğar.'
   },
   {
     id: 'lustrous_soul_herb',
-    name: '璃灵草',
+    name: 'Parıltılı Ruh Otu',
     parentCropA: 'sun_hua_bean',
     parentCropB: 'celestial_rice',
     minSweetness: 72,
     minYield: 72,
     resultCropId: 'lustrous_soul_herb',
     baseGenetics: { sweetness: 82, yield: 82, resistance: 74 },
-    discoveryText: '云豆与天香稻凝珊瑚之精，琳琅之品。'
+    discoveryText: 'Bulut fasulyesi ile göksel pirinç birleşir, gaKöy’de nadide bir ot doğar.'
   },
   {
     id: 'precious_silk5_chestnut',
-    name: '瑶锦栗',
+    name: 'Mukaddes İpek Kestanesi',
     parentCropA: 'sky_hua_rice',
     parentCropB: 'moonlight_frost',
     minSweetness: 73,
     minYield: 73,
     resultCropId: 'precious_silk5_chestnut',
     baseGenetics: { sweetness: 83, yield: 83, resistance: 75 },
-    discoveryText: '雨稻与月霜稻的精华凝结，珍贵异常。'
+    discoveryText: 'Yağmur pirinci ile ay kırağısı pirincinin özü birleşir, gaKöy’de çok kıymetli bir kestane doğar.'
   },
   {
     id: 'rare_silk5_apricot',
-    name: '琼锦杏',
+    name: 'Nadir İpek Kayısısı',
     parentCropA: 'sky_hua_rice',
     parentCropB: 'jade_golden_melon',
     minSweetness: 73,
     minYield: 73,
     resultCropId: 'rare_silk5_apricot',
     baseGenetics: { sweetness: 83, yield: 83, resistance: 76 },
-    discoveryText: '雨稻与翡翠金瓜在晨曦中绽放瑶光。'
+    discoveryText: 'Yağmur pirinci ile yeşim altın kavun şafakta birleşir, gaKöy’de kutsal bir kayısı doğar.'
   },
   {
     id: 'magnif_silk5_pear',
-    name: '瑰锦梨',
+    name: 'Yüce İpek Armudu',
     parentCropA: 'sky_hua_rice',
     parentCropB: 'immortal_flower',
     minSweetness: 74,
     minYield: 74,
     resultCropId: 'magnif_silk5_pear',
     baseGenetics: { sweetness: 84, yield: 84, resistance: 77 },
-    discoveryText: '雨稻与仙人花汇聚琼露，锦绣天成。'
+    discoveryText: 'Yağmur pirinci ile ölümsüz çiçek birleşir, gaKöy’de kudretli bir armut doğar.'
   },
   {
     id: 'radiant_silk5_berry',
-    name: '曦锦莓',
+    name: 'Parlak İpek Meyvesi',
     parentCropA: 'sky_hua_rice',
     parentCropB: 'dragon_pearl',
     minSweetness: 74,
     minYield: 74,
     resultCropId: 'radiant_silk5_berry',
     baseGenetics: { sweetness: 84, yield: 84, resistance: 77 },
-    discoveryText: '雨稻与龙珠璃光交映，绮丽非凡。'
+    discoveryText: 'Yağmur pirinci ile ejder incisi birleşir, gaKöy’de ışıldayan bir meyve doğar.'
   },
   {
     id: 'lustrous_silk5_peach_t',
-    name: '璃锦桃',
+    name: 'Parıltılı İpek Şeftalisi',
     parentCropA: 'sky_hua_rice',
     parentCropB: 'melon_tea_fruit',
     minSweetness: 75,
     minYield: 75,
     resultCropId: 'lustrous_silk5_peach_t',
     baseGenetics: { sweetness: 85, yield: 85, resistance: 78 },
-    discoveryText: '雨稻与蜜茶果凝珊瑚之精，琳琅之品。'
+    discoveryText: 'Yağmur pirinci ile bal çay meyvesi birleşir, gaKöy’de nadide bir şeftali doğar.'
   },
-  // === 六代杂交作物 ===,
+  // === Altıncı Nesil Melez Ürünler ===,
   {
     id: 'spirit_wonder_melon',
-    name: '灵妙瓜',
+    name: 'Ruh Mucize Kavunu',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'wind_melon',
     minSweetness: 65,
     minYield: 65,
     resultCropId: 'spirit_wonder_melon',
     baseGenetics: { sweetness: 75, yield: 75, resistance: 65 },
-    discoveryText: '月华瓜与风瓜灵气交汇，仙韵天成。'
+    discoveryText: 'Ay ışığı kavunu ile rüzgâr kavunu birleşir, gaKöy’de ruhani bir kavun doğar.'
   },
   {
     id: 'fairy_wonder_bean',
-    name: '仙妙豆',
+    name: 'Peri Mucize Fasulyesi',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'cloud_bean',
     minSweetness: 66,
     minYield: 66,
     resultCropId: 'fairy_wonder_bean',
     baseGenetics: { sweetness: 76, yield: 76, resistance: 66 },
-    discoveryText: '月华瓜与云豆圣华流转，超凡入圣。'
+    discoveryText: 'Ay ışığı kavunu ile bulut fasulyesi kutsal akışta birleşir, gaKöy’de efsanevi bir fasulye doğar.'
   },
   {
     id: 'holy_wonder_rice',
-    name: '圣妙稻',
+    name: 'Kutsal Mucize Pirinci',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'rain_rice',
     minSweetness: 66,
     minYield: 66,
     resultCropId: 'holy_wonder_rice',
     baseGenetics: { sweetness: 76, yield: 76, resistance: 66 },
-    discoveryText: '月华瓜与雨稻神妙莫测，真灵之品。'
+    discoveryText: 'Ay ışığı kavunu ile yağmur pirinci gizemli güçte birleşir, gaKöy’de ruhani bir pirinç doğar.'
   },
   {
     id: 'divine_wonder_tuber',
-    name: '神妙薯',
+    name: 'İlahi Mucize Yumrusu',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'hoar_tuber',
     minSweetness: 67,
     minYield: 67,
     resultCropId: 'divine_wonder_tuber',
     baseGenetics: { sweetness: 77, yield: 77, resistance: 67 },
-    discoveryText: '月华瓜与霜薯幻梦交织，禅意盎然。'
+    discoveryText: 'Ay ışığı kavunu ile kırağı yumrusu düşsel bir bağ kurar, gaKöy’de mistik bir kök doğar.'
   },
   {
     id: 'trueth_wonder_green',
-    name: '真妙菜',
+    name: 'Saf Mucize Otu',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'thunder_green',
     minSweetness: 68,
     minYield: 68,
     resultCropId: 'trueth_wonder_green',
     baseGenetics: { sweetness: 78, yield: 78, resistance: 68 },
-    discoveryText: '月华瓜与雷菜仙灵缭绕，不染尘埃。'
+    discoveryText: 'Ay ışığı kavunu ile yıldırım otu birleşir, gaKöy’de arınmış ve kutsal bir bitki doğar.'
   },
   {
     id: 'spirit_grace6_fruit',
-    name: '灵华果',
+    name: 'Ruhsal Işık Meyvesi',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'rainbow_fruit',
     minSweetness: 68,
     minYield: 68,
     resultCropId: 'spirit_grace6_fruit',
     baseGenetics: { sweetness: 78, yield: 78, resistance: 69 },
-    discoveryText: '月华瓜与虹果灵气交汇，仙韵天成。'
+    discoveryText: 'Ay ışığı kavunu ile gökkuşağı meyvesi ruhani güçte birleşir, gaKöy’de göksel bir meyve doğar.'
   },
   {
     id: 'fairy_grace6_bloom',
-    name: '仙华花',
+    name: 'Peri Işık Çiçeği',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'dew_bloom',
     minSweetness: 69,
     minYield: 69,
     resultCropId: 'fairy_grace6_bloom',
     baseGenetics: { sweetness: 79, yield: 79, resistance: 69 },
-    discoveryText: '月华瓜与露花圣华流转，超凡入圣。'
+    discoveryText: 'Ay ışığı kavunu ile çiğ çiçeği kutsal akışta birleşir, gaKöy’de efsanevi bir çiçek açar.'
   },
   {
     id: 'holy_grace6_tea',
-    name: '圣华茶',
+    name: 'Kutsal Işık Çayı',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'dawn_tea',
     minSweetness: 69,
     minYield: 69,
     resultCropId: 'holy_grace6_tea',
     baseGenetics: { sweetness: 79, yield: 79, resistance: 70 },
-    discoveryText: '月华瓜与晨茶神妙莫测，真灵之品。'
+    discoveryText: 'Ay ışığı kavunu ile şafak çayı gizemli güçte birleşir, gaKöy’de ruhani bir çay doğar.'
   },
   {
     id: 'divine_grace6_shoot',
-    name: '神华笋',
+    name: 'İlahi Işık Filizi',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'dusk_shoot',
     minSweetness: 70,
     minYield: 70,
     resultCropId: 'divine_grace6_shoot',
     baseGenetics: { sweetness: 80, yield: 80, resistance: 71 },
-    discoveryText: '月华瓜与暮笋幻梦交织，禅意盎然。'
+    discoveryText: 'Ay ışığı kavunu ile alaca filiz düşsel bir bağ kurar, gaKöy’de derin ve mistik bir filiz doğar.'
   },
   {
     id: 'trueth_grace6_lotus',
-    name: '真华莲',
+    name: 'Saf Işık Nilüferi',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'star_lotus',
     minSweetness: 71,
     minYield: 71,
     resultCropId: 'trueth_grace6_lotus',
     baseGenetics: { sweetness: 81, yield: 81, resistance: 71 },
-    discoveryText: '月华瓜与星莲仙灵缭绕，不染尘埃。'
+    discoveryText: 'Ay ışığı kavunu ile yıldız nilüferi birleşir, gaKöy’de saf ve lekesiz bir nilüfer açar.'
   },
   {
     id: 'spirit_phantom_wheat',
-    name: '灵幻麦',
+    name: 'Ruhsal Hayalet Buğday',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'wind_splendor_wheat',
     minSweetness: 71,
     minYield: 71,
     resultCropId: 'spirit_phantom_wheat',
     baseGenetics: { sweetness: 81, yield: 81, resistance: 72 },
-    discoveryText: '月华瓜与风华麦灵气交汇，仙韵天成。'
+    discoveryText: 'Ay ışığı kavunu ile rüzgâr ihtişam buğdayı ruhani güçte birleşir, gaKöy’de efsanevi bir başak doğar.'
   },
   {
     id: 'fairy_phantom_sesame',
-    name: '仙幻芝',
+    name: 'Peri Hayalet Susamı',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'cloud_splendor_sesame',
     minSweetness: 72,
     minYield: 72,
     resultCropId: 'fairy_phantom_sesame',
     baseGenetics: { sweetness: 82, yield: 82, resistance: 73 },
-    discoveryText: '月华瓜与云华芝圣华流转，超凡入圣。'
+    discoveryText: 'Ay ışığı kavunu ile bulut ihtişam susamı kutsal akışta birleşir, gaKöy’de efsanevi bir susam doğar.'
   },
   {
     id: 'holy_phantom_pepper',
-    name: '圣幻椒',
+    name: 'Kutsal Hayalet Biberi',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'rain_splendor_pepper',
     minSweetness: 73,
     minYield: 73,
     resultCropId: 'holy_phantom_pepper',
     baseGenetics: { sweetness: 83, yield: 83, resistance: 74 },
-    discoveryText: '月华瓜与雨华椒神妙莫测，真灵之品。'
+    discoveryText: 'Ay ışığı kavunu ile yağmur ihtişam biberi gizemli güçte birleşir, gaKöy’de ruhani bir biber doğar.'
   },
   {
     id: 'divine_phantom_root',
-    name: '神幻参',
+    name: 'İlahi Hayalet Kökü',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'hoar_splendor_root',
     minSweetness: 73,
     minYield: 73,
     resultCropId: 'divine_phantom_root',
     baseGenetics: { sweetness: 83, yield: 83, resistance: 74 },
-    discoveryText: '月华瓜与霜华参幻梦交织，禅意盎然。'
+    discoveryText: 'Ay ışığı kavunu ile kırağı ihtişam kökü düşsel bir bağ kurar, gaKöy’de mistik bir kök doğar.'
   },
   {
     id: 'trueth_phantom_sprout',
-    name: '真幻芽',
+    name: 'Saf Hayalet Filizi',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'thunder_splendor_sprout',
     minSweetness: 74,
     minYield: 74,
     resultCropId: 'trueth_phantom_sprout',
     baseGenetics: { sweetness: 84, yield: 84, resistance: 75 },
-    discoveryText: '月华瓜与雷华芽仙灵缭绕，不染尘埃。'
+    discoveryText: 'Ay ışığı kavunu ile yıldırım ihtişam filizi birleşir, gaKöy’de saf ve lekesiz bir filiz doğar.'
   },
   {
     id: 'spirit_dream_vine',
-    name: '灵梦藤',
+    name: 'Ruhsal Düş Asması',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'rainbow_splendor_vine',
     minSweetness: 74,
     minYield: 74,
     resultCropId: 'spirit_dream_vine',
     baseGenetics: { sweetness: 84, yield: 84, resistance: 76 },
-    discoveryText: '月华瓜与虹华藤灵气交汇，仙韵天成。'
+    discoveryText: 'Ay ışığı kavunu ile gökkuşağı ihtişam asması ruhani güçte birleşir, gaKöy’de efsanevi bir asma doğar.'
   },
   {
     id: 'fairy_dream_bud',
-    name: '仙梦蕾',
+    name: 'Peri Düş Tomurcuğu',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'dew_splendor_bud',
     minSweetness: 75,
     minYield: 75,
     resultCropId: 'fairy_dream_bud',
     baseGenetics: { sweetness: 85, yield: 85, resistance: 76 },
-    discoveryText: '月华瓜与露华蕾圣华流转，超凡入圣。'
+    discoveryText: 'Ay ışığı kavunu ile çiğ ihtişam tomurcuğu kutsal akışta birleşir, gaKöy’de efsanevi bir tomurcuk doğar.'
   },
   {
     id: 'holy_dream_orchid',
-    name: '圣梦兰',
+    name: 'Kutsal Düş Orkidesi',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'dawn_splendor_orchid',
     minSweetness: 76,
     minYield: 76,
     resultCropId: 'holy_dream_orchid',
     baseGenetics: { sweetness: 86, yield: 86, resistance: 77 },
-    discoveryText: '月华瓜与晨华兰神妙莫测，真灵之品。'
+    discoveryText: 'Ay ışığı kavunu ile şafak ihtişam orkidesi gizemli güçte birleşir, gaKöy’de ruhani bir orkide doğar.'
   },
   {
     id: 'divine_dream_gourd',
-    name: '神梦葫',
+    name: 'İlahi Düş Kabağı',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'dusk_splendor_gourd',
     minSweetness: 76,
     minYield: 76,
     resultCropId: 'divine_dream_gourd',
     baseGenetics: { sweetness: 86, yield: 86, resistance: 78 },
-    discoveryText: '月华瓜与暮华葫幻梦交织，禅意盎然。'
+    discoveryText: 'Ay ışığı kavunu ile alaca ihtişam kabağı düşsel bir bağ kurar, gaKöy’de mistik bir kabak doğar.'
   },
   {
     id: 'trueth_dream_herb',
-    name: '真梦草',
+    name: 'Saf Düş Otu',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'star_splendor_herb',
     minSweetness: 77,
     minYield: 77,
     resultCropId: 'trueth_dream_herb',
     baseGenetics: { sweetness: 87, yield: 87, resistance: 78 },
-    discoveryText: '月华瓜与星华草仙灵缭绕，不染尘埃。'
+    discoveryText: 'Ay ışığı kavunu ile yıldız ihtişam otu birleşir, gaKöy’de saf ve kutsal bir bitki doğar.'
   },
   {
     id: 'spirit_zen_chestnut',
-    name: '灵禅栗',
+    name: 'Ruhsal Zen Kestanesi',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'wind_jade3_chestnut',
     minSweetness: 78,
     minYield: 78,
     resultCropId: 'spirit_zen_chestnut',
     baseGenetics: { sweetness: 88, yield: 88, resistance: 79 },
-    discoveryText: '月华瓜与风翠栗灵气交汇，仙韵天成。'
+    discoveryText: 'Ay ışığı kavunu ile rüzgâr yeşim kestanesi ruhani güçte birleşir, gaKöy’de huzur veren bir kestane doğar.'
   },
   {
     id: 'fairy_zen_apricot',
-    name: '仙禅杏',
+    name: 'Peri Zen Kayısısı',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'cloud_jade3_apricot',
     minSweetness: 78,
     minYield: 78,
     resultCropId: 'fairy_zen_apricot',
     baseGenetics: { sweetness: 88, yield: 88, resistance: 80 },
-    discoveryText: '月华瓜与云翠杏圣华流转，超凡入圣。'
+    discoveryText: 'Ay ışığı kavunu ile bulut yeşim kayısısı kutsal akışta birleşir, gaKöy’de efsanevi bir kayısı doğar.'
   },
   {
     id: 'holy_zen_pear',
-    name: '圣禅梨',
+    name: 'Kutsal Zen Armudu',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'rain_jade3_pear',
     minSweetness: 79,
     minYield: 79,
     resultCropId: 'holy_zen_pear',
     baseGenetics: { sweetness: 89, yield: 89, resistance: 81 },
-    discoveryText: '月华瓜与雨翠梨神妙莫测，真灵之品。'
+    discoveryText: 'Ay ışığı kavunu ile yağmur yeşim armudu gizemli güçte birleşir, gaKöy’de ruhani bir armut doğar.'
   },
   {
     id: 'divine_zen_berry',
-    name: '神禅莓',
+    name: 'İlahi Zen Meyvesi',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'hoar_jade3_berry',
     minSweetness: 79,
     minYield: 79,
     resultCropId: 'divine_zen_berry',
     baseGenetics: { sweetness: 89, yield: 89, resistance: 81 },
-    discoveryText: '月华瓜与霜翠莓幻梦交织，禅意盎然。'
+    discoveryText: 'Ay ışığı kavunu ile kırağı yeşim meyvesi düşsel bir bağ kurar, gaKöy’de huzur veren mistik bir meyve doğar.'
   },
   {
     id: 'trueth_zen_peach_t',
-    name: '真禅桃',
+    name: 'Saf Zen Şeftalisi',
     parentCropA: 'precious_light5_melon',
     parentCropB: 'thunder_jade3_peach_t',
     minSweetness: 80,
     minYield: 80,
     resultCropId: 'trueth_zen_peach_t',
     baseGenetics: { sweetness: 90, yield: 90, resistance: 82 },
-    discoveryText: '月华瓜与雷翠桃仙灵缭绕，不染尘埃。'
+    discoveryText: 'Ay ışığı kavunu ile yıldırım yeşim şeftalisi birleşir, gaKöy’de saf ve kutsal bir şeftali doğar.'
   },
-  // === 七代杂交作物 ===,
+  // === Yedinci Nesil Melez Ürünler ===,
   {
     id: 'draco_song_melon',
-    name: '龙吟瓜',
+    name: 'Ejder Ezgisi Kavunu',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'moon_hua_melon',
     minSweetness: 72,
     minYield: 72,
     resultCropId: 'draco_song_melon',
     baseGenetics: { sweetness: 82, yield: 82, resistance: 72 },
-    discoveryText: '瑶光瓜与月华瓜的神力融合，有神兽之威。'
+    discoveryText: 'Kutsal ışık kavunu ile ay ışığı kavunu birleşir, gaKöy’de ejderin kudretini taşıyan bir kavun doğar.'
   },
   {
     id: 'fenghuang_song_bean',
-    name: '凤吟豆',
+    name: 'Anka Ezgisi Fasulyesi',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'sun_hua_bean',
     minSweetness: 73,
     minYield: 73,
     resultCropId: 'fenghuang_song_bean',
     baseGenetics: { sweetness: 83, yield: 83, resistance: 73 },
-    discoveryText: '瑶光瓜与日华豆龙吟凤鸣，瑞兽降世。'
+    discoveryText: 'Kutsal ışık kavunu ile güneş ışığı fasulyesi birleşir, gaKöy’de ankanın yankısını taşıyan bir fasulye doğar.'
   },
   {
     id: 'qilin_song_rice',
-    name: '麟吟稻',
+    name: 'Kirin Ezgisi Pirinci',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'sky_hua_rice',
     minSweetness: 73,
     minYield: 73,
     resultCropId: 'qilin_song_rice',
     baseGenetics: { sweetness: 83, yield: 83, resistance: 73 },
-    discoveryText: '瑶光瓜与天华稻虎啸山林，鹤舞九天。'
+    discoveryText: 'Kutsal ışık kavunu ile gök ışığı pirinci birleşir, gaKöy’de kirinin efsanesini taşıyan kutsal bir pirinç doğar.'
   },
   {
     id: 'crane_song_tuber',
-    name: '鹤吟薯',
+    name: 'Turna Ezgisi Yumrusu',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'gem_hua_tuber',
     minSweetness: 74,
     minYield: 74,
     resultCropId: 'crane_song_tuber',
     baseGenetics: { sweetness: 84, yield: 84, resistance: 74 },
-    discoveryText: '瑶光瓜与玉华薯麟光闪耀，百兽朝拜。'
+    discoveryText: 'Kutsal ışık kavunu ile yeşim ışığı yumrusu birleşir, gaKöy’de turna ruhunu taşıyan bir kök doğar.'
   },
   {
     id: 'tiger_song_green',
-    name: '虎吟菜',
+    name: 'Kaplan Ezgisi Otu',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'prism_hua_green',
     minSweetness: 74,
     minYield: 74,
     resultCropId: 'tiger_song_green',
     baseGenetics: { sweetness: 84, yield: 84, resistance: 75 },
-    discoveryText: '瑶光瓜与琉华菜蛟龙出水，威震八方。'
+    discoveryText: 'Kutsal ışık kavunu ile prizma ışığı otu birleşir, gaKöy’de kaplanın kudretini taşıyan bir bitki doğar.'
   },
   {
     id: 'draco_dance_fruit',
-    name: '龙舞果',
+    name: 'Ejder Dansı Meyvesi',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'silver_hua_fruit',
     minSweetness: 75,
     minYield: 75,
     resultCropId: 'draco_dance_fruit',
     baseGenetics: { sweetness: 85, yield: 85, resistance: 75 },
-    discoveryText: '瑶光瓜与银华果的神力融合，有神兽之威。'
+    discoveryText: 'Kutsal ışık kavunu ile gümüş ışığı meyvesi birleşir, gaKöy’de ejderin dansını andıran kudretli bir meyve doğar.'
   },
   {
     id: 'fenghuang_dance_bloom',
-    name: '凤舞花',
+    name: 'Anka Dansı Çiçeği',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'verdant_hua_bloom',
     minSweetness: 75,
     minYield: 75,
     resultCropId: 'fenghuang_dance_bloom',
     baseGenetics: { sweetness: 85, yield: 85, resistance: 76 },
-    discoveryText: '瑶光瓜与翠华花龙吟凤鸣，瑞兽降世。'
+    discoveryText: 'Kutsal ışık kavunu ile yeşil ışığı çiçeği birleşir, gaKöy’de ankanın dansını taşıyan kutsal bir çiçek açar.'
   },
   {
     id: 'qilin_dance_tea',
-    name: '麟舞茶',
+    name: 'Kirin Dansı Çayı',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'violet_hua_tea',
     minSweetness: 76,
     minYield: 76,
     resultCropId: 'qilin_dance_tea',
     baseGenetics: { sweetness: 86, yield: 86, resistance: 77 },
-    discoveryText: '瑶光瓜与紫华茶虎啸山林，鹤舞九天。'
+    discoveryText: 'Kutsal ışık kavunu ile mor ışığı çayı birleşir, gaKöy’de kirin ruhunu taşıyan zarif bir çay doğar.'
   },
   {
     id: 'crane_dance_shoot',
-    name: '鹤舞笋',
+    name: 'Turna Dansı Filizi',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'scarlet_hua_shoot',
     minSweetness: 76,
     minYield: 76,
     resultCropId: 'crane_dance_shoot',
     baseGenetics: { sweetness: 86, yield: 86, resistance: 77 },
-    discoveryText: '瑶光瓜与丹华笋麟光闪耀，百兽朝拜。'
+    discoveryText: 'Kutsal ışık kavunu ile kızıl ışığı filizi birleşir, gaKöy’de turnanın zarif dansını taşıyan bir filiz doğar.'
   },
   {
     id: 'tiger_dance_lotus',
-    name: '虎舞莲',
+    name: 'Kaplan Dansı Nilüferi',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'azure_hua_lotus',
     minSweetness: 77,
     minYield: 77,
     resultCropId: 'tiger_dance_lotus',
     baseGenetics: { sweetness: 87, yield: 87, resistance: 78 },
-    discoveryText: '瑶光瓜与青华莲蛟龙出水，威震八方。'
+    discoveryText: 'Kutsal ışık kavunu ile gök ışığı nilüferi birleşir, gaKöy’de kaplanın kudretli dansını taşıyan bir nilüfer açar.'
   },
   {
     id: 'draco_gleam7_wheat',
-    name: '龙辉麦',
+    name: 'Ejder Parıltısı Buğdayı',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'moon_shine_wheat',
     minSweetness: 77,
     minYield: 77,
     resultCropId: 'draco_gleam7_wheat',
     baseGenetics: { sweetness: 87, yield: 87, resistance: 79 },
-    discoveryText: '瑶光瓜与月辉麦的神力融合，有神兽之威。'
+    discoveryText: 'Kutsal ışık kavunu ile ay parıltısı buğdayı birleşir, gaKöy’de ejderin kudretini taşıyan bir başak doğar.'
   },
   {
     id: 'fenghuang_gleam7_sesame',
-    name: '凤辉芝',
+    name: 'Anka Parıltısı Susamı',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'sun_shine_sesame',
     minSweetness: 78,
     minYield: 78,
     resultCropId: 'fenghuang_gleam7_sesame',
     baseGenetics: { sweetness: 88, yield: 88, resistance: 79 },
-    discoveryText: '瑶光瓜与日辉芝龙吟凤鸣，瑞兽降世。'
+    discoveryText: 'Kutsal ışık kavunu ile güneş parıltısı susamı birleşir, gaKöy’de ankanın kudretini taşıyan bir susam doğar.'
   },
   {
     id: 'qilin_gleam7_pepper',
-    name: '麟辉椒',
+    name: 'Kirin Parıltısı Biberi',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'sky_shine_pepper',
     minSweetness: 79,
     minYield: 79,
     resultCropId: 'qilin_gleam7_pepper',
     baseGenetics: { sweetness: 88, yield: 88, resistance: 80 },
-    discoveryText: '瑶光瓜与天辉椒虎啸山林，鹤舞九天。'
+    discoveryText: 'Kutsal ışık kavunu ile gök parıltısı biberi birleşir, gaKöy’de kirin efsanesini taşıyan kutsal bir biber doğar.'
   },
   {
     id: 'crane_gleam7_root',
-    name: '鹤辉参',
+    name: 'Turna Parıltısı Kökü',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'gem_shine_root',
     minSweetness: 79,
     minYield: 79,
     resultCropId: 'crane_gleam7_root',
     baseGenetics: { sweetness: 89, yield: 89, resistance: 81 },
-    discoveryText: '瑶光瓜与玉辉参麟光闪耀，百兽朝拜。'
+    discoveryText: 'Kutsal ışık kavunu ile yeşim parıltısı kökü birleşir, gaKöy’de turna ruhunu taşıyan kudretli bir kök doğar.'
   },
   {
     id: 'tiger_gleam7_sprout',
-    name: '虎辉芽',
+    name: 'Kaplan Parıltısı Filizi',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'prism_shine_sprout',
     minSweetness: 80,
     minYield: 80,
     resultCropId: 'tiger_gleam7_sprout',
     baseGenetics: { sweetness: 89, yield: 89, resistance: 81 },
-    discoveryText: '瑶光瓜与琉辉芽蛟龙出水，威震八方。'
+    discoveryText: 'Kutsal ışık kavunu ile prizma parıltısı filizi birleşir, gaKöy’de kaplanın kudretini taşıyan bir filiz doğar.'
   },
   {
     id: 'draco_shadow_vine',
-    name: '龙影藤',
+    name: 'Ejder Gölgesi Asması',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'silver_shine_vine',
     minSweetness: 80,
     minYield: 80,
     resultCropId: 'draco_shadow_vine',
     baseGenetics: { sweetness: 90, yield: 90, resistance: 82 },
-    discoveryText: '瑶光瓜与银辉藤的神力融合，有神兽之威。'
+    discoveryText: 'Kutsal ışık kavunu ile gümüş parıltılı asma birleşir, gaKöy’de ejderin gölgesini taşıyan gizemli bir asma doğar.'
   },
   {
     id: 'fenghuang_shadow_bud',
-    name: '凤影蕾',
+    name: 'Anka Gölgesi Tomurcuğu',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'verdant_shine_bud',
     minSweetness: 81,
     minYield: 81,
     resultCropId: 'fenghuang_shadow_bud',
     baseGenetics: { sweetness: 90, yield: 90, resistance: 83 },
-    discoveryText: '瑶光瓜与翠辉蕾龙吟凤鸣，瑞兽降世。'
+    discoveryText: 'Kutsal ışık kavunu ile yeşil parıltılı tomurcuk birleşir, gaKöy’de ankanın gölgesini taşıyan kudretli bir tomurcuk doğar.'
   },
   {
     id: 'qilin_shadow_orchid',
-    name: '麟影兰',
+    name: 'Kirin Gölgesi Orkidesi',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'violet_shine_orchid',
     minSweetness: 81,
     minYield: 81,
     resultCropId: 'qilin_shadow_orchid',
     baseGenetics: { sweetness: 91, yield: 91, resistance: 83 },
-    discoveryText: '瑶光瓜与紫辉兰虎啸山林，鹤舞九天。'
+    discoveryText: 'Kutsal ışık kavunu ile mor parıltılı orkide birleşir, gaKöy’de kirinin gölgesini taşıyan gizemli bir orkide doğar.'
   },
   {
     id: 'crane_shadow_gourd',
-    name: '鹤影葫',
+    name: 'Turna Gölgesi Kabağı',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'scarlet_shine_gourd',
     minSweetness: 82,
     minYield: 82,
     resultCropId: 'crane_shadow_gourd',
     baseGenetics: { sweetness: 91, yield: 91, resistance: 84 },
-    discoveryText: '瑶光瓜与丹辉葫麟光闪耀，百兽朝拜。'
+    discoveryText: 'Kutsal ışık kavunu ile kızıl parıltılı kabak birleşir, gaKöy’de turnanın gölgesini taşıyan kutsal bir kabak doğar.'
   },
   {
     id: 'tiger_shadow_herb',
-    name: '虎影草',
+    name: 'Kaplan Gölgesi Otu',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'azure_shine_herb',
     minSweetness: 82,
     minYield: 82,
     resultCropId: 'tiger_shadow_herb',
     baseGenetics: { sweetness: 92, yield: 92, resistance: 85 },
-    discoveryText: '瑶光瓜与青辉草蛟龙出水，威震八方。'
+    discoveryText: 'Kutsal ışık kavunu ile gök parıltılı ot birleşir, gaKöy’de kaplanın kudretini taşıyan bir bitki doğar.'
   },
   {
     id: 'draco_roar_chestnut',
-    name: '龙啸栗',
+    name: 'Ejder Kükreyişi Kestanesi',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'moon_fortune_chestnut',
     minSweetness: 83,
     minYield: 83,
     resultCropId: 'draco_roar_chestnut',
     baseGenetics: { sweetness: 92, yield: 92, resistance: 85 },
-    discoveryText: '瑶光瓜与月瑞栗的神力融合，有神兽之威。'
+    discoveryText: 'Kutsal ışık kavunu ile ay uğuru kestanesi birleşir, gaKöy’de ejderin kükreyişini taşıyan kudretli bir kestane doğar.'
   },
   {
     id: 'fenghuang_roar_apricot',
-    name: '凤啸杏',
+    name: 'Anka Kükreyişi Kayısısı',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'sun_fortune_apricot',
     minSweetness: 83,
     minYield: 83,
     resultCropId: 'fenghuang_roar_apricot',
     baseGenetics: { sweetness: 93, yield: 93, resistance: 86 },
-    discoveryText: '瑶光瓜与日瑞杏龙吟凤鸣，瑞兽降世。'
+    discoveryText: 'Kutsal ışık kavunu ile güneş uğuru kayısısı birleşir, gaKöy’de ankanın kudretli çağrısını taşıyan bir kayısı doğar.'
   },
   {
     id: 'qilin_roar_pear',
-    name: '麟啸梨',
+    name: 'Kirin Kükreyişi Armutu',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'sky_fortune_pear',
     minSweetness: 84,
     minYield: 84,
     resultCropId: 'qilin_roar_pear',
     baseGenetics: { sweetness: 93, yield: 93, resistance: 87 },
-    discoveryText: '瑶光瓜与天瑞梨虎啸山林，鹤舞九天。'
+    discoveryText: 'Kutsal ışık kavunu ile gök uğuru armudu birleşir, gaKöy’de kirinin kudretli yankısını taşıyan bir armut doğar.'
   },
   {
     id: 'crane_roar_berry',
-    name: '鹤啸莓',
+    name: 'Turna Kükreyişi Meyvesi',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'gem_fortune_berry',
     minSweetness: 84,
     minYield: 84,
     resultCropId: 'crane_roar_berry',
     baseGenetics: { sweetness: 94, yield: 94, resistance: 87 },
-    discoveryText: '瑶光瓜与玉瑞莓麟光闪耀，百兽朝拜。'
+    discoveryText: 'Kutsal ışık kavunu ile yeşim uğuru meyvesi birleşir, gaKöy’de turnanın kutsal çağrısını taşıyan bir meyve doğar.'
   },
   {
     id: 'tiger_roar_peach_t',
-    name: '虎啸桃',
+    name: 'Kaplan Kükreyişi Şeftalisi',
     parentCropA: 'spirit_wonder_melon',
     parentCropB: 'prism_fortune_peach_t',
     minSweetness: 85,
     minYield: 85,
     resultCropId: 'tiger_roar_peach_t',
     baseGenetics: { sweetness: 94, yield: 94, resistance: 88 },
-    discoveryText: '瑶光瓜与琉瑞桃蛟龙出水，威震八方。'
+    discoveryText: 'Kutsal ışık kavunu ile prizma uğuru şeftalisi birleşir, gaKöy’de kaplanın kudretli kükreyişini taşıyan bir şeftali doğar.'
   },
-  // === 八代杂交作物 ===,
+  // === Sekizinci Nesil Melez Ürünler ===,
   {
     id: 'supreme_origin_melon',
-    name: '太初瓜',
+    name: 'Ulu Başlangıç Kavunu',
     parentCropA: 'draco_song_melon',
     parentCropB: 'precious_light5_melon',
     minSweetness: 78,
     minYield: 78,
     resultCropId: 'supreme_origin_melon',
     baseGenetics: { sweetness: 88, yield: 88, resistance: 78 },
-    discoveryText: '灵妙瓜与瑶光瓜天地之气凝聚，元气充沛。'
+    discoveryText: 'Ruh mucize kavunu ile mukaddes ışık kavunu birleşir, gaKöy’de evrenin ilk nefesini taşıyan kadim bir kavun doğar.'
   },
   {
     id: 'firmament_origin_bean',
-    name: '乾初豆',
+    name: 'Gök Başlangıç Fasulyesi',
     parentCropA: 'draco_song_melon',
     parentCropB: 'rare_light5_bean',
     minSweetness: 79,
     minYield: 79,
     resultCropId: 'firmament_origin_bean',
     baseGenetics: { sweetness: 88, yield: 88, resistance: 79 },
-    discoveryText: '灵妙瓜与琼光豆乾坤交泰，阴阳和合。'
+    discoveryText: 'Ruh mucize kavunu ile nadir ışık fasulyesi birleşir, gaKöy’de gök ile yerin dengesini taşıyan bir fasulye doğar.'
   },
   {
     id: 'terra_origin_rice',
-    name: '坤初稻',
+    name: 'Toprak Başlangıç Pirinci',
     parentCropA: 'draco_song_melon',
     parentCropB: 'magnif_light5_rice',
     minSweetness: 79,
     minYield: 79,
     resultCropId: 'terra_origin_rice',
     baseGenetics: { sweetness: 89, yield: 89, resistance: 79 },
-    discoveryText: '灵妙瓜与瑰光稻太初之力觉醒，混元归一。'
+    discoveryText: 'Ruh mucize kavunu ile yüce ışık pirinci birleşir, gaKöy’de ilk kudretin uyanışını taşıyan bir pirinç doğar.'
   },
   {
     id: 'primal_origin_tuber',
-    name: '元初薯',
+    name: 'İlksel Başlangıç Yumrusu',
     parentCropA: 'draco_song_melon',
     parentCropB: 'radiant_light5_tuber',
     minSweetness: 80,
     minYield: 80,
     resultCropId: 'primal_origin_tuber',
     baseGenetics: { sweetness: 89, yield: 89, resistance: 80 },
-    discoveryText: '灵妙瓜与曦光薯天极之光降临，万物归元。'
+    discoveryText: 'Ruh mucize kavunu ile parlak ışık yumrusu birleşir, gaKöy’de varlığın özü yeniden can bulur.'
   },
   {
     id: 'chaos_origin_green',
-    name: '混初菜',
+    name: 'Kaos Başlangıç Otu',
     parentCropA: 'draco_song_melon',
     parentCropB: 'lustrous_light5_green',
     minSweetness: 80,
     minYield: 80,
     resultCropId: 'chaos_origin_green',
     baseGenetics: { sweetness: 90, yield: 90, resistance: 80 },
-    discoveryText: '灵妙瓜与璃光菜元气混沌初开，太一显化。'
+    discoveryText: 'Ruh mucize kavunu ile parıltılı ışık otu birleşir, gaKöy’de ilk kaosun tohumu filiz verir.'
   },
   {
     id: 'supreme_vital8_fruit',
-    name: '太灵果',
+    name: 'Ulu Ruh Meyvesi',
     parentCropA: 'draco_song_melon',
     parentCropB: 'precious_hua5_fruit',
     minSweetness: 81,
     minYield: 81,
     resultCropId: 'supreme_vital8_fruit',
     baseGenetics: { sweetness: 90, yield: 90, resistance: 81 },
-    discoveryText: '灵妙瓜与瑶华果天地之气凝聚，元气充沛。'
+    discoveryText: 'Ruh mucize kavunu ile mukaddes ışık meyvesi birleşir, gaKöy’de yaşam özünü taşıyan ilahi bir meyve doğar.'
   },
   {
     id: 'firmament_vital8_bloom',
-    name: '乾灵花',
+    name: 'Gök Ruh Çiçeği',
     parentCropA: 'draco_song_melon',
     parentCropB: 'rare_hua5_bloom',
     minSweetness: 81,
     minYield: 81,
     resultCropId: 'firmament_vital8_bloom',
     baseGenetics: { sweetness: 90, yield: 90, resistance: 82 },
-    discoveryText: '灵妙瓜与琼华花乾坤交泰，阴阳和合。'
+    discoveryText: 'Ruh mucize kavunu ile nadir ışık çiçeği birleşir, gaKöy’de gök ile yerin uyumunu taşıyan kutsal bir çiçek açar.'
   },
   {
     id: 'terra_vital8_tea',
-    name: '坤灵茶',
+    name: 'Toprak Ruh Çayı',
     parentCropA: 'draco_song_melon',
     parentCropB: 'magnif_hua5_tea',
     minSweetness: 82,
     minYield: 82,
     resultCropId: 'terra_vital8_tea',
     baseGenetics: { sweetness: 91, yield: 91, resistance: 82 },
-    discoveryText: '灵妙瓜与瑰华茶太初之力觉醒，混元归一。'
+    discoveryText: 'Ruh mucize kavunu ile yüce ışık çayı birleşir, gaKöy’de ilk kudretin uyanışını taşıyan bir çay doğar.'
   },
   {
     id: 'primal_vital8_shoot',
-    name: '元灵笋',
+    name: 'İlksel Ruh Filizi',
     parentCropA: 'draco_song_melon',
     parentCropB: 'radiant_hua5_shoot',
     minSweetness: 82,
     minYield: 82,
     resultCropId: 'primal_vital8_shoot',
     baseGenetics: { sweetness: 91, yield: 91, resistance: 83 },
-    discoveryText: '灵妙瓜与曦华笋天极之光降临，万物归元。'
+    discoveryText: 'Ruh mucize kavunu ile parlak ışık filizi birleşir, gaKöy’de bütün varlığı özüne çağıran bir filiz doğar.'
   },
   {
     id: 'chaos_vital8_lotus',
-    name: '混灵莲',
+    name: 'Kaos Ruh Nilüferi',
     parentCropA: 'draco_song_melon',
     parentCropB: 'lustrous_hua5_lotus',
     minSweetness: 83,
     minYield: 83,
     resultCropId: 'chaos_vital8_lotus',
     baseGenetics: { sweetness: 91, yield: 91, resistance: 83 },
-    discoveryText: '灵妙瓜与璃华莲元气混沌初开，太一显化。'
+    discoveryText: 'Ruh mucize kavunu ile parıltılı ışık nilüferi birleşir, gaKöy’de ilk kaosun ve birliğin simgesi bir nilüfer açar.'
   },
   {
     id: 'supreme_glory8_wheat',
-    name: '太华麦',
+    name: 'Ulu Işık Buğdayı',
     parentCropA: 'draco_song_melon',
     parentCropB: 'precious_dewdrop_wheat',
     minSweetness: 83,
     minYield: 83,
     resultCropId: 'supreme_glory8_wheat',
     baseGenetics: { sweetness: 92, yield: 92, resistance: 84 },
-    discoveryText: '灵妙瓜与瑶露麦天地之气凝聚，元气充沛。'
+    discoveryText: 'Ruh mucize kavunu ile mukaddes çiy buğdayı birleşir, gaKöy’de gök ile yerin özünü taşıyan ulu bir başak doğar.'
   },
   {
     id: 'firmament_glory8_sesame',
-    name: '乾华芝',
+    name: 'Gök Işık Susamı',
     parentCropA: 'draco_song_melon',
     parentCropB: 'rare_dewdrop_sesame',
     minSweetness: 84,
     minYield: 84,
     resultCropId: 'firmament_glory8_sesame',
     baseGenetics: { sweetness: 92, yield: 92, resistance: 84 },
-    discoveryText: '灵妙瓜与琼露芝乾坤交泰，阴阳和合。'
+    discoveryText: 'Ruh mucize kavunu ile nadir çiy susamı birleşir, gaKöy’de gök ile yerin dengesini taşıyan kutsal bir susam doğar.'
   },
   {
     id: 'terra_glory8_pepper',
-    name: '坤华椒',
+    name: 'Toprak Işık Biberi',
     parentCropA: 'draco_song_melon',
     parentCropB: 'magnif_dewdrop_pepper',
     minSweetness: 84,
     minYield: 84,
     resultCropId: 'terra_glory8_pepper',
     baseGenetics: { sweetness: 93, yield: 93, resistance: 85 },
-    discoveryText: '灵妙瓜与瑰露椒太初之力觉醒，混元归一。'
+    discoveryText: 'Ruh mucize kavunu ile yüce çiy biberi birleşir, gaKöy’de ilk kudretin uyanışını taşıyan bir biber doğar.'
   },
   {
     id: 'primal_glory8_root',
-    name: '元华参',
+    name: 'İlksel Işık Kökü',
     parentCropA: 'draco_song_melon',
     parentCropB: 'radiant_dewdrop_root',
     minSweetness: 85,
     minYield: 85,
     resultCropId: 'primal_glory8_root',
     baseGenetics: { sweetness: 93, yield: 93, resistance: 86 },
-    discoveryText: '灵妙瓜与曦露参天极之光降临，万物归元。'
+    discoveryText: 'Ruh mucize kavunu ile parlak çiy kökü birleşir, gaKöy’de göğün doruk ışığını taşıyan bir kök doğar.'
   },
   {
     id: 'chaos_glory8_sprout',
-    name: '混华芽',
+    name: 'Kaos Işık Filizi',
     parentCropA: 'draco_song_melon',
     parentCropB: 'lustrous_dewdrop_sprout',
     minSweetness: 85,
     minYield: 85,
     resultCropId: 'chaos_glory8_sprout',
     baseGenetics: { sweetness: 93, yield: 93, resistance: 86 },
-    discoveryText: '灵妙瓜与璃露芽元气混沌初开，太一显化。'
+    discoveryText: 'Ruh mucize kavunu ile parıltılı çiy filizi birleşir, gaKöy’de ilk kaosun kıvılcımını taşıyan bir filiz doğar.'
   },
   {
     id: 'supreme_zenith_vine',
-    name: '太极藤',
+    name: 'Ulu Doruk Asması',
     parentCropA: 'draco_song_melon',
     parentCropB: 'precious_soul_vine',
     minSweetness: 86,
     minYield: 86,
     resultCropId: 'supreme_zenith_vine',
     baseGenetics: { sweetness: 94, yield: 94, resistance: 87 },
-    discoveryText: '灵妙瓜与瑶灵藤天地之气凝聚，元气充沛。'
+    discoveryText: 'Ruh mucize kavunu ile mukaddes ruh asması birleşir, gaKöy’de gök ile yerin özünü taşıyan ulu bir asma doğar.'
   },
   {
     id: 'firmament_zenith_bud',
-    name: '乾极蕾',
+    name: 'Gök Doruk Tomurcuğu',
     parentCropA: 'draco_song_melon',
     parentCropB: 'rare_soul_bud',
     minSweetness: 86,
     minYield: 86,
     resultCropId: 'firmament_zenith_bud',
     baseGenetics: { sweetness: 94, yield: 94, resistance: 87 },
-    discoveryText: '灵妙瓜与琼灵蕾乾坤交泰，阴阳和合。'
+    discoveryText: 'Ruh mucize kavunu ile nadir ruh tomurcuğu birleşir, gaKöy’de gök ile yerin dengesini taşıyan kutlu bir tomurcuk doğar.'
   },
   {
     id: 'terra_zenith_orchid',
-    name: '坤极兰',
+    name: 'Toprak Doruk Orkidesi',
     parentCropA: 'draco_song_melon',
     parentCropB: 'magnif_soul_orchid',
     minSweetness: 87,
     minYield: 87,
     resultCropId: 'terra_zenith_orchid',
     baseGenetics: { sweetness: 94, yield: 94, resistance: 88 },
-    discoveryText: '灵妙瓜与瑰灵兰太初之力觉醒，混元归一。'
+    discoveryText: 'Ruh mucize kavunu ile yüce ruh orkidesi birleşir, gaKöy’de ilk kudretin uyanışını taşıyan bir orkide açar.'
   },
   {
     id: 'primal_zenith_gourd',
-    name: '元极葫',
+    name: 'İlksel Doruk Kabağı',
     parentCropA: 'draco_song_melon',
     parentCropB: 'radiant_soul_gourd',
     minSweetness: 87,
     minYield: 87,
     resultCropId: 'primal_zenith_gourd',
     baseGenetics: { sweetness: 95, yield: 95, resistance: 89 },
-    discoveryText: '灵妙瓜与曦灵葫天极之光降临，万物归元。'
+    discoveryText: 'Ruh mucize kavunu ile parlak ruh kabağı birleşir, gaKöy’de göğün doruğundan inmiş gibi bir kabak doğar.'
   },
   {
     id: 'chaos_zenith_herb',
-    name: '混极草',
+    name: 'Kaos Doruk Otu',
     parentCropA: 'draco_song_melon',
     parentCropB: 'lustrous_soul_herb',
     minSweetness: 88,
     minYield: 88,
     resultCropId: 'chaos_zenith_herb',
     baseGenetics: { sweetness: 95, yield: 95, resistance: 89 },
-    discoveryText: '灵妙瓜与璃灵草元气混沌初开，太一显化。'
+    discoveryText: 'Ruh mucize kavunu ile parıltılı ruh otu birleşir, gaKöy’de ilk kaosla birliğin işareti olan bir bitki doğar.'
   },
   {
     id: 'supreme_core_chestnut',
-    name: '太元栗',
+    name: 'Ulu Öz Kestanesi',
     parentCropA: 'draco_song_melon',
     parentCropB: 'precious_silk5_chestnut',
     minSweetness: 88,
     minYield: 88,
     resultCropId: 'supreme_core_chestnut',
     baseGenetics: { sweetness: 96, yield: 96, resistance: 90 },
-    discoveryText: '灵妙瓜与瑶锦栗天地之气凝聚，元气充沛。'
+    discoveryText: 'Ruh mucize kavunu ile mukaddes ipek kestanesi birleşir, gaKöy’de öz kudretle dolu ulu bir kestane doğar.'
   },
   {
     id: 'firmament_core_apricot',
-    name: '乾元杏',
+    name: 'Gök Öz Kayısısı',
     parentCropA: 'draco_song_melon',
     parentCropB: 'rare_silk5_apricot',
     minSweetness: 89,
     minYield: 89,
     resultCropId: 'firmament_core_apricot',
     baseGenetics: { sweetness: 96, yield: 96, resistance: 90 },
-    discoveryText: '灵妙瓜与琼锦杏乾坤交泰，阴阳和合。'
+    discoveryText: 'Ruh mucize kavunu ile nadir ipek kayısısı birleşir, gaKöy’de gök ile yerin dengesini taşıyan bir kayısı doğar.'
   },
   {
     id: 'terra_core_pear',
-    name: '坤元梨',
+    name: 'Toprak Öz Armudu',
     parentCropA: 'draco_song_melon',
     parentCropB: 'magnif_silk5_pear',
     minSweetness: 89,
     minYield: 89,
     resultCropId: 'terra_core_pear',
     baseGenetics: { sweetness: 96, yield: 96, resistance: 91 },
-    discoveryText: '灵妙瓜与瑰锦梨太初之力觉醒，混元归一。'
+    discoveryText: 'Ruh mucize kavunu ile yüce ipek armudu birleşir, gaKöy’de ilk öz gücün uyanışını taşıyan bir armut doğar.'
   },
   {
     id: 'primal_core_berry',
-    name: '元元莓',
+    name: 'İlksel Öz Meyvesi',
     parentCropA: 'draco_song_melon',
     parentCropB: 'radiant_silk5_berry',
     minSweetness: 90,
     minYield: 90,
     resultCropId: 'primal_core_berry',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 91 },
-    discoveryText: '灵妙瓜与曦锦莓天极之光降临，万物归元。'
+    discoveryText: 'Ruh mucize kavunu ile parlak ipek meyvesi birleşir, gaKöy’de bütün varlığın özüne döndüğü bir meyve doğar.'
   },
   {
     id: 'chaos_core_peach_t',
-    name: '混元桃',
+    name: 'Kaos Öz Şeftalisi',
     parentCropA: 'draco_song_melon',
     parentCropB: 'lustrous_silk5_peach_t',
     minSweetness: 90,
     minYield: 90,
     resultCropId: 'chaos_core_peach_t',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 92 },
-    discoveryText: '灵妙瓜与璃锦桃元气混沌初开，太一显化。'
+    discoveryText: 'Ruh mucize kavunu ile parıltılı ipek şeftalisi birleşir, gaKöy’de ilk kaosun ve birliğin kokusunu taşıyan bir şeftali doğar.'
   },
-  // === 九代杂交作物 ===,
+  // === Dokuzuncu Nesil Melez Ürünler ===,
   {
     id: 'vast_meng_melon',
-    name: '鸿蒙瓜',
+    name: 'Uçsuz Başlangıç Kavunu',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'spirit_wonder_melon',
     minSweetness: 82,
     minYield: 82,
     resultCropId: 'vast_meng_melon',
     baseGenetics: { sweetness: 92, yield: 92, resistance: 85 },
-    discoveryText: '龙吟瓜与灵妙瓜鸿蒙之力交汇，通灵化境。'
+    discoveryText: 'Ejder ezgisi kavunu ile ruh mucize kavunu birleşir, gaKöy’de yaradılışın sisli başlangıcını taşıyan bir kavun doğar.'
   },
   {
     id: 'ancient_meng_bean',
-    name: '古蒙豆',
+    name: 'Kadim Başlangıç Fasulyesi',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'fairy_wonder_bean',
     minSweetness: 82,
     minYield: 82,
     resultCropId: 'ancient_meng_bean',
     baseGenetics: { sweetness: 92, yield: 92, resistance: 85 },
-    discoveryText: '龙吟瓜与仙妙豆太古洪荒之气，开天辟地。'
+    discoveryText: 'Ejder ezgisi kavunu ile peri mucize fasulyesi birleşir, gaKöy’de en eski çağların nefesini taşıyan bir fasulye doğar.'
   },
   {
     id: 'infinite_meng_rice',
-    name: '无蒙稻',
+    name: 'Sonsuz Başlangıç Pirinci',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'holy_wonder_rice',
     minSweetness: 83,
     minYield: 83,
     resultCropId: 'infinite_meng_rice',
     baseGenetics: { sweetness: 93, yield: 93, resistance: 86 },
-    discoveryText: '龙吟瓜与圣妙稻无极之道显现，玄之又玄。'
+    discoveryText: 'Ejder ezgisi kavunu ile kutsal mucize pirinci birleşir, gaKöy’de sonsuz yolun sırrını taşıyan bir pirinç doğar.'
   },
   {
     id: 'primeval_meng_tuber',
-    name: '洪蒙薯',
+    name: 'İlkçağ Başlangıç Yumrusu',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'divine_wonder_tuber',
     minSweetness: 83,
     minYield: 83,
     resultCropId: 'primeval_meng_tuber',
     baseGenetics: { sweetness: 93, yield: 93, resistance: 86 },
-    discoveryText: '龙吟瓜与神妙薯洪荒大力，超越万物。'
+    discoveryText: 'Ejder ezgisi kavunu ile ilahi mucize yumrusu birleşir, gaKöy’de ilk çağların kudretini taşıyan bir yumru doğar.'
   },
   {
     id: 'genesis_meng_green',
-    name: '开蒙菜',
+    name: 'Doğuş Başlangıç Otu',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'trueth_wonder_green',
     minSweetness: 84,
     minYield: 84,
     resultCropId: 'genesis_meng_green',
     baseGenetics: { sweetness: 93, yield: 93, resistance: 87 },
-    discoveryText: '龙吟瓜与真妙菜鸿蒙初判，天地为之变色。'
+    discoveryText: 'Ejder ezgisi kavunu ile saf mucize otu birleşir, gaKöy’de yaradılışın ilk anını taşıyan bir bitki doğar.'
   },
   {
     id: 'vast_apex9_fruit',
-    name: '鸿极果',
+    name: 'Uçsuz Doruk Meyvesi',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'spirit_grace6_fruit',
     minSweetness: 84,
     minYield: 84,
     resultCropId: 'vast_apex9_fruit',
     baseGenetics: { sweetness: 93, yield: 93, resistance: 87 },
-    discoveryText: '龙吟瓜与灵华果鸿蒙之力交汇，通灵化境。'
+    discoveryText: 'Ejder ezgisi kavunu ile ruhsal ışık meyvesi birleşir, gaKöy’de doruğa ermiş kutsal bir meyve doğar.'
   },
   {
     id: 'ancient_apex9_bloom',
-    name: '古极花',
+    name: 'Kadim Doruk Çiçeği',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'fairy_grace6_bloom',
     minSweetness: 85,
     minYield: 85,
     resultCropId: 'ancient_apex9_bloom',
     baseGenetics: { sweetness: 94, yield: 94, resistance: 88 },
-    discoveryText: '龙吟瓜与仙华花太古洪荒之气，开天辟地。'
+    discoveryText: 'Ejder ezgisi kavunu ile peri ışık çiçeği birleşir, gaKöy’de kadim çağların kudretini taşıyan bir çiçek açar.'
   },
   {
     id: 'infinite_apex9_tea',
-    name: '无极茶',
+    name: 'Sonsuz Doruk Çayı',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'holy_grace6_tea',
     minSweetness: 85,
     minYield: 85,
     resultCropId: 'infinite_apex9_tea',
     baseGenetics: { sweetness: 94, yield: 94, resistance: 88 },
-    discoveryText: '龙吟瓜与圣华茶无极之道显现，玄之又玄。'
+    discoveryText: 'Ejder ezgisi kavunu ile kutsal ışık çayı birleşir, gaKöy’de sonsuz yolun sırrını taşıyan bir çay doğar.'
   },
   {
     id: 'primeval_apex9_shoot',
-    name: '洪极笋',
+    name: 'İlkçağ Doruk Filizi',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'divine_grace6_shoot',
     minSweetness: 86,
     minYield: 86,
     resultCropId: 'primeval_apex9_shoot',
     baseGenetics: { sweetness: 94, yield: 94, resistance: 89 },
-    discoveryText: '龙吟瓜与神华笋洪荒大力，超越万物。'
+    discoveryText: 'Ejder ezgisi kavunu ile ilahi ışık filizi birleşir, gaKöy’de ilk çağların kudretini taşıyan bir filiz doğar.'
   },
   {
     id: 'genesis_apex9_lotus',
-    name: '开极莲',
+    name: 'Doğuş Doruk Nilüferi',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'trueth_grace6_lotus',
     minSweetness: 86,
     minYield: 86,
     resultCropId: 'genesis_apex9_lotus',
     baseGenetics: { sweetness: 95, yield: 95, resistance: 89 },
-    discoveryText: '龙吟瓜与真华莲鸿蒙初判，天地为之变色。'
+    discoveryText: 'Ejder ezgisi kavunu ile saf ışık nilüferi birleşir, gaKöy’de yaradılışın ilk anını taşıyan bir nilüfer açar.'
   },
   {
     id: 'vast_wilder_wheat',
-    name: '鸿荒麦',
+    name: 'Uçsuz Yaban Buğdayı',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'spirit_phantom_wheat',
     minSweetness: 87,
     minYield: 87,
     resultCropId: 'vast_wilder_wheat',
     baseGenetics: { sweetness: 95, yield: 95, resistance: 90 },
-    discoveryText: '龙吟瓜与灵幻麦鸿蒙之力交汇，通灵化境。'
+    discoveryText: 'Ejder ezgisi kavunu ile ruhsal hayalet buğday birleşir, gaKöy’de yaradılış öncesi kudreti taşıyan bir başak doğar.'
   },
   {
     id: 'ancient_wilder_sesame',
-    name: '古荒芝',
+    name: 'Kadim Yaban Susamı',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'fairy_phantom_sesame',
     minSweetness: 87,
     minYield: 87,
     resultCropId: 'ancient_wilder_sesame',
     baseGenetics: { sweetness: 95, yield: 95, resistance: 90 },
-    discoveryText: '龙吟瓜与仙幻芝太古洪荒之气，开天辟地。'
+    discoveryText: 'Ejder ezgisi kavunu ile peri hayalet susamı birleşir, gaKöy’de en eski çağların soluğunu taşıyan bir susam doğar.'
   },
   {
     id: 'infinite_wilder_pepper',
-    name: '无荒椒',
+    name: 'Sonsuz Yaban Biberi',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'holy_phantom_pepper',
     minSweetness: 88,
     minYield: 88,
     resultCropId: 'infinite_wilder_pepper',
     baseGenetics: { sweetness: 96, yield: 96, resistance: 91 },
-    discoveryText: '龙吟瓜与圣幻椒无极之道显现，玄之又玄。'
+    discoveryText: 'Ejder ezgisi kavunu ile kutsal hayalet biberi birleşir, gaKöy’de sonsuz yolun sırrını taşıyan bir biber doğar.'
   },
   {
     id: 'primeval_wilder_root',
-    name: '洪荒参',
+    name: 'İlkçağ Yaban Kökü',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'divine_phantom_root',
     minSweetness: 88,
     minYield: 88,
     resultCropId: 'primeval_wilder_root',
     baseGenetics: { sweetness: 96, yield: 96, resistance: 91 },
-    discoveryText: '龙吟瓜与神幻参洪荒大力，超越万物。'
+    discoveryText: 'Ejder ezgisi kavunu ile ilahi hayalet kökü birleşir, gaKöy’de ilk çağların kudretini taşıyan bir kök doğar.'
   },
   {
     id: 'genesis_wilder_sprout',
-    name: '开荒芽',
+    name: 'Doğuş Yaban Filizi',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'trueth_phantom_sprout',
     minSweetness: 88,
     minYield: 88,
     resultCropId: 'genesis_wilder_sprout',
     baseGenetics: { sweetness: 96, yield: 96, resistance: 91 },
-    discoveryText: '龙吟瓜与真幻芽鸿蒙初判，天地为之变色。'
+    discoveryText: 'Ejder ezgisi kavunu ile saf hayalet filizi birleşir, gaKöy’de yaradılışın ilk kıvılcımını taşıyan bir filiz doğar.'
   },
   {
     id: 'vast_empyrean_vine',
-    name: '鸿天藤',
+    name: 'Uçsuz Gök Asması',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'spirit_dream_vine',
     minSweetness: 89,
     minYield: 89,
     resultCropId: 'vast_empyrean_vine',
     baseGenetics: { sweetness: 96, yield: 96, resistance: 92 },
-    discoveryText: '龙吟瓜与灵梦藤鸿蒙之力交汇，通灵化境。'
+    discoveryText: 'Ejder ezgisi kavunu ile ruhsal düş asması birleşir, gaKöy’de göksel kudret taşıyan bir asma doğar.'
   },
   {
     id: 'ancient_empyrean_bud',
-    name: '古天蕾',
+    name: 'Kadim Gök Tomurcuğu',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'fairy_dream_bud',
     minSweetness: 89,
     minYield: 89,
     resultCropId: 'ancient_empyrean_bud',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 92 },
-    discoveryText: '龙吟瓜与仙梦蕾太古洪荒之气，开天辟地。'
+    discoveryText: 'Ejder ezgisi kavunu ile peri düş tomurcuğu birleşir, gaKöy’de kadim çağların göksel soluğunu taşıyan bir tomurcuk doğar.'
   },
   {
     id: 'infinite_empyrean_orchid',
-    name: '无天兰',
+    name: 'Sonsuz Gök Orkidesi',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'holy_dream_orchid',
     minSweetness: 90,
     minYield: 90,
     resultCropId: 'infinite_empyrean_orchid',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 93 },
-    discoveryText: '龙吟瓜与圣梦兰无极之道显现，玄之又玄。'
+    discoveryText: 'Ejder ezgisi kavunu ile kutsal düş orkidesi birleşir, gaKöy’de sonsuz göğün sırrını taşıyan bir orkide açar.'
   },
   {
     id: 'primeval_empyrean_gourd',
-    name: '洪天葫',
+    name: 'İlkçağ Gök Kabağı',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'divine_dream_gourd',
     minSweetness: 90,
     minYield: 90,
     resultCropId: 'primeval_empyrean_gourd',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 93 },
-    discoveryText: '龙吟瓜与神梦葫洪荒大力，超越万物。'
+    discoveryText: 'Ejder ezgisi kavunu ile ilahi düş kabağı birleşir, gaKöy’de ilk çağların göksel kudretini taşıyan bir kabak doğar.'
   },
   {
     id: 'genesis_empyrean_herb',
-    name: '开天草',
+    name: 'Doğuş Gök Otu',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'trueth_dream_herb',
     minSweetness: 91,
     minYield: 91,
     resultCropId: 'genesis_empyrean_herb',
     baseGenetics: { sweetness: 98, yield: 98, resistance: 94 },
-    discoveryText: '龙吟瓜与真梦草鸿蒙初判，天地为之变色。'
+    discoveryText: 'Ejder ezgisi kavunu ile saf düş otu birleşir, gaKöy’de göğün ilk doğuşunu taşıyan bir bitki doğar.'
   },
   {
     id: 'vast_spirit9_chestnut',
-    name: '鸿灵栗',
+    name: 'Uçsuz Ruh Kestanesi',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'spirit_zen_chestnut',
     minSweetness: 91,
     minYield: 91,
     resultCropId: 'vast_spirit9_chestnut',
     baseGenetics: { sweetness: 98, yield: 98, resistance: 94 },
-    discoveryText: '龙吟瓜与灵禅栗鸿蒙之力交汇，通灵化境。'
+    discoveryText: 'Ejder ezgisi kavunu ile ruhsal zen kestanesi birleşir, gaKöy’de sınırsız ruh kudretini taşıyan bir kestane doğar.'
   },
   {
     id: 'ancient_spirit9_apricot',
-    name: '古灵杏',
+    name: 'Kadim Ruh Kayısısı',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'fairy_zen_apricot',
     minSweetness: 92,
     minYield: 92,
     resultCropId: 'ancient_spirit9_apricot',
     baseGenetics: { sweetness: 98, yield: 98, resistance: 95 },
-    discoveryText: '龙吟瓜与仙禅杏太古洪荒之气，开天辟地。'
+    discoveryText: 'Ejder ezgisi kavunu ile peri zen kayısısı birleşir, gaKöy’de kadim ruhların soluğunu taşıyan bir kayısı doğar.'
   },
   {
     id: 'infinite_spirit9_pear',
-    name: '无灵梨',
+    name: 'Sonsuz Ruh Armudu',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'holy_zen_pear',
     minSweetness: 92,
     minYield: 92,
     resultCropId: 'infinite_spirit9_pear',
     baseGenetics: { sweetness: 98, yield: 98, resistance: 95 },
-    discoveryText: '龙吟瓜与圣禅梨无极之道显现，玄之又玄。'
+    discoveryText: 'Ejder ezgisi kavunu ile kutsal zen armudu birleşir, gaKöy’de sonsuz ruh yolunu taşıyan bir armut doğar.'
   },
   {
     id: 'primeval_spirit9_berry',
-    name: '洪灵莓',
+    name: 'İlkçağ Ruh Meyvesi',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'divine_zen_berry',
     minSweetness: 93,
     minYield: 93,
     resultCropId: 'primeval_spirit9_berry',
     baseGenetics: { sweetness: 99, yield: 99, resistance: 96 },
-    discoveryText: '龙吟瓜与神禅莓洪荒大力，超越万物。'
+    discoveryText: 'Ejder ezgisi kavunu ile ilahi zen meyvesi birleşir, gaKöy’de ilk ruhların kudretini taşıyan bir meyve doğar.'
   },
   {
     id: 'genesis_spirit9_peach_t',
-    name: '开灵桃',
+    name: 'Doğuş Ruh Şeftalisi',
     parentCropA: 'supreme_origin_melon',
     parentCropB: 'trueth_zen_peach_t',
     minSweetness: 93,
     minYield: 93,
     resultCropId: 'genesis_spirit9_peach_t',
     baseGenetics: { sweetness: 99, yield: 99, resistance: 96 },
-    discoveryText: '龙吟瓜与真禅桃鸿蒙初判，天地为之变色。'
+    discoveryText: 'Ejder ezgisi kavunu ile saf zen şeftalisi birleşir, gaKöy’de ruhun ilk doğuşunu taşıyan bir şeftali doğar.'
   },
-  // === 十代杂交作物 ===,
+  // === Onuncu Nesil Melez Ürünler ===,
   {
     id: 'creation_change_melon',
-    name: '造化瓜',
+    name: 'Yaratılış Kavunu',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'draco_song_melon',
     minSweetness: 88,
     minYield: 88,
     resultCropId: 'creation_change_melon',
     baseGenetics: { sweetness: 96, yield: 96, resistance: 90 },
-    discoveryText: '太初瓜与龙吟瓜造化之力成就，永恒不朽之品。'
+    discoveryText: 'Ulu başlangıç kavunu ile ejder ezgisi kavunu birleşir, gaKöy’de ebedi ve ölümsüz sayılan bir yaratılış kavunu doğar.'
   },
   {
     id: 'eternal_change_bean',
-    name: '永化豆',
+    name: 'Sonsuz Değişim Fasulyesi',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'fenghuang_song_bean',
     minSweetness: 88,
     minYield: 88,
     resultCropId: 'eternal_change_bean',
     baseGenetics: { sweetness: 96, yield: 96, resistance: 90 },
-    discoveryText: '太初瓜与凤吟豆天命所归，万象更新。'
+    discoveryText: 'İlk öz kavunu ile Anka ezgisi fasulyesi birleşir, gaKöy’de kaderin yenilediği bir fasulye doğar.'
   },
   {
     id: 'undying_change_rice',
-    name: '不化稻',
+    name: 'Ölümsüz Değişim Pirinci',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'qilin_song_rice',
     minSweetness: 89,
     minYield: 89,
     resultCropId: 'undying_change_rice',
     baseGenetics: { sweetness: 96, yield: 96, resistance: 91 },
-    discoveryText: '太初瓜与麟吟稻不朽轮回，涅槃重生。'
+    discoveryText: 'İlk öz kavunu ile Kirin ezgisi pirinci birleşir, gaKöy’de ölümsüz döngünün sırrını taşıyan bir pirinç doğar.'
   },
   {
     id: 'heavenly_change_tuber',
-    name: '天化薯',
+    name: 'Göksel Değişim Yumrusu',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'crane_song_tuber',
     minSweetness: 89,
     minYield: 89,
     resultCropId: 'heavenly_change_tuber',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 91 },
-    discoveryText: '太初瓜与鹤吟薯造化弄人，终成至宝。'
+    discoveryText: 'İlk öz kavunu ile Turna ezgisi yumrusu birleşir, gaKöy’de sonunda eşsiz bir hazineye dönüşen bir yumru doğar.'
   },
   {
     id: 'myriad_change_green',
-    name: '万化菜',
+    name: 'Bin Değişim Otu',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'tiger_song_green',
     minSweetness: 90,
     minYield: 90,
     resultCropId: 'myriad_change_green',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 92 },
-    discoveryText: '太初瓜与虎吟菜永恒不灭之光，照耀天地。'
+    discoveryText: 'İlk öz kavunu ile Kaplan ezgisi otu birleşir, gaKöy’de sönmeyen ışığıyla yeri göğü aydınlatan bir bitki doğar.'
   },
   {
     id: 'creation_lasting_fruit',
-    name: '造恒果',
+    name: 'Yaratılış Ebedi Meyvesi',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'draco_dance_fruit',
     minSweetness: 90,
     minYield: 90,
     resultCropId: 'creation_lasting_fruit',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 92 },
-    discoveryText: '太初瓜与龙舞果造化之力成就，永恒不朽之品。'
+    discoveryText: 'İlk öz kavunu ile Ejder dansı meyvesi birleşir, gaKöy’de yaradılış gücünü taşıyan ölümsüz bir meyve doğar.'
   },
   {
     id: 'eternal_lasting_bloom',
-    name: '永恒花',
+    name: 'Sonsuz Ebedi Çiçek',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'fenghuang_dance_bloom',
     minSweetness: 91,
     minYield: 91,
     resultCropId: 'eternal_lasting_bloom',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 93 },
-    discoveryText: '太初瓜与凤舞花天命所归，万象更新。'
+    discoveryText: 'İlk öz kavunu ile Anka dansı çiçeği birleşir, gaKöy’de kaderin yenilediği kutsal bir çiçek açar.'
   },
   {
     id: 'undying_lasting_tea',
-    name: '不恒茶',
+    name: 'Ölümsüz Ebedi Çay',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'qilin_dance_tea',
     minSweetness: 91,
     minYield: 91,
     resultCropId: 'undying_lasting_tea',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 93 },
-    discoveryText: '太初瓜与麟舞茶不朽轮回，涅槃重生。'
+    discoveryText: 'İlk öz kavunu ile Kirin dansı çayı birleşir, gaKöy’de küllerinden yeniden doğan ölümsüz bir çay demlenir.'
   },
   {
     id: 'heavenly_lasting_shoot',
-    name: '天恒笋',
+    name: 'Göksel Ebedi Filiz',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'crane_dance_shoot',
     minSweetness: 91,
     minYield: 91,
     resultCropId: 'heavenly_lasting_shoot',
     baseGenetics: { sweetness: 97, yield: 97, resistance: 93 },
-    discoveryText: '太初瓜与鹤舞笋造化弄人，终成至宝。'
+    discoveryText: 'İlk öz kavunu ile Turna dansı filizi birleşir, gaKöy’de sonunda paha biçilemez bir hazineye dönüşen bir filiz doğar.'
   },
   {
     id: 'myriad_lasting_lotus',
-    name: '万恒莲',
+    name: 'Bin Ebedi Nilüfer',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'tiger_dance_lotus',
     minSweetness: 92,
     minYield: 92,
     resultCropId: 'myriad_lasting_lotus',
     baseGenetics: { sweetness: 98, yield: 98, resistance: 94 },
-    discoveryText: '太初瓜与虎舞莲永恒不灭之光，照耀天地。'
+    discoveryText: 'İlk öz kavunu ile Kaplan dansı nilüferi birleşir, gaKöy’de sönmeyen ışığıyla yeri göğü aydınlatan bir nilüfer açar.'
   },
   {
     id: 'creation_timeless_wheat',
-    name: '造朽麦',
+    name: 'Yaratılış Zamansız Buğdayı',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'draco_gleam7_wheat',
     minSweetness: 92,
     minYield: 92,
     resultCropId: 'creation_timeless_wheat',
     baseGenetics: { sweetness: 98, yield: 98, resistance: 94 },
-    discoveryText: '太初瓜与龙辉麦造化之力成就，永恒不朽之品。'
+    discoveryText: 'İlk öz kavunu ile Ejder parıltısı buğdayı birleşir, gaKöy’de yaradılış gücünü taşıyan ölümsüz bir başak doğar.'
   },
   {
     id: 'eternal_timeless_sesame',
-    name: '永朽芝',
+    name: 'Sonsuz Zamansız Susam',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'fenghuang_gleam7_sesame',
     minSweetness: 93,
     minYield: 93,
     resultCropId: 'eternal_timeless_sesame',
     baseGenetics: { sweetness: 98, yield: 98, resistance: 95 },
-    discoveryText: '太初瓜与凤辉芝天命所归，万象更新。'
+    discoveryText: 'İlk öz kavunu ile Anka parıltısı susamı birleşir, gaKöy’de kaderin yenilediği kutlu bir susam doğar.'
   },
   {
     id: 'undying_timeless_pepper',
-    name: '不朽椒',
+    name: 'Ölümsüz Zamansız Biber',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'qilin_gleam7_pepper',
     minSweetness: 93,
     minYield: 93,
     resultCropId: 'undying_timeless_pepper',
     baseGenetics: { sweetness: 98, yield: 98, resistance: 95 },
-    discoveryText: '太初瓜与麟辉椒不朽轮回，涅槃重生。'
+    discoveryText: 'İlk öz kavunu ile Kirin parıltısı biberi birleşir, gaKöy’de ölümsüz döngünün ateşini taşıyan bir biber doğar.'
   },
   {
     id: 'heavenly_timeless_root',
-    name: '天朽参',
+    name: 'Göksel Zamansız Kök',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'crane_gleam7_root',
     minSweetness: 93,
     minYield: 93,
     resultCropId: 'heavenly_timeless_root',
     baseGenetics: { sweetness: 98, yield: 98, resistance: 95 },
-    discoveryText: '太初瓜与鹤辉参造化弄人，终成至宝。'
+    discoveryText: 'İlk öz kavunu ile Turna parıltısı kökü birleşir, gaKöy’de sonunda paha biçilemez bir hazineye dönüşen bir kök doğar.'
   },
   {
     id: 'myriad_timeless_sprout',
-    name: '万朽芽',
+    name: 'Bin Zamansız Filiz',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'tiger_gleam7_sprout',
     minSweetness: 94,
     minYield: 94,
     resultCropId: 'myriad_timeless_sprout',
     baseGenetics: { sweetness: 98, yield: 98, resistance: 96 },
-    discoveryText: '太初瓜与虎辉芽永恒不灭之光，照耀天地。'
+    discoveryText: 'İlk öz kavunu ile Kaplan parıltısı filizi birleşir, gaKöy’de sönmeyen ışığıyla yeri göğü aydınlatan bir filiz doğar.'
   },
   {
     id: 'creation_destiny_vine',
-    name: '造命藤',
+    name: 'Yaratılış Yazgı Asması',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'draco_shadow_vine',
     minSweetness: 94,
     minYield: 94,
     resultCropId: 'creation_destiny_vine',
     baseGenetics: { sweetness: 99, yield: 99, resistance: 96 },
-    discoveryText: '太初瓜与龙影藤造化之力成就，永恒不朽之品。'
+    discoveryText: 'İlk öz kavunu ile Ejder gölgesi asması birleşir, gaKöy’de yaradılış gücünü taşıyan ölümsüz bir asma doğar.'
   },
   {
     id: 'eternal_destiny_bud',
-    name: '永命蕾',
+    name: 'Sonsuz Yazgı Tomurcuğu',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'fenghuang_shadow_bud',
     minSweetness: 95,
     minYield: 95,
     resultCropId: 'eternal_destiny_bud',
     baseGenetics: { sweetness: 99, yield: 99, resistance: 97 },
-    discoveryText: '太初瓜与凤影蕾天命所归，万象更新。'
+    discoveryText: 'İlk öz kavunu ile Anka gölgesi tomurcuğu birleşir, gaKöy’de kaderin yenilediği bir tomurcuk doğar.'
   },
   {
     id: 'undying_destiny_orchid',
-    name: '不命兰',
+    name: 'Ölümsüz Yazgı Orkidesi',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'qilin_shadow_orchid',
     minSweetness: 95,
     minYield: 95,
     resultCropId: 'undying_destiny_orchid',
     baseGenetics: { sweetness: 99, yield: 99, resistance: 97 },
-    discoveryText: '太初瓜与麟影兰不朽轮回，涅槃重生。'
+    discoveryText: 'İlk öz kavunu ile Kirin gölgesi orkidesi birleşir, gaKöy’de küllerinden yeniden doğan ölümsüz bir orkide açar.'
   },
   {
     id: 'heavenly_destiny_gourd',
-    name: '天命葫',
+    name: 'Göksel Yazgı Kabağı',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'crane_shadow_gourd',
     minSweetness: 96,
     minYield: 96,
     resultCropId: 'heavenly_destiny_gourd',
     baseGenetics: { sweetness: 99, yield: 99, resistance: 98 },
-    discoveryText: '太初瓜与鹤影葫造化弄人，终成至宝。'
+    discoveryText: 'İlk öz kavunu ile Turna gölgesi kabağı birleşir, gaKöy’de sonunda eşsiz bir hazineye dönüşen bir kabak doğar.'
   },
   {
     id: 'myriad_destiny_herb',
-    name: '万命草',
+    name: 'Bin Yazgı Otu',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'tiger_shadow_herb',
     minSweetness: 96,
     minYield: 96,
     resultCropId: 'myriad_destiny_herb',
     baseGenetics: { sweetness: 99, yield: 99, resistance: 98 },
-    discoveryText: '太初瓜与虎影草永恒不灭之光，照耀天地。'
+    discoveryText: 'İlk öz kavunu ile Kaplan gölgesi otu birleşir, gaKöy’de sönmeyen ışığıyla yeri göğü aydınlatan bir bitki doğar.'
   },
   {
     id: 'creation_form_chestnut',
-    name: '造象栗',
+    name: 'Yaratılış Simgesi Kestanesi',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'draco_roar_chestnut',
     minSweetness: 96,
     minYield: 96,
     resultCropId: 'creation_form_chestnut',
     baseGenetics: { sweetness: 99, yield: 99, resistance: 98 },
-    discoveryText: '太初瓜与龙啸栗造化之力成就，永恒不朽之品。'
+    discoveryText: 'İlk öz kavunu ile Ejder kükreyişi kestanesi birleşir, gaKöy’de yaradılış gücünü taşıyan ölümsüz bir kestane doğar.'
   },
   {
     id: 'eternal_form_apricot',
-    name: '永象杏',
+    name: 'Sonsuz Sima Kayısısı',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'fenghuang_roar_apricot',
     minSweetness: 97,
     minYield: 97,
     resultCropId: 'eternal_form_apricot',
     baseGenetics: { sweetness: 100, yield: 100, resistance: 99 },
-    discoveryText: '太初瓜与凤啸杏天命所归，万象更新。'
+    discoveryText: 'İlk öz kavunu ile Anka kükreyişi kayısısı birleşir, gaKöy’de kaderin yenilediği kutlu bir kayısı doğar.'
   },
   {
     id: 'undying_form_pear',
-    name: '不象梨',
+    name: 'Ölümsüz Sima Armudu',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'qilin_roar_pear',
     minSweetness: 97,
     minYield: 97,
     resultCropId: 'undying_form_pear',
     baseGenetics: { sweetness: 100, yield: 100, resistance: 99 },
-    discoveryText: '太初瓜与麟啸梨不朽轮回，涅槃重生。'
+    discoveryText: 'İlk öz kavunu ile Kirin kükreyişi armudu birleşir, gaKöy’de ölümsüz döngünün sırrını taşıyan bir armut doğar.'
   },
   {
     id: 'heavenly_form_berry',
-    name: '天象莓',
+    name: 'Göksel Sima Meyvesi',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'crane_roar_berry',
     minSweetness: 98,
     minYield: 98,
     resultCropId: 'heavenly_form_berry',
     baseGenetics: { sweetness: 100, yield: 100, resistance: 100 },
-    discoveryText: '太初瓜与鹤啸莓造化弄人，终成至宝。'
+    discoveryText: 'İlk öz kavunu ile Turna kükreyişi meyvesi birleşir, gaKöy’de sonunda eşsiz bir hazineye dönüşen bir meyve doğar.'
   },
   {
     id: 'myriad_form_peach_t',
-    name: '万象桃',
+    name: 'Bin Sima Şeftalisi',
     parentCropA: 'vast_meng_melon',
     parentCropB: 'tiger_roar_peach_t',
     minSweetness: 98,
     minYield: 98,
     resultCropId: 'myriad_form_peach_t',
     baseGenetics: { sweetness: 100, yield: 100, resistance: 100 },
-    discoveryText: '太初瓜与虎啸桃永恒不灭之光，照耀天地。'
+    discoveryText: 'İlk öz kavunu ile Kaplan kükreyişi şeftalisi birleşir, gaKöy’de sönmeyen ışığıyla yeri göğü aydınlatan bir şeftali doğar.'
   }
 ]
 
-/** 杂交品种阶层 (tier) 划分：基于 HYBRID_DEFS 数组顺序 */
+/** Melez tür katmanları (tier): HYBRID_DEFS dizisi sırasına göre */
 const TIER_COUNTS = [100, 50, 50, 50, 25, 25, 25, 25, 25, 25] // T1..T10
 const _tierMap = new Map<string, number>()
 let _offset = 0
@@ -4657,10 +4657,10 @@ for (let t = 0; t < TIER_COUNTS.length; t++) {
   _offset += TIER_COUNTS[t]!
 }
 
-/** 获取杂交品种所属阶层 (1-10) */
+/** Melez türün ait olduğu katmanı getir (1-10) */
 export const getHybridTier = (hybridId: string): number => _tierMap.get(hybridId) ?? 1
 
-/** 查找可能的杂交配方 */
+/** Olası melez tarifini bul */
 export const findPossibleHybrid = (cropIdA: string, cropIdB: string): HybridDef | null => {
   return (
     HYBRID_DEFS.find(
@@ -4669,12 +4669,12 @@ export const findPossibleHybrid = (cropIdA: string, cropIdB: string): HybridDef 
   )
 }
 
-/** 根据杂交种ID查找配方 */
+/** Melez kimliğine göre tarifi bul */
 export const findPossibleHybridById = (hybridId: string): HybridDef | null => {
   return HYBRID_DEFS.find(h => h.id === hybridId) ?? null
 }
 
-/** 种子制造机产出育种种子的概率 */
+/** Tohum yapım makinesinin genetik tohum üretme olasılığı */
 export const getSeedMakerGeneticChance = (farmingLevel: number): number => {
   return 0.3 + farmingLevel * 0.03
 }
