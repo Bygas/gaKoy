@@ -577,465 +577,468 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   reward: { money: 2000 }
 },
 
-  // 畜牧
-  {
-    id: 'rancher_1',
-    name: '初养牲畜',
-    description: '拥有1只牲畜。',
-    condition: { type: 'animalCount', count: 1 },
-    reward: { money: 100 }
-  },
-  {
-    id: 'rancher_3',
-    name: '小型牧场',
-    description: '拥有3只牲畜。',
-    condition: { type: 'animalCount', count: 3 },
-    reward: { money: 300 }
-  },
-  {
-    id: 'rancher_10',
-    name: '畜牧达人',
-    description: '拥有10只牲畜。',
-    condition: { type: 'animalCount', count: 10 },
-    reward: { money: 1000 }
-  },
-  {
-    id: 'rancher_20',
-    name: '牧场传奇',
-    description: '拥有20只牲畜。',
-    condition: { type: 'animalCount', count: 20 },
-    reward: { money: 3000, items: [{ itemId: 'iridium_ore', quantity: 3 }] }
-  },
+  // Hayvancılık
+{
+  id: 'rancher_1',
+  name: 'İlk Ağıl',
+  description: '1 baş hayvana sahip ol.',
+  condition: { type: 'animalCount', count: 1 },
+  reward: { money: 100 }
+},
+{
+  id: 'rancher_3',
+  name: 'Küçük Sürü',
+  description: '3 baş hayvana sahip ol.',
+  condition: { type: 'animalCount', count: 3 },
+  reward: { money: 300 }
+},
+{
+  id: 'rancher_10',
+  name: 'Sürü Ustası',
+  description: '10 baş hayvana sahip ol.',
+  condition: { type: 'animalCount', count: 10 },
+  reward: { money: 1000 }
+},
+{
+  id: 'rancher_20',
+  name: 'Ağıl Efsanesi',
+  description: '20 baş hayvana sahip ol.',
+  condition: { type: 'animalCount', count: 20 },
+  reward: { money: 3000, items: [{ itemId: 'iridium_ore', quantity: 3 }] }
+},
 
-  // 矿洞
-  {
-    id: 'miner_5',
-    name: '初入矿洞',
-    description: '到达矿洞第5层。',
-    condition: { type: 'mineFloor', floor: 5 },
-    reward: { money: 100 }
-  },
-  {
-    id: 'miner_45',
-    name: '冰霜矿脉',
-    description: '到达矿洞第45层。',
-    condition: { type: 'mineFloor', floor: 45 },
-    reward: { money: 1500, items: [{ itemId: 'iron_ore', quantity: 15 }] }
-  },
-  {
-    id: 'miner_90',
-    name: '水晶洞穴',
-    description: '到达矿洞第90层。',
-    condition: { type: 'mineFloor', floor: 90 },
-    reward: { money: 3000, items: [{ itemId: 'crystal_ore', quantity: 10 }] }
-  },
-  {
-    id: 'miner_100',
-    name: '百层勇者',
-    description: '到达矿洞第100层。',
-    condition: { type: 'mineFloor', floor: 100 },
-    reward: { money: 4000, items: [{ itemId: 'shadow_ore', quantity: 5 }] }
-  },
+// Maden
+{
+  id: 'miner_5',
+  name: 'Madene İlk Adım',
+  description: 'Madenin 5. katına ulaş.',
+  condition: { type: 'mineFloor', floor: 5 },
+  reward: { money: 100 }
+},
+{
+  id: 'miner_45',
+  name: 'Ayaz Damarı',
+  description: 'Madenin 45. katına ulaş.',
+  condition: { type: 'mineFloor', floor: 45 },
+  reward: { money: 1500, items: [{ itemId: 'iron_ore', quantity: 15 }] }
+},
+{
+  id: 'miner_90',
+  name: 'Billur Mağarası',
+  description: 'Madenin 90. katına ulaş.',
+  condition: { type: 'mineFloor', floor: 90 },
+  reward: { money: 3000, items: [{ itemId: 'crystal_ore', quantity: 10 }] }
+},
+{
+  id: 'miner_100',
+  name: 'Yüz Kat Yiğidi',
+  description: 'Madenin 100. katına ulaş.',
+  condition: { type: 'mineFloor', floor: 100 },
+  reward: { money: 4000, items: [{ itemId: 'shadow_ore', quantity: 5 }] }
+},
 
-  // 骷髅矿穴
-  {
-    id: 'skull_10',
-    name: '骷髅初探',
-    description: '骷髅矿穴到达第10层。',
-    condition: { type: 'skullCavernFloor', floor: 10 },
-    reward: { money: 1000 }
-  },
-  {
-    id: 'skull_50',
-    name: '深渊跋涉',
-    description: '骷髅矿穴到达第50层。',
-    condition: { type: 'skullCavernFloor', floor: 50 },
-    reward: { money: 5000, items: [{ itemId: 'iridium_ore', quantity: 10 }] }
-  },
-  {
-    id: 'skull_75',
-    name: '冥界行者',
-    description: '骷髅矿穴到达第75层。',
-    condition: { type: 'skullCavernFloor', floor: 75 },
-    reward: { money: 8000, items: [{ itemId: 'dragon_jade', quantity: 1 }] }
-  },
-  {
-    id: 'skull_150',
-    name: '无尽深渊',
-    description: '骷髅矿穴到达第150层。',
-    condition: { type: 'skullCavernFloor', floor: 150 },
-    reward: { money: 20000, items: [{ itemId: 'prismatic_shard', quantity: 2 }] }
-  },
+// Kafatası Madeni
+{
+  id: 'skull_10',
+  name: 'Kuru Kuyu Yolcusu',
+  description: 'Kafatası Madeninde 10. kata ulaş.',
+  condition: { type: 'skullCavernFloor', floor: 10 },
+  reward: { money: 1000 }
+},
+{
+  id: 'skull_50',
+  name: 'Derinlik Aşanı',
+  description: 'Kafatası Madeninde 50. kata ulaş.',
+  condition: { type: 'skullCavernFloor', floor: 50 },
+  reward: { money: 5000, items: [{ itemId: 'iridium_ore', quantity: 10 }] }
+},
+{
+  id: 'skull_75',
+  name: 'Öte Âlem Gezgini',
+  description: 'Kafatası Madeninde 75. kata ulaş.',
+  condition: { type: 'skullCavernFloor', floor: 75 },
+  reward: { money: 8000, items: [{ itemId: 'dragon_jade', quantity: 1 }] }
+},
+{
+  id: 'skull_150',
+  name: 'Uçsuz Dip',
+  description: 'Kafatası Madeninde 150. kata ulaş.',
+  condition: { type: 'skullCavernFloor', floor: 150 },
+  reward: { money: 20000, items: [{ itemId: 'prismatic_shard', quantity: 2 }] }
+},
 
-  // 好感
-  {
-    id: 'friend_best_2',
-    name: '二三知己',
-    description: '与2位村民成为挚友。',
-    condition: { type: 'npcBestFriend', count: 2 },
-    reward: { money: 500 }
-  },
-  {
-    id: 'friend_best_3',
-    name: '莫逆之交',
-    description: '与3位村民成为挚友。',
-    condition: { type: 'npcBestFriend', count: 3 },
-    reward: { money: 1000 }
-  },
-  {
-    id: 'friend_best_4',
-    name: '四海为友',
-    description: '与4位村民成为挚友。',
-    condition: { type: 'npcBestFriend', count: 4 },
-    reward: { money: 2000 }
-  },
+// Gönül bağı
+{
+  id: 'friend_best_2',
+  name: 'İki Can Dost',
+  description: '2 köylü ile gönül bağı kur.',
+  condition: { type: 'npcBestFriend', count: 2 },
+  reward: { money: 500 }
+},
+{
+  id: 'friend_best_3',
+  name: 'Can Yoldaşları',
+  description: '3 köylü ile gönül bağı kur.',
+  condition: { type: 'npcBestFriend', count: 3 },
+  reward: { money: 1000 }
+},
+{
+  id: 'friend_best_4',
+  name: 'Dost Eli Geniş',
+  description: '4 köylü ile gönül bağı kur.',
+  condition: { type: 'npcBestFriend', count: 4 },
+  reward: { money: 2000 }
+},
 
-  // 社交（补充）
-  {
-    id: 'social_all_friendly',
-    name: '广结善缘',
-    description: '与所有村民成为"熟识"。',
-    condition: { type: 'npcFriendship', level: 'friendly' },
-    reward: { money: 2000 }
-  },
+// Sosyallik
+{
+  id: 'social_all_friendly',
+  name: 'İyilikle Anılan',
+  description: 'Tüm köylülerle "tanışık" ol.',
+  condition: { type: 'npcFriendship', level: 'friendly' },
+  reward: { money: 2000 }
+},
 
-  // 技能等级
+// Yetenek seviyeleri
+{
+  id: 'farming_5',
+  name: 'Toprağın Yolunu Bilen',
+  description: 'Ekin biçme yeteneğini 5. seviyeye çıkar.',
+  condition: { type: 'skillLevel', skillType: 'farming', level: 5 },
+  reward: { money: 300 }
+},
+{
+  id: 'foraging_5',
+  name: 'Dağın Oğlu',
+  description: 'Toplayıcılık yeteneğini 5. seviyeye çıkar.',
+  condition: { type: 'skillLevel', skillType: 'foraging', level: 5 },
+  reward: { money: 300 }
+},
+{
+  id: 'foraging_10',
+  name: 'Toplayıcılık Pir'i',
+  description: 'Toplayıcılık yeteneğini 10. seviyeye çıkar.',
+  condition: { type: 'skillLevel', skillType: 'foraging', level: 10 },
+  reward: { money: 2000 }
+},
+{
+  id: 'fishing_5',
+  name: 'Olta Yolcusu',
+  description: 'Balıkçılık yeteneğini 5. seviyeye çıkar.',
+  condition: { type: 'skillLevel', skillType: 'fishing', level: 5 },
+  reward: { money: 300 }
+},
   {
-    id: 'farming_5',
-    name: '耕种有道',
-    description: '种植技能达到5级。',
-    condition: { type: 'skillLevel', skillType: 'farming', level: 5 },
-    reward: { money: 300 }
-  },
-  {
-    id: 'foraging_5',
-    name: '山林之子',
-    description: '采集技能达到5级。',
-    condition: { type: 'skillLevel', skillType: 'foraging', level: 5 },
-    reward: { money: 300 }
-  },
-  {
-    id: 'foraging_10',
-    name: '采集宗师',
-    description: '采集技能达到10级。',
-    condition: { type: 'skillLevel', skillType: 'foraging', level: 10 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'fishing_5',
-    name: '钓术入门',
-    description: '钓鱼技能达到5级。',
-    condition: { type: 'skillLevel', skillType: 'fishing', level: 5 },
-    reward: { money: 300 }
-  },
-  {
-    id: 'fishing_10',
-    name: '钓鱼宗师',
-    description: '钓鱼技能达到10级。',
-    condition: { type: 'skillLevel', skillType: 'fishing', level: 10 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'mining_5',
-    name: '矿脉感应',
-    description: '采矿技能达到5级。',
-    condition: { type: 'skillLevel', skillType: 'mining', level: 5 },
-    reward: { money: 300 }
-  },
-  {
-    id: 'mining_10',
-    name: '采矿宗师',
-    description: '采矿技能达到10级。',
-    condition: { type: 'skillLevel', skillType: 'mining', level: 10 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'combat_5',
-    name: '初涉江湖',
-    description: '战斗技能达到5级。',
-    condition: { type: 'skillLevel', skillType: 'combat', level: 5 },
-    reward: { money: 300 }
-  },
-  {
-    id: 'combat_10',
-    name: '武林高手',
-    description: '战斗技能达到10级。',
-    condition: { type: 'skillLevel', skillType: 'combat', level: 10 },
-    reward: { money: 2000 }
-  },
+  id: 'fishing_10',
+  name: 'Olta Pir’i',
+  description: 'Balıkçılık yeteneğini 10. seviyeye çıkar.',
+  condition: { type: 'skillLevel', skillType: 'fishing', level: 10 },
+  reward: { money: 2000 }
+},
+{
+  id: 'mining_5',
+  name: 'Damar Sezicisi',
+  description: 'Madencilik yeteneğini 5. seviyeye çıkar.',
+  condition: { type: 'skillLevel', skillType: 'mining', level: 5 },
+  reward: { money: 300 }
+},
+{
+  id: 'mining_10',
+  name: 'Maden Pir’i',
+  description: 'Madencilik yeteneğini 10. seviyeye çıkar.',
+  condition: { type: 'skillLevel', skillType: 'mining', level: 10 },
+  reward: { money: 2000 }
+},
+{
+  id: 'combat_5',
+  name: 'Kılıca İlk El',
+  description: 'Dövüş yeteneğini 5. seviyeye çıkar.',
+  condition: { type: 'skillLevel', skillType: 'combat', level: 5 },
+  reward: { money: 300 }
+},
+{
+  id: 'combat_10',
+  name: 'Er Meydanı Ustası',
+  description: 'Dövüş yeteneğini 10. seviyeye çıkar.',
+  condition: { type: 'skillLevel', skillType: 'combat', level: 10 },
+  reward: { money: 2000 }
+},
 
-  // 育种
-  {
-    id: 'breeding_1',
-    name: '初涉育种',
-    description: '完成1次育种。',
-    condition: { type: 'breedingsDone', count: 1 },
-    reward: { money: 200 }
-  },
-  {
-    id: 'breeding_10',
-    name: '育种学徒',
-    description: '累计完成10次育种。',
-    condition: { type: 'breedingsDone', count: 10 },
-    reward: { money: 500 }
-  },
-  {
-    id: 'breeding_50',
-    name: '育种专家',
-    description: '累计完成50次育种。',
-    condition: { type: 'breedingsDone', count: 50 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'breeding_200',
-    name: '育种大师',
-    description: '累计完成200次育种。',
-    condition: { type: 'breedingsDone', count: 200 },
-    reward: { money: 5000 }
-  },
-  {
-    id: 'hybrid_1',
-    name: '新品诞生',
-    description: '发现1个杂交品种。',
-    condition: { type: 'hybridsDiscovered', count: 1 },
-    reward: { money: 300 }
-  },
-  {
-    id: 'hybrid_5',
-    name: '品种收集者',
-    description: '发现5个杂交品种。',
-    condition: { type: 'hybridsDiscovered', count: 5 },
-    reward: { money: 800 }
-  },
-  {
-    id: 'hybrid_20',
-    name: '杂交图鉴',
-    description: '发现20个杂交品种。',
-    condition: { type: 'hybridsDiscovered', count: 20 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'hybrid_50',
-    name: '品种宗师',
-    description: '发现50个杂交品种。',
-    condition: { type: 'hybridsDiscovered', count: 50 },
-    reward: { money: 5000 }
-  },
-  {
-    id: 'hybrid_100',
-    name: '万种图录',
-    description: '发现100个杂交品种。',
-    condition: { type: 'hybridsDiscovered', count: 100 },
-    reward: { money: 10000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
-  },
-  {
-    id: 'tier_3',
-    name: '三代突破',
-    description: '培育出三代杂交品种。',
-    condition: { type: 'hybridTier', tier: 3 },
-    reward: { money: 1000 }
-  },
-  {
-    id: 'tier_5',
-    name: '五代传承',
-    description: '培育出五代杂交品种。',
-    condition: { type: 'hybridTier', tier: 5 },
-    reward: { money: 3000 }
-  },
-  {
-    id: 'tier_7',
-    name: '七代神品',
-    description: '培育出七代杂交品种。',
-    condition: { type: 'hybridTier', tier: 7 },
-    reward: { money: 5000 }
-  },
-  {
-    id: 'tier_10',
-    name: '登峰造极',
-    description: '培育出十代杂交品种。',
-    condition: { type: 'hybridTier', tier: 10 },
-    reward: { money: 15000, items: [{ itemId: 'prismatic_shard', quantity: 2 }] }
-  },
+// Yetiştirme
+{
+  id: 'breeding_1',
+  name: 'Soy İşine İlk Adım',
+  description: '1 kez yetiştirme yap.',
+  condition: { type: 'breedingsDone', count: 1 },
+  reward: { money: 200 }
+},
+{
+  id: 'breeding_10',
+  name: 'Soy Çırağı',
+  description: 'Toplam 10 kez yetiştirme yap.',
+  condition: { type: 'breedingsDone', count: 10 },
+  reward: { money: 500 }
+},
+{
+  id: 'breeding_50',
+  name: 'Soy Bilicisi',
+  description: 'Toplam 50 kez yetiştirme yap.',
+  condition: { type: 'breedingsDone', count: 50 },
+  reward: { money: 2000 }
+},
+{
+  id: 'breeding_200',
+  name: 'Soy Ustası',
+  description: 'Toplam 200 kez yetiştirme yap.',
+  condition: { type: 'breedingsDone', count: 200 },
+  reward: { money: 5000 }
+},
+{
+  id: 'hybrid_1',
+  name: 'Yeni Tohum Doğdu',
+  description: '1 melez tür keşfet.',
+  condition: { type: 'hybridsDiscovered', count: 1 },
+  reward: { money: 300 }
+},
+{
+  id: 'hybrid_5',
+  name: 'Tohum Derleyicisi',
+  description: '5 melez tür keşfet.',
+  condition: { type: 'hybridsDiscovered', count: 5 },
+  reward: { money: 800 }
+},
+{
+  id: 'hybrid_20',
+  name: 'Melez Defteri',
+  description: '20 melez tür keşfet.',
+  condition: { type: 'hybridsDiscovered', count: 20 },
+  reward: { money: 2000 }
+},
+{
+  id: 'hybrid_50',
+  name: 'Tohum Pir’i',
+  description: '50 melez tür keşfet.',
+  condition: { type: 'hybridsDiscovered', count: 50 },
+  reward: { money: 5000 }
+},
+{
+  id: 'hybrid_100',
+  name: 'Binbir Soyun Yazıcısı',
+  description: '100 melez tür keşfet.',
+  condition: { type: 'hybridsDiscovered', count: 100 },
+  reward: { money: 10000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
+},
+{
+  id: 'tier_3',
+  name: 'Üçüncü Soy',
+  description: 'Üçüncü soy melez yetiştir.',
+  condition: { type: 'hybridTier', tier: 3 },
+  reward: { money: 1000 }
+},
+{
+  id: 'tier_5',
+  name: 'Beşinci Soy',
+  description: 'Beşinci soy melez yetiştir.',
+  condition: { type: 'hybridTier', tier: 5 },
+  reward: { money: 3000 }
+},
+{
+  id: 'tier_7',
+  name: 'Yedinci Soy Mucizesi',
+  description: 'Yedinci soy melez yetiştir.',
+  condition: { type: 'hybridTier', tier: 7 },
+  reward: { money: 5000 }
+},
+{
+  id: 'tier_10',
+  name: 'Ustalığın Zirvesi',
+  description: 'Onuncu soy melez yetiştir.',
+  condition: { type: 'hybridTier', tier: 10 },
+  reward: { money: 15000, items: [{ itemId: 'prismatic_shard', quantity: 2 }] }
+},
 
-  // 育种出货
-  {
-    id: 'hybrid_ship_1',
-    name: '杂交初售',
-    description: '出货1种杂交作物。',
-    condition: { type: 'hybridsShipped', count: 1 },
-    reward: { money: 300 }
-  },
-  {
-    id: 'hybrid_ship_5',
-    name: '良种外销',
-    description: '出货5种杂交作物。',
-    condition: { type: 'hybridsShipped', count: 5 },
-    reward: { money: 800 }
-  },
-  {
-    id: 'hybrid_ship_15',
-    name: '杂交商人',
-    description: '出货15种杂交作物。',
-    condition: { type: 'hybridsShipped', count: 15 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'hybrid_ship_30',
-    name: '良种流通',
-    description: '出货30种杂交作物。',
-    condition: { type: 'hybridsShipped', count: 30 },
-    reward: { money: 5000 }
-  },
-  {
-    id: 'hybrid_ship_50',
-    name: '杂交出货全鉴',
-    description: '出货50种杂交作物。',
-    condition: { type: 'hybridsShipped', count: 50 },
-    reward: { money: 10000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
-  },
-  // 博物馆
-  {
-    id: 'museum_20',
-    name: '收藏爱好者',
-    description: '向博物馆捐赠20件物品。',
-    condition: { type: 'museumDonations', count: 20 },
-    reward: { money: 1000 }
-  },
-  {
-    id: 'museum_36',
-    name: '博物馆之星',
-    description: '向博物馆捐赠36件物品。',
-    condition: { type: 'museumDonations', count: 36 },
-    reward: { money: 5000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
-  },
-  {
-    id: 'museum_40',
-    name: '灵物全鉴',
-    description: '完成博物馆全部40件收藏（含仙灵物品）。',
-    condition: { type: 'museumDonations', count: 40 },
-    reward: { money: 8000 }
-  },
-  // 冒险家公会
-  {
-    id: 'guild_5',
-    name: '怪物猎人',
-    description: '完成5个讨伐目标。',
-    condition: { type: 'guildGoalsCompleted', count: 5 },
-    reward: { money: 1000 }
-  },
-  {
-    id: 'guild_21',
-    name: '屠龙勇士',
-    description: '完成全部21个讨伐目标。',
-    condition: { type: 'guildGoalsCompleted', count: 21 },
-    reward: { money: 10000, items: [{ itemId: 'iridium_bar', quantity: 5 }] }
-  },
-  // 仙灵
-  {
-    id: 'spirit_first',
-    name: '灵觉初开',
-    description: '发现第1位仙灵。',
-    condition: { type: 'hiddenNpcRevealed', count: 1 },
-    reward: { money: 500 }
-  },
-  {
-    id: 'spirit_three',
-    name: '通灵之人',
-    description: '发现3位仙灵。',
-    condition: { type: 'hiddenNpcRevealed', count: 3 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'spirit_all',
-    name: '万灵归心',
-    description: '发现全部6位仙灵。',
-    condition: { type: 'hiddenNpcRevealed', count: 6 },
-    reward: { money: 5000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
-  },
-  {
-    id: 'spirit_bonded',
-    name: '仙缘天定',
-    description: '与一位仙灵结缘。',
-    condition: { type: 'hiddenNpcBonded' },
-    reward: { money: 1314 }
-  },
-  {
-    id: 'spirit_peach_found',
-    name: '灵桃仙味',
-    description: '获得灵桃。',
-    condition: { type: 'itemDiscovered', itemId: 'spirit_peach' },
-    reward: { money: 300 }
-  },
-  {
-    id: 'moon_herb_found',
-    name: '月华初采',
-    description: '获得月草。',
-    condition: { type: 'itemDiscovered', itemId: 'moon_herb' },
-    reward: { money: 300 }
-  },
-  {
-    id: 'dream_silk_found',
-    name: '梦丝如缎',
-    description: '获得梦丝。',
-    condition: { type: 'itemDiscovered', itemId: 'dream_silk' },
-    reward: { money: 300 }
-  }
+// Melez sevkiyatı
+{
+  id: 'hybrid_ship_1',
+  name: 'İlk Melez Satışı',
+  description: '1 tür melez ürünü sevk et.',
+  condition: { type: 'hybridsShipped', count: 1 },
+  reward: { money: 300 }
+},
+{
+  id: 'hybrid_ship_5',
+  name: 'İyi Tohum Pazarı',
+  description: '5 tür melez ürünü sevk et.',
+  condition: { type: 'hybridsShipped', count: 5 },
+  reward: { money: 800 }
+},
+{
+  id: 'hybrid_ship_15',
+  name: 'Melez Tüccarı',
+  description: '15 tür melez ürünü sevk et.',
+  condition: { type: 'hybridsShipped', count: 15 },
+  reward: { money: 2000 }
+},
+{
+  id: 'hybrid_ship_30',
+  name: 'Tohum Yolu Açan',
+  description: '30 tür melez ürünü sevk et.',
+  condition: { type: 'hybridsShipped', count: 30 },
+  reward: { money: 5000 }
+},
+{
+  id: 'hybrid_ship_50',
+  name: 'Melez Defteri Tam',
+  description: '50 tür melez ürünü sevk et.',
+  condition: { type: 'hybridsShipped', count: 50 },
+  reward: { money: 10000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
+},
+
+// Müze
+{
+  id: 'museum_20',
+  name: 'Derleme Sevdalısı',
+  description: 'Müzeye 20 parça bağışla.',
+  condition: { type: 'museumDonations', count: 20 },
+  reward: { money: 1000 }
+},
+{
+  id: 'museum_36',
+  name: 'Müzenin Yıldızı',
+  description: 'Müzeye 36 parça bağışla.',
+  condition: { type: 'museumDonations', count: 36 },
+  reward: { money: 5000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
+},
+{
+  id: 'museum_40',
+  name: 'Kutlu Emanetlerin Defteri',
+  description: 'Müzedeki tüm 40 parçayı tamamla (ruhânî eşyalar dahil).',
+  condition: { type: 'museumDonations', count: 40 },
+  reward: { money: 8000 }
+},
+
+// Maceracılar Ocağı
+{
+  id: 'guild_5',
+  name: 'Yaratık Avcısı',
+  description: '5 av hedefini tamamla.',
+  condition: { type: 'guildGoalsCompleted', count: 5 },
+  reward: { money: 1000 }
+},
+{
+  id: 'guild_21',
+  name: 'Ejder Yenen Yiğit',
+  description: 'Tüm 21 av hedefini tamamla.',
+  condition: { type: 'guildGoalsCompleted', count: 21 },
+  reward: { money: 10000, items: [{ itemId: 'iridium_bar', quantity: 5 }] }
+},
+
+// Ruhânî varlıklar
+{
+  id: 'spirit_first',
+  name: 'İlk Sezi',
+  description: 'İlk ruhânî varlığı keşfet.',
+  condition: { type: 'hiddenNpcRevealed', count: 1 },
+  reward: { money: 500 }
+},
+{
+  id: 'spirit_three',
+  name: 'Canlara Kulak Veren',
+  description: '3 ruhânî varlık keşfet.',
+  condition: { type: 'hiddenNpcRevealed', count: 3 },
+  reward: { money: 2000 }
+},
+{
+  id: 'spirit_all',
+  name: 'Altı Canın Gönlü',
+  description: 'Tüm 6 ruhânî varlığı keşfet.',
+  condition: { type: 'hiddenNpcRevealed', count: 6 },
+  reward: { money: 5000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
+},
+{
+  id: 'spirit_bonded',
+  name: 'Yazgılı Bağ',
+  description: 'Bir ruhânî varlıkla gönül bağı kur.',
+  condition: { type: 'hiddenNpcBonded' },
+  reward: { money: 1314 }
+},
+{
+  id: 'spirit_peach_found',
+  name: 'Kutlu Şeftali Tadı',
+  description: 'Kutlu şeftali elde et.',
+  condition: { type: 'itemDiscovered', itemId: 'spirit_peach' },
+  reward: { money: 300 }
+},
+{
+  id: 'moon_herb_found',
+  name: 'Ay Otu İlk Demet',
+  description: 'Ay otu elde et.',
+  condition: { type: 'itemDiscovered', itemId: 'moon_herb' },
+  reward: { money: 300 }
+},
+{
+  id: 'dream_silk_found',
+  name: 'Düş İpeği',
+  description: 'Düş ipeği elde et.',
+  condition: { type: 'itemDiscovered', itemId: 'dream_silk' },
+  reward: { money: 300 }
+}
 ]
 
-/** 祠堂任务板 */
+/** Tapınak görev tahtası */
 export const COMMUNITY_BUNDLES: CommunityBundleDef[] = [
   {
     id: 'spring_bundle',
-    name: '春耕之礼',
-    description: '春季物产合集。',
+    name: 'Bahar Ekin Armağanı',
+    description: 'Bahar mevsimi ürünleri.',
     requiredItems: [
       { itemId: 'cabbage', quantity: 5 },
       { itemId: 'radish', quantity: 5 },
       { itemId: 'bamboo_shoot', quantity: 3 },
       { itemId: 'tea', quantity: 2 }
     ],
-    reward: { money: 500, items: [{ itemId: 'seed_peach', quantity: 3 }], description: '500文 + 桃种子×3' }
+    reward: { money: 500, items: [{ itemId: 'seed_peach', quantity: 3 }], description: '500 akçe + Şeftali tohumu x3' }
   },
   {
     id: 'summer_bundle',
-    name: '盛夏之礼',
-    description: '夏季物产合集。',
+    name: 'Yaz Bereketi Armağanı',
+    description: 'Yaz mevsimi ürünleri.',
     requiredItems: [
       { itemId: 'watermelon', quantity: 3 },
       { itemId: 'rice', quantity: 5 },
       { itemId: 'lotus_root', quantity: 2 },
       { itemId: 'chili', quantity: 3 }
     ],
-    reward: { money: 800, items: [{ itemId: 'seed_lotus_seed', quantity: 2 }], description: '800文 + 莲子种子×2' }
+    reward: { money: 800, items: [{ itemId: 'seed_lotus_seed', quantity: 2 }], description: '800 akçe + Nilüfer tohumu x2' }
   },
   {
     id: 'autumn_bundle',
-    name: '金秋之礼',
-    description: '秋季物产合集。',
+    name: 'Güz Hasadı Armağanı',
+    description: 'Güz mevsimi ürünleri.',
     requiredItems: [
       { itemId: 'pumpkin', quantity: 3 },
       { itemId: 'osmanthus', quantity: 2 },
       { itemId: 'jujube', quantity: 3 },
       { itemId: 'persimmon', quantity: 2 }
     ],
-    reward: { money: 800, items: [{ itemId: 'seed_snow_lotus', quantity: 1 }], description: '800文 + 雪莲种子×1' }
+    reward: { money: 800, items: [{ itemId: 'seed_snow_lotus', quantity: 1 }], description: '800 akçe + Kar nilüferi tohumu x1' }
   },
   {
     id: 'winter_bundle',
-    name: '严冬之礼',
-    description: '冬季物产合集。',
+    name: 'Kış Zahiresi Armağanı',
+    description: 'Kış mevsimi ürünleri.',
     requiredItems: [
       { itemId: 'winter_bamboo_shoot', quantity: 5 },
       { itemId: 'winter_wheat', quantity: 3 },
       { itemId: 'garlic', quantity: 3 },
       { itemId: 'ginger', quantity: 2 }
     ],
-    reward: { money: 1000, description: '1000文' }
+    reward: { money: 1000, description: '1000 akçe' }
   },
   {
     id: 'artisan_bundle',
-    name: '匠心之礼',
-    description: '各种加工品合集。',
+    name: 'Ustalık Armağanı',
+    description: 'Çeşitli işlenmiş ürünler.',
     requiredItems: [
       { itemId: 'watermelon_wine', quantity: 1 },
       { itemId: 'pickled_cabbage', quantity: 1 },
@@ -1043,86 +1046,89 @@ export const COMMUNITY_BUNDLES: CommunityBundleDef[] = [
       { itemId: 'sesame_oil', quantity: 1 },
       { itemId: 'peach_wine', quantity: 1 }
     ],
-    reward: { money: 2000, description: '2000文' }
+    reward: { money: 2000, description: '2000 akçe' }
   },
   {
     id: 'friendship_bundle',
-    name: '乡情之礼',
-    description: '与所有村民建立友善关系。',
+    name: 'Köy Gönlü Armağanı',
+    description: 'Tüm köylülerle dostluk kur.',
     requiredItems: [
       { itemId: 'wintersweet', quantity: 2 },
       { itemId: 'chrysanthemum', quantity: 2 },
       { itemId: 'osmanthus', quantity: 2 }
     ],
-    reward: { money: 1500, description: '1500文' }
+    reward: { money: 1500, description: '1500 akçe' }
   },
-  // 渔获
+
+  // Balık avı
   {
     id: 'fish_bundle',
-    name: '渔获之礼',
-    description: '各地水域的鱼获合集。',
+    name: 'Balık Bereketi Armağanı',
+    description: 'Çeşitli sulardan tutulan balıklar.',
     requiredItems: [
       { itemId: 'crucian', quantity: 3 },
       { itemId: 'carp', quantity: 3 },
       { itemId: 'bass', quantity: 2 },
       { itemId: 'catfish', quantity: 1 }
     ],
-    reward: { money: 1000, description: '1000文' }
+    reward: { money: 1000, description: '1000 akçe' }
   },
   {
     id: 'rare_fish_bundle',
-    name: '珍鲜之礼',
-    description: '难得一见的珍稀鱼类。',
+    name: 'Nadir Balık Armağanı',
+    description: 'Ender rastlanan kıymetli balıklar.',
     requiredItems: [
       { itemId: 'sturgeon', quantity: 1 },
       { itemId: 'mandarin_fish', quantity: 1 },
       { itemId: 'koi', quantity: 1 },
       { itemId: 'eel', quantity: 1 }
     ],
-    reward: { money: 2500, items: [{ itemId: 'iridium_ore', quantity: 3 }], description: '2500文 + 铱矿×3' }
+    reward: { money: 2500, items: [{ itemId: 'iridium_ore', quantity: 3 }], description: '2500 akçe + İridyum cevheri x3' }
   },
-  // 矿石与宝石
+
+  // Cevher ve taşlar
   {
     id: 'ore_bundle',
-    name: '矿石之礼',
-    description: '矿洞中采集的各类矿石。',
+    name: 'Cevher Armağanı',
+    description: 'Madenden çıkan türlü cevherler.',
     requiredItems: [
       { itemId: 'copper_ore', quantity: 10 },
       { itemId: 'iron_ore', quantity: 5 },
       { itemId: 'gold_ore', quantity: 3 },
       { itemId: 'quartz', quantity: 3 }
     ],
-    reward: { money: 1000, description: '1000文' }
+    reward: { money: 1000, description: '1000 akçe' }
   },
   {
     id: 'gem_bundle',
-    name: '珍宝之礼',
-    description: '光彩夺目的宝石收藏。',
+    name: 'Mücevher Armağanı',
+    description: 'Işıltılı taşlardan seçme derleme.',
     requiredItems: [
       { itemId: 'jade', quantity: 2 },
       { itemId: 'ruby', quantity: 1 },
       { itemId: 'moonstone', quantity: 1 },
       { itemId: 'obsidian', quantity: 1 }
     ],
-    reward: { money: 3000, items: [{ itemId: 'dragon_jade', quantity: 1 }], description: '3000文 + 龙玉×1' }
+    reward: { money: 3000, items: [{ itemId: 'dragon_jade', quantity: 1 }], description: '3000 akçe + Ejder yeşimi x1' }
   },
-  // 畜产品
+
+  // Hayvansal ürünler
   {
     id: 'animal_bundle',
-    name: '牧场之礼',
-    description: '牧场动物们的馈赠。',
+    name: 'Ağıl Armağanı',
+    description: 'Çiftlik hayvanlarının sunduğu nimetler.',
     requiredItems: [
       { itemId: 'egg', quantity: 5 },
       { itemId: 'milk', quantity: 3 },
       { itemId: 'duck_egg', quantity: 2 },
       { itemId: 'wool', quantity: 2 }
     ],
-    reward: { money: 1500, description: '1500文' }
+    reward: { money: 1500, description: '1500 akçe' }
   },
   {
     id: 'egg_bundle',
-    name: '百蛋之礼',
-    description: '收集各种珍禽的蛋。',
+    name: 'Yumurta Armağanı',
+    description: 'Çeşit çeşit kuş yumurtaları.',
     requiredItems: [
       { itemId: 'egg', quantity: 3 },
       { itemId: 'duck_egg', quantity: 2 },
@@ -1130,25 +1136,26 @@ export const COMMUNITY_BUNDLES: CommunityBundleDef[] = [
       { itemId: 'quail_egg', quantity: 2 },
       { itemId: 'silkie_egg', quantity: 1 }
     ],
-    reward: { money: 1200, description: '1200文' }
+    reward: { money: 1200, description: '1200 akçe' }
   },
   {
     id: 'milk_bundle',
-    name: '乳品之礼',
-    description: '各种新鲜的乳制品。',
+    name: 'Süt Armağanı',
+    description: 'Türlü taze süt ürünleri.',
     requiredItems: [
       { itemId: 'milk', quantity: 3 },
       { itemId: 'goat_milk', quantity: 2 },
       { itemId: 'buffalo_milk', quantity: 1 },
       { itemId: 'yak_milk', quantity: 1 }
     ],
-    reward: { money: 1500, description: '1500文' }
+    reward: { money: 1500, description: '1500 akçe' }
   },
-  // 加工品
+
+  // İşlenmiş ürünler
   {
     id: 'wine_bundle',
-    name: '佳酿之礼',
-    description: '精心酿造的美酒。',
+    name: 'Şarap Armağanı',
+    description: 'Özenle mayalanmış nefis içkiler.',
     requiredItems: [
       { itemId: 'watermelon_wine', quantity: 1 },
       { itemId: 'peach_wine', quantity: 1 },
@@ -1156,36 +1163,36 @@ export const COMMUNITY_BUNDLES: CommunityBundleDef[] = [
       { itemId: 'osmanthus_wine', quantity: 1 },
       { itemId: 'corn_wine', quantity: 1 }
     ],
-    reward: { money: 2500, description: '2500文' }
+    reward: { money: 2500, description: '2500 akçe' }
   },
   {
     id: 'tea_bundle',
-    name: '茶道之礼',
-    description: '品味四季的香茗。',
+    name: 'Çay Armağanı',
+    description: 'Dört mevsimin kokusunu taşıyan çaylar.',
     requiredItems: [
       { itemId: 'green_tea_drink', quantity: 2 },
       { itemId: 'chrysanthemum_tea', quantity: 2 },
       { itemId: 'osmanthus_tea', quantity: 1 },
       { itemId: 'ginseng_tea', quantity: 1 }
     ],
-    reward: { money: 1500, description: '1500文' }
+    reward: { money: 1500, description: '1500 akçe' }
   },
   {
     id: 'pickle_bundle',
-    name: '腌制之礼',
-    description: '各种腌制风味小食。',
+    name: 'Turşu Armağanı',
+    description: 'Çeşit çeşit salamura lezzetler.',
     requiredItems: [
       { itemId: 'pickled_cabbage', quantity: 2 },
       { itemId: 'pickled_chili', quantity: 2 },
       { itemId: 'pickled_ginger', quantity: 2 },
       { itemId: 'dried_radish', quantity: 2 }
     ],
-    reward: { money: 1000, description: '1000文' }
+    reward: { money: 1000, description: '1000 akçe' }
   },
   {
     id: 'smoked_bundle',
-    name: '熏制之礼',
-    description: '烟熏风味的鱼鲜。',
+    name: 'İs Armağanı',
+    description: 'İslenmiş balıkların kuvvetli tadı.',
     requiredItems: [
       { itemId: 'smoked_crucian', quantity: 1 },
       { itemId: 'smoked_carp', quantity: 1 },
@@ -1193,97 +1200,98 @@ export const COMMUNITY_BUNDLES: CommunityBundleDef[] = [
       { itemId: 'smoked_eel', quantity: 1 },
       { itemId: 'smoked_sturgeon', quantity: 1 }
     ],
-    reward: { money: 2000, description: '2000文' }
+    reward: { money: 2000, description: '2000 akçe' }
   },
   {
     id: 'honey_bundle',
-    name: '蜂蜜之礼',
-    description: '百花酿成的甜蜜。',
+    name: 'Bal Armağanı',
+    description: 'Çiçeklerden süzülen tatlı bereket.',
     requiredItems: [
       { itemId: 'honey', quantity: 3 },
       { itemId: 'chrysanthemum_honey', quantity: 1 },
       { itemId: 'osmanthus_honey', quantity: 1 },
       { itemId: 'rapeseed_honey', quantity: 1 }
     ],
-    reward: { money: 1800, description: '1800文' }
+    reward: { money: 1800, description: '1800 akçe' }
   },
   {
     id: 'cheese_bundle',
-    name: '芝士之礼',
-    description: '各种风味的奶酪。',
+    name: 'Peynir Armağanı',
+    description: 'Çeşit çeşit süt peyniri.',
     requiredItems: [
       { itemId: 'cheese', quantity: 2 },
       { itemId: 'goat_cheese', quantity: 1 },
       { itemId: 'buffalo_cheese', quantity: 1 },
       { itemId: 'yak_cheese', quantity: 1 }
     ],
-    reward: { money: 1500, description: '1500文' }
+    reward: { money: 1500, description: '1500 akçe' }
   },
   {
     id: 'bar_bundle',
-    name: '百工之礼',
-    description: '金属锭与基础材料。',
+    name: 'Demirci Armağanı',
+    description: 'Metal külçeleri ve temel işlik malzemeleri.',
     requiredItems: [
       { itemId: 'copper_bar', quantity: 5 },
       { itemId: 'iron_bar', quantity: 3 },
       { itemId: 'gold_bar', quantity: 2 },
       { itemId: 'charcoal', quantity: 5 }
     ],
-    reward: { money: 2000, items: [{ itemId: 'iridium_bar', quantity: 1 }], description: '2000文 + 铱锭×1' }
+    reward: { money: 2000, items: [{ itemId: 'iridium_bar', quantity: 1 }], description: '2000 akçe + İridyum külçesi x1' }
   },
-  // 育种
+
+  // Melez yetiştirme
   {
     id: 'hybrid_spring_bundle',
-    name: '春华杂交',
-    description: '春季杂交作物的初步收获。',
+    name: 'Bahar Melezi',
+    description: 'Bahar melez ürünlerinin ilk derlemesi.',
     requiredItems: [
       { itemId: 'emerald_radish', quantity: 2 },
       { itemId: 'jade_shoot', quantity: 2 },
       { itemId: 'peach_blossom_tea', quantity: 1 },
       { itemId: 'twin_bean', quantity: 2 }
     ],
-    reward: { money: 1500, description: '1500文' }
+    reward: { money: 1500, description: '1500 akçe' }
   },
   {
     id: 'hybrid_summer_bundle',
-    name: '夏实杂交',
-    description: '夏季杂交作物的丰硕之果。',
+    name: 'Yaz Melezi',
+    description: 'Yaz melez ürünlerinin dolgun bereketi.',
     requiredItems: [
       { itemId: 'purple_melon', quantity: 2 },
       { itemId: 'golden_rice', quantity: 2 },
       { itemId: 'double_lotus', quantity: 1 },
       { itemId: 'fire_sesame', quantity: 2 }
     ],
-    reward: { money: 1500, description: '1500文' }
+    reward: { money: 1500, description: '1500 akçe' }
   },
   {
     id: 'hybrid_autumn_bundle',
-    name: '秋韵杂交',
-    description: '秋季杂交作物的丰收之味。',
+    name: 'Güz Melezi',
+    description: 'Güz melez ürünlerinin hasat tadı.',
     requiredItems: [
       { itemId: 'amber_yam', quantity: 2 },
       { itemId: 'twin_blossom', quantity: 1 },
       { itemId: 'golden_persimmon', quantity: 2 },
       { itemId: 'autumn_gem', quantity: 1 }
     ],
-    reward: { money: 1500, description: '1500文' }
+    reward: { money: 1500, description: '1500 akçe' }
   },
   {
     id: 'hybrid_winter_bundle',
-    name: '冬藏杂交',
-    description: '冬季杂交作物的严寒之珍。',
+    name: 'Kış Melezi',
+    description: 'Kış melez ürünlerinin ayaz içindeki cevheri.',
     requiredItems: [
       { itemId: 'jade_white', quantity: 2 },
       { itemId: 'garlic_cabbage', quantity: 2 },
       { itemId: 'evergreen_herb', quantity: 2 },
       { itemId: 'allium_king', quantity: 1 }
     ],
-    reward: { money: 1500, description: '1500文' }
+    reward: { money: 1500, description: '1500 akçe' }
   },
   {
     id: 'hybrid_elite_bundle',
-    name: '二代珍品',
-    description: '二代杂交品种的珍稀收藏。',
+    name: 'İkinci Soy Nadirleri',
+    description: 'İkinci soy melezlerin kıymetli derlemesi.',
     requiredItems: [
       { itemId: 'melon_tea_fruit', quantity: 1 },
       { itemId: 'dragon_fire', quantity: 1 },
@@ -1291,19 +1299,19 @@ export const COMMUNITY_BUNDLES: CommunityBundleDef[] = [
       { itemId: 'ice_lotus', quantity: 1 },
       { itemId: 'golden_dragon', quantity: 1 }
     ],
-    reward: { money: 5000, items: [{ itemId: 'iridium_ore', quantity: 5 }], description: '5000文 + 铱矿×5' }
+    reward: { money: 5000, items: [{ itemId: 'iridium_ore', quantity: 5 }], description: '5000 akçe + İridyum cevheri x5' }
   },
   {
     id: 'hybrid_legendary_bundle',
-    name: '传奇良种',
-    description: '高阶杂交品种的传世之作。',
+    name: 'Destanlık Tohumlar',
+    description: 'Yüksek soy melezlerin dilden dile gezen örnekleri.',
     requiredItems: [
       { itemId: 'dragon_pearl', quantity: 1 },
       { itemId: 'immortal_flower', quantity: 1 },
       { itemId: 'jade_golden_melon', quantity: 1 },
       { itemId: 'moonlight_frost', quantity: 1 }
     ],
-    reward: { money: 8000, items: [{ itemId: 'prismatic_shard', quantity: 1 }], description: '8000文 + 棱彩碎片×1' }
+    reward: { money: 8000, items: [{ itemId: 'prismatic_shard', quantity: 1 }], description: '8000 akçe + Prizmatik parça x1' }
   }
 ]
 
