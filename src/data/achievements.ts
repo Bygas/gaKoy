@@ -1,565 +1,581 @@
 import type { AchievementDef, CommunityBundleDef } from '@/types'
 
-/** 成就列表 */
+/** Başarım listesi */
 export const ACHIEVEMENTS: AchievementDef[] = [
-  // 收集
+  // Koleksiyon
   {
     id: 'collector_10',
-    name: '初出茅庐',
-    description: '发现10种不同物品。',
+    name: 'Yola Yeni Çıkan',
+    description: '10 farklı eşya keşfet.',
     condition: { type: 'itemCount', count: 10 },
     reward: { money: 200 }
   },
   {
     id: 'collector_30',
-    name: '博物学家',
-    description: '发现30种不同物品。',
+    name: 'Doğa Bilgini',
+    description: '30 farklı eşya keşfet.',
     condition: { type: 'itemCount', count: 30 },
     reward: { money: 500 }
   },
   {
     id: 'collector_60',
-    name: '万物通鉴',
-    description: '发现60种不同物品。',
+    name: 'Varlıkların Bilgesi',
+    description: '60 farklı eşya keşfet.',
     condition: { type: 'itemCount', count: 60 },
     reward: { money: 1500 }
   },
-  // 农耕
+
+  // Tarım
   {
     id: 'farmer_50',
-    name: '辛勤农夫',
-    description: '累计收获50次作物。',
+    name: 'Çalışkan Çiftçi',
+    description: 'Toplam 50 kez ürün hasat et.',
     condition: { type: 'cropHarvest', count: 50 },
     reward: { money: 300 }
   },
   {
     id: 'farmer_200',
-    name: '丰收之王',
-    description: '累计收获200次作物。',
+    name: 'Bereket Beyi',
+    description: 'Toplam 200 kez ürün hasat et.',
     condition: { type: 'cropHarvest', count: 200 },
     reward: { money: 1000, items: [{ itemId: 'compost', quantity: 10 }] }
   },
-  // 钓鱼
+
+  // Balıkçılık
   {
     id: 'fisher_20',
-    name: '垂钓新手',
-    description: '累计钓到20条鱼。',
+    name: 'Olta Çömezi',
+    description: 'Toplam 20 balık yakala.',
     condition: { type: 'fishCaught', count: 20 },
     reward: { money: 200 }
   },
   {
     id: 'fisher_100',
-    name: '渔翁',
-    description: '累计钓到100条鱼。',
+    name: 'Ağsakallı Balıkçı',
+    description: 'Toplam 100 balık yakala.',
     condition: { type: 'fishCaught', count: 100 },
     reward: { money: 800 }
   },
-  // 挖矿
+
+  // Madencilik
   {
     id: 'miner_15',
-    name: '矿洞探索者',
-    description: '到达矿洞第15层。',
+    name: 'Maden Yolcusu',
+    description: 'Madenin 15. katına ulaş.',
     condition: { type: 'mineFloor', floor: 15 },
     reward: { money: 300 }
   },
   {
     id: 'miner_30',
-    name: '深渊矿工',
-    description: '到达矿洞第30层。',
+    name: 'Derin Maden Ustası',
+    description: 'Madenin 30. katına ulaş.',
     condition: { type: 'mineFloor', floor: 30 },
     reward: { money: 1000, items: [{ itemId: 'gold_ore', quantity: 10 }] }
   },
   {
     id: 'miner_60',
-    name: '熔岩征服者',
-    description: '到达矿洞第60层。',
+    name: 'Kor Ateşi Fatihi',
+    description: 'Madenin 60. katına ulaş.',
     condition: { type: 'mineFloor', floor: 60 },
     reward: { money: 2000, items: [{ itemId: 'gold_ore', quantity: 20 }] }
   },
   {
     id: 'miner_120',
-    name: '深渊行者',
-    description: '到达矿洞最底层。',
+    name: 'Uçurum Gezgini',
+    description: 'Madenin en dip katına ulaş.',
     condition: { type: 'mineFloor', floor: 120 },
     reward: { money: 5000, items: [{ itemId: 'void_ore', quantity: 10 }] }
   },
   {
     id: 'skull_25',
-    name: '骷髅探险家',
-    description: '骷髅矿穴到达第25层。',
+    name: 'Kuru Kafa Kâşifi',
+    description: 'Kuru Kafa Madeninde 25. kata ulaş.',
     condition: { type: 'skullCavernFloor', floor: 25 },
     reward: { money: 3000, items: [{ itemId: 'iridium_ore', quantity: 5 }] }
   },
   {
     id: 'skull_100',
-    name: '深渊勇者',
-    description: '骷髅矿穴到达第100层。',
+    name: 'Uçurum Yiğidi',
+    description: 'Kuru Kafa Madeninde 100. kata ulaş.',
     condition: { type: 'skullCavernFloor', floor: 100 },
     reward: { money: 10000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
   },
-  // 金钱
+
+  // Para
   {
     id: 'rich_5000',
-    name: '小康之家',
-    description: '累计获得5000文。',
+    name: 'Geçimi Yerinde',
+    description: 'Toplam 5000 akçe kazan.',
     condition: { type: 'moneyEarned', amount: 5000 },
     reward: { money: 500 }
   },
   {
     id: 'rich_20000',
-    name: '桃源首富',
-    description: '累计获得20000文。',
+    name: 'gaKöy Beyi',
+    description: 'Toplam 20000 akçe kazan.',
     condition: { type: 'moneyEarned', amount: 20000 },
     reward: { money: 2000 }
   },
-  // 烹饪
+
+  // Yemek
   {
     id: 'chef_10',
-    name: '厨艺初成',
-    description: '累计烹饪10道菜。',
+    name: 'Aş Ocağına Adım',
+    description: 'Toplam 10 yemek pişir.',
     condition: { type: 'recipesCooked', count: 10 },
     reward: { money: 300 }
   },
   {
     id: 'chef_50',
-    name: '美食大师',
-    description: '累计烹饪50道菜。',
+    name: 'Toyga Ustası',
+    description: 'Toplam 50 yemek pişir.',
     condition: { type: 'recipesCooked', count: 50 },
     reward: { money: 1000 }
   },
-  // 技能
+
+  // Yetenek
   {
     id: 'skill_master',
-    name: '技艺精通',
-    description: '种植技能达到10级。',
+    name: 'Zanaat Ermişi',
+    description: 'Çiftçilik yeteneğini 10. seviyeye ulaştır.',
     condition: { type: 'skillLevel', skillType: 'farming', level: 10 },
     reward: { money: 2000 }
   },
-  // 社交
+
+  // Sosyal
   {
     id: 'social_friend',
-    name: '好人缘',
-    description: '与所有村民成为"相识"。',
+    name: 'Gönül Ehli',
+    description: 'Tüm gaKöy halkıyla "Tanışık" ol.',
     condition: { type: 'npcFriendship', level: 'acquaintance' },
     reward: { money: 500 }
   },
-  // 任务
+
+  // Görev
   {
     id: 'quest_10',
-    name: '乡里热心人',
-    description: '累计完成10个委托任务。',
+    name: 'Köyün Yardımseveri',
+    description: 'Toplam 10 görev tamamla.',
     condition: { type: 'questsCompleted', count: 10 },
     reward: { money: 500 }
   },
   {
     id: 'quest_40',
-    name: '有求必应',
-    description: '累计完成40个委托任务。',
+    name: 'Her Derde Derman',
+    description: 'Toplam 40 görev tamamla.',
     condition: { type: 'questsCompleted', count: 40 },
     reward: { money: 2500 }
   },
-  // 好感
+
+  // Dostluk
   {
     id: 'friend_best',
-    name: '知己',
-    description: '与1位村民成为挚友。',
+    name: 'Can Yoldaşı',
+    description: '1 köylüyle gönül bağı kur.',
     condition: { type: 'npcBestFriend', count: 1 },
     reward: { money: 200 }
   },
   {
     id: 'friend_all_friendly',
-    name: '桃源之友',
-    description: '与所有村民成为朋友。',
+    name: 'gaKöy Dostu',
+    description: 'Tüm köylülerle dost ol.',
     condition: { type: 'npcAllFriendly' },
     reward: { money: 1000, items: [{ itemId: 'jade_ring', quantity: 1 }] }
   },
-  // 婚姻 & 子女
+
+  // Evlilik & Çocuk
   {
     id: 'married',
-    name: '百年好合',
-    description: '与心仪之人结为夫妇。',
+    name: 'Kutlu Birlik',
+    description: 'Sevdiğin kişiyle yuva kur.',
     condition: { type: 'married' },
     reward: { money: 1314 }
   },
   {
     id: 'parent',
-    name: '天伦之乐',
-    description: '迎来第一个孩子。',
+    name: 'Ocak Bereketi',
+    description: 'İlk çocuğunu kucağına al.',
     condition: { type: 'hasChild' },
     reward: { money: 520 }
   },
-  // 怪物击杀
+
+  // Canavar
   {
     id: 'slayer_50',
-    name: '除魔新手',
-    description: '累计击杀50只怪物。',
+    name: 'Yaratık Avcısı',
+    description: 'Toplam 50 yaratık yok et.',
     condition: { type: 'monstersKilled', count: 50 },
     reward: { money: 300 }
   },
   {
     id: 'slayer_200',
-    name: '降妖能手',
-    description: '累计击杀200只怪物。',
+    name: 'Azılı Avcı',
+    description: 'Toplam 200 yaratık yok et.',
     condition: { type: 'monstersKilled', count: 200 },
     reward: { money: 1000 }
   },
   {
     id: 'slayer_500',
-    name: '斩妖除魔',
-    description: '累计击杀500只怪物。',
+    name: 'Karanlık Kıran',
+    description: 'Toplam 500 yaratık yok et.',
     condition: { type: 'monstersKilled', count: 500 },
     reward: { money: 3000 }
   },
   {
     id: 'slayer_1000',
-    name: '万魔之敌',
-    description: '累计击杀1000只怪物。',
+    name: 'Bin Bela Yıkan',
+    description: 'Toplam 1000 yaratık yok et.',
     condition: { type: 'monstersKilled', count: 1000 },
     reward: { money: 5000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
   },
-  // 出货
+
+  // Sevkiyat
   {
     id: 'shipper_10',
-    name: '初入商途',
-    description: '出货10种不同物品。',
+    name: 'Tüccarlığa İlk Adım',
+    description: '10 farklı eşya sevk et.',
     condition: { type: 'shippedCount', count: 10 },
     reward: { money: 300 }
   },
   {
     id: 'shipper_30',
-    name: '物流达人',
-    description: '出货30种不同物品。',
+    name: 'Kervan Ustası',
+    description: '30 farklı eşya sevk et.',
     condition: { type: 'shippedCount', count: 30 },
     reward: { money: 1000 }
   },
   {
     id: 'full_shipment',
-    name: '出货全鉴',
-    description: '出货所有可出货物品。',
+    name: 'Tüm Malların Efendisi',
+    description: 'Sevk edilebilen tüm eşyaları gönder.',
     condition: { type: 'fullShipment' },
     reward: { money: 5000 }
   },
-  // 畜牧
-  {
-    id: 'rancher_5',
-    name: '畜牧新手',
-    description: '拥有5只牲畜。',
-    condition: { type: 'animalCount', count: 5 },
-    reward: { money: 500 }
-  },
-  {
-    id: 'rancher_15',
-    name: '牧场主',
-    description: '拥有15只牲畜。',
-    condition: { type: 'animalCount', count: 15 },
-    reward: { money: 2000 }
-  },
-  // 更高金钱
-  {
-    id: 'rich_50000',
-    name: '富甲一方',
-    description: '累计获得50000文。',
-    condition: { type: 'moneyEarned', amount: 50000 },
-    reward: { money: 3000 }
-  },
-  {
-    id: 'rich_200000',
-    name: '陶朱之富',
-    description: '累计获得200000文。',
-    condition: { type: 'moneyEarned', amount: 200000 },
-    reward: { money: 10000 }
-  },
-  // 更多农耕 & 钓鱼
-  {
-    id: 'farmer_500',
-    name: '田园大亨',
-    description: '累计收获500次作物。',
-    condition: { type: 'cropHarvest', count: 500 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'fisher_200',
-    name: '海龙王',
-    description: '累计钓到200条鱼。',
-    condition: { type: 'fishCaught', count: 200 },
-    reward: { money: 2000 }
-  },
-  // 全技能 & 全祠堂
-  {
-    id: 'all_skills',
-    name: '全能大师',
-    description: '所有技能达到10级。',
-    condition: { type: 'allSkillsMax' },
-    reward: { money: 5000 }
-  },
-  {
-    id: 'all_bundles',
-    name: '乡情圆满',
-    description: '完成所有祠堂任务。',
-    condition: { type: 'allBundlesComplete' },
-    reward: { money: 5000 }
-  },
-  // 更多收集 & 烹饪 & 委托 & 好感
-  {
-    id: 'collector_100',
-    name: '博物全才',
-    description: '发现100种不同物品。',
-    condition: { type: 'itemCount', count: 100 },
-    reward: { money: 3000 }
-  },
-  {
-    id: 'chef_100',
-    name: '御厨',
-    description: '累计烹饪100道菜。',
-    condition: { type: 'recipesCooked', count: 100 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'quest_80',
-    name: '百事通',
-    description: '累计完成80个委托任务。',
-    condition: { type: 'questsCompleted', count: 80 },
-    reward: { money: 3000 }
-  },
-  {
-    id: 'friend_all_best',
-    name: '人间至友',
-    description: '与6位村民成为挚友。',
-    condition: { type: 'npcBestFriend', count: 6 },
-    reward: { money: 3000, items: [{ itemId: 'jade_ring', quantity: 1 }] }
-  },
-  // 收集
-  {
-    id: 'collector_5',
-    name: '好奇宝宝',
-    description: '发现5种不同物品。',
-    condition: { type: 'itemCount', count: 5 },
-    reward: { money: 100 }
-  },
-  {
-    id: 'collector_20',
-    name: '见多识广',
-    description: '发现20种不同物品。',
-    condition: { type: 'itemCount', count: 20 },
-    reward: { money: 300 }
-  },
-  {
-    id: 'collector_45',
-    name: '物华天宝',
-    description: '发现45种不同物品。',
-    condition: { type: 'itemCount', count: 45 },
-    reward: { money: 800 }
-  },
-  {
-    id: 'collector_80',
-    name: '百科全书',
-    description: '发现80种不同物品。',
-    condition: { type: 'itemCount', count: 80 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'collector_120',
-    name: '天地万物',
-    description: '发现120种不同物品。',
-    condition: { type: 'itemCount', count: 120 },
-    reward: { money: 5000 }
-  },
-  {
-    id: 'collector_150',
-    name: '全知全能',
-    description: '发现150种不同物品。',
-    condition: { type: 'itemCount', count: 150 },
-    reward: { money: 8000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
-  },
+  // Hayvancılık
+{
+  id: 'rancher_5',
+  name: 'Sürüye Yeni Katılan',
+  description: '5 baş hayvana sahip ol.',
+  condition: { type: 'animalCount', count: 5 },
+  reward: { money: 500 }
+},
+{
+  id: 'rancher_15',
+  name: 'Ağıl Beyi',
+  description: '15 baş hayvana sahip ol.',
+  condition: { type: 'animalCount', count: 15 },
+  reward: { money: 2000 }
+},
+  // Daha yüksek zenginlik
+{
+  id: 'rich_50000',
+  name: 'Diyarın Zengini',
+  description: 'Toplam 50000 akçe kazan.',
+  condition: { type: 'moneyEarned', amount: 50000 },
+  reward: { money: 3000 }
+},
+{
+  id: 'rich_200000',
+  name: 'Karun Misali Servet',
+  description: 'Toplam 200000 akçe kazan.',
+  condition: { type: 'moneyEarned', amount: 200000 },
+  reward: { money: 10000 }
+},
 
-  // 农耕
-  {
-    id: 'farmer_10',
-    name: '新手耕耘',
-    description: '累计收获10次作物。',
-    condition: { type: 'cropHarvest', count: 10 },
-    reward: { money: 100 }
-  },
-  {
-    id: 'farmer_100',
-    name: '精耕细作',
-    description: '累计收获100次作物。',
-    condition: { type: 'cropHarvest', count: 100 },
-    reward: { money: 500 }
-  },
-  {
-    id: 'farmer_1000',
-    name: '田园传奇',
-    description: '累计收获1000次作物。',
-    condition: { type: 'cropHarvest', count: 1000 },
-    reward: { money: 5000, items: [{ itemId: 'iridium_ore', quantity: 5 }] }
-  },
+// Daha fazla çiftçilik & balıkçılık
+{
+  id: 'farmer_500',
+  name: 'Toprak Beyi',
+  description: 'Toplam 500 mahsul hasat et.',
+  condition: { type: 'cropHarvest', count: 500 },
+  reward: { money: 2000 }
+},
+{
+  id: 'fisher_200',
+  name: 'Deniz Hanı',
+  description: 'Toplam 200 balık yakala.',
+  condition: { type: 'fishCaught', count: 200 },
+  reward: { money: 2000 }
+},
 
-  // 钓鱼
-  {
-    id: 'fisher_5',
-    name: '河边少年',
-    description: '累计钓到5条鱼。',
-    condition: { type: 'fishCaught', count: 5 },
-    reward: { money: 100 }
-  },
-  {
-    id: 'fisher_50',
-    name: '钓翁之意',
-    description: '累计钓到50条鱼。',
-    condition: { type: 'fishCaught', count: 50 },
-    reward: { money: 500 }
-  },
-  {
-    id: 'fisher_500',
-    name: '鱼龙百变',
-    description: '累计钓到500条鱼。',
-    condition: { type: 'fishCaught', count: 500 },
-    reward: { money: 5000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
-  },
+// Tüm yetenekler & tüm tapınak görevleri
+{
+  id: 'all_skills',
+  name: 'Kâmil Usta',
+  description: 'Tüm yetenekleri 10. seviyeye ulaştır.',
+  condition: { type: 'allSkillsMax' },
+  reward: { money: 5000 }
+},
+{
+  id: 'all_bundles',
+  name: 'Köy Birliği',
+  description: 'Tüm kutsal ocak görevlerini tamamla.',
+  condition: { type: 'allBundlesComplete' },
+  reward: { money: 5000 }
+},
 
-  // 金钱
-  {
-    id: 'rich_1000',
-    name: '初有积蓄',
-    description: '累计获得1000文。',
-    condition: { type: 'moneyEarned', amount: 1000 },
-    reward: { money: 100 }
-  },
-  {
-    id: 'rich_10000',
-    name: '锦衣玉食',
-    description: '累计获得10000文。',
-    condition: { type: 'moneyEarned', amount: 10000 },
-    reward: { money: 1000 }
-  },
-  {
-    id: 'rich_100000',
-    name: '家财万贯',
-    description: '累计获得100000文。',
-    condition: { type: 'moneyEarned', amount: 100000 },
-    reward: { money: 5000 }
-  },
-  {
-    id: 'rich_500000',
-    name: '富可敌国',
-    description: '累计获得500000文。',
-    condition: { type: 'moneyEarned', amount: 500000 },
-    reward: { money: 15000 }
-  },
-  {
-    id: 'rich_1000000',
-    name: '金山银海',
-    description: '累计获得1000000文。',
-    condition: { type: 'moneyEarned', amount: 1000000 },
-    reward: { money: 30000, items: [{ itemId: 'prismatic_shard', quantity: 3 }] }
-  },
+// Koleksiyon, yemek, görev, dostluk
+{
+  id: 'collector_100',
+  name: 'Eşya Bilgesi',
+  description: '100 farklı nesne keşfet.',
+  condition: { type: 'itemCount', count: 100 },
+  reward: { money: 3000 }
+},
+{
+  id: 'chef_100',
+  name: 'Saray Aşçısı',
+  description: 'Toplam 100 yemek pişir.',
+  condition: { type: 'recipesCooked', count: 100 },
+  reward: { money: 2000 }
+},
+{
+  id: 'quest_80',
+  name: 'Her İşe Koşan',
+  description: 'Toplam 80 görev tamamla.',
+  condition: { type: 'questsCompleted', count: 80 },
+  reward: { money: 3000 }
+},
+{
+  id: 'friend_all_best',
+  name: 'Can Yoldaşı',
+  description: '6 köylü ile gönül bağı kur.',
+  condition: { type: 'npcBestFriend', count: 6 },
+  reward: { money: 3000, items: [{ itemId: 'jade_ring', quantity: 1 }] }
+},
 
-  // 烹饪
-  {
-    id: 'chef_5',
-    name: '初学厨艺',
-    description: '累计烹饪5道菜。',
-    condition: { type: 'recipesCooked', count: 5 },
-    reward: { money: 100 }
-  },
-  {
-    id: 'chef_25',
-    name: '灶前好手',
-    description: '累计烹饪25道菜。',
-    condition: { type: 'recipesCooked', count: 25 },
-    reward: { money: 500 }
-  },
-  {
-    id: 'chef_75',
-    name: '食神传人',
-    description: '累计烹饪75道菜。',
-    condition: { type: 'recipesCooked', count: 75 },
-    reward: { money: 1500 }
-  },
+// Koleksiyon
+{
+  id: 'collector_5',
+  name: 'Meraklı Çırak',
+  description: '5 farklı nesne keşfet.',
+  condition: { type: 'itemCount', count: 5 },
+  reward: { money: 100 }
+},
+{
+  id: 'collector_20',
+  name: 'Gezgin Göz',
+  description: '20 farklı nesne keşfet.',
+  condition: { type: 'itemCount', count: 20 },
+  reward: { money: 300 }
+},
+{
+  id: 'collector_45',
+  name: 'Diyar Tanıyan',
+  description: '45 farklı nesne keşfet.',
+  condition: { type: 'itemCount', count: 45 },
+  reward: { money: 800 }
+},
+{
+  id: 'collector_80',
+  name: 'Bilge Derleyici',
+  description: '80 farklı nesne keşfet.',
+  condition: { type: 'itemCount', count: 80 },
+  reward: { money: 2000 }
+},
+{
+  id: 'collector_120',
+  name: 'Varlık Bilgesi',
+  description: '120 farklı nesne keşfet.',
+  condition: { type: 'itemCount', count: 120 },
+  reward: { money: 5000 }
+},
+{
+  id: 'collector_150',
+  name: 'Her Şeyi Bilen',
+  description: '150 farklı nesne keşfet.',
+  condition: { type: 'itemCount', count: 150 },
+  reward: { money: 8000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
+},
 
-  // 委托
-  {
-    id: 'quest_5',
-    name: '助人为乐',
-    description: '累计完成5个委托任务。',
-    condition: { type: 'questsCompleted', count: 5 },
-    reward: { money: 200 }
-  },
-  {
-    id: 'quest_20',
-    name: '信使达人',
-    description: '累计完成20个委托任务。',
-    condition: { type: 'questsCompleted', count: 20 },
-    reward: { money: 1000 }
-  },
-  {
-    id: 'quest_60',
-    name: '使命必达',
-    description: '累计完成60个委托任务。',
-    condition: { type: 'questsCompleted', count: 60 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'quest_100',
-    name: '万事通达',
-    description: '累计完成100个委托任务。',
-    condition: { type: 'questsCompleted', count: 100 },
-    reward: { money: 5000, items: [{ itemId: 'dragon_jade', quantity: 1 }] }
-  },
+// Çiftçilik
+{
+  id: 'farmer_10',
+  name: 'Toprak Çırağı',
+  description: '10 mahsul hasat et.',
+  condition: { type: 'cropHarvest', count: 10 },
+  reward: { money: 100 }
+},
+{
+  id: 'farmer_100',
+  name: 'Usta Çiftçi',
+  description: '100 mahsul hasat et.',
+  condition: { type: 'cropHarvest', count: 100 },
+  reward: { money: 500 }
+},
+{
+  id: 'farmer_1000',
+  name: 'Toprağın Efsanesi',
+  description: '1000 mahsul hasat et.',
+  condition: { type: 'cropHarvest', count: 1000 },
+  reward: { money: 5000, items: [{ itemId: 'iridium_ore', quantity: 5 }] }
+},
 
-  // 怪物击杀
+// Balıkçılık
+{
+  id: 'fisher_5',
+  name: 'Irmak Çocuğu',
+  description: '5 balık yakala.',
+  condition: { type: 'fishCaught', count: 5 },
+  reward: { money: 100 }
+},
+{
+  id: 'fisher_50',
+  name: 'Olta Ustası',
+  description: '50 balık yakala.',
+  condition: { type: 'fishCaught', count: 50 },
+  reward: { money: 500 }
+},
   {
-    id: 'slayer_10',
-    name: '初试身手',
-    description: '累计击杀10只怪物。',
-    condition: { type: 'monstersKilled', count: 10 },
-    reward: { money: 100 }
-  },
-  {
-    id: 'slayer_100',
-    name: '除暴安良',
-    description: '累计击杀100只怪物。',
-    condition: { type: 'monstersKilled', count: 100 },
-    reward: { money: 500 }
-  },
-  {
-    id: 'slayer_300',
-    name: '妖魔克星',
-    description: '累计击杀300只怪物。',
-    condition: { type: 'monstersKilled', count: 300 },
-    reward: { money: 2000 }
-  },
-  {
-    id: 'slayer_2000',
-    name: '旷世魔猎',
-    description: '累计击杀2000只怪物。',
-    condition: { type: 'monstersKilled', count: 2000 },
-    reward: { money: 10000, items: [{ itemId: 'dragon_jade', quantity: 2 }] }
-  },
+  id: 'fisher_500',
+  name: 'Suyun Kutlu Efendisi',
+  description: 'Toplam 500 balık yakala.',
+  condition: { type: 'fishCaught', count: 500 },
+  reward: { money: 5000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
+},
 
-  // 出货
-  {
-    id: 'shipper_5',
-    name: '初尝贸易',
-    description: '出货5种不同物品。',
-    condition: { type: 'shippedCount', count: 5 },
-    reward: { money: 100 }
-  },
-  {
-    id: 'shipper_20',
-    name: '商路通达',
-    description: '出货20种不同物品。',
-    condition: { type: 'shippedCount', count: 20 },
-    reward: { money: 500 }
-  },
-  {
-    id: 'shipper_50',
-    name: '贸易大亨',
-    description: '出货50种不同物品。',
-    condition: { type: 'shippedCount', count: 50 },
-    reward: { money: 2000 }
-  },
+// Zenginlik
+{
+  id: 'rich_1000',
+  name: 'İlk Akçe Birikimi',
+  description: 'Toplam 1000 akçe kazan.',
+  condition: { type: 'moneyEarned', amount: 1000 },
+  reward: { money: 100 }
+},
+{
+  id: 'rich_10000',
+  name: 'Sofrası Bolluklu',
+  description: 'Toplam 10000 akçe kazan.',
+  condition: { type: 'moneyEarned', amount: 10000 },
+  reward: { money: 1000 }
+},
+{
+  id: 'rich_100000',
+  name: 'Ocağı Varlıklı',
+  description: 'Toplam 100000 akçe kazan.',
+  condition: { type: 'moneyEarned', amount: 100000 },
+  reward: { money: 5000 }
+},
+{
+  id: 'rich_500000',
+  name: 'İle Denk Servet',
+  description: 'Toplam 500000 akçe kazan.',
+  condition: { type: 'moneyEarned', amount: 500000 },
+  reward: { money: 15000 }
+},
+{
+  id: 'rich_1000000',
+  name: 'Altın Dağı Sahibi',
+  description: 'Toplam 1000000 akçe kazan.',
+  condition: { type: 'moneyEarned', amount: 1000000 },
+  reward: { money: 30000, items: [{ itemId: 'prismatic_shard', quantity: 3 }] }
+},
+
+// Aşçılık
+{
+  id: 'chef_5',
+  name: 'Ocak Çırağı',
+  description: 'Toplam 5 yemek pişir.',
+  condition: { type: 'recipesCooked', count: 5 },
+  reward: { money: 100 }
+},
+{
+  id: 'chef_25',
+  name: 'Ocak Eri',
+  description: 'Toplam 25 yemek pişir.',
+  condition: { type: 'recipesCooked', count: 25 },
+  reward: { money: 500 }
+},
+{
+  id: 'chef_75',
+  name: 'Aş Ocağı Ustası',
+  description: 'Toplam 75 yemek pişir.',
+  condition: { type: 'recipesCooked', count: 75 },
+  reward: { money: 1500 }
+},
+
+// Görevler
+{
+  id: 'quest_5',
+  name: 'İşe Koşan',
+  description: 'Toplam 5 köy işi tamamla.',
+  condition: { type: 'questsCompleted', count: 5 },
+  reward: { money: 200 }
+},
+{
+  id: 'quest_20',
+  name: 'Haber Taşıyan',
+  description: 'Toplam 20 köy işi tamamla.',
+  condition: { type: 'questsCompleted', count: 20 },
+  reward: { money: 1000 }
+},
+{
+  id: 'quest_60',
+  name: 'Sözü Yerde Kalmayan',
+  description: 'Toplam 60 köy işi tamamla.',
+  condition: { type: 'questsCompleted', count: 60 },
+  reward: { money: 2000 }
+},
+{
+  id: 'quest_100',
+  name: 'Her Derde Yetişen',
+  description: 'Toplam 100 köy işi tamamla.',
+  condition: { type: 'questsCompleted', count: 100 },
+  reward: { money: 5000, items: [{ itemId: 'dragon_jade', quantity: 1 }] }
+},
+
+// Canavar avı
+{
+  id: 'slayer_10',
+  name: 'İlk Kılıç Denemesi',
+  description: 'Toplam 10 yaratık öldür.',
+  condition: { type: 'monstersKilled', count: 10 },
+  reward: { money: 100 }
+},
+{
+  id: 'slayer_100',
+  name: 'Köy Koruyucusu',
+  description: 'Toplam 100 yaratık öldür.',
+  condition: { type: 'monstersKilled', count: 100 },
+  reward: { money: 500 }
+},
+{
+  id: 'slayer_300',
+  name: 'Uğursuzluk Kıranı',
+  description: 'Toplam 300 yaratık öldür.',
+  condition: { type: 'monstersKilled', count: 300 },
+  reward: { money: 2000 }
+},
+{
+  id: 'slayer_2000',
+  name: 'Destanlık Avcı',
+  description: 'Toplam 2000 yaratık öldür.',
+  condition: { type: 'monstersKilled', count: 2000 },
+  reward: { money: 10000, items: [{ itemId: 'dragon_jade', quantity: 2 }] }
+},
+
+// Sevkiyat
+{
+  id: 'shipper_5',
+  name: 'Pazar Yolcusu',
+  description: '5 farklı nesneyi sevk et.',
+  condition: { type: 'shippedCount', count: 5 },
+  reward: { money: 100 }
+},
+{
+  id: 'shipper_20',
+  name: 'Kervan Yolu Açan',
+  description: '20 farklı nesneyi sevk et.',
+  condition: { type: 'shippedCount', count: 20 },
+  reward: { money: 500 }
+},
+{
+  id: 'shipper_50',
+  name: 'Ticaret Beyi',
+  description: '50 farklı nesneyi sevk et.',
+  condition: { type: 'shippedCount', count: 50 },
+  reward: { money: 2000 }
+},
 
   // 畜牧
   {
