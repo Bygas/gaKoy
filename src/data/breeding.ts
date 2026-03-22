@@ -1,12 +1,12 @@
 import type { SeedGenetics, HybridDef, SeedStarRating } from '@/types/breeding'
 import { getCropById } from './crops'
 
-// === 常量 ===
+// === Sabit ==
 
-/** 种子箱基础容量 */
+// ===Tohumluk kutu baz kapasitesi ==
 export const BASE_BREEDING_BOX = 30
 
-/** 种子箱升级定义 */
+/** Tohum kutusu yükseltme tanımı */
 export const SEED_BOX_UPGRADES = [
   {
     level: 1,
@@ -53,35 +53,35 @@ export const SEED_BOX_UPGRADES = [
   }
 ]
 
-/** 每级种子箱容量增量 */
+/** Her aşamada tohum kutusu kapasitesinin artırılması */
 export const SEED_BOX_UPGRADE_INCREMENT = 15
 
-/** @deprecated 使用 useBreedingStore().maxSeedBox 代替 */
+/** @deprecated useBreedingStore().maxSeedBox yerine kullan */
 export const MAX_BREEDING_BOX = 30
 
-/** 育种加工天数 */
+/** Tohum yetiştirme süresi (gün) */
 export const BREEDING_DAYS = 2
 
-/** 属性上限 */
+/** Özellik üst sınırı */
 export const STAT_CAP = 100
 
-/** 基础波动幅度 */
+/** Temel dalgalanma aralığı */
 export const BASE_MUTATION_MAGNITUDE = 8
 
-/** 每代稳定度增长 */
+/** Nesil başına denge artışı */
 export const GENERATIONAL_STABILITY_GAIN = 3
 
-/** 稳定度上限 */
+/** Denge üst sınırı */
 export const MAX_STABILITY = 95
 
-/** 变异时属性跳动范围 */
+/** Mutasyon sırasında sıçrama aralığı */
 export const MUTATION_JUMP_MIN = 15
 export const MUTATION_JUMP_MAX = 30
 
-/** 变异时变异率自身浮动 */
+/** Mutasyon oranı sapması */
 export const MUTATION_RATE_DRIFT = 5
 
-/** 育种台制造费用 */
+/** Gaköy Tohum Ocağı kurulum maliyeti */
 export const BREEDING_STATION_COST = {
   money: 100000,
   materials: [
@@ -90,30 +90,29 @@ export const BREEDING_STATION_COST = {
     { itemId: 'gold_ore', quantity: 3 }
   ]
 }
-
-/** 育种台最大数量 */
+/** Tohum ocağı maksimum sayısı */
 export const MAX_BREEDING_STATIONS = 3
 
-// === 辅助函数 ===
+// === Yardımcı Fonksiyonlar ===
 
 let _nextGeneticsId = 1
 
-/** 生成唯一基因ID */
+/** Benzersiz gen kimliği oluşturur */
 export const generateGeneticsId = (): string => {
   return `gen_${Date.now()}_${_nextGeneticsId++}`
 }
 
-/** 限制属性值在 0-100 */
+/** Özelliği 0-100 aralığında sınırlar */
 export const clampStat = (value: number): number => {
   return Math.max(0, Math.min(STAT_CAP, Math.round(value)))
 }
 
-/** 限制变异率在 1-50 */
+/** Mutasyon oranını 1-50 aralığında sınırlar */
 export const clampMutationRate = (value: number): number => {
   return Math.max(1, Math.min(50, Math.round(value)))
 }
 
-/** 根据作物ID计算默认基因属性 */
+/** Ürüne göre varsayılan gen değerlerini hesaplar */
 export const getDefaultGenetics = (cropId: string): Omit<SeedGenetics, 'id'> => {
   const crop = getCropById(cropId)
   if (!crop) {
@@ -132,9 +131,9 @@ export const getDefaultGenetics = (cropId: string): Omit<SeedGenetics, 'id'> => 
     }
   }
 
-  // 贵/慢的作物属性更高
-  const priceScore = Math.min(crop.sellPrice / 350, 1) // 350 = 雪莲售价
-  const growthScore = Math.min(crop.growthDays / 12, 1) // 12 = 雪莲生长天数
+// Gaköy’de değerli ve zor yetişen ürünler daha güçlü olur
+  const priceScore = Math.min(crop.sellPrice / 350, 1) // 350 = Kutsal Kar Çiçeği değeri
+  const growthScore = Math.min(crop.growthDays / 12, 1) // 12 = Kutsal Kar Çiçeği büyüme süresi
 
   const baseSweetness = clampStat(15 + Math.round(priceScore * 40))
   const baseYield = clampStat(15 + Math.round(growthScore * 35))
@@ -155,12 +154,12 @@ export const getDefaultGenetics = (cropId: string): Omit<SeedGenetics, 'id'> => 
   }
 }
 
-/** 计算总属性 */
+/** Toplam öznitelikleri hesaplayın */
 export const getTotalStats = (g: SeedGenetics): number => {
   return g.sweetness + g.yield + g.resistance
 }
 
-/** 获取星级评分 */
+/** Yıldız derecelendirmesi alın */
 export const getStarRating = (g: SeedGenetics): SeedStarRating => {
   const total = getTotalStats(g)
   if (total >= 250) return 5
@@ -170,2140 +169,2194 @@ export const getStarRating = (g: SeedGenetics): SeedStarRating => {
   return 1
 }
 
-/** 生成种子显示标签 */
+/** Tohum görüntüleme etiketleri oluşturun */
 export const makeSeedLabel = (g: SeedGenetics): string => {
   const crop = getCropById(g.cropId)
   const name = crop?.name ?? g.cropId
   return `${name} G${g.generation}`
 }
-
-// === 杂交配方 ===
+// === Melez Tarifler ===
 
 export const HYBRID_DEFS: HybridDef[] = [
   {
     id: 'golden_melon',
-    name: '金蜜瓜',
+    name: 'Altın Bal Kavunu',
     parentCropA: 'watermelon',
     parentCropB: 'lotus_root',
     minSweetness: 60,
     minYield: 50,
     resultCropId: 'golden_melon',
     baseGenetics: { sweetness: 70, yield: 60, resistance: 50 },
-    discoveryText: '西瓜的甜蜜与莲藕的清润完美融合，诞生了传说中的金蜜瓜！'
+    discoveryText: 'Karpuzun tatlılığı ile nilüfer kökünün ferahlığı birleşti, Gaköy’de efsane Altın Bal Kavunu doğdu!'
   },
   {
     id: 'jade_tea',
-    name: '翡翠茶',
+    name: 'Yeşim Çayı',
     parentCropA: 'tea',
     parentCropB: 'chrysanthemum',
     minSweetness: 50,
     minYield: 45,
     resultCropId: 'jade_tea',
     baseGenetics: { sweetness: 60, yield: 55, resistance: 55 },
-    discoveryText: '茶叶的甘醇与菊花的清雅交融，翡翠茶的茶汤泛着碧绿光泽！'
+    discoveryText: 'Çayın yumuşaklığı ile kasımpatının zarafeti birleşti, Yeşim Çayı yeşil bir ışıkla parlar!'
   },
   {
     id: 'phoenix_pepper',
-    name: '凤凰椒',
+    name: 'Anka Biberi',
     parentCropA: 'chili',
     parentCropB: 'pumpkin',
     minSweetness: 40,
     minYield: 55,
     resultCropId: 'phoenix_pepper',
     baseGenetics: { sweetness: 50, yield: 65, resistance: 60 },
-    discoveryText: '辣椒的火热与南瓜的醇厚碰撞，凤凰椒如烈焰般绚烂！'
+    discoveryText: 'Biberin ateşi ile kabağın yoğunluğu çarpıştı, Anka Biberi alev gibi doğdu!'
   },
   {
     id: 'moonlight_rice',
-    name: '月光稻',
+    name: 'Ay Işığı Pirinci',
     parentCropA: 'rice',
     parentCropB: 'bamboo_shoot',
     minSweetness: 45,
     minYield: 60,
     resultCropId: 'moonlight_rice',
     baseGenetics: { sweetness: 55, yield: 70, resistance: 45 },
-    discoveryText: '稻谷的质朴与春笋的灵气相融，月光稻在月下泛着银光！'
+    discoveryText: 'Pirinç ile bahar filizinin ruhu birleşti, Ay Işığı Pirinci gecede gümüş gibi parlar!'
   },
   {
     id: 'frost_garlic',
-    name: '霜雪蒜',
+    name: 'Buz Sarımsağı',
     parentCropA: 'snow_lotus',
     parentCropB: 'garlic',
     minSweetness: 55,
     minYield: 40,
     resultCropId: 'frost_garlic',
     baseGenetics: { sweetness: 65, yield: 50, resistance: 70 },
-    discoveryText: '雪莲的纯净与大蒜的辛烈融合，霜雪蒜散发着冰霜般的寒气！'
+    discoveryText: 'Kar çiçeğinin saflığı ile sarımsağın keskinliği birleşti, Buz Sarımsağı don gibi bir aura yayar!'
   },
   {
+    {
     id: 'emerald_radish',
-    name: '翡翠萝卜',
+    name: 'Zümrüt Turp',
     parentCropA: 'cabbage',
     parentCropB: 'radish',
     minSweetness: 30,
     minYield: 30,
     resultCropId: 'emerald_radish',
     baseGenetics: { sweetness: 40, yield: 35, resistance: 30 },
-    discoveryText: '青菜的清脆与萝卜的甘甜融合，翡翠般的根茎闪闪发光。'
+    discoveryText: 'Lahananın çıtırtısı ile turpun tatlılığı birleşti, kökü zümrüt gibi ışıldar.'
   },
   {
     id: 'jade_shoot',
-    name: '玉竹芽',
+    name: 'Yeşim Filizi',
     parentCropA: 'bamboo_shoot',
     parentCropB: 'tea',
     minSweetness: 35,
     minYield: 30,
     resultCropId: 'jade_shoot',
     baseGenetics: { sweetness: 45, yield: 40, resistance: 35 },
-    discoveryText: '春笋的鲜嫩与茶叶的醇香交融，如玉如竹。'
+    discoveryText: 'Bahar filizinin tazeliği ile çayın aroması birleşir, yeşim gibi saf ve canlıdır.'
   },
   {
     id: 'golden_tuber',
-    name: '金油薯',
+    name: 'Altın Yağ Yumrusu',
     parentCropA: 'potato',
     parentCropB: 'rapeseed',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'golden_tuber',
     baseGenetics: { sweetness: 35, yield: 45, resistance: 30 },
-    discoveryText: '土豆的饱满与油菜的金黄交织，通体金色。'
+    discoveryText: 'Patatesin dolgunluğu ile kanola bitkisinin altın rengi birleşir, tüm bedeni altın gibi parlar.'
   },
   {
     id: 'peach_blossom_tea',
-    name: '桃花茶',
+    name: 'Şeftali Çiçeği Çayı',
     parentCropA: 'peach',
     parentCropB: 'tea',
     minSweetness: 45,
     minYield: 35,
     resultCropId: 'peach_blossom_tea',
     baseGenetics: { sweetness: 55, yield: 45, resistance: 40 },
-    discoveryText: '桃花的妩媚与茶香的雅致合一，花瓣似蝶。'
+    discoveryText: 'Şeftali çiçeğinin zarafeti ile çayın asaleti birleşir, yaprakları kelebek gibi süzülür.'
   },
   {
     id: 'ruby_bean',
-    name: '红宝豆',
+    name: 'Yakut Fasulye',
     parentCropA: 'broad_bean',
     parentCropB: 'peach',
     minSweetness: 35,
     minYield: 30,
     resultCropId: 'ruby_bean',
     baseGenetics: { sweetness: 45, yield: 40, resistance: 35 },
-    discoveryText: '蚕豆的饱满与蜜桃的红润结合，颗颗如红宝石。'
+    discoveryText: 'Baklanın dolgunluğu ile şeftalinin kızıllığı birleşir, her tanesi yakut gibi parlar.'
   },
   {
+    {
     id: 'twin_bean',
-    name: '双子豆',
+    name: 'İkiz Fasulye',
     parentCropA: 'broad_bean',
     parentCropB: 'rapeseed',
     minSweetness: 25,
     minYield: 30,
     resultCropId: 'twin_bean',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 30 },
-    discoveryText: '蚕豆与油菜联姻，每荚双生如孪生兄弟。'
+    discoveryText: 'Bakla ile kanola birleşti, her kapsülde ikiz gibi doğan taneler ortaya çıktı.'
   },
   {
     id: 'jade_melon',
-    name: '碧玉瓜',
+    name: 'Yeşim Kavunu',
     parentCropA: 'watermelon',
     parentCropB: 'potato',
     minSweetness: 40,
     minYield: 35,
     resultCropId: 'jade_melon',
     baseGenetics: { sweetness: 50, yield: 45, resistance: 35 },
-    discoveryText: '西瓜的多汁与土豆的醇厚碰撞，果肉翠绿如玉。'
+    discoveryText: 'Karpuzun suyu ile patatesin yoğunluğu birleşti, içi yeşim gibi parlayan bir meyve doğdu.'
   },
   {
     id: 'pearl_grain',
-    name: '珍珠谷',
+    name: 'İnci Tanesi',
     parentCropA: 'rice',
     parentCropB: 'tea',
     minSweetness: 40,
     minYield: 40,
     resultCropId: 'pearl_grain',
     baseGenetics: { sweetness: 50, yield: 50, resistance: 40 },
-    discoveryText: '稻谷的质朴与茶叶的清雅融合，米粒晶莹如珍珠。'
+    discoveryText: 'Pirinç ile çayın zarafeti birleşti, taneler inci gibi ışıldar.'
   },
   {
     id: 'golden_corn',
-    name: '金穗玉米',
+    name: 'Altın Başak Mısır',
     parentCropA: 'corn',
     parentCropB: 'rapeseed',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'golden_corn',
     baseGenetics: { sweetness: 40, yield: 55, resistance: 35 },
-    discoveryText: '玉米的丰硕与油菜的金色交汇，穗穗金黄。'
+    discoveryText: 'Mısırın bereketi ile kanolanın altın rengi birleşti, başaklar altın gibi parlar.'
   },
   {
     id: 'lotus_tea',
-    name: '莲心茶',
+    name: 'Nilüfer Çayı',
     parentCropA: 'lotus_root',
     parentCropB: 'tea',
     minSweetness: 45,
     minYield: 40,
     resultCropId: 'lotus_tea',
     baseGenetics: { sweetness: 55, yield: 50, resistance: 45 },
-    discoveryText: '莲藕的清润与茶叶的芬芳共鸣，杯中莲花绽放。'
+    discoveryText: 'Nilüfer kökü ile çayın kokusu birleşti, fincanda açan bir çiçek gibi huzur verir.'
   },
   {
     id: 'purple_bamboo',
-    name: '紫竹茄',
+    name: 'Mor Bambu Patlıcanı',
     parentCropA: 'bamboo_shoot',
     parentCropB: 'eggplant',
     minSweetness: 35,
     minYield: 35,
     resultCropId: 'purple_bamboo',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 40 },
-    discoveryText: '春笋的挺拔与茄子的紫韵合一，紫色竹节状果实。'
+    discoveryText: 'Bahar filizinin dikliği ile patlıcanın mor özü birleşir, bambu düğümleri gibi mor meyveler verir.'
   },
   {
     id: 'honey_peach_melon',
-    name: '蜜桃瓜',
+    name: 'Bal Şeftali Kavunu',
     parentCropA: 'peach',
     parentCropB: 'watermelon',
     minSweetness: 45,
     minYield: 35,
     resultCropId: 'honey_peach_melon',
     baseGenetics: { sweetness: 55, yield: 45, resistance: 35 },
-    discoveryText: '蜜桃的香甜与西瓜的清爽交融，咬一口蜜汁四溢。'
+    discoveryText: 'Şeftalinin bal gibi tadı ile karpuzun ferahlığı birleşir, her ısırıkta tatlı su taşar.'
   },
   {
     id: 'fire_bean',
-    name: '火豆',
+    name: 'Alev Fasulyesi',
     parentCropA: 'broad_bean',
     parentCropB: 'chili',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'fire_bean',
     baseGenetics: { sweetness: 35, yield: 45, resistance: 40 },
-    discoveryText: '蚕豆的饱满裹上辣椒的火焰，辣中带香。'
+    discoveryText: 'Baklanın dolgunluğu biberin ateşiyle sarılır, yakıcı ama aromatik bir lezzet doğar.'
   },
   {
     id: 'silk_bean',
-    name: '丝豆',
+    name: 'İpek Fasulye',
     parentCropA: 'green_bean',
     parentCropB: 'loofah',
     minSweetness: 30,
     minYield: 30,
     resultCropId: 'silk_bean',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 35 },
-    discoveryText: '豆角的清脆与丝瓜的丝滑结合，口感如丝。'
+    discoveryText: 'Fasulyenin çıtırtısı ile lif kabağının yumuşaklığı birleşir, ipek gibi bir doku oluşur.'
   },
   {
     id: 'double_oil_seed',
-    name: '双油籽',
+    name: 'Çift Yağ Tohumu',
     parentCropA: 'rapeseed',
     parentCropB: 'sesame',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'double_oil_seed',
     baseGenetics: { sweetness: 35, yield: 45, resistance: 30 },
-    discoveryText: '油菜与芝麻双重醇香，出油率极高。'
+    discoveryText: 'Kanola ile susam birleşir, yoğun aromalı ve bol yağ veren nadide bir tohum ortaya çıkar.'
   },
   {
     id: 'lotus_potato',
-    name: '莲薯',
+    name: 'Nilüfer Patatesi',
     parentCropA: 'potato',
     parentCropB: 'lotus_seed',
     minSweetness: 40,
     minYield: 35,
     resultCropId: 'lotus_potato',
     baseGenetics: { sweetness: 45, yield: 45, resistance: 40 },
-    discoveryText: '土豆的淀粉与莲子的清甜结合，口感绵密。'
+    discoveryText: 'Patatesin doyuruculuğu ile nilüfer tohumunun tatlılığı birleşir, yumuşak ve yoğun bir doku ortaya çıkar.'
   },
   {
     id: 'jade_pumpkin',
-    name: '翡翠南瓜',
+    name: 'Yeşim Balkabağı',
     parentCropA: 'potato',
     parentCropB: 'pumpkin',
     minSweetness: 40,
     minYield: 40,
     resultCropId: 'jade_pumpkin',
     baseGenetics: { sweetness: 50, yield: 50, resistance: 40 },
-    discoveryText: '土豆的质朴与南瓜的金黄交融，外皮翠绿内里金黄。'
+    discoveryText: 'Patatesin sadeliği ile balkabağının altın özü birleşir, dışı yeşim yeşili içi altın sarısıdır.'
   },
   {
     id: 'crystal_yam',
-    name: '水晶山药',
+    name: 'Kristal Yam Kökü',
     parentCropA: 'bamboo_shoot',
     parentCropB: 'yam',
     minSweetness: 40,
     minYield: 40,
     resultCropId: 'crystal_yam',
     baseGenetics: { sweetness: 50, yield: 50, resistance: 45 },
-    discoveryText: '春笋的脆嫩与山药的滋补合一，通体晶莹。'
+    discoveryText: 'Bahar filizinin çıtırlığı ile yam kökünün şifası birleşir, bedeni kristal gibi saydamdır.'
   },
   {
     id: 'osmanthus_tea',
-    name: '桂花茶',
+    name: 'Osmanthus Çayı',
     parentCropA: 'tea',
     parentCropB: 'osmanthus',
     minSweetness: 50,
     minYield: 40,
     resultCropId: 'osmanthus_tea',
     baseGenetics: { sweetness: 60, yield: 50, resistance: 50 },
-    discoveryText: '茶叶的醇厚与桂花的芬芳天作之合，满室飘香。'
+    discoveryText: 'Çayın derinliği ile osmanthus çiçeğinin kokusu birleşir, Gaköy evlerini hoş bir koku sarar.'
   },
   {
+    {
     id: 'mountain_bamboo',
-    name: '山竹薯',
+    name: 'Dağ Bambu Yumrusu',
     parentCropA: 'bamboo_shoot',
     parentCropB: 'sweet_potato',
     minSweetness: 35,
     minYield: 35,
     resultCropId: 'mountain_bamboo',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 35 },
-    discoveryText: '春笋的清爽与红薯的甜糯碰撞，山野间的美味。'
+    discoveryText: 'Bahar filizinin ferahlığı ile tatlı patatesin yumuşaklığı birleşir, dağların armağanı olur.'
   },
   {
     id: 'golden_fruit',
-    name: '金秋果',
+    name: 'Altın Güz Meyvesi',
     parentCropA: 'peach',
     parentCropB: 'persimmon',
     minSweetness: 45,
     minYield: 40,
     resultCropId: 'golden_fruit',
     baseGenetics: { sweetness: 55, yield: 50, resistance: 40 },
-    discoveryText: '蜜桃的甜与柿子的糯完美融合，金色果实满枝头。'
+    discoveryText: 'Şeftalinin tatlılığı ile hurmanın yoğunluğu birleşir, dallar altın meyvelerle dolar.'
   },
   {
     id: 'nut_potato',
-    name: '花生薯',
+    name: 'Fıstık Patatesi',
     parentCropA: 'potato',
     parentCropB: 'peanut',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'nut_potato',
     baseGenetics: { sweetness: 40, yield: 50, resistance: 35 },
-    discoveryText: '土豆的绵密与花生的香脆结合，越嚼越香。'
+    discoveryText: 'Patatesin yumuşaklığı ile fıstığın aroması birleşir, her lokmada lezzet artar.'
   },
   {
     id: 'autumn_bean',
-    name: '秋枣豆',
+    name: 'Güz Hurma Fasulyesi',
     parentCropA: 'broad_bean',
     parentCropB: 'jujube',
     minSweetness: 35,
     minYield: 35,
     resultCropId: 'autumn_bean',
     baseGenetics: { sweetness: 45, yield: 40, resistance: 40 },
-    discoveryText: '蚕豆与红枣联姻，豆中带枣香。'
+    discoveryText: 'Bakla ile kırmızı hurma birleşir, her tanede tatlı bir koku saklıdır.'
   },
   {
     id: 'jujube_blossom',
-    name: '枣花桃',
+    name: 'Hurma Çiçeği Şeftalisi',
     parentCropA: 'peach',
     parentCropB: 'jujube',
     minSweetness: 45,
     minYield: 35,
     resultCropId: 'jujube_blossom',
     baseGenetics: { sweetness: 55, yield: 45, resistance: 40 },
-    discoveryText: '桃花的粉嫩与枣花的素雅共绽，果实甜蜜。'
+    discoveryText: 'Şeftali çiçeği ile hurma çiçeği birlikte açar, meyvesi tatlı ve zarif olur.'
   },
   {
+    {
     id: 'ginger_blossom',
-    name: '姜花菜',
+    name: 'Zencefil Çiçeği Otu',
     parentCropA: 'rapeseed',
     parentCropB: 'ginger',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'ginger_blossom',
     baseGenetics: { sweetness: 40, yield: 40, resistance: 40 },
-    discoveryText: '油菜的嫩与生姜的辛交融，花开似蝶。'
+    discoveryText: 'Kanolanın tazeliği ile zencefilin keskinliği birleşir, çiçekleri kelebek gibi açar.'
   },
   {
     id: 'fairy_chrysanthemum',
-    name: '仙菊菜',
+    name: 'Peri Kasımpatı Otu',
     parentCropA: 'cabbage',
     parentCropB: 'chrysanthemum',
     minSweetness: 35,
     minYield: 30,
     resultCropId: 'fairy_chrysanthemum',
     baseGenetics: { sweetness: 45, yield: 40, resistance: 40 },
-    discoveryText: '青菜的平凡与菊花的高洁融合，叶缘如菊瓣。'
+    discoveryText: 'Lahananın sadeliği ile kasımpatının zarafeti birleşir, yaprakları çiçek gibi açılır.'
   },
   {
     id: 'imperial_cabbage',
-    name: '御品白菜',
+    name: 'İmparator Lahanası',
     parentCropA: 'cabbage',
     parentCropB: 'napa_cabbage',
     minSweetness: 25,
     minYield: 30,
     resultCropId: 'imperial_cabbage',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 35 },
-    discoveryText: '青菜与白菜的皇家联姻，叶嫩味鲜。'
+    discoveryText: 'İki lahana türünün soylu birleşimi, yumuşak yapraklı ve lezzetli bir ürün doğurur.'
   },
   {
     id: 'spicy_radish',
-    name: '蒜香萝卜',
+    name: 'Sarımsaklı Turp',
     parentCropA: 'radish',
     parentCropB: 'garlic',
     minSweetness: 30,
     minYield: 30,
     resultCropId: 'spicy_radish',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 35 },
-    discoveryText: '萝卜的脆甜与大蒜的辛辣交织，风味独特。'
+    discoveryText: 'Turpun çıtırtısı ile sarımsağın keskinliği birleşir, güçlü ve özgün bir tat ortaya çıkar.'
   },
   {
     id: 'snow_tea',
-    name: '雪茶',
+    name: 'Kar Çayı',
     parentCropA: 'tea',
     parentCropB: 'snow_lotus',
     minSweetness: 55,
     minYield: 45,
     resultCropId: 'snow_tea',
     baseGenetics: { sweetness: 65, yield: 55, resistance: 55 },
-    discoveryText: '茶叶与雪莲的极品融合，茶汤如雪般纯白。'
+    discoveryText: 'Çay ile kar çiçeğinin saf özü birleşir, deminde kar gibi beyaz bir berraklık oluşur.'
   },
   {
+    {
     id: 'spring_chive',
-    name: '春韭菜',
+    name: 'Bahar Frenk Soğanı',
     parentCropA: 'cabbage',
     parentCropB: 'chives',
     minSweetness: 25,
     minYield: 30,
     resultCropId: 'spring_chive',
     baseGenetics: { sweetness: 30, yield: 40, resistance: 30 },
-    discoveryText: '青菜的温和与韭菜的浓郁合一，四季可种。'
+    discoveryText: 'Lahananın yumuşaklığı ile frenk soğanının yoğun aroması birleşir, dört mevsim yetişebilen bir ürün doğar.'
   },
   {
     id: 'wheat_potato',
-    name: '麦香薯',
+    name: 'Buğday Aromalı Patates',
     parentCropA: 'potato',
     parentCropB: 'winter_wheat',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'wheat_potato',
     baseGenetics: { sweetness: 40, yield: 50, resistance: 35 },
-    discoveryText: '土豆与冬小麦跨季联姻，带着麦香的薯类。'
+    discoveryText: 'Patates ile kış buğdayı birleşir, her lokmada buğday kokusu hissedilir.'
   },
   {
     id: 'spring_green_peach',
-    name: '绿桃',
+    name: 'Yeşil Şeftali',
     parentCropA: 'peach',
     parentCropB: 'spinach',
     minSweetness: 35,
     minYield: 30,
     resultCropId: 'spring_green_peach',
     baseGenetics: { sweetness: 45, yield: 40, resistance: 35 },
-    discoveryText: '水蜜桃的甜与菠菜的翠绿交融，果皮碧绿如翠玉。'
+    discoveryText: 'Şeftalinin tatlılığı ile ıspanağın yeşilliği birleşir, kabuğu yeşim gibi parlayan bir meyve oluşur.'
   },
   {
     id: 'mustard_bean',
-    name: '芥香豆',
+    name: 'Hardal Aromalı Fasulye',
     parentCropA: 'broad_bean',
     parentCropB: 'mustard_green',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'mustard_bean',
     baseGenetics: { sweetness: 40, yield: 40, resistance: 40 },
-    discoveryText: '蚕豆裹上芥菜的微辣，冬春佳品。'
+    discoveryText: 'Bakla, hardal yaprağının hafif acılığıyla birleşir; serin mevsimlerin vazgeçilmez tadıdır.'
   },
   {
+    {
     id: 'frost_rapeseed',
-    name: '霜油菜',
+    name: 'Kırağı Kanola',
     parentCropA: 'rapeseed',
     parentCropB: 'spinach',
     minSweetness: 25,
     minYield: 30,
     resultCropId: 'frost_rapeseed',
     baseGenetics: { sweetness: 35, yield: 35, resistance: 35 },
-    discoveryText: '油菜不畏寒霜，叶上凝霜犹翠绿。'
+    discoveryText: 'Kanola soğuğa meydan okur, yapraklarında kırağı olsa bile yeşilliğini korur.'
   },
   {
     id: 'purple_melon',
-    name: '紫晶瓜',
+    name: 'Mor Kristal Kavun',
     parentCropA: 'watermelon',
     parentCropB: 'eggplant',
     minSweetness: 40,
     minYield: 35,
     resultCropId: 'purple_melon',
     baseGenetics: { sweetness: 50, yield: 45, resistance: 40 },
-    discoveryText: '西瓜的多汁与茄子的紫韵碰撞，果肉紫如水晶。'
+    discoveryText: 'Karpuzun suyu ile patlıcanın mor özü birleşir, içi kristal gibi mor parlayan bir meyve doğar.'
   },
   {
     id: 'golden_rice',
-    name: '金芝稻',
+    name: 'Altın Susam Pirinci',
     parentCropA: 'rice',
     parentCropB: 'sesame',
     minSweetness: 35,
     minYield: 35,
     resultCropId: 'golden_rice',
     baseGenetics: { sweetness: 40, yield: 50, resistance: 35 },
-    discoveryText: '稻谷与芝麻合一，金色的谷粒散发芝麻香。'
+    discoveryText: 'Pirinç ile susam birleşir, altın taneler susam kokusu yayar.'
   },
   {
     id: 'double_lotus',
-    name: '双莲',
+    name: 'İkiz Nilüfer',
     parentCropA: 'lotus_root',
     parentCropB: 'lotus_seed',
     minSweetness: 50,
     minYield: 45,
     resultCropId: 'double_lotus',
     baseGenetics: { sweetness: 60, yield: 55, resistance: 50 },
-    discoveryText: '莲藕与莲子同根生的极致融合，花开并蒂。'
+    discoveryText: 'Nilüfer kökü ile tohumu birleşir, aynı gövdede iki çiçek açar; Gaköy’de kutsal sayılır.'
   },
   {
+    {
     id: 'fire_sesame',
-    name: '火麻仁',
+    name: 'Alev Susamı',
     parentCropA: 'chili',
     parentCropB: 'sesame',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'fire_sesame',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 35 },
-    discoveryText: '辣椒的火与芝麻的香完美结合，又辣又香。'
+    discoveryText: 'Biberin ateşi ile susamın aroması birleşir, hem yakıcı hem de mis kokuludur.'
   },
   {
     id: 'silk_corn',
-    name: '丝穗',
+    name: 'İpek Başak',
     parentCropA: 'loofah',
     parentCropB: 'corn',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'silk_corn',
     baseGenetics: { sweetness: 40, yield: 50, resistance: 40 },
-    discoveryText: '丝瓜的丝滑与玉米的穗实交融，丝缕金黄。'
+    discoveryText: 'Lif kabağının yumuşaklığı ile mısırın dolgunluğu birleşir, altın iplikler gibi uzanır.'
   },
   {
     id: 'purple_lotus',
-    name: '紫莲茄',
+    name: 'Mor Nilüfer Patlıcanı',
     parentCropA: 'eggplant',
     parentCropB: 'lotus_root',
     minSweetness: 40,
     minYield: 35,
     resultCropId: 'purple_lotus',
     baseGenetics: { sweetness: 50, yield: 45, resistance: 45 },
-    discoveryText: '茄子的紫韵与莲藕的清润结合，亭亭如莲。'
+    discoveryText: 'Patlıcanın mor özü ile nilüferin saflığı birleşir, zarif ve dik bir duruş sergiler.'
   },
   {
     id: 'chrysanthemum_melon',
-    name: '菊瓜',
+    name: 'Kasımpatı Kavunu',
     parentCropA: 'watermelon',
     parentCropB: 'chrysanthemum',
     minSweetness: 40,
     minYield: 30,
     resultCropId: 'chrysanthemum_melon',
     baseGenetics: { sweetness: 50, yield: 40, resistance: 40 },
-    discoveryText: '西瓜的甜与菊花的清雅交融，瓜中带花香。'
+    discoveryText: 'Karpuzun tatlılığı ile kasımpatının zarafeti birleşir, meyvesinde çiçek kokusu taşır.'
   },
   {
+    {
     id: 'pumpkin_rice',
-    name: '南瓜稻',
+    name: 'Balkabaklı Pirinç',
     parentCropA: 'rice',
     parentCropB: 'pumpkin',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'pumpkin_rice',
     baseGenetics: { sweetness: 45, yield: 55, resistance: 40 },
-    discoveryText: '稻谷与南瓜的田园联姻，米饭带有南瓜甜香。'
+    discoveryText: 'Pirinç ile balkabağı birleşir, her lokmada hafif tatlı bir koku yayılır.'
   },
   {
     id: 'mountain_lotus',
-    name: '山莲',
+    name: 'Dağ Nilüferi',
     parentCropA: 'lotus_root',
     parentCropB: 'yam',
     minSweetness: 45,
     minYield: 40,
     resultCropId: 'mountain_lotus',
     baseGenetics: { sweetness: 55, yield: 50, resistance: 50 },
-    discoveryText: '莲藕的清润与山药的滋补交融，山水相依。'
+    discoveryText: 'Nilüferin ferahlığı ile yam kökünün şifası birleşir, dağ ve suyun uyumunu taşır.'
   },
   {
     id: 'double_nut',
-    name: '双果仁',
+    name: 'Çift Çekirdek',
     parentCropA: 'peanut',
     parentCropB: 'sesame',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'double_nut',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 35 },
-    discoveryText: '花生与芝麻双仁合一，香气浓郁。'
+    discoveryText: 'Fıstık ile susam birleşir, yoğun ve kalıcı bir aroma bırakır.'
   },
   {
     id: 'sweet_gourd',
-    name: '甜丝瓜',
+    name: 'Tatlı Lif Kabağı',
     parentCropA: 'loofah',
     parentCropB: 'sweet_potato',
     minSweetness: 35,
     minYield: 30,
     resultCropId: 'sweet_gourd',
     baseGenetics: { sweetness: 45, yield: 40, resistance: 35 },
-    discoveryText: '丝瓜的嫩滑与红薯的甜蜜碰撞，瓜肉甘甜。'
+    discoveryText: 'Lif kabağının yumuşaklığı ile tatlı patatesin lezzeti birleşir, içi tatlı ve yumuşaktır.'
   },
   {
+    {
     id: 'purple_persimmon',
-    name: '紫柿',
+    name: 'Mor Trabzon Hurması',
     parentCropA: 'eggplant',
     parentCropB: 'persimmon',
     minSweetness: 40,
     minYield: 35,
     resultCropId: 'purple_persimmon',
     baseGenetics: { sweetness: 50, yield: 45, resistance: 40 },
-    discoveryText: '茄子的紫润与柿子的甜蜜融合，果实紫红。'
+    discoveryText: 'Patlıcanın mor özü ile hurmanın tatlılığı birleşir, meyve mor-kızıl bir renkte parlar.'
   },
   {
     id: 'fire_ginger',
-    name: '火姜',
+    name: 'Alev Zencefili',
     parentCropA: 'chili',
     parentCropB: 'ginger',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'fire_ginger',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 45 },
-    discoveryText: '辣椒的火辣与生姜的辛暖交汇，暖意十足。'
+    discoveryText: 'Biberin yakıcılığı ile zencefilin sıcaklığı birleşir, iç ısıtan güçlü bir tat doğar.'
   },
   {
     id: 'osmanthus_lotus',
-    name: '桂莲',
+    name: 'Osmanthus Nilüferi',
     parentCropA: 'lotus_seed',
     parentCropB: 'osmanthus',
     minSweetness: 50,
     minYield: 40,
     resultCropId: 'osmanthus_lotus',
     baseGenetics: { sweetness: 60, yield: 50, resistance: 55 },
-    discoveryText: '莲子的清心与桂花的芬芳共鸣，如入仙境。'
+    discoveryText: 'Nilüfer tohumunun dinginliği ile osmanthus çiçeğinin kokusu birleşir, adeta bir düş bahçesi hissi verir.'
   },
   {
     id: 'golden_sweet',
-    name: '金薯',
+    name: 'Altın Tatlı Yumru',
     parentCropA: 'corn',
     parentCropB: 'sweet_potato',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'golden_sweet',
     baseGenetics: { sweetness: 45, yield: 50, resistance: 35 },
-    discoveryText: '玉米的金色与红薯的甜蜜合一，通体金黄。'
+    discoveryText: 'Mısırın altın rengi ile tatlı patatesin lezzeti birleşir, bütünüyle altın gibi parlayan bir ürün doğar.'
   },
   {
+    {
     id: 'ruby_melon',
-    name: '红宝瓜',
+    name: 'Yakut Kavun',
     parentCropA: 'watermelon',
     parentCropB: 'jujube',
     minSweetness: 40,
     minYield: 30,
     resultCropId: 'ruby_melon',
     baseGenetics: { sweetness: 50, yield: 40, resistance: 40 },
-    discoveryText: '西瓜的多汁与红枣的甜蜜碰撞，果肉红如宝石。'
+    discoveryText: 'Karpuzun suyu ile kırmızı hurmanın tatlılığı birleşir, içi yakut gibi parlayan bir meyve doğar.'
   },
   {
     id: 'chrysanthemum_rice',
-    name: '菊稻',
+    name: 'Kasımpatı Pirinci',
     parentCropA: 'rice',
     parentCropB: 'chrysanthemum',
     minSweetness: 35,
     minYield: 35,
     resultCropId: 'chrysanthemum_rice',
     baseGenetics: { sweetness: 45, yield: 45, resistance: 40 },
-    discoveryText: '稻谷与菊花的田园融合，米饭带着淡淡菊香。'
+    discoveryText: 'Pirinç ile kasımpatı birleşir, pişince hafif çiçek kokusu yayar.'
   },
   {
     id: 'nut_corn',
-    name: '花生玉米',
+    name: 'Fıstıklı Mısır',
     parentCropA: 'corn',
     parentCropB: 'peanut',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'nut_corn',
     baseGenetics: { sweetness: 40, yield: 55, resistance: 35 },
-    discoveryText: '玉米与花生的粗粮结合，每穗夹带花生香。'
+    discoveryText: 'Mısır ile fıstık birleşir, her başakta zengin ve doyurucu bir aroma taşır.'
   },
   {
     id: 'frost_melon',
-    name: '霜甜瓜',
+    name: 'Kırağı Kavunu',
     parentCropA: 'watermelon',
     parentCropB: 'napa_cabbage',
     minSweetness: 35,
     minYield: 30,
     resultCropId: 'frost_melon',
     baseGenetics: { sweetness: 45, yield: 40, resistance: 40 },
-    discoveryText: '西瓜的甜与白菜的耐寒交融，冬日也能品尝的甜蜜。'
+    discoveryText: 'Karpuzun tatlılığı ile lahananın soğuğa direnci birleşir, kışın bile tatlı meyve verir.'
   },
   {
+    {
     id: 'twin_grain',
-    name: '双谷',
+    name: 'İkiz Tahıl',
     parentCropA: 'rice',
     parentCropB: 'winter_wheat',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'twin_grain',
     baseGenetics: { sweetness: 40, yield: 55, resistance: 35 },
-    discoveryText: '稻谷与冬小麦的谷物联姻，南北交融。'
+    discoveryText: 'Pirinç ile kış buğdayı birleşir, kuzey ve güneyin bereketi tek başakta buluşur.'
   },
   {
     id: 'lotus_cabbage',
-    name: '莲白菜',
+    name: 'Nilüfer Lahanası',
     parentCropA: 'lotus_root',
     parentCropB: 'napa_cabbage',
     minSweetness: 35,
     minYield: 35,
     resultCropId: 'lotus_cabbage',
     baseGenetics: { sweetness: 45, yield: 45, resistance: 40 },
-    discoveryText: '莲藕的清润与白菜的质朴合一，冬日清补。'
+    discoveryText: 'Nilüferin ferahlığı ile lahananın sadeliği birleşir, kış günlerinde hafif ve besleyici bir tat sunar.'
   },
   {
     id: 'garlic_sesame',
-    name: '蒜芝',
+    name: 'Sarımsaklı Susam',
     parentCropA: 'sesame',
     parentCropB: 'garlic',
     minSweetness: 30,
     minYield: 30,
     resultCropId: 'garlic_sesame',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 40 },
-    discoveryText: '芝麻的香浓与大蒜的辛辣碰撞，调味圣品。'
+    discoveryText: 'Susamın yoğun aroması ile sarımsağın keskinliği birleşir, Gaköy mutfağının vazgeçilmez baharatı olur.'
   },
   {
+    {
     id: 'chive_gourd',
-    name: '韭丝瓜',
+    name: 'Frenk Soğanlı Lif Kabağı',
     parentCropA: 'loofah',
     parentCropB: 'chives',
     minSweetness: 30,
     minYield: 30,
     resultCropId: 'chive_gourd',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 35 },
-    discoveryText: '丝瓜的嫩滑与韭菜的浓郁交织，三季可种。'
+    discoveryText: 'Lif kabağının yumuşaklığı ile frenk soğanının keskin aroması birleşir, üç mevsim yetişebilen bir ürün doğar.'
   },
   {
     id: 'mustard_eggplant',
-    name: '芥茄',
+    name: 'Hardallı Patlıcan',
     parentCropA: 'eggplant',
     parentCropB: 'mustard_green',
     minSweetness: 35,
     minYield: 30,
     resultCropId: 'mustard_eggplant',
     baseGenetics: { sweetness: 40, yield: 40, resistance: 40 },
-    discoveryText: '茄子的紫韵裹上芥菜的微辣，别有风味。'
+    discoveryText: 'Patlıcanın mor özü, hardal yaprağının hafif acılığıyla sarılır; kendine özgü bir tat ortaya çıkar.'
   },
   {
     id: 'snow_fire_pepper',
-    name: '冰火椒',
+    name: 'Buz Alev Biberi',
     parentCropA: 'chili',
     parentCropB: 'snow_lotus',
     minSweetness: 50,
     minYield: 40,
     resultCropId: 'snow_fire_pepper',
     baseGenetics: { sweetness: 60, yield: 50, resistance: 55 },
-    discoveryText: '辣椒的火焰与雪莲的冰霜碰撞，冰火两重天。'
+    discoveryText: 'Biberin ateşi ile kar çiçeğinin soğuğu çarpışır, Gaköy’de “iki âlemin meyvesi” diye anılır.'
   },
   {
+    {
     id: 'winter_corn',
-    name: '冬玉米',
+    name: 'Kış Mısırı',
     parentCropA: 'corn',
     parentCropB: 'spinach',
     minSweetness: 30,
     minYield: 40,
     resultCropId: 'winter_corn',
     baseGenetics: { sweetness: 40, yield: 50, resistance: 40 },
-    discoveryText: '玉米不畏严寒，叶绿如冬日常青松。'
+    discoveryText: 'Mısır soğuğa meydan okur, yaprakları kışın bile çam gibi yeşil kalır.'
   },
   {
     id: 'amber_yam',
-    name: '琥珀薯',
+    name: 'Kehribar Yumru',
     parentCropA: 'yam',
     parentCropB: 'sweet_potato',
     minSweetness: 40,
     minYield: 35,
     resultCropId: 'amber_yam',
     baseGenetics: { sweetness: 50, yield: 45, resistance: 40 },
-    discoveryText: '山药的滋补与红薯的甜糯交融，色如琥珀。'
+    discoveryText: 'Yam kökünün şifası ile tatlı patatesin lezzeti birleşir, rengi kehribar gibi parlar.'
   },
   {
     id: 'twin_blossom',
-    name: '双花',
+    name: 'İkiz Çiçek',
     parentCropA: 'chrysanthemum',
     parentCropB: 'osmanthus',
     minSweetness: 45,
     minYield: 35,
     resultCropId: 'twin_blossom',
     baseGenetics: { sweetness: 55, yield: 45, resistance: 50 },
-    discoveryText: '菊花与桂花竞相绽放，双花争艳。'
+    discoveryText: 'Kasımpatı ile osmanthus birlikte açar, Gaköy bahçelerinde iki çiçek yarışır gibi parlar.'
   },
   {
+    {
     id: 'mountain_nut',
-    name: '山花生',
+    name: 'Dağ Fıstığı',
     parentCropA: 'yam',
     parentCropB: 'peanut',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'mountain_nut',
     baseGenetics: { sweetness: 45, yield: 50, resistance: 35 },
-    discoveryText: '山药的绵密与花生的香脆碰撞，山中奇珍。'
+    discoveryText: 'Yam kökünün yumuşaklığı ile fıstığın çıtırtısı birleşir, dağların sakladığı nadide bir lezzet olur.'
   },
   {
     id: 'autumn_gem',
-    name: '秋桂南瓜',
+    name: 'Güz Osmanthus Balkabağı',
     parentCropA: 'pumpkin',
     parentCropB: 'osmanthus',
     minSweetness: 45,
     minYield: 40,
     resultCropId: 'autumn_gem',
     baseGenetics: { sweetness: 55, yield: 50, resistance: 45 },
-    discoveryText: '南瓜的丰满与桂花的馨香融合，金秋瑰宝。'
+    discoveryText: 'Balkabağının dolgunluğu ile osmanthus çiçeğinin kokusu birleşir, sonbaharın altın hazinesi olur.'
   },
   {
     id: 'ginger_yam',
-    name: '姜山药',
+    name: 'Zencefilli Yam Kökü',
     parentCropA: 'ginger',
     parentCropB: 'yam',
     minSweetness: 40,
     minYield: 40,
     resultCropId: 'ginger_yam',
     baseGenetics: { sweetness: 45, yield: 50, resistance: 45 },
-    discoveryText: '生姜的辛暖与山药的滋补合一，冬日滋补圣品。'
+    discoveryText: 'Zencefilin sıcaklığı ile yam kökünün besleyiciliği birleşir, kış günlerinde şifa kaynağı olur.'
   },
   {
+    {
     id: 'golden_persimmon',
-    name: '金柿',
+    name: 'Altın Hurma',
     parentCropA: 'persimmon',
     parentCropB: 'pumpkin',
     minSweetness: 40,
     minYield: 40,
     resultCropId: 'golden_persimmon',
     baseGenetics: { sweetness: 50, yield: 50, resistance: 40 },
-    discoveryText: '柿子的甜软与南瓜的金黄交融，如金似蜜。'
+    discoveryText: 'Hurmaların yumuşak tatlılığı ile balkabağının altın özü birleşir, bal gibi parlayan bir meyve doğar.'
   },
   {
     id: 'chrysanthemum_jujube',
-    name: '菊枣',
+    name: 'Kasımpatı Hurması',
     parentCropA: 'chrysanthemum',
     parentCropB: 'jujube',
     minSweetness: 35,
     minYield: 35,
     resultCropId: 'chrysanthemum_jujube',
     baseGenetics: { sweetness: 45, yield: 45, resistance: 45 },
-    discoveryText: '菊花的清雅与红枣的甜蜜合一，花中带果。'
+    discoveryText: 'Kasımpatının zarafeti ile kırmızı hurmanın tatlılığı birleşir, çiçek ile meyve bir arada yaşar.'
   },
   {
     id: 'osmanthus_yam',
-    name: '桂薯',
+    name: 'Osmanthus Yam Kökü',
     parentCropA: 'osmanthus',
     parentCropB: 'sweet_potato',
     minSweetness: 40,
     minYield: 35,
     resultCropId: 'osmanthus_yam',
     baseGenetics: { sweetness: 50, yield: 45, resistance: 45 },
-    discoveryText: '桂花的馨香渗入红薯的甜糯，满口桂香。'
+    discoveryText: 'Osmanthus çiçeğinin kokusu tatlı patatese işler, her lokmada Gaköy bahçelerinin kokusu hissedilir.'
   },
   {
+    {
     id: 'winter_pumpkin',
-    name: '冬南瓜',
+    name: 'Kış Balkabağı',
     parentCropA: 'pumpkin',
     parentCropB: 'napa_cabbage',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'winter_pumpkin',
     baseGenetics: { sweetness: 45, yield: 50, resistance: 40 },
-    discoveryText: '南瓜的丰硕与白菜的耐寒结合，冬日暖食。'
+    discoveryText: 'Balkabağının bolluğu ile lahananın soğuğa direnci birleşir, kış sofralarının sıcak nimeti olur.'
   },
   {
     id: 'emerald_yam',
-    name: '翡翠山药',
+    name: 'Zümrüt Yam Kökü',
     parentCropA: 'yam',
     parentCropB: 'spinach',
     minSweetness: 35,
     minYield: 35,
     resultCropId: 'emerald_yam',
     baseGenetics: { sweetness: 45, yield: 45, resistance: 45 },
-    discoveryText: '山药的滋补与菠菜的翠绿交融，切面翡翠般碧绿。'
+    discoveryText: 'Yam kökünün şifası ile ıspanağın yeşilliği birleşir, kesildiğinde zümrüt gibi parlar.'
   },
   {
     id: 'snow_chrysanthemum',
-    name: '雪菊',
+    name: 'Kar Kasımpatısı',
     parentCropA: 'chrysanthemum',
     parentCropB: 'snow_lotus',
     minSweetness: 55,
     minYield: 40,
     resultCropId: 'snow_chrysanthemum',
     baseGenetics: { sweetness: 65, yield: 50, resistance: 60 },
-    discoveryText: '菊花的清雅与雪莲的纯净合一，花瓣如雪。'
+    discoveryText: 'Kasımpatının zarafeti ile kar çiçeğinin saflığı birleşir, taç yaprakları kar gibi beyazdır.'
   },
   {
+    {
     id: 'osmanthus_garlic',
-    name: '桂蒜',
+    name: 'Osmanthus Sarımsağı',
     parentCropA: 'osmanthus',
     parentCropB: 'garlic',
     minSweetness: 40,
     minYield: 30,
     resultCropId: 'osmanthus_garlic',
     baseGenetics: { sweetness: 50, yield: 40, resistance: 45 },
-    discoveryText: '桂花的馨香中和大蒜的辛辣，芳香四溢。'
+    discoveryText: 'Osmanthus çiçeğinin hoş kokusu sarımsağın keskinliğini yumuşatır, etrafa yayılan bir aroma bırakır.'
   },
   {
     id: 'wheat_yam',
-    name: '麦山药',
+    name: 'Buğday Yam Kökü',
     parentCropA: 'yam',
     parentCropB: 'winter_wheat',
     minSweetness: 35,
     minYield: 40,
     resultCropId: 'wheat_yam',
     baseGenetics: { sweetness: 45, yield: 50, resistance: 40 },
-    discoveryText: '山药与冬小麦的跨季联姻，营养丰富。'
+    discoveryText: 'Yam kökü ile kış buğdayı birleşir, besin değeri yüksek ve doyurucu bir mahsul doğar.'
   },
   {
     id: 'cream_peanut',
-    name: '白花生',
+    name: 'Beyaz Fıstık',
     parentCropA: 'peanut',
     parentCropB: 'napa_cabbage',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'cream_peanut',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 35 },
-    discoveryText: '花生的香脆与白菜的素净合一，壳白如雪。'
+    discoveryText: 'Fıstığın aroması ile lahananın sadeliği birleşir, kabuğu kar gibi beyaz bir ürün oluşur.'
   },
   {
+    {
     id: 'garlic_jujube',
-    name: '蒜枣',
+    name: 'Sarımsaklı Hurma',
     parentCropA: 'jujube',
     parentCropB: 'garlic',
     minSweetness: 35,
     minYield: 35,
     resultCropId: 'garlic_jujube',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 45 },
-    discoveryText: '红枣的甜与大蒜的辛碰撞，味道出人意料。'
+    discoveryText: 'Kırmızı hurmanın tatlılığı ile sarımsağın keskinliği birleşir, beklenmedik bir lezzet doğar.'
   },
   {
     id: 'chive_persimmon',
-    name: '韭柿',
+    name: 'Frenk Soğanlı Hurma',
     parentCropA: 'persimmon',
     parentCropB: 'chives',
     minSweetness: 35,
     minYield: 30,
     resultCropId: 'chive_persimmon',
     baseGenetics: { sweetness: 45, yield: 40, resistance: 40 },
-    discoveryText: '柿子的甜蜜与韭菜的浓郁交融，三季可收。'
+    discoveryText: 'Hurma meyvesinin tatlılığı ile frenk soğanının aroması birleşir, üç mevsim hasat edilir.'
   },
   {
     id: 'mustard_ginger',
-    name: '芥姜',
+    name: 'Hardallı Zencefil',
     parentCropA: 'ginger',
     parentCropB: 'mustard_green',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'mustard_ginger',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 40 },
-    discoveryText: '生姜的辛暖与芥菜的微辣合一，驱寒神品。'
+    discoveryText: 'Zencefilin sıcaklığı ile hardal yaprağının hafif acılığı birleşir, soğuğa karşı güçlü bir şifa olur.'
   },
   {
+    {
     id: 'snow_pumpkin',
-    name: '雪南瓜',
+    name: 'Kar Balkabağı',
     parentCropA: 'pumpkin',
     parentCropB: 'snow_lotus',
     minSweetness: 55,
     minYield: 45,
     resultCropId: 'snow_pumpkin',
     baseGenetics: { sweetness: 65, yield: 55, resistance: 55 },
-    discoveryText: '南瓜的丰硕与雪莲的纯净交融，白色巨瓜传说。'
+    discoveryText: 'Balkabağının bolluğu ile kar çiçeğinin saflığı birleşir, Gaköy’de anlatılan beyaz dev meyve efsanesi doğar.'
   },
   {
     id: 'jade_white',
-    name: '碧白菜',
+    name: 'Yeşim Lahana',
     parentCropA: 'napa_cabbage',
     parentCropB: 'spinach',
     minSweetness: 25,
     minYield: 30,
     resultCropId: 'jade_white',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 30 },
-    discoveryText: '白菜的质朴与菠菜的翠绿融合，叶片碧绿晶莹。'
+    discoveryText: 'Lahananın sadeliği ile ıspanağın yeşilliği birleşir, yaprakları yeşim gibi ışıldar.'
   },
   {
     id: 'garlic_cabbage',
-    name: '蒜白菜',
+    name: 'Sarımsaklı Lahana',
     parentCropA: 'garlic',
     parentCropB: 'napa_cabbage',
     minSweetness: 25,
     minYield: 30,
     resultCropId: 'garlic_cabbage',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 35 },
-    discoveryText: '大蒜的辛与白菜的甜合一，冬储佳品。'
+    discoveryText: 'Sarımsağın keskinliği ile lahananın tatlılığı birleşir, kışlık erzakların vazgeçilmezi olur.'
   },
   {
+    {
     id: 'evergreen_herb',
-    name: '长青菜',
+    name: 'Ebedi Yeşil Otu',
     parentCropA: 'spinach',
     parentCropB: 'mustard_green',
     minSweetness: 25,
     minYield: 25,
     resultCropId: 'evergreen_herb',
     baseGenetics: { sweetness: 30, yield: 35, resistance: 35 },
-    discoveryText: '菠菜与芥菜不畏严寒，四季常青。'
+    discoveryText: 'Ispanak ile hardal otu birleşir, soğuğa boyun eğmez; dört mevsim yeşil kalır.'
   },
   {
     id: 'wheat_mustard',
-    name: '麦芥菜',
+    name: 'Buğday Hardal Otu',
     parentCropA: 'winter_wheat',
     parentCropB: 'mustard_green',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'wheat_mustard',
     baseGenetics: { sweetness: 35, yield: 45, resistance: 35 },
-    discoveryText: '冬小麦的醇厚与芥菜的辛辣交融，面中带辛。'
+    discoveryText: 'Kış buğdayının dolgunluğu ile hardalın keskinliği birleşir, Gaköy sofralarında farklı bir tat bırakır.'
   },
   {
     id: 'allium_king',
-    name: '百蒜王',
+    name: 'Soğanlar Kralı',
     parentCropA: 'garlic',
     parentCropB: 'chives',
     minSweetness: 30,
     minYield: 30,
     resultCropId: 'allium_king',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 40 },
-    discoveryText: '大蒜与韭菜的葱属之王，辛香无敌。'
+    discoveryText: 'Sarımsak ile frenk soğanı birleşir, kokusu güçlü, tadı efsanevi bir bitki doğar.'
   },
   {
+    {
     id: 'green_wheat',
-    name: '翠麦',
+    name: 'Yeşil Buğday',
     parentCropA: 'spinach',
     parentCropB: 'winter_wheat',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'green_wheat',
     baseGenetics: { sweetness: 35, yield: 45, resistance: 35 },
-    discoveryText: '菠菜的翠绿渗入冬小麦，青翠麦穗随风摇。'
+    discoveryText: 'Ispanağın yeşilliği kış buğdayına işler, başaklar rüzgârda zümrüt gibi dalgalanır.'
   },
   {
     id: 'chive_mustard',
-    name: '韭芥',
+    name: 'Frenk Soğanlı Hardal',
     parentCropA: 'chives',
     parentCropB: 'mustard_green',
     minSweetness: 25,
     minYield: 25,
     resultCropId: 'chive_mustard',
     baseGenetics: { sweetness: 30, yield: 35, resistance: 35 },
-    discoveryText: '韭菜与芥菜的辛辣同盟，开胃下饭。'
+    discoveryText: 'Frenk soğanı ile hardal otu birleşir, keskin tadıyla iştah açar.'
   },
   {
     id: 'jade_bamboo_corn',
-    name: '玉笋棒',
+    name: 'Yeşim Bambu Mısırı',
     parentCropA: 'bamboo_shoot',
     parentCropB: 'corn',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'jade_bamboo_corn',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 35 },
-    discoveryText: '春笋的鲜脆与玉米的甜糯交融，翠玉般的穗棒清甜可口。'
+    discoveryText: 'Bahar filizinin çıtırlığı ile mısırın tatlılığı birleşir, yeşim gibi parlak başaklar verir.'
   },
   {
+    {
     id: 'ginger_jade_green',
-    name: '姜翠菜',
+    name: 'Zencefilli Yeşim Otu',
     parentCropA: 'cabbage',
     parentCropB: 'ginger',
     minSweetness: 25,
     minYield: 30,
     resultCropId: 'ginger_jade_green',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 35 },
-    discoveryText: '青菜的清爽与生姜的暖辣相遇，暖胃又解腻。'
+    discoveryText: 'Lahananın ferahlığı ile zencefilin sıcaklığı birleşir, hem mideyi ısıtır hem de hafiflik verir.'
   },
   {
     id: 'spicy_sesame',
-    name: '麻辣仁',
+    name: 'Acı Fıstık Tanesi',
     parentCropA: 'chili',
     parentCropB: 'peanut',
     minSweetness: 30,
     minYield: 30,
     resultCropId: 'spicy_sesame',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 40 },
-    discoveryText: '辣椒的火热与花生的酥脆碰撞，麻辣酥香一口入魂。'
+    discoveryText: 'Biberin ateşi ile fıstığın çıtırtısı birleşir, Gaköy sofralarında unutulmaz bir tat bırakır.'
   },
   {
     id: 'honey_gourd',
-    name: '蜜丝瓜',
+    name: 'Ballı Lif Kabağı',
     parentCropA: 'loofah',
     parentCropB: 'peanut',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'honey_gourd',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 30 },
-    discoveryText: '丝瓜的柔滑与花生的醇甜相逢，蜜意绵绵。'
+    discoveryText: 'Lif kabağının yumuşaklığı ile fıstığın tatlılığı birleşir, ağızda bal gibi bir his bırakır.'
   },
   {
+    {
     id: 'golden_peanut_yam',
-    name: '花薯',
+    name: 'Fıstıklı Tatlı Yumru',
     parentCropA: 'peanut',
     parentCropB: 'sweet_potato',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'golden_peanut_yam',
     baseGenetics: { sweetness: 40, yield: 45, resistance: 35 },
-    discoveryText: '花生的酥香与红薯的绵密交融，香甜可口。'
+    discoveryText: 'Fıstığın aroması ile tatlı patatesin yumuşaklığı birleşir, Gaköy’de sevilen tatlı bir mahsul olur.'
   },
   {
     id: 'spice_jujube',
-    name: '辛枣',
+    name: 'Baharatlı Hurma',
     parentCropA: 'jujube',
     parentCropB: 'ginger',
     minSweetness: 30,
     minYield: 30,
     resultCropId: 'spice_jujube',
     baseGenetics: { sweetness: 40, yield: 35, resistance: 40 },
-    discoveryText: '红枣的甜蜜与大蒜的辛辣奇异融合，回味无穷。'
+    discoveryText: 'Hurma meyvesinin tatlılığı ile zencefilin keskinliği birleşir, damakta uzun süre kalan bir tat bırakır.'
   },
   {
     id: 'bean_eggplant',
-    name: '豆茄',
+    name: 'Fasulye Patlıcanı',
     parentCropA: 'green_bean',
     parentCropB: 'eggplant',
     minSweetness: 25,
     minYield: 30,
     resultCropId: 'bean_eggplant',
     baseGenetics: { sweetness: 35, yield: 40, resistance: 35 },
-    discoveryText: '豆角的鲜嫩与茄子的绵软合一，田间双宝。'
+    discoveryText: 'Fasulyenin tazeliği ile patlıcanın yumuşaklığı birleşir, tarlaların iki hazinesi tek üründe buluşur.'
   },
   {
+    {
     id: 'chrysanthemum_persimmon',
-    name: '菊柿',
+    name: 'Kasımpatı Hurması',
     parentCropA: 'persimmon',
     parentCropB: 'chrysanthemum',
     minSweetness: 35,
     minYield: 30,
     resultCropId: 'chrysanthemum_persimmon',
     baseGenetics: { sweetness: 45, yield: 40, resistance: 35 },
-    discoveryText: '柿子的甘甜与菊花的清香交融，秋日极品。'
+    discoveryText: 'Hurma meyvesinin tatlılığı ile kasımpatının hoş kokusu birleşir, sonbaharın en nadide lezzeti olur.'
   },
   {
     id: 'purple_yam',
-    name: '紫玉薯',
+    name: 'Mor Yeşim Yumru',
     parentCropA: 'yam',
     parentCropB: 'eggplant',
     minSweetness: 30,
     minYield: 35,
     resultCropId: 'purple_yam',
     baseGenetics: { sweetness: 35, yield: 45, resistance: 40 },
-    discoveryText: '山药的润滑与茄子的紫韵交融，通体泛紫光泽。'
+    discoveryText: 'Yam kökünün yumuşaklığı ile patlıcanın mor özü birleşir, yüzeyi mor bir ışıltı yayar.'
   },
   {
     id: 'snow_lotus_pearl',
-    name: '雪莲子',
+    name: 'Kar Nilüfer Tanesi',
     parentCropA: 'lotus_seed',
     parentCropB: 'snow_lotus',
     minSweetness: 35,
     minYield: 30,
     resultCropId: 'snow_lotus_pearl',
     baseGenetics: { sweetness: 45, yield: 40, resistance: 45 },
-    discoveryText: '莲子的清心与雪莲的纯净合一，寒冬明珠。'
+    discoveryText: 'Nilüfer tohumunun dinginliği ile kar çiçeğinin saflığı birleşir, kışın parlayan bir inci gibi görünür.'
   },
   {
+    {
     id: 'melon_tea_fruit',
-    name: '蜜茶果',
+    name: 'Bal Çay Meyvesi',
     parentCropA: 'golden_melon',
     parentCropB: 'tea',
     minSweetness: 65,
     minYield: 55,
     resultCropId: 'melon_tea_fruit',
     baseGenetics: { sweetness: 75, yield: 65, resistance: 60 },
-    discoveryText: '金蜜瓜的甘甜与茶叶的清雅在最高境界融合，传说中的仙果！'
+    discoveryText: 'Altın kavunun tatlılığı ile çayın zarafeti en yüce hâlde birleşir, Gaköy efsanelerinde anlatılan kutsal meyve doğar.'
   },
   {
     id: 'dragon_fire',
-    name: '龙火椒',
+    name: 'Ejder Ateş Biberi',
     parentCropA: 'phoenix_pepper',
     parentCropB: 'ginger',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'dragon_fire',
     baseGenetics: { sweetness: 70, yield: 65, resistance: 60 },
-    discoveryText: '凤凰椒的烈焰与生姜的辛暖碰撞，如龙息般灼热！'
+    discoveryText: 'Anka biberinin alevi ile zencefilin yakıcılığı birleşir, ejder nefesi gibi kavurucu bir güç doğurur.'
   },
   {
     id: 'celestial_rice',
-    name: '天香稻',
+    name: 'Gök Kokulu Pirinç',
     parentCropA: 'moonlight_rice',
     parentCropB: 'osmanthus',
     minSweetness: 65,
     minYield: 60,
     resultCropId: 'celestial_rice',
     baseGenetics: { sweetness: 75, yield: 70, resistance: 60 },
-    discoveryText: '月光稻的银辉与桂花的馨香交融，天上仙稻！'
+    discoveryText: 'Ay ışığı pirincinin parıltısı ile osmanthus çiçeğinin kokusu birleşir, göksel bir mahsul ortaya çıkar.'
   },
   {
+    {
     id: 'ice_lotus',
-    name: '冰莲',
+    name: 'Buz Nilüferi',
     parentCropA: 'frost_garlic',
     parentCropB: 'lotus_seed',
     minSweetness: 65,
     minYield: 55,
     resultCropId: 'ice_lotus',
     baseGenetics: { sweetness: 75, yield: 65, resistance: 65 },
-    discoveryText: '霜雪蒜的冰霜与莲子的清心合一，冰莲花开永不凋！'
+    discoveryText: 'Don sarımsağının soğuğu ile nilüfer tohumunun dinginliği birleşir; Gaköy’de anlatılır, bu çiçek açınca asla solmaz.'
   },
   {
     id: 'jade_peach_tea',
-    name: '翠桃茶',
+    name: 'Yeşim Şeftali Çayı',
     parentCropA: 'jade_tea',
     parentCropB: 'peach',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'jade_peach_tea',
     baseGenetics: { sweetness: 70, yield: 65, resistance: 55 },
-    discoveryText: '翡翠茶的碧绿与蜜桃的甜润交融，茶中极品！'
+    discoveryText: 'Yeşim çayının yeşil ışıltısı ile şeftalinin tatlılığı birleşir, bilgelerin içtiği nadide bir içecek doğar.'
   },
   {
     id: 'golden_dragon',
-    name: '金龙果',
+    name: 'Altın Ejder Meyvesi',
     parentCropA: 'golden_melon',
     parentCropB: 'phoenix_pepper',
     minSweetness: 70,
     minYield: 65,
     resultCropId: 'golden_dragon',
     baseGenetics: { sweetness: 80, yield: 75, resistance: 65 },
-    discoveryText: '金蜜瓜的尊贵与凤凰椒的烈焰碰撞，果中之龙！'
+    discoveryText: 'Altın kavunun asaleti ile anka biberinin alevi çarpışır; bu meyveye Gaköy’de “ejderlerin armağanı” denir.'
   },
   {
+    {
     id: 'moonlight_frost',
-    name: '月霜稻',
+    name: 'Ay Don Pirinci',
     parentCropA: 'moonlight_rice',
     parentCropB: 'frost_garlic',
     minSweetness: 65,
     minYield: 65,
     resultCropId: 'moonlight_frost',
     baseGenetics: { sweetness: 75, yield: 75, resistance: 65 },
-    discoveryText: '月光稻的银辉与霜雪蒜的冰霜交织，月下霜华！'
+    discoveryText: 'Ay ışığı pirincinin parıltısı ile don sarımsağının soğuğu birleşir; Gaköy gecelerinde ay altında parlayan kutsal bir ürün doğar.'
   },
   {
     id: 'jade_golden_melon',
-    name: '翡翠金瓜',
+    name: 'Yeşim Altın Kavun',
     parentCropA: 'jade_tea',
     parentCropB: 'golden_melon',
     minSweetness: 70,
     minYield: 65,
     resultCropId: 'jade_golden_melon',
     baseGenetics: { sweetness: 80, yield: 70, resistance: 70 },
-    discoveryText: '翡翠茶的碧绿与金蜜瓜的金黄交融，翡翠包金！'
+    discoveryText: 'Yeşim çayının yeşili ile altın kavunun ışıltısı birleşir, sanki yeşim içine altın saklanmış gibidir.'
   },
   {
     id: 'immortal_flower',
-    name: '仙人花',
+    name: 'Eren Çiçeği',
     parentCropA: 'frost_garlic',
     parentCropB: 'jade_tea',
     minSweetness: 70,
     minYield: 60,
     resultCropId: 'immortal_flower',
     baseGenetics: { sweetness: 85, yield: 70, resistance: 75 },
-    discoveryText: '霜雪蒜的冰霜与翡翠茶的碧绿交融，传说中的仙人之花！'
+    discoveryText: 'Don sarımsağının soğuğu ile yeşim çayının özü birleşir; Gaköy ozanları bu çiçeği ölümsüzlerin nimeti diye anar.'
   },
   {
+    {
     id: 'dragon_pearl',
-    name: '龙珠',
+    name: 'Ejder İncisi',
     parentCropA: 'phoenix_pepper',
     parentCropB: 'moonlight_rice',
     minSweetness: 75,
     minYield: 70,
     resultCropId: 'dragon_pearl',
     baseGenetics: { sweetness: 85, yield: 80, resistance: 70 },
-    discoveryText: '凤凰椒的烈焰与月光稻的银辉碰撞，果实圆润如龙珠，至宝！'
+    discoveryText: 'Anka biberinin alevi ile ay pirincinin ışıltısı birleşir; yuvarlak meyvesi ejder incisi gibi parlar, Gaköy’de kutsal sayılır.'
   },
-  // --- 新增二代杂交 ---
+  // --- Yeni İkinci Nesil Melezler ---
   {
     id: 'emerald_jade_tea',
-    name: '翠玉茗',
+    name: 'Yeşim Dem Çayı',
     parentCropA: 'emerald_radish',
     parentCropB: 'tea',
     minSweetness: 55,
     minYield: 50,
     resultCropId: 'emerald_jade_tea',
     baseGenetics: { sweetness: 65, yield: 60, resistance: 55 },
-    discoveryText: '翡翠萝卜的碧绿与茶叶的清雅相融，翠色茗香沁人心脾。'
+    discoveryText: 'Zümrüt turpun yeşilliği ile çayın zarafeti birleşir, kokusu Gaköy yaylalarını sarar.'
   },
   {
     id: 'pearl_osmanthus',
-    name: '桂珠谷',
+    name: 'İnci Osmanthus Tanesi',
     parentCropA: 'pearl_grain',
     parentCropB: 'osmanthus',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'pearl_osmanthus',
     baseGenetics: { sweetness: 70, yield: 65, resistance: 55 },
-    discoveryText: '珍珠谷的晶莹与桂花的芬芳合一，颗颗桂香满溢。'
+    discoveryText: 'İnci tanesi gibi parlayan tahıl ile osmanthus çiçeğinin kokusu birleşir, her tanesi mis gibi kokar.'
   },
   {
+    {
     id: 'ruby_fire',
-    name: '红宝椒',
+    name: 'Kızıl Kor Biberi',
     parentCropA: 'ruby_bean',
     parentCropB: 'chili',
     minSweetness: 55,
     minYield: 50,
     resultCropId: 'ruby_fire',
     baseGenetics: { sweetness: 65, yield: 60, resistance: 55 },
-    discoveryText: '红宝豆的红润与辣椒的火热碰撞，如烈焰红宝石。'
+    discoveryText: 'Kızıl fasulyenin parlaklığı ile biberin ateşi birleşir, kor gibi yanan bir taş misali parlar.'
   },
   {
     id: 'golden_corn_king',
-    name: '金穗王',
+    name: 'Altın Başak Hanı',
     parentCropA: 'golden_corn',
     parentCropB: 'rice',
     minSweetness: 55,
     minYield: 60,
     resultCropId: 'golden_corn_king',
     baseGenetics: { sweetness: 65, yield: 70, resistance: 55 },
-    discoveryText: '金穗玉米的丰硕与稻谷的质朴融合，五谷之王！'
+    discoveryText: 'Altın mısırın bolluğu ile pirincin bereketi birleşir; Gaköy’de buna “tanelerin hanı” denir.'
   },
   {
     id: 'jade_melon_tea',
-    name: '碧茗瓜',
+    name: 'Yeşim Dem Kavunu',
     parentCropA: 'jade_melon',
     parentCropB: 'tea',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'jade_melon_tea',
     baseGenetics: { sweetness: 70, yield: 65, resistance: 55 },
-    discoveryText: '碧玉瓜的翠绿与茶叶的清香交融，清凉消暑。'
+    discoveryText: 'Yeşim kavunun ferahlığı ile çayın kokusu birleşir, yaz sıcağında serinlik veren bir nimet olur.'
   },
   {
+    {
     id: 'twin_golden_bean',
-    name: '金双豆',
+    name: 'Altın İkiz Fasulye',
     parentCropA: 'twin_bean',
     parentCropB: 'peanut',
     minSweetness: 50,
     minYield: 50,
     resultCropId: 'twin_golden_bean',
     baseGenetics: { sweetness: 60, yield: 60, resistance: 50 },
-    discoveryText: '双子豆的双生与花生的饱满结合，金灿灿成双成对。'
+    discoveryText: 'İkiz fasulyenin çift doğası ile fıstığın dolgunluğu birleşir, altın gibi parlayan çift taneler verir.'
   },
   {
     id: 'peach_rice',
-    name: '桃花饭',
+    name: 'Şeftali Pilavı',
     parentCropA: 'peach_blossom_tea',
     parentCropB: 'rice',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'peach_rice',
     baseGenetics: { sweetness: 70, yield: 65, resistance: 55 },
-    discoveryText: '桃花茶的芬芳渗入稻谷，煮出的米饭泛着桃粉。'
+    discoveryText: 'Şeftali çayının kokusu pirince işler, Gaköy sofralarında pembe tonlu pilav olarak sunulur.'
   },
   {
     id: 'jade_shoot_ginger',
-    name: '玉笋姜',
+    name: 'Yeşim Filiz Zencefili',
     parentCropA: 'jade_shoot',
     parentCropB: 'ginger',
     minSweetness: 55,
     minYield: 50,
     resultCropId: 'jade_shoot_ginger',
     baseGenetics: { sweetness: 65, yield: 60, resistance: 55 },
-    discoveryText: '玉竹芽的鲜嫩与生姜的暖辣碰撞，驱寒暖身。'
+    discoveryText: 'Yeşim filizin tazeliği ile zencefilin yakıcılığı birleşir, Gaköy kışlarında iç ısıtan bir nimet olur.'
   },
   {
+    {
     id: 'golden_tuber_lotus',
-    name: '金莲薯',
+    name: 'Altın Nilüfer Yumrusu',
     parentCropA: 'golden_tuber',
     parentCropB: 'lotus_root',
     minSweetness: 55,
     minYield: 55,
     resultCropId: 'golden_tuber_lotus',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 55 },
-    discoveryText: '金油薯的金黄与莲藕的清润交融，甜糯清香。'
+    discoveryText: 'Altın yumrunun parlaklığı ile nilüfer kökünün saflığı birleşir, hem tatlı hem ferah bir lezzet doğurur.'
   },
   {
     id: 'frost_chrysanthemum',
-    name: '霜菊',
+    name: 'Don Kasımpatısı',
     parentCropA: 'frost_garlic',
     parentCropB: 'chrysanthemum',
     minSweetness: 65,
     minYield: 50,
     resultCropId: 'frost_chrysanthemum',
     baseGenetics: { sweetness: 75, yield: 60, resistance: 70 },
-    discoveryText: '霜雪蒜的寒气与菊花的傲骨合一，霜中怒放。'
+    discoveryText: 'Don sarımsağının soğuğu ile kasımpatının direnci birleşir, ayazda bile açan bir çiçek olur.'
   },
   {
     id: 'phoenix_sesame',
-    name: '凤仁',
+    name: 'Anka Susamı',
     parentCropA: 'phoenix_pepper',
     parentCropB: 'sesame',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'phoenix_sesame',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 60 },
-    discoveryText: '凤凰椒的烈焰与芝麻的醇香熔于一体，麻辣仙果。'
+    discoveryText: 'Anka biberinin alevi ile susamın aroması birleşir, Gaköy’de hem acı hem kokulu nadir bir mahsul sayılır.'
   },
   {
+    {
     id: 'moonlight_lotus',
-    name: '月莲',
+    name: 'Ay Nilüferi',
     parentCropA: 'moonlight_rice',
     parentCropB: 'lotus_seed',
     minSweetness: 65,
     minYield: 55,
     resultCropId: 'moonlight_lotus',
     baseGenetics: { sweetness: 75, yield: 65, resistance: 60 },
-    discoveryText: '月光稻的银辉与莲子的清心交融，月下白莲悄然开放。'
+    discoveryText: 'Ay pirincinin gümüş ışıltısı ile nilüfer tohumunun huzuru birleşir, Gaköy gecelerinde ay altında beyaz bir çiçek açar.'
   },
   {
     id: 'jade_snow',
-    name: '翠雪芽',
+    name: 'Yeşim Kar Filizi',
     parentCropA: 'jade_tea',
     parentCropB: 'snow_lotus',
     minSweetness: 65,
     minYield: 50,
     resultCropId: 'jade_snow',
     baseGenetics: { sweetness: 75, yield: 60, resistance: 70 },
-    discoveryText: '翡翠茶的碧绿遇上雪莲的纯白，冰清玉洁。'
+    discoveryText: 'Yeşim çayının yeşili ile kar çiçeğinin beyazı birleşir, saf ve berrak bir öz doğar.'
   },
   {
     id: 'golden_pumpkin',
-    name: '金瓜王',
+    name: 'Altın Kabak Hanı',
     parentCropA: 'golden_melon',
     parentCropB: 'pumpkin',
     minSweetness: 65,
     minYield: 60,
     resultCropId: 'golden_pumpkin',
     baseGenetics: { sweetness: 75, yield: 70, resistance: 60 },
-    discoveryText: '金蜜瓜的甘甜与南瓜的醇厚碰撞，金色大瓜威风凛凛。'
+    discoveryText: 'Altın kavunun tatlılığı ile kabağın bereketi birleşir, Gaköy’de tarlaların hükümdarı sayılır.'
   },
   {
+    {
     id: 'phoenix_corn',
-    name: '火穗',
+    name: 'Alev Başak',
     parentCropA: 'phoenix_pepper',
     parentCropB: 'corn',
     minSweetness: 55,
     minYield: 60,
     resultCropId: 'phoenix_corn',
     baseGenetics: { sweetness: 65, yield: 70, resistance: 55 },
-    discoveryText: '凤凰椒的烈焰点燃玉米穗，火红穗粒甜中带辣。'
+    discoveryText: 'Anka biberinin ateşi mısır başağına işler, kızıl taneleri hem tatlı hem yakıcı olur.'
   },
   {
     id: 'moonlight_yam',
-    name: '月光薯',
+    name: 'Ay Işığı Yumrusu',
     parentCropA: 'moonlight_rice',
     parentCropB: 'sweet_potato',
     minSweetness: 60,
     minYield: 60,
     resultCropId: 'moonlight_yam',
     baseGenetics: { sweetness: 70, yield: 70, resistance: 55 },
-    discoveryText: '月光稻的银辉照耀红薯，通体泛着月白柔光。'
+    discoveryText: 'Ay pirincinin gümüş ışığı tatlı yumruya işler, yüzeyi ay gibi soluk bir parıltı yayar.'
   },
   {
     id: 'jade_peanut',
-    name: '翠仁果',
+    name: 'Yeşim Fıstık Meyvesi',
     parentCropA: 'jade_tea',
     parentCropB: 'peanut',
     minSweetness: 55,
     minYield: 50,
     resultCropId: 'jade_peanut',
     baseGenetics: { sweetness: 65, yield: 60, resistance: 55 },
-    discoveryText: '翡翠茶的碧绿渗入花生，壳内仁翠如玉。'
+    discoveryText: 'Yeşim çayının özü fıstığa işler, kabuğunun içinde yeşim gibi parlayan taneler saklıdır.'
   },
   {
+    {
     id: 'frost_radish',
-    name: '霜玉萝卜',
+    name: 'Don Yeşim Turpu',
     parentCropA: 'frost_garlic',
     parentCropB: 'radish',
     minSweetness: 60,
     minYield: 50,
     resultCropId: 'frost_radish',
     baseGenetics: { sweetness: 70, yield: 60, resistance: 65 },
-    discoveryText: '霜雪蒜的冰霜渗入萝卜，根茎晶莹如冰玉。'
+    discoveryText: 'Don sarımsağının soğuğu turpa işler, kökü buz yeşimi gibi saydam parlar.'
   },
   {
     id: 'golden_jujube',
-    name: '金蜜枣',
+    name: 'Altın Bal Hurması',
     parentCropA: 'golden_melon',
     parentCropB: 'jujube',
     minSweetness: 70,
     minYield: 55,
     resultCropId: 'golden_jujube',
     baseGenetics: { sweetness: 80, yield: 65, resistance: 60 },
-    discoveryText: '金蜜瓜的甘甜注入红枣，颗颗蜜汁饱满。'
+    discoveryText: 'Altın kavunun tatlı özü hurmaya işler, her tanesi bal gibi dolgun olur.'
   },
   {
     id: 'phoenix_eggplant',
-    name: '火焰茄',
+    name: 'Alev Patlıcanı',
     parentCropA: 'phoenix_pepper',
     parentCropB: 'eggplant',
     minSweetness: 55,
     minYield: 55,
     resultCropId: 'phoenix_eggplant',
     baseGenetics: { sweetness: 60, yield: 65, resistance: 60 },
-    discoveryText: '凤凰椒的烈焰与茄子的紫韵碰撞，紫皮之下火辣鲜美。'
+    discoveryText: 'Anka biberinin ateşi patlıcanın mor kabuğuna işler, içi yakıcı ve lezzetli olur.'
   },
   {
+    {
     id: 'moonlight_spinach',
-    name: '银叶菜',
+    name: 'Ay Yaprağı Otu',
     parentCropA: 'moonlight_rice',
     parentCropB: 'spinach',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'moonlight_spinach',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 55 },
-    discoveryText: '月光稻的银辉浸润菠菜叶脉，叶片泛着银光。'
+    discoveryText: 'Ay pirincinin gümüş ışıltısı ıspanak yapraklarına işler, yapraklar gece ışık saçar.'
   },
   {
     id: 'jade_loofah',
-    name: '翠丝瓜',
+    name: 'Yeşim Lif Kabağı',
     parentCropA: 'jade_tea',
     parentCropB: 'loofah',
     minSweetness: 55,
     minYield: 55,
     resultCropId: 'jade_loofah',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 50 },
-    discoveryText: '翡翠茶的碧色融入丝瓜，瓜身翠绿如玉。'
+    discoveryText: 'Yeşim çayının rengi kabağa işler, gövdesi yeşim gibi parlak olur.'
   },
   {
     id: 'frost_winter_wheat',
-    name: '霜麦',
+    name: 'Don Buğdayı',
     parentCropA: 'frost_garlic',
     parentCropB: 'winter_wheat',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'frost_winter_wheat',
     baseGenetics: { sweetness: 70, yield: 65, resistance: 70 },
-    discoveryText: '霜雪蒜的寒冰渗入冬小麦，麦穗挂满霜花。'
+    discoveryText: 'Don sarımsağının soğuğu buğdaya işler, başakları kırağıyla süslenir.'
   },
   {
+    {
     id: 'golden_sesame',
-    name: '金芝',
+    name: 'Altın Susam',
     parentCropA: 'golden_melon',
     parentCropB: 'sesame',
     minSweetness: 65,
     minYield: 55,
     resultCropId: 'golden_sesame',
     baseGenetics: { sweetness: 75, yield: 65, resistance: 55 },
-    discoveryText: '金蜜瓜的金色光辉注入芝麻，粒粒金灿如砂金。'
+    discoveryText: 'Altın kavunun ışıltısı susama işler, her tanesi Gaköy güneşi gibi parlar.'
   },
   {
     id: 'phoenix_garlic',
-    name: '火蒜',
+    name: 'Alev Sarımsağı',
     parentCropA: 'phoenix_pepper',
     parentCropB: 'garlic',
     minSweetness: 60,
     minYield: 50,
     resultCropId: 'phoenix_garlic',
     baseGenetics: { sweetness: 65, yield: 60, resistance: 65 },
-    discoveryText: '凤凰椒的烈焰灼烧大蒜，辛辣之上更添火意。'
+    discoveryText: 'Anka biberinin ateşi sarımsağa işler, keskinliği daha da yakıcı bir hâl alır.'
   },
   {
     id: 'moonlight_cabbage',
-    name: '月白菜',
+    name: 'Ay Lahanası',
     parentCropA: 'moonlight_rice',
     parentCropB: 'napa_cabbage',
     minSweetness: 60,
     minYield: 60,
     resultCropId: 'moonlight_cabbage',
     baseGenetics: { sweetness: 70, yield: 70, resistance: 55 },
-    discoveryText: '月光稻的银辉洒落白菜叶，月白如绢清甜无比。'
+    discoveryText: 'Ay pirincinin gümüş ışığı lahana yapraklarına iner, yapraklar ipek gibi parlak ve tatlı olur.'
   },
   {
+    {
     id: 'jade_persimmon',
-    name: '翠柿',
+    name: 'Yeşim Hurması',
     parentCropA: 'jade_tea',
     parentCropB: 'persimmon',
     minSweetness: 60,
     minYield: 50,
     resultCropId: 'jade_persimmon',
     baseGenetics: { sweetness: 70, yield: 60, resistance: 55 },
-    discoveryText: '翡翠茶的碧绿渗入柿子，果肉翡翠色泽甘甜馥郁。'
+    discoveryText: 'Yeşim çayının rengi hurmaya işler, içi yeşim gibi parlayan tatlı bir meyveye dönüşür.'
   },
   {
     id: 'frost_bamboo',
-    name: '冰笋',
+    name: 'Buz Filizi',
     parentCropA: 'frost_garlic',
     parentCropB: 'bamboo_shoot',
     minSweetness: 60,
     minYield: 50,
     resultCropId: 'frost_bamboo',
     baseGenetics: { sweetness: 70, yield: 60, resistance: 65 },
-    discoveryText: '霜雪蒜的冰霜封住春笋鲜味，冰镇之鲜。'
+    discoveryText: 'Don sarımsağının soğuğu bambu filizine işler, serinliğiyle tanınan eşsiz bir lezzet doğar.'
   },
   {
     id: 'golden_watermelon',
-    name: '帝瓜',
+    name: 'Hükümdar Karpuzu',
     parentCropA: 'golden_melon',
     parentCropB: 'watermelon',
     minSweetness: 70,
     minYield: 60,
     resultCropId: 'golden_watermelon',
     baseGenetics: { sweetness: 80, yield: 70, resistance: 60 },
-    discoveryText: '金蜜瓜回归西瓜之源，甜度登峰造极，瓜中帝王。'
+    discoveryText: 'Altın kavun kökenine döner, karpuzla birleşir; Gaköy’de buna meyvelerin hükümdarı denir.'
   },
   {
+    {
     id: 'phoenix_peach',
-    name: '火桃',
+    name: 'Alev Şeftalisi',
     parentCropA: 'phoenix_pepper',
     parentCropB: 'peach',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'phoenix_peach',
     baseGenetics: { sweetness: 70, yield: 65, resistance: 60 },
-    discoveryText: '凤凰椒的火焰亲吻蜜桃，红如烈焰甜中带辛。'
+    discoveryText: 'Anka biberinin ateşi şeftaliyi öper, kızıl alev gibi parlar; tatlılığına hafif bir yakıcılık karışır.'
   },
   {
     id: 'moonlight_corn',
-    name: '月穗',
+    name: 'Ay Başağı',
     parentCropA: 'moonlight_rice',
     parentCropB: 'corn',
     minSweetness: 60,
     minYield: 65,
     resultCropId: 'moonlight_corn',
     baseGenetics: { sweetness: 70, yield: 75, resistance: 55 },
-    discoveryText: '月光稻的银辉照耀玉米穗，月下银穗丰收满仓。'
+    discoveryText: 'Ay pirincinin gümüş ışığı mısır başaklarını kutsar, Gaköy ambarlarını dolduran bereket doğar.'
   },
   {
     id: 'jade_chive',
-    name: '翠韭',
+    name: 'Yeşim Frenk Otu',
     parentCropA: 'jade_tea',
     parentCropB: 'chives',
     minSweetness: 55,
     minYield: 55,
     resultCropId: 'jade_chive',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 55 },
-    discoveryText: '翡翠茶的碧色浸入韭菜，翠色欲滴辛香四溢。'
+    discoveryText: 'Yeşim çayının özü frenk soğanına işler, keskin kokusu yeşim gibi berraklaşır.'
   },
   {
+    {
     id: 'frost_pumpkin',
-    name: '霜南瓜',
+    name: 'Don Kabağı',
     parentCropA: 'frost_garlic',
     parentCropB: 'pumpkin',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'frost_pumpkin',
     baseGenetics: { sweetness: 70, yield: 65, resistance: 65 },
-    discoveryText: '霜雪蒜的寒气凝于南瓜之上，冰镇南瓜甜如蜜。'
+    discoveryText: 'Don sarımsağının soğuğu kabağa işler, serin tadı bal gibi tatlı olur.'
   },
   {
     id: 'emerald_rice',
-    name: '翠粒稻',
+    name: 'Zümrüt Taneli Pirinç',
     parentCropA: 'emerald_radish',
     parentCropB: 'rice',
     minSweetness: 50,
     minYield: 55,
     resultCropId: 'emerald_rice',
     baseGenetics: { sweetness: 60, yield: 65, resistance: 50 },
-    discoveryText: '翡翠萝卜的碧绿渗入稻谷，翠色米粒清香扑鼻。'
+    discoveryText: 'Zümrüt turpun rengi pirince geçer, taneleri yeşilimsi bir ışıkla parlar.'
   },
   {
     id: 'pearl_peach',
-    name: '珠桃',
+    name: 'İnci Şeftali',
     parentCropA: 'pearl_grain',
     parentCropB: 'peach',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'pearl_peach',
     baseGenetics: { sweetness: 70, yield: 65, resistance: 55 },
-    discoveryText: '珍珠谷的晶莹与蜜桃的红润交融，果实圆润如明珠。'
+    discoveryText: 'İnci taneli tahıl ile şeftalinin kızıllığı birleşir, meyvesi inci gibi yuvarlak ve parlak olur.'
   },
   {
+    {
     id: 'golden_lotus',
-    name: '金莲',
+    name: 'Altın Nilüfer',
     parentCropA: 'golden_melon',
     parentCropB: 'lotus_seed',
     minSweetness: 65,
     minYield: 55,
     resultCropId: 'golden_lotus',
     baseGenetics: { sweetness: 75, yield: 65, resistance: 60 },
-    discoveryText: '金蜜瓜的金辉照耀莲子，金莲绽放熠熠生辉。'
+    discoveryText: 'Altın kavunun ışığı nilüfer tohumuna işler, Gaköy göllerinde altın gibi parlayan bir çiçek açar.'
   },
   {
     id: 'phoenix_broad_bean',
-    name: '凤豆',
+    name: 'Anka Fasulyesi',
     parentCropA: 'phoenix_pepper',
     parentCropB: 'broad_bean',
     minSweetness: 55,
     minYield: 55,
     resultCropId: 'phoenix_broad_bean',
     baseGenetics: { sweetness: 60, yield: 65, resistance: 60 },
-    discoveryText: '凤凰椒的烈焰烤炙蚕豆，火中淬炼的豆中珍品。'
+    discoveryText: 'Anka biberinin alevi baklayı sarar, ateşte yoğrulmuş değerli bir ürün doğar.'
   },
   {
     id: 'moonlight_tea',
-    name: '月芽茶',
+    name: 'Ay Filizi Çayı',
     parentCropA: 'moonlight_rice',
     parentCropB: 'tea',
     minSweetness: 65,
     minYield: 55,
     resultCropId: 'moonlight_tea',
     baseGenetics: { sweetness: 75, yield: 65, resistance: 60 },
-    discoveryText: '月光稻的银辉与茶叶的清雅交融，月芽形茶叶清香悠长。'
+    discoveryText: 'Ay pirincinin gümüş ışıltısı çay yapraklarına işler, Gaköy bilginlerinin içtiği uzun kokulu bir dem olur.'
   },
   {
+    {
     id: 'jade_rapeseed',
-    name: '翠金菜',
+    name: 'Yeşim Altın Otu',
     parentCropA: 'jade_tea',
     parentCropB: 'rapeseed',
     minSweetness: 55,
     minYield: 55,
     resultCropId: 'jade_rapeseed',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 55 },
-    discoveryText: '翡翠茶的碧绿与油菜的金黄交融，翠金相映。'
+    discoveryText: 'Yeşim çayının yeşili ile kanola çiçeğinin altını birleşir, Gaköy tarlalarında iki renkli bir mucize doğar.'
   },
   {
     id: 'frost_yam',
-    name: '霜山药',
+    name: 'Don Yam Kökü',
     parentCropA: 'frost_garlic',
     parentCropB: 'yam',
     minSweetness: 60,
     minYield: 55,
     resultCropId: 'frost_yam',
     baseGenetics: { sweetness: 70, yield: 65, resistance: 65 },
-    discoveryText: '霜雪蒜的寒意渗入山药，冰润滑腻入口即化。'
+    discoveryText: 'Don sarımsağının soğuğu yam köküne işler, serin ve yumuşak dokusuyla ağızda erir.'
   },
-  // === 三代杂交作物 ===,
+  // === Üçüncü Nesil Melez Ürünler ===,
   {
     id: 'wind_melon',
-    name: '风瓜',
+    name: 'Rüzgâr Kavunu',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'jade_tea',
     minSweetness: 40,
     minYield: 40,
     resultCropId: 'wind_melon',
     baseGenetics: { sweetness: 55, yield: 55, resistance: 45 },
-    discoveryText: '金瓜与翡翠茶经风雨淬炼而成的珍品。'
+    discoveryText: 'Altın meyve ile yeşim çayı rüzgâr ve zamanla yoğrulur, Gaköy ovalarında doğan nadide bir kavun olur.'
   },
   {
+    {
     id: 'cloud_bean',
-    name: '云豆',
+    name: 'Bulut Fasulyesi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'phoenix_pepper',
     minSweetness: 40,
     minYield: 40,
     resultCropId: 'cloud_bean',
     baseGenetics: { sweetness: 55, yield: 55, resistance: 45 },
-    discoveryText: '金瓜与凤凰椒在清风中交融，自然之韵。'
+    discoveryText: 'Altın meyve ile anka biberi rüzgârda birleşir, Gaköy göklerinde süzülen bulutlar gibi hafif bir ürün doğar.'
   },
   {
     id: 'rain_rice',
-    name: '雨稻',
+    name: 'Yağmur Pirinci',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'moonlight_rice',
     minSweetness: 41,
     minYield: 41,
     resultCropId: 'rain_rice',
     baseGenetics: { sweetness: 56, yield: 56, resistance: 46 },
-    discoveryText: '金瓜与月光稻沐浴露霜，天地灵气所化。'
+    discoveryText: 'Altın meyve ile ay pirinci çiğ ve yağmurla beslenir, göğün bereketini taşıyan bir mahsul olur.'
   },
   {
     id: 'hoar_tuber',
-    name: '霜薯',
+    name: 'Kırağı Yumrusu',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'frost_garlic',
     minSweetness: 41,
     minYield: 41,
     resultCropId: 'hoar_tuber',
     baseGenetics: { sweetness: 56, yield: 56, resistance: 46 },
-    discoveryText: '金瓜与霜雪蒜在星光下蜕变，风物之精。'
+    discoveryText: 'Altın meyve ile don sarımsağı yıldızlı gecede değişir, doğanın özünü taşıyan nadir bir yumruya dönüşür.'
   },
   {
+    {
     id: 'thunder_green',
-    name: '雷菜',
+    name: 'Yıldırım Otu',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'emerald_radish',
     minSweetness: 41,
     minYield: 41,
     resultCropId: 'thunder_green',
     baseGenetics: { sweetness: 56, yield: 56, resistance: 47 },
-    discoveryText: '金瓜与翡翠萝卜汇聚山川之气，化为珍品。'
+    discoveryText: 'Altın meyve ile zümrüt turp dağların gücünü toplar, Gaköy’de buna yıldırımın nimeti denir.'
   },
   {
     id: 'rainbow_fruit',
-    name: '虹果',
+    name: 'Gökkuşağı Meyvesi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'jade_shoot',
     minSweetness: 42,
     minYield: 42,
     resultCropId: 'rainbow_fruit',
     baseGenetics: { sweetness: 57, yield: 57, resistance: 47 },
-    discoveryText: '金瓜与碧玉笋经风雨淬炼而成的珍品。'
+    discoveryText: 'Altın meyve ile yeşim filizi rüzgâr ve yağmurla yoğrulur, yedi renkli bir nimet doğar.'
   },
   {
     id: 'dew_bloom',
-    name: '露花',
+    name: 'Çiğ Çiçeği',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'golden_tuber',
     minSweetness: 42,
     minYield: 42,
     resultCropId: 'dew_bloom',
     baseGenetics: { sweetness: 57, yield: 57, resistance: 47 },
-    discoveryText: '金瓜与金油薯在清风中交融，自然之韵。'
+    discoveryText: 'Altın meyve ile altın yumru sabah çiğiyle birleşir, doğanın saf kokusunu taşıyan bir çiçek açar.'
   },
   {
+    {
     id: 'dawn_tea',
-    name: '晨茶',
+    name: 'Şafak Çayı',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'peach_blossom_tea',
     minSweetness: 42,
     minYield: 42,
     resultCropId: 'dawn_tea',
     baseGenetics: { sweetness: 57, yield: 57, resistance: 48 },
-    discoveryText: '金瓜与桃花茶沐浴露霜，天地灵气所化。'
+    discoveryText: 'Altın meyve ile şeftali çiçeği çayı sabah çiyiyle arınır, Gaköy’de şafak vakti içilen kutsal dem olur.'
   },
   {
     id: 'dusk_shoot',
-    name: '暮笋',
+    name: 'Alaca Filiz',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'ruby_bean',
     minSweetness: 42,
     minYield: 42,
     resultCropId: 'dusk_shoot',
     baseGenetics: { sweetness: 58, yield: 58, resistance: 48 },
-    discoveryText: '金瓜与红宝豆在星光下蜕变，风物之精。'
+    discoveryText: 'Altın meyve ile kızıl fasulye yıldızlı akşamda değişir, alacakaranlığın özünü taşıyan bir filiz doğar.'
   },
   {
     id: 'star_lotus',
-    name: '星莲',
+    name: 'Yıldız Nilüferi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'twin_bean',
     minSweetness: 43,
     minYield: 43,
     resultCropId: 'star_lotus',
     baseGenetics: { sweetness: 58, yield: 58, resistance: 49 },
-    discoveryText: '金瓜与双子豆汇聚山川之气，化为珍品。'
+    discoveryText: 'Altın meyve ile ikiz tohumlar gök ve yerin gücünü toplar, Gaköy göllerinde yıldız gibi parlayan bir nilüfer açar.'
   },
   {
+    {
     id: 'wind_splendor_wheat',
-    name: '风华麦',
+    name: 'Rüzgâr İhtişam Buğdayı',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'jade_melon',
     minSweetness: 43,
     minYield: 43,
     resultCropId: 'wind_splendor_wheat',
     baseGenetics: { sweetness: 58, yield: 58, resistance: 49 },
-    discoveryText: '金瓜与碧玉瓜经风雨淬炼而成的珍品。'
+    discoveryText: 'Altın meyve ile yeşim kavun rüzgâr ve zamanla yoğrulur, Gaköy ovalarında yetişen nadide bir buğday olur.'
   },
   {
     id: 'cloud_splendor_sesame',
-    name: '云华芝',
+    name: 'Bulut İhtişam Susamı',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'pearl_grain',
     minSweetness: 43,
     minYield: 43,
     resultCropId: 'cloud_splendor_sesame',
     baseGenetics: { sweetness: 59, yield: 59, resistance: 49 },
-    discoveryText: '金瓜与珍珠谷在清风中交融，自然之韵。'
+    discoveryText: 'Altın meyve ile inci tahıl rüzgârda birleşir, göklerin zarafetini taşıyan bir susam doğar.'
   },
   {
     id: 'rain_splendor_pepper',
-    name: '雨华椒',
+    name: 'Yağmur İhtişam Biberi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'golden_corn',
     minSweetness: 44,
     minYield: 44,
     resultCropId: 'rain_splendor_pepper',
     baseGenetics: { sweetness: 59, yield: 59, resistance: 50 },
-    discoveryText: '金瓜与金穗玉米沐浴露霜，天地灵气所化。'
+    discoveryText: 'Altın meyve ile altın başak çiy ve yağmurla beslenir, Gaköy tarlalarında göğün bereketini taşıyan bir biber doğar.'
   },
   {
+    {
     id: 'hoar_splendor_root',
-    name: '霜华参',
+    name: 'Kırağı İhtişam Kökü',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'lotus_tea',
     minSweetness: 44,
     minYield: 44,
     resultCropId: 'hoar_splendor_root',
     baseGenetics: { sweetness: 60, yield: 60, resistance: 50 },
-    discoveryText: '金瓜与莲心茶在星光下蜕变，风物之精。'
+    discoveryText: 'Altın meyve ile nilüfer çayı yıldızlı gecede değişir, Gaköy bilginlerinin aradığı nadir bir kök olur.'
   },
   {
     id: 'thunder_splendor_sprout',
-    name: '雷华芽',
+    name: 'Yıldırım İhtişam Filizi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'purple_bamboo',
     minSweetness: 44,
     minYield: 44,
     resultCropId: 'thunder_splendor_sprout',
     baseGenetics: { sweetness: 60, yield: 60, resistance: 51 },
-    discoveryText: '金瓜与紫竹茄汇聚山川之气，化为珍品。'
+    discoveryText: 'Altın meyve ile mor bambu dağların gücünü toplar, Gaköy’de buna yıldırımın filizi denir.'
   },
   {
     id: 'rainbow_splendor_vine',
-    name: '虹华藤',
+    name: 'Gökkuşağı İhtişam Asması',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'honey_peach_melon',
     minSweetness: 45,
     minYield: 45,
     resultCropId: 'rainbow_splendor_vine',
     baseGenetics: { sweetness: 60, yield: 60, resistance: 51 },
-    discoveryText: '金瓜与蜜桃瓜经风雨淬炼而成的珍品。'
+    discoveryText: 'Altın meyve ile bal şeftali kavunu rüzgâr ve yağmurla yoğrulur, Gaköy bağlarında renk renk uzanan bir asma olur.'
   },
   {
+    {
     id: 'dew_splendor_bud',
-    name: '露华蕾',
+    name: 'Çiğ İhtişam Tomurcuğu',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'fire_bean',
     minSweetness: 45,
     minYield: 45,
     resultCropId: 'dew_splendor_bud',
     baseGenetics: { sweetness: 61, yield: 61, resistance: 52 },
-    discoveryText: '金瓜与火豆在清风中交融，自然之韵。'
+    discoveryText: 'Altın meyve ile ateş fasulyesi sabah rüzgârında birleşir, Gaköy tarlalarında çiğ kokulu bir tomurcuk doğar.'
   },
   {
     id: 'dawn_splendor_orchid',
-    name: '晨华兰',
+    name: 'Şafak İhtişam Orkidesi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'silk_bean',
     minSweetness: 45,
     minYield: 45,
     resultCropId: 'dawn_splendor_orchid',
     baseGenetics: { sweetness: 61, yield: 61, resistance: 52 },
-    discoveryText: '金瓜与丝豆沐浴露霜，天地灵气所化。'
+    discoveryText: 'Altın meyve ile ipek fasulyesi çiy ve sabah ışığıyla yoğrulur, Gaköy’de kutsal sayılan bir çiçek açar.'
   },
   {
     id: 'dusk_splendor_gourd',
-    name: '暮华葫',
+    name: 'Alaca İhtişam Kabağı',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'double_oil_seed',
     minSweetness: 46,
     minYield: 46,
     resultCropId: 'dusk_splendor_gourd',
     baseGenetics: { sweetness: 61, yield: 61, resistance: 52 },
-    discoveryText: '金瓜与双油籽在星光下蜕变，风物之精。'
+    discoveryText: 'Altın meyve ile çift yağ tohumu yıldızlı akşamda değişir, Gaköy bağlarında yetişen değerli bir kabak olur.'
   },
   {
+    {
     id: 'star_splendor_herb',
-    name: '星华草',
+    name: 'Yıldız İhtişam Otu',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'lotus_potato',
     minSweetness: 46,
     minYield: 46,
     resultCropId: 'star_splendor_herb',
     baseGenetics: { sweetness: 62, yield: 62, resistance: 53 },
-    discoveryText: '金瓜与莲花薯汇聚山川之气，化为珍品。'
+    discoveryText: 'Altın meyve ile nilüfer kökü toprağın ve dağların gücünü toplar, Gaköy’de yıldız gibi parlayan bir ot doğar.'
   },
   {
     id: 'wind_jade3_chestnut',
-    name: '风翠栗',
+    name: 'Rüzgâr Yeşim Kestanesi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'jade_pumpkin',
     minSweetness: 46,
     minYield: 46,
     resultCropId: 'wind_jade3_chestnut',
     baseGenetics: { sweetness: 62, yield: 62, resistance: 53 },
-    discoveryText: '金瓜与翡翠南瓜经风雨淬炼而成的珍品。'
+    discoveryText: 'Altın meyve ile yeşim kabak rüzgâr ve zamanla yoğrulur, Gaköy ormanlarında yetişen değerli bir kestane olur.'
   },
   {
     id: 'cloud_jade3_apricot',
-    name: '云翠杏',
+    name: 'Bulut Yeşim Kayısısı',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'crystal_yam',
     minSweetness: 46,
     minYield: 46,
     resultCropId: 'cloud_jade3_apricot',
     baseGenetics: { sweetness: 62, yield: 62, resistance: 54 },
-    discoveryText: '金瓜与水晶山药在清风中交融，自然之韵。'
+    discoveryText: 'Altın meyve ile kristal yam rüzgârda birleşir, Gaköy göklerinin zarafetini taşıyan bir kayısı doğar.'
   },
   {
+    {
     id: 'rain_jade3_pear',
-    name: '雨翠梨',
+    name: 'Yağmur Yeşim Armudu',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'osmanthus_tea',
     minSweetness: 47,
     minYield: 47,
     resultCropId: 'rain_jade3_pear',
     baseGenetics: { sweetness: 63, yield: 63, resistance: 54 },
-    discoveryText: '金瓜与桂花茶沐浴露霜，天地灵气所化。'
+    discoveryText: 'Altın meyve ile osmanthus çayı çiy ve yağmurla beslenir, Gaköy’de göğün bereketini taşıyan bir armut doğar.'
   },
   {
     id: 'hoar_jade3_berry',
-    name: '霜翠莓',
+    name: 'Kırağı Yeşim Meyvesi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'mountain_bamboo',
     minSweetness: 47,
     minYield: 47,
     resultCropId: 'hoar_jade3_berry',
     baseGenetics: { sweetness: 63, yield: 63, resistance: 54 },
-    discoveryText: '金瓜与山竹薯在星光下蜕变，风物之精。'
+    discoveryText: 'Altın meyve ile dağ bambusu yıldızlı gecede değişir, doğanın özünü taşıyan nadir bir meyveye dönüşür.'
   },
   {
     id: 'thunder_jade3_peach_t',
-    name: '雷翠桃',
+    name: 'Yıldırım Yeşim Şeftalisi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'golden_fruit',
     minSweetness: 47,
     minYield: 47,
     resultCropId: 'thunder_jade3_peach_t',
     baseGenetics: { sweetness: 63, yield: 63, resistance: 55 },
-    discoveryText: '金瓜与金秋果汇聚山川之气，化为珍品。'
+    discoveryText: 'Altın meyve ile altın sonbahar meyvesi dağların gücünü toplar, Gaköy’de yıldırımın armağanı sayılan bir şeftali olur.'
   },
   {
+    {
     id: 'rainbow_jade3_melon',
-    name: '虹翠瓜',
+    name: 'Gökkuşağı Yeşim Kavunu',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'nut_potato',
     minSweetness: 48,
     minYield: 48,
     resultCropId: 'rainbow_jade3_melon',
     baseGenetics: { sweetness: 64, yield: 64, resistance: 55 },
-    discoveryText: '金瓜与花生薯经风雨淬炼而成的珍品。'
+    discoveryText: 'Altın meyve ile yer fıstıklı kök rüzgâr ve yağmurla yoğrulur, Gaköy bağlarında renkli bir kavun doğar.'
   },
   {
     id: 'dew_jade3_bean',
-    name: '露翠豆',
+    name: 'Çiğ Yeşim Fasulyesi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'autumn_bean',
     minSweetness: 48,
     minYield: 48,
     resultCropId: 'dew_jade3_bean',
     baseGenetics: { sweetness: 64, yield: 64, resistance: 56 },
-    discoveryText: '金瓜与秋枣豆在清风中交融，自然之韵。'
+    discoveryText: 'Altın meyve ile sonbahar fasulyesi sabah çiğinde birleşir, doğanın saf lezzetini taşıyan bir ürün olur.'
   },
   {
     id: 'dawn_jade3_rice',
-    name: '晨翠稻',
+    name: 'Şafak Yeşim Pirinci',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'jujube_blossom',
     minSweetness: 48,
     minYield: 48,
     resultCropId: 'dawn_jade3_rice',
     baseGenetics: { sweetness: 64, yield: 64, resistance: 56 },
-    discoveryText: '金瓜与枣花桃沐浴露霜，天地灵气所化。'
+    discoveryText: 'Altın meyve ile hünnap çiçeği şafağın çiyiyle yoğrulur, Gaköy tarlalarında kutsal sayılan bir pirinç doğar.'
   },
   {
+    {
     id: 'dusk_jade3_tuber',
-    name: '暮翠薯',
+    name: 'Alaca Yeşim Yumrusu',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'ginger_blossom',
     minSweetness: 49,
     minYield: 49,
     resultCropId: 'dusk_jade3_tuber',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 56 },
-    discoveryText: '金瓜与姜花菜在星光下蜕变，风物之精。'
+    discoveryText: 'Altın meyve ile zencefil çiçeği yıldızlı akşamda değişir, Gaköy topraklarının özünü taşıyan bir yumru doğar.'
   },
   {
     id: 'star_jade3_green',
-    name: '星翠菜',
+    name: 'Yıldız Yeşim Otu',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'fairy_chrysanthemum',
     minSweetness: 49,
     minYield: 49,
     resultCropId: 'star_jade3_green',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 57 },
-    discoveryText: '金瓜与仙菊菜汇聚山川之气，化为珍品。'
+    discoveryText: 'Altın meyve ile kutsal krizantem dağların gücünü toplar, Gaköy’de yıldız gibi parlayan bir bitki doğar.'
   },
   {
     id: 'wind_aura_fruit',
-    name: '风灵果',
+    name: 'Rüzgâr Ruh Meyvesi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'imperial_cabbage',
     minSweetness: 49,
     minYield: 49,
     resultCropId: 'wind_aura_fruit',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 57 },
-    discoveryText: '金瓜与御品白菜经风雨淬炼而成的珍品。'
+    discoveryText: 'Altın meyve ile asil lahana rüzgâr ve zamanla yoğrulur, Gaköy’de ruh taşıdığına inanılan bir meyve doğar.'
   },
   {
+    {
     id: 'cloud_aura_bloom',
-    name: '云灵花',
+    name: 'Bulut Ruh Çiçeği',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'spicy_radish',
     minSweetness: 49,
     minYield: 49,
     resultCropId: 'cloud_aura_bloom',
     baseGenetics: { sweetness: 66, yield: 66, resistance: 58 },
-    discoveryText: '金瓜与蒜香萝卜在清风中交融，自然之韵。'
+    discoveryText: 'Altın meyve ile sarımsaklı turp rüzgârda birleşir, Gaköy kırlarında ruh taşıyan bir çiçek doğar.'
   },
   {
     id: 'rain_aura_tea',
-    name: '雨灵茶',
+    name: 'Yağmur Ruh Çayı',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'snow_tea',
     minSweetness: 50,
     minYield: 50,
     resultCropId: 'rain_aura_tea',
     baseGenetics: { sweetness: 66, yield: 66, resistance: 58 },
-    discoveryText: '金瓜与雪茶沐浴露霜，天地灵气所化。'
+    discoveryText: 'Altın meyve ile kar çayı çiy ve yağmurla arınır, göğün ruhunu taşıyan bir dem olur.'
   },
   {
     id: 'hoar_aura_shoot',
-    name: '霜灵笋',
+    name: 'Kırağı Ruh Filizi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'spring_chive',
     minSweetness: 50,
     minYield: 50,
     resultCropId: 'hoar_aura_shoot',
     baseGenetics: { sweetness: 66, yield: 66, resistance: 58 },
-    discoveryText: '金瓜与春韭菜在星光下蜕变，风物之精。'
+    discoveryText: 'Altın meyve ile bahar frenk otu yıldızlı gecede değişir, Gaköy toprağının özünü taşıyan bir filiz doğar.'
   },
   {
+    {
     id: 'thunder_aura_lotus',
-    name: '雷灵莲',
+    name: 'Yıldırım Ruh Nilüferi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'wheat_potato',
     minSweetness: 50,
     minYield: 50,
     resultCropId: 'thunder_aura_lotus',
     baseGenetics: { sweetness: 67, yield: 67, resistance: 59 },
-    discoveryText: '金瓜与麦香薯汇聚山川之气，化为珍品。'
+    discoveryText: 'Altın meyve ile buğday kokulu kök dağların gücünü toplar, Gaköy sularında kutsal bir nilüfer açar.'
   },
   {
     id: 'rainbow_aura_wheat',
-    name: '虹灵麦',
+    name: 'Gökkuşağı Ruh Buğdayı',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'spring_green_peach',
     minSweetness: 51,
     minYield: 51,
     resultCropId: 'rainbow_aura_wheat',
     baseGenetics: { sweetness: 67, yield: 67, resistance: 59 },
-    discoveryText: '金瓜与绿桃经风雨淬炼而成的珍品。'
+    discoveryText: 'Altın meyve ile yeşil şeftali rüzgâr ve yağmurla yoğrulur, Gaköy tarlalarında renkli başaklar verir.'
   },
   {
     id: 'dew_aura_sesame',
-    name: '露灵芝',
+    name: 'Çiğ Ruh Susamı',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'mustard_bean',
     minSweetness: 51,
     minYield: 51,
     resultCropId: 'dew_aura_sesame',
     baseGenetics: { sweetness: 67, yield: 67, resistance: 60 },
-    discoveryText: '金瓜与芥香豆在清风中交融，自然之韵。'
+    discoveryText: 'Altın meyve ile hardal kokulu fasulye sabah rüzgârında birleşir, Gaköy’de doğanın ruhunu taşıyan bir susam doğar.'
   },
   {
+    {
     id: 'dawn_aura_pepper',
-    name: '晨灵椒',
+    name: 'Şafak Ruh Biberi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'frost_rapeseed',
     minSweetness: 51,
     minYield: 51,
     resultCropId: 'dawn_aura_pepper',
     baseGenetics: { sweetness: 68, yield: 68, resistance: 60 },
-    discoveryText: '金瓜与霜油菜沐浴露霜，天地灵气所化。'
+    discoveryText: 'Altın meyve ile don kanolası çiy ve sabah ışığıyla yoğrulur, Gaköy’de kutsal sayılan bir biber doğar.'
   },
   {
     id: 'dusk_aura_root',
-    name: '暮灵参',
+    name: 'Alaca Ruh Kökü',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'purple_melon',
     minSweetness: 52,
     minYield: 52,
     resultCropId: 'dusk_aura_root',
     baseGenetics: { sweetness: 68, yield: 68, resistance: 61 },
-    discoveryText: '金瓜与紫晶瓜在星光下蜕变，风物之精。'
+    discoveryText: 'Altın meyve ile mor kristal kavun yıldızlı gecede değişir, Gaköy toprağının özünü taşıyan bir kök doğar.'
   },
   {
     id: 'star_aura_sprout',
-    name: '星灵芽',
+    name: 'Yıldız Ruh Filizi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'golden_rice',
     minSweetness: 52,
     minYield: 52,
     resultCropId: 'star_aura_sprout',
     baseGenetics: { sweetness: 69, yield: 69, resistance: 61 },
-    discoveryText: '金瓜与金芝稻汇聚山川之气，化为珍品。'
+    discoveryText: 'Altın meyve ile altın pirinç dağların ve toprağın gücünü toplar, Gaköy’de yıldız gibi doğan bir filiz olur.'
   },
   {
+    {
     id: 'wind_glow_vine',
-    name: '风光藤',
+    name: 'Rüzgâr Işıltı Asması',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'double_lotus',
     minSweetness: 52,
     minYield: 52,
     resultCropId: 'wind_glow_vine',
     baseGenetics: { sweetness: 69, yield: 69, resistance: 61 },
-    discoveryText: '金瓜与双莲经风雨淬炼而成的珍品。'
+    discoveryText: 'Altın meyve ile çift nilüfer rüzgâr ve zamanla yoğrulur, Gaköy bağlarında ışık saçan bir asma doğar.'
   },
   {
     id: 'cloud_glow_bud',
-    name: '云光蕾',
+    name: 'Bulut Işıltı Tomurcuğu',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'fire_sesame',
     minSweetness: 53,
     minYield: 53,
     resultCropId: 'cloud_glow_bud',
     baseGenetics: { sweetness: 69, yield: 69, resistance: 62 },
-    discoveryText: '金瓜与火麻仁在清风中交融，自然之韵。'
+    discoveryText: 'Altın meyve ile ateş susamı rüzgârda birleşir, Gaköy göklerinde parlayan bir tomurcuk doğar.'
   },
   {
     id: 'rain_glow_orchid',
-    name: '雨光兰',
+    name: 'Yağmur Işıltı Orkidesi',
     parentCropA: 'melon_tea_fruit',
     parentCropB: 'silk_corn',
     minSweetness: 53,
     minYield: 53,
     resultCropId: 'rain_glow_orchid',
     baseGenetics: { sweetness: 70, yield: 70, resistance: 62 },
-    discoveryText: '金瓜与丝穗沐浴露霜，天地灵气所化。'
+    discoveryText: 'Altın meyve ile ipek başak çiy ve yağmurla yoğrulur, Gaköy’de kutsal sayılan ışıklı bir çiçek açar.'
   },
   {
     id: 'hoar_glow_gourd',
