@@ -1,14 +1,14 @@
 <template>
   <div>
-    <!-- 标题 -->
+    <!-- Başlık -->
     <div class="flex items-center justify-between mb-1">
       <div class="flex items-center space-x-1.5 text-sm text-accent">
         <Wallet :size="14" />
-        <span>钱袋</span>
+        <span>Kese</span>
       </div>
       <span class="text-xs text-muted">{{ unlockedCount }}/{{ WALLET_ITEMS.length }}</span>
     </div>
-    <p class="text-xs text-muted mb-3">永久被动加成，满足条件后自动解锁。</p>
+    <p class="text-xs text-muted mb-3">Kalıcı gizli güçlerdir; şartı yerine gelince kendiliğinden açılır.</p>
 
     <div class="flex flex-col space-y-1.5">
       <div
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <!-- 详情弹窗 -->
+    <!-- Ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="selectedItem"
@@ -44,11 +44,11 @@
             {{ selectedItem.name }}
           </p>
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
-            <p class="text-xs text-muted mb-1">效果</p>
+            <p class="text-xs text-muted mb-1">Etkisi</p>
             <p class="text-xs">{{ selectedItem.description }}</p>
           </div>
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
-            <p class="text-xs text-muted mb-1">解锁条件</p>
+            <p class="text-xs text-muted mb-1">Açılma şartı</p>
             <p class="text-xs">{{ selectedItem.unlockCondition }}</p>
           </div>
           <div class="border rounded-xs p-2" :class="walletStore.has(selectedItem.id) ? 'border-success/30' : 'border-accent/10'">
@@ -56,7 +56,7 @@
               <CircleCheck v-if="walletStore.has(selectedItem.id)" :size="12" class="text-success" />
               <Lock v-else :size="12" class="text-muted" />
               <span class="text-xs" :class="walletStore.has(selectedItem.id) ? 'text-success' : 'text-muted'">
-                {{ walletStore.has(selectedItem.id) ? '已解锁' : '未解锁' }}
+                {{ walletStore.has(selectedItem.id) ? 'Açıldı' : 'Kapalı' }}
               </span>
             </div>
           </div>
