@@ -1,11 +1,11 @@
 import type { AnimalBuildingDef, AnimalDef, AnimalBuildingType, AnimalType } from '@/types'
 
-/** 畜舍定义 */
+/** Ahır ve kümes yapıları */
 export const ANIMAL_BUILDINGS: AnimalBuildingDef[] = [
   {
     type: 'coop',
-    name: '鸡舍',
-    description: '饲养鸡鸭等小型家禽。',
+    name: 'Kümes',
+    description: 'Tavuk, ördek ve benzeri küçük kanatlıları barındırır.',
     capacity: 4,
     cost: 4000,
     materialCost: [
@@ -15,8 +15,8 @@ export const ANIMAL_BUILDINGS: AnimalBuildingDef[] = [
   },
   {
     type: 'barn',
-    name: '牲口棚',
-    description: '饲养牛羊等大型牲畜。',
+    name: 'Büyükbaş Ahırı',
+    description: 'İnek, koyun ve benzeri iri çiftlik hayvanlarını barındırır.',
     capacity: 4,
     cost: 6000,
     materialCost: [
@@ -26,8 +26,8 @@ export const ANIMAL_BUILDINGS: AnimalBuildingDef[] = [
   },
   {
     type: 'stable',
-    name: '马厩',
-    description: '饲养马匹，骑马出行更快。',
+    name: 'At Ahırı',
+    description: 'Atları barındırır; ata binince yolculuk daha hızlı olur.',
     capacity: 1,
     cost: 10000,
     materialCost: [
@@ -37,204 +37,206 @@ export const ANIMAL_BUILDINGS: AnimalBuildingDef[] = [
   }
 ]
 
-/** 动物定义 */
+/** Hayvan tanımları */
 export const ANIMAL_DEFS: AnimalDef[] = [
-  // ===== 鸡舍动物 (8种) =====
+  // ===== Kümes hayvanları (8 tür) =====
   {
     type: 'chicken',
-    name: '鸡',
+    name: 'Tavuk',
     building: 'coop',
     cost: 800,
     productId: 'egg',
-    productName: '鸡蛋',
+    productName: 'Tavuk Yumurtası',
     produceDays: 1,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'duck',
-    name: '鸭',
+    name: 'Ördek',
     building: 'coop',
     cost: 1200,
     productId: 'duck_egg',
-    productName: '鸭蛋',
+    productName: 'Ördek Yumurtası',
     produceDays: 2,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'rabbit',
-    name: '兔',
+    name: 'Tavşan',
     building: 'coop',
     cost: 2000,
     productId: 'rabbit_fur',
-    productName: '兔毛',
+    productName: 'Tavşan Yünü',
     produceDays: 3,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'goose',
-    name: '鹅',
+    name: 'Kaz',
     building: 'coop',
     cost: 1500,
     productId: 'goose_egg',
-    productName: '鹅蛋',
+    productName: 'Kaz Yumurtası',
     produceDays: 2,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'quail',
-    name: '鹌鹑',
+    name: 'Bıldırcın',
     building: 'coop',
     cost: 500,
     productId: 'quail_egg',
-    productName: '鹌鹑蛋',
+    productName: 'Bıldırcın Yumurtası',
     produceDays: 1,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'pigeon',
-    name: '鸽子',
+    name: 'Güvercin',
     building: 'coop',
     cost: 1000,
     productId: 'pigeon_egg',
-    productName: '鸽子蛋',
+    productName: 'Güvercin Yumurtası',
     produceDays: 2,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'silkie',
-    name: '乌骨鸡',
+    name: 'İpek Tavuk',
     building: 'coop',
     cost: 3000,
     productId: 'silkie_egg',
-    productName: '乌鸡蛋',
+    productName: 'İpek Tavuk Yumurtası',
     produceDays: 2,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'peacock',
-    name: '孔雀',
+    name: 'Tavus Kuşu',
     building: 'coop',
     cost: 8000,
     productId: 'peacock_feather',
-    productName: '孔雀羽',
+    productName: 'Tavus Tüyü',
     produceDays: 4,
     friendship: { min: 0, max: 1000 }
   },
-  // ===== 牲口棚动物 (11种) =====
+
+  // ===== Ahır hayvanları (11 tür) =====
   {
     type: 'cow',
-    name: '牛',
+    name: 'İnek',
     building: 'barn',
     cost: 1500,
     productId: 'milk',
-    productName: '牛奶',
+    productName: 'Süt',
     produceDays: 1,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'sheep',
-    name: '羊',
+    name: 'Koyun',
     building: 'barn',
     cost: 8000,
     productId: 'wool',
-    productName: '羊毛',
+    productName: 'Yün',
     produceDays: 3,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'goat',
-    name: '山羊',
+    name: 'Keçi',
     building: 'barn',
     cost: 4000,
     productId: 'goat_milk',
-    productName: '羊奶',
+    productName: 'Keçi Sütü',
     produceDays: 2,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'pig',
-    name: '猪',
+    name: 'Domuz',
     building: 'barn',
     cost: 16000,
     productId: 'truffle',
-    productName: '松露',
+    productName: 'Trüf',
     produceDays: 2,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'buffalo',
-    name: '水牛',
+    name: 'Manda',
     building: 'barn',
     cost: 3000,
     productId: 'buffalo_milk',
-    productName: '水牛奶',
+    productName: 'Manda Sütü',
     produceDays: 2,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'yak',
-    name: '牦牛',
+    name: 'Yak',
     building: 'barn',
     cost: 5000,
     productId: 'yak_milk',
-    productName: '牦牛奶',
+    productName: 'Yak Sütü',
     produceDays: 2,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'alpaca',
-    name: '羊驼',
+    name: 'Alpaka',
     building: 'barn',
     cost: 6000,
     productId: 'alpaca_wool',
-    productName: '羊驼毛',
+    productName: 'Alpaka Yünü',
     produceDays: 3,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'deer',
-    name: '鹿',
+    name: 'Geyik',
     building: 'barn',
     cost: 12000,
     productId: 'antler_velvet',
-    productName: '鹿茸',
+    productName: 'Geyik Boynuzu Kadifesi',
     produceDays: 5,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'donkey',
-    name: '驴',
+    name: 'Eşek',
     building: 'barn',
     cost: 3000,
     productId: 'donkey_milk',
-    productName: '驴奶',
+    productName: 'Eşek Sütü',
     produceDays: 3,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'camel',
-    name: '骆驼',
+    name: 'Deve',
     building: 'barn',
     cost: 7000,
     productId: 'camel_milk',
-    productName: '驼奶',
+    productName: 'Deve Sütü',
     produceDays: 2,
     friendship: { min: 0, max: 1000 }
   },
   {
     type: 'ostrich',
-    name: '鸵鸟',
+    name: 'Devekuşu',
     building: 'barn',
     cost: 10000,
     productId: 'ostrich_egg',
-    productName: '鸵鸟蛋',
+    productName: 'Devekuşu Yumurtası',
     produceDays: 3,
     friendship: { min: 0, max: 1000 }
   },
-  // ===== 马厩 (1种) =====
+
+  // ===== At ahırı (1 tür) =====
   {
     type: 'horse',
-    name: '马',
+    name: 'At',
     building: 'stable',
     cost: 5000,
     productId: '',
@@ -244,22 +246,22 @@ export const ANIMAL_DEFS: AnimalDef[] = [
   }
 ]
 
-/** 干草物品ID */
+/** Saman eşya kimliği */
 export const HAY_ITEM_ID = 'hay'
 
-/** 干草购买价格 */
+/** Saman satın alma fiyatı */
 export const HAY_PRICE = 50
 
 export const PREMIUM_FEED_ID = 'premium_feed'
 export const NOURISHING_FEED_ID = 'nourishing_feed'
 export const VITALITY_FEED_ID = 'vitality_feed'
 
-/** 所有饲料定义（UI 遍历用） */
+/** Tüm yem tanımları (arayüzde listelemek için) */
 export const FEED_DEFS: { id: string; name: string; price: number; description: string }[] = [
-  { id: 'hay', name: '干草', price: 50, description: '基础饲料' },
-  { id: 'premium_feed', name: '精饲料', price: 200, description: '心情+60，好感度翻倍' },
-  { id: 'nourishing_feed', name: '滋补饲料', price: 250, description: '产出天数-1' },
-  { id: 'vitality_feed', name: '活力饲料', price: 300, description: '100%治愈疾病' }
+  { id: 'hay', name: 'Saman', price: 50, description: 'Temel yem' },
+  { id: 'premium_feed', name: 'Seçkin Yem', price: 200, description: 'Neşe +60, dostluk iki kat artar' },
+  { id: 'nourishing_feed', name: 'Besleyici Yem', price: 250, description: 'Üretim günü -1' },
+  { id: 'vitality_feed', name: 'Canlılık Yemi', price: 300, description: 'Hastalığı %100 iyileştirir' }
 ]
 
 export const getAnimalDef = (type: string): AnimalDef | undefined => {
@@ -270,7 +272,7 @@ export const getBuildingDef = (type: string): AnimalBuildingDef | undefined => {
   return ANIMAL_BUILDINGS.find(b => b.type === type)
 }
 
-/** 畜舍升级定义: level 2 = 大型 (容量8), level 3 = 豪华 (容量12) */
+/** Yapı geliştirmeleri: level 2 = Büyük (kapasite 8), level 3 = Görkemli (kapasite 12) */
 export const BUILDING_UPGRADES: {
   type: AnimalBuildingType
   level: number
@@ -282,7 +284,7 @@ export const BUILDING_UPGRADES: {
   {
     type: 'coop',
     level: 2,
-    name: '大型鸡舍',
+    name: 'Büyük Kümes',
     capacity: 8,
     cost: 10000,
     materialCost: [
@@ -293,7 +295,7 @@ export const BUILDING_UPGRADES: {
   {
     type: 'coop',
     level: 3,
-    name: '豪华鸡舍',
+    name: 'Görkemli Kümes',
     capacity: 12,
     cost: 20000,
     materialCost: [
@@ -304,7 +306,7 @@ export const BUILDING_UPGRADES: {
   {
     type: 'barn',
     level: 2,
-    name: '大型牲口棚',
+    name: 'Büyük Ahır',
     capacity: 8,
     cost: 12000,
     materialCost: [
@@ -315,7 +317,7 @@ export const BUILDING_UPGRADES: {
   {
     type: 'barn',
     level: 3,
-    name: '豪华牲口棚',
+    name: 'Görkemli Ahır',
     capacity: 12,
     cost: 25000,
     materialCost: [
@@ -329,7 +331,7 @@ export const getBuildingUpgrade = (type: AnimalBuildingType, toLevel: number) =>
   return BUILDING_UPGRADES.find(u => u.type === type && u.level === toLevel)
 }
 
-/** 孵化映射：蛋 → 动物类型 + 孵化天数 + 所属建筑 */
+/** Kuluçka eşlemesi: yumurta → hayvan türü + kuluçka günü + ait olduğu yapı */
 export const INCUBATION_MAP: Record<string, { animalType: AnimalType; days: number; building: AnimalBuildingType }> = {
   egg: { animalType: 'chicken', days: 5, building: 'coop' },
   duck_egg: { animalType: 'duck', days: 7, building: 'coop' },
