@@ -1,6 +1,6 @@
 import type { FarmhouseLevel } from '@/types'
 
-/** 农舍升级定义 */
+/** Çiftlik Evi Yükseltme Tanımı */
 export interface FarmhouseUpgradeDef {
   level: FarmhouseLevel
   name: string
@@ -13,16 +13,16 @@ export interface FarmhouseUpgradeDef {
 export const FARMHOUSE_UPGRADES: FarmhouseUpgradeDef[] = [
   {
     level: 1,
-    name: '砖房',
-    description: '升级厨房，烹饪体力恢复+20%。',
+    name: 'Kerpiç Ocak Evi',
+    description: 'Mutfak genişletilir, yemekler Gaköy usulü daha doyurucu olur (+%20 enerji).',
     cost: 10000,
     materialCost: [{ itemId: 'wood', quantity: 200 }],
     benefit: 'kitchen_bonus'
   },
   {
     level: 2,
-    name: '宅院',
-    description: '宽敞的院落，每晚额外恢复10%体力。',
+    name: 'Avlulu Konak',
+    description: 'Geniş bir avlu kurulur, her gece %10 fazladan enerji geri kazanılır.',
     cost: 65000,
     materialCost: [
       { itemId: 'wood', quantity: 100 },
@@ -32,8 +32,8 @@ export const FARMHOUSE_UPGRADES: FarmhouseUpgradeDef[] = [
   },
   {
     level: 3,
-    name: '酒窖',
-    description: '地下酒窖，可陈酿美酒提升品质。',
+    name: 'Yeraltı Şaraplığı',
+    description: 'Toprak altına oyulmuş mahzen; içkiler burada dinlenerek değer kazanır.',
     cost: 100000,
     materialCost: [
       { itemId: 'wood', quantity: 100 },
@@ -43,35 +43,35 @@ export const FARMHOUSE_UPGRADES: FarmhouseUpgradeDef[] = [
   }
 ]
 
-/** 山洞解锁条件 — 累计收入达到此值 */
+/** Mağara açılma şartı — toplam kazanç */
 export const CAVE_UNLOCK_EARNINGS = 25000
 
-/** 蘑菇洞每天产出概率 */
+/** Mantar mağarası günlük üretim ihtimali */
 export const CAVE_MUSHROOM_DAILY_CHANCE = 0.6
 
-/** 蝙蝠洞每天产出概率 */
+/** Yarasa mağarası günlük üretim ihtimali */
 export const CAVE_FRUIT_BAT_DAILY_CHANCE = 0.5
 
-/** 仓库解锁材料需求 */
+/** Ambar açma gereksinimi */
 export const WAREHOUSE_UNLOCK_MATERIALS = [
   { itemId: 'wood', quantity: 300 },
   { itemId: 'iron_ore', quantity: 20 }
 ]
 
-/** 温室解锁价格 */
+/** Sera açma ücreti */
 export const GREENHOUSE_UNLOCK_COST = 35000
 
-/** 温室材料需求 */
+/** Sera malzeme gereksinimi */
 export const GREENHOUSE_MATERIAL_COST = [
   { itemId: 'wood', quantity: 200 },
   { itemId: 'iron_ore', quantity: 30 },
   { itemId: 'gold_ore', quantity: 10 }
 ]
 
-/** 温室地块数 */
+/** Sera başlangıç tarla sayısı */
 export const GREENHOUSE_PLOT_COUNT = 12
 
-/** 温室升级定义 */
+/** Sera yükseltme tanımı */
 export interface GreenhouseUpgradeDef {
   level: number
   name: string
@@ -85,7 +85,7 @@ export interface GreenhouseUpgradeDef {
 export const GREENHOUSE_UPGRADES: GreenhouseUpgradeDef[] = [
   {
     level: 1,
-    name: '温室扩建·壹',
+    name: 'Sera Genişletme · Birinci Kademe',
     plotCount: 20,
     gridCols: 5,
     cost: 50000,
@@ -93,11 +93,11 @@ export const GREENHOUSE_UPGRADES: GreenhouseUpgradeDef[] = [
       { itemId: 'wood', quantity: 300 },
       { itemId: 'iron_bar', quantity: 20 }
     ],
-    description: '扩建至20个地块（5×4）'
+    description: '20 tarla (5×4) olacak şekilde genişletilir.'
   },
   {
     level: 2,
-    name: '温室扩建·贰',
+    name: 'Sera Genişletme · İkinci Kademe',
     plotCount: 30,
     gridCols: 6,
     cost: 100000,
@@ -105,14 +105,14 @@ export const GREENHOUSE_UPGRADES: GreenhouseUpgradeDef[] = [
       { itemId: 'wood', quantity: 500 },
       { itemId: 'gold_bar', quantity: 15 }
     ],
-    description: '扩建至30个地块（6×5）'
+    description: '30 tarla (6×5) olacak şekilde genişletilir.'
   }
 ]
 
-/** 酒窖陈酿天数——提升一档品质所需天数 */
+/** Şarap olgunlaşma süresi (gün) */
 export const CELLAR_AGING_DAYS = 14
 
-/** 酒窖最大容量 */
+/** Mahzen kapasitesi */
 export const CELLAR_MAX_SLOTS = 6
 
 export const getFarmhouseUpgrade = (level: number): FarmhouseUpgradeDef | undefined => {
