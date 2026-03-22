@@ -2536,214 +2536,214 @@ export const HYBRID_DEFS: HybridDef[] = [
     baseGenetics: { sweetness: 65, yield: 65, resistance: 55 },
     discoveryText: 'Bal çay meyvesi ile şeftali çiçeği çayı birleşir, Gaköy’de kutsal bir filiz doğar.'
   },
-  {
+{
     id: 'azure_hua_lotus',
-    name: '青华莲',
+    name: 'Gök Işığı Nilüferi',
     parentCropA: 'wind_melon',
     parentCropB: 'ruby_bean',
     minSweetness: 53,
     minYield: 53,
     resultCropId: 'azure_hua_lotus',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 55 },
-    discoveryText: '蜜茶果与红宝豆在月华中蜕变，天赐之品。'
+    discoveryText: 'Bal çay meyvesi ile yakut fasulye ay ışığında dönüşür, gaKöy’de göğün armağanı bir nilüfer açar.'
   },
   {
     id: 'moon_shine_wheat',
-    name: '月辉麦',
+    name: 'Ay Parıltısı Buğdayı',
     parentCropA: 'wind_melon',
     parentCropB: 'twin_bean',
     minSweetness: 53,
     minYield: 53,
     resultCropId: 'moon_shine_wheat',
     baseGenetics: { sweetness: 65, yield: 65, resistance: 56 },
-    discoveryText: '蜜茶果与双子豆在天光下交融，绽放华彩。'
+    discoveryText: 'Bal çay meyvesi ile ikiz fasulye gök ışığında birleşir, gaKöy tarlalarında ay gibi parlayan başaklar verir.'
   },
   {
     id: 'sun_shine_sesame',
-    name: '日辉芝',
+    name: 'Güneş Parıltısı Susamı',
     parentCropA: 'wind_melon',
     parentCropB: 'jade_melon',
     minSweetness: 53,
     minYield: 53,
     resultCropId: 'sun_shine_sesame',
     baseGenetics: { sweetness: 66, yield: 66, resistance: 56 },
-    discoveryText: '蜜茶果与碧玉瓜承日月精华，辉映四方。'
+    discoveryText: 'Bal çay meyvesi ile yeşim kavunu gün ile ayın özünü taşır, gaKöy’de altın gibi parlayan susamlar doğar.'
   },
   {
     id: 'sky_shine_pepper',
-    name: '天辉椒',
+    name: 'Gök Parıltısı Biberi',
     parentCropA: 'wind_melon',
     parentCropB: 'pearl_grain',
     minSweetness: 54,
     minYield: 54,
     resultCropId: 'sky_shine_pepper',
     baseGenetics: { sweetness: 66, yield: 66, resistance: 56 },
-    discoveryText: '蜜茶果与珍珠谷凝天地灵气，瑞光盈盈。'
+    discoveryText: 'Bal çay meyvesi ile inci tanesi gök ile yerin gücünü toplar, gaKöy’de kutsal sayılan bir biber doğar.'
   },
   {
     id: 'gem_shine_root',
-    name: '玉辉参',
+    name: 'Yeşim Parıltısı Kökü',
     parentCropA: 'wind_melon',
     parentCropB: 'golden_corn',
     minSweetness: 54,
     minYield: 54,
     resultCropId: 'gem_shine_root',
     baseGenetics: { sweetness: 66, yield: 66, resistance: 57 },
-    discoveryText: '蜜茶果与金穗玉米沐浴星辉，祥瑞之兆。'
+    discoveryText: 'Bal çay meyvesi ile altın mısır yıldız ışığıyla yoğrulur, gaKöy toprağında uğur getiren bir kök doğar.'
   },
   {
     id: 'prism_shine_sprout',
-    name: '琉辉芽',
+    name: 'Prizma Parıltısı Filizi',
     parentCropA: 'wind_melon',
     parentCropB: 'lotus_tea',
     minSweetness: 54,
     minYield: 54,
     resultCropId: 'prism_shine_sprout',
     baseGenetics: { sweetness: 67, yield: 67, resistance: 57 },
-    discoveryText: '蜜茶果与莲心茶在月华中蜕变，天赐之品。'
+    discoveryText: 'Bal çay meyvesi ile nilüfer çayı ay ışığında dönüşür, gaKöy’de göğün bağışı sayılan bir filiz doğar.'
   },
   {
     id: 'silver_shine_vine',
-    name: '银辉藤',
+    name: 'Gümüş Parıltısı Asması',
     parentCropA: 'wind_melon',
     parentCropB: 'purple_bamboo',
     minSweetness: 55,
     minYield: 55,
     resultCropId: 'silver_shine_vine',
     baseGenetics: { sweetness: 67, yield: 67, resistance: 58 },
-    discoveryText: '蜜茶果与紫竹茄在天光下交融，绽放华彩。'
+    discoveryText: 'Bal çay meyvesi ile mor bambu gök ışığında birleşir, gaKöy bağlarında gümüş gibi parlayan bir asma doğar.'
   },
   {
     id: 'verdant_shine_bud',
-    name: '翠辉蕾',
+    name: 'Yeşil Parıltısı Tomurcuğu',
     parentCropA: 'wind_melon',
     parentCropB: 'honey_peach_melon',
     minSweetness: 55,
     minYield: 55,
     resultCropId: 'verdant_shine_bud',
     baseGenetics: { sweetness: 67, yield: 67, resistance: 58 },
-    discoveryText: '蜜茶果与蜜桃瓜承日月精华，辉映四方。'
+    discoveryText: 'Bal çay meyvesi ile bal şeftali kavunu gün ile ayın özünü taşır, gaKöy’de ışık saçan bir tomurcuk doğar.'
   },
   {
     id: 'violet_shine_orchid',
-    name: '紫辉兰',
+    name: 'Mor Parıltısı Orkidesi',
     parentCropA: 'wind_melon',
     parentCropB: 'fire_bean',
     minSweetness: 55,
     minYield: 55,
     resultCropId: 'violet_shine_orchid',
     baseGenetics: { sweetness: 68, yield: 68, resistance: 58 },
-    discoveryText: '蜜茶果与火豆凝天地灵气，瑞光盈盈。'
+    discoveryText: 'Bal çay meyvesi ile ateş fasulyesi gök ile yerin gücünü toplar, gaKöy’de mor ışık saçan bir orkide doğar.'
   },
   {
     id: 'scarlet_shine_gourd',
-    name: '丹辉葫',
+    name: 'Kızıl Parıltısı Kabağı',
     parentCropA: 'wind_melon',
     parentCropB: 'silk_bean',
     minSweetness: 56,
     minYield: 56,
     resultCropId: 'scarlet_shine_gourd',
     baseGenetics: { sweetness: 68, yield: 68, resistance: 59 },
-    discoveryText: '蜜茶果与丝豆沐浴星辉，祥瑞之兆。'
+    discoveryText: 'Bal çay meyvesi ile ipek fasulye yıldız ışığıyla yoğrulur, gaKöy’de uğur getiren kızıl bir kabak doğar.'
   },
   {
     id: 'azure_shine_herb',
-    name: '青辉草',
+    name: 'Gök Parıltısı Otu',
     parentCropA: 'wind_melon',
     parentCropB: 'double_oil_seed',
     minSweetness: 56,
     minYield: 56,
     resultCropId: 'azure_shine_herb',
     baseGenetics: { sweetness: 68, yield: 68, resistance: 59 },
-    discoveryText: '蜜茶果与双油籽在月华中蜕变，天赐之品。'
+    discoveryText: 'Bal çay meyvesi ile çift yağ tohumu ay ışığında dönüşür, gaKöy’de göğün bağışı sayılan bir ot doğar.'
   },
   {
     id: 'moon_fortune_chestnut',
-    name: '月瑞栗',
+    name: 'Ay Uğuru Kestanesi',
     parentCropA: 'wind_melon',
     parentCropB: 'lotus_potato',
     minSweetness: 56,
     minYield: 56,
     resultCropId: 'moon_fortune_chestnut',
     baseGenetics: { sweetness: 69, yield: 69, resistance: 59 },
-    discoveryText: '蜜茶果与莲花薯在天光下交融，绽放华彩。'
+    discoveryText: 'Bal çay meyvesi ile nilüfer yumrusu gök ışığında birleşir, gaKöy ormanlarında uğur getiren bir kestane doğar.'
   },
   {
     id: 'sun_fortune_apricot',
-    name: '日瑞杏',
+    name: 'Güneş Uğuru Kayısısı',
     parentCropA: 'wind_melon',
     parentCropB: 'jade_pumpkin',
     minSweetness: 56,
     minYield: 56,
     resultCropId: 'sun_fortune_apricot',
     baseGenetics: { sweetness: 69, yield: 69, resistance: 60 },
-    discoveryText: '蜜茶果与翡翠南瓜承日月精华，辉映四方。'
+    discoveryText: 'Bal çay meyvesi ile yeşim kabak gün ile ayın özünü taşır, gaKöy’de kutlu bir kayısı doğar.'
   },
   {
     id: 'sky_fortune_pear',
-    name: '天瑞梨',
+    name: 'Gök Uğuru Armudu',
     parentCropA: 'wind_melon',
     parentCropB: 'crystal_yam',
     minSweetness: 57,
     minYield: 57,
     resultCropId: 'sky_fortune_pear',
     baseGenetics: { sweetness: 69, yield: 69, resistance: 60 },
-    discoveryText: '蜜茶果与水晶山药凝天地灵气，瑞光盈盈。'
+    discoveryText: 'Bal çay meyvesi ile billur yam gök ile yerin gücünü toplar, gaKöy’de parıltılı bir armut doğar.'
   },
   {
     id: 'gem_fortune_berry',
-    name: '玉瑞莓',
+    name: 'Yeşim Uğuru Meyvesi',
     parentCropA: 'wind_melon',
     parentCropB: 'osmanthus_tea',
     minSweetness: 57,
     minYield: 57,
     resultCropId: 'gem_fortune_berry',
     baseGenetics: { sweetness: 70, yield: 70, resistance: 60 },
-    discoveryText: '蜜茶果与桂花茶沐浴星辉，祥瑞之兆。'
+    discoveryText: 'Bal çay meyvesi ile osmanthus çayı yıldız ışığıyla yoğrulur, gaKöy’de uğur getiren bir meyve doğar.'
   },
   {
     id: 'prism_fortune_peach_t',
-    name: '琉瑞桃',
+    name: 'Prizma Uğuru Şeftalisi',
     parentCropA: 'wind_melon',
     parentCropB: 'mountain_bamboo',
     minSweetness: 57,
     minYield: 57,
     resultCropId: 'prism_fortune_peach_t',
     baseGenetics: { sweetness: 70, yield: 70, resistance: 61 },
-    discoveryText: '蜜茶果与山竹薯在月华中蜕变，天赐之品。'
+    discoveryText: 'Bal çay meyvesi ile dağ bambusu ay ışığında dönüşür, gaKöy’de göğün bağışı sayılan bir şeftali doğar.'
   },
   {
     id: 'silver_fortune_melon',
-    name: '银瑞瓜',
+    name: 'Gümüş Uğuru Kavunu',
     parentCropA: 'wind_melon',
     parentCropB: 'golden_fruit',
     minSweetness: 58,
     minYield: 58,
     resultCropId: 'silver_fortune_melon',
     baseGenetics: { sweetness: 70, yield: 70, resistance: 61 },
-    discoveryText: '蜜茶果与金秋果在天光下交融，绽放华彩。'
+    discoveryText: 'Bal çay meyvesi ile altın güz meyvesi gök ışığında birleşir, gaKöy’de gümüş gibi parlayan bir kavun doğar.'
   },
   {
     id: 'verdant_fortune_bean',
-    name: '翠瑞豆',
+    name: 'Yeşil Uğuru Fasulyesi',
     parentCropA: 'wind_melon',
     parentCropB: 'nut_potato',
     minSweetness: 58,
     minYield: 58,
     resultCropId: 'verdant_fortune_bean',
     baseGenetics: { sweetness: 70, yield: 70, resistance: 62 },
-    discoveryText: '蜜茶果与花生薯承日月精华，辉映四方。'
+    discoveryText: 'Bal çay meyvesi ile yer fıstıklı yumru gün ile ayın özünü taşır, gaKöy tarlalarında bereketli bir fasulye doğar.'
   },
   {
     id: 'violet_fortune_rice',
-    name: '紫瑞稻',
+    name: 'Mor Uğuru Pirinci',
     parentCropA: 'wind_melon',
     parentCropB: 'autumn_bean',
     minSweetness: 58,
     minYield: 58,
     resultCropId: 'violet_fortune_rice',
     baseGenetics: { sweetness: 71, yield: 71, resistance: 62 },
-    discoveryText: '蜜茶果与秋枣豆凝天地灵气，瑞光盈盈。'
+    discoveryText: 'Bal çay meyvesi ile güz fasulyesi gök ile yerin gücünü toplar, gaKöy’de mor parıltılı bir pirinç doğar.'
   },
   {
     id: 'scarlet_fortune_tuber',
