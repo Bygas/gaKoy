@@ -2,12 +2,12 @@
   <div>
     <p v-if="tutorialHint" class="text-[10px] text-muted/50 mb-2">{{ tutorialHint }}</p>
 
-    <!-- 返回按钮（在子商铺时显示） -->
+    <!-- Geri dön düğmesi (alt dükkandaysa görünür) -->
     <Button v-if="shopStore.currentShopId" class="mb-3 w-full md:w-auto" :icon="ChevronLeft" @click="shopStore.currentShopId = null">
-      返回商圈
+      Çarşıya Dön
     </Button>
 
-    <!-- 移动端：购买/出售切换 -->
+    <!-- Taşınır aygıt: alım/satım geçişi -->
     <div class="flex space-x-1.5 mb-3 md:hidden">
       <Button
         class="flex-1 justify-center"
@@ -15,7 +15,7 @@
         :icon="ShoppingCart"
         @click="mobileTab = 'buy'"
       >
-        购买
+        Al
       </Button>
       <Button
         class="flex-1 justify-center"
@@ -23,31 +23,31 @@
         :icon="Coins"
         @click="mobileTab = 'sell'"
       >
-        出售
+        Sat
       </Button>
     </div>
 
     <div class="flex flex-col md:flex-row space-x-0 md:space-x-4 md:space-y-6">
-      <!-- 左侧：购买区 -->
+      <!-- Sol yan: alım bölüğü -->
       <div class="flex-1" :class="{ 'hidden md:block': mobileTab === 'sell' }">
-        <!-- 折扣提示 -->
-        <p v-if="hasDiscount" class="text-success text-xs mb-3">折扣生效中：所有购物价格 -{{ discountPercent }}%</p>
+        <!-- İndirim bildirisi -->
+        <p v-if="hasDiscount" class="text-success text-xs mb-3">İndirim yürürlükte: bütün alış bedelleri -%{{ discountPercent }}</p>
 
-        <!-- ====== 商圈总览 ====== -->
+        <!-- ====== Çarşı genel görünümü ====== -->
         <template v-if="!shopStore.currentShopId">
           <h3 class="text-accent text-sm mb-3">
             <Store :size="14" class="inline" />
-            桃源商圈
+            gaKöy Çarşısı
           </h3>
-          <p class="text-muted text-xs mb-3">点击商铺进入选购。</p>
+          <p class="text-muted text-xs mb-3">Bir dükkâna girip alışveriş et.</p>
 
-          <!-- 旅行商人（仅周五/日） -->
+          <!-- Gezgin tacir (yalnız cuma/pazar) -->
           <div v-if="shopStore.isMerchantHere" class="mb-4">
             <h4 class="text-accent text-sm mb-2">
               <MapPin :size="14" class="inline" />
-              旅行商人 · 限时特卖
+              Gezgin Tacir · Günübirlik Satış
             </h4>
-            <p class="text-muted text-xs mb-2">旅行商人今天在桃源村摆摊，带来了稀有货物！</p>
+            <p class="text-muted text-xs mb-2">Gezgin tacir bugün gaKöy meydanında tezgâh açtı; yanında nadir mallar var!</p>
             <div class="flex flex-col space-y-2">
               <div
                 v-for="item in shopStore.travelingStock"
@@ -71,12 +71,12 @@
                   <p class="text-sm">{{ item.name }}</p>
                   <p class="text-muted text-xs">{{ getTravelerItemDesc(item.itemId, item.quantity) }}</p>
                 </div>
-                <span class="text-xs text-accent whitespace-nowrap">{{ discounted(item.price) }}文</span>
+                <span class="text-xs text-accent whitespace-nowrap">{{ discounted(item.price) }} akçe</span>
               </div>
             </div>
           </div>
 
-          <!-- 六大商铺卡片 -->
+          <!-- Altı dükkân kartı -->
           <div class="flex flex-col space-y-2">
             <div
               v-for="shop in SHOPS"
@@ -95,14 +95,14 @@
           </div>
         </template>
 
-        <!-- ====== 万物铺 ====== -->
+        <!-- ====== Her Şey Dükkânı ====== -->
         <template v-else-if="shopStore.currentShopId === 'wanwupu'">
-          <ShopHeader name="万物铺" npc="陈伯" />
+          <ShopHeader name="Her Şey Dükkânı" npc="Çorbacı Dede" />
 
-          <!-- 当季种子 -->
+          <!-- O mevsimin tohumları -->
           <h4 class="text-accent text-sm mb-2 mt-3">
             <Sprout :size="14" class="inline" />
-            当季种子
+            Mevsim Tohumları
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -111,8 +111,8 @@
               class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
               @click="
                 openBatchBuyModal(
-                  seed.cropName + '种子',
-                  `${seed.season.map(s => SEASON_NAMES[s]).join('/')}季 · ${seed.growthDays}天成熟 → 售${seed.sellPrice}文`,
+                  seed.cropName + ' tohumu',
+                  `${seed.season.map(s => SEASON_NAMES[s]).join('/')} mevsim · ${seed.growthDays} günde olur → ${seed.sellPrice} akçeye gider`,
                   discounted(seed.price),
                   () => handleBuySeed(seed.seedId),
                   () => playerStore.money >= discounted(seed.price),
@@ -123,38 +123,38 @@
             >
               <div>
                 <p class="text-sm">
-                  {{ seed.cropName }}种子
-                  <span v-if="seed.regrowth" class="text-success text-xs ml-1">[多茬]</span>
+                  {{ seed.cropName }} tohumu
+                  <span v-if="seed.regrowth" class="text-success text-xs ml-1">[Yeniden verir]</span>
                 </p>
                 <p class="text-muted text-xs">
-                  {{ seed.season.map(s => SEASON_NAMES[s]).join('/') }}季 · {{ seed.growthDays }}天{{
-                    seed.regrowth ? ` · 每${seed.regrowthDays}天再收` : ''
+                  {{ seed.season.map(s => SEASON_NAMES[s]).join('/') }} mevsim · {{ seed.growthDays }} gün{{
+                    seed.regrowth ? ` · her ${seed.regrowthDays} günde yeniden` : ''
                   }}
-                  → 售{{ seed.sellPrice }}文
+                  → {{ seed.sellPrice }} akçe
                 </p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(seed.price) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(seed.price) }} akçe</span>
             </div>
             <div v-if="shopStore.availableSeeds.length === 0" class="flex flex-col items-center justify-center py-4 text-muted">
               <Sprout :size="24" class="text-muted/30 mb-2" />
-              <p class="text-xs">本季没有种子出售</p>
+              <p class="text-xs">Bu mevsim satılık tohum yok</p>
             </div>
           </div>
 
-          <!-- 杂货 -->
+          <!-- Çeşit çeşit mal -->
           <h4 class="text-accent text-sm mb-2 mt-4">
             <Package :size="14" class="inline" />
-            杂货
+            Çeşit Mal
           </h4>
           <div class="flex flex-col space-y-2">
-            <!-- 背包扩容 -->
+            <!-- Heybe büyütme -->
             <div
               v-if="inventoryStore.capacity < 60"
               class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
               @click="
                 openBuyModal(
-                  '背包扩容',
-                  `当前${inventoryStore.capacity}格 → ${inventoryStore.capacity + 4}格`,
+                  'Heybe büyütme',
+                  `Şimdi ${inventoryStore.capacity} göz → ${inventoryStore.capacity + 4} göz`,
                   discounted(bagPrice),
                   handleBuyBag,
                   () => playerStore.money >= discounted(bagPrice)
@@ -162,10 +162,10 @@
               "
             >
               <div>
-                <p class="text-sm">背包扩容</p>
-                <p class="text-muted text-xs">当前{{ inventoryStore.capacity }}格 → {{ inventoryStore.capacity + 4 }}格</p>
+                <p class="text-sm">Heybe büyütme</p>
+                <p class="text-muted text-xs">Şimdi {{ inventoryStore.capacity }} göz → {{ inventoryStore.capacity + 4 }} göz</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(bagPrice) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(bagPrice) }} akçe</span>
             </div>
 
             <div
@@ -173,8 +173,8 @@
               class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
               @click="
                 openBuyModal(
-                  '仓库扩建',
-                  `箱子槽位 ${warehouseStore.maxChests} → ${warehouseStore.maxChests + 1}`,
+                  'Ambar genişletme',
+                  `Sandık yeri ${warehouseStore.maxChests} → ${warehouseStore.maxChests + 1}`,
                   discounted(warehouseExpandPrice),
                   handleBuyWarehouseExpand,
                   () => playerStore.money >= discounted(warehouseExpandPrice)
@@ -182,19 +182,19 @@
               "
             >
               <div>
-                <p class="text-sm">仓库扩建</p>
-                <p class="text-muted text-xs">箱子槽位 {{ warehouseStore.maxChests }} → {{ warehouseStore.maxChests + 1 }}</p>
+                <p class="text-sm">Ambar genişletme</p>
+                <p class="text-muted text-xs">Sandık yeri {{ warehouseStore.maxChests }} → {{ warehouseStore.maxChests + 1 }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(warehouseExpandPrice) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(warehouseExpandPrice) }} akçe</span>
             </div>
 
-            <!-- 农场扩建 -->
+            <!-- Çiftlik genişletme -->
             <div
               v-if="farmExpandInfo"
               class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
               @click="
                 openBuyModal(
-                  '农场扩建',
+                  'Çiftlik genişletme',
                   `${farmStore.farmSize}×${farmStore.farmSize} → ${farmExpandInfo.newSize}×${farmExpandInfo.newSize}`,
                   discounted(farmExpandInfo.price),
                   handleBuyFarmExpand,
@@ -203,23 +203,23 @@
               "
             >
               <div>
-                <p class="text-sm">农场扩建</p>
+                <p class="text-sm">Çiftlik genişletme</p>
                 <p class="text-muted text-xs">
                   {{ farmStore.farmSize }}×{{ farmStore.farmSize }} → {{ farmExpandInfo.newSize }}×{{ farmExpandInfo.newSize }}
                 </p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(farmExpandInfo.price) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(farmExpandInfo.price) }} akçe</span>
             </div>
 
-            <!-- 树苗 -->
+            <!-- Fidanlar -->
             <div
               v-for="tree in FRUIT_TREE_DEFS"
               :key="tree.saplingId"
               class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
               @click="
                 openBatchBuyModal(
-                  tree.name + '苗',
-                  `28天成熟 · ${seasonName(tree.fruitSeason)}季产${tree.fruitName}`,
+                  tree.name + ' fidanı',
+                  `28 günde olur · ${seasonName(tree.fruitSeason)} mevsiminde ${tree.fruitName} verir`,
                   discounted(tree.saplingPrice),
                   () => handleBuySapling(tree.saplingId, tree.saplingPrice, tree.name),
                   () => playerStore.money >= discounted(tree.saplingPrice),
@@ -229,83 +229,83 @@
               "
             >
               <div>
-                <p class="text-sm">{{ tree.name }}苗</p>
-                <p class="text-muted text-xs">28天成熟 · {{ seasonName(tree.fruitSeason) }}季产{{ tree.fruitName }}</p>
+                <p class="text-sm">{{ tree.name }} fidanı</p>
+                <p class="text-muted text-xs">28 günde olur · {{ seasonName(tree.fruitSeason) }} mevsiminde {{ tree.fruitName }} verir</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(tree.saplingPrice) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(tree.saplingPrice) }} akçe</span>
             </div>
 
-            <!-- 干草 -->
+            <!-- Kuru ot -->
             <div
               class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
               @click="
                 openBatchBuyModal(
-                  '干草',
-                  '喂养牲畜用',
+                  'Kuru ot',
+                  'Hayvanları doyurmak içindir',
                   discounted(HAY_PRICE),
                   handleBuyHay,
                   () => playerStore.money >= discounted(HAY_PRICE),
-                  count => handleBatchBuyItem('hay', HAY_PRICE, '干草', count),
+                  count => handleBatchBuyItem('hay', HAY_PRICE, 'Kuru ot', count),
                   () => getMaxBuyable(discounted(HAY_PRICE))
                 )
               "
             >
               <div>
-                <p class="text-sm">干草</p>
-                <p class="text-muted text-xs">喂养牲畜用</p>
+                <p class="text-sm">Kuru ot</p>
+                <p class="text-muted text-xs">Hayvanları doyurmak içindir</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(HAY_PRICE) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(HAY_PRICE) }} akçe</span>
             </div>
 
-            <!-- 木材 -->
+            <!-- Odun -->
             <div
               class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
               @click="
                 openBatchBuyModal(
-                  '木材',
-                  '建筑和加工的基础材料',
+                  'Odun',
+                  'Yapı ve işlik için temel gereçtir',
                   discounted(WOOD_PRICE),
-                  () => handleBuyItem('wood', WOOD_PRICE, '木材'),
+                  () => handleBuyItem('wood', WOOD_PRICE, 'Odun'),
                   () => playerStore.money >= discounted(WOOD_PRICE),
-                  count => handleBatchBuyItem('wood', WOOD_PRICE, '木材', count),
+                  count => handleBatchBuyItem('wood', WOOD_PRICE, 'Odun', count),
                   () => getMaxBuyable(discounted(WOOD_PRICE))
                 )
               "
             >
               <div>
-                <p class="text-sm">木材</p>
-                <p class="text-muted text-xs">建筑和加工的基础材料</p>
+                <p class="text-sm">Odun</p>
+                <p class="text-muted text-xs">Yapı ve işlik için temel gereçtir</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(WOOD_PRICE) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(WOOD_PRICE) }} akçe</span>
             </div>
 
-            <!-- 雨图腾 -->
+            <!-- Yağmur tılsımı -->
             <div
               class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
               @click="
                 openBatchBuyModal(
-                  '雨图腾',
-                  '使用后可以让明天下雨',
+                  'Yağmur tılsımı',
+                  'Kullanılınca yarın yağmur yağdırır',
                   discounted(RAIN_TOTEM_PRICE),
-                  () => handleBuyItem('rain_totem', RAIN_TOTEM_PRICE, '雨图腾'),
+                  () => handleBuyItem('rain_totem', RAIN_TOTEM_PRICE, 'Yağmur tılsımı'),
                   () => playerStore.money >= discounted(RAIN_TOTEM_PRICE),
-                  count => handleBatchBuyItem('rain_totem', RAIN_TOTEM_PRICE, '雨图腾', count),
+                  count => handleBatchBuyItem('rain_totem', RAIN_TOTEM_PRICE, 'Yağmur tılsımı', count),
                   () => getMaxBuyable(discounted(RAIN_TOTEM_PRICE))
                 )
               "
             >
               <div>
-                <p class="text-sm">雨图腾</p>
-                <p class="text-muted text-xs">使用后可以让明天下雨</p>
+                <p class="text-sm">Yağmur tılsımı</p>
+                <p class="text-muted text-xs">Kullanılınca yarın yağmur yağdırır</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(RAIN_TOTEM_PRICE) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(RAIN_TOTEM_PRICE) }} akçe</span>
             </div>
           </div>
         </template>
 
-        <!-- ====== 铁匠铺 ====== -->
+        <!-- ====== Demirci ====== -->
         <template v-else-if="shopStore.currentShopId === 'tiejiangpu'">
-          <ShopHeader name="铁匠铺" npc="孙铁匠" />
+          <ShopHeader name="Demirci Ocağı" npc="Demirci Sungur" />
 
           <div class="flex flex-col space-y-2">
             <div
@@ -328,14 +328,14 @@
                 <p class="text-sm">{{ item.name }}</p>
                 <p class="text-muted text-xs">{{ item.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(item.price) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(item.price) }} akçe</span>
             </div>
           </div>
 
-          <!-- 戒指合成 -->
+          <!-- Yüzük dövümü -->
           <h4 class="text-accent text-sm mb-2 mt-4">
             <CircleDot :size="14" class="inline" />
-            戒指合成
+            Yüzük Dövümü
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -348,22 +348,22 @@
               <div>
                 <p class="text-sm">
                   {{ ring.name }}
-                  <span v-if="inventoryStore.hasRing(ring.id)" class="text-success text-xs ml-1">已拥有</span>
+                  <span v-if="inventoryStore.hasRing(ring.id)" class="text-success text-xs ml-1">Var</span>
                 </p>
                 <p class="text-muted text-xs">{{ ring.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ ring.recipeMoney }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ ring.recipeMoney }} akçe</span>
             </div>
             <div v-if="craftableRings.length === 0" class="flex flex-col items-center justify-center py-4 text-muted">
               <CircleDot :size="24" class="text-muted/30 mb-2" />
-              <p class="text-xs">没有可合成的戒指</p>
+              <p class="text-xs">Dövülecek yüzük yok</p>
             </div>
           </div>
 
-          <!-- 帽子合成 -->
+          <!-- Başlık dövümü -->
           <h4 class="text-accent text-sm mb-2 mt-4">
             <Crown :size="14" class="inline" />
-            帽子合成
+            Başlık Dövümü
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -376,18 +376,18 @@
               <div>
                 <p class="text-sm">
                   {{ hat.name }}
-                  <span v-if="inventoryStore.hasHat(hat.id)" class="text-success text-xs ml-1">已拥有</span>
+                  <span v-if="inventoryStore.hasHat(hat.id)" class="text-success text-xs ml-1">Var</span>
                 </p>
                 <p class="text-muted text-xs">{{ hat.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ hat.recipeMoney }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ hat.recipeMoney }} akçe</span>
             </div>
           </div>
 
-          <!-- 鞋子合成 -->
+          <!-- Ayakkabı dövümü -->
           <h4 class="text-accent text-sm mb-2 mt-4">
             <Footprints :size="14" class="inline" />
-            鞋子合成
+            Ayakkabı Dövümü
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -400,23 +400,23 @@
               <div>
                 <p class="text-sm">
                   {{ shoe.name }}
-                  <span v-if="inventoryStore.hasShoe(shoe.id)" class="text-success text-xs ml-1">已拥有</span>
+                  <span v-if="inventoryStore.hasShoe(shoe.id)" class="text-success text-xs ml-1">Var</span>
                 </p>
                 <p class="text-muted text-xs">{{ shoe.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ shoe.recipeMoney }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ shoe.recipeMoney }} akçe</span>
             </div>
           </div>
         </template>
 
-        <!-- ====== 镖局 ====== -->
+        <!-- ====== Kervan Ocağı ====== -->
         <template v-else-if="shopStore.currentShopId === 'biaoju'">
-          <ShopHeader name="镖局" npc="云飞" />
+          <ShopHeader name="Kervan Ocağı" npc="Yun Alp" />
 
-          <!-- 武器 -->
+          <!-- Silahlar -->
           <h4 class="text-accent text-sm mb-2">
             <Sword :size="14" class="inline" />
-            武器
+            Silahlar
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -428,23 +428,23 @@
               <div>
                 <p class="text-sm">
                   {{ w.name }}
-                  <span v-if="inventoryStore.hasWeapon(w.id)" class="text-success text-xs ml-1">已拥有</span>
+                  <span v-if="inventoryStore.hasWeapon(w.id)" class="text-success text-xs ml-1">Var</span>
                 </p>
-                <p class="text-muted text-xs">{{ WEAPON_TYPE_NAMES[w.type] }} · 攻击{{ w.attack }}</p>
+                <p class="text-muted text-xs">{{ WEAPON_TYPE_NAMES[w.type] }} · Vuruş {{ w.attack }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(w.shopPrice!) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(w.shopPrice!) }} akçe</span>
             </div>
           </div>
         </template>
 
-        <!-- ====== 渔具铺 ====== -->
+        <!-- ====== Olta Dükkânı ====== -->
         <template v-else-if="shopStore.currentShopId === 'yugupu'">
-          <ShopHeader name="渔具铺" npc="秋月" />
+          <ShopHeader name="Olta Dükkânı" npc="Aybike" />
 
-          <!-- 鱼饵 -->
+          <!-- Yem -->
           <h4 class="text-accent text-sm mb-2">
             <Fish :size="14" class="inline" />
-            鱼饵
+            Yem
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -467,14 +467,14 @@
                 <p class="text-sm">{{ b.name }}</p>
                 <p class="text-muted text-xs">{{ b.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(b.price) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(b.price) }} akçe</span>
             </div>
           </div>
 
-          <!-- 浮漂 -->
+          <!-- Şamandıra -->
           <h4 class="text-accent text-sm mb-2 mt-4">
             <Fish :size="14" class="inline" />
-            浮漂
+            Şamandıra
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -497,14 +497,14 @@
                 <p class="text-sm">{{ t.name }}</p>
                 <p class="text-muted text-xs">{{ t.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(t.price) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(t.price) }} akçe</span>
             </div>
           </div>
 
-          <!-- 其他 -->
+          <!-- Öteki -->
           <h4 class="text-accent text-sm mb-2 mt-4">
             <Fish :size="14" class="inline" />
-            其他
+            Öteki
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -527,19 +527,19 @@
                 <p class="text-sm">{{ item.name }}</p>
                 <p class="text-muted text-xs">{{ item.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(item.price) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(item.price) }} akçe</span>
             </div>
           </div>
         </template>
 
-        <!-- ====== 药铺 ====== -->
+        <!-- ====== Şifacı Ocağı ====== -->
         <template v-else-if="shopStore.currentShopId === 'yaopu'">
-          <ShopHeader name="药铺" npc="林老" />
+          <ShopHeader name="Şifacı Ocağı" npc="Lâçin Dede" />
 
-          <!-- 肥料 -->
+          <!-- Gübre -->
           <h4 class="text-accent text-sm mb-2">
             <Leaf :size="14" class="inline" />
-            肥料
+            Gübre
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -562,14 +562,14 @@
                 <p class="text-sm">{{ f.name }}</p>
                 <p class="text-muted text-xs">{{ f.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(f.price) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(f.price) }} akçe</span>
             </div>
           </div>
 
-          <!-- 草药 -->
+          <!-- Otlar -->
           <h4 class="text-accent text-sm mb-2 mt-4">
             <Sprout :size="14" class="inline" />
-            草药
+            Şifa Otları
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -592,14 +592,14 @@
                 <p class="text-sm">{{ item.name }}</p>
                 <p class="text-muted text-xs">{{ item.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(item.price) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(item.price) }} akçe</span>
             </div>
           </div>
         </template>
 
-        <!-- ====== 绸缎庄 ====== -->
+        <!-- ====== Dokumacı ====== -->
         <template v-else-if="shopStore.currentShopId === 'chouduanzhuang'">
-          <ShopHeader name="绸缎庄" npc="素素" />
+          <ShopHeader name="Dokumacı" npc="Suna" />
 
           <div class="flex flex-col space-y-2">
             <div
@@ -622,14 +622,14 @@
                 <p class="text-sm">{{ item.name }}</p>
                 <p class="text-muted text-xs">{{ item.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(item.price) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(item.price) }} akçe</span>
             </div>
           </div>
 
-          <!-- 帽子 -->
+          <!-- Başlıklar -->
           <h4 class="text-accent text-sm mb-2 mt-4">
             <Crown :size="14" class="inline" />
-            帽子
+            Başlıklar
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -641,18 +641,18 @@
               <div>
                 <p class="text-sm">
                   {{ hat.name }}
-                  <span v-if="inventoryStore.hasHat(hat.id)" class="text-success text-xs ml-1">已拥有</span>
+                  <span v-if="inventoryStore.hasHat(hat.id)" class="text-success text-xs ml-1">Var</span>
                 </p>
                 <p class="text-muted text-xs">{{ hat.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(hat.shopPrice!) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(hat.shopPrice!) }} akçe</span>
             </div>
           </div>
 
-          <!-- 鞋子 -->
+          <!-- Ayakkabılar -->
           <h4 class="text-accent text-sm mb-2 mt-4">
             <Footprints :size="14" class="inline" />
-            鞋子
+            Ayakkabılar
           </h4>
           <div class="flex flex-col space-y-2">
             <div
@@ -664,22 +664,22 @@
               <div>
                 <p class="text-sm">
                   {{ shoe.name }}
-                  <span v-if="inventoryStore.hasShoe(shoe.id)" class="text-success text-xs ml-1">已拥有</span>
+                  <span v-if="inventoryStore.hasShoe(shoe.id)" class="text-success text-xs ml-1">Var</span>
                 </p>
                 <p class="text-muted text-xs">{{ shoe.description }}</p>
               </div>
-              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(shoe.shopPrice!) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ discounted(shoe.shopPrice!) }} akçe</span>
             </div>
           </div>
         </template>
       </div>
 
-      <!-- 右侧：出售区 -->
+      <!-- Sağ yan: satış bölüğü -->
       <div class="flex-1" :class="{ 'hidden md:block': mobileTab === 'buy' }">
         <div class="flex items-center justify-between mb-3">
           <h3 class="text-accent text-sm">
             <TrendingUp :size="14" class="inline" />
-            出售物品
+            Eşya Sat
           </h3>
           <div class="flex space-x-1.5">
             <Button
@@ -689,19 +689,19 @@
               :icon-size="12"
               @click="openSellFilterModal"
             >
-              筛选
+              Süz
             </Button>
             <Button v-if="sellableItems.length > 0" class="btn-danger" :icon="Coins" @click="showSellAllConfirm = true">
-              一键全部出售
+              Hepsini Bir Seferde Sat
             </Button>
           </div>
         </div>
-        <!-- 售价加成提示 -->
-        <p v-if="hasSellBonus" class="text-success text-xs mb-2">戒指加成中：所有售价 +{{ sellBonusPercent }}%</p>
+        <!-- Satış artısı bildirisi -->
+        <p v-if="hasSellBonus" class="text-success text-xs mb-2">Yüzük artısı yürürlükte: bütün satış bedelleri +%{{ sellBonusPercent }}</p>
 
-        <!-- 今日行情 -->
+        <!-- Günlük piyasa -->
         <div class="border border-accent/30 rounded-xs p-2 mb-3">
-          <p class="text-[10px] text-muted mb-1">今日行情</p>
+          <p class="text-[10px] text-muted mb-1">Bugünün piyasası</p>
           <div class="grid grid-cols-4">
             <span v-for="m in todayMarket" :key="m.category" class="text-[10px] whitespace-nowrap mt-2">
               <span class="text-muted">{{ MARKET_CATEGORY_NAMES[m.category] }}</span>
@@ -724,7 +724,7 @@
               <span class="text-muted text-xs ml-1">×{{ item.quantity }}</span>
             </div>
             <div class="flex items-center space-x-1">
-              <span class="text-xs text-accent whitespace-nowrap">{{ shopStore.calculateSellPrice(item.itemId, 1, item.quality) }}文</span>
+              <span class="text-xs text-accent whitespace-nowrap">{{ shopStore.calculateSellPrice(item.itemId, 1, item.quality) }} akçe</span>
               <span v-if="getItemTrend(item.itemId) === 'rising' || getItemTrend(item.itemId) === 'boom'" class="text-[10px] text-success">
                 ↑{{ Math.round((getItemMultiplier(item.itemId) - 1) * 100) }}%
               </span>
@@ -739,13 +739,13 @@
           </div>
           <div v-if="sellableItems.length === 0" class="flex flex-col items-center justify-center py-4 text-muted">
             <Package :size="100" class="text-muted/30 my-4" />
-            <p class="text-xs">背包中没有可出售的物品</p>
+            <p class="text-xs">Heybende satılacak eşya yok</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 出售筛选弹窗 -->
+    <!-- Satış süzme penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showSellFilterModal"
@@ -756,8 +756,8 @@
           <button class="absolute top-2 right-2 text-muted hover:text-text" @click="showSellFilterModal = false">
             <X :size="14" />
           </button>
-          <p class="text-sm text-accent mb-2">出售筛选</p>
-          <p class="text-[10px] text-muted mb-2">选择要显示的分类，不选则显示全部</p>
+          <p class="text-sm text-accent mb-2">Satış Süzgeci</p>
+          <p class="text-[10px] text-muted mb-2">Gösterilecek türleri seç; hiçbirini seçmezsen hepsi görünür</p>
           <div class="grid grid-cols-3 gap-1.5 mb-3">
             <div
               v-for="cat in SELL_FILTER_CATEGORIES"
@@ -772,14 +772,14 @@
             </div>
           </div>
           <div class="flex space-x-1.5">
-            <Button class="flex-1 justify-center" @click="handleClearSellFilter">全部显示</Button>
-            <Button class="flex-1 justify-center !bg-accent !text-bg" @click="handleSaveSellFilter">保存</Button>
+            <Button class="flex-1 justify-center" @click="handleClearSellFilter">Hepsini Göster</Button>
+            <Button class="flex-1 justify-center !bg-accent !text-bg" @click="handleSaveSellFilter">Sakla</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 一键出售确认弹窗 -->
+    <!-- Bir seferde satış onayı -->
     <Transition name="panel-fade">
       <div
         v-if="showSellAllConfirm"
@@ -787,24 +787,24 @@
         @click.self="showSellAllConfirm = false"
       >
         <div class="game-panel max-w-xs w-full">
-          <p class="text-sm text-accent mb-2">确认一键出售</p>
-          <p class="text-xs text-muted mb-3">将出售背包中所有未锁定的非种子物品（共{{ sellableItems.length }}种），确定继续？</p>
+          <p class="text-sm text-accent mb-2">Bir Seferde Satışı Onayla</p>
+          <p class="text-xs text-muted mb-3">Heybendeki bütün kilitsiz ve tohum olmayan eşyalar satılacak (toplam {{ sellableItems.length }} tür). Sürsün mü?</p>
           <div class="flex space-x-1.5">
-            <Button class="flex-1 justify-center" @click="showSellAllConfirm = false">取消</Button>
-            <Button class="flex-1 justify-center btn-danger" :icon="Coins" @click="confirmSellAll">确认出售</Button>
+            <Button class="flex-1 justify-center" @click="showSellAllConfirm = false">Vazgeç</Button>
+            <Button class="flex-1 justify-center btn-danger" :icon="Coins" @click="confirmSellAll">Sat</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 商品详情弹窗 -->
+    <!-- Mal ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="buyModalData || (sellModalData && sellModalItem)"
         class="fixed inset-0 bg-black/60 flex items-center justify-center z-40 p-4"
         @click.self="shopModal = null"
       >
-        <!-- 购买弹窗 -->
+        <!-- Alım penceresi -->
         <div v-if="buyModalData" class="game-panel max-w-xs w-full relative">
           <button class="absolute top-2 right-2 text-muted hover:text-text" @click="shopModal = null">
             <X :size="14" />
@@ -818,15 +818,15 @@
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">{{ buyModalData.batchBuy ? '单价' : '价格' }}</span>
-              <span class="text-xs text-accent">{{ buyModalData.price }}文</span>
+              <span class="text-xs text-muted">{{ buyModalData.batchBuy ? 'Tek bedel' : 'Bedel' }}</span>
+              <span class="text-xs text-accent">{{ buyModalData.price }} akçe</span>
             </div>
           </div>
 
-          <!-- 批量购买数量选择器 -->
+          <!-- Çoklu alım sayı seçici -->
           <div v-if="buyModalData.batchBuy" class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between mb-1.5">
-              <span class="text-xs text-muted">数量</span>
+              <span class="text-xs text-muted">Sayı</span>
               <div class="flex items-center space-x-1">
                 <Button class="h-6 px-1.5 py-0.5 text-xs justify-center" :disabled="buyQuantity <= 1" @click="addBuyQuantity(-1)">-</Button>
                 <input
@@ -847,14 +847,14 @@
               </div>
             </div>
             <div class="flex space-x-1">
-              <Button class="flex-1 justify-center" :disabled="buyQuantity <= 1" @click="setBuyQuantity(1)">最少</Button>
+              <Button class="flex-1 justify-center" :disabled="buyQuantity <= 1" @click="setBuyQuantity(1)">En Az</Button>
               <Button class="flex-1 justify-center" :disabled="buyQuantity >= maxBuyQuantity" @click="setBuyQuantity(maxBuyQuantity)">
-                最多
+                En Çok
               </Button>
             </div>
             <div class="flex items-center justify-between mt-1.5">
-              <span class="text-xs text-muted">总价</span>
-              <span class="text-xs text-accent">{{ buyTotalPrice }}文</span>
+              <span class="text-xs text-muted">Toplam bedel</span>
+              <span class="text-xs text-accent">{{ buyTotalPrice }} akçe</span>
             </div>
           </div>
 
@@ -867,7 +867,7 @@
               :icon="ShoppingCart"
               @click="buyModalData.batchBuy!.onBuy(buyQuantity)"
             >
-              购买 ×{{ buyQuantity }}
+              Al ×{{ buyQuantity }}
             </Button>
             <Button
               v-else
@@ -877,12 +877,12 @@
               :icon="buyModalData.buttonText ? Hammer : ShoppingCart"
               @click="buyModalData.onBuy()"
             >
-              {{ buyModalData.buttonText ?? '购买' }}
+              {{ buyModalData.buttonText ?? 'Al' }}
             </Button>
           </div>
         </div>
 
-        <!-- 出售弹窗 -->
+        <!-- Satım penceresi -->
         <div v-else-if="sellModalData && sellModalItem && sellModalDef" class="game-panel max-w-xs w-full relative">
           <button class="absolute top-2 right-2 text-muted hover:text-text" @click="shopModal = null">
             <X :size="14" />
@@ -897,44 +897,44 @@
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">数量</span>
+              <span class="text-xs text-muted">Sayı</span>
               <span class="text-xs">×{{ sellModalItem.quantity }}</span>
             </div>
             <div v-if="sellModalItem.quality !== 'normal'" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">品质</span>
+              <span class="text-xs text-muted">Nitelik</span>
               <span class="text-xs" :class="qualityTextClass(sellModalItem.quality)">{{ QUALITY_NAMES[sellModalItem.quality] }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">售价</span>
+              <span class="text-xs text-muted">Satış bedeli</span>
               <span class="text-xs flex items-center space-x-1">
                 <span
                   v-if="getItemTrend(sellModalData!.itemId) && getItemTrend(sellModalData!.itemId) !== 'stable'"
                   class="line-through text-muted/40"
                 >
-                  {{ shopStore.calculateBaseSellPrice(sellModalData!.itemId, 1, sellModalData!.quality) }}文
+                  {{ shopStore.calculateBaseSellPrice(sellModalData!.itemId, 1, sellModalData!.quality) }} akçe
                 </span>
-                <span class="text-accent">{{ shopStore.calculateSellPrice(sellModalData!.itemId, 1, sellModalData!.quality) }}文</span>
+                <span class="text-accent">{{ shopStore.calculateSellPrice(sellModalData!.itemId, 1, sellModalData!.quality) }} akçe</span>
               </span>
             </div>
             <div
               v-if="getItemTrend(sellModalData!.itemId) && getItemTrend(sellModalData!.itemId) !== 'stable'"
               class="flex items-center justify-between mt-0.5"
             >
-              <span class="text-xs text-muted">行情</span>
+              <span class="text-xs text-muted">Piyasa</span>
               <span class="text-xs" :class="trendColor(getItemTrend(sellModalData!.itemId)!)">
                 {{ TREND_NAMES[getItemTrend(sellModalData!.itemId)!] }} ×{{ getItemMultiplier(sellModalData!.itemId) }}
               </span>
             </div>
             <div v-if="hasSellBonus" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">戒指加成</span>
-              <span class="text-xs text-success">+{{ sellBonusPercent }}%</span>
+              <span class="text-xs text-muted">Yüzük artısı</span>
+              <span class="text-xs text-success">+%{{ sellBonusPercent }}</span>
             </div>
           </div>
 
-          <!-- 数量选择器（物品数量>1时显示） -->
+          <!-- Sayı seçici (eşya sayısı 1’den çoksa görünür) -->
           <div v-if="sellModalItem.quantity > 1" class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between mb-1.5">
-              <span class="text-xs text-muted">出售数量</span>
+              <span class="text-xs text-muted">Satılacak sayı</span>
               <div class="flex items-center space-x-1">
                 <Button class="h-6 px-1.5 py-0.5 text-xs justify-center" :disabled="sellQuantity <= 1" @click="addSellQuantity(-1)">
                   -
@@ -957,19 +957,19 @@
               </div>
             </div>
             <div class="flex space-x-1">
-              <Button class="flex-1 justify-center" :disabled="sellQuantity <= 1" @click="setSellQuantity(1)">最少</Button>
+              <Button class="flex-1 justify-center" :disabled="sellQuantity <= 1" @click="setSellQuantity(1)">En Az</Button>
               <Button class="flex-1 justify-center" :disabled="sellQuantity >= maxSellQuantity" @click="setSellQuantity(maxSellQuantity)">
-                最多
+                En Çok
               </Button>
             </div>
             <div class="flex items-center justify-between mt-1.5">
-              <span class="text-xs text-muted">总价</span>
-              <span class="text-xs text-accent">{{ sellTotalPrice }}文</span>
+              <span class="text-xs text-muted">Toplam bedel</span>
+              <span class="text-xs text-accent">{{ sellTotalPrice }} akçe</span>
             </div>
           </div>
 
           <div class="flex flex-col space-y-1.5">
-            <Button class="w-full justify-center" :icon="Coins" @click="handleModalSell(sellQuantity)">出售 ×{{ sellQuantity }}</Button>
+            <Button class="w-full justify-center" :icon="Coins" @click="handleModalSell(sellQuantity)">Sat ×{{ sellQuantity }}</Button>
           </div>
         </div>
       </div>
@@ -1042,11 +1042,11 @@
 
   const tutorialHint = computed(() => {
     if (!tutorialStore.enabled || gameStore.year > 1) return null
-    if (achievementStore.stats.totalCropsHarvested === 0) return '万物铺出售各种种子，购买后去农场种植。上方可以切换「买入」和「卖出」。'
+    if (achievementStore.stats.totalCropsHarvested === 0) return 'Her Şey Dükkânı türlü türlü tohum satar; aldıktan sonra çiftliğe gidip ekebilirsin. Yukarıdan “Al” ve “Sat” arasında geçebilirsin.'
     return null
   })
 
-  // === 行情系统 ===
+  // === Piyasa düzeni ===
 
   const todayMarket = computed(() =>
     getDailyMarketInfo(gameStore.year, gameStore.seasonIndex, gameStore.day, shopStore.getRecentShipping())
@@ -1073,14 +1073,14 @@
     return 'text-muted/40'
   }
 
-  // 每次进入商圈页面，重置到商圈总览（避免跳过营业时间检查）
+  // Her çarşıya girişte genel görünüme dön (işleyiş vakti denetimi atlanmasın diye)
   shopStore.currentShopId = null
 
-  // === 移动端切换 ===
+  // === Taşınır aygıt geçişi ===
 
   const mobileTab = ref<'buy' | 'sell'>('buy')
 
-  // === 一键出售确认 ===
+  // === Bir seferde satış onayı ===
 
   const showSellAllConfirm = ref(false)
 
@@ -1089,7 +1089,7 @@
     handleSellAll(sellFilter.value)
   }
 
-  // === 弹窗系统 ===
+  // === Pencere düzeni ===
 
   type BuyModalState = {
     type: 'buy'
@@ -1241,9 +1241,9 @@
   }
 
   const openWeaponModal = (w: WeaponDef) => {
-    const lines = [`${WEAPON_TYPE_NAMES[w.type]} · 攻击${w.attack} · 暴击${Math.round(w.critRate * 100)}%`]
+    const lines = [`${WEAPON_TYPE_NAMES[w.type]} · Vuruş ${w.attack} · Kritik %${Math.round(w.critRate * 100)}`]
     if (w.shopMaterials.length > 0) {
-      lines.push('需要材料：' + w.shopMaterials.map(m => `${getItemById(m.itemId)?.name ?? m.itemId}×${m.quantity}`).join('、'))
+      lines.push('Gereken gereçler: ' + w.shopMaterials.map(m => `${getItemById(m.itemId)?.name ?? m.itemId}×${m.quantity}`).join('、'))
     }
     openBuyModal(
       w.name,
@@ -1257,13 +1257,13 @@
 
   const openRingModal = (ring: RingDef) => {
     const lines = [
-      '效果：' +
+      'Etkisi: ' +
         ring.effects
           .map(eff => RING_EFFECT_LABELS[eff.type] + (eff.value > 0 && eff.value < 1 ? Math.round(eff.value * 100) + '%' : '+' + eff.value))
           .join('、'),
-      '材料：' +
+      'Gereçler: ' +
         (ring.recipe?.map(m => `${getItemById(m.itemId)?.name ?? m.itemId}×${m.quantity}`).join('、') ?? '') +
-        ` + ${ring.recipeMoney}文`
+        ` + ${ring.recipeMoney} akçe`
     ]
     openBuyModal(
       ring.name,
@@ -1272,7 +1272,7 @@
       () => handleCraftRing(ring.id),
       () => canCraftRing(ring),
       lines,
-      '合成'
+      'Döv'
     )
   }
 
@@ -1284,7 +1284,7 @@
     } else {
       handleSellItemAll(modal.itemId, count, modal.quality)
     }
-    // 物品消耗完则关闭弹窗，否则修正出售数量
+    // Eşya tükenirse pencere kapanır; yoksa sayı düzeltilir
     const remaining = inventoryStore.items.find(i => i.itemId === modal.itemId && i.quality === modal.quality)
     if (!remaining) {
       shopModal.value = null
@@ -1293,7 +1293,7 @@
     }
   }
 
-  // === 折扣系统 ===
+  // === İndirim düzeni ===
 
   const hasDiscount = computed(() => walletStore.getShopDiscount() > 0 || inventoryStore.getRingEffectValue('shop_discount') > 0)
   const discountPercent = computed(() => {
@@ -1308,12 +1308,12 @@
     return Math.floor(price * (1 - walletDiscount) * (1 - ringDiscount))
   }
 
-  // === 售价加成 ===
+  // === Satış artısı ===
 
   const hasSellBonus = computed(() => inventoryStore.getRingEffectValue('sell_price_bonus') > 0)
   const sellBonusPercent = computed(() => Math.round(inventoryStore.getRingEffectValue('sell_price_bonus') * 100))
 
-  // === 商铺开放状态 ===
+  // === Dükkân açıklık durumu ===
 
   const isOpen = (shop: ShopDef): boolean => {
     return isShopAvailable(shop, gameStore.day, gameStore.hour, gameStore.weather, gameStore.season)
@@ -1327,7 +1327,7 @@
     shopStore.currentShopId = shopId
   }
 
-  // === 旅行商人 ===
+  // === Gezgin tacir ===
 
   if (shopStore.isMerchantHere) {
     shopStore.refreshMerchantStock()
@@ -1337,14 +1337,14 @@
     const actualPrice = discounted(originalPrice)
     if (shopStore.buyFromTraveler(itemId)) {
       sfxBuy()
-      showFloat(`-${actualPrice}文`, 'danger')
-      addLog(`从旅行商人处购买了${name}。(-${actualPrice}文)`)
+      showFloat(`-${actualPrice} akçe`, 'danger')
+      addLog(`Gezgin tacirden ${name} aldın. (-${actualPrice} akçe)`)
     } else {
-      addLog('铜钱不足或背包已满。')
+      addLog('Akçen yetmiyor ya da heyben dolu.')
     }
   }
 
-  // === 万物铺 ===
+  // === Her Şey Dükkânı ===
 
   const bagPrice = computed(() => {
     const level = (inventoryStore.capacity - 24) / 4
@@ -1362,14 +1362,14 @@
   const handleBuyBag = () => {
     const actualPrice = discounted(bagPrice.value)
     if (!playerStore.spendMoney(actualPrice)) {
-      addLog('铜钱不足。')
+      addLog('Akçen yetmiyor.')
       return
     }
     if (inventoryStore.expandCapacity()) {
-      addLog(`背包扩容至${inventoryStore.capacity}格！(-${actualPrice}文)`)
+      addLog(`Heyben ${inventoryStore.capacity} göze çıktı! (-${actualPrice} akçe)`)
     } else {
       playerStore.earnMoney(actualPrice)
-      addLog('背包已满级。')
+      addLog('Heybe son düzeye ulaştı.')
     }
   }
 
@@ -1381,14 +1381,14 @@
   const handleBuyWarehouseExpand = () => {
     const actualPrice = discounted(warehouseExpandPrice.value)
     if (!playerStore.spendMoney(actualPrice)) {
-      addLog('铜钱不足。')
+      addLog('Akçen yetmiyor.')
       return
     }
     if (warehouseStore.expandMaxChests()) {
-      addLog(`仓库扩建至${warehouseStore.maxChests}个箱子槽位！(-${actualPrice}文)`)
+      addLog(`Ambar ${warehouseStore.maxChests} sandık yerine çıktı! (-${actualPrice} akçe)`)
     } else {
       playerStore.earnMoney(actualPrice)
-      addLog('仓库已满级。')
+      addLog('Ambar son düzeye ulaştı.')
     }
   }
 
@@ -1397,15 +1397,15 @@
     if (!info) return
     const actualPrice = discounted(info.price)
     if (!playerStore.spendMoney(actualPrice)) {
-      addLog('铜钱不足。')
+      addLog('Akçen yetmiyor.')
       return
     }
     const newSize = farmStore.expandFarm()
     if (newSize) {
-      addLog(`农场扩建至${newSize}×${newSize}！(-${actualPrice}文)`)
+      addLog(`Çiftlik ${newSize}×${newSize} oldu! (-${actualPrice} akçe)`)
     } else {
       playerStore.earnMoney(actualPrice)
-      addLog('农场已满级。')
+      addLog('Çiftlik son düzeye ulaştı.')
     }
   }
 
@@ -1416,40 +1416,40 @@
   const getTravelerItemDesc = (itemId: string, quantity: number): string => {
     const crop = getCropBySeedId(itemId)
     if (crop) {
-      return `${crop.season.map(s => SEASON_NAMES[s]).join('/')}季 · ${crop.growthDays}天成熟 · 剩余${quantity}个`
+      return `${crop.season.map(s => SEASON_NAMES[s]).join('/')} mevsim · ${crop.growthDays} günde olur · kalan ${quantity}`
     }
-    return `剩余${quantity}个`
+    return `Kalan ${quantity}`
   }
 
   const handleBuySapling = (saplingId: string, price: number, treeName: string) => {
     const actualPrice = discounted(price)
     if (!playerStore.spendMoney(actualPrice)) {
-      addLog('铜钱不足。')
+      addLog('Akçen yetmiyor.')
       return
     }
     if (!inventoryStore.addItem(saplingId)) {
       playerStore.earnMoney(actualPrice)
-      addLog('背包已满，无法购买。')
+      addLog('Heyben dolu; alamadın.')
       return
     }
-    addLog(`购买了${treeName}苗。(-${actualPrice}文)`)
+    addLog(`${treeName} fidanı aldın. (-${actualPrice} akçe)`)
   }
 
   const handleBuyHay = () => {
     const actualPrice = discounted(HAY_PRICE)
     if (!playerStore.spendMoney(actualPrice)) {
-      addLog('铜钱不足。')
+      addLog('Akçen yetmiyor.')
       return
     }
     if (!inventoryStore.addItem('hay')) {
       playerStore.earnMoney(actualPrice)
-      addLog('背包已满，无法购买。')
+      addLog('Heyben dolu; alamadın.')
       return
     }
-    addLog(`购买了干草。(-${actualPrice}文)`)
+    addLog(`Kuru ot aldın. (-${actualPrice} akçe)`)
   }
 
-  // === 批量购买处理 ===
+  // === Çoklu alım işlemi ===
 
   const handleBatchBuySeed = (seedId: string, count: number) => {
     const seed = shopStore.availableSeeds.find(s => s.seedId === seedId)
@@ -1457,10 +1457,10 @@
     const unitPrice = discounted(seed.price)
     if (shopStore.buySeed(seedId, count)) {
       sfxBuy()
-      showFloat(`-${unitPrice * count}文`, 'danger')
-      addLog(`购买了${count}个${seed.cropName}种子。(-${unitPrice * count}文)`)
+      showFloat(`-${unitPrice * count} akçe`, 'danger')
+      addLog(`${count} tane ${seed.cropName} tohumu aldın. (-${unitPrice * count} akçe)`)
     } else {
-      addLog('铜钱不足或背包已满。')
+      addLog('Akçen yetmiyor ya da heyben dolu.')
     }
   }
 
@@ -1468,10 +1468,10 @@
     const unitPrice = discounted(price)
     if (shopStore.buyItem(itemId, price, count)) {
       sfxBuy()
-      showFloat(`-${unitPrice * count}文`, 'danger')
-      addLog(`购买了${count}个${name}。(-${unitPrice * count}文)`)
+      showFloat(`-${unitPrice * count} akçe`, 'danger')
+      addLog(`${count} tane ${name} aldın. (-${unitPrice * count} akçe)`)
     } else {
-      addLog('铜钱不足或背包已满。')
+      addLog('Akçen yetmiyor ya da heyben dolu.')
     }
   }
 
@@ -1488,10 +1488,10 @@
     }
     if (bought > 0) {
       sfxBuy()
-      showFloat(`-${unitPrice * bought}文`, 'danger')
-      addLog(`购买了${bought}个${treeName}苗。(-${unitPrice * bought}文)`)
+      showFloat(`-${unitPrice * bought} akçe`, 'danger')
+      addLog(`${bought} tane ${treeName} fidanı aldın. (-${unitPrice * bought} akçe)`)
     } else {
-      addLog('铜钱不足或背包已满。')
+      addLog('Akçen yetmiyor ya da heyben dolu.')
     }
   }
 
@@ -1504,14 +1504,14 @@
     }
     if (bought > 0) {
       sfxBuy()
-      showFloat(`-${unitPrice * bought}文`, 'danger')
-      addLog(`从旅行商人处购买了${bought}个${name}。(-${unitPrice * bought}文)`)
+      showFloat(`-${unitPrice * bought} akçe`, 'danger')
+      addLog(`Gezgin tacirden ${bought} tane ${name} aldın. (-${unitPrice * bought} akçe)`)
     } else {
-      addLog('铜钱不足或背包已满。')
+      addLog('Akçen yetmiyor ya da heyben dolu.')
     }
   }
 
-  // === 镖局 ===
+  // === Kervan Ocağı ===
 
   const hasWeaponMaterials = (w: WeaponDef): boolean => {
     for (const mat of w.shopMaterials) {
@@ -1522,53 +1522,53 @@
 
   const handleBuyWeapon = (w: WeaponDef) => {
     if (inventoryStore.hasWeapon(w.id)) {
-      addLog('你已经拥有这把武器了。')
+      addLog('Bu silah zaten sende var.')
       return
     }
     if (w.shopPrice === null) return
     const actualPrice = discounted(w.shopPrice)
     if (!playerStore.spendMoney(actualPrice)) {
-      addLog('铜钱不足。')
+      addLog('Akçen yetmiyor.')
       return
     }
     for (const mat of w.shopMaterials) {
       if (!inventoryStore.removeItem(mat.itemId, mat.quantity)) {
         playerStore.earnMoney(actualPrice)
-        addLog('材料不足。')
+        addLog('Gereçlerin eksik.')
         return
       }
     }
     inventoryStore.addWeapon(w.id)
     const matStr =
       w.shopMaterials.length > 0 ? ' + ' + w.shopMaterials.map(m => `${getItemById(m.itemId)?.name}×${m.quantity}`).join(' + ') : ''
-    addLog(`购买了${w.name}。(-${actualPrice}文${matStr})`)
+    addLog(`${w.name} aldın. (-${actualPrice} akçe${matStr})`)
   }
 
-  // === 戒指合成 ===
+  // === Yüzük dövümü ===
 
   const RING_EFFECT_LABELS: Record<RingEffectType, string> = {
-    attack_bonus: '攻击',
-    crit_rate_bonus: '暴击',
-    defense_bonus: '减伤',
-    vampiric: '吸血',
-    max_hp_bonus: '生命',
-    stamina_reduction: '全局体力减免',
-    mining_stamina: '挖矿体力减免',
-    farming_stamina: '农耕体力减免',
-    fishing_stamina: '钓鱼体力减免',
-    crop_quality_bonus: '作物品质',
-    crop_growth_bonus: '生长加速',
-    fish_quality_bonus: '鱼品质',
-    fishing_calm: '鱼速降低',
-    sell_price_bonus: '售价加成',
-    shop_discount: '商店折扣',
-    gift_friendship: '送礼好感',
-    monster_drop_bonus: '怪物掉落',
-    exp_bonus: '经验加成',
-    treasure_find: '宝箱概率',
-    ore_bonus: '矿石额外',
-    luck: '幸运',
-    travel_speed: '旅行加速'
+    attack_bonus: 'Vuruş',
+    crit_rate_bonus: 'Kritik',
+    defense_bonus: 'Hasar kırma',
+    vampiric: 'Can çekme',
+    max_hp_bonus: 'Can',
+    stamina_reduction: 'Genel güç indirimi',
+    mining_stamina: 'Madencilik güç indirimi',
+    farming_stamina: 'Çiftçilik güç indirimi',
+    fishing_stamina: 'Balıkçılık güç indirimi',
+    crop_quality_bonus: 'Ürün niteliği',
+    crop_growth_bonus: 'Büyüme hızlanması',
+    fish_quality_bonus: 'Balık niteliği',
+    fishing_calm: 'Balık hızı düşer',
+    sell_price_bonus: 'Satış artısı',
+    shop_discount: 'Dükkân indirimi',
+    gift_friendship: 'Armağan gönül bağı',
+    monster_drop_bonus: 'Yaratık düşümü',
+    exp_bonus: 'Deneyim artısı',
+    treasure_find: 'Sandık ihtimali',
+    ore_bonus: 'Fazla cevher',
+    luck: 'Uğur',
+    travel_speed: 'Yol hızlanması'
   }
 
   const craftableRings = computed(() => CRAFTABLE_RINGS)
@@ -1593,7 +1593,7 @@
     }
   }
 
-  // === 帽子/鞋子商店 ===
+  // === Başlık / ayakkabı dükkânı ===
 
   const formatEffectLabel = (eff: { type: RingEffectType; value: number }): string => {
     const label = RING_EFFECT_LABELS[eff.type]
@@ -1601,7 +1601,7 @@
   }
 
   const openHatShopModal = (hat: HatDef) => {
-    const lines = ['效果：' + hat.effects.map(formatEffectLabel).join('、')]
+    const lines = ['Etkisi: ' + hat.effects.map(formatEffectLabel).join('、')]
     openBuyModal(
       hat.name,
       hat.description,
@@ -1613,7 +1613,7 @@
   }
 
   const openShoeShopModal = (shoe: ShoeDef) => {
-    const lines = ['效果：' + shoe.effects.map(formatEffectLabel).join('、')]
+    const lines = ['Etkisi: ' + shoe.effects.map(formatEffectLabel).join('、')]
     openBuyModal(
       shoe.name,
       shoe.description,
@@ -1626,10 +1626,10 @@
 
   const openHatCraftModal = (hat: HatDef) => {
     const lines = [
-      '效果：' + hat.effects.map(formatEffectLabel).join('、'),
-      '材料：' +
+      'Etkisi: ' + hat.effects.map(formatEffectLabel).join('、'),
+      'Gereçler: ' +
         (hat.recipe?.map(m => `${getItemById(m.itemId)?.name ?? m.itemId}×${m.quantity}`).join('、') ?? '') +
-        ` + ${hat.recipeMoney}文`
+        ` + ${hat.recipeMoney} akçe`
     ]
     openBuyModal(
       hat.name,
@@ -1638,16 +1638,16 @@
       () => handleCraftHat(hat.id),
       () => canCraftHat(hat),
       lines,
-      '合成'
+      'Döv'
     )
   }
 
   const openShoeCraftModal = (shoe: ShoeDef) => {
     const lines = [
-      '效果：' + shoe.effects.map(formatEffectLabel).join('、'),
-      '材料：' +
+      'Etkisi: ' + shoe.effects.map(formatEffectLabel).join('、'),
+      'Gereçler: ' +
         (shoe.recipe?.map(m => `${getItemById(m.itemId)?.name ?? m.itemId}×${m.quantity}`).join('、') ?? '') +
-        ` + ${shoe.recipeMoney}文`
+        ` + ${shoe.recipeMoney} akçe`
     ]
     openBuyModal(
       shoe.name,
@@ -1656,42 +1656,42 @@
       () => handleCraftShoe(shoe.id),
       () => canCraftShoe(shoe),
       lines,
-      '合成'
+      'Döv'
     )
   }
 
   const handleBuyHat = (hat: HatDef) => {
     if (inventoryStore.hasHat(hat.id)) {
-      addLog('你已经拥有这顶帽子了。')
+      addLog('Bu başlık zaten sende var.')
       return
     }
     if (hat.shopPrice === null) return
     const actualPrice = discounted(hat.shopPrice)
     if (!playerStore.spendMoney(actualPrice)) {
-      addLog('铜钱不足。')
+      addLog('Akçen yetmiyor.')
       return
     }
     inventoryStore.addHat(hat.id)
     sfxBuy()
-    showFloat(`-${actualPrice}文`, 'danger')
-    addLog(`购买了${hat.name}。(-${actualPrice}文)`)
+    showFloat(`-${actualPrice} akçe`, 'danger')
+    addLog(`${hat.name} aldın. (-${actualPrice} akçe)`)
   }
 
   const handleBuyShoe = (shoe: ShoeDef) => {
     if (inventoryStore.hasShoe(shoe.id)) {
-      addLog('你已经拥有这双鞋子了。')
+      addLog('Bu ayakkabı zaten sende var.')
       return
     }
     if (shoe.shopPrice === null) return
     const actualPrice = discounted(shoe.shopPrice)
     if (!playerStore.spendMoney(actualPrice)) {
-      addLog('铜钱不足。')
+      addLog('Akçen yetmiyor.')
       return
     }
     inventoryStore.addShoe(shoe.id)
     sfxBuy()
-    showFloat(`-${actualPrice}文`, 'danger')
-    addLog(`购买了${shoe.name}。(-${actualPrice}文)`)
+    showFloat(`-${actualPrice} akçe`, 'danger')
+    addLog(`${shoe.name} aldın. (-${actualPrice} akçe)`)
   }
 
   const canCraftHat = (hat: HatDef): boolean => {
@@ -1734,14 +1734,14 @@
     }
   }
 
-  // === 通用 ===
+  // === Genel ===
 
   const handleBuyItem = (itemId: string, price: number, name: string) => {
     const actualPrice = discounted(price)
     if (shopStore.buyItem(itemId, price)) {
-      addLog(`购买了${name}。(-${actualPrice}文)`)
+      addLog(`${name} aldın. (-${actualPrice} akçe)`)
     } else {
-      addLog('铜钱不足或背包已满。')
+      addLog('Akçen yetmiyor ya da heyben dolu.')
     }
   }
 
@@ -1752,7 +1752,7 @@
     return fallback
   }
 
-  // === 出售筛选 ===
+  // === Satış süzgeci ===
 
   const SELL_FILTER_CATEGORIES: ItemCategory[] = [
     'crop',
@@ -1771,19 +1771,19 @@
   ]
 
   const SELL_CATEGORY_NAMES: Partial<Record<ItemCategory, string>> = {
-    crop: '作物',
-    fruit: '水果',
-    fish: '鱼类',
-    animal_product: '畜产',
-    processed: '加工品',
-    food: '料理',
-    ore: '矿石',
-    gem: '宝石',
-    material: '材料',
-    gift: '礼物',
-    fossil: '化石',
-    artifact: '文物',
-    misc: '杂货'
+    crop: 'Mahsul',
+    fruit: 'Meyve',
+    fish: 'Balık',
+    animal_product: 'Hayvansal',
+    processed: 'İşlenmiş',
+    food: 'Yemek',
+    ore: 'Cevher',
+    gem: 'Taş',
+    material: 'Gereç',
+    gift: 'Armağan',
+    fossil: 'Kemiktaş',
+    artifact: 'Eser',
+    misc: 'Karışık'
   }
 
   const showSellFilterModal = ref(false)
@@ -1825,7 +1825,7 @@
   })
 </script>
 
-<!-- ShopHeader 内联子组件 -->
+<!-- ShopHeader iç bileşeni -->
 <script lang="ts">
   import { defineComponent, h } from 'vue'
 
