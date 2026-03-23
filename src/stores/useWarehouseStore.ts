@@ -16,9 +16,9 @@ export const useWarehouseStore = defineStore('warehouse', () => {
 
   const hasVoidChest = computed(() => chests.value.some(c => c.tier === 'void'))
 
-  // ---- 箱子管理 ----
+  // ---- Sandık yönetimi ----
 
-  /** 创建箱子 */
+  /** Sandık oluştur */
   const addChest = (tier: ChestTier, label?: string): boolean => {
     if (chests.value.length >= maxChests.value) return false
     const def = CHEST_DEFS[tier]
@@ -32,7 +32,7 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     return true
   }
 
-  /** 删除空箱子 */
+  /** Boş sandığı kaldır */
   const removeChest = (chestId: string): boolean => {
     const idx = chests.value.findIndex(c => c.id === chestId)
     if (idx === -1) return false
@@ -41,7 +41,7 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     return true
   }
 
-  /** 重命名箱子 */
+  /** Sandığı yeniden adlandır */
   const renameChest = (chestId: string, label: string): boolean => {
     const trimmed = label.trim()
     if (!trimmed || trimmed.length > 8) return false
@@ -51,28 +51,28 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     return true
   }
 
-  /** 获取箱子引用 */
+  /** Sandık referansını al */
   const getChest = (chestId: string): Chest | undefined => {
     return chests.value.find(c => c.id === chestId)
   }
 
-  /** 获取箱子容量 */
+  /** Sandık kapasitesini al */
   const getChestCapacity = (chestId: string): number => {
     const chest = chests.value.find(c => c.id === chestId)
     if (!chest) return 0
     return CHEST_DEFS[chest.tier].capacity
   }
 
-  /** 箱子是否已满 */
+  /** Sandık dolu mu */
   const isChestFull = (chestId: string): boolean => {
     const chest = chests.value.find(c => c.id === chestId)
     if (!chest) return true
     return chest.items.length >= CHEST_DEFS[chest.tier].capacity
   }
 
-  // ---- 物品操作 ----
+  // ---- Eşya işlemleri ----
 
-  /** 直接往箱子加物品（内部/自动路由用） */
+  /** Doğrudan sandığa eşya ekle (iç kullanım / otomatik yönlendirme) */
   const addItemToChest = (chestId: string, itemId: string, quantity: number = 1, quality: Quality = 'normal'): boolean => {
     const chest = chests.value.find(c => c.id === chestId)
     if (!chest) return false
@@ -97,7 +97,7 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     return remaining <= 0
   }
 
-  /** 直接从箱子移除物品 */
+  /** Doğrudan sandıktan eşya çıkar */
   const removeItemFromChest = (chestId: string, itemId: string, quantity: number = 1, quality?: Quality): boolean => {
     const chest = chests.value.find(c => c.id === chestId)
     if (!chest) return false
@@ -124,7 +124,7 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     return true
   }
 
-  /** 查询箱子内物品数量 */
+  /** Sandıktaki eşya miktarını sorgula */
   const getChestItemCount = (chestId: string, itemId: string, quality?: Quality): number => {
     const chest = chests.value.find(c => c.id === chestId)
     if (!chest) return 0
@@ -133,15 +133,15 @@ export const useWarehouseStore = defineStore('warehouse', () => {
       .reduce((sum, i) => sum + i.quantity, 0)
   }
 
-  // ---- 存取操作（背包 ↔ 箱子）----
+  // ---- Depolama işlemleri (Çanta ↔ Sandık) ----
 
-  /** 从背包存入箱子，返回实际存入数量（0 = 失败） */
+  /** Çantadan sandığa koy, gerçek yerleştirilen miktarı döndürür (0 = başarısız) */
   const depositToChest = (chestId: string, itemId: string, quantity: number, quality: Quality): number => {
     const inv = useInventoryStore()
     const chest = chests.value.find(c => c.id === chestId)
     if (!chest) return 0
 
-    // 计算箱子可容纳数量
+    // Sandığın alabileceği miktarı hesapla
     const cap = CHEST_DEFS[chest.tier].capacity
     let canStore = 0
     for (const slot of chest.items) {
@@ -160,7 +160,7 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     return actual
   }
 
-  /** 从箱子取出到背包 */
+  /** Sandıktan çantaya al */
   const withdrawFromChest = (chestId: string, itemId: string, quantity: number, quality: Quality): boolean => {
     const inv = useInventoryStore()
     const chest = chests.value.find(c => c.id === chestId)
@@ -170,29 +170,29 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     const actual = Math.min(quantity, available)
     if (actual <= 0) return false
 
-    // 先从箱子移除，再加入背包（addItem 会溢出到临时背包，避免物品复制）
+    // Önce sandıktan çıkar, sonra çantaya ekle
     removeItemFromChest(chestId, itemId, actual, quality)
     inv.addItem(itemId, actual, quality)
     return true
   }
 
-  // ---- 仓库扩容 ----
+  // ---- Depo genişletme ----
 
-  /** 扩容仓库（增加箱子槽位） */
+  /** Depoyu genişlet (sandık yuvası artır) */
   const expandMaxChests = (): boolean => {
     if (maxChests.value >= MAX_CHESTS_CAP) return false
     maxChests.value += 1
     return true
   }
 
-  // ---- 虚空箱管理 ----
+  // ---- Boşluk sandığı yönetimi ----
 
-  /** 设置虚空箱角色（同角色互斥） */
+  /** Boşluk sandığı rolü ayarla (aynı rol tek olabilir) */
   const setVoidRole = (chestId: string, role: VoidChestRole): boolean => {
     const chest = chests.value.find(c => c.id === chestId)
     if (!chest || chest.tier !== 'void') return false
 
-    // 清除同角色的其他箱子
+    // Aynı roldeki diğer sandıkları temizle
     if (role !== 'none') {
       for (const c of chests.value) {
         if (c.id !== chestId && c.tier === 'void' && c.voidRole === role) {
@@ -204,22 +204,22 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     return true
   }
 
-  /** 获取虚空原料箱 */
+  /** Boşluk girdi sandığını al */
   const getVoidInputChest = (): Chest | null => {
     return chests.value.find(c => c.tier === 'void' && c.voidRole === 'input') ?? null
   }
 
-  /** 获取虚空成品箱 */
+  /** Boşluk çıktı sandığını al */
   const getVoidOutputChest = (): Chest | null => {
     return chests.value.find(c => c.tier === 'void' && c.voidRole === 'output') ?? null
   }
 
-  /** 获取所有虚空箱 */
+  /** Tüm boşluk sandıklarını al */
   const getVoidChests = (): Chest[] => {
     return chests.value.filter(c => c.tier === 'void')
   }
 
-  // ---- 序列化 ----
+  // ---- Serileştirme ----
 
   const serialize = () => {
     return {
@@ -233,24 +233,24 @@ export const useWarehouseStore = defineStore('warehouse', () => {
     unlocked.value = (data.unlocked as boolean) ?? false
     maxChests.value = (data.maxChests as number) ?? INITIAL_MAX_CHESTS
 
-    // 旧存档迁移：有 items 无 chests
+    // Eski kayıt aktarımı: items var, chests yok
     if (data.items && !data.chests) {
       const oldItems = (data.items as InventoryItem[]).filter(i => getItemById(i.itemId))
       if (oldItems.length > 0) {
-        // 金箱容量36，超出时分多个箱子
+        // Altın sandık kapasitesi 36, aşarsa birkaç sandığa böl
         const goldCap = CHEST_DEFS.gold.capacity
         const migratedChests: Chest[] = []
         for (let i = 0; i < oldItems.length; i += goldCap) {
           migratedChests.push({
             id: `migrated_chest_${migratedChests.length + 1}`,
             tier: 'gold',
-            label: migratedChests.length === 0 ? '旧仓库' : `旧仓库${migratedChests.length + 1}`,
+            label: migratedChests.length === 0 ? 'Eski Depo' : `Eski Depo${migratedChests.length + 1}`,
             items: oldItems.slice(i, i + goldCap),
             voidRole: 'none'
           })
         }
         chests.value = migratedChests
-        // 确保箱子槽位足够容纳迁移的箱子
+        // Taşınan sandıkları alacak kadar yuva aç
         if (maxChests.value < migratedChests.length) {
           maxChests.value = migratedChests.length
         }
@@ -261,7 +261,7 @@ export const useWarehouseStore = defineStore('warehouse', () => {
       chests.value = (data.chests as Chest[]) ?? []
     }
 
-    // 兼容旧存档：如果有箱子但未标记解锁，自动解锁
+    // Eski kayıt uyumluluğu: sandık varsa ama kilit açılmamış görünüyorsa otomatik aç
     if (!unlocked.value && chests.value.length > 0) unlocked.value = true
   }
 
