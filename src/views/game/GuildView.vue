@@ -3,34 +3,34 @@
     <div class="flex items-center justify-between mb-1">
       <div class="flex items-center space-x-1.5 text-sm text-accent">
         <Swords :size="14" />
-        <span>冒险家公会 Lv.{{ guildStore.guildLevel }}</span>
+        <span>Serdengeçti Ocağı Sv.{{ guildStore.guildLevel }}</span>
       </div>
       <div class="flex items-center space-x-2 text-xs">
         <span class="text-muted">
-          贡献点:
+          Katkı Puanı:
           <span class="text-accent">{{ guildStore.contributionPoints }}</span>
         </span>
       </div>
     </div>
 
-    <!-- 标签页 -->
+    <!-- Sekmeler -->
     <div class="flex space-x-1 mb-3">
-      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'goals' }" @click="tab = 'goals'">讨伐</Button>
-      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'donate' }" @click="tab = 'donate'">捐献</Button>
-      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'shop' }" @click="tab = 'shop'">商店</Button>
-      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'bestiary' }" @click="tab = 'bestiary'">图鉴</Button>
+      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'goals' }" @click="tab = 'goals'">Av</Button>
+      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'donate' }" @click="tab = 'donate'">Bağış</Button>
+      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'shop' }" @click="tab = 'shop'">Dükkân</Button>
+      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'bestiary' }" @click="tab = 'bestiary'">Yaratık Defteri</Button>
     </div>
 
-    <!-- 讨伐任务 -->
+    <!-- Av görevleri -->
     <div v-if="tab === 'goals'">
-      <!-- 空状态 -->
+      <!-- Boş durum -->
       <div v-if="!hasAnyKills" class="flex flex-col items-center justify-center py-8 space-y-3 mb-3">
         <Swords :size="48" class="text-accent/30" />
-        <p class="text-sm text-muted">尚未讨伐任何怪物</p>
-        <p class="text-xs text-muted/60 text-center max-w-60">前往矿洞击败怪物，完成讨伐目标可领取奖励</p>
+        <p class="text-sm text-muted">Henüz hiçbir yaratık avlanmadı</p>
+        <p class="text-xs text-muted/60 text-center max-w-60">Madene inip yaratıkları yen. Av hedeflerini tamamlayınca ödül alırsın</p>
       </div>
 
-      <!-- 区域筛选 -->
+      <!-- Bölge süzgeci -->
       <div class="grid grid-cols-3 md:grid-cols-none md:flex gap-1 md:space-x-1 mb-2 flex-wrap">
         <button
           v-for="z in ZONE_FILTERS"
@@ -64,7 +64,7 @@
             </div>
             <span class="text-xs text-muted">{{ getKillCount(goal.monsterId) }}/{{ goal.killTarget }}</span>
           </div>
-          <!-- 进度条 -->
+          <!-- İlerleme çubuğu -->
           <div class="h-1 bg-bg rounded-xs overflow-hidden">
             <div
               class="h-full transition-all"
@@ -76,7 +76,7 @@
       </div>
     </div>
 
-    <!-- 讨伐目标详情弹窗 -->
+    <!-- Av hedefi ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="selectedGoal"
@@ -98,7 +98,7 @@
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">进度</span>
+              <span class="text-xs text-muted">İlerleme</span>
               <span class="text-xs">{{ getKillCount(selectedGoal.monsterId) }}/{{ selectedGoal.killTarget }}</span>
             </div>
             <div class="h-1.5 bg-bg rounded-xs overflow-hidden mt-1.5">
@@ -111,21 +111,21 @@
           </div>
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
-            <p class="text-xs text-muted mb-1">奖励</p>
+            <p class="text-xs text-muted mb-1">Ödül</p>
             <p class="text-xs text-accent">
-              {{ selectedGoal.reward.money }}文{{
+              {{ selectedGoal.reward.money }} akçe{{
                 selectedGoal.reward.items
                   ? ' + ' + selectedGoal.reward.items.map(i => `${getDropName(i.itemId)}×${i.quantity}`).join('、')
                   : ''
               }}
-              + {{ getGoalBonusPoints(selectedGoal) }}贡献点
+              + {{ getGoalBonusPoints(selectedGoal) }} katkı puanı
             </p>
           </div>
 
           <div v-if="isGoalClaimed(selectedGoal.monsterId)" class="border border-success/30 rounded-xs p-2">
             <div class="flex justify-center items-center space-x-1">
               <CircleCheck :size="12" class="text-success" />
-              <span class="text-xs text-success">已完成</span>
+              <span class="text-xs text-success">Tamamlandı</span>
             </div>
           </div>
           <Button
@@ -134,13 +134,13 @@
             class="btn text-xs w-full justify-center !bg-accent !text-bg"
             @click="handleClaimGoal(selectedGoal.monsterId)"
           >
-            领取奖励
+            Ödülü Al
           </Button>
         </div>
       </div>
     </Transition>
 
-    <!-- 捐献 -->
+    <!-- Bağış -->
     <div v-if="tab === 'donate'">
       <div class="flex flex-col space-y-2 max-h-72 overflow-y-auto">
         <div
@@ -152,14 +152,14 @@
         >
           <div class="flex-1">
             <p class="text-xs" :class="item.count > 0 ? 'text-text' : 'text-muted'">{{ item.name }}</p>
-            <p class="text-xs text-muted">持有 {{ item.count }} · 每个 {{ item.points }} 贡献点</p>
+            <p class="text-xs text-muted">Sahip olunan {{ item.count }} · Her biri {{ item.points }} katkı puanı</p>
           </div>
-          <span class="text-xs ml-2" :class="item.count > 0 ? 'text-accent' : 'text-muted'">{{ item.count * item.points }}点</span>
+          <span class="text-xs ml-2" :class="item.count > 0 ? 'text-accent' : 'text-muted'">{{ item.count * item.points }} puan</span>
         </div>
       </div>
     </div>
 
-    <!-- 捐献弹窗 -->
+    <!-- Bağış penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="donateModalItem"
@@ -171,23 +171,23 @@
             <X :size="14" />
           </button>
 
-          <p class="text-sm text-accent mb-2">捐献{{ donateModalItem.name }}</p>
+          <p class="text-sm text-accent mb-2">{{ donateModalItem.name }} bağışı</p>
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">持有数量</span>
+              <span class="text-xs text-muted">Eldeki miktar</span>
               <span class="text-xs">{{ donateModalItem.count }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">单个贡献点</span>
+              <span class="text-xs text-muted">Bir başına katkı</span>
               <span class="text-xs text-accent">{{ donateModalItem.points }}</span>
             </div>
           </div>
 
-          <!-- 数量选择 -->
+          <!-- Miktar seçimi -->
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between mb-1.5">
-              <span class="text-xs text-muted">捐献数量</span>
+              <span class="text-xs text-muted">Bağış miktarı</span>
               <div class="flex items-center space-x-1">
                 <Button
                   class="h-6 px-1.5 py-0.5 text-xs justify-center"
@@ -214,39 +214,39 @@
               </div>
             </div>
             <div class="flex space-x-1">
-              <Button class="flex-1 justify-center" :disabled="donateQuantity <= 1" @click="donateQuantity = 1">最少</Button>
+              <Button class="flex-1 justify-center" :disabled="donateQuantity <= 1" @click="donateQuantity = 1">En az</Button>
               <Button
                 class="flex-1 justify-center"
                 :disabled="donateQuantity >= donateModalItem.count"
                 @click="donateQuantity = donateModalItem.count"
               >
-                最多
+                En çok
               </Button>
             </div>
             <div class="flex items-center justify-between mt-1.5">
-              <span class="text-xs text-muted">预计获得</span>
-              <span class="text-xs text-accent">{{ donateQuantity * donateModalItem.points }} 贡献点</span>
+              <span class="text-xs text-muted">Beklenen getiri</span>
+              <span class="text-xs text-accent">{{ donateQuantity * donateModalItem.points }} katkı puanı</span>
             </div>
           </div>
 
-          <!-- 确认状态 -->
+          <!-- Onay durumu -->
           <div v-if="!donateConfirmed" class="flex flex-col space-y-1">
             <Button class="btn text-xs w-full justify-center !bg-accent !text-bg" :icon="HandHeart" @click="donateConfirmed = true">
-              确认捐献
+              Bağışı Onayla
             </Button>
           </div>
           <div v-else class="flex flex-col space-y-1">
-            <p class="text-xs text-center text-danger mb-1">确定捐献 {{ donateQuantity }} 个{{ donateModalItem.name }}？</p>
+            <p class="text-xs text-center text-danger mb-1">{{ donateQuantity }} adet {{ donateModalItem.name }} bağışlamaya emin misin?</p>
             <div class="flex space-x-2">
-              <Button class="flex-1 btn text-xs justify-center" @click="donateConfirmed = false">取消</Button>
-              <Button class="flex-1 btn text-xs justify-center !bg-accent !text-bg" :icon="HandHeart" @click="executeDonate">捐献</Button>
+              <Button class="flex-1 btn text-xs justify-center" @click="donateConfirmed = false">Vazgeç</Button>
+              <Button class="flex-1 btn text-xs justify-center !bg-accent !text-bg" :icon="HandHeart" @click="executeDonate">Bağışla</Button>
             </div>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 公会商店 -->
+    <!-- Ocak dükkânı -->
     <div v-if="tab === 'shop'" class="flex flex-col space-y-2">
       <div
         v-for="item in GUILD_SHOP_ITEMS"
@@ -258,7 +258,7 @@
           <p class="text-sm" :class="guildStore.isShopItemUnlocked(item.itemId) ? '' : 'text-muted'">{{ item.name }}</p>
           <p class="text-xs text-muted">{{ item.description }}</p>
           <p v-if="item.materials && guildStore.isShopItemUnlocked(item.itemId)" class="text-xs text-muted mt-0.5">
-            材料:
+            Gereken malzeme:
             <span
               v-for="(mat, idx) in item.materials"
               :key="mat.itemId"
@@ -270,25 +270,25 @@
           </p>
           <p v-if="item.unlockGuildLevel && !guildStore.isShopItemUnlocked(item.itemId)" class="text-xs text-danger mt-0.5">
             <Lock :size="10" class="inline" />
-            公会 Lv.{{ item.unlockGuildLevel }} 解锁
+            Ocak Sv.{{ item.unlockGuildLevel }} ile açılır
           </p>
           <p v-if="item.dailyLimit && guildStore.isShopItemUnlocked(item.itemId)" class="text-xs text-muted mt-0.5">
-            今日剩余: {{ guildStore.getDailyRemaining(item.itemId, item.dailyLimit) }}/{{ item.dailyLimit }}
+            Bugün kalan: {{ guildStore.getDailyRemaining(item.itemId, item.dailyLimit) }}/{{ item.dailyLimit }}
           </p>
           <p v-if="item.weeklyLimit && guildStore.isShopItemUnlocked(item.itemId)" class="text-xs text-muted mt-0.5">
-            本周剩余: {{ guildStore.getWeeklyRemaining(item.itemId, item.weeklyLimit) }}/{{ item.weeklyLimit }}
+            Bu hafta kalan: {{ guildStore.getWeeklyRemaining(item.itemId, item.weeklyLimit) }}/{{ item.weeklyLimit }}
           </p>
           <p v-if="item.totalLimit && guildStore.isShopItemUnlocked(item.itemId)" class="text-xs text-muted mt-0.5">
-            总限购: {{ guildStore.getTotalRemaining(item.itemId, item.totalLimit) }}/{{ item.totalLimit }}
+            Toplam sınır: {{ guildStore.getTotalRemaining(item.itemId, item.totalLimit) }}/{{ item.totalLimit }}
           </p>
         </div>
         <span class="text-xs whitespace-nowrap ml-2" :class="item.contributionCost ? 'text-success' : 'text-accent'">
-          {{ item.contributionCost ? `${item.contributionCost}贡献` : `${item.price}文` }}
+          {{ item.contributionCost ? `${item.contributionCost} katkı` : `${item.price} akçe` }}
         </span>
       </div>
     </div>
 
-    <!-- 商店购买弹窗 -->
+    <!-- Dükkân satın alma penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="shopModalItem"
@@ -307,13 +307,13 @@
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">{{ shopBuyQty > 1 ? '单价' : '价格' }}</span>
+              <span class="text-xs text-muted">{{ shopBuyQty > 1 ? 'Birim bedel' : 'Bedel' }}</span>
               <span class="text-xs" :class="shopModalItem.contributionCost ? 'text-success' : 'text-accent'">
-                {{ shopModalItem.contributionCost ? `${shopModalItem.contributionCost} 贡献点` : `${shopModalItem.price}文` }}
+                {{ shopModalItem.contributionCost ? `${shopModalItem.contributionCost} katkı puanı` : `${shopModalItem.price} akçe` }}
               </span>
             </div>
             <div v-if="shopModalItem.contributionCost" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">持有贡献点</span>
+              <span class="text-xs text-muted">Eldeki katkı puanı</span>
               <span
                 class="text-xs"
                 :class="guildStore.contributionPoints >= (shopModalItem.contributionCost ?? 0) * shopBuyQty ? 'text-text' : 'text-danger'"
@@ -322,14 +322,14 @@
               </span>
             </div>
             <div v-else class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">持有铜钱</span>
+              <span class="text-xs text-muted">Eldeki akçe</span>
               <span class="text-xs" :class="playerStore.money >= shopModalItem.price * shopBuyQty ? 'text-text' : 'text-danger'">
-                {{ playerStore.money }}文
+                {{ playerStore.money }} akçe
               </span>
             </div>
             <template v-if="shopModalItem.materials">
               <div class="border-t border-accent/10 mt-1.5 pt-1.5">
-                <span class="text-xs text-muted">所需材料</span>
+                <span class="text-xs text-muted">Gereken malzeme</span>
               </div>
               <div v-for="mat in shopModalItem.materials" :key="mat.itemId" class="flex items-center justify-between mt-0.5">
                 <span class="text-xs">{{ getMaterialName(mat.itemId) }} ×{{ mat.quantity * shopBuyQty }}</span>
@@ -342,29 +342,29 @@
               </div>
             </template>
             <div v-if="shopModalItem.dailyLimit" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">今日剩余</span>
+              <span class="text-xs text-muted">Bugün kalan</span>
               <span class="text-xs">
                 {{ guildStore.getDailyRemaining(shopModalItem.itemId, shopModalItem.dailyLimit) }}/{{ shopModalItem.dailyLimit }}
               </span>
             </div>
             <div v-if="shopModalItem.weeklyLimit" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">本周剩余</span>
+              <span class="text-xs text-muted">Bu hafta kalan</span>
               <span class="text-xs">
                 {{ guildStore.getWeeklyRemaining(shopModalItem.itemId, shopModalItem.weeklyLimit) }}/{{ shopModalItem.weeklyLimit }}
               </span>
             </div>
             <div v-if="shopModalItem.totalLimit" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">总限购剩余</span>
+              <span class="text-xs text-muted">Toplam kalan</span>
               <span class="text-xs">
                 {{ guildStore.getTotalRemaining(shopModalItem.itemId, shopModalItem.totalLimit) }}/{{ shopModalItem.totalLimit }}
               </span>
             </div>
           </div>
 
-          <!-- 数量选择（可批量购买时显示） -->
+          <!-- Miktar seçimi -->
           <div v-if="maxShopBuyQty > 1" class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between mb-1.5">
-              <span class="text-xs text-muted">数量</span>
+              <span class="text-xs text-muted">Miktar</span>
               <div class="flex items-center space-x-1">
                 <Button class="h-6 px-1.5 py-0.5 text-xs justify-center" :disabled="shopBuyQty <= 1" @click="addShopBuyQty(-1)">-</Button>
                 <input
@@ -381,22 +381,22 @@
               </div>
             </div>
             <div class="flex space-x-1">
-              <Button class="flex-1 justify-center" :disabled="shopBuyQty <= 1" @click="setShopBuyQty(1)">最少</Button>
+              <Button class="flex-1 justify-center" :disabled="shopBuyQty <= 1" @click="setShopBuyQty(1)">En az</Button>
               <Button class="flex-1 justify-center" :disabled="shopBuyQty >= maxShopBuyQty" @click="setShopBuyQty(maxShopBuyQty)">
-                最多
+                En çok
               </Button>
             </div>
             <div class="flex items-center justify-between mt-1.5">
-              <span class="text-xs text-muted">合计</span>
+              <span class="text-xs text-muted">Toplam</span>
               <span class="text-xs" :class="shopModalItem.contributionCost ? 'text-success' : 'text-accent'">
-                {{ shopBuyTotalCost }}{{ shopModalItem.contributionCost ? '贡献点' : '文' }}
+                {{ shopBuyTotalCost }}{{ shopModalItem.contributionCost ? ' katkı puanı' : ' akçe' }}
               </span>
             </div>
           </div>
 
           <p v-if="shopModalItem.unlockGuildLevel && !guildStore.isShopItemUnlocked(shopModalItem.itemId)" class="text-xs text-danger mb-2">
             <Lock :size="10" class="inline" />
-            公会 Lv.{{ shopModalItem.unlockGuildLevel }} 解锁
+            Ocak Sv.{{ shopModalItem.unlockGuildLevel }} ile açılır
           </p>
           <Button
             v-else
@@ -408,23 +408,23 @@
           >
             {{
               maxShopBuyQty > 1
-                ? `购买 ×${shopBuyQty}`
-                : `购买 ${shopModalItem.contributionCost ? `${shopModalItem.contributionCost}贡献` : `${shopModalItem.price}文`}`
+                ? `Satın Al ×${shopBuyQty}`
+                : `Satın Al ${shopModalItem.contributionCost ? `${shopModalItem.contributionCost} katkı` : `${shopModalItem.price} akçe`}`
             }}
           </Button>
         </div>
       </div>
     </Transition>
 
-    <!-- 怪物图鉴 -->
+    <!-- Yaratık defteri -->
     <div v-if="tab === 'bestiary'">
       <div v-if="guildStore.encounteredMonsters.length === 0" class="flex flex-col items-center justify-center py-8 space-y-3">
         <BookOpen :size="48" class="text-accent/30" />
-        <p class="text-sm text-muted">图鉴尚无记录</p>
-        <p class="text-xs text-muted/60 text-center max-w-60">在矿洞中遭遇怪物后，它们的信息将记录在此</p>
+        <p class="text-sm text-muted">Defterde henüz kayıt yok</p>
+        <p class="text-xs text-muted/60 text-center max-w-60">Madende yaratıklarla karşılaşınca bilgileri buraya işlenir</p>
       </div>
       <template v-else>
-        <p class="text-xs text-muted mb-2">已发现 {{ guildStore.encounteredMonsters.length }}/{{ allMonsters.length }}</p>
+        <p class="text-xs text-muted mb-2">Görülen {{ guildStore.encounteredMonsters.length }}/{{ allMonsters.length }}</p>
         <div class="max-h-72 overflow-y-auto flex flex-col space-y-3">
           <div v-for="group in monsterGroups" :key="group.label">
             <p class="text-xs text-accent mb-1">{{ group.label }}</p>
@@ -449,7 +449,7 @@
       </template>
     </div>
 
-    <!-- 怪物详情弹窗 -->
+    <!-- Yaratık ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="selectedMonster"
@@ -465,25 +465,25 @@
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">生命</span>
+              <span class="text-xs text-muted">Can</span>
               <span class="text-xs text-danger">{{ selectedMonster.hp }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">攻击</span>
+              <span class="text-xs text-muted">Saldırı</span>
               <span class="text-xs text-accent">{{ selectedMonster.attack }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">防御</span>
+              <span class="text-xs text-muted">Savunma</span>
               <span class="text-xs">{{ selectedMonster.defense }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">击杀数</span>
+              <span class="text-xs text-muted">Kesilme sayısı</span>
               <span class="text-xs">{{ guildStore.getKillCount(selectedMonster.id) }}</span>
             </div>
           </div>
 
           <div v-if="selectedMonster.drops.length > 0" class="border border-accent/10 rounded-xs p-2">
-            <p class="text-xs text-muted mb-1">掉落物</p>
+            <p class="text-xs text-muted mb-1">Düşen eşyalar</p>
             <div v-for="drop in selectedMonster.drops" :key="drop.itemId" class="flex items-center justify-between mt-0.5">
               <span class="text-xs">{{ getDropName(drop.itemId) }}</span>
               <span class="text-xs text-muted">{{ Math.round(drop.chance * 100) }}%</span>
@@ -491,24 +491,24 @@
           </div>
 
           <div v-if="getEquipDrops(selectedMonster).length > 0" class="border border-accent/10 rounded-xs p-2 mt-2">
-            <p class="text-xs text-muted mb-1">装备掉落</p>
+            <p class="text-xs text-muted mb-1">Teçhizat düşüşleri</p>
             <div v-for="(drop, idx) in getEquipDrops(selectedMonster)" :key="idx" class="flex items-center justify-between mt-0.5">
               <span class="text-xs">
                 {{ drop.name }}
-                <span v-if="drop.firstKill" class="text-[10px] text-accent">（首杀）</span>
+                <span v-if="drop.firstKill" class="text-[10px] text-accent">（ilk zafer）</span>
               </span>
               <span v-if="drop.chance !== null" class="text-xs text-muted">{{ Math.round(drop.chance * 100) }}%</span>
-              <span v-else class="text-xs text-success">必得</span>
+              <span v-else class="text-xs text-success">Kesin</span>
             </div>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 底部统计 -->
+    <!-- Alt istatistik -->
     <div class="mt-3 border border-accent/20 rounded-xs p-2">
       <div class="flex items-center space-x-2 text-xs mb-1.5">
-        <span class="text-muted shrink-0">讨伐进度</span>
+        <span class="text-muted shrink-0">Av ilerleyişi</span>
         <div class="flex-1 h-1 bg-bg rounded-xs border border-accent/10">
           <div
             class="h-full bg-accent rounded-xs transition-all"
@@ -519,20 +519,20 @@
       </div>
       <div class="grid grid-cols-2 gap-x-3 gap-y-0.5">
         <div class="flex items-center justify-between">
-          <span class="text-xs text-muted">已完成讨伐</span>
+          <span class="text-xs text-muted">Tamamlanan av</span>
           <span class="text-xs">{{ guildStore.completedGoalCount }}/{{ MONSTER_GOALS.length }}</span>
         </div>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-muted">已领取奖励</span>
+          <span class="text-xs text-muted">Alınan ödül</span>
           <span class="text-xs">{{ guildStore.claimedGoals.length }}</span>
         </div>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-muted">遭遇怪物</span>
+          <span class="text-xs text-muted">Karşılaşılan yaratık</span>
           <span class="text-xs">{{ guildStore.encounteredMonsters.length }}/{{ allMonsters.length }}</span>
         </div>
         <div class="flex items-center justify-between">
-          <span class="text-xs text-muted">公会等级</span>
-          <span class="text-xs text-accent">Lv.{{ guildStore.guildLevel }}</span>
+          <span class="text-xs text-muted">Ocak seviyesi</span>
+          <span class="text-xs text-accent">Sv.{{ guildStore.guildLevel }}</span>
         </div>
       </div>
     </div>
@@ -574,7 +574,7 @@
     shopBuyQty.value = 1
   }
 
-  /** 最大可购买数量 */
+  /** En çok alınabilecek miktar */
   const maxShopBuyQty = computed(() => {
     const item = shopModalItem.value
     if (!item) return 1
@@ -631,12 +631,12 @@
     selectedGoal.value = null
   }
 
-  /** 计算讨伐目标的贡献点奖励 */
+  /** Av hedefi katkı puanı ödülü */
   const getGoalBonusPoints = (goal: MonsterGoalDef): number => {
     return Math.floor((goal.reward.money ?? 0) / 20) + goal.killTarget
   }
 
-  /** 捐献弹窗状态 */
+  /** Bağış penceresi durumu */
   const donateModalItem = ref<{ itemId: string; name: string; count: number; points: number } | null>(null)
   const donateQuantity = ref(1)
   const donateConfirmed = ref(false)
@@ -657,18 +657,18 @@
     if (!donateModalItem.value) return
     const result = guildStore.donateItem(donateModalItem.value.itemId, donateQuantity.value)
     if (result.success) {
-      addLog(`捐献了${donateModalItem.value.name}×${donateQuantity.value}，获得 ${result.pointsGained} 贡献点。`)
+      addLog(`${donateModalItem.value.name} ×${donateQuantity.value} bağışlandı, ${result.pointsGained} katkı puanı kazanıldı.`)
     }
     donateModalItem.value = null
     donateConfirmed.value = false
   }
 
-  /** 获取材料名称 */
+  /** Malzeme adı */
   const getMaterialName = (itemId: string): string => {
     return getItemById(itemId)?.name ?? itemId
   }
 
-  /** 判断能否购买商品 */
+  /** Ürün alınabilir mi */
   const canBuyItem = (item: GuildShopItemDef): boolean => {
     if (!guildStore.isShopItemUnlocked(item.itemId)) return false
     if (item.dailyLimit && guildStore.getDailyRemaining(item.itemId, item.dailyLimit) <= 0) return false
@@ -685,7 +685,7 @@
 
   const hasAnyKills = computed(() => Object.values(guildStore.monsterKills).some(v => v > 0))
 
-  /** 可捐献物品列表 */
+  /** Bağışlanabilir eşya listesi */
   const donatableItems = computed(() => {
     return GUILD_DONATIONS.map(donation => {
       const count = inventoryStore.getItemCount(donation.itemId)
@@ -695,15 +695,15 @@
   })
 
   const ZONE_FILTERS = [
-    { key: 'all', label: '全部' },
-    { key: 'shallow', label: '浅层' },
-    { key: 'frost', label: '冰霜' },
-    { key: 'lava', label: '熔岩' },
-    { key: 'crystal', label: '水晶' },
-    { key: 'shadow', label: '暗影' },
-    { key: 'abyss', label: '深渊' },
-    { key: 'boss', label: 'BOSS' },
-    { key: 'skull', label: '骷髅矿穴' }
+    { key: 'all', label: 'Hepsi' },
+    { key: 'shallow', label: 'Yüzey' },
+    { key: 'frost', label: 'Kırağı' },
+    { key: 'lava', label: 'Kor' },
+    { key: 'crystal', label: 'Billur' },
+    { key: 'shadow', label: 'Gölge' },
+    { key: 'abyss', label: 'Uçurum' },
+    { key: 'boss', label: 'Baş Bela' },
+    { key: 'skull', label: 'Kuru Kafa Madeni' }
   ]
 
   const filteredGoals = computed(() => {
@@ -719,7 +719,7 @@
     return guildStore.claimedGoals.includes(monsterId)
   }
 
-  /** 怪物图鉴：合并普通怪+BOSS+骷髅矿穴 */
+  /** Yaratık defteri: sıradan + baş belalar + kuru kafa madeni */
   const allMonsters = computed<MonsterDef[]>(() => {
     const list: MonsterDef[] = []
     for (const m of Object.values(MONSTERS)) {
@@ -734,18 +734,18 @@
     return list
   })
 
-  /** 怪物图鉴分组 */
+  /** Yaratık defteri grupları */
   const monsterGroups = computed(() => [
-    { label: '普通怪物', monsters: Object.values(MONSTERS) as MonsterDef[] },
-    { label: 'BOSS', monsters: Object.values(BOSS_MONSTERS) as MonsterDef[] },
-    { label: '骷髅矿穴', monsters: Object.values(SKULL_CAVERN_MONSTERS) as MonsterDef[] }
+    { label: 'Sıradan Yaratıklar', monsters: Object.values(MONSTERS) as MonsterDef[] },
+    { label: 'Baş Belalar', monsters: Object.values(BOSS_MONSTERS) as MonsterDef[] },
+    { label: 'Kuru Kafa Madeni', monsters: Object.values(SKULL_CAVERN_MONSTERS) as MonsterDef[] }
   ])
 
   const getDropName = (itemId: string): string => {
     return getItemById(itemId)?.name ?? itemId
   }
 
-  /** 获取普通怪物所在区域 */
+  /** Sıradan yaratığın bölgesi */
   const getMonsterZone = (monsterId: string): string | null => {
     for (const [zone, monsters] of Object.entries(ZONE_MONSTERS)) {
       if (monsters.some(m => m.id === monsterId)) return zone
@@ -753,7 +753,7 @@
     return null
   }
 
-  /** 获取 BOSS 所在楼层 */
+  /** Baş belanın katı */
   const getBossFloor = (monsterId: string): number | null => {
     for (const [floor, monster] of Object.entries(BOSS_MONSTERS)) {
       if (monster.id === monsterId) return Number(floor)
@@ -761,7 +761,7 @@
     return null
   }
 
-  /** 获取怪物的装备掉落列表 */
+  /** Yaratığın teçhizat düşüşleri */
   const getEquipDrops = (monster: MonsterDef): { name: string; chance: number | null; firstKill: boolean }[] => {
     const drops: { name: string; chance: number | null; firstKill: boolean }[] = []
     const zone = getMonsterZone(monster.id)
