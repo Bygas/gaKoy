@@ -1,31 +1,31 @@
 <template>
   <div>
-    <!-- 标题 -->
+    <!-- Başlık -->
     <div class="flex items-center justify-between mb-1">
       <div class="flex items-center space-x-1.5 text-sm text-accent">
         <Package :size="14" />
-        <span>背包</span>
+        <span>Heybe</span>
       </div>
       <span class="text-xs text-muted">
         {{ inventoryStore.items.length }}/{{ inventoryStore.capacity }}
-        <span v-if="inventoryStore.tempItems.length > 0" class="text-danger">+{{ inventoryStore.tempItems.length }}溢出</span>
+        <span v-if="inventoryStore.tempItems.length > 0" class="text-danger">+{{ inventoryStore.tempItems.length }} taşan</span>
       </span>
     </div>
 
-    <!-- 页签切换 -->
+    <!-- Sekme geçişi -->
     <div class="flex space-x-1 mb-3">
-      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'items' }" @click="tab = 'items'">物品</Button>
-      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'tools' }" @click="tab = 'tools'">装备</Button>
+      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'items' }" @click="tab = 'items'">Eşya</Button>
+      <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': tab === 'tools' }" @click="tab = 'tools'">Kuşanım</Button>
       <Button
         class="flex-1 justify-center"
         :class="{ '!bg-danger !text-text': tab === 'temp', 'text-danger': tab !== 'temp' && inventoryStore.tempItems.length > 0 }"
         @click="tab = 'temp'"
       >
-        临时{{ inventoryStore.tempItems.length > 0 ? `(${inventoryStore.tempItems.length})` : '' }}
+        Geçici{{ inventoryStore.tempItems.length > 0 ? `(${inventoryStore.tempItems.length})` : '' }}
       </Button>
     </div>
 
-    <!-- 物品页 -->
+    <!-- Eşya sekmesi -->
     <template v-if="tab === 'items'">
       <div v-if="inventoryStore.items.length > 1" class="flex justify-end mb-1.5 space-x-1">
         <Button
@@ -35,9 +35,9 @@
           :icon-size="12"
           @click="openFilterModal"
         >
-          筛选
+          Süz
         </Button>
-        <Button class="py-0 px-1.5" :icon="ArrowDown01" :icon-size="12" @click="inventoryStore.sortItems()">整理</Button>
+        <Button class="py-0 px-1.5" :icon="ArrowDown01" :icon-size="12" @click="inventoryStore.sortItems()">Düzenle</Button>
       </div>
       <div v-if="filteredItems.length > 0" class="grid grid-cols-3 md:grid-cols-5 gap-1.5">
         <div
@@ -60,27 +60,27 @@
           <div class="text-xs text-muted">×{{ item.quantity }}</div>
         </div>
 
-        <!-- 空格子 -->
+        <!-- Boş gözeler -->
         <div
           v-for="i in isFilterActive ? 0 : Math.max(0, inventoryStore.capacity - inventoryStore.items.length)"
           :key="'empty-' + i"
           class="border border-accent/10 rounded-xs p-1.5 text-center text-xs text-muted/30"
         >
-          空
+          Boş
         </div>
       </div>
       <div v-else class="flex flex-col items-center justify-center py-4 text-muted">
         <Package :size="24" />
-        <p class="text-xs mt-1">背包是空的</p>
+        <p class="text-xs mt-1">Heybe boş</p>
       </div>
     </template>
 
-    <!-- 临时背包页 -->
+    <!-- Geçici heybe sekmesi -->
     <template v-if="tab === 'temp'">
       <div v-if="inventoryStore.tempItems.length > 0">
         <div class="flex items-center justify-between mb-1.5">
-          <span class="text-[10px] text-muted">背包满时溢出的物品，请及时取回</span>
-          <Button v-if="!inventoryStore.isFull" class="py-0 px-1.5" @click="handleMoveAllFromTemp">全部取回</Button>
+          <span class="text-[10px] text-muted">Heybe dolunca taşan eşyalar burada durur, vakitlice geri al</span>
+          <Button v-if="!inventoryStore.isFull" class="py-0 px-1.5" @click="handleMoveAllFromTemp">Hepsini al</Button>
         </div>
         <div class="grid grid-cols-3 md:grid-cols-5 gap-1.5">
           <div
@@ -102,33 +102,33 @@
             <div class="text-xs text-muted">×{{ item.quantity }}</div>
           </div>
 
-          <!-- 空格子 -->
+          <!-- Boş gözeler -->
           <div
             v-for="i in Math.max(0, 10 - inventoryStore.tempItems.length)"
             :key="'temp-empty-' + i"
             class="border border-danger/10 rounded-xs p-1.5 text-center text-xs text-muted/30"
           >
-            空
+            Boş
           </div>
         </div>
       </div>
       <div v-else class="flex flex-col items-center justify-center py-4 text-muted">
         <Archive :size="24" />
-        <p class="text-xs mt-1">临时背包是空的</p>
+        <p class="text-xs mt-1">Geçici heybe boş</p>
       </div>
     </template>
 
-    <!-- 装备页 -->
+    <!-- Kuşanım sekmesi -->
     <template v-if="tab === 'tools'">
-      <!-- 方案按钮 -->
+      <!-- Düzen düğmesi -->
       <div class="flex items-center justify-end mb-1.5 space-x-1.5">
         <span v-if="activePresetName" class="text-[10px] text-success truncate">{{ activePresetName }}</span>
-        <Button class="py-0 px-1.5" :icon="BookMarked" :icon-size="12" @click="showPresetModal = true">方案</Button>
+        <Button class="py-0 px-1.5" :icon="BookMarked" :icon-size="12" @click="showPresetModal = true">Düzen</Button>
       </div>
 
-      <!-- 武器 -->
+      <!-- Silah -->
       <div class="border border-accent/20 rounded-xs p-2 mb-3">
-        <p class="text-xs text-muted mb-1">武器</p>
+        <p class="text-xs text-muted mb-1">Silah</p>
         <div class="flex flex-col space-y-1 max-h-40 overflow-y-auto">
           <div
             v-for="(weapon, idx) in inventoryStore.ownedWeapons"
@@ -140,24 +140,24 @@
             <span class="text-xs" :class="idx === inventoryStore.equippedWeaponIndex ? 'text-accent' : ''">
               {{ getWeaponDisplayName(weapon.defId, weapon.enchantmentId) }}
             </span>
-            <span v-if="idx === inventoryStore.equippedWeaponIndex" class="text-xs text-accent">装备中</span>
-            <span v-else class="text-xs text-muted">{{ getWeaponSellPrice(weapon.defId, weapon.enchantmentId) }}文</span>
+            <span v-if="idx === inventoryStore.equippedWeaponIndex" class="text-xs text-accent">Kuşanılı</span>
+            <span v-else class="text-xs text-muted">{{ getWeaponSellPrice(weapon.defId, weapon.enchantmentId) }} akçe</span>
           </div>
         </div>
       </div>
 
-      <!-- 帽子 -->
+      <!-- Başlık -->
       <div class="border border-accent/20 rounded-xs p-2 mb-3">
-        <p class="text-xs text-muted mb-1">帽子</p>
+        <p class="text-xs text-muted mb-1">Başlık</p>
         <div v-if="inventoryStore.ownedHats.length > 0" class="flex flex-col space-y-1">
-          <!-- 槽位 -->
+          <!-- Yuva -->
           <div class="border border-accent/10 rounded-xs px-2 py-1 text-center mb-1">
-            <p class="text-[10px] text-muted">装备中</p>
+            <p class="text-[10px] text-muted">Kuşanılı</p>
             <p class="text-xs" :class="equippedHatName ? 'text-accent' : 'text-muted/40'">
-              {{ equippedHatName ?? '空' }}
+              {{ equippedHatName ?? 'Boş' }}
             </p>
           </div>
-          <!-- 拥有的帽子列表 -->
+          <!-- Sahip olunan başlıklar -->
           <div class="max-h-40 overflow-y-auto flex flex-col space-y-1">
             <div
               v-for="(hat, idx) in inventoryStore.ownedHats"
@@ -177,26 +177,26 @@
                 :class="inventoryStore.equippedHatIndex === idx ? '!bg-accent !text-bg' : ''"
                 @click.stop="handleToggleHat(idx)"
               >
-                {{ inventoryStore.equippedHatIndex === idx ? '卸下' : '装备' }}
+                {{ inventoryStore.equippedHatIndex === idx ? 'Çıkar' : 'Kuşan' }}
               </Button>
             </div>
           </div>
         </div>
-        <p v-else class="text-xs text-muted/40 text-center py-2">暂无帽子</p>
+        <p v-else class="text-xs text-muted/40 text-center py-2">Başlık yok</p>
       </div>
 
-      <!-- 鞋子 -->
+      <!-- Ayaklık -->
       <div class="border border-accent/20 rounded-xs p-2 mb-3">
-        <p class="text-xs text-muted mb-1">鞋子</p>
+        <p class="text-xs text-muted mb-1">Ayaklık</p>
         <div v-if="inventoryStore.ownedShoes.length > 0" class="flex flex-col space-y-1">
-          <!-- 槽位 -->
+          <!-- Yuva -->
           <div class="border border-accent/10 rounded-xs px-2 py-1 text-center mb-1">
-            <p class="text-[10px] text-muted">装备中</p>
+            <p class="text-[10px] text-muted">Kuşanılı</p>
             <p class="text-xs" :class="equippedShoeName ? 'text-accent' : 'text-muted/40'">
-              {{ equippedShoeName ?? '空' }}
+              {{ equippedShoeName ?? 'Boş' }}
             </p>
           </div>
-          <!-- 拥有的鞋子列表 -->
+          <!-- Sahip olunan ayaklıklar -->
           <div class="max-h-40 overflow-y-auto flex flex-col space-y-1">
             <div
               v-for="(shoe, idx) in inventoryStore.ownedShoes"
@@ -216,34 +216,34 @@
                 :class="inventoryStore.equippedShoeIndex === idx ? '!bg-accent !text-bg' : ''"
                 @click.stop="handleToggleShoe(idx)"
               >
-                {{ inventoryStore.equippedShoeIndex === idx ? '卸下' : '装备' }}
+                {{ inventoryStore.equippedShoeIndex === idx ? 'Çıkar' : 'Kuşan' }}
               </Button>
             </div>
           </div>
         </div>
-        <p v-else class="text-xs text-muted/40 text-center py-2">暂无鞋子</p>
+        <p v-else class="text-xs text-muted/40 text-center py-2">Ayaklık yok</p>
       </div>
 
-      <!-- 戒指 -->
+      <!-- Yüzük -->
       <div class="border border-accent/20 rounded-xs p-2">
-        <p class="text-xs text-muted mb-1">戒指</p>
+        <p class="text-xs text-muted mb-1">Yüzük</p>
         <div v-if="inventoryStore.ownedRings.length > 0" class="flex flex-col space-y-1">
-          <!-- 槽位 -->
+          <!-- Yuvalar -->
           <div class="flex space-x-1 mb-1">
             <div class="flex-1 border border-accent/10 rounded-xs px-2 py-1 text-center">
-              <p class="text-[10px] text-muted">槽位1</p>
+              <p class="text-[10px] text-muted">Yuva 1</p>
               <p class="text-xs" :class="equippedRing1Name ? 'text-accent' : 'text-muted/40'">
-                {{ equippedRing1Name ?? '空' }}
+                {{ equippedRing1Name ?? 'Boş' }}
               </p>
             </div>
             <div class="flex-1 border border-accent/10 rounded-xs px-2 py-1 text-center">
-              <p class="text-[10px] text-muted">槽位2</p>
+              <p class="text-[10px] text-muted">Yuva 2</p>
               <p class="text-xs" :class="equippedRing2Name ? 'text-accent' : 'text-muted/40'">
-                {{ equippedRing2Name ?? '空' }}
+                {{ equippedRing2Name ?? 'Boş' }}
               </p>
             </div>
           </div>
-          <!-- 拥有的戒指列表 -->
+          <!-- Sahip olunan yüzükler -->
           <div class="max-h-40 overflow-y-auto flex flex-col space-y-1">
             <div
               v-for="(ring, idx) in inventoryStore.ownedRings"
@@ -271,7 +271,7 @@
                   :disabled="isRingBlockedForSlot(idx, 0)"
                   @click.stop="handleToggleRingSlot(idx, 0)"
                 >
-                  槽1
+                  Yuva1
                 </Button>
                 <Button
                   class="py-0 px-1.5"
@@ -285,31 +285,31 @@
                   :disabled="isRingBlockedForSlot(idx, 1)"
                   @click.stop="handleToggleRingSlot(idx, 1)"
                 >
-                  槽2
+                  Yuva2
                 </Button>
               </div>
             </div>
           </div>
         </div>
-        <p v-else class="text-xs text-muted/40 text-center py-2">暂无戒指</p>
+        <p v-else class="text-xs text-muted/40 text-center py-2">Yüzük yok</p>
       </div>
 
-      <!-- 套装效果 -->
+      <!-- Takım etkileri -->
       <div v-if="inventoryStore.activeSets.length > 0" class="border border-accent/20 rounded-xs p-2 mt-3">
-        <p class="text-xs text-muted mb-1">套装效果</p>
+        <p class="text-xs text-muted mb-1">Takım etkisi</p>
         <div v-for="set in inventoryStore.activeSets" :key="set.id" class="border border-accent/10 rounded-xs p-2 mb-1.5 last:mb-0">
           <div class="flex items-center justify-between mb-1">
             <span class="text-xs text-accent">{{ set.name }}</span>
             <span class="text-xs text-muted">{{ set.equippedCount }}/3</span>
           </div>
           <div v-for="bonus in set.bonuses" :key="bonus.count" class="text-[10px]" :class="bonus.active ? 'text-success' : 'text-muted/40'">
-            ({{ bonus.count }}件) {{ bonus.description }}
+            ({{ bonus.count }} parça) {{ bonus.description }}
           </div>
         </div>
       </div>
     </template>
 
-    <!-- 装备方案弹窗 -->
+    <!-- Kuşanım düzeni penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showPresetModal"
@@ -320,7 +320,7 @@
           <button class="absolute top-2 right-2 text-muted hover:text-text" @click="showPresetModal = false">
             <X :size="14" />
           </button>
-          <p class="text-sm text-accent mb-2">装备方案</p>
+          <p class="text-sm text-accent mb-2">Kuşanım Düzeni</p>
           <div v-if="inventoryStore.equipmentPresets.length > 0" class="flex flex-col space-y-1.5 mb-3 max-h-60 overflow-y-auto">
             <div
               v-for="preset in inventoryStore.equipmentPresets"
@@ -340,7 +340,7 @@
                 <template v-else>
                   <span class="text-xs text-accent truncate">{{ preset.name }}</span>
                 </template>
-                <span v-if="activePresetId === preset.id" class="text-[10px] text-success shrink-0 ml-1">使用中</span>
+                <span v-if="activePresetId === preset.id" class="text-[10px] text-success shrink-0 ml-1">Kullanımda</span>
               </div>
               <div class="flex space-x-1">
                 <Button
@@ -348,29 +348,29 @@
                   :disabled="activePresetId === preset.id"
                   @click="handleApplyPreset(preset.id)"
                 >
-                  使用
+                  Kullan
                 </Button>
-                <Button class="py-0 px-1.5 flex-1 justify-center" @click="handleSaveToPreset(preset.id)">保存</Button>
-                <Button class="py-0 px-1.5" @click="startRename(preset)">改名</Button>
+                <Button class="py-0 px-1.5 flex-1 justify-center" @click="handleSaveToPreset(preset.id)">Kaydet</Button>
+                <Button class="py-0 px-1.5" @click="startRename(preset)">Ad ver</Button>
                 <Button class="py-0 px-1.5 text-danger" :disabled="activePresetId === preset.id" @click="handleDeletePreset(preset.id)">
-                  删除
+                  Sil
                 </Button>
               </div>
             </div>
           </div>
           <div v-else class="flex flex-col items-center justify-center py-6 mb-3">
             <BookMarked :size="24" class="text-muted/30" />
-            <p class="text-xs text-muted mt-1">暂无方案</p>
-            <p class="text-[10px] text-muted/60 mt-0.5">创建方案后可快速切换装备配置</p>
+            <p class="text-xs text-muted mt-1">Düzen yok</p>
+            <p class="text-[10px] text-muted/60 mt-0.5">Düzen kurarsan kuşanımı bir anda değiştirebilirsin</p>
           </div>
           <Button class="w-full justify-center" :disabled="inventoryStore.equipmentPresets.length >= 3" @click="handleCreatePreset">
-            新建方案
+            Yeni düzen
           </Button>
         </div>
       </div>
     </Transition>
 
-    <!-- 临时背包物品详情弹窗 -->
+    <!-- Geçici heybe eşya ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showFilterModal"
@@ -381,8 +381,8 @@
           <button class="absolute top-2 right-2 text-muted hover:text-text" @click="showFilterModal = false">
             <X :size="14" />
           </button>
-          <p class="text-sm text-accent mb-2">物品筛选</p>
-          <p class="text-[10px] text-muted mb-2">选择要显示的分类，不选则显示全部</p>
+          <p class="text-sm text-accent mb-2">Eşya Süzgeci</p>
+          <p class="text-[10px] text-muted mb-2">Görünsün istediğin türleri seç; seçmezsen hepsi görünür</p>
           <div class="grid grid-cols-3 gap-1.5 mb-3">
             <div
               v-for="cat in FILTER_CATEGORIES"
@@ -395,14 +395,14 @@
             </div>
           </div>
           <div class="flex space-x-1.5">
-            <Button class="flex-1 justify-center" @click="handleClearFilter">全部显示</Button>
-            <Button class="flex-1 justify-center !bg-accent !text-bg" @click="handleSaveFilter">保存</Button>
+            <Button class="flex-1 justify-center" @click="handleClearFilter">Hepsi görünsün</Button>
+            <Button class="flex-1 justify-center !bg-accent !text-bg" @click="handleSaveFilter">Sakla</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 临时背包物品详情弹窗 -->
+    <!-- Geçici heybe eşya ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="activeTempItem"
@@ -423,18 +423,18 @@
             }"
           >
             {{ activeTempItemDef?.name }}
-            <span class="text-xs text-danger ml-1">（临时）</span>
+            <span class="text-xs text-danger ml-1">（Geçici）</span>
           </p>
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <p class="text-xs text-muted">{{ activeTempItemDef?.description }}</p>
           </div>
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">数量</span>
+              <span class="text-xs text-muted">Sayı</span>
               <span class="text-xs">×{{ activeTempItem.quantity }}</span>
             </div>
             <div v-if="activeTempItem.quality !== 'normal'" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">品质</span>
+              <span class="text-xs text-muted">Nitelik</span>
               <span
                 class="text-xs"
                 :class="{
@@ -456,15 +456,15 @@
               :disabled="inventoryStore.isFull"
               @click="handleMoveFromTemp"
             >
-              放入背包
+              Heybeye koy
             </Button>
-            <Button class="w-full justify-center text-danger border-danger/40" @click="handleDiscardTemp">丢弃</Button>
+            <Button class="w-full justify-center text-danger border-danger/40" @click="handleDiscardTemp">At gitsin</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 物品详情弹窗 -->
+    <!-- Eşya ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div v-if="activeItem" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" @click.self="activeItemKey = null">
         <div class="game-panel max-w-xs w-full relative">
@@ -490,11 +490,11 @@
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">数量</span>
+              <span class="text-xs text-muted">Sayı</span>
               <span class="text-xs">×{{ activeItem.quantity }}</span>
             </div>
             <div v-if="activeItem.quality !== 'normal'" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">品质</span>
+              <span class="text-xs text-muted">Nitelik</span>
               <span
                 class="text-xs"
                 :class="{
@@ -507,22 +507,22 @@
               </span>
             </div>
             <div v-if="activeItemDef?.sellPrice" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">售价</span>
-              <span class="text-xs text-accent">{{ activeItemDef.sellPrice }}文</span>
+              <span class="text-xs text-muted">Satış değeri</span>
+              <span class="text-xs text-accent">{{ activeItemDef.sellPrice }} akçe</span>
             </div>
             <div v-if="activeItemDef?.staminaRestore" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">恢复</span>
+              <span class="text-xs text-muted">Onarım</span>
               <span class="text-xs text-success">
-                +{{ activeItemDef.staminaRestore }}体力
-                <template v-if="activeItemDef.healthRestore">/ +{{ activeItemDef.healthRestore }}HP</template>
+                +{{ activeItemDef.staminaRestore }} derman
+                <template v-if="activeItemDef.healthRestore">/ +{{ activeItemDef.healthRestore }} can</template>
               </span>
             </div>
             <div v-if="activeItemBuff" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">增益</span>
+              <span class="text-xs text-muted">Kut</span>
               <span class="text-xs text-accent">{{ activeItemBuff.description }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">来源</span>
+              <span class="text-xs text-muted">Kaynak</span>
               <span class="text-xs text-muted">{{ getItemSource(activeItem.itemId) }}</span>
             </div>
           </div>
@@ -534,7 +534,7 @@
               :icon-size="12"
               @click="inventoryStore.toggleLock(activeItem.itemId, activeItem.quality)"
             >
-              {{ activeItem.locked ? '解锁' : '锁定' }}
+              {{ activeItem.locked ? 'Kilidi aç' : 'Kilitle' }}
             </Button>
             <Button
               v-if="isEdible(activeItem.itemId)"
@@ -543,7 +543,7 @@
               :icon-size="12"
               @click="handleEat(activeItem.itemId, activeItem.quality)"
             >
-              食用
+              Ye
             </Button>
             <Button
               v-if="isUsable(activeItem.itemId)"
@@ -552,14 +552,14 @@
               :icon-size="12"
               @click="handleUse(activeItem.itemId, activeItem.quality)"
             >
-              使用
+              Kullan
             </Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 武器详情弹窗 -->
+    <!-- Silah ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="activeWeaponIdx !== null && activeWeaponDef"
@@ -576,46 +576,46 @@
           </div>
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">类型</span>
+              <span class="text-xs text-muted">Tür</span>
               <span class="text-xs">{{ WEAPON_TYPE_NAMES[activeWeaponDef.type] }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">攻击力</span>
+              <span class="text-xs text-muted">Vuruş gücü</span>
               <span class="text-xs">{{ activeWeaponDef.attack }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">暴击率</span>
+              <span class="text-xs text-muted">Ağır vurma</span>
               <span class="text-xs">{{ Math.round(activeWeaponDef.critRate * 100) }}%</span>
             </div>
             <div v-if="activeWeaponEnchant" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">附魔</span>
+              <span class="text-xs text-muted">Tılsım</span>
               <span class="text-xs text-accent">{{ activeWeaponEnchant.name }}：{{ activeWeaponEnchant.description }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">售价</span>
-              <span class="text-xs text-accent">{{ activeWeaponPrice }}文</span>
+              <span class="text-xs text-muted">Satış değeri</span>
+              <span class="text-xs text-accent">{{ activeWeaponPrice }} akçe</span>
             </div>
           </div>
           <div class="flex flex-col space-y-1.5">
             <Button v-if="activeWeaponIdx !== inventoryStore.equippedWeaponIndex" class="w-full justify-center" @click="handleEquipWeapon">
-              装备
+              Kuşan
             </Button>
             <Button
               v-if="activeWeaponIdx !== inventoryStore.equippedWeaponIndex && inventoryStore.ownedWeapons.length > 1"
               class="w-full justify-center text-danger border-danger/40"
               @click="handleSellWeapon"
             >
-              卖出 · {{ activeWeaponPrice }}文
+              Sat · {{ activeWeaponPrice }} akçe
             </Button>
             <p v-if="activeWeaponIdx === inventoryStore.equippedWeaponIndex" class="text-[10px] text-muted text-center">
-              当前装备中，请先切换其他武器再卖出
+              Şu an kuşanılı; satmak için önce başka silaha geç
             </p>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 戒指详情弹窗 -->
+    <!-- Yüzük ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="activeRingIdx !== null && activeRingDef"
@@ -636,8 +636,8 @@
               <span class="text-xs text-success">+{{ formatEffectValue(eff) }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">售价</span>
-              <span class="text-xs text-accent">{{ activeRingDef.sellPrice }}文</span>
+              <span class="text-xs text-muted">Satış değeri</span>
+              <span class="text-xs text-accent">{{ activeRingDef.sellPrice }} akçe</span>
             </div>
           </div>
           <div class="flex flex-col space-y-1.5">
@@ -648,7 +648,7 @@
                 :disabled="activeRingIdx !== null && isRingBlockedForSlot(activeRingIdx, 0)"
                 @click="handleEquipRingFromPopup(0)"
               >
-                {{ inventoryStore.equippedRingSlot1 === activeRingIdx ? '卸下槽1' : '装备槽1' }}
+                {{ inventoryStore.equippedRingSlot1 === activeRingIdx ? 'Yuva1’den çıkar' : 'Yuva1’e tak' }}
               </Button>
               <Button
                 class="flex-1 justify-center"
@@ -656,18 +656,18 @@
                 :disabled="activeRingIdx !== null && isRingBlockedForSlot(activeRingIdx, 1)"
                 @click="handleEquipRingFromPopup(1)"
               >
-                {{ inventoryStore.equippedRingSlot2 === activeRingIdx ? '卸下槽2' : '装备槽2' }}
+                {{ inventoryStore.equippedRingSlot2 === activeRingIdx ? 'Yuva2’den çıkar' : 'Yuva2’ye tak' }}
               </Button>
             </div>
             <Button class="w-full justify-center text-danger border-danger/40" @click="handleSellRing">
-              卖出 · {{ activeRingDef.sellPrice }}文
+              Sat · {{ activeRingDef.sellPrice }} akçe
             </Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 帽子详情弹窗 -->
+    <!-- Başlık ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="activeHatIdx !== null && activeHatDef"
@@ -688,23 +688,23 @@
               <span class="text-xs text-success">+{{ formatEffectValue(eff) }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">售价</span>
-              <span class="text-xs text-accent">{{ activeHatDef.sellPrice }}文</span>
+              <span class="text-xs text-muted">Satış değeri</span>
+              <span class="text-xs text-accent">{{ activeHatDef.sellPrice }} akçe</span>
             </div>
           </div>
           <div class="flex flex-col space-y-1.5">
             <Button class="w-full justify-center" @click="handleToggleHatFromPopup">
-              {{ inventoryStore.equippedHatIndex === activeHatIdx ? '卸下' : '装备' }}
+              {{ inventoryStore.equippedHatIndex === activeHatIdx ? 'Çıkar' : 'Kuşan' }}
             </Button>
             <Button class="w-full justify-center text-danger border-danger/40" @click="handleSellHat">
-              卖出 · {{ activeHatDef.sellPrice }}文
+              Sat · {{ activeHatDef.sellPrice }} akçe
             </Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 鞋子详情弹窗 -->
+    <!-- Ayaklık ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="activeShoeIdx !== null && activeShoeDef"
@@ -725,16 +725,16 @@
               <span class="text-xs text-success">+{{ formatEffectValue(eff) }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">售价</span>
-              <span class="text-xs text-accent">{{ activeShoeDef.sellPrice }}文</span>
+              <span class="text-xs text-muted">Satış değeri</span>
+              <span class="text-xs text-accent">{{ activeShoeDef.sellPrice }} akçe</span>
             </div>
           </div>
           <div class="flex flex-col space-y-1.5">
             <Button class="w-full justify-center" @click="handleToggleShoeFromPopup">
-              {{ inventoryStore.equippedShoeIndex === activeShoeIdx ? '卸下' : '装备' }}
+              {{ inventoryStore.equippedShoeIndex === activeShoeIdx ? 'Çıkar' : 'Kuşan' }}
             </Button>
             <Button class="w-full justify-center text-danger border-danger/40" @click="handleSellShoe">
-              卖出 · {{ activeShoeDef.sellPrice }}文
+              Sat · {{ activeShoeDef.sellPrice }} akçe
             </Button>
           </div>
         </div>
@@ -770,11 +770,11 @@
   const cookingStore = useCookingStore()
   const settingsStore = useSettingsStore()
 
-  // === 页签 ===
+  // === Sekmeler ===
 
   const tab = ref<'items' | 'tools' | 'temp'>('items')
 
-  // === 物品筛选 ===
+  // === Eşya süzme ===
 
   const FILTER_CATEGORIES: ItemCategory[] = [
     'seed',
@@ -801,27 +801,27 @@
   ]
 
   const CATEGORY_NAMES: Partial<Record<ItemCategory, string>> = {
-    seed: '种子',
-    crop: '作物',
-    fruit: '水果',
-    fish: '鱼类',
-    animal_product: '畜产',
-    processed: '加工品',
-    food: '料理',
-    ore: '矿石',
-    gem: '宝石',
-    material: '材料',
-    machine: '机器',
-    sprinkler: '洒水器',
-    fertilizer: '肥料',
-    bait: '鱼饵',
-    tackle: '钓具',
-    bomb: '炸弹',
-    sapling: '树苗',
-    gift: '礼物',
-    fossil: '化石',
-    artifact: '文物',
-    misc: '杂货'
+    seed: 'Tohum',
+    crop: 'Ekin',
+    fruit: 'Meyve',
+    fish: 'Balık',
+    animal_product: 'Hayvan ürünü',
+    processed: 'İşlenmiş',
+    food: 'Aş',
+    ore: 'Cevher',
+    gem: 'Taş',
+    material: 'Gereç',
+    machine: 'Düzenek',
+    sprinkler: 'Su saçan',
+    fertilizer: 'Gübre',
+    bait: 'Yem',
+    tackle: 'Olta gereci',
+    bomb: 'Bomba',
+    sapling: 'Fidan',
+    gift: 'Armağan',
+    fossil: 'Kemiktaş',
+    artifact: 'Eski yadigâr',
+    misc: 'Öteberi'
   }
 
   const showFilterModal = ref(false)
@@ -860,7 +860,7 @@
     tempFilter.value = new Set()
   }
 
-  // === 装备方案 ===
+  // === Kuşanım düzenleri ===
 
   const showPresetModal = ref(false)
   const renamingPresetId = ref<string | null>(null)
@@ -874,7 +874,7 @@
   })
 
   const handleCreatePreset = () => {
-    inventoryStore.createEquipmentPreset('方案' + (inventoryStore.equipmentPresets.length + 1))
+    inventoryStore.createEquipmentPreset('Düzen' + (inventoryStore.equipmentPresets.length + 1))
   }
 
   const startRename = (preset: { id: string; name: string }) => {
@@ -891,7 +891,7 @@
   const handleSaveToPreset = (id: string) => {
     if (renamingPresetId.value) confirmRename(renamingPresetId.value)
     inventoryStore.saveCurrentToPreset(id)
-    addLog('已保存当前装备到方案。')
+    addLog('Şimdiki kuşanım düzene saklandı.')
   }
 
   const handleApplyPreset = (id: string) => {
@@ -905,7 +905,7 @@
     inventoryStore.deleteEquipmentPreset(id)
   }
 
-  // === 戒指辅助 ===
+  // === Yüzük yardımcıları ===
 
   const equippedRing1Name = computed(() => {
     const idx = inventoryStore.equippedRingSlot1
@@ -925,7 +925,7 @@
     return inventoryStore.equippedRingSlot1 === idx || inventoryStore.equippedRingSlot2 === idx
   }
 
-  /** 检查戒指是否因同defId冲突被另一槽位阻止 */
+  /** Yüzük aynı tanımdan dolayı öbür yuvada engelli mi */
   const isRingBlockedForSlot = (ringIdx: number, slot: 0 | 1): boolean => {
     const otherSlotIdx = slot === 0 ? inventoryStore.equippedRingSlot2 : inventoryStore.equippedRingSlot1
     if (otherSlotIdx < 0 || otherSlotIdx === ringIdx) return false
@@ -933,7 +933,7 @@
     return inventoryStore.ownedRings[ringIdx]?.defId === inventoryStore.ownedRings[otherSlotIdx]?.defId
   }
 
-  /** 切换戒指槽位（点击高亮按钮 → 卸下；点击非高亮按钮 → 装备/换位） */
+  /** Yüzük yuvasını değiştir */
   const handleToggleRingSlot = (ringIdx: number, slot: 0 | 1) => {
     const slotRef = slot === 0 ? inventoryStore.equippedRingSlot1 : inventoryStore.equippedRingSlot2
     if (slotRef === ringIdx) {
@@ -944,31 +944,31 @@
     }
   }
 
-  // === 戒指效果显示 ===
+  // === Yüzük etkisi görünüşü ===
 
   const RING_EFFECT_NAMES: Record<RingEffectType, string> = {
-    attack_bonus: '攻击力',
-    crit_rate_bonus: '暴击率',
-    defense_bonus: '防御',
-    vampiric: '吸血',
-    max_hp_bonus: '最大HP',
-    stamina_reduction: '体力消耗',
-    mining_stamina: '采矿体力',
-    farming_stamina: '农作体力',
-    fishing_stamina: '钓鱼体力',
-    crop_quality_bonus: '作物品质',
-    crop_growth_bonus: '作物生长',
-    fish_quality_bonus: '鱼类品质',
-    fishing_calm: '钓鱼稳定',
-    sell_price_bonus: '售价加成',
-    shop_discount: '商店折扣',
-    gift_friendship: '送礼好感',
-    monster_drop_bonus: '掉落率',
-    exp_bonus: '经验加成',
-    treasure_find: '宝箱概率',
-    ore_bonus: '矿石加成',
-    luck: '幸运',
-    travel_speed: '旅行加速'
+    attack_bonus: 'Vuruş gücü',
+    crit_rate_bonus: 'Ağır vurma',
+    defense_bonus: 'Savunma',
+    vampiric: 'Can çekiş',
+    max_hp_bonus: 'Azami can',
+    stamina_reduction: 'Derman gideri',
+    mining_stamina: 'Maden dermanı',
+    farming_stamina: 'Tarla dermanı',
+    fishing_stamina: 'Av dermanı',
+    crop_quality_bonus: 'Ekin niteliği',
+    crop_growth_bonus: 'Ekin büyümesi',
+    fish_quality_bonus: 'Balık niteliği',
+    fishing_calm: 'Balık sükûnu',
+    sell_price_bonus: 'Satış artısı',
+    shop_discount: 'Pazar indirimi',
+    gift_friendship: 'Armağan gönlü',
+    monster_drop_bonus: 'Düşürme oranı',
+    exp_bonus: 'Deney artısı',
+    treasure_find: 'Sandık bahtı',
+    ore_bonus: 'Cevher artısı',
+    luck: 'Uğur',
+    travel_speed: 'Yol hızı'
   }
 
   const PERCENTAGE_EFFECTS: Set<RingEffectType> = new Set([
@@ -998,7 +998,7 @@
     return `${eff.value}`
   }
 
-  // === 武器弹窗 ===
+  // === Silah penceresi ===
 
   const activeWeaponIdx = ref<number | null>(null)
 
@@ -1043,7 +1043,7 @@
     activeWeaponIdx.value = null
   }
 
-  // === 戒指弹窗 ===
+  // === Yüzük penceresi ===
 
   const activeRingIdx = ref<number | null>(null)
 
@@ -1072,7 +1072,7 @@
     activeRingIdx.value = null
   }
 
-  // === 帽子辅助 ===
+  // === Başlık yardımcıları ===
 
   const equippedHatName = computed(() => {
     const idx = inventoryStore.equippedHatIndex
@@ -1089,7 +1089,7 @@
     }
   }
 
-  // === 帽子弹窗 ===
+  // === Başlık penceresi ===
 
   const activeHatIdx = ref<number | null>(null)
 
@@ -1112,7 +1112,7 @@
     activeHatIdx.value = null
   }
 
-  // === 鞋子辅助 ===
+  // === Ayaklık yardımcıları ===
 
   const equippedShoeName = computed(() => {
     const idx = inventoryStore.equippedShoeIndex
@@ -1129,7 +1129,7 @@
     }
   }
 
-  // === 鞋子弹窗 ===
+  // === Ayaklık penceresi ===
 
   const activeShoeIdx = ref<number | null>(null)
 
@@ -1152,7 +1152,7 @@
     activeShoeIdx.value = null
   }
 
-  // === 临时背包 ===
+  // === Geçici heybe ===
 
   const activeTempIdx = ref<number | null>(null)
 
@@ -1170,20 +1170,20 @@
     if (activeTempIdx.value === null) return
     const success = inventoryStore.moveFromTemp(activeTempIdx.value)
     if (success) {
-      addLog('物品已转移到背包。')
+      addLog('Eşya heybeye geçirildi.')
       activeTempIdx.value = null
     } else {
-      addLog('背包空间不足，部分物品仍在临时背包中。')
+      addLog('Heybede yer yetmedi; bazı eşya geçici heybede kaldı.')
     }
   }
 
   const handleMoveAllFromTemp = () => {
     const moved = inventoryStore.moveAllFromTemp()
     if (moved > 0) {
-      addLog(`已将${moved}项物品从临时背包转移到背包。`)
+      addLog(`${moved} kalem eşya geçici heybede iken asıl heybeye geçirildi.`)
     }
     if (inventoryStore.tempItems.length > 0) {
-      addLog('部分物品因空间不足仍在临时背包中。')
+      addLog('Yer yetmediğinden bazı eşya hâlâ geçici heybede duruyor.')
     }
   }
 
@@ -1192,11 +1192,11 @@
     const item = inventoryStore.tempItems[activeTempIdx.value]
     const name = getItemById(item?.itemId ?? '')?.name ?? ''
     inventoryStore.discardTempItem(activeTempIdx.value)
-    addLog(`丢弃了${name}。`)
+    addLog(`${name} bırakılıp atıldı.`)
     activeTempIdx.value = null
   }
 
-  // === 物品弹窗 ===
+  // === Eşya penceresi ===
 
   const activeItemKey = ref<string | null>(null)
 
@@ -1211,7 +1211,7 @@
     return getItemById(activeItem.value.itemId) ?? null
   })
 
-  /** 烹饪品的buff描述 */
+  /** Aş buff açıklaması */
   const activeItemBuff = computed(() => {
     if (!activeItem.value) return null
     const itemId = activeItem.value.itemId
@@ -1231,20 +1231,19 @@
     const staminaFull = playerStore.stamina >= playerStore.maxStamina
     const hpFull = playerStore.hp >= playerStore.getMaxHp()
     if (staminaFull && hpFull) {
-      addLog('体力和生命值都已满，不需要食用。')
+      addLog('Derman da can da tam; şimdi yemene gerek yok.')
       return
     }
 
-    // 烹饪品走 cookingStore.eat()，以正确应用buff、厨房加成等
+    // Pişmiş aşlar cookingStore.eat() yolundan gider
     if (itemId.startsWith('food_')) {
-      const recipeId = itemId.slice(5) // 去掉 'food_' 前缀
+      const recipeId = itemId.slice(5)
       const result = cookingStore.eat(recipeId, quality)
       if (result.success) {
         addLog(result.message)
       } else {
         addLog(result.message)
       }
-      // 物品消耗完则关闭弹窗
       if (!inventoryStore.items.find(i => i.itemId === itemId && i.quality === quality)) {
         activeItemKey.value = null
       }
@@ -1252,25 +1251,23 @@
     }
 
     if (!inventoryStore.removeItem(itemId, 1, quality)) return
-    // 炼金师专精：食物恢复+50%
     const alchemistBonus = skillStore.getSkill('foraging').perk10 === 'alchemist' ? 1.5 : 1.0
     const staminaRestore = Math.floor(def.staminaRestore * alchemistBonus)
     playerStore.restoreStamina(staminaRestore)
-    let msg = `食用了${def.name}，恢复${staminaRestore}体力`
+    let msg = `${def.name} yedin, ${staminaRestore} derman topladın`
     if (def.healthRestore) {
       const healthRestore = Math.floor(def.healthRestore * alchemistBonus)
       playerStore.restoreHealth(healthRestore)
-      msg += `、${healthRestore}生命值`
+      msg += `, ${healthRestore} can da kazandın`
     }
-    msg += '。'
+    msg += '.'
     addLog(msg)
-    // 物品消耗完则关闭弹窗
     if (!inventoryStore.items.find(i => i.itemId === itemId && i.quality === quality)) {
       activeItemKey.value = null
     }
   }
 
-  /** 可使用的特殊物品 */
+  /** Kullanılabilir özel eşyalar */
   const USABLE_ITEMS = new Set(['rain_totem', 'stamina_fruit'])
 
   const isUsable = (itemId: string): boolean => {
@@ -1281,18 +1278,17 @@
     if (itemId === 'rain_totem') {
       if (!inventoryStore.removeItem(itemId, 1, quality)) return
       gameStore.setTomorrowWeather('rainy')
-      addLog('你使用了雨图腾，明天将会下雨。')
+      addLog('Yağmur tılsımını kullandın; yarın yağmur inecek.')
     }
     if (itemId === 'stamina_fruit') {
       if (playerStore.staminaCapLevel >= 4) {
-        addLog('体力上限已达到最高，无法再使用仙桃。')
+        addLog('Derman sınırı en yüce noktaya vardı; artık kutlu şeftali yenmez.')
         return
       }
       if (!inventoryStore.removeItem(itemId, 1, quality)) return
       playerStore.upgradeMaxStamina()
-      addLog(`食用了仙桃，体力上限永久提升至${playerStore.maxStamina}！`)
+      addLog(`Kutlu şeftaliyi yedin; derman sınırın kalıcı olarak ${playerStore.maxStamina} oldu!`)
     }
-    // 物品消耗完则关闭弹窗
     if (!inventoryStore.items.find(i => i.itemId === itemId && i.quality === quality)) {
       activeItemKey.value = null
     }
