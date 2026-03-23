@@ -6,47 +6,47 @@ import { useInventoryStore } from './useInventoryStore'
 import { addLog } from '@/composables/useGameLog'
 
 export const useSecretNoteStore = defineStore('secretNote', () => {
-  /** 已收集的笔记ID列表 */
+  /** Toplanan notların ID listesi */
   const collectedNotes = ref<number[]>([])
-  /** 已使用的笔记ID列表（宝藏类） */
+  /** Kullanılmış notların ID listesi (hazine türü) */
   const usedNotes = ref<number[]>([])
 
   const totalNotes = computed(() => SECRET_NOTES.length)
   const collectedCount = computed(() => collectedNotes.value.length)
 
-  /** 是否已收集某笔记 */
+  /** Bir not toplanmış mı */
   const isCollected = (noteId: number): boolean => {
     return collectedNotes.value.includes(noteId)
   }
 
-  /** 是否已使用某笔记 */
+  /** Bir not kullanılmış mı */
   const isUsed = (noteId: number): boolean => {
     return usedNotes.value.includes(noteId)
   }
 
-  /** 是否还有未收集的笔记 */
+  /** Hâlâ toplanmamış not var mı */
   const hasUncollectedNotes = computed(() => {
     return collectedNotes.value.length < SECRET_NOTES.length
   })
 
-  /** 尝试随机收集一张笔记，返回收集到的笔记ID，或null */
+  /** Rastgele bir not toplamayı dener, not ID'sini döndürür; yoksa null */
   const tryCollectNote = (): number | null => {
     if (!hasUncollectedNotes.value) return null
     const uncollected = SECRET_NOTES.filter(n => !collectedNotes.value.includes(n.id))
     if (uncollected.length === 0) return null
     const note = uncollected[Math.floor(Math.random() * uncollected.length)]!
     collectedNotes.value.push(note.id)
-    addLog(`发现了秘密笔记 #${note.id}：${note.title}`)
+    addLog(`Gizli not bulundu #${note.id}: ${note.title}`)
     return note.id
   }
 
-  /** 使用宝藏笔记（领取奖励） */
+  /** Hazine notunu kullan (ödülü al) */
   const useNote = (noteId: number): { success: boolean; message: string } => {
-    if (!isCollected(noteId)) return { success: false, message: '尚未获得此笔记。' }
-    if (isUsed(noteId)) return { success: false, message: '已经使用过此笔记。' }
+    if (!isCollected(noteId)) return { success: false, message: 'Bu not henüz elde edilmedi.' }
+    if (isUsed(noteId)) return { success: false, message: 'Bu not zaten kullanıldı.' }
 
     const noteDef = SECRET_NOTES.find(n => n.id === noteId)
-    if (!noteDef || !noteDef.usable) return { success: false, message: '此笔记不可使用。' }
+    if (!noteDef || !noteDef.usable) return { success: false, message: 'Bu not kullanılamaz.' }
 
     usedNotes.value.push(noteId)
 
@@ -56,7 +56,7 @@ export const useSecretNoteStore = defineStore('secretNote', () => {
     const rewards: string[] = []
     if (noteDef.reward?.money) {
       playerStore.earnMoney(noteDef.reward.money)
-      rewards.push(`${noteDef.reward.money}文`)
+      rewards.push(`${noteDef.reward.money} akçe`)
     }
     if (noteDef.reward?.items) {
       for (const item of noteDef.reward.items) {
@@ -66,8 +66,8 @@ export const useSecretNoteStore = defineStore('secretNote', () => {
     }
 
     const rewardText = rewards.join('、')
-    addLog(`使用了秘密笔记 #${noteId}，获得了${rewardText}！`)
-    return { success: true, message: `获得了${rewardText}！` }
+    addLog(`Gizli not #${noteId} kullanıldı, kazanılanlar: ${rewardText}!`)
+    return { success: true, message: `${rewardText} kazanıldı!` }
   }
 
   const serialize = () => ({
