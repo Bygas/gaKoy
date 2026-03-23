@@ -1,4 +1,4 @@
-/** 装备效果类型（戒指、帽子、鞋子通用） */
+/** Ekipman etkisi türleri (yüzük, başlık, ayakkabı ortak) */
 export type EquipmentEffectType =
   | 'attack_bonus'
   | 'crit_rate_bonus'
@@ -23,35 +23,35 @@ export type EquipmentEffectType =
   | 'luck'
   | 'travel_speed'
 
-/** 兼容别名 */
+/** Uyumluluk için takma ad */
 export type RingEffectType = EquipmentEffectType
 
-/** 单个装备效果 */
+/** Tek bir ekipman etkisi */
 export interface EquipmentEffect {
   type: EquipmentEffectType
   value: number
 }
 
-/** 兼容别名 */
+/** Uyumluluk için takma ad */
 export type RingEffect = EquipmentEffect
 
-/** 戒指定义（数据常量） */
+/** Yüzük tanımı (veri sabiti) */
 export interface RingDef {
   id: string
   name: string
   description: string
   effects: RingEffect[]
-  /** 合成配方（null = 不可合成） */
+  /** Üretim tarifi (null = üretilemez) */
   recipe: { itemId: string; quantity: number }[] | null
-  /** 合成所需铜钱 */
+  /** Üretim için gereken bakır para */
   recipeMoney: number
-  /** 获取途径描述 */
+  /** Elde edilme yolu açıklaması */
   obtainSource: string
-  /** 出售价格 */
+  /** Satış fiyatı */
   sellPrice: number
 }
 
-/** 拥有的戒指实例（存储用） */
+/** Sahip olunan yüzük (kayıt için) */
 export interface OwnedRing {
   defId: string
 }
