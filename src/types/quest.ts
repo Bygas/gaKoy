@@ -1,21 +1,21 @@
 import type { Season } from './game'
 
-/** 任务类型 */
+/** Görev türü */
 export type QuestType = 'delivery' | 'fishing' | 'mining' | 'gathering' | 'special_order'
 
-/** 任务目标模板 */
+/** Görev hedef şablonu */
 export interface QuestTargetDef {
   itemId: string
   name: string
   minQty: number
   maxQty: number
-  /** 该目标在哪些季节可用 (空数组=全季节) */
+  /** Bu hedefin kullanılabildiği mevsimler (boş dizi = tüm mevsimler) */
   seasons: Season[]
-  /** 物品单价(用于计算奖励) */
+  /** Eşya birim fiyatı (ödül hesaplamasında kullanılır) */
   unitPrice: number
 }
 
-/** 任务模板(按类型) */
+/** Görev şablonu (türe göre) */
 export interface QuestTemplateDef {
   type: QuestType
   targets: QuestTargetDef[]
@@ -24,7 +24,7 @@ export interface QuestTemplateDef {
   friendshipReward: number
 }
 
-/** 任务实例(运行时) */
+/** Görev örneği (çalışma anında) */
 export interface QuestInstance {
   id: string
   type: QuestType
@@ -39,17 +39,17 @@ export interface QuestInstance {
   friendshipReward: number
   daysRemaining: number
   accepted: boolean
-  /** 物品奖励（特殊订单） */
+  /** Eşya ödülü (özel buyruk) */
   itemReward?: { itemId: string; quantity: number }[]
-  /** 难度标签（特殊订单） */
+  /** Zorluk etiketi (özel buyruk) */
   tierLabel?: string
 }
 
 // ============================================================
-// 主线任务类型
+// Ana görev türleri
 // ============================================================
 
-/** 主线任务目标类型 */
+/** Ana görev hedef türü */
 export type MainQuestObjectiveType =
   | 'earnMoney'
   | 'reachMineFloor'
@@ -71,26 +71,26 @@ export type MainQuestObjectiveType =
   | 'hasChild'
   | 'deliverItem'
 
-/** 主线任务单个目标 */
+/** Tek bir ana görev hedefi */
 export interface MainQuestObjective {
   type: MainQuestObjectiveType
-  /** 目标描述文本 */
+  /** Hedef açıklama metni */
   label: string
-  /** 数值目标(金钱/层数/等级/数量) */
+  /** Sayısal hedef (para/kat/seviye/adet) */
   target?: number
-  /** 技能类型(skillLevel时) */
+  /** Yetenek türü (skillLevel için) */
   skillType?: string
-  /** NPC ID(npcFriendship时) */
+  /** NPC kimliği (npcFriendship için) */
   npcId?: string
-  /** 好感等级(npcFriendship/npcAllFriendly时) */
+  /** Dostluk seviyesi (npcFriendship/npcAllFriendly için) */
   friendshipLevel?: string
-  /** 物品ID(deliverItem时) */
+  /** Eşya kimliği (deliverItem için) */
   itemId?: string
-  /** 物品数量(deliverItem时) */
+  /** Eşya miktarı (deliverItem için) */
   itemQuantity?: number
 }
 
-/** 主线任务定义(数据层) */
+/** Ana görev tanımı (veri katmanı) */
 export interface MainQuestDef {
   id: string
   chapter: number
@@ -104,7 +104,7 @@ export interface MainQuestDef {
   itemReward?: { itemId: string; quantity: number }[]
 }
 
-/** 主线任务运行时状态 */
+/** Ana görev çalışma durumu */
 export interface MainQuestState {
   questId: string
   accepted: boolean
