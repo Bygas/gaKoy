@@ -1,7 +1,7 @@
 import type { Quality } from './item'
 import type { FishingLocation } from './skill'
 
-/** 加工机器类型 */
+/** Üretim makinesi türü */
 export type MachineType =
   | 'wine_workshop'
   | 'sauce_jar'
@@ -24,33 +24,33 @@ export type MachineType =
   | 'herb_grinder'
   | 'incense_maker'
 
-/** 加工机器定义 */
+/** Üretim makinesi tanımı */
 export interface ProcessingMachineDef {
   id: MachineType
   name: string
   description: string
   craftCost: { itemId: string; quantity: number }[]
   craftMoney: number
-  /** 完成后自动收取产物（默认 false，需手动收取） */
+  /** Tamamlandıktan sonra ürünü kendiliğinden toplar (varsayılan false, elle toplamak gerekir) */
   autoCollect?: boolean
 }
 
-/** 加工配方定义 */
+/** Üretim tarifi tanımı */
 export interface ProcessingRecipeDef {
   id: string
   machineType: MachineType
   name: string
-  /** 输入物品ID（null = 无需输入，如蜂箱） */
+  /** Girdi eşya kimliği (null = girdi gerekmez, örn. arı kovanı) */
   inputItemId: string | null
   inputQuantity: number
   outputItemId: string
   outputQuantity: number
-  /** 加工天数 */
+  /** İşleme gün sayısı */
   processingDays: number
   description: string
 }
 
-/** 运行时加工槽位 */
+/** Çalışma anındaki üretim yuvası */
 export interface ProcessingSlot {
   machineType: MachineType
   recipeId: string | null
@@ -61,10 +61,10 @@ export interface ProcessingSlot {
   ready: boolean
 }
 
-/** 洒水器类型 */
+/** Sulayıcı türü */
 export type SprinklerType = 'bamboo_sprinkler' | 'copper_sprinkler' | 'gold_sprinkler'
 
-/** 洒水器定义 */
+/** Sulayıcı tanımı */
 export interface SprinklerDef {
   id: SprinklerType
   name: string
@@ -74,7 +74,7 @@ export interface SprinklerDef {
   craftMoney: number
 }
 
-/** 肥料类型 */
+/** Gübre türü */
 export type FertilizerType =
   | 'basic_fertilizer'
   | 'quality_fertilizer'
@@ -83,73 +83,73 @@ export type FertilizerType =
   | 'retaining_soil'
   | 'quality_retaining_soil'
 
-/** 肥料定义 */
+/** Gübre tanımı */
 export interface FertilizerDef {
   id: FertilizerType
   name: string
   description: string
-  /** 品质提升概率加成 (0.2 = +20%) */
+  /** Kalite artış ihtimali bonusu (0.2 = +20%) */
   qualityBonus?: number
-  /** 生长速度加成百分比 (0.25 = +25%) */
+  /** Büyüme hızı bonus yüzdesi (0.25 = +25%) */
   growthSpeedup?: number
-  /** 隔夜保水概率 (0.5 = 50%) */
+  /** Gece boyunca suyu koruma ihtimali (0.5 = %50) */
   retainChance?: number
   craftCost: { itemId: string; quantity: number }[]
   craftMoney: number
   shopPrice: number | null
 }
 
-/** 鱼饵类型 */
+/** Yem türü */
 export type BaitType = 'standard_bait' | 'wild_bait' | 'magic_bait' | 'deluxe_bait' | 'targeted_bait'
 
-/** 鱼饵定义 */
+/** Yem tanımı */
 export interface BaitDef {
   id: BaitType
   name: string
   description: string
-  /** 行为概率修正 (calm/struggle/dash 增减) */
+  /** Davranış olasılığı düzeltmesi (calm/struggle/dash artış-azalışı) */
   behaviorModifier?: { calm: number; struggle: number; dash: number }
-  /** 双倍鱼获概率 */
+  /** İkili av yakalama ihtimali */
   doubleCatchChance?: number
-  /** 是否无视季节限制 */
+  /** Mevsim kısıtını yok sayar mı */
   ignoresSeason?: boolean
-  /** 挣扎成功率加成 */
+  /** Debelenme başarı oranı bonusu */
   struggleBonus?: number
-  /** 困难鱼权重倍率 */
+  /** Zor balık ağırlık çarpanı */
   hardWeightMult?: number
-  /** 传说鱼权重倍率 */
+  /** Efsanevi balık ağırlık çarpanı */
   legendaryWeightMult?: number
   craftCost: { itemId: string; quantity: number }[]
   craftMoney: number
   shopPrice: number | null
 }
 
-/** 浮漂类型 */
+/** Şamandıra türü */
 export type TackleType = 'spinner' | 'trap_bobber' | 'cork_bobber' | 'quality_bobber' | 'lead_bobber'
 
-/** 浮漂定义 */
+/** Şamandıra tanımı */
 export interface TackleDef {
   id: TackleType
   name: string
   description: string
   maxDurability: number
   requiredRodTier: 'iron' | 'steel' | 'iridium'
-  /** 体力消耗减免 (0.5 = -50%) */
+  /** Dayanıklılık tüketimi indirimi (0.5 = -50%) */
   staminaReduction?: number
-  /** 断线时额外机会次数 */
+  /** Misina koptuğunda ek şans hakkı sayısı */
   extraBreakChance?: number
-  /** 挣扎成功率加成 */
+  /** Debelenme başarı oranı bonusu */
   struggleBonus?: number
-  /** 鱼品质提升档数 */
+  /** Balık kalite artış kademesi */
   qualityBoost?: number
-  /** 危险行为概率减免 (0.1 = dash/surge 各 -10%) */
+  /** Tehlikeli davranış olasılığı indirimi (0.1 = dash/surge için ayrı ayrı -10%) */
   dangerReduction?: number
   craftCost: { itemId: string; quantity: number }[]
   craftMoney: number
   shopPrice: number | null
 }
 
-/** 炸弹定义 */
+/** Bomba tanımı */
 export interface BombDef {
   id: string
   name: string
@@ -161,10 +161,10 @@ export interface BombDef {
   shopPrice: number | null
 }
 
-/** 野树类型 */
+/** Yaban ağacı türü */
 export type WildTreeType = 'pine' | 'camphor' | 'mulberry'
 
-/** 野树定义 */
+/** Yaban ağacı tanımı */
 export interface WildTreeDef {
   type: WildTreeType
   name: string
@@ -175,7 +175,7 @@ export interface WildTreeDef {
   tapProductName: string
 }
 
-/** 已种植的野树(运行时状态) */
+/** Dikilmiş yaban ağacı (çalışma anı durumu) */
 export interface PlantedWildTree {
   id: number
   type: WildTreeType
@@ -184,17 +184,17 @@ export interface PlantedWildTree {
   hasTapper: boolean
   tapDaysElapsed: number
   tapReady: boolean
-  /** 已伐木次数（>=3 时树消失） */
+  /** Kesilmiş olma sayısı (>=3 olursa ağaç yok olur) */
   chopCount: number
 }
 
-/** 蟹笼状态 */
+/** Kerevit kapanı durumu */
 export interface CrabPotState {
   location: FishingLocation
   hasBait: boolean
 }
 
-/** 钱袋物品定义 */
+/** Kese eşyası tanımı */
 export interface WalletItemDef {
   id: string
   name: string
