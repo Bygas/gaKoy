@@ -2,40 +2,40 @@ import type { FertilizerType } from './processing'
 import type { SeedGenetics } from './breeding'
 import type { Season } from './game'
 
-/** 地块状态 */
+/** Tarla durumu */
 export type PlotState = 'wasteland' | 'tilled' | 'planted' | 'growing' | 'harvestable'
 
-/** 农场地块 */
+/** Çiftlik tarlası */
 export interface FarmPlot {
   id: number
   state: PlotState
-  /** 种植的作物ID */
+  /** Ekili ürün ID */
   cropId: string | null
-  /** 已生长天数 */
+  /** Geçen büyüme gün sayısı */
   growthDays: number
-  /** 今天是否已浇水 */
+  /** Bugün sulandı mı */
   watered: boolean
-  /** 连续未浇水天数 */
+  /** Üst üste sulanmayan gün sayısı */
   unwateredDays: number
-  /** 已施加的肥料类型 */
+  /** Uygulanan gübre türü */
   fertilizer: FertilizerType | null
-  /** 多茬作物已收获次数 */
+  /** Çoklu hasat ürünlerde hasat sayısı */
   harvestCount: number
-  /** 巨型作物组 ID，非 null 表示属于巨型作物 */
+  /** Dev mahsul grup ID (null değilse dev mahsul parçasıdır) */
   giantCropGroup: number | null
-  /** 育种种子的基因属性 */
+  /** Tohum genetik özellikleri */
   seedGenetics: SeedGenetics | null
-  /** 是否被虫害感染 */
+  /** Zararlı istilası var mı */
   infested: boolean
-  /** 连续虫害天数 */
+  /** Üst üste zararlı gün sayısı */
   infestedDays: number
-  /** 是否长草 */
+  /** Yabani ot var mı */
   weedy: boolean
-  /** 连续长草天数 */
+  /** Üst üste yabani ot gün sayısı */
   weedyDays: number
 }
 
-/** 作物定义（配置数据用） */
+/** Ürün tanımı (veri yapısı) */
 export interface CropDef {
   id: string
   name: string
@@ -44,18 +44,18 @@ export interface CropDef {
   growthDays: number
   sellPrice: number
   seedPrice: number
-  /** 是否需要深度灌溉 */
+  /** Derin sulama gerektirir mi */
   deepWatering: boolean
   description: string
-  /** 是否为多茬作物（收获后可重新长出） */
+  /** Çoklu hasat ürünü mü */
   regrowth?: boolean
-  /** 多茬天数 */
+  /** Yeniden büyüme süresi */
   regrowthDays?: number
-  /** 多茬作物最大收获次数 */
+  /** Maksimum hasat sayısı */
   maxHarvests?: number
-  /** 是否可形成巨型作物 */
+  /** Dev mahsule dönüşebilir mi */
   giantCropEligible?: boolean
 }
 
-/** 农场尺寸 */
+/** Çiftlik boyutu */
 export type FarmSize = 4 | 6 | 8
