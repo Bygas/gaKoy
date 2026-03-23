@@ -3,23 +3,23 @@
     <div class="flex items-center justify-between mb-1">
       <div class="flex items-center space-x-1.5 text-sm text-accent">
         <Landmark :size="14" />
-        <span>博物馆</span>
+        <span>Müze Ocağı</span>
       </div>
       <span class="text-xs text-muted">{{ museumStore.donatedCount }}/{{ museumStore.totalCount }}</span>
     </div>
 
-    <!-- 空状态 -->
+    <!-- Boş durum -->
     <div
       v-if="museumStore.donatedCount === 0 && museumStore.donatableItems.length === 0"
       class="flex flex-col items-center justify-center py-10 space-y-3"
     >
       <Landmark :size="48" class="text-accent/30" />
-      <p class="text-sm text-muted">博物馆空空如也</p>
-      <p class="text-xs text-muted/60 text-center max-w-60">在矿洞宝箱、竹林采集中获得化石与古物，捐赠给博物馆可获得里程碑奖励</p>
+      <p class="text-sm text-muted">Müze ocağı bomboş</p>
+      <p class="text-xs text-muted/60 text-center max-w-60">Maden sandıklarında ve bambulukta kemiktaşlar ile eski yadigârlar bulunur; müzeye sunarsan dönüm ödülleri alırsın</p>
     </div>
 
     <template v-else>
-      <!-- 分类标签 -->
+      <!-- Tür damgaları -->
       <div class="grid grid-cols-3 md:grid-cols-6 gap-1 mb-3">
         <Button
           v-for="cat in MUSEUM_CATEGORIES"
@@ -32,7 +32,7 @@
         </Button>
       </div>
 
-      <!-- 收藏格子 -->
+      <!-- Koleksiyon gözeleri -->
       <div class="grid grid-cols-3 md:grid-cols-5 gap-1 mb-3 max-h-72 overflow-y-auto">
         <template v-for="item in filteredItems" :key="item.id">
           <div
@@ -48,9 +48,9 @@
         </template>
       </div>
 
-      <!-- 快捷捐赠区 -->
+      <!-- Çabuk sunu bölüğü -->
       <div v-if="museumStore.donatableItems.length > 0" class="border border-accent/20 rounded-xs p-2 mb-3">
-        <p class="text-xs text-accent mb-1">可捐赠物品</p>
+        <p class="text-xs text-accent mb-1">Sunulabilir eşyalar</p>
         <div class="flex flex-wrap space-x-1">
           <Button v-for="itemId in museumStore.donatableItems" :key="itemId" :icon="Send" :icon-size="10" @click="handleDonate(itemId)">
             {{ getItemName(itemId) }}
@@ -58,9 +58,9 @@
         </div>
       </div>
 
-      <!-- 里程碑 -->
+      <!-- Dönüm taşları -->
       <div class="border border-accent/20 rounded-xs p-2">
-        <p class="text-xs text-muted mb-2">里程碑奖励</p>
+        <p class="text-xs text-muted mb-2">Dönüm taşı ödülleri</p>
         <div class="flex flex-col space-y-1 max-h-52 overflow-y-auto">
           <div
             v-for="ms in MUSEUM_MILESTONES"
@@ -70,24 +70,24 @@
             <CircleCheck v-if="isMilestoneClaimed(ms.count)" :size="12" class="text-success shrink-0" />
             <Circle v-else :size="12" class="shrink-0" :class="museumStore.donatedCount >= ms.count ? 'text-accent' : 'text-muted'" />
             <span class="flex-1" :class="museumStore.donatedCount >= ms.count ? 'text-text' : 'text-muted'">
-              {{ ms.name }} ({{ ms.count }}件)
+              {{ ms.name }} ({{ ms.count }} parça)
             </span>
-            <span class="text-muted">{{ ms.reward.money }}文{{ ms.reward.items ? '+物品' : '' }}</span>
+            <span class="text-muted">{{ ms.reward.money }} akçe{{ ms.reward.items ? '+eşya' : '' }}</span>
             <Button
               v-if="museumStore.donatedCount >= ms.count && !isMilestoneClaimed(ms.count)"
               class="!bg-accent !text-bg px-2 py-0.5"
               @click="museumStore.claimMilestone(ms.count)"
             >
-              领取
+              Al
             </Button>
           </div>
         </div>
       </div>
 
-      <!-- 底部进度 -->
+      <!-- Alt ilerleyiş -->
       <div class="mt-3 border border-accent/20 rounded-xs p-2">
         <div class="flex items-center space-x-2 text-xs mb-1.5">
-          <span class="text-muted shrink-0">捐赠进度</span>
+          <span class="text-muted shrink-0">Sunu ilerleyişi</span>
           <div class="flex-1 h-1 bg-bg rounded-xs border border-accent/10">
             <div
               class="h-full bg-accent rounded-xs transition-all"
@@ -98,22 +98,22 @@
         </div>
         <div class="grid grid-cols-2 gap-x-3 gap-y-0.5">
           <div class="flex items-center justify-between">
-            <span class="text-xs text-muted">已捐赠</span>
+            <span class="text-xs text-muted">Sunulmuş</span>
             <span class="text-xs">{{ museumStore.donatedCount }}</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-xs text-muted">可捐赠</span>
+            <span class="text-xs text-muted">Sunulabilir</span>
             <span class="text-xs">{{ museumStore.donatableItems.length }}</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-xs text-muted">已领取里程碑</span>
+            <span class="text-xs text-muted">Alınan dönüm taşları</span>
             <span class="text-xs">{{ museumStore.claimedMilestones.length }}/{{ MUSEUM_MILESTONES.length }}</span>
           </div>
         </div>
       </div>
     </template>
 
-    <!-- 物品详情弹窗 -->
+    <!-- Eşya ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="selectedItem"
@@ -130,30 +130,30 @@
             <Lock v-else :size="14" class="inline text-muted/30" />
           </p>
 
-          <!-- 来源提示 -->
+          <!-- Kaynak ipucu -->
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <p class="text-xs text-muted">{{ selectedItem.sourceHint }}</p>
           </div>
 
-          <!-- 状态信息 -->
+          <!-- Durum bilgisi -->
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">分类</span>
+              <span class="text-xs text-muted">Tür</span>
               <span class="text-xs">{{ getCategoryLabel(selectedItem.category) }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">状态</span>
+              <span class="text-xs text-muted">Durum</span>
               <span class="text-xs" :class="museumStore.isDonated(selectedItem.id) ? 'text-success' : 'text-muted'">
-                {{ museumStore.isDonated(selectedItem.id) ? '已捐赠' : '未捐赠' }}
+                {{ museumStore.isDonated(selectedItem.id) ? 'Sunulmuş' : 'Sunulmamış' }}
               </span>
             </div>
           </div>
 
-          <!-- 操作 -->
+          <!-- İşlem -->
           <div v-if="museumStore.isDonated(selectedItem.id)" class="border border-success/30 rounded-xs p-2">
             <div class="flex items-center justify-center space-x-1">
               <CircleCheck :size="12" class="text-success" />
-              <span class="text-xs text-success">已捐赠至博物馆</span>
+              <span class="text-xs text-success">Müze ocağına sunuldu</span>
             </div>
           </div>
           <Button
@@ -163,12 +163,12 @@
             :icon-size="12"
             @click="handleDonateAndClose(selectedItem.id)"
           >
-            捐赠
+            Sun
           </Button>
           <div v-else class="border border-accent/10 rounded-xs p-2">
             <div class="flex items-center space-x-1">
               <Package :size="12" class="text-muted" />
-              <span class="text-xs text-muted">背包中没有此物品</span>
+              <span class="text-xs text-muted">Heybende bu eşya yok</span>
             </div>
           </div>
         </div>
