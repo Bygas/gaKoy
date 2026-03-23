@@ -1,15 +1,15 @@
 <template>
   <div>
-    <!-- 标题 -->
+    <!-- Başlık -->
     <div class="flex items-center justify-between mb-1">
       <div class="flex items-center space-x-1.5 text-sm text-accent">
         <User :size="14" />
-        <span>角色信息</span>
+        <span>Kişi Bilgisi</span>
       </div>
-      <span class="text-xs text-muted">第{{ gameStore.year }}年 {{ SEASON_NAMES[gameStore.season] }}</span>
+      <span class="text-xs text-muted">Yıl {{ gameStore.year }} · {{ SEASON_NAMES[gameStore.season] }}</span>
     </div>
 
-    <!-- 角色身份 + 属性 -->
+    <!-- Kimlik + Nitelikler -->
     <div class="border border-accent/20 rounded-xs p-2 mb-3">
       <div class="flex items-center justify-between mb-2">
         <span class="text-sm text-accent">{{ playerStore.playerName }}</span>
@@ -17,9 +17,9 @@
       </div>
 
       <div class="flex flex-col space-y-1.5">
-        <!-- 体力 -->
+        <!-- Güç -->
         <div class="flex items-center space-x-2">
-          <span class="text-xs text-muted shrink-0">体力</span>
+          <span class="text-xs text-muted shrink-0">Güç</span>
           <div class="flex-1 h-1 bg-bg rounded-xs border border-accent/10">
             <div
               class="h-full rounded-xs transition-all"
@@ -29,9 +29,9 @@
           </div>
           <span class="text-xs whitespace-nowrap">{{ playerStore.stamina }}/{{ playerStore.maxStamina }}</span>
         </div>
-        <!-- 生命 -->
+        <!-- Can -->
         <div class="flex items-center space-x-2">
-          <span class="text-xs text-muted shrink-0">生命</span>
+          <span class="text-xs text-muted shrink-0">Can</span>
           <div class="flex-1 h-1 bg-bg rounded-xs border border-accent/10">
             <div
               class="h-full rounded-xs transition-all"
@@ -41,61 +41,61 @@
           </div>
           <span class="text-xs whitespace-nowrap">{{ playerStore.hp }}/{{ playerStore.getMaxHp() }}</span>
         </div>
-        <!-- 铜钱 -->
+        <!-- Akçe -->
         <div class="flex items-center justify-between">
-          <span class="text-xs text-muted">铜钱</span>
-          <span class="text-xs text-accent">{{ playerStore.money }}文</span>
+          <span class="text-xs text-muted">Akçe</span>
+          <span class="text-xs text-accent">{{ playerStore.money }} akçe</span>
         </div>
       </div>
     </div>
 
-    <!-- 装备槽位 -->
+    <!-- Donanım yuvaları -->
     <div class="border border-accent/20 rounded-xs p-2 mb-3">
-      <p class="text-xs text-muted mb-1.5">装备</p>
+      <p class="text-xs text-muted mb-1.5">Kuşanım</p>
       <div class="grid grid-cols-3 gap-1 mb-1">
         <div
           class="border border-accent/10 rounded-xs px-2 py-1 text-center cursor-pointer hover:bg-accent/5"
           @click="activeSlot = 'weapon'"
         >
-          <p class="text-[10px] text-muted">武器</p>
+          <p class="text-[10px] text-muted">Silah</p>
           <p class="text-xs text-accent truncate">{{ equippedWeaponName }}</p>
         </div>
         <div
           class="border border-accent/10 rounded-xs px-2 py-1 text-center cursor-pointer hover:bg-accent/5"
           @click="activeSlot = 'ring1'"
         >
-          <p class="text-[10px] text-muted">戒指1</p>
+          <p class="text-[10px] text-muted">Yüzük 1</p>
           <p class="text-xs truncate" :class="equippedRing1 ? 'text-accent' : 'text-muted/40'">
-            {{ equippedRing1?.name ?? '空' }}
+            {{ equippedRing1?.name ?? 'Boş' }}
           </p>
         </div>
         <div
           class="border border-accent/10 rounded-xs px-2 py-1 text-center cursor-pointer hover:bg-accent/5"
           @click="activeSlot = 'ring2'"
         >
-          <p class="text-[10px] text-muted">戒指2</p>
+          <p class="text-[10px] text-muted">Yüzük 2</p>
           <p class="text-xs truncate" :class="equippedRing2 ? 'text-accent' : 'text-muted/40'">
-            {{ equippedRing2?.name ?? '空' }}
+            {{ equippedRing2?.name ?? 'Boş' }}
           </p>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-1">
         <div class="border border-accent/10 rounded-xs px-2 py-1 text-center cursor-pointer hover:bg-accent/5" @click="activeSlot = 'hat'">
-          <p class="text-[10px] text-muted">帽子</p>
+          <p class="text-[10px] text-muted">Başlık</p>
           <p class="text-xs truncate" :class="equippedHatName ? 'text-accent' : 'text-muted/40'">
-            {{ equippedHatName ?? '空' }}
+            {{ equippedHatName ?? 'Boş' }}
           </p>
         </div>
         <div class="border border-accent/10 rounded-xs px-2 py-1 text-center cursor-pointer hover:bg-accent/5" @click="activeSlot = 'shoe'">
-          <p class="text-[10px] text-muted">鞋子</p>
+          <p class="text-[10px] text-muted">Ayakkabı</p>
           <p class="text-xs truncate" :class="equippedShoeName ? 'text-accent' : 'text-muted/40'">
-            {{ equippedShoeName ?? '空' }}
+            {{ equippedShoeName ?? 'Boş' }}
           </p>
         </div>
       </div>
     </div>
 
-    <!-- 装备选择弹窗 -->
+    <!-- Donanım seçme penceresi -->
     <Transition name="panel-fade">
       <div v-if="activeSlot" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" @click.self="activeSlot = null">
         <div class="game-panel max-w-xs w-full relative">
@@ -103,9 +103,9 @@
             <X :size="14" />
           </button>
 
-          <!-- 武器弹窗 -->
+          <!-- Silah penceresi -->
           <template v-if="activeSlot === 'weapon'">
-            <p class="text-sm text-accent mb-2">选择武器</p>
+            <p class="text-sm text-accent mb-2">Silah seç</p>
             <div class="flex flex-col space-y-1 max-h-60 overflow-y-auto">
               <div
                 v-for="(weapon, index) in inventoryStore.ownedWeapons"
@@ -119,28 +119,28 @@
                     {{ getWeaponDisplayName(weapon.defId, weapon.enchantmentId) }}
                   </span>
                   <p class="text-[10px] text-muted truncate">
-                    攻{{ getWeaponStats(weapon).attack }} · 暴击{{ Math.round(getWeaponStats(weapon).critRate * 100) }}%
+                    Saldırı {{ getWeaponStats(weapon).attack }} · Kritik %{{ Math.round(getWeaponStats(weapon).critRate * 100) }}
                     <template v-if="weapon.enchantmentId">· {{ getEnchantName(weapon.enchantmentId) }}</template>
                   </p>
                 </div>
-                <span v-if="index === inventoryStore.equippedWeaponIndex" class="text-[10px] text-accent shrink-0 ml-1">当前</span>
+                <span v-if="index === inventoryStore.equippedWeaponIndex" class="text-[10px] text-accent shrink-0 ml-1">Kuşanılı</span>
               </div>
             </div>
           </template>
 
-          <!-- 戒指弹窗 -->
+          <!-- Yüzük penceresi -->
           <template v-else-if="activeSlot === 'ring1' || activeSlot === 'ring2'">
-            <p class="text-sm text-accent mb-2">选择{{ activeSlot === 'ring1' ? '戒指1' : '戒指2' }}</p>
+            <p class="text-sm text-accent mb-2"> {{ activeSlot === 'ring1' ? 'Yüzük 1' : 'Yüzük 2' }} seç</p>
             <div class="flex flex-col space-y-1 max-h-60 overflow-y-auto">
-              <!-- 卸下按钮 -->
+              <!-- Çıkar düğmesi -->
               <div
                 v-if="(activeSlot === 'ring1' ? inventoryStore.equippedRingSlot1 : inventoryStore.equippedRingSlot2) >= 0"
                 class="flex items-center border border-danger/20 rounded-xs px-2 py-1.5 cursor-pointer hover:bg-danger/5 mr-1"
                 @click="handleUnequipRingFromPopup"
               >
-                <span class="text-xs text-danger">卸下当前戒指</span>
+                <span class="text-xs text-danger">Geçerli yüzüğü çıkar</span>
               </div>
-              <!-- 戒指列表 -->
+              <!-- Yüzük listesi -->
               <template v-if="inventoryStore.ownedRings.length > 0">
                 <div
                   v-for="(ring, idx) in ownedRingList"
@@ -153,26 +153,26 @@
                     <span class="text-xs" :class="isRingInCurrentSlot(idx) ? 'text-accent' : ''">{{ ring.name }}</span>
                     <p class="text-[10px] text-muted truncate">{{ ring.effectText }}</p>
                   </div>
-                  <span v-if="isRingInCurrentSlot(idx)" class="text-[10px] text-accent shrink-0 ml-1">当前</span>
+                  <span v-if="isRingInCurrentSlot(idx)" class="text-[10px] text-accent shrink-0 ml-1">Kuşanılı</span>
                   <span v-else-if="isRingInOtherSlot(idx)" class="text-[10px] text-muted shrink-0 ml-1">
-                    在{{ activeSlot === 'ring1' ? '槽2' : '槽1' }}
+                    {{ activeSlot === 'ring1' ? 'Yuva 2' : 'Yuva 1' }} içinde
                   </span>
                 </div>
               </template>
-              <p v-else class="text-xs text-muted/40 text-center py-2">暂无戒指</p>
+              <p v-else class="text-xs text-muted/40 text-center py-2">Yüzük yok</p>
             </div>
           </template>
 
-          <!-- 帽子弹窗 -->
+          <!-- Başlık penceresi -->
           <template v-else-if="activeSlot === 'hat'">
-            <p class="text-sm text-accent mb-2">选择帽子</p>
+            <p class="text-sm text-accent mb-2">Başlık seç</p>
             <div class="flex flex-col space-y-1 max-h-60 overflow-y-auto">
               <div
                 v-if="inventoryStore.equippedHatIndex >= 0"
                 class="flex items-center border border-danger/20 rounded-xs px-2 py-1.5 cursor-pointer hover:bg-danger/5 mr-1"
                 @click="handleUnequipHatFromPopup"
               >
-                <span class="text-xs text-danger">卸下当前帽子</span>
+                <span class="text-xs text-danger">Geçerli başlığı çıkar</span>
               </div>
               <template v-if="inventoryStore.ownedHats.length > 0">
                 <div
@@ -186,23 +186,23 @@
                     <span class="text-xs" :class="hat.index === inventoryStore.equippedHatIndex ? 'text-accent' : ''">{{ hat.name }}</span>
                     <p class="text-[10px] text-muted truncate">{{ hat.effectText }}</p>
                   </div>
-                  <span v-if="hat.index === inventoryStore.equippedHatIndex" class="text-[10px] text-accent shrink-0 ml-1">当前</span>
+                  <span v-if="hat.index === inventoryStore.equippedHatIndex" class="text-[10px] text-accent shrink-0 ml-1">Kuşanılı</span>
                 </div>
               </template>
-              <p v-else class="text-xs text-muted/40 text-center py-2">暂无帽子</p>
+              <p v-else class="text-xs text-muted/40 text-center py-2">Başlık yok</p>
             </div>
           </template>
 
-          <!-- 鞋子弹窗 -->
+          <!-- Ayakkabı penceresi -->
           <template v-else-if="activeSlot === 'shoe'">
-            <p class="text-sm text-accent mb-2">选择鞋子</p>
+            <p class="text-sm text-accent mb-2">Ayakkabı seç</p>
             <div class="flex flex-col space-y-1 max-h-60 overflow-y-auto">
               <div
                 v-if="inventoryStore.equippedShoeIndex >= 0"
                 class="flex items-center border border-danger/20 rounded-xs px-2 py-1.5 cursor-pointer hover:bg-danger/5 mr-1"
                 @click="handleUnequipShoeFromPopup"
               >
-                <span class="text-xs text-danger">卸下当前鞋子</span>
+                <span class="text-xs text-danger">Geçerli ayakkabıyı çıkar</span>
               </div>
               <template v-if="inventoryStore.ownedShoes.length > 0">
                 <div
@@ -218,21 +218,21 @@
                     </span>
                     <p class="text-[10px] text-muted truncate">{{ shoe.effectText }}</p>
                   </div>
-                  <span v-if="shoe.index === inventoryStore.equippedShoeIndex" class="text-[10px] text-accent shrink-0 ml-1">当前</span>
+                  <span v-if="shoe.index === inventoryStore.equippedShoeIndex" class="text-[10px] text-accent shrink-0 ml-1">Kuşanılı</span>
                 </div>
               </template>
-              <p v-else class="text-xs text-muted/40 text-center py-2">暂无鞋子</p>
+              <p v-else class="text-xs text-muted/40 text-center py-2">Ayakkabı yok</p>
             </div>
           </template>
         </div>
       </div>
     </Transition>
 
-    <!-- 工具一览 -->
+    <!-- Aletler -->
     <div class="border border-accent/20 rounded-xs p-2 mb-3">
       <div class="flex items-center justify-between mb-1.5">
-        <p class="text-xs text-muted">工具</p>
-        <button class="text-xs text-accent hover:underline" @click="goToUpgrade">前往升级</button>
+        <p class="text-xs text-muted">Aletler</p>
+        <button class="text-xs text-accent hover:underline" @click="goToUpgrade">Yüceltmeye git</button>
       </div>
       <div class="flex flex-col space-y-1">
         <div
@@ -244,22 +244,22 @@
             <span class="text-xs">{{ TOOL_NAMES[tool.type] }}</span>
             <span class="text-xs text-muted ml-1">{{ TIER_NAMES[tool.tier] }}</span>
           </div>
-          <span class="text-[10px] text-muted">-{{ Math.round((1 - inventoryStore.getToolStaminaMultiplier(tool.type)) * 100) }}%体力</span>
+          <span class="text-[10px] text-muted">Güç -%{{ Math.round((1 - inventoryStore.getToolStaminaMultiplier(tool.type)) * 100) }}</span>
         </div>
       </div>
     </div>
 
-    <!-- 技能总览 -->
+    <!-- Hüner özeti -->
     <div class="border border-accent/20 rounded-xs p-2 mb-3">
       <div class="flex items-center justify-between mb-1.5">
-        <p class="text-xs text-muted">技能</p>
-        <button class="text-xs text-accent hover:underline" @click="goToSkills">查看详情</button>
+        <p class="text-xs text-muted">Hünerler</p>
+        <button class="text-xs text-accent hover:underline" @click="goToSkills">Ayrıntıyı gör</button>
       </div>
       <div class="flex flex-col space-y-0.5">
         <div v-for="skill in skillStore.skills" :key="skill.type" class="flex items-center justify-between">
           <span class="text-xs text-muted">{{ SKILL_NAMES[skill.type] }}</span>
           <div class="flex items-center space-x-1.5">
-            <span class="text-xs text-accent">Lv.{{ skill.level }}</span>
+            <span class="text-xs text-accent">Sv.{{ skill.level }}</span>
             <span v-if="skill.perk5" class="text-[10px] text-success">{{ PERK_NAMES[skill.perk5] }}</span>
             <span v-if="skill.perk10" class="text-[10px] text-success">{{ PERK_NAMES[skill.perk10] }}</span>
           </div>
@@ -267,9 +267,9 @@
       </div>
     </div>
 
-    <!-- 被动加成 -->
+    <!-- Edilgin katkılar -->
     <div v-if="unlockedWalletItems.length > 0" class="border border-accent/20 rounded-xs p-2 mb-3">
-      <p class="text-xs text-muted mb-1.5">被动加成</p>
+      <p class="text-xs text-muted mb-1.5">Edilgin katkılar</p>
       <div class="flex flex-col space-y-0.5">
         <div v-for="item in unlockedWalletItems" :key="item.id" class="flex items-center justify-between">
           <span class="text-xs text-accent">{{ item.name }}</span>
@@ -278,12 +278,12 @@
       </div>
     </div>
 
-    <!-- 家庭 -->
+    <!-- Aile -->
     <div v-if="spouseInfo" class="border border-accent/20 rounded-xs p-2">
-      <p class="text-xs text-muted mb-1.5">家庭</p>
+      <p class="text-xs text-muted mb-1.5">Aile</p>
       <div class="flex flex-col space-y-0.5">
         <div class="flex items-center justify-between">
-          <span class="text-xs text-muted">配偶</span>
+          <span class="text-xs text-muted">Eş</span>
           <span class="text-xs text-accent">{{ spouseInfo.name }}</span>
         </div>
         <div v-for="child in npcStore.children" :key="child.id" class="flex items-center justify-between">
@@ -322,18 +322,18 @@
   const npcStore = useNpcStore()
   const gameStore = useGameStore()
 
-  // === 身份 ===
-  const genderLabel = computed(() => (playerStore.gender === 'male' ? '男' : '女'))
+  // === Kimlik ===
+  const genderLabel = computed(() => (playerStore.gender === 'male' ? 'Erkek' : 'Kadın'))
 
-  // === 装备槽位 ===
+  // === Donanım yuvaları ===
 
   const activeSlot = ref<'weapon' | 'ring1' | 'ring2' | 'hat' | 'shoe' | null>(null)
 
-  // === 武器 ===
+  // === Silah ===
 
   const equippedWeaponName = computed(() => {
     const weapon = inventoryStore.ownedWeapons[inventoryStore.equippedWeaponIndex]
-    if (!weapon) return '无'
+    if (!weapon) return 'Yok'
     return getWeaponDisplayName(weapon.defId, weapon.enchantmentId)
   })
 
@@ -360,35 +360,35 @@
     if (inventoryStore.equipWeapon(index)) {
       const weapon = inventoryStore.ownedWeapons[index]!
       const name = getWeaponDisplayName(weapon.defId, weapon.enchantmentId)
-      addLog(`装备了${name}。`)
+      addLog(`${name} kuşanıldı.`)
     }
   }
 
-  // === 戒指 ===
+  // === Yüzük ===
 
   const RING_EFFECT_SHORT: Record<EquipmentEffectType, string> = {
-    attack_bonus: '攻击',
-    crit_rate_bonus: '暴击',
-    defense_bonus: '减伤',
-    vampiric: '吸血',
-    max_hp_bonus: '生命',
-    stamina_reduction: '体力减免',
-    mining_stamina: '挖矿体力减免',
-    farming_stamina: '农耕体力减免',
-    fishing_stamina: '钓鱼体力减免',
-    crop_quality_bonus: '品质',
-    crop_growth_bonus: '生长加速',
-    fish_quality_bonus: '鱼品质',
-    fishing_calm: '鱼速降低',
-    sell_price_bonus: '售价',
-    shop_discount: '折扣',
-    gift_friendship: '好感',
-    monster_drop_bonus: '掉落',
-    exp_bonus: '经验',
-    treasure_find: '宝箱',
-    ore_bonus: '矿石',
-    luck: '幸运',
-    travel_speed: '旅行加速'
+    attack_bonus: 'Saldırı',
+    crit_rate_bonus: 'Kritik',
+    defense_bonus: 'Savunma',
+    vampiric: 'Can emişi',
+    max_hp_bonus: 'Azami can',
+    stamina_reduction: 'Güç tasarrufu',
+    mining_stamina: 'Kazı gücü tasarrufu',
+    farming_stamina: 'Tarla gücü tasarrufu',
+    fishing_stamina: 'Olta gücü tasarrufu',
+    crop_quality_bonus: 'Mahsul niteliği',
+    crop_growth_bonus: 'Büyüme hızı',
+    fish_quality_bonus: 'Balık niteliği',
+    fishing_calm: 'Olta dinginliği',
+    sell_price_bonus: 'Satış değeri',
+    shop_discount: 'Dükkân indirimi',
+    gift_friendship: 'Gönül artışı',
+    monster_drop_bonus: 'Düşüm oranı',
+    exp_bonus: 'Deneyim',
+    treasure_find: 'Define şansı',
+    ore_bonus: 'Maden artışı',
+    luck: 'Uğur',
+    travel_speed: 'Yol hızı'
   }
 
   const formatRingEffects = (defId: string): string => {
@@ -397,7 +397,7 @@
     return def.effects
       .map(e => {
         const label = RING_EFFECT_SHORT[e.type]
-        return e.value > 0 && e.value < 1 ? `${label}${Math.round(e.value * 100)}%` : `${label}+${e.value}`
+        return e.value > 0 && e.value < 1 ? `${label} %${Math.round(e.value * 100)}` : `${label} +${e.value}`
       })
       .join(' ')
   }
@@ -425,7 +425,7 @@
     const slot: 0 | 1 = activeSlot.value === 'ring1' ? 0 : 1
     if (inventoryStore.equipRing(ringIndex, slot)) {
       const def = getRingById(inventoryStore.ownedRings[ringIndex]!.defId)
-      addLog(`将${def?.name ?? '戒指'}装备到槽位${slot + 1}。`)
+      addLog(`${def?.name ?? 'Yüzük'} ${slot + 1}. yuvaya takıldı.`)
       activeSlot.value = null
     }
   }
@@ -435,7 +435,7 @@
     const idx = slot === 0 ? inventoryStore.equippedRingSlot1 : inventoryStore.equippedRingSlot2
     const def = idx >= 0 ? getRingById(inventoryStore.ownedRings[idx]!.defId) : null
     if (inventoryStore.unequipRing(slot)) {
-      addLog(`卸下了${def?.name ?? '戒指'}。`)
+      addLog(`${def?.name ?? 'Yüzük'} çıkarıldı.`)
       activeSlot.value = null
     }
   }
@@ -450,7 +450,7 @@
     return inventoryStore.equippedRingSlot1 === idx
   }
 
-  // === 帽子 ===
+  // === Başlık ===
 
   const equippedHatName = computed(() => {
     const hat = inventoryStore.ownedHats[inventoryStore.equippedHatIndex]
@@ -462,7 +462,7 @@
     return effects
       .map(e => {
         const label = RING_EFFECT_SHORT[e.type]
-        return e.value > 0 && e.value < 1 ? `${label}${Math.round(e.value * 100)}%` : `${label}+${e.value}`
+        return e.value > 0 && e.value < 1 ? `${label} %${Math.round(e.value * 100)}` : `${label} +${e.value}`
       })
       .join(' ')
   }
@@ -481,7 +481,7 @@
   const handleEquipHatFromPopup = (index: number) => {
     if (inventoryStore.equipHat(index)) {
       const def = getHatById(inventoryStore.ownedHats[index]!.defId)
-      addLog(`装备了${def?.name ?? '帽子'}。`)
+      addLog(`${def?.name ?? 'Başlık'} kuşanıldı.`)
       activeSlot.value = null
     }
   }
@@ -490,12 +490,12 @@
     const idx = inventoryStore.equippedHatIndex
     const def = idx >= 0 ? getHatById(inventoryStore.ownedHats[idx]!.defId) : null
     if (inventoryStore.unequipHat()) {
-      addLog(`卸下了${def?.name ?? '帽子'}。`)
+      addLog(`${def?.name ?? 'Başlık'} çıkarıldı.`)
       activeSlot.value = null
     }
   }
 
-  // === 鞋子 ===
+  // === Ayakkabı ===
 
   const equippedShoeName = computed(() => {
     const shoe = inventoryStore.ownedShoes[inventoryStore.equippedShoeIndex]
@@ -517,7 +517,7 @@
   const handleEquipShoeFromPopup = (index: number) => {
     if (inventoryStore.equipShoe(index)) {
       const def = getShoeById(inventoryStore.ownedShoes[index]!.defId)
-      addLog(`装备了${def?.name ?? '鞋子'}。`)
+      addLog(`${def?.name ?? 'Ayakkabı'} kuşanıldı.`)
       activeSlot.value = null
     }
   }
@@ -526,57 +526,57 @@
     const idx = inventoryStore.equippedShoeIndex
     const def = idx >= 0 ? getShoeById(inventoryStore.ownedShoes[idx]!.defId) : null
     if (inventoryStore.unequipShoe()) {
-      addLog(`卸下了${def?.name ?? '鞋子'}。`)
+      addLog(`${def?.name ?? 'Ayakkabı'} çıkarıldı.`)
       activeSlot.value = null
     }
   }
 
-  // === 技能 ===
+  // === Hünerler ===
   const SKILL_NAMES: Record<SkillType, string> = {
-    farming: '农耕',
-    foraging: '采集',
-    fishing: '钓鱼',
-    mining: '挖矿',
-    combat: '战斗'
+    farming: 'Çiftçilik',
+    foraging: 'Toplayıcılık',
+    fishing: 'Balıkçılık',
+    mining: 'Maden',
+    combat: 'Cenk'
   }
 
   const PERK_NAMES: Record<SkillPerk5 | SkillPerk10, string> = {
-    harvester: '丰收者',
-    rancher: '牧人',
-    lumberjack: '樵夫',
-    herbalist: '药师',
-    fisher: '渔夫',
-    trapper: '捕手',
-    miner: '矿工',
-    geologist: '地质学家',
-    fighter: '斗士',
-    defender: '守护者',
-    intensive: '精耕',
-    artisan: '匠人',
-    coopmaster: '牧场主',
-    shepherd: '牧羊人',
-    botanist: '植物学家',
-    alchemist: '炼金师',
-    forester: '伐木工',
-    tracker: '追踪者',
-    angler: '垂钓大师',
-    aquaculture: '水产商',
-    mariner: '水手',
-    luremaster: '诱饵师',
-    prospector: '探矿者',
-    blacksmith: '铁匠',
-    excavator: '挖掘者',
-    mineralogist: '宝石学家',
-    warrior: '武者',
-    brute: '蛮力者',
-    acrobat: '杂技师',
-    tank: '重甲者'
+    harvester: 'Bereketçi',
+    rancher: 'Sürü Ustası',
+    lumberjack: 'Oduncu',
+    herbalist: 'Otacı',
+    fisher: 'Balıkçı',
+    trapper: 'Tuzakçı',
+    miner: 'Madenci',
+    geologist: 'Yerbilici',
+    fighter: 'Cengâver',
+    defender: 'Koruyucu',
+    intensive: 'Yoğun Tarım',
+    artisan: 'Zanaatkâr',
+    coopmaster: 'Ağıl Ustası',
+    shepherd: 'Çobanbaşı',
+    botanist: 'Bitkibilir',
+    alchemist: 'Simyacı',
+    forester: 'Ormancı',
+    tracker: 'İz Sürücü',
+    angler: 'Olta Eri',
+    aquaculture: 'Su Yetiştiricisi',
+    mariner: 'Deniz Eri',
+    luremaster: 'Yem Ustası',
+    prospector: 'Maden Arayıcı',
+    blacksmith: 'Demirci',
+    excavator: 'Kazıcı',
+    mineralogist: 'Taşbilir',
+    warrior: 'Savaş Eri',
+    brute: 'Yaman Güç',
+    acrobat: 'Çevik',
+    tank: 'Demir Göğüs'
   }
 
-  // === 被动 ===
+  // === Edilginler ===
   const unlockedWalletItems = computed(() => WALLET_ITEMS.filter(w => walletStore.has(w.id)))
 
-  // === 家庭 ===
+  // === Aile ===
   const spouseInfo = computed(() => {
     const spouseState = npcStore.getSpouse()
     if (!spouseState) return null
@@ -585,13 +585,13 @@
   })
 
   const CHILD_STAGE_NAMES: Record<ChildStage, string> = {
-    baby: '婴儿',
-    toddler: '幼童',
-    child: '孩童',
-    teen: '少年'
+    baby: 'Bebek',
+    toddler: 'Yürümeye Başlayan',
+    child: 'Çocuk',
+    teen: 'Delikanlı'
   }
 
-  // === 导航 ===
+  // === Yöneltme ===
   const goToUpgrade = () => {
     navigateToPanel('upgrade')
   }
