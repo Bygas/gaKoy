@@ -2,43 +2,43 @@
   <div>
     <h3 class="text-accent text-sm mb-3">
       <TreePine :size="14" class="inline" />
-      竹林采集
+      <span>gaKöy Koruluğu</span>
     </h3>
 
-    <!-- 采集操作 -->
+    <!-- Toplama işlemi -->
     <div class="border border-accent/20 rounded-xs p-3 mb-4">
       <div class="flex items-center justify-between mb-2">
-        <p class="text-sm text-accent">采集</p>
-        <span class="text-xs text-muted">消耗 {{ forageCost }} 体力 · {{ forageTimeLabel }}</span>
+        <p class="text-sm text-accent">Arayış</p>
+        <span class="text-xs text-muted">{{ forageCost }} güç · {{ forageTimeLabel }}</span>
       </div>
-      <p class="text-xs text-muted mb-2">使用斧头在竹林中搜寻各类物资。</p>
+      <p class="text-xs text-muted mb-2">Baltanı kullanıp korulukta türlü nimetler ara.</p>
       <div
         class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-1.5 cursor-pointer hover:bg-accent/5"
         @click="handleForage"
       >
-        <span class="text-xs">采集一次</span>
-        <span class="text-xs text-muted">{{ playerStore.stamina }}/{{ playerStore.maxStamina }} 体力</span>
+        <span class="text-xs">Bir kez topla</span>
+        <span class="text-xs text-muted">{{ playerStore.stamina }}/{{ playerStore.maxStamina }} güç</span>
       </div>
-      <!-- 天气/加成提示 -->
+      <!-- Hava / bonus bilgisi -->
       <div class="flex flex-wrap space-x-3 mt-2">
         <span v-if="weatherMod !== 1" class="text-[10px]" :class="weatherMod > 1 ? 'text-success' : 'text-danger'">
           {{ weatherModLabel }}
         </span>
-        <span v-if="hasHerbalistPerk" class="text-[10px] text-success">药师：概率+20%</span>
+        <span v-if="hasHerbalistPerk" class="text-[10px] text-success">Otacı: olasılık +20%</span>
         <span v-if="hasLumberjackPerk" class="text-[10px] text-success">
-          {{ foragingSkill.perk10 === 'forester' ? '伐木工：必得木材' : '樵夫：25%额外木材' }}
+          {{ foragingSkill.perk10 === 'forester' ? 'Orman Eri: odun kesin gelir' : 'Baltacı: %25 ek odun' }}
         </span>
-        <span v-if="foragingSkill.perk10 === 'tracker'" class="text-[10px] text-success">追踪者：额外+1物品</span>
-        <span v-if="cookingLuckBuff > 0" class="text-[10px] text-success">料理运气+{{ cookingLuckBuff }}%</span>
-        <span v-if="isForestFarm" class="text-[10px] text-success">森林农场：经验×1.25</span>
+        <span v-if="foragingSkill.perk10 === 'tracker'" class="text-[10px] text-success">İz Sürücü: fazladan +1 eşya</span>
+        <span v-if="cookingLuckBuff > 0" class="text-[10px] text-success">Yemek talihi +{{ cookingLuckBuff }}%</span>
+        <span v-if="isForestFarm" class="text-[10px] text-success">Orman çiftliği: deneyim ×1.25</span>
       </div>
     </div>
 
-    <!-- 采集结果 -->
+    <!-- Toplama sonucu -->
     <div class="border border-accent/20 rounded-xs p-3 mb-4">
       <p class="text-sm text-accent mb-2">
         <Search :size="14" class="inline" />
-        采集结果
+        Toplama Sonucu
       </p>
       <div v-if="lastResults.length > 0" class="flex flex-col space-y-1">
         <div
@@ -49,16 +49,16 @@
           @click="r.itemId && (selectedResult = r)"
         >
           <span class="text-xs" :class="r.quality ? QUALITY_COLORS[r.quality] : ''">{{ r.label }}</span>
-          <span v-if="r.itemId" class="text-xs text-muted/50">详情 ›</span>
+          <span v-if="r.itemId" class="text-xs text-muted/50">Ayrıntı ›</span>
         </div>
       </div>
       <div v-else class="flex flex-col items-center justify-center py-6 text-muted">
         <Search :size="32" class="mb-2" />
-        <p class="text-xs">还没有采集过，去试试吧。</p>
+        <p class="text-xs">Henüz hiç toplamadın, bir dene.</p>
       </div>
     </div>
 
-    <!-- 采集物详情弹窗 -->
+    <!-- Toplanan eşya ayrıntı penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="selectedResult && selectedResultDef"
@@ -81,26 +81,26 @@
 
           <div class="border border-accent/10 rounded-xs p-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">分类</span>
+              <span class="text-xs text-muted">Tür</span>
               <span class="text-xs">{{ CATEGORY_NAMES[selectedResultDef.category] ?? selectedResultDef.category }}</span>
             </div>
             <div v-if="selectedResult.quality && selectedResult.quality !== 'normal'" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">品质</span>
+              <span class="text-xs text-muted">Kalite</span>
               <span class="text-xs" :class="QUALITY_COLORS[selectedResult.quality]">{{ QUALITY_NAMES[selectedResult.quality] }}</span>
             </div>
             <div v-if="selectedResultDef.sellPrice > 0" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">售价</span>
-              <span class="text-xs text-accent">{{ selectedResultDef.sellPrice }}文</span>
+              <span class="text-xs text-muted">Satış değeri</span>
+              <span class="text-xs text-accent">{{ selectedResultDef.sellPrice }} akçe</span>
             </div>
             <div v-if="selectedResultDef.edible" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">食用效果</span>
+              <span class="text-xs text-muted">Yenince</span>
               <span class="text-xs text-success">
-                {{ selectedResultDef.staminaRestore ? `体力+${selectedResultDef.staminaRestore}` : '' }}
-                {{ selectedResultDef.healthRestore ? `HP+${selectedResultDef.healthRestore}` : '' }}
+                {{ selectedResultDef.staminaRestore ? `Güç +${selectedResultDef.staminaRestore}` : '' }}
+                {{ selectedResultDef.healthRestore ? `Can +${selectedResultDef.healthRestore}` : '' }}
               </span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">来源</span>
+              <span class="text-xs text-muted">Kaynak</span>
               <span class="text-xs">{{ getItemSource(selectedResult.itemId!) }}</span>
             </div>
           </div>
@@ -108,11 +108,11 @@
       </div>
     </Transition>
 
-    <!-- 当季采集物 -->
+    <!-- Mevsimlik toplanabilirler -->
     <div class="border border-accent/20 rounded-xs p-3">
       <div class="flex items-center justify-between mb-2">
-        <p class="text-sm text-accent">当季采集物</p>
-        <span class="text-xs text-muted">{{ SEASON_NAMES[gameStore.season] }}季</span>
+        <p class="text-sm text-accent">Bu Mevsimin Nimetleri</p>
+        <span class="text-xs text-muted">{{ SEASON_NAMES[gameStore.season] }}</span>
       </div>
       <div class="flex flex-col space-y-1">
         <div
@@ -122,7 +122,7 @@
         >
           <div>
             <span class="text-xs">{{ item.name }}</span>
-            <span class="text-[10px] text-muted ml-2">+{{ item.expReward }}经验</span>
+            <span class="text-[10px] text-muted ml-2">+{{ item.expReward }} deneyim</span>
           </div>
           <span class="text-xs text-muted">{{ Math.round(item.chance * 100) }}%</span>
         </div>
@@ -174,38 +174,38 @@
   }
 
   const QUALITY_NAMES: Record<Quality, string> = {
-    normal: '普通',
-    fine: '优质',
-    excellent: '精品',
-    supreme: '极品'
+    normal: 'Sıradan',
+    fine: 'İyi',
+    excellent: 'Seçkin',
+    supreme: 'Kutlu'
   }
 
   const CATEGORY_NAMES: Record<string, string> = {
-    seed: '种子',
-    crop: '农作物',
-    fish: '鱼类',
-    ore: '矿石',
-    gem: '宝石',
-    gift: '礼物',
-    food: '食物',
-    material: '材料',
-    misc: '杂项',
-    processed: '加工品',
-    machine: '机器',
-    sprinkler: '洒水器',
-    fertilizer: '肥料',
-    animal_product: '畜产品',
-    sapling: '树苗',
-    fruit: '水果',
-    bait: '鱼饵',
-    tackle: '钓具',
-    bomb: '炸弹',
-    fossil: '化石',
-    artifact: '文物',
-    weapon: '武器',
-    ring: '戒指',
-    hat: '帽子',
-    shoe: '鞋子'
+    seed: 'Tohum',
+    crop: 'Ekin',
+    fish: 'Balık',
+    ore: 'Maden',
+    gem: 'Cevher',
+    gift: 'Armağan',
+    food: 'Yemek',
+    material: 'Malzeme',
+    misc: 'Çeşitli',
+    processed: 'İşlenmiş',
+    machine: 'Düzenek',
+    sprinkler: 'Sulayıcı',
+    fertilizer: 'Gübre',
+    animal_product: 'Hayvan ürünü',
+    sapling: 'Fidan',
+    fruit: 'Meyve',
+    bait: 'Yem',
+    tackle: 'Olta takımı',
+    bomb: 'Bomba',
+    fossil: 'Fosil',
+    artifact: 'Eski eser',
+    weapon: 'Silah',
+    ring: 'Yüzük',
+    hat: 'Başlık',
+    shoe: 'Ayakkabı'
   }
 
   const lastResults = ref<ForageResult[]>([])
@@ -223,7 +223,7 @@
     Math.max(1, Math.floor(5 * inventoryStore.getToolStaminaMultiplier('axe') * (1 - skillStore.getStaminaReduction('foraging'))))
   )
 
-  /** 采集耗时（小时），受工具和技能减免 */
+  /** Toplama süresi (saat), alet ve beceri indirimiyle */
   const forageTime = computed(() => {
     const baseMin = ACTION_TIME_COSTS.forage * 60
     const toolTier = inventoryStore.getTool('axe')?.tier ?? 'basic'
@@ -232,16 +232,16 @@
     return Math.max(MIN_ACTION_MINUTES, Math.round((baseMin - saving) * (1 - skillReduction))) / 60
   })
 
-  const forageTimeLabel = computed(() => `${Math.round(forageTime.value * 60)}分钟`)
+  const forageTimeLabel = computed(() => `${Math.round(forageTime.value * 60)} dakika`)
 
   const weatherMod = computed(() => WEATHER_FORAGE_MODIFIER[gameStore.weather] ?? 1)
 
   const WEATHER_MOD_LABELS: Record<string, string> = {
-    rainy: '雨天：概率+15%',
-    stormy: '雷雨：概率-20%',
-    snowy: '雪天：概率-10%',
-    windy: '大风：概率+10%',
-    green_rain: '绿雨：概率+50%'
+    rainy: 'Yağmur: olasılık +15%',
+    stormy: 'Fırtına: olasılık -20%',
+    snowy: 'Kar: olasılık -10%',
+    windy: 'Rüzgâr: olasılık +10%',
+    green_rain: 'Yeşil yağmur: olasılık +50%'
   }
 
   const weatherModLabel = computed(() => WEATHER_MOD_LABELS[gameStore.weather] ?? '')
@@ -253,19 +253,19 @@
 
   const handleForage = () => {
     if (gameStore.isPastBedtime) {
-      addLog('太晚了，没法采集了。')
+      addLog('Geç vakit oldu, artık koruluğa gidilmez.')
       handleEndDay()
       return
     }
 
     if (!inventoryStore.isToolAvailable('axe')) {
-      addLog('斧头正在升级中，无法采集。')
+      addLog('Balta yükseltmede, toplama yapılamaz.')
       return
     }
 
     const cost = forageCost.value
     if (!playerStore.consumeStamina(cost)) {
-      addLog('体力不足，无法采集。')
+      addLog('Gücün yetmiyor, toplayamazsın.')
       return
     }
 
@@ -298,24 +298,24 @@
           quality = qualityOrder[newIdx]!
         }
         const qty = forestFarm && Math.random() < 0.2 ? 2 : 1
-        // 仙缘能力：药知（yue_tu_1）草药采集双倍
+        // Gizli kudret: yue_tu_1, otları iki kat toplar
         const finalQty = herbDouble && (item.itemId === 'herb' || item.itemId === 'ginseng') ? qty * 2 : qty
         inventoryStore.addItem(item.itemId, finalQty, quality)
         achievementStore.discoverItem(item.itemId)
         useQuestStore().onItemObtained(item.itemId, finalQty)
         const itemDef = getItemById(item.itemId)
         const name = itemDef?.name ?? item.itemId
-        gathered.push({ label: `获得了${finalQty > 1 ? `${name}×${finalQty}` : name}`, itemId: item.itemId, quantity: finalQty, quality })
+        gathered.push({ label: `${finalQty > 1 ? `${name}×${finalQty}` : name} bulundu`, itemId: item.itemId, quantity: finalQty, quality })
         skillStore.addExp('foraging', Math.floor(item.expReward * forestXpBonus))
       }
     }
 
     if (skill.perk10 === 'forester') {
       inventoryStore.addItem('wood')
-      gathered.push({ label: '获得了木材', itemId: 'wood', quantity: 1 })
+      gathered.push({ label: 'Odun bulundu', itemId: 'wood', quantity: 1 })
     } else if (skill.perk5 === 'lumberjack' && Math.random() < 0.25) {
       inventoryStore.addItem('wood')
-      gathered.push({ label: '获得了木材', itemId: 'wood', quantity: 1 })
+      gathered.push({ label: 'Odun bulundu', itemId: 'wood', quantity: 1 })
     }
 
     if (skill.perk10 === 'tracker' && items.length > 0) {
@@ -326,19 +326,19 @@
       achievementStore.discoverItem(randomItem.itemId)
       const itemDef = getItemById(randomItem.itemId)
       const name = itemDef?.name ?? randomItem.itemId
-      gathered.push({ label: `获得了${name}`, itemId: randomItem.itemId, quantity: 1, quality })
+      gathered.push({ label: `${name} bulundu`, itemId: randomItem.itemId, quantity: 1, quality })
     }
 
-    // 仙缘能力：月华（yue_tu_3）采集8%概率获得月草
+    // Gizli kudret: yue_tu_3, %8 ay otu
     if (moonHerbChance && Math.random() < 0.08) {
       inventoryStore.addItem('moon_herb', 1)
       achievementStore.discoverItem('moon_herb')
-      gathered.push({ label: '获得了月草', itemId: 'moon_herb', quantity: 1 })
+      gathered.push({ label: 'Ay otu bulundu', itemId: 'moon_herb', quantity: 1 })
       skillStore.addExp('foraging', 15)
     }
 
     if (gathered.length === 0) {
-      gathered.push({ label: '什么也没找到……', quantity: 0 })
+      gathered.push({ label: 'Hiçbir şey bulunamadı…', quantity: 0 })
     }
 
     lastResults.value = gathered
@@ -350,8 +350,8 @@
         const name = def?.name ?? g.itemId!
         return g.quantity > 1 ? `${name}×${g.quantity}` : name
       })
-    let msg = `在竹林中采集，获得了${names.join('、') || '空气'}。(-${cost}体力)`
-    if (leveledUp) msg += ` 采集提升到${newLevel}级！`
+    let msg = `gaKöy koruluğunda toplandın, elde edilenler: ${names.join('、') || 'yalnızca rüzgâr'}. (-${cost} güç)`
+    if (leveledUp) msg += ` Toplayıcılık ${newLevel}. seviyeye yükseldi!`
     addLog(msg)
 
     const tr = gameStore.advanceTime(forageTime.value)
