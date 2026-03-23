@@ -1,12 +1,13 @@
+
 import type { MonsterDef, MineFloorDef } from './skill'
 
-/** 格子类型 */
+/** Maden karo türü */
 export type MineTileType = 'empty' | 'ore' | 'monster' | 'stairs' | 'trap' | 'treasure' | 'mushroom' | 'boss'
 
-/** 格子状态 */
+/** Maden karo durumu */
 export type MineTileState = 'hidden' | 'revealed' | 'collected' | 'defeated' | 'triggered'
 
-/** 格子附加数据 */
+/** Karo ek verisi */
 export interface MineTileData {
   oreId?: string
   oreQuantity?: number
@@ -18,7 +19,7 @@ export interface MineTileData {
   mushroomItems?: { itemId: string; quantity: number }[]
 }
 
-/** 单个格子 */
+/** Tek bir karo */
 export interface MineTile {
   index: number // 0-35
   type: MineTileType
@@ -26,7 +27,7 @@ export interface MineTile {
   data?: MineTileData
 }
 
-/** 楼层格子分布配置 */
+/** Kat karo dağılımı yapılandırması */
 export interface FloorTileDistribution {
   oreCount: [number, number]
   monsterCount: [number, number]
@@ -34,7 +35,17 @@ export interface FloorTileDistribution {
   treasureCount?: [number, number]
   mushroomCount?: [number, number]
   bossCount?: [number, number]
-  /** 楼梯是否需要全清才可使用（感染/BOSS层） */
+  /** Merdiven tüm alan temizlenmeden kullanılamaz mı (istila/BOSS katları) */
+  stairsHiddenUntilClear?: boolean
+}
+
+/** Izgara sabitleri */
+export const GRID_SIZE = 6
+export const GRID_TOTAL = 36
+export const MIN_STAIRS_DISTANCE = 3
+
+/** Özel kat türü */
+export type FloorSpecialType = MineFloorDef['specialType']  /** 楼梯是否需要全清才可使用（感染/BOSS层） */
   stairsHiddenUntilClear?: boolean
 }
 
