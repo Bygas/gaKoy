@@ -1,4 +1,4 @@
-/** 物品分类 */
+/** Eşya kategorisi */
 export type ItemCategory =
   | 'seed'
   | 'crop'
@@ -26,25 +26,25 @@ export type ItemCategory =
   | 'hat'
   | 'shoe'
 
-/** 物品品质 */
+/** Eşya kalitesi */
 export type Quality = 'normal' | 'fine' | 'excellent' | 'supreme'
 
-/** 物品基础定义（配置数据用） */
+/** Eşya temel tanımı (veri yapılandırması için) */
 export interface ItemDef {
   id: string
   name: string
   category: ItemCategory
   description: string
   sellPrice: number
-  /** 是否可以食用 */
+  /** Yenilebilir mi */
   edible: boolean
-  /** 食用恢复体力 */
+  /** Yenildiğinde sağlanan dayanıklılık */
   staminaRestore?: number
-  /** 食用恢复生命值 */
+  /** Yenildiğinde sağlanan can */
   healthRestore?: number
 }
 
-/** 背包中的物品实例 */
+/** Envanterdeki eşya örneği */
 export interface InventoryItem {
   itemId: string
   quantity: number
@@ -52,22 +52,22 @@ export interface InventoryItem {
   locked?: boolean
 }
 
-/** 工具等级 */
+/** Alet seviyesi */
 export type ToolTier = 'basic' | 'iron' | 'steel' | 'iridium'
 
-/** 工具类型 */
+/** Alet türü */
 export type ToolType = 'wateringCan' | 'hoe' | 'pickaxe' | 'fishingRod' | 'scythe' | 'axe' | 'pan'
 
-/** 工具实例 */
+/** Alet örneği */
 export interface Tool {
   type: ToolType
   tier: ToolTier
 }
 
-/** 武器类型 */
+/** Silah türü */
 export type WeaponType = 'sword' | 'dagger' | 'club'
 
-/** 武器定义 */
+/** Silah tanımı */
 export interface WeaponDef {
   id: string
   name: string
@@ -75,15 +75,15 @@ export interface WeaponDef {
   attack: number
   critRate: number
   description: string
-  /** 商店购买价格（null = 不可购买） */
+  /** Dükkân fiyatı (null = satın alınamaz) */
   shopPrice: number | null
-  /** 购买所需材料 */
+  /** Satın almak için gereken malzemeler */
   shopMaterials: { itemId: string; quantity: number }[]
-  /** 固定附魔（BOSS 武器） */
+  /** Sabit büyü (BOSS silahları) */
   fixedEnchantment: string | null
 }
 
-/** 附魔定义 */
+/** Büyü tanımı */
 export interface EnchantmentDef {
   id: string
   name: string
@@ -93,23 +93,23 @@ export interface EnchantmentDef {
   special: 'vampiric' | 'sturdy' | 'lucky' | null
 }
 
-/** 拥有的武器实例 */
+/** Sahip olunan silah örneği */
 export interface OwnedWeapon {
   defId: string
   enchantmentId: string | null
 }
 
-/** 箱子阶梯 */
+/** Sandık seviyesi */
 export type ChestTier = 'wood' | 'copper' | 'iron' | 'gold' | 'void'
 
-/** 虚空箱子角色 */
+/** Boşluk sandığı rolü */
 export type VoidChestRole = 'none' | 'input' | 'output'
 
-/** 箱子实例 */
+/** Sandık örneği */
 export interface Chest {
   id: string
   tier: ChestTier
   label: string
   items: InventoryItem[]
   voidRole: VoidChestRole
-}
+  }
