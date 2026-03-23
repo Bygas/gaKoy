@@ -1,13 +1,13 @@
 import type { Season, Weather } from './game'
 import type { HeartEventScene } from './npc'
 
-/** 发现阶段 */
+/** Keşif aşaması */
 export type DiscoveryPhase = 'unknown' | 'rumor' | 'glimpse' | 'encounter' | 'revealed'
 
-/** 缘分等级 */
+/** Bağ seviyesi */
 export type AffinityLevel = 'wary' | 'curious' | 'trusting' | 'devoted' | 'eternal'
 
-/** 缘分等级阈值 */
+/** Bağ seviyesi eşikleri */
 export const AFFINITY_THRESHOLDS: { level: AffinityLevel; min: number }[] = [
   { level: 'eternal', min: 2500 },
   { level: 'devoted', min: 1800 },
@@ -16,20 +16,20 @@ export const AFFINITY_THRESHOLDS: { level: AffinityLevel; min: number }[] = [
   { level: 'wary', min: 0 }
 ]
 
-/** 最大缘分值 */
+/** Maksimum bağ değeri */
 export const MAX_AFFINITY = 3000
 
-/** 每心缘分值（菱形显示，12颗菱形） */
+/** Elmas başına bağ değeri (12 elmas gösterimi) */
 export const AFFINITY_PER_DIAMOND = 250
 
-/** 每日未互动缘分衰减 */
+/** Günlük etkileşim yoksa bağ azalması */
 export const AFFINITY_DECAY_BONDED = 15
 export const AFFINITY_DECAY_COURTING = 10
 
-/** 供奉上限 */
+/** Haftalık sunu üst sınırı */
 export const MAX_OFFERS_PER_WEEK = 3
 
-/** 发现条件 */
+/** Keşif koşulu */
 export type DiscoveryCondition =
   | { type: 'season'; season: Season }
   | { type: 'weather'; weather: Weather }
@@ -45,32 +45,32 @@ export type DiscoveryCondition =
   | { type: 'yearMin'; year: number }
   | { type: 'day'; day: number }
 
-/** 发现步骤 */
+/** Keşif adımı */
 export interface DiscoveryStep {
   id: string
-  /** 此步骤将NPC推进到哪个阶段 */
+  /** Bu adım NPC’yi hangi aşamaya taşır */
   phase: DiscoveryPhase
-  /** 全部满足才触发 */
+  /** Tüm koşullar sağlanmalı */
   conditions: DiscoveryCondition[]
-  /** 触发时播放的剧情 */
+  /** Tetiklendiğinde oynatılan sahneler */
   scenes: HeartEventScene[]
-  /** 发现后的日志提示 */
+  /** Keşif sonrası günlük kaydı */
   logMessage?: string
 }
 
-/** 独特互动类型 */
+/** Özel etkileşim türü */
 export type InteractionType = 'meditation' | 'music' | 'ritual' | 'dreamwalk' | 'cultivation'
 
-/** 互动类型中文名 */
+/** Etkileşim türü adları */
 export const INTERACTION_NAMES: Record<InteractionType, string> = {
-  meditation: '参悟',
-  music: '奏乐',
-  ritual: '祭仪',
-  dreamwalk: '入梦',
-  cultivation: '修炼'
+  meditation: 'Tefekkür',
+  music: 'Ezgi',
+  ritual: 'Ayın',
+  dreamwalk: 'Rüya Yolu',
+  cultivation: 'İçsel Yeti'
 }
 
-/** 缘分能力 */
+/** Bağ yeteneği */
 export interface AffinityAbility {
   id: string
   affinityRequired: number
@@ -82,7 +82,7 @@ export interface AffinityAbility {
   }
 }
 
-/** 结缘奖励类型 */
+/** Bağlanma ödül türü */
 export type BondBonusType =
   | { type: 'weather_control'; chance: number }
   | { type: 'crop_blessing'; chance: number }
@@ -92,74 +92,74 @@ export type BondBonusType =
   | { type: 'spirit_shield'; staminaSave: number; hpBonus: number }
   | { type: 'sell_bonus'; percent: number }
 
-/** 隐藏NPC定义 */
+/** Gizli NPC tanımı */
 export interface HiddenNpcDef {
   id: string
   name: string
-  /** 真名（高缘分后揭示） */
+  /** Gerçek adı (yüksek bağda ortaya çıkar) */
   trueName: string
   gender: 'male' | 'female'
-  /** 称号 */
+  /** Unvan */
   title: string
-  /** 来历描述 */
+  /** Kökeni */
   origin: string
   personality: string
-  /** 发现链 */
+  /** Keşif zinciri */
   discoverySteps: DiscoveryStep[]
-  /** 灵犀供奉：+100缘分 */
+  /** Uyumlu sunular: +100 bağ */
   resonantOfferings: string[]
-  /** 合意供奉：+50缘分 */
+  /** Hoş karşılanan sunular: +50 bağ */
   pleasedOfferings: string[]
-  /** 排斥供奉：-40缘分 */
+  /** Reddedilen sunular: -40 bağ */
   repelledOfferings: string[]
-  /** 按缘分等级的对话 */
+  /** Bağ seviyesine göre diyaloglar */
   dialogues: Record<AffinityLevel, string[]>
-  /** 独特互动类型 */
+  /** Özel etkileşim türü */
   interactionType: InteractionType
-  /** 是否可结缘 */
+  /** Bağ kurulabilir mi */
   bondable: boolean
-  /** 求缘物品ID */
+  /** Kur yapma eşyası */
   courtshipItemId: string
-  /** 结缘物品ID */
+  /** Bağlanma eşyası */
   bondItemId: string
-  /** 求缘缘分门槛 */
+  /** Kur yapma eşiği */
   courtshipThreshold: number
-  /** 结缘缘分门槛 */
+  /** Bağlanma eşiği */
   bondThreshold: number
-  /** 心事件ID列表 */
+  /** Gönül olayı kimlikleri */
   heartEventIds: string[]
-  /** 求缘阶段对话 */
+  /** Kur dönemi diyalogları */
   courtshipDialogues: string[]
-  /** 结缘每日奖励（可多个） */
+  /** Bağ sonrası günlük ödüller */
   bondBonuses: BondBonusType[]
-  /** 缘分能力树 */
+  /** Bağ yetenek ağacı */
   abilities: AffinityAbility[]
-  /** 显灵日（等同生日） */
+  /** Tezahür günü (doğum günü gibi) */
   manifestationDay: { season: Season; day: number }
 }
 
-/** 隐藏NPC运行时状态 */
+/** Gizli NPC çalışma durumu */
 export interface HiddenNpcState {
   npcId: string
   discoveryPhase: DiscoveryPhase
-  /** 已完成的发现步骤ID */
+  /** Tamamlanan keşif adımları */
   completedSteps: string[]
-  /** 缘分 0-3000 */
+  /** Bağ değeri 0-3000 */
   affinity: number
-  /** 今日已互动 */
+  /** Bugün etkileşim kuruldu mu */
   interactedToday: boolean
-  /** 今日已供奉 */
+  /** Bugün sunu yapıldı mı */
   offeredToday: boolean
-  /** 本周供奉次数（上限3） */
+  /** Bu hafta yapılan sunular (üst sınır 3) */
   offersThisWeek: number
-  /** 独特互动冷却天数 */
+  /** Özel etkileşim bekleme süresi */
   specialInteractionCooldown: number
-  /** 求缘中 */
+  /** Kur sürecinde mi */
   courting: boolean
-  /** 已结缘 */
+  /** Bağ kurulmuş mu */
   bonded: boolean
-  /** 已触发的心事件ID */
+  /** Tetiklenen gönül olayları */
   triggeredHeartEvents: string[]
-  /** 已解锁的能力ID */
+  /** Açılan yetenekler */
   unlockedAbilities: string[]
 }
