@@ -1,47 +1,48 @@
+
 import type { EquipmentEffect } from './ring'
 
-/** 帽子定义 */
+/** Başlık tanımı */
 export interface HatDef {
   id: string
   name: string
   description: string
   effects: EquipmentEffect[]
-  /** 商店购买价格（null = 不可购买，需合成） */
+  /** Dükkândan satın alma fiyatı (null = satın alınamaz, üretim gerekir) */
   shopPrice: number | null
-  /** 合成配方（null = 不可合成） */
+  /** Üretim tarifi (null = üretilemez) */
   recipe: { itemId: string; quantity: number }[] | null
-  /** 合成所需铜钱 */
+  /** Üretim için gereken para */
   recipeMoney: number
-  /** 获取途径描述 */
+  /** Elde edilme yolu */
   obtainSource: string
-  /** 出售价格 */
+  /** Satış fiyatı */
   sellPrice: number
 }
 
-/** 拥有的帽子实例 */
+/** Sahip olunan başlık */
 export interface OwnedHat {
   defId: string
 }
 
-/** 鞋子定义 */
+/** Ayakkabı tanımı */
 export interface ShoeDef {
   id: string
   name: string
   description: string
   effects: EquipmentEffect[]
-  /** 商店购买价格（null = 不可购买，需合成） */
+  /** Dükkândan satın alma fiyatı (null = satın alınamaz, üretim gerekir) */
   shopPrice: number | null
-  /** 合成配方（null = 不可合成） */
+  /** Üretim tarifi (null = üretilemez) */
   recipe: { itemId: string; quantity: number }[] | null
-  /** 合成所需铜钱 */
+  /** Üretim için gereken para */
   recipeMoney: number
-  /** 获取途径描述 */
+  /** Elde edilme yolu */
   obtainSource: string
-  /** 出售价格 */
+  /** Satış fiyatı */
   sellPrice: number
 }
 
-/** 拥有的鞋子实例 */
+/** Sahip olunan ayakkabı */
 export interface OwnedShoe {
   defId: string
 }
