@@ -1,41 +1,41 @@
 import type { Quality } from './item'
 
-/** 鱼塘等级 */
+/** Balık havuzu seviyesi */
 export type PondLevel = 1 | 2 | 3
 
-/** 鱼个体基因 */
+/** Balık genetiği */
 export interface FishGenetics {
-  /** 体重 0-100 → 影响售价 */
+  /** Ağırlık 0-100 → satış fiyatını etkiler */
   weight: number
-  /** 生长率 0-100 → 成熟速度 */
+  /** Büyüme oranı 0-100 → olgunlaşma hızı */
   growthRate: number
-  /** 抗病性 0-100 → 抗病概率 */
+  /** Hastalık direnci 0-100 → hastalığa karşı dayanıklılık */
   diseaseRes: number
-  /** 品质基因 0-100 → 产出品质 */
+  /** Kalite geni 0-100 → ürün kalitesi */
   qualityGene: number
-  /** 变异率 1-50 → 后代变异幅度 */
+  /** Mutasyon oranı 1-50 → yavrularda değişim miktarı */
   mutationRate: number
 }
 
-/** 鱼塘中的鱼个体 */
+/** Havuzdaki balık bireyi */
 export interface PondFish {
   id: string
   fishId: string
   name: string
   genetics: FishGenetics
-  /** 入塘天数 */
+  /** Havuzda geçirilen gün sayısı */
   daysInPond: number
-  /** 是否成熟（可产出/繁殖） */
+  /** Olgun mu (üretim/üreme için hazır) */
   mature: boolean
-  /** 是否生病 */
+  /** Hasta mı */
   sick: boolean
-  /** 连续生病天数 */
+  /** Art arda hasta olunan gün sayısı */
   sickDays: number
-  /** 品种ID（图鉴系统） */
+  /** Tür kimliği (kayıt sistemi için) */
   breedId: string | null
 }
 
-/** 品种定义（图鉴系统） */
+/** Tür tanımı (kayıt sistemi) */
 export interface PondBreedDef {
   breedId: string
   name: string
@@ -45,7 +45,7 @@ export interface PondBreedDef {
   parentBreedB: string | null
 }
 
-/** 繁殖槽 */
+/** Üreme yuvası */
 export interface BreedingPair {
   parentA: string
   parentB: string
@@ -53,39 +53,39 @@ export interface BreedingPair {
   fishId: string
 }
 
-/** 鱼塘状态 */
+/** Balık havuzu durumu */
 export interface FishPondState {
   built: boolean
   level: PondLevel
   fish: PondFish[]
-  /** 水质 0-100 */
+  /** Su kalitesi 0-100 */
   waterQuality: number
   fedToday: boolean
   breeding: BreedingPair | null
   collectedToday: boolean
 }
 
-/** 可养殖鱼种定义 */
+/** Yetiştirilebilir balık tanımı */
 export interface PondableFishDef {
   fishId: string
   name: string
-  /** 成熟天数 */
+  /** Olgunlaşma süresi (gün) */
   maturityDays: number
-  /** 每日产出概率 (0-1) */
+  /** Günlük üretim olasılığı (0-1) */
   baseProductionRate: number
-  /** 产出物品ID（通常就是鱼本身） */
+  /** Ürün eşya ID'si (genelde balığın kendisi) */
   productItemId: string
-  /** 默认基因 */
+  /** Varsayılan genetik */
   defaultGenetics: FishGenetics
 }
 
-/** 鱼塘每日更新结果 */
+/** Günlük havuz sonucu */
 export interface PondDailyResult {
   products: { itemId: string; quality: Quality }[]
   died: string[]
   gotSick: string[]
   healed: string[]
   bred: string | null
-  /** 繁殖失败原因 */
+  /** Üreme başarısızlık nedeni */
   breedingFailed: string | null
 }
