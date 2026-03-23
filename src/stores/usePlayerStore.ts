@@ -16,37 +16,37 @@ import { useHiddenNpcStore } from './useHiddenNpcStore'
 import { useMiningStore } from './useMiningStore'
 import { useGuildStore } from './useGuildStore'
 
-/** 最大体力阶梯 (5档, 270 起 508 顶) */
+/** En yüksek dayanıklılık kademeleri (5 kademe, 270 başlayıp 508 tavan) */
 const STAMINA_CAPS = [120, 160, 200, 250, 300]
 
-/** HP 常量 */
+/** Can sabitleri */
 const BASE_MAX_HP = 100
 const HP_PER_COMBAT_LEVEL = 5
 const FIGHTER_HP_BONUS = 25
 const WARRIOR_HP_BONUS = 40
 
 export const usePlayerStore = defineStore('player', () => {
-  const playerName = ref('未命名')
+  const playerName = ref('Adsız')
   const gender = ref<Gender>('male')
-  /** 旧存档加载后需要设置身份（不持久化） */
+  /** Eski kayıt yüklendikten sonra kimlik seçimi gerekir (kalıcı değil) */
   const needsIdentitySetup = ref(false)
   const money = ref(500)
   const stamina = ref(120)
   const maxStamina = ref(120)
   const staminaCapLevel = ref(0) // 0=120, 1=160, 2=200, 3=250, 4=300
-  /** 额外体力上限加成（仙翁金丹等），不受仙桃阶梯覆盖 */
+  /** Ek dayanıklılık üst sınırı artışı (ör. ermiş iksiri), şeftali kademesi bunu ezmez */
   const bonusMaxStamina = ref(0)
 
-  // HP 系统
+  // Can sistemi
   const hp = ref(BASE_MAX_HP)
   const baseMaxHp = ref(BASE_MAX_HP)
 
   const isExhausted = computed(() => stamina.value <= 5)
   const staminaPercent = computed(() => Math.round((stamina.value / maxStamina.value) * 100))
-  /** NPC 用来称呼玩家的称谓 */
-  const honorific = computed(() => (gender.value === 'male' ? '小哥' : '姑娘'))
+  /** NPC'lerin oyuncuya hitap şekli */
+  const honorific = computed(() => (gender.value === 'male' ? 'Yiğit' : 'Hatun'))
 
-  /** 计算当前最大 HP（基础 + 战斗等级 + 专精加成 + 仙缘加成 + 公会加成） */
+  /** Güncel azami canı hesapla (temel + savaş seviyesi + uzmanlık + ilahi bağ + lonca) */
   const getMaxHp = (): number => {
     const skillStore = useSkillStore()
     let bonus = skillStore.combatLevel * HP_PER_COMBAT_LEVEL
@@ -55,10 +55,10 @@ export const usePlayerStore = defineStore('player', () => {
     if (perk5 === 'fighter') bonus += FIGHTER_HP_BONUS
     if (perk10 === 'warrior') bonus += WARRIOR_HP_BONUS
     const ringHpBonus = useInventoryStore().getRingEffectValue('max_hp_bonus')
-    // 仙缘结缘：灵护（spirit_shield）HP 加成
+    // Gizli bağ bonusu: Ruh Kalkanı (spirit_shield) can artışı
     const spiritShield = useHiddenNpcStore().getBondBonusByType('spirit_shield')
     const spiritHpBonus = spiritShield?.type === 'spirit_shield' ? spiritShield.hpBonus : 0
-    // 公会加成：生命护符永久 + 等级被动
+    // Lonca bonusu: yaşam tılsımı + seviye katkısı
     const guildHpBonus = useMiningStore().guildBonusMaxHp
     const guildLevelHpBonus = useGuildStore().getGuildHpBonus()
     return baseMaxHp.value + bonus + ringHpBonus + spiritHpBonus + guildHpBonus + guildLevelHpBonus
@@ -72,9 +72,9 @@ export const usePlayerStore = defineStore('player', () => {
     return hp.value <= getMaxHp() * 0.25
   }
 
-  /** 消耗体力（含仙缘灵护减免），返回是否成功 */
+  /** Dayanıklılık harca (ilahi bağ indirimi dahil), başarılı mı döndür */
   const consumeStamina = (amount: number): boolean => {
-    // 仙缘结缘：灵护（spirit_shield）体力消耗减免
+    // Gizli bağ bonusu: Ruh Kalkanı (spirit_shield) dayanıklılık harcamasını azaltır
     const spiritShield2 = useHiddenNpcStore().getBondBonusByType('spirit_shield')
     const spiritSave = spiritShield2?.type === 'spirit_shield' ? spiritShield2.staminaSave / 100 : 0
     const effectiveAmount = Math.max(1, Math.floor(amount * (1 - spiritSave)))
@@ -83,28 +83,28 @@ export const usePlayerStore = defineStore('player', () => {
     return true
   }
 
-  /** 恢复体力 */
+  /** Dayanıklılık yenile */
   const restoreStamina = (amount: number) => {
     stamina.value = Math.min(stamina.value + amount, maxStamina.value)
   }
 
-  /** 受到伤害（扣 HP），返回实际伤害值 */
+  /** Hasar al (can azalt), gerçek hasarı döndür */
   const takeDamage = (amount: number): number => {
     const actual = Math.min(amount, hp.value)
     hp.value -= actual
     return actual
   }
 
-  /** 恢复生命值 */
+  /** Can yenile */
   const restoreHealth = (amount: number) => {
     hp.value = Math.min(hp.value + amount, getMaxHp())
   }
 
   /**
-   * 每日重置
-   * - 正常：满体力 + 满HP
-   * - 晚睡：渐进恢复 (24时90%→25时60%) + 满HP
-   * - 昏倒：50% 体力 + 满HP + 扣10%铜钱
+   * Günlük sıfırlama
+   * - Normal: tam dayanıklılık + tam can
+   * - Geç yatış: kademeli yenilenme (24. saat %90 → 25. saat %60) + tam can
+   * - Bayılma: %50 dayanıklılık + tam can + akçenin %10'u gider
    */
   const dailyReset = (mode: 'normal' | 'late' | 'passout', bedHour?: number): { moneyLost: number; recoveryPct: number } => {
     let moneyLost = 0
@@ -114,7 +114,7 @@ export const usePlayerStore = defineStore('player', () => {
         stamina.value = maxStamina.value
         break
       case 'late': {
-        // 渐进式恢复：24时→90%, 25时→60%, 线性插值
+        // Kademeli yenilenme: 24. saat→%90, 25. saat→%60, doğrusal geçiş
         const homeStore = useHomeStore()
         const staminaBonus = homeStore.getStaminaRecoveryBonus()
         const t = Math.min(Math.max((bedHour ?? 24) - 24, 0), 1)
@@ -132,12 +132,12 @@ export const usePlayerStore = defineStore('player', () => {
         break
       }
     }
-    // HP 每天都回满
+    // Can her gün tamamen dolar
     hp.value = getMaxHp()
     return { moneyLost, recoveryPct }
   }
 
-  /** 提升体力上限 */
+  /** Dayanıklılık üst sınırını artır */
   const upgradeMaxStamina = (): boolean => {
     if (staminaCapLevel.value >= STAMINA_CAPS.length - 1) return false
     staminaCapLevel.value++
@@ -145,26 +145,26 @@ export const usePlayerStore = defineStore('player', () => {
     return true
   }
 
-  /** 增加额外体力上限加成（仙翁金丹等） */
+  /** Ek dayanıklılık üst sınırı ver (ör. ermiş iksiri) */
   const addBonusMaxStamina = (amount: number) => {
     bonusMaxStamina.value += amount
     maxStamina.value = STAMINA_CAPS[staminaCapLevel.value]! + bonusMaxStamina.value
   }
 
-  /** 花费铜钱，返回是否成功 */
+  /** Akçe harca, başarı durumunu döndür */
   const spendMoney = (amount: number): boolean => {
     if (money.value < amount) return false
     money.value -= amount
     return true
   }
 
-  /** 获得铜钱 */
+  /** Akçe kazan */
   const earnMoney = (amount: number) => {
     money.value += amount
     useAchievementStore().recordMoneyEarned(amount)
   }
 
-  /** 设置玩家身份（新游戏或旧存档迁移时调用） */
+  /** Oyuncu kimliğini ayarla (yeni oyun ya da eski kayıt geçişi için) */
   const setIdentity = (name: string, g: Gender) => {
     playerName.value = name
     gender.value = g
@@ -187,7 +187,7 @@ export const usePlayerStore = defineStore('player', () => {
 
   const deserialize = (data: ReturnType<typeof serialize>) => {
     const hasIdentity = (data as any).playerName != null
-    playerName.value = (data as any).playerName ?? '未命名'
+    playerName.value = (data as any).playerName ?? 'Adsız'
     gender.value = (data as any).gender ?? 'male'
     needsIdentitySetup.value = !hasIdentity
     money.value = data.money
@@ -195,13 +195,13 @@ export const usePlayerStore = defineStore('player', () => {
     maxStamina.value = data.maxStamina
     staminaCapLevel.value = data.staminaCapLevel
     bonusMaxStamina.value = (data as any).bonusMaxStamina ?? 0
-    // 旧存档兼容：如果没有 bonusMaxStamina 字段，从 maxStamina 和 staminaCapLevel 推算
+    // Eski kayıt uyumluluğu: bonusMaxStamina yoksa maxStamina ile kademeden türet
     if ((data as any).bonusMaxStamina == null) {
       const expectedBase = STAMINA_CAPS[staminaCapLevel.value] ?? 120
       const diff = maxStamina.value - expectedBase
       if (diff > 0) bonusMaxStamina.value = diff
     }
-    // 确保 maxStamina 与 staminaCapLevel + bonusMaxStamina 一致（修复旧存档）
+    // maxStamina ile staminaCapLevel + bonusMaxStamina tutarlı olsun
     const expectedMax = (STAMINA_CAPS[staminaCapLevel.value] ?? 120) + bonusMaxStamina.value
     if (maxStamina.value !== expectedMax) {
       maxStamina.value = expectedMax
