@@ -1,16 +1,16 @@
-/** 博物馆物品分类 */
+/** Müze eşya türleri */
 export type MuseumCategory = 'ore' | 'gem' | 'bar' | 'fossil' | 'artifact' | 'spirit'
 
-/** 博物馆可捐赠物品定义 */
+/** Müzeye bağışlanabilir eşya tanımı */
 export interface MuseumItemDef {
   id: string
   name: string
   category: MuseumCategory
-  /** 来源提示（未获得时显示） */
+  /** Kaynak ipucu (henüz elde edilmediyse gösterilir) */
   sourceHint: string
 }
 
-/** 博物馆里程碑奖励 */
+/** Müze kilometre taşı ödülleri */
 export interface MuseumMilestone {
   count: number
   name: string
