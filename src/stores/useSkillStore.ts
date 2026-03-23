@@ -3,10 +3,10 @@ import { defineStore } from 'pinia'
 import type { SkillType, SkillState, SkillPerk5, SkillPerk10 } from '@/types'
 import { useInventoryStore } from './useInventoryStore'
 
-/** 各等级所需累计经验 **/
+/** Her seviye için gerekli toplam deneyim **/
 const EXP_TABLE = [0, 100, 380, 770, 1300, 2150, 3300, 4800, 6900, 10000, 15000]
 
-/** 创建初始技能状态 */
+/** Başlangıç beceri durumu oluşturur */
 const createSkill = (type: SkillType): SkillState => {
   return { type, exp: 0, level: 0, perk5: null, perk10: null }
 }
@@ -30,7 +30,7 @@ export const useSkillStore = defineStore('skill', () => {
   const foragingLevel = computed(() => getSkill('foraging').level)
   const combatLevel = computed(() => getSkill('combat').level)
 
-  /** 增加经验并自动升级（含戒指经验加成） */
+  /** Deneyim ekler ve otomatik seviye atlatır (yüzük deneyim bonusu dahil) */
   const addExp = (type: SkillType, amount: number): { leveledUp: boolean; newLevel: number } => {
     const ringExpBonus = useInventoryStore().getRingEffectValue('exp_bonus')
     const adjustedAmount = Math.floor(amount * (1 + ringExpBonus))
@@ -52,19 +52,19 @@ export const useSkillStore = defineStore('skill', () => {
     return { leveledUp, newLevel: skill.level }
   }
 
-  /** 获取升级到下一级所需经验 */
+  /** Bir sonraki seviyeye ulaşmak için gereken deneyimi döndürür */
   const getExpToNextLevel = (type: SkillType): { current: number; required: number } | null => {
     const skill = getSkill(type)
     if (skill.level >= 10) return null
     return { current: skill.exp, required: EXP_TABLE[skill.level + 1]! }
   }
 
-  /** 计算技能对体力消耗的减免 (每级减少1%，10级共减少10%) */
+  /** Becerinin enerji tüketimine sağladığı indirim (seviye başına %1, 10. seviyede toplam %10) */
   const getStaminaReduction = (type: SkillType): number => {
     return getSkill(type).level * 0.01
   }
 
-  /** 设置等级5专精 */
+  /** 5. seviye uzmanlığını belirler */
   const setPerk5 = (type: SkillType, perk: SkillPerk5): boolean => {
     const skill = getSkill(type)
     if (skill.level < 5 || skill.perk5 !== null) return false
@@ -72,7 +72,7 @@ export const useSkillStore = defineStore('skill', () => {
     return true
   }
 
-  /** 设置等级10专精 */
+  /** 10. seviye uzmanlığını belirler */
   const setPerk10 = (type: SkillType, perk: SkillPerk10): boolean => {
     const skill = getSkill(type)
     if (skill.level < 10 || skill.perk10 !== null) return false
@@ -80,12 +80,12 @@ export const useSkillStore = defineStore('skill', () => {
     return true
   }
 
-  /** 判断作物品质（基于农耕等级） */
+  /** Mahsul kalitesini belirler (tarım seviyesine göre) */
   const rollCropQuality = (): 'normal' | 'fine' | 'excellent' | 'supreme' => {
     return rollCropQualityWithBonus(0)
   }
 
-  /** 判断作物品质（带肥料加成 + 可选技能等级加成） */
+  /** Mahsul kalitesini belirler (gübre bonusu + isteğe bağlı beceri seviyesi bonusu ile) */
   const rollCropQualityWithBonus = (qualityBonus: number, levelBonus: number = 0): 'normal' | 'fine' | 'excellent' | 'supreme' => {
     const level = farmingLevel.value + levelBonus
     const roll = Math.random()
@@ -96,7 +96,7 @@ export const useSkillStore = defineStore('skill', () => {
     return 'normal'
   }
 
-  /** 判断采集物品质（基于采集等级和专精 + 可选技能等级加成） */
+  /** Toplayıcılık ürünlerinin kalitesini belirler (toplayıcılık seviyesi ve uzmanlığa göre + isteğe bağlı beceri seviyesi bonusu) */
   const rollForageQuality = (levelBonus: number = 0): 'normal' | 'fine' | 'excellent' | 'supreme' => {
     const skill = getSkill('foraging')
     if (skill.perk10 === 'botanist') return 'excellent'
@@ -115,12 +115,12 @@ export const useSkillStore = defineStore('skill', () => {
 
   const deserialize = (data: ReturnType<typeof serialize>) => {
     const arr: SkillState[] = data.skills ?? []
-    // 确保 5 个技能都存在（旧存档可能没有 combat）
+    // Tüm 5 becerinin de mevcut olduğundan emin ol (eski kayıtlarda combat olmayabilir)
     const allTypes: SkillType[] = ['farming', 'foraging', 'fishing', 'mining', 'combat']
     for (const type of allTypes) {
       if (!arr.find(s => s.type === type)) {
         const newSkill = createSkill(type)
-        // 旧存档迁移：mining 的 fighter/warrior/brute → combat
+        // Eski kayıt aktarımı: mining içindeki fighter/warrior/brute -> combat
         if (type === 'combat') {
           const mining = arr.find(s => s.type === 'mining')
           if (mining && mining.perk5 === 'fighter') {
