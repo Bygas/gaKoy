@@ -22,7 +22,7 @@ import { useHiddenNpcStore } from './useHiddenNpcStore'
 import { addLog } from '@/composables/useGameLog'
 import { hasCombinedItem, removeCombinedItem, getLowestCombinedQuality } from '@/composables/useCombinedInventory'
 
-/** 工坊升级定义 */
+/** Atölye yükseltme tanımları */
 const WORKSHOP_UPGRADES = [
   {
     level: 1,
@@ -47,33 +47,33 @@ export const useProcessingStore = defineStore('processing', () => {
   const playerStore = usePlayerStore()
   const skillStore = useSkillStore()
 
-  /** 已放置的加工机器（运行中的槽位） */
+  /** Yerleştirilmiş işleme makineleri (çalışan yuvalar) */
   const machines = ref<ProcessingSlot[]>([])
 
-  /** 工坊等级：0/1/2，对应 15/20/25 */
+  /** Atölye seviyesi: 0/1/2, karşılığı 15/20/25 */
   const workshopLevel = ref(0)
 
-  /** 最大放置机器数 */
+  /** Yerleştirilebilecek azami makine sayısı */
   const maxMachines = computed(() => 15 + workshopLevel.value * 5)
 
-  /** 当前放置数量 */
+  /** Şu anki yerleştirilmiş makine sayısı */
   const machineCount = computed(() => machines.value.length)
 
-  // === 制造(Craft) ===
+  // === Üretim (Craft) ===
 
-  /** 检查是否有足够材料制造某样东西 */
+  /** Bir şeyi üretmek için yeterli malzeme var mı kontrol et */
   const canCraft = (craftCost: { itemId: string; quantity: number }[], craftMoney: number): boolean => {
     if (playerStore.money < craftMoney) return false
     return craftCost.every(c => hasCombinedItem(c.itemId, c.quantity))
   }
 
-  /** 消耗材料 */
+  /** Malzeme tüket */
   const consumeCraftMaterials = (craftCost: { itemId: string; quantity: number }[], craftMoney: number): boolean => {
     if (!canCraft(craftCost, craftMoney)) return false
     if (!playerStore.spendMoney(craftMoney)) return false
     for (const c of craftCost) {
       if (!removeCombinedItem(c.itemId, c.quantity)) {
-        // 回退（简化处理：理论上不会到这里因为canCraft已检查）
+        // Geri sarma (basitleştirilmiş: canCraft zaten kontrol ettiği için normalde buraya düşmez)
         playerStore.earnMoney(craftMoney)
         return false
       }
@@ -81,7 +81,7 @@ export const useProcessingStore = defineStore('processing', () => {
     return true
   }
 
-  /** 制造并放置一台加工机器 */
+  /** Bir işleme makinesi üret ve yerleştir */
   const craftMachine = (machineType: MachineType): boolean => {
     if (machines.value.length >= maxMachines.value) return false
     const def = PROCESSING_MACHINES.find(m => m.id === machineType)
@@ -98,7 +98,7 @@ export const useProcessingStore = defineStore('processing', () => {
     return true
   }
 
-  /** 制造洒水器（返回物品ID放入背包） */
+  /** Fıskiye üret (eşya kimliğini çantaya koyar) */
   const craftSprinkler = (sprinklerId: string): boolean => {
     const def = SPRINKLERS.find(s => s.id === sprinklerId)
     if (!def) return false
@@ -107,7 +107,7 @@ export const useProcessingStore = defineStore('processing', () => {
     return true
   }
 
-  /** 制造肥料 */
+  /** Gübre üret */
   const craftFertilizer = (fertilizerId: string): boolean => {
     const def = FERTILIZERS.find(f => f.id === fertilizerId)
     if (!def) return false
@@ -116,7 +116,7 @@ export const useProcessingStore = defineStore('processing', () => {
     return true
   }
 
-  /** 制造鱼饵 */
+  /** Yem üret */
   const craftBait = (baitId: string): boolean => {
     const def = BAITS.find(b => b.id === baitId)
     if (!def) return false
@@ -125,7 +125,7 @@ export const useProcessingStore = defineStore('processing', () => {
     return true
   }
 
-  /** 制造浮漂 */
+  /** Şamandıra üret */
   const craftTackle = (tackleId: string): boolean => {
     const def = TACKLES.find(t => t.id === tackleId)
     if (!def) return false
@@ -134,21 +134,21 @@ export const useProcessingStore = defineStore('processing', () => {
     return true
   }
 
-  /** 制造采脂器 */
+  /** Öz toplayıcı üret */
   const craftTapper = (): boolean => {
     if (!consumeCraftMaterials(TAPPER.craftCost, TAPPER.craftMoney)) return false
     inventoryStore.addItem(TAPPER.id)
     return true
   }
 
-  /** 制造蟹笼 */
+  /** Yengeç kapanı üret */
   const craftCrabPot = (): boolean => {
     if (!consumeCraftMaterials(CRAB_POT_CRAFT.craftCost, CRAB_POT_CRAFT.craftMoney)) return false
     inventoryStore.addItem(CRAB_POT_CRAFT.id)
     return true
   }
 
-  /** 制造炸弹 */
+  /** Bomba üret */
   const craftBomb = (bombId: string): boolean => {
     const def = BOMBS.find(b => b.id === bombId)
     if (!def) return false
@@ -157,25 +157,25 @@ export const useProcessingStore = defineStore('processing', () => {
     return true
   }
 
-  // === 加工操作 ===
+  // === İşleme işlemleri ===
 
-  /** 检测背包+仓库中某物品的最低品质（removeItem 默认消耗顺序） */
+  /** Çanta + ambar içindeki bir eşyanın en düşük kalitesini tespit et */
   const getLowestQuality = (itemId: string): Quality => {
     return getLowestCombinedQuality(itemId)
   }
 
-  /** 向已放置的机器投入原料开始加工 */
+  /** Yerleştirilmiş bir makineye girdi koyup işlemeyi başlat */
   const startProcessing = (slotIndex: number, recipeId: string): boolean => {
     const slot = machines.value[slotIndex]
-    if (!slot || slot.recipeId !== null) return false // 正在加工中
+    if (!slot || slot.recipeId !== null) return false // Zaten işleniyor
     const recipe = getProcessingRecipeById(recipeId)
     if (!recipe || recipe.machineType !== slot.machineType) return false
 
-    // 消耗输入材料（蜂箱无需输入），记录投入品质
+    // Girdi malzemesini tüket (arı kovanı girdi istemez), girilen kaliteyi kaydet
     let quality: Quality = 'normal'
     if (recipe.inputItemId !== null) {
       quality = getLowestQuality(recipe.inputItemId)
-      // 不指定品质消耗，允许混合品质投入（按normal→supreme顺序消耗）
+      // Belirli kalite istemeden tüket; karışık kalite girdisine izin ver
       if (!removeCombinedItem(recipe.inputItemId, recipe.inputQuantity)) return false
     }
 
@@ -184,7 +184,7 @@ export const useProcessingStore = defineStore('processing', () => {
     slot.inputQuality = quality
     slot.daysProcessed = 0
     slot.totalDays = recipe.processingDays
-    // 仙缘能力：织速（gui_nv_1）织布机加工时间-30%
+    // İlahi yetenek: Dokuma Tezi (gui_nv_1) dokuma tezgahı süresi %30 azalır
     if (slot.machineType === 'loom' && useHiddenNpcStore().isAbilityActive('gui_nv_1')) {
       slot.totalDays = Math.max(1, Math.ceil(slot.totalDays * 0.7))
     }
@@ -192,7 +192,7 @@ export const useProcessingStore = defineStore('processing', () => {
     return true
   }
 
-  /** 收取加工产物 */
+  /** İşlenmiş ürünü topla */
   const collectProduct = (slotIndex: number): string | null => {
     const slot = machines.value[slotIndex]
     if (!slot || !slot.ready || !slot.recipeId) return null
@@ -200,7 +200,7 @@ export const useProcessingStore = defineStore('processing', () => {
     const recipe = getProcessingRecipeById(slot.recipeId)
     if (!recipe) return null
 
-    // 优先放入虚空成品箱，箱子满则回退到背包
+    // Önce boşluk sandığına koy, doluysa çantaya düşsün
     const warehouseStore = useWarehouseStore()
     const voidOutput = warehouseStore.getVoidOutputChest()
     const outputQuality = slot.inputQuality ?? 'normal'
@@ -208,16 +208,16 @@ export const useProcessingStore = defineStore('processing', () => {
       inventoryStore.addItem(recipe.outputItemId, recipe.outputQuantity, outputQuality)
     }
 
-    // 种子制造机额外触发育种种子生成
+    // Tohum makinesi ayrıca ıslah tohumu üretme denemesi yapar
     if (slot.machineType === 'seed_maker' && slot.inputItemId) {
       const breedingStore = useBreedingStore()
       const farmingLevel = skillStore.farmingLevel
       if (breedingStore.trySeedMakerGeneticSeed(slot.inputItemId, farmingLevel)) {
-        addLog('种子制造机额外产出了一颗育种种子！')
+        addLog('Tohum makinesi ayrıca bir ıslah tohumu üretti!')
       }
     }
 
-    // 重置槽位
+    // Yuvayı sıfırla
     slot.recipeId = null
     slot.inputItemId = null
     slot.inputQuality = undefined
@@ -228,12 +228,12 @@ export const useProcessingStore = defineStore('processing', () => {
     return recipe.outputItemId
   }
 
-  /** 拆除机器（退回加工原料 + 已完成产物 + 机器制作材料） */
+  /** Makineyi sök (girdi, bitmiş ürün ve üretim malzemelerini geri ver) */
   const removeMachine = (slotIndex: number): boolean => {
     const slot = machines.value[slotIndex]
     if (!slot) return false
 
-    // 如果已完成：先收取产物
+    // Tamamlandıysa önce ürünü topla
     if (slot.recipeId && slot.ready) {
       const recipe = getProcessingRecipeById(slot.recipeId)
       if (recipe) {
@@ -245,7 +245,7 @@ export const useProcessingStore = defineStore('processing', () => {
         }
       }
     }
-    // 如果正在加工：退回原料
+    // İşleniyorsa girdiyi geri ver
     else if (slot.recipeId && !slot.ready && slot.inputItemId) {
       const recipe = getProcessingRecipeById(slot.recipeId)
       if (recipe && recipe.inputItemId) {
@@ -253,7 +253,7 @@ export const useProcessingStore = defineStore('processing', () => {
       }
     }
 
-    // 退还机器制作材料
+    // Makinenin üretim malzemelerini geri ver
     const machineDef = PROCESSING_MACHINES.find(m => m.id === slot.machineType)
     if (machineDef) {
       for (const mat of machineDef.craftCost) {
@@ -266,18 +266,18 @@ export const useProcessingStore = defineStore('processing', () => {
     return true
   }
 
-  /** 取消加工（退回原料，机器回到空闲状态） */
+  /** İşlemeyi iptal et (girdiyi geri ver, makine boşa çıksın) */
   const cancelProcessing = (slotIndex: number): boolean => {
     const slot = machines.value[slotIndex]
     if (!slot || !slot.recipeId) return false
-    // 如果正在加工且有原料投入，退回原料
+    // İşleniyorsa ve girdi verilmişse girdiyi geri ver
     if (!slot.ready && slot.inputItemId) {
       const recipe = getProcessingRecipeById(slot.recipeId)
       if (recipe && recipe.inputItemId) {
         inventoryStore.addItem(recipe.inputItemId, recipe.inputQuantity, slot.inputQuality ?? 'normal')
       }
     }
-    // 重置为空闲
+    // Boş duruma sıfırla
     slot.recipeId = null
     slot.inputItemId = null
     slot.inputQuality = undefined
@@ -287,38 +287,41 @@ export const useProcessingStore = defineStore('processing', () => {
     return true
   }
 
-  /** 获取某台机器可用的加工配方列表 */
+  /** Belirli bir makine için kullanılabilir tarifleri getir */
   const getAvailableRecipes = (machineType: MachineType) => {
     return getRecipesForMachine(machineType)
   }
 
-  // === 每日更新 ===
+  // === Günlük güncelleme ===
 
   const dailyUpdate = () => {
     const collected: string[] = []
     const readyNames: string[] = []
     const warehouseStore = useWarehouseStore()
     const voidOutput = warehouseStore.getVoidOutputChest()
+
     for (const slot of machines.value) {
       if (!slot.recipeId || slot.ready) continue
       slot.daysProcessed++
       if (slot.daysProcessed >= slot.totalDays) {
         const recipe = getProcessingRecipeById(slot.recipeId)
         if (recipe) {
-          // 仙缘能力：梦织（gui_nv_2）织布机8%概率额外产出梦丝
+          // İlahi yetenek: Düş İpi (gui_nv_2), dokuma tezgahında %8 ihtimalle düş ipeği
           if (slot.machineType === 'loom' && useHiddenNpcStore().isAbilityActive('gui_nv_2') && Math.random() < 0.08) {
             inventoryStore.addItem('dream_silk', 1)
-            collected.push('梦丝')
+            collected.push('Düş İpeği')
           }
+
           const machineDef = PROCESSING_MACHINES.find(m => m.id === slot.machineType)
           if (recipe.inputItemId === null || machineDef?.autoCollect) {
-            // 自动收取：无需原料的机器（蜂箱/蚯蚓箱）或标记了 autoCollect 的机器（熔炉）
+            // Kendiliğinden toplama: girdi istemeyen makineler veya autoCollect işaretli makineler
             const outputQuality = slot.inputQuality ?? 'normal'
             if (!voidOutput || !warehouseStore.addItemToChest(voidOutput.id, recipe.outputItemId, recipe.outputQuantity, outputQuality)) {
               inventoryStore.addItem(recipe.outputItemId, recipe.outputQuantity, outputQuality)
             }
             collected.push(recipe.name)
-            // 无需原料的机器自动重启，有原料的机器回到空闲
+
+            // Girdi istemeyen makine kendiliğinden yeniden başlar; isteyen makine boşa döner
             if (recipe.inputItemId === null) {
               slot.daysProcessed = 0
               slot.inputQuality = undefined
@@ -332,20 +335,20 @@ export const useProcessingStore = defineStore('processing', () => {
               slot.ready = false
             }
           } else {
-            // 需要原料的机器：检查虚空原料箱是否可自动续产
+            // Girdi isteyen makine: boşluk girdi sandığından otomatik devam edebilir mi bak
             const voidInput = warehouseStore.getVoidInputChest()
             if (voidInput && recipe.inputItemId) {
-              // 自动收取当前产物
+              // Mevcut ürünü otomatik topla
               const outputQuality = slot.inputQuality ?? 'normal'
               if (!voidOutput || !warehouseStore.addItemToChest(voidOutput.id, recipe.outputItemId, recipe.outputQuantity, outputQuality)) {
                 inventoryStore.addItem(recipe.outputItemId, recipe.outputQuantity, outputQuality)
               }
               collected.push(recipe.name)
 
-              // 尝试从虚空原料箱取材料开始下一轮
+              // Boşluk girdi sandığından yeni tur başlatmayı dene
               const available = warehouseStore.getChestItemCount(voidInput.id, recipe.inputItemId)
               if (available >= recipe.inputQuantity) {
-                // 查找最低品质
+                // En düşük kaliteyi bul
                 const qOrder: Quality[] = ['normal', 'fine', 'excellent', 'supreme']
                 const newQuality = qOrder.find(q => warehouseStore.getChestItemCount(voidInput.id, recipe.inputItemId!, q) > 0) ?? 'normal'
                 warehouseStore.removeItemFromChest(voidInput.id, recipe.inputItemId, recipe.inputQuantity, newQuality)
@@ -353,7 +356,7 @@ export const useProcessingStore = defineStore('processing', () => {
                 slot.inputQuality = newQuality
                 slot.ready = false
               } else {
-                // 虚空箱无足够原料，回到空闲
+                // Yeterli girdi yoksa makine boşa döner
                 slot.recipeId = null
                 slot.inputItemId = null
                 slot.inputQuality = undefined
@@ -362,7 +365,7 @@ export const useProcessingStore = defineStore('processing', () => {
                 slot.ready = false
               }
             } else {
-              // 无虚空原料箱，保持原行为：标记为完成等待手动收取
+              // Boşluk girdi sandığı yoksa elde toplamayı bekler
               slot.ready = true
               readyNames.push(recipe.name)
             }
@@ -372,6 +375,7 @@ export const useProcessingStore = defineStore('processing', () => {
         }
       }
     }
+
     if (collected.length > 0) {
       const counts = new Map<string, number>()
       for (const name of collected) {
@@ -380,8 +384,9 @@ export const useProcessingStore = defineStore('processing', () => {
       const summary = Array.from(counts.entries())
         .map(([name, count]) => (count > 1 ? `${name}x${count}` : name))
         .join('、')
-      addLog(`工坊自动收取了：${summary}。`)
+      addLog(`Atölye kendiliğinden şunları topladı: ${summary}.`)
     }
+
     if (readyNames.length > 0) {
       const counts = new Map<string, number>()
       for (const name of readyNames) {
@@ -390,29 +395,29 @@ export const useProcessingStore = defineStore('processing', () => {
       const summary = Array.from(counts.entries())
         .map(([name, count]) => (count > 1 ? `${name}x${count}` : name))
         .join('、')
-      addLog(`加工完成：${summary}，去工坊收取吧。`)
+      addLog(`İşleme tamamlandı: ${summary}, atölyeye uğrayıp topla.`)
     }
   }
 
-  // === 工坊升级 ===
+  // === Atölye yükseltmesi ===
 
-  /** 升级工坊（扩展机器上限） */
+  /** Atölyeyi yükselt (makine sınırı artsın) */
   const upgradeWorkshop = (): { success: boolean; message: string } => {
     const next = workshopLevel.value + 1
     const upgrade = WORKSHOP_UPGRADES.find(u => u.level === next)
-    if (!upgrade) return { success: false, message: '工坊已达到最高等级。' }
-    if (!consumeCraftMaterials(upgrade.materials, upgrade.cost)) return { success: false, message: '材料或铜钱不足。' }
+    if (!upgrade) return { success: false, message: 'Atölye zaten en yüksek seviyede.' }
+    if (!consumeCraftMaterials(upgrade.materials, upgrade.cost)) return { success: false, message: 'Malzeme ya da akçe yetersiz.' }
     workshopLevel.value = next
-    return { success: true, message: `工坊扩建完成！机器上限提升至${maxMachines.value}台。` }
+    return { success: true, message: `Atölye genişletildi! Makine sınırı ${maxMachines.value} oldu.` }
   }
 
-  /** 获取下一级升级信息 */
+  /** Bir sonraki yükseltme bilgisini getir */
   const getNextUpgrade = () => {
     const next = workshopLevel.value + 1
     return WORKSHOP_UPGRADES.find(u => u.level === next) ?? null
   }
 
-  // === 序列化 ===
+  // === Serileştirme ===
 
   const serialize = () => {
     return { machines: machines.value, workshopLevel: workshopLevel.value }
