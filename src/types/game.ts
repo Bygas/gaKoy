@@ -1,32 +1,32 @@
-/** 季节 */
+/** Mevsim */
 export type Season = 'spring' | 'summer' | 'autumn' | 'winter'
 
-/** 天气 */
+/** Hava durumu */
 export type Weather = 'sunny' | 'rainy' | 'stormy' | 'snowy' | 'windy' | 'green_rain'
 
-/** 星期 */
+/** Haftanın günü */
 export type Weekday = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
 
-/** 时段 */
+/** Günün vakti */
 export type TimePeriod = 'morning' | 'afternoon' | 'evening' | 'night' | 'late_night'
 
-/** 地点分组 */
+/** Mekân grubu */
 export type LocationGroup = 'farm' | 'village_area' | 'nature' | 'mine' | 'hanhai'
 
-/** 游戏时间状态 */
+/** Oyun zamanı durumu */
 export interface GameTime {
   year: number
   season: Season
   day: number // 1-28
-  hour: number // 6-26 (6=6AM, 24=midnight, 26=2AM)
+  hour: number // 6-26 (6=06:00, 24=gece yarısı, 26=02:00)
   weather: Weather
 }
 
-/** 场景/地点 */
+/** Mekân / konum */
 export type Location = 'farm' | 'village' | 'shop' | 'bamboo_forest' | 'creek' | 'mine' | 'home'
 
-/** 农场地图类型 */
+/** Çiftlik haritası türü */
 export type FarmMapType = 'standard' | 'riverland' | 'forest' | 'hilltop' | 'wilderness' | 'meadowlands'
 
-/** 性别 */
+/** Cinsiyet */
 export type Gender = 'male' | 'female'
