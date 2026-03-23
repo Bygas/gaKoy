@@ -1,4 +1,4 @@
-/** 怪物讨伐目标定义 */
+/** Canavar avı hedef tanımı */
 export interface MonsterGoalDef {
   monsterId: string
   monsterName: string
@@ -11,35 +11,35 @@ export interface MonsterGoalDef {
   description: string
 }
 
-/** 捐献物品定义 */
+/** Lonca bağış eşyası tanımı */
 export interface GuildDonationDef {
   itemId: string
   points: number
 }
 
-/** 公会等级定义 */
+/** Lonca seviye tanımı */
 export interface GuildLevelDef {
   level: number
   expRequired: number
 }
 
-/** 公会商店物品定义 */
+/** Lonca dükkânı eşya tanımı */
 export interface GuildShopItemDef {
   itemId: string
   name: string
   price: number
   contributionCost?: number
   description: string
-  /** 解锁所需公会等级 */
+  /** Açılmak için gereken lonca seviyesi */
   unlockGuildLevel?: number
-  /** 每日限购数 */
+  /** Günlük satın alma sınırı */
   dailyLimit?: number
-  /** 每周限购数 */
+  /** Haftalık satın alma sınırı */
   weeklyLimit?: number
-  /** 永久总购买上限 */
+  /** Toplam kalıcı satın alma sınırı */
   totalLimit?: number
-  /** 装备类型（购买后加入对应装备栏） */
+  /** Ekipman türü (satın alındığında ilgili slota eklenir) */
   equipType?: 'weapon' | 'ring' | 'hat' | 'shoe'
-  /** 合成材料 */
+  /** Gerekli malzemeler */
   materials?: { itemId: string; quantity: number }[]
 }
