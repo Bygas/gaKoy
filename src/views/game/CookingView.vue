@@ -1,26 +1,26 @@
 <template>
   <div>
     <div class="flex items-center justify-between mb-3">
-      <h3 class="text-accent text-sm">灶台</h3>
+      <h3 class="text-accent text-sm">Ocak</h3>
       <button
         class="text-[10px] px-2 py-0.5 border rounded-xs"
         :class="showOnlyMakeable ? 'border-accent text-accent' : 'border-accent/20 text-muted'"
         @click="showOnlyMakeable = !showOnlyMakeable"
       >
-        {{ showOnlyMakeable ? '可制作' : '全部' }}
+        {{ showOnlyMakeable ? 'Yapılabilir' : 'Tümü' }}
       </button>
     </div>
     <p v-if="tutorialHint" class="text-[10px] text-muted/50 mb-2">{{ tutorialHint }}</p>
 
-    <!-- 当前增益 -->
+    <!-- Güncel güçlendirme -->
     <div v-if="cookingStore.activeBuff" class="border border-water/20 rounded-xs px-3 py-1.5 mb-3">
       <p class="text-[10px] text-water">
         <Zap :size="12" class="inline mr-0.5" />
-        当前增益：{{ cookingStore.activeBuff.description }}
+        Geçerli güçlendirme: {{ cookingStore.activeBuff.description }}
       </p>
     </div>
 
-    <!-- 食谱列表 -->
+    <!-- Tarif listesi -->
     <div v-if="displayedRecipeInfos.length > 0" class="border border-accent/20 rounded-xs divide-y divide-accent/10 mb-4">
       <div
         v-for="info in displayedRecipeInfos"
@@ -36,8 +36,8 @@
             </span>
           </span>
           <span class="text-[10px] whitespace-nowrap ml-2" :class="info.canCook ? 'text-success' : 'text-muted/50'">
-            +{{ info.recipe.effect.staminaRestore }}体力
-            <span v-if="info.recipe.effect.healthRestore">+{{ info.recipe.effect.healthRestore }}生命</span>
+            +{{ info.recipe.effect.staminaRestore }} güç
+            <span v-if="info.recipe.effect.healthRestore">+{{ info.recipe.effect.healthRestore }} can</span>
           </span>
         </div>
         <p v-if="info.recipe.effect.buff" class="text-[10px] text-water mt-0.5">{{ info.recipe.effect.buff.description }}</p>
@@ -45,13 +45,13 @@
     </div>
     <div v-else class="flex flex-col items-center justify-center py-8 mb-4">
       <UtensilsCrossed :size="36" class="text-accent/20 mb-2" />
-      <p v-if="showOnlyMakeable" class="text-xs text-muted">没有可制作的食谱</p>
-      <p v-else-if="cookingStore.recipes.length === 0" class="text-xs text-muted">还没有食谱</p>
-      <p v-if="showOnlyMakeable" class="text-[10px] text-muted/50 mt-0.5">取消筛选或收集更多食材</p>
-      <p v-else-if="cookingStore.recipes.length === 0" class="text-[10px] text-muted/50 mt-0.5">与村民交好或观看电视可学习食谱</p>
+      <p v-if="showOnlyMakeable" class="text-xs text-muted">Yapılabilir yemek yok</p>
+      <p v-else-if="cookingStore.recipes.length === 0" class="text-xs text-muted">Henüz tarif yok</p>
+      <p v-if="showOnlyMakeable" class="text-[10px] text-muted/50 mt-0.5">Süzgeci kapat ya da daha çok erzak topla</p>
+      <p v-else-if="cookingStore.recipes.length === 0" class="text-[10px] text-muted/50 mt-0.5">gaKöy halkıyla yakınlaş ya da haber tahtasını izle</p>
     </div>
 
-    <!-- 烹饪弹窗 -->
+    <!-- Yemek pişirme penceresi -->
     <Transition name="panel-fade">
       <div v-if="modalInfo" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" @click.self="closeModal">
         <div class="game-panel max-w-xs w-full relative">
@@ -70,12 +70,12 @@
             </span>
           </p>
 
-          <!-- 功效 -->
+          <!-- Etki -->
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <p class="text-xs text-success">
-              恢复 {{ modalInfo.recipe.effect.staminaRestore }} 体力
+              {{ modalInfo.recipe.effect.staminaRestore }} güç yeniler
               <span v-if="modalInfo.recipe.effect.healthRestore" class="text-danger ml-1">
-                {{ modalInfo.recipe.effect.healthRestore }} 生命值
+                {{ modalInfo.recipe.effect.healthRestore }} can
               </span>
             </p>
             <p v-if="modalInfo.recipe.effect.buff" class="text-xs text-water mt-0.5">
@@ -83,19 +83,19 @@
             </p>
           </div>
 
-          <!-- 材料 -->
+          <!-- Gerekenler -->
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
-            <p class="text-xs text-muted mb-1">所需材料</p>
+            <p class="text-xs text-muted mb-1">Gerekli malzeme</p>
             <div v-for="ing in modalInfo.ingredients" :key="ing.itemId" class="flex items-center justify-between">
               <span class="text-xs text-muted">{{ ing.name }}</span>
               <span class="text-xs" :class="ing.enough ? '' : 'text-danger'">{{ ing.available }}/{{ ing.quantity }}</span>
             </div>
           </div>
 
-          <!-- 数量选择 -->
+          <!-- Adet seçimi -->
           <div v-if="modalInfo.maxQty > 1" class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between mb-1.5">
-              <span class="text-xs text-muted">数量</span>
+              <span class="text-xs text-muted">Adet</span>
               <div class="flex items-center space-x-1">
                 <Button class="h-6 px-1.5 py-0.5 text-xs justify-center" :disabled="modalQty <= 1" @click="modalQty--">
                   <Minus :size="12" />
@@ -114,18 +114,18 @@
               </div>
             </div>
             <div class="flex space-x-1">
-              <Button class="flex-1 justify-center" :disabled="modalQty <= 1" @click="modalQty = 1">最少</Button>
+              <Button class="flex-1 justify-center" :disabled="modalQty <= 1" @click="modalQty = 1">En az</Button>
               <Button class="flex-1 justify-center" :disabled="modalQty >= modalInfo.maxQty" @click="modalQty = modalInfo.maxQty">
-                最多
+                En çok
               </Button>
             </div>
             <div class="flex items-center justify-between mt-1.5">
-              <span class="text-xs text-muted">可制作</span>
-              <span class="text-xs text-accent">{{ modalInfo.maxQty }} 份</span>
+              <span class="text-xs text-muted">Yapılabilir</span>
+              <span class="text-xs text-accent">{{ modalInfo.maxQty }} tabak</span>
             </div>
           </div>
 
-          <!-- 烹饪按钮 -->
+          <!-- Pişirme düğmesi -->
           <Button
             class="w-full justify-center"
             :class="{ '!bg-accent !text-bg': modalInfo.canCook }"
@@ -134,7 +134,7 @@
             :disabled="!modalInfo.canCook"
             @click="handleCookFromModal"
           >
-            烹饪{{ modalQty > 1 ? ` ×${modalQty}` : '' }}
+            Pişir{{ modalQty > 1 ? ` ×${modalQty}` : '' }}
           </Button>
         </div>
       </div>
@@ -168,7 +168,7 @@
   const modalRecipeId = ref<string | null>(null)
   const modalQty = ref(1)
 
-  /** 预计算食谱信息（不含数量，避免改数量触发全量重算） */
+  /** Tarif bilgisini önceden hesapla (adet hariç, böylece adet değişince hepsi yeniden hesaplanmaz) */
   const recipeInfos = computed(() => {
     return cookingStore.recipes.map(recipe => {
       const canCook = cookingStore.canCook(recipe.id)
@@ -194,7 +194,7 @@
     return recipeInfos.value.filter(info => info.canCook)
   })
 
-  /** 当前弹窗对应的食谱信息（响应式，材料变化时自动更新） */
+  /** Şu an açık olan pencerenin tarif bilgisi */
   const modalInfo = computed(() => {
     if (!modalRecipeId.value) return null
     return recipeInfos.value.find(i => i.recipe.id === modalRecipeId.value) ?? null
@@ -228,14 +228,14 @@
   const tutorialHint = computed(() => {
     if (!tutorialStore.enabled || gameStore.year > 1) return null
     if (achievementStore.stats.totalRecipesCooked === 0)
-      return '点击食谱查看详情和烹饪。料理可以恢复体力和生命值，高品质材料可做出更好的食物。'
+      return 'Bir tarife dokunup ayrıntılarını gör, sonra pişir. Yemekler güç ve can yeniler; nitelikli malzeme daha iyi aş verir.'
     return null
   })
 
   const handleCookFromModal = () => {
     if (!modalInfo.value || !modalInfo.value.canCook) return
     if (gameStore.isPastBedtime) {
-      addLog('太晚了，没力气做饭了。')
+      addLog('Gece çok ilerledi, artık ocak başına geçilmez.')
       handleEndDay()
       closeModal()
       return
