@@ -1,54 +1,54 @@
 <template>
   <div>
-    <!-- 标题 -->
+    <!-- Başlık -->
     <div class="flex items-center justify-between mb-1">
       <div class="flex items-center space-x-1.5 text-sm text-accent">
         <Waves :size="14" />
-        <span>鱼塘</span>
+        <span>Balık Havuzu</span>
       </div>
       <span v-if="!fishPondStore.pond.built" class="text-xs text-muted">{{ fishPondStore.fishCount }}/{{ fishPondStore.capacity }}</span>
     </div>
 
-    <!-- 未建造 -->
+    <!-- İnşa edilmemiş -->
     <div v-if="!fishPondStore.pond.built" class="border border-accent/10 rounded-xs py-6 flex flex-col items-center space-y-2">
       <Waves :size="32" class="text-muted/30" />
-      <p class="text-xs text-muted">尚未建造鱼塘</p>
-      <p class="text-xs text-muted/60">建造鱼塘后可养殖鱼类、繁殖收获</p>
-      <Button :icon="Hammer" :icon-size="12" @click="pondModal = 'build'">建造鱼塘</Button>
+      <p class="text-xs text-muted">Balık havuzu henüz kurulmadı</p>
+      <p class="text-xs text-muted/60">Havuz kurulduğunda balık yetiştirip çoğaltabilir, ürün toplayabilirsin</p>
+      <Button :icon="Hammer" :icon-size="12" @click="pondModal = 'build'">Havuz Kur</Button>
     </div>
 
-    <!-- 已建造 -->
+    <!-- İnşa edilmiş -->
     <template v-else>
-      <!-- 两栏切换 -->
+      <!-- İki sekme -->
       <div class="flex space-x-1 mb-3">
         <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': currentTab === 'pond' }" @click="currentTab = 'pond'">
-          鱼塘
+          Havuz
         </Button>
         <Button
           class="flex-1 justify-center"
           :class="{ '!bg-accent !text-bg': currentTab === 'compendium' }"
           @click="currentTab = 'compendium'"
         >
-          图鉴 {{ fishPondStore.discoveredBreeds.size }}/{{ totalBreedCount }}
+          Defter {{ fishPondStore.discoveredBreeds.size }}/{{ totalBreedCount }}
         </Button>
       </div>
 
-      <!-- ===== 鱼塘 Tab ===== -->
+      <!-- ===== Havuz Sekmesi ===== -->
       <template v-if="currentTab === 'pond'">
-        <!-- 状态总览 -->
+        <!-- Durum özeti -->
         <div class="mb-3">
           <div class="flex items-center justify-between mb-1.5">
-            <Divider>鱼塘 Lv.{{ fishPondStore.pond.level }}</Divider>
+            <Divider>Balık Havuzu Sv.{{ fishPondStore.pond.level }}</Divider>
             <div class="flex items-center space-x-2">
               <span class="text-xs text-muted">{{ fishPondStore.fishCount }}/{{ fishPondStore.capacity }}</span>
-              <Button v-if="fishPondStore.pond.level < 3" :icon="ArrowUp" :icon-size="12" @click="pondModal = 'upgrade'">升级</Button>
+              <Button v-if="fishPondStore.pond.level < 3" :icon="ArrowUp" :icon-size="12" @click="pondModal = 'upgrade'">Yükselt</Button>
             </div>
           </div>
 
-          <!-- 水质条 -->
+          <!-- Su kalitesi çubuğu -->
           <div class="border border-accent/20 rounded-xs px-3 py-2">
             <div class="flex items-center space-x-2 mb-1.5">
-              <span class="text-xs text-muted shrink-0">水质</span>
+              <span class="text-xs text-muted shrink-0">Su Kalitesi</span>
               <div class="flex-1 h-1 bg-bg rounded-xs border border-accent/10">
                 <div
                   class="h-full rounded-xs transition-all"
@@ -58,7 +58,7 @@
               </div>
               <span class="text-xs whitespace-nowrap" :class="waterQualityTextColor">{{ fishPondStore.pond.waterQuality }}%</span>
             </div>
-            <!-- 操作按钮 -->
+            <!-- İşlem düğmeleri -->
             <div class="flex flex-wrap space-x-1">
               <Button
                 :icon="Droplets"
@@ -66,11 +66,11 @@
                 :disabled="fishPondStore.pond.fedToday || fishPondStore.pond.fish.length === 0"
                 @click="handleFeed"
               >
-                {{ fishPondStore.pond.fedToday ? '已喂食' : '喂食' }}
+                {{ fishPondStore.pond.fedToday ? 'Bugün Yem Verildi' : 'Yem Ver' }}
               </Button>
-              <Button :icon="Sparkles" :icon-size="12" @click="handleClean">改良水质</Button>
+              <Button :icon="Sparkles" :icon-size="12" @click="handleClean">Suyu Arıt</Button>
               <Button v-if="fishPondStore.sickFish.length > 0" :icon="HeartPulse" :icon-size="12" @click="handleTreat">
-                治疗 ({{ fishPondStore.sickFish.length }})
+                Tedavi Et ({{ fishPondStore.sickFish.length }})
               </Button>
               <Button
                 v-if="fishPondStore.pendingProducts.length > 0"
@@ -79,27 +79,27 @@
                 :disabled="fishPondStore.pond.collectedToday"
                 @click="handleCollect"
               >
-                收获 ({{ fishPondStore.pendingProducts.length }})
+                Topla ({{ fishPondStore.pendingProducts.length }})
               </Button>
             </div>
           </div>
         </div>
 
-        <!-- 塘中鱼类 -->
+        <!-- Havuzdaki balıklar -->
         <div class="mb-3">
-          <Divider label="塘中鱼类" />
+          <Divider label="Havuzdaki Balıklar" />
 
-          <!-- 空状态 -->
+          <!-- Boş durum -->
           <div
             v-if="fishPondStore.pond.fish.length === 0"
             class="border border-accent/10 rounded-xs py-6 flex flex-col items-center space-y-2"
           >
             <Fish :size="32" class="text-muted/30" />
-            <p class="text-xs text-muted">鱼塘空空如也</p>
-            <p class="text-xs text-muted/60">从背包中放入鱼苗开始养殖</p>
+            <p class="text-xs text-muted">Havuz bomboş</p>
+            <p class="text-xs text-muted/60">Çantadan yavru balık koyup yetiştirmeye başla</p>
           </div>
 
-          <!-- 鱼列表 -->
+          <!-- Balık listesi -->
           <div v-else class="flex flex-col space-y-1.5 max-h-80 overflow-auto">
             <div
               v-for="fish in fishPondStore.pond.fish"
@@ -118,23 +118,23 @@
                   <span class="text-xs" :class="fish.sick ? 'text-danger' : fish.mature ? 'text-text' : 'text-muted'">
                     {{ fish.name }}
                   </span>
-                  <span v-if="fish.sick" class="text-[10px] text-danger">[病]</span>
-                  <span v-if="!fish.mature" class="text-[10px] text-muted">[幼]</span>
+                  <span v-if="fish.sick" class="text-[10px] text-danger">[Hasta]</span>
+                  <span v-if="!fish.mature" class="text-[10px] text-muted">[Yavru]</span>
                 </div>
                 <div class="flex items-center space-x-2">
                   <span class="text-[10px] text-accent flex items-center space-x-px">
                     <Star v-for="n in fishPondStore.getGeneticStarRating(fish.genetics)" :key="n" :size="10" />
                   </span>
-                  <span class="text-[10px] text-muted">{{ fish.daysInPond }}天</span>
+                  <span class="text-[10px] text-muted">{{ fish.daysInPond }} gün</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 放入鱼苗 -->
+        <!-- Yavru balık ekleme -->
         <div class="mb-3">
-          <Divider label="放入鱼苗" />
+          <Divider label="Yavru Balık Ekle" />
           <div v-if="pondableFishInBag.length > 0" class="flex flex-col space-y-1.5 max-h-80 overflow-auto">
             <div
               v-for="item in pondableFishInBag"
@@ -145,61 +145,61 @@
                 {{ item.name }}
                 <span class="text-muted">&times;{{ item.count }}</span>
               </span>
-              <Button :icon-size="12" @click="handleAddFish(item.itemId)">放入</Button>
+              <Button :icon-size="12" @click="handleAddFish(item.itemId)">Ekle</Button>
             </div>
           </div>
           <div v-else class="border border-accent/10 rounded-xs py-6 flex flex-col items-center space-y-2">
             <Package :size="32" class="text-muted/30" />
-            <p class="text-xs text-muted">背包中没有可养殖的鱼</p>
-            <p class="text-xs text-muted/60">在清溪钓鱼后可放入鱼塘养殖</p>
+            <p class="text-xs text-muted">Çantada havuza uygun balık yok</p>
+            <p class="text-xs text-muted/60">gaKöy deresinde balık tutup buraya yerleştirebilirsin</p>
           </div>
         </div>
 
-        <!-- 繁殖 -->
+        <!-- Üreme -->
         <div class="mb-3">
-          <Divider label="繁殖" />
-          <!-- 繁殖中 -->
+          <Divider label="Üreme" />
+          <!-- Üreme sürüyor -->
           <div v-if="fishPondStore.pond.breeding" class="border border-accent/20 rounded-xs px-3 py-2">
             <div class="flex items-center justify-between mb-1">
               <div class="flex items-center space-x-1.5">
                 <Heart :size="12" class="text-accent" />
-                <span class="text-xs text-accent">繁殖中</span>
+                <span class="text-xs text-accent">Üreme Sürüyor</span>
               </div>
-              <span class="text-xs text-muted">{{ fishPondStore.pond.breeding.daysLeft }}/{{ breedingTotalDays }}天</span>
+              <span class="text-xs text-muted">{{ fishPondStore.pond.breeding.daysLeft }}/{{ breedingTotalDays }} gün</span>
             </div>
             <div class="h-1 bg-bg rounded-xs border border-accent/10">
               <div class="h-full rounded-xs bg-accent transition-all" :style="{ width: breedingProgress + '%' }" />
             </div>
-            <p class="text-[10px] text-muted mt-1">品种：{{ getPondableFishName(fishPondStore.pond.breeding.fishId) }}</p>
+            <p class="text-[10px] text-muted mt-1">Tür: {{ getPondableFishName(fishPondStore.pond.breeding.fishId) }}</p>
           </div>
-          <!-- 已选择一条 -->
+          <!-- Bir ebeveyn seçilmiş -->
           <div v-else-if="selectedBreedingFish" class="border border-accent/20 rounded-xs px-3 py-2">
             <div class="flex items-center justify-between mb-1">
               <div class="flex items-center space-x-1.5">
                 <Heart :size="12" class="text-muted/40" />
                 <span class="text-xs">
-                  已选：{{ selectedBreedingFish.name }}
+                  Seçilen: {{ selectedBreedingFish.name }}
                   <span class="text-accent inline-flex items-center space-x-px">
                     <Star v-for="n in fishPondStore.getGeneticStarRating(selectedBreedingFish.genetics)" :key="n" :size="10" />
                   </span>
                 </span>
               </div>
-              <Button @click="selectedBreedingFish = null">取消</Button>
+              <Button @click="selectedBreedingFish = null">Vazgeç</Button>
             </div>
-            <p class="text-[10px] text-muted">请从鱼列表中点击同种成熟鱼进行配对</p>
+            <p class="text-[10px] text-muted">Balık listesinden aynı türde yetişkin bir balığı eş olarak seç</p>
           </div>
-          <!-- 空状态 -->
+          <!-- Boş durum -->
           <div v-else class="border border-accent/10 rounded-xs py-6 flex flex-col items-center space-y-2">
             <Heart :size="32" class="text-muted/30" />
-            <p class="text-xs text-muted">选择两条同种成熟鱼开始繁殖</p>
-            <p class="text-xs text-muted/60">需要鱼塘有空余容量</p>
+            <p class="text-xs text-muted">Üreme için aynı türden iki yetişkin balık seç</p>
+            <p class="text-xs text-muted/60">Havuzda boş yer bulunmalı</p>
           </div>
         </div>
       </template>
 
-      <!-- ===== 图鉴 Tab ===== -->
+      <!-- ===== Defter Sekmesi ===== -->
       <template v-if="currentTab === 'compendium'">
-        <!-- 代数筛选 -->
+        <!-- Nesil filtresi -->
         <div class="grid grid-cols-5 space-x-1 mb-2">
           <Button
             v-for="g in 5"
@@ -208,24 +208,24 @@
             :class="{ '!bg-accent !text-bg': compendiumGen === g }"
             @click="compendiumGen = g as 1 | 2 | 3 | 4 | 5"
           >
-            {{ g }}代
+            {{ g }}. Nesil
           </Button>
         </div>
 
-        <!-- 进度 -->
-        <p class="text-xs text-muted mb-2">已发现 {{ discoveredCountByGen(compendiumGen) }}/{{ BREED_COUNTS[compendiumGen] }}</p>
+        <!-- İlerleme -->
+        <p class="text-xs text-muted mb-2">Bulunan {{ discoveredCountByGen(compendiumGen) }}/{{ BREED_COUNTS[compendiumGen] }}</p>
 
-        <!-- 提示 -->
+        <!-- İpucu -->
         <div v-if="compendiumGen > 1" class="border border-accent/10 rounded-xs p-2 mb-2">
           <p class="text-xs text-muted leading-relaxed">
-            <span class="text-accent">{{ compendiumGen }}代</span>
-            品种需要配对特定的
-            <span class="text-accent">{{ compendiumGen - 1 }}代</span>
-            品种繁殖获得。
+            <span class="text-accent">{{ compendiumGen }}. nesil</span>
+            türleri, belirli
+            <span class="text-accent">{{ compendiumGen - 1 }}. nesil</span>
+            türlerin çiftleşmesiyle elde edilir.
           </p>
         </div>
 
-        <!-- 品种网格 -->
+        <!-- Tür ızgarası -->
         <div class="grid grid-cols-5 gap-1 p-2 max-h-[50vh] overflow-auto">
           <div
             v-for="breed in currentGenBreeds"
@@ -238,10 +238,10 @@
           </div>
         </div>
 
-        <!-- 完成度 -->
+        <!-- Tamamlanma -->
         <div class="mt-3 border border-accent/20 rounded-xs p-2">
           <div class="flex items-center space-x-2 text-xs mb-1.5">
-            <span class="text-xs text-muted shrink-0">完成度</span>
+            <span class="text-xs text-muted shrink-0">Tamamlanma</span>
             <div class="flex-1 h-1 bg-bg rounded-xs border border-accent/10">
               <div class="h-full bg-accent rounded-xs transition-all" :style="{ width: completionPercent + '%' }" />
             </div>
@@ -249,7 +249,7 @@
           </div>
           <div class="grid grid-cols-2 gap-x-3 gap-y-0.5">
             <div v-for="g in 5" :key="g" class="flex items-center justify-between">
-              <span class="text-xs text-muted">{{ g }}代</span>
+              <span class="text-xs text-muted">{{ g }}. Nesil</span>
               <span class="text-xs">{{ discoveredCountByGen(g) }}/{{ BREED_COUNTS[g] }}</span>
             </div>
           </div>
@@ -257,7 +257,7 @@
       </template>
     </template>
 
-    <!-- 鱼详情弹窗 -->
+    <!-- Balık detay penceresi -->
     <Transition name="panel-fade">
       <div v-if="detailFish" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" @click.self="detailFish = null">
         <div class="game-panel max-w-xs w-full relative">
@@ -271,12 +271,12 @@
               <Star v-for="n in fishPondStore.getGeneticStarRating(detailFish.genetics)" :key="n" :size="10" />
             </span>
             <span class="text-muted">·</span>
-            <span class="text-muted">第{{ detailFish.daysInPond }}天</span>
-            <span v-if="detailFish.sick" class="text-danger">· 生病中</span>
-            <span v-if="!detailFish.mature" class="text-muted">· 未成熟</span>
+            <span class="text-muted">{{ detailFish.daysInPond }}. gün</span>
+            <span v-if="detailFish.sick" class="text-danger">· Hastalıklı</span>
+            <span v-if="!detailFish.mature" class="text-muted">· Yetişkin değil</span>
           </p>
 
-          <!-- 基因条 -->
+          <!-- Gen çubukları -->
           <div class="flex flex-col space-y-1 mb-3">
             <div v-for="attr in fishAttributes" :key="attr.key" class="flex items-center space-x-2">
               <span class="text-xs text-muted w-10 shrink-0">{{ attr.label }}</span>
@@ -287,7 +287,7 @@
             </div>
           </div>
 
-          <!-- 操作按钮 -->
+          <!-- İşlem düğmeleri -->
           <div class="flex flex-col space-y-1">
             <Button
               v-if="detailFish.mature && !detailFish.sick"
@@ -298,15 +298,15 @@
               :disabled="!!fishPondStore.pond.breeding"
               @click="handleDetailBreed"
             >
-              选为繁殖亲本
+              Ebeveyn Olarak Seç
             </Button>
-            <Button class="w-full justify-center" :icon="ArrowUp" :icon-size="12" @click="handleDetailRemove">取出到背包</Button>
+            <Button class="w-full justify-center" :icon="ArrowUp" :icon-size="12" @click="handleDetailRemove">Çantaya Al</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 建造/升级弹窗 -->
+    <!-- Kurulum / yükseltme penceresi -->
     <Transition name="panel-fade">
       <div v-if="pondModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" @click.self="pondModal = null">
         <div class="game-panel max-w-xs w-full relative">
@@ -316,48 +316,48 @@
 
           <p class="text-sm text-accent mb-2">{{ modalTitle }}</p>
 
-          <!-- 等级信息 -->
+          <!-- Seviye bilgisi -->
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">{{ pondModal === 'build' ? '等级' : '当前等级' }}</span>
-              <span class="text-xs">Lv.{{ modalCurrentLevel }}</span>
+              <span class="text-xs text-muted">{{ pondModal === 'build' ? 'Seviye' : 'Mevcut seviye' }}</span>
+              <span class="text-xs">Sv.{{ modalCurrentLevel }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">{{ pondModal === 'build' ? '初始容量' : '当前容量' }}</span>
+              <span class="text-xs text-muted">{{ pondModal === 'build' ? 'Başlangıç kapasitesi' : 'Mevcut kapasite' }}</span>
               <span class="text-xs">{{ modalCurrentCapacity }}</span>
             </div>
           </div>
 
-          <!-- 升级后信息（仅升级时显示） -->
+          <!-- Yükseltmeden sonra bilgi -->
           <div v-if="pondModal === 'upgrade'" class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">升级至</span>
-              <span class="text-xs text-accent">Lv.{{ modalTargetLevel }}</span>
+              <span class="text-xs text-muted">Yükselecek seviye</span>
+              <span class="text-xs text-accent">Sv.{{ modalTargetLevel }}</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">升级后容量</span>
+              <span class="text-xs text-muted">Yeni kapasite</span>
               <span class="text-xs text-accent">{{ modalTargetCapacity }}</span>
             </div>
           </div>
 
-          <!-- 所需材料 -->
+          <!-- Gerekli malzemeler -->
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
-            <p class="text-xs text-muted mb-1">所需材料</p>
+            <p class="text-xs text-muted mb-1">Gerekli Malzemeler</p>
             <div v-for="mat in modalMaterials" :key="mat.itemId" class="flex items-center justify-between mt-0.5">
               <span class="text-xs">{{ mat.name }}</span>
               <span class="text-xs" :class="mat.enough ? 'text-success' : 'text-danger'">{{ mat.owned }}/{{ mat.required }}</span>
             </div>
           </div>
 
-          <!-- 费用 -->
+          <!-- Ücret -->
           <div class="border border-accent/10 rounded-xs p-2 mb-3">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">费用</span>
-              <span class="text-xs" :class="playerStore.money >= modalMoney ? 'text-accent' : 'text-danger'">{{ modalMoney }}文</span>
+              <span class="text-xs text-muted">Bedel</span>
+              <span class="text-xs" :class="playerStore.money >= modalMoney ? 'text-accent' : 'text-danger'">{{ modalMoney }} akçe</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">当前持有</span>
-              <span class="text-xs">{{ playerStore.money }}文</span>
+              <span class="text-xs text-muted">Elde olan</span>
+              <span class="text-xs">{{ playerStore.money }} akçe</span>
             </div>
           </div>
 
@@ -369,7 +369,7 @@
             :disabled="!canConfirmModal"
             @click="handleModalConfirm"
           >
-            {{ pondModal === 'build' ? '确认建造' : '确认升级' }}
+            {{ pondModal === 'build' ? 'Kurulumu Onayla' : 'Yükseltmeyi Onayla' }}
           </Button>
         </div>
       </div>
@@ -404,7 +404,7 @@
   const detailFish = ref<PondFish | null>(null)
   const compendiumGen = ref<1 | 2 | 3 | 4 | 5>(1)
 
-  /** 建造/升级统一弹窗 */
+  /** Kurulum / yükseltme ortak pencere */
   const pondModal = ref<'build' | 'upgrade' | null>(null)
 
   const getItemName = (itemId: string): string => getItemById(itemId)?.name ?? itemId
@@ -421,12 +421,12 @@
 
   const currentGenBreeds = computed(() => getBreedsByGeneration(compendiumGen.value))
 
-  /** 图鉴完成度 */
+  /** Defter tamamlama yüzdesi */
   const completionPercent = computed(() => {
     return Math.floor((fishPondStore.discoveredBreeds.size / totalBreedCount) * 100)
   })
 
-  /** 代数颜色 */
+  /** Nesil rengi */
   const genColor = (gen: number): string => {
     if (gen >= 5) return 'text-quality-supreme'
     if (gen >= 4) return 'text-quality-excellent'
@@ -434,7 +434,7 @@
     return 'text-accent'
   }
 
-  /** 水质条颜色 */
+  /** Su kalitesi çubuğu rengi */
   const waterQualityColor = computed(() => {
     const wq = fishPondStore.pond.waterQuality
     if (wq >= 70) return 'bg-success'
@@ -442,7 +442,7 @@
     return 'bg-danger'
   })
 
-  /** 水质文字颜色 */
+  /** Su kalitesi yazı rengi */
   const waterQualityTextColor = computed(() => {
     const wq = fishPondStore.pond.waterQuality
     if (wq >= 70) return 'text-success'
@@ -450,18 +450,18 @@
     return 'text-danger'
   })
 
-  /** 繁殖进度 */
+  /** Üreme ilerlemesi */
   const breedingTotalDays = FISH_BREEDING_DAYS
   const breedingProgress = computed(() => {
     if (!fishPondStore.pond.breeding) return 0
     return ((breedingTotalDays - fishPondStore.pond.breeding.daysLeft) / breedingTotalDays) * 100
   })
 
-  // === 建造/升级统一弹窗 ===
+  // === Kurulum / yükseltme ortak pencere ===
 
   const upgradeNextLevel = computed(() => Math.min(fishPondStore.pond.level + 1, 3) as 2 | 3)
 
-  const modalTitle = computed(() => (pondModal.value === 'build' ? '建造鱼塘' : '鱼塘升级'))
+  const modalTitle = computed(() => (pondModal.value === 'build' ? 'Balık Havuzu Kur' : 'Balık Havuzunu Yükselt'))
 
   const modalCurrentLevel = computed(() => (pondModal.value === 'build' ? 1 : fishPondStore.pond.level))
 
@@ -494,25 +494,25 @@
   const handleModalConfirm = () => {
     if (pondModal.value === 'build') {
       if (fishPondStore.buildPond()) {
-        addLog('鱼塘建造完成！')
-        showFloat('鱼塘建造完成！', 'success')
+        addLog('Balık havuzu tamamlandı!')
+        showFloat('Balık havuzu tamamlandı!', 'success')
         pondModal.value = null
       } else {
-        addLog('材料或铜钱不足，无法建造鱼塘。')
+        addLog('Malzeme ya da akçe yetmiyor; havuz kurulamadı.')
       }
     } else {
       const nextLevel = (fishPondStore.pond.level + 1) as 2 | 3
       if (fishPondStore.upgradePond()) {
-        addLog(`鱼塘升级到 Lv.${nextLevel}！容量提升。`)
-        showFloat(`鱼塘升级 Lv.${nextLevel}`, 'success')
+        addLog(`Balık havuzu Sv.${nextLevel} oldu! Kapasite arttı.`)
+        showFloat(`Balık havuzu Sv.${nextLevel}`, 'success')
         pondModal.value = null
       } else {
-        addLog('材料或铜钱不足，无法升级。')
+        addLog('Malzeme ya da akçe yetmiyor; yükseltilemedi.')
       }
     }
   }
 
-  /** 背包中可放入鱼塘的鱼 */
+  /** Çantadaki havuza uygun balıklar */
   const pondableFishInBag = computed(() => {
     const result: { itemId: string; name: string; count: number }[] = []
     for (const def of PONDABLE_FISH) {
@@ -524,72 +524,72 @@
     return result
   })
 
-  /** 鱼详情弹窗属性条 */
+  /** Balık detay penceresi nitelik çubukları */
   const fishAttributes = computed(() => {
     if (!detailFish.value) return []
     const g = detailFish.value.genetics
     return [
-      { key: 'weight', label: '体重', value: g.weight, barClass: 'bg-accent' },
-      { key: 'growthRate', label: '生长', value: g.growthRate, barClass: 'bg-success' },
-      { key: 'diseaseRes', label: '抗病', value: g.diseaseRes, barClass: 'bg-water' },
-      { key: 'qualityGene', label: '品质', value: g.qualityGene, barClass: 'bg-quality-fine' },
-      { key: 'mutationRate', label: '变异', value: g.mutationRate, barClass: 'bg-danger' }
+      { key: 'weight', label: 'Ağırlık', value: g.weight, barClass: 'bg-accent' },
+      { key: 'growthRate', label: 'Büyüme', value: g.growthRate, barClass: 'bg-success' },
+      { key: 'diseaseRes', label: 'Direnç', value: g.diseaseRes, barClass: 'bg-water' },
+      { key: 'qualityGene', label: 'Kalite', value: g.qualityGene, barClass: 'bg-quality-fine' },
+      { key: 'mutationRate', label: 'Değişim', value: g.mutationRate, barClass: 'bg-danger' }
     ]
   })
 
-  /** 打开鱼详情 */
+  /** Balık detayını aç */
   const openFishDetail = (fish: PondFish) => {
     detailFish.value = fish
   }
 
-  /** 弹窗内选为繁殖亲本 */
+  /** Pencereden üreme ebeveyni seç */
   const handleDetailBreed = () => {
     if (!detailFish.value) return
     handleSelectForBreeding(detailFish.value)
     detailFish.value = null
   }
 
-  /** 弹窗内取出到背包 */
+  /** Pencereden çantaya çıkar */
   const handleDetailRemove = () => {
     if (!detailFish.value) return
     handleRemoveFish(detailFish.value.id)
     detailFish.value = null
   }
 
-  // === 操作 ===
+  // === İşlemler ===
 
   const handleFeed = () => {
     if (fishPondStore.feedFish()) {
-      addLog('喂食了鱼塘中的鱼。')
+      addLog('Havuzdaki balıklara yem verildi.')
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.feedFish)
       if (tr.message) addLog(tr.message)
       if (tr.passedOut) handleEndDay()
     } else if (fishPondStore.pond.fedToday) {
-      addLog('今天已经喂过了。')
+      addLog('Bugün zaten yem verildi.')
     } else {
-      addLog('没有鱼饲料，无法喂食。')
+      addLog('Balık yemi yok, yemleme yapılamadı.')
     }
   }
 
   const handleClean = () => {
     if (fishPondStore.cleanPond()) {
-      addLog('使用水质改良剂清理了鱼塘。')
-      showFloat('+水质', 'success')
+      addLog('Su arıtıcıyla havuz temizlendi.')
+      showFloat('+Su kalitesi', 'success')
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.cleanPond)
       if (tr.message) addLog(tr.message)
       if (tr.passedOut) handleEndDay()
     } else {
-      addLog('没有水质改良剂。')
+      addLog('Su arıtıcı yok.')
     }
   }
 
   const handleTreat = () => {
     const count = fishPondStore.treatSickFish()
     if (count > 0) {
-      addLog(`治疗了${count}条生病的鱼。`)
-      showFloat(`治疗${count}条鱼`, 'success')
+      addLog(`${count} hasta balık iyileştirildi.`)
+      showFloat(`${count} balık iyileşti`, 'success')
     } else {
-      addLog('没有兽药或没有生病的鱼。')
+      addLog('İlaç yok ya da hasta balık bulunmuyor.')
     }
   }
 
@@ -600,13 +600,13 @@
         inventoryStore.addItem(p.itemId, 1, p.quality)
       }
       const names = products.map(p => getItemName(p.itemId)).join('、')
-      addLog(`收获了${names}。`)
-      showFloat(`+${products.length}件水产`, 'success')
+      addLog(`${names} toplandı.`)
+      showFloat(`+${products.length} su ürünü`, 'success')
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.collectFishProducts)
       if (tr.message) addLog(tr.message)
       if (tr.passedOut) handleEndDay()
     } else {
-      addLog('没有可收获的产出。')
+      addLog('Toplanacak ürün yok.')
     }
   }
 
@@ -614,20 +614,20 @@
     const added = fishPondStore.addFish(fishId, 1)
     if (added > 0) {
       const name = getPondableFishName(fishId)
-      addLog(`放入了${added}条${name}。`)
+      addLog(`${added} adet ${name} havuza bırakıldı.`)
     } else if (fishPondStore.isFull) {
-      addLog('鱼塘已满，无法放入更多鱼。')
+      addLog('Havuz dolu, daha fazla balık eklenemez.')
     } else {
-      addLog('背包中没有这种鱼。')
+      addLog('Çantada bu tür balık yok.')
     }
   }
 
   const handleRemoveFish = (pondFishId: string) => {
     if (fishPondStore.removeFish(pondFishId)) {
-      addLog('取出了一条鱼。')
+      addLog('Bir balık çantaya alındı.')
       selectedBreedingFish.value = null
     } else {
-      addLog('背包已满，无法取出。')
+      addLog('Çanta dolu, balık çıkarılamadı.')
     }
   }
 
@@ -642,18 +642,18 @@
       return
     }
 
-    // 尝试配对
+    // Eşleştirmeyi dene
     if (fishPondStore.startBreeding(selectedBreedingFish.value.id, fish.id)) {
-      addLog(`${fish.name}开始繁殖，${fishPondStore.pond.breeding!.daysLeft}天后出结果。`)
-      showFloat('开始繁殖', 'success')
+      addLog(`${fish.name} üremeye başladı; ${fishPondStore.pond.breeding!.daysLeft} gün sonra sonuç alınacak.`)
+      showFloat('Üreme başladı', 'success')
       selectedBreedingFish.value = null
     } else {
       if (selectedBreedingFish.value.fishId !== fish.fishId) {
-        addLog('只能配对同种鱼。')
+        addLog('Sadece aynı tür balıklar eşleştirilebilir.')
       } else if (fishPondStore.isFull) {
-        addLog('鱼塘已满，无法繁殖。')
+        addLog('Havuz dolu, üreme yapılamaz.')
       } else {
-        addLog('无法配对，请确认鱼已成熟且未生病。')
+        addLog('Eşleşme olmadı; balıkların yetişkin ve sağlıklı olduğundan emin ol.')
       }
       selectedBreedingFish.value = null
     }
