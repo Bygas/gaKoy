@@ -1,43 +1,43 @@
-/** 技能类型 */
+/** Beceri türü */
 export type SkillType = 'farming' | 'foraging' | 'fishing' | 'mining' | 'combat'
 
-/** 技能专精（等级5选择） */
+/** Beceri ustalığı (5. seviye seçimi) */
 export type SkillPerk5 =
   | 'harvester'
-  | 'rancher' // 农耕
+  | 'rancher' // Tarım
   | 'lumberjack'
-  | 'herbalist' // 采集
+  | 'herbalist' // Toplayıcılık
   | 'fisher'
-  | 'trapper' // 钓鱼
+  | 'trapper' // Balıkçılık
   | 'miner'
-  | 'geologist' // 挖矿
+  | 'geologist' // Madencilik
   | 'fighter'
-  | 'defender' // 战斗
+  | 'defender' // Savaş
 
-/** 技能专精（等级10选择，基于等级5分支） */
+/** Beceri ustalığı (10. seviye seçimi, 5. seviye koluna göre) */
 export type SkillPerk10 =
   | 'intensive'
-  | 'artisan' // 农耕: harvester分支
+  | 'artisan' // Tarım: harvester kolu
   | 'coopmaster'
-  | 'shepherd' // 农耕: rancher分支
+  | 'shepherd' // Tarım: rancher kolu
   | 'botanist'
-  | 'alchemist' // 采集: herbalist分支
+  | 'alchemist' // Toplayıcılık: herbalist kolu
   | 'forester'
-  | 'tracker' // 采集: lumberjack分支
+  | 'tracker' // Toplayıcılık: lumberjack kolu
   | 'angler'
-  | 'aquaculture' // 钓鱼: fisher分支
+  | 'aquaculture' // Balıkçılık: fisher kolu
   | 'mariner'
-  | 'luremaster' // 钓鱼: trapper分支
+  | 'luremaster' // Balıkçılık: trapper kolu
   | 'prospector'
-  | 'blacksmith' // 挖矿: miner分支
+  | 'blacksmith' // Madencilik: miner kolu
   | 'excavator'
-  | 'mineralogist' // 挖矿: geologist分支
+  | 'mineralogist' // Madencilik: geologist kolu
   | 'warrior'
-  | 'brute' // 战斗: fighter分支
+  | 'brute' // Savaş: fighter kolu
   | 'acrobat'
-  | 'tank' // 战斗: defender分支
+  | 'tank' // Savaş: defender kolu
 
-/** 技能状态 */
+/** Beceri durumu */
 export interface SkillState {
   type: SkillType
   exp: number
@@ -46,10 +46,10 @@ export interface SkillState {
   perk10: SkillPerk10 | null
 }
 
-/** 钓鱼小游戏评级 */
+/** Balıkçılık mini oyunu derece türü */
 export type MiniGameRating = 'perfect' | 'excellent' | 'good' | 'poor'
 
-/** 钓鱼小游戏参数 */
+/** Balıkçılık mini oyunu parametreleri */
 export interface MiniGameParams {
   fishName: string
   difficulty: 'easy' | 'normal' | 'hard' | 'legendary'
@@ -63,17 +63,17 @@ export interface MiniGameParams {
   timeLimit: number
 }
 
-/** 钓鱼小游戏结果 */
+/** Balıkçılık mini oyunu sonucu */
 export interface MiniGameResult {
   rating: MiniGameRating
   score: number
   perfect: boolean
 }
 
-/** 钓鱼地点 */
+/** Balık tutma bölgesi */
 export type FishingLocation = 'creek' | 'pond' | 'river' | 'mine' | 'waterfall' | 'swamp'
 
-/** 鱼定义 */
+/** Balık tanımı */
 export interface FishDef {
   id: string
   name: string
@@ -82,37 +82,37 @@ export interface FishDef {
   difficulty: 'easy' | 'normal' | 'hard' | 'legendary'
   sellPrice: number
   description: string
-  /** 钓鱼地点（默认creek） */
+  /** Balık tutma bölgesi (varsayılan: creek) */
   location?: FishingLocation
-  /** 小游戏鱼移动速度（覆盖难度默认值） */
+  /** Mini oyunda balığın hareket hızı (zorluk varsayılanını ezer) */
   miniGameSpeed?: number
-  /** 小游戏鱼改变方向概率（覆盖难度默认值） */
+  /** Mini oyunda balığın yön değiştirme olasılığı (zorluk varsayılanını ezer) */
   miniGameDirChange?: number
 }
 
-/** 矿洞层定义 */
+/** Maden katı tanımı */
 export interface MineFloorDef {
   floor: number
   zone: 'shallow' | 'frost' | 'lava' | 'crystal' | 'shadow' | 'abyss'
-  ores: string[] // 可获得的矿石ID
+  ores: string[] // Elde edilebilecek maden ID'leri
   monsters: MonsterDef[]
-  isSafePoint: boolean // 是否为安全点（每5层）
-  specialType: 'mushroom' | 'treasure' | 'infested' | 'dark' | 'boss' | null // 特殊楼层类型
+  isSafePoint: boolean // Güvenli nokta mı (her 5 katta bir)
+  specialType: 'mushroom' | 'treasure' | 'infested' | 'dark' | 'boss' | null // Özel kat türü
 }
 
-/** 怪物定义 */
+/** Yaratık tanımı */
 export interface MonsterDef {
   id: string
   name: string
   hp: number
-  attack: number // 造成的HP伤害
+  attack: number // Verdiği HP hasarı
   defense: number
-  expReward: number // 击杀给予的战斗经验
+  expReward: number // Kesildiğinde verilen savaş deneyimi
   drops: { itemId: string; chance: number }[]
   description: string
 }
 
-/** 战斗状态 */
+/** Savaş durumu */
 export interface CombatState {
   monster: MonsterDef
   monsterHp: number
@@ -121,10 +121,10 @@ export interface CombatState {
   isBoss: boolean
 }
 
-/** 战斗操作 */
+/** Savaş eylemi */
 export type CombatAction = 'attack' | 'defend' | 'flee'
 
-/** 食谱定义 */
+/** Yemek tarifi tanımı */
 export interface RecipeDef {
   id: string
   name: string
@@ -134,12 +134,12 @@ export interface RecipeDef {
     healthRestore?: number
     buff?: {
       type: 'fishing' | 'mining' | 'giftBonus' | 'speed' | 'defense' | 'luck' | 'farming' | 'stamina' | 'all_skills'
-      value: number // 百分比或倍率
+      value: number // Yüzde ya da katsayı
       description: string
     }
   }
-  unlockSource: string // 解锁来源描述
+  unlockSource: string // Açılma kaynağının açıklaması
   description: string
-  /** 需要的技能等级才能烹饪 */
+  /** Bu yemeği pişirmek için gereken beceri seviyesi */
   requiredSkill?: { type: SkillType; level: number }
 }
