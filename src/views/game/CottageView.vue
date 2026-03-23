@@ -3,18 +3,18 @@
     <h3 class="text-accent text-sm mb-3 flex items-center justify-between">
       <span>
         <component :is="npcStore.getSpouse() ? Heart : Home" :size="14" class="inline" />
-        小屋
+        Hane
       </span>
       <button class="text-muted hover:text-accent transition-colors" @click="showCalendarModal = true">
         <Calendar :size="14" />
       </button>
     </h3>
 
-    <!-- 农舍升级 -->
+    <!-- Çiftlik evi yükseltme -->
     <div class="border border-accent/20 rounded-xs p-3 mb-4">
       <div class="flex items-center justify-between mb-1">
         <span class="text-sm text-accent">{{ homeStore.farmhouseName }}</span>
-        <span class="text-xs text-muted">等级 {{ homeStore.farmhouseLevel }}</span>
+        <span class="text-xs text-muted">Seviye {{ homeStore.farmhouseLevel }}</span>
       </div>
       <p class="text-xs text-muted mb-2">{{ currentBenefit }}</p>
       <div
@@ -22,29 +22,29 @@
         class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-1.5 cursor-pointer hover:bg-accent/5"
         @click="showUpgradeModal = true"
       >
-        <span class="text-xs">升级为「{{ homeStore.nextUpgrade.name }}」</span>
-        <span class="text-xs text-accent whitespace-nowrap">{{ homeStore.nextUpgrade.cost }}文</span>
+        <span class="text-xs">“{{ homeStore.nextUpgrade.name }}” düzeyine yükselt</span>
+        <span class="text-xs text-accent whitespace-nowrap">{{ homeStore.nextUpgrade.cost }} akçe</span>
       </div>
     </div>
 
-    <!-- 家人 -->
+    <!-- Aile -->
     <div v-if="npcStore.getSpouse()" class="border border-accent/20 rounded-xs p-3 mb-4">
       <p class="text-sm text-accent mb-2">
         <Users :size="14" class="inline" />
-        家人
+        Aile
       </p>
 
-      <!-- 配偶互动 -->
+      <!-- Eş etkileşimi -->
       <div class="border border-accent/10 rounded-xs p-2 mb-2">
         <div class="flex items-center justify-between mb-1.5">
           <span class="text-xs text-accent">{{ spouseDef?.name }}</span>
           <span class="text-[10px] text-danger">
             <Heart :size="10" class="inline" />
-            伴侣
+            Eş
           </span>
         </div>
         <div v-if="spouseDialogue" class="border border-accent/10 rounded-xs p-2 mb-1.5">
-          <p class="text-[10px] text-accent mb-0.5">「{{ spouseDef?.name }}」</p>
+          <p class="text-[10px] text-accent mb-0.5">“{{ spouseDef?.name }}”</p>
           <p class="text-xs">{{ spouseDialogue }}</p>
         </div>
         <div class="flex space-x-1.5">
@@ -55,7 +55,7 @@
             :disabled="spouseState?.talkedToday"
             @click="handleSpouseTalk"
           >
-            {{ spouseState?.talkedToday ? '已聊天' : '聊天' }}
+            {{ spouseState?.talkedToday ? 'Bugün konuşuldu' : 'Konuş' }}
           </Button>
           <Button
             class="flex-1 justify-center py-0.5"
@@ -64,34 +64,34 @@
             :disabled="spouseState?.giftedToday || (spouseState?.giftsThisWeek ?? 0) >= 2"
             @click="showSpouseGiftModal = true"
           >
-            {{ spouseState?.giftedToday ? '已送礼' : (spouseState?.giftsThisWeek ?? 0) >= 2 ? '本周已满' : '送礼' }}
+            {{ spouseState?.giftedToday ? 'Hediye verildi' : (spouseState?.giftsThisWeek ?? 0) >= 2 ? 'Bu hafta dolu' : 'Hediye ver' }}
           </Button>
         </div>
       </div>
 
-      <!-- 提议通知 -->
+      <!-- Teklif bildirimi -->
       <div v-if="npcStore.childProposalPending" class="border border-accent/30 rounded-xs p-2 mb-2">
-        <p class="text-xs text-accent mb-1.5">配偶有话想和你说……</p>
-        <Button class="w-full justify-center" @click="showChildProposalDialog">回应</Button>
+        <p class="text-xs text-accent mb-1.5">Eşinin söylemek istediği bir söz var…</p>
+        <Button class="w-full justify-center" @click="showChildProposalDialog">Cevap ver</Button>
       </div>
 
-      <!-- 孕期面板 -->
+      <!-- Gebelik paneli -->
       <div v-if="npcStore.pregnancy" class="border border-success/20 rounded-xs p-2 mb-2">
-        <p class="text-xs text-success mb-2">孕期 · {{ PREGNANCY_STAGE_LABELS[npcStore.pregnancy.stage] }}</p>
-        <!-- 阶段进度条 -->
+        <p class="text-xs text-success mb-2">Gebelik · {{ PREGNANCY_STAGE_LABELS[npcStore.pregnancy.stage] }}</p>
+        <!-- Evre ilerleme çubuğu -->
         <div class="flex items-center space-x-1 mb-1.5">
-          <span class="text-[10px] text-muted w-8 shrink-0">进度</span>
+          <span class="text-[10px] text-muted w-8 shrink-0">Süreç</span>
           <div class="flex-1 h-1.5 bg-bg rounded-xs border border-accent/10">
             <div
               class="h-full rounded-xs bg-success transition-all"
               :style="{ width: Math.floor((npcStore.pregnancy.daysInStage / npcStore.pregnancy.stageDays) * 100) + '%' }"
             />
           </div>
-          <span class="text-[10px] text-muted shrink-0">{{ npcStore.pregnancy.daysInStage }}/{{ npcStore.pregnancy.stageDays }}天</span>
+          <span class="text-[10px] text-muted shrink-0">{{ npcStore.pregnancy.daysInStage }}/{{ npcStore.pregnancy.stageDays }} gün</span>
         </div>
-        <!-- 安产率条 -->
+        <!-- Sağ salim doğum oranı -->
         <div class="flex items-center space-x-1 mb-2">
-          <span class="text-[10px] text-muted w-8 shrink-0">安产</span>
+          <span class="text-[10px] text-muted w-8 shrink-0">Esenlik</span>
           <div class="flex-1 h-1.5 bg-bg rounded-xs border border-accent/10">
             <div
               class="h-full rounded-xs transition-all"
@@ -101,67 +101,67 @@
           </div>
           <span class="text-[10px] text-muted shrink-0">{{ npcStore.pregnancy.careScore }}%</span>
         </div>
-        <!-- 阶段提示 -->
+        <!-- Evre ipucu -->
         <p class="text-[10px] text-muted/60 mb-2">{{ STAGE_TIPS[npcStore.pregnancy.stage] }}</p>
-        <!-- 照料操作 -->
+        <!-- Bakım işlemleri -->
         <div class="grid grid-cols-2 gap-1 mb-1">
           <Button
             class="py-0.5 px-1 text-[10px] justify-center"
             :disabled="npcStore.pregnancy.giftedForPregnancy"
             @click="handlePregnancyCare('gift')"
           >
-            {{ npcStore.pregnancy.giftedForPregnancy ? '已送礼' : '送礼物' }}
+            {{ npcStore.pregnancy.giftedForPregnancy ? 'Hediye verildi' : 'Armağan sun' }}
           </Button>
           <Button
             class="py-0.5 px-1 text-[10px] justify-center"
             :disabled="npcStore.pregnancy.companionToday"
             @click="handlePregnancyCare('companion')"
           >
-            {{ npcStore.pregnancy.companionToday ? '已陪伴' : '陪伴聊天' }}
+            {{ npcStore.pregnancy.companionToday ? 'Bugün eşlik edildi' : 'Yanında otur' }}
           </Button>
-          <Button class="py-0.5 px-1 text-[10px] justify-center" @click="handlePregnancyCare('supplement')">服用补品</Button>
+          <Button class="py-0.5 px-1 text-[10px] justify-center" @click="handlePregnancyCare('supplement')">Şifa ver</Button>
           <Button
             class="py-0.5 px-1 text-[10px] justify-center"
             :disabled="npcStore.pregnancy.caredToday"
             @click="handlePregnancyCare('rest')"
           >
-            {{ npcStore.pregnancy.caredToday ? '已休息' : '安排休息' }}
+            {{ npcStore.pregnancy.caredToday ? 'Dinlendi' : 'Dinlenme ayarla' }}
           </Button>
         </div>
-        <!-- 医疗方案（待产期） -->
+        <!-- Doğum seçeneği (bekleyiş evresi) -->
         <div v-if="npcStore.pregnancy.stage === 'ready'" class="border border-accent/20 rounded-xs p-2 mt-2">
-          <p class="text-[10px] text-accent mb-1.5">选择接生方式</p>
+          <p class="text-[10px] text-accent mb-1.5">Doğum yolunu seç</p>
           <div v-if="!npcStore.pregnancy.medicalPlan" class="flex flex-col space-y-1">
             <Button class="py-0.5 px-1 text-[10px] w-full justify-center" @click="handleChooseMedical('normal')">
-              普通接生（1000文 · 80%安全）
+              Olağan doğum yardımı (1000 akçe · %80 güven)
             </Button>
             <Button class="py-0.5 px-1 text-[10px] w-full justify-center" @click="handleChooseMedical('advanced')">
-              高级接生（5000文 · 95%安全）
+              Usta ebe yardımı (5000 akçe · %95 güven)
             </Button>
             <Button class="py-0.5 px-1 text-[10px] w-full justify-center text-accent" @click="handleChooseMedical('luxury')">
-              豪华接生（15000文 · 100%安全）
+              Saray usulü doğum (15000 akçe · %100 güven)
             </Button>
           </div>
-          <p v-else class="text-[10px] text-success">已选择：{{ MEDICAL_LABELS[npcStore.pregnancy.medicalPlan] }}</p>
+          <p v-else class="text-[10px] text-success">Seçildi: {{ MEDICAL_LABELS[npcStore.pregnancy.medicalPlan] }}</p>
         </div>
       </div>
 
-      <!-- 无子女无孕期 -->
+      <!-- Çocuk yok, gebelik yok -->
       <div v-if="npcStore.children.length === 0 && !npcStore.pregnancy && !npcStore.childProposalPending">
         <div class="flex flex-col items-center justify-center py-6 text-muted">
           <Users :size="32" class="mb-2" />
-          <p class="text-xs">婚后生活安稳，也许将来会有小生命到来。</p>
+          <p class="text-xs">Yuvanız huzurlu; belki bir gün yeni bir can gelir.</p>
         </div>
       </div>
 
-      <!-- 子女列表 -->
+      <!-- Çocuk listesi -->
       <div v-if="npcStore.children.length > 0" class="flex flex-col space-y-1">
         <div v-for="child in npcStore.children" :key="child.id" class="border border-accent/10 rounded-xs p-2">
           <div class="flex items-center justify-between mb-1">
             <span class="text-xs text-accent">
               {{ child.name }}
-              <span v-if="child.birthQuality === 'healthy'" class="text-[10px] text-success ml-0.5">[健康]</span>
-              <span v-else-if="child.birthQuality === 'premature'" class="text-[10px] text-muted/60 ml-0.5">[早产]</span>
+              <span v-if="child.birthQuality === 'healthy'" class="text-[10px] text-success ml-0.5">[Sağlıklı]</span>
+              <span v-else-if="child.birthQuality === 'premature'" class="text-[10px] text-muted/60 ml-0.5">[Erken doğum]</span>
             </span>
             <div class="flex items-center space-x-1">
               <Button
@@ -170,14 +170,14 @@
                 :icon="Heart"
                 @click="handleInteractChild(child.id)"
               >
-                互动
+                İlgilen
               </Button>
-              <span v-else-if="child.stage !== 'baby'" class="text-xs text-muted">已互动</span>
-              <span v-else class="text-xs text-muted">还太小</span>
-              <Button class="py-0 px-1 text-danger" @click="releaseConfirmChildId = child.id">送走</Button>
+              <span v-else-if="child.stage !== 'baby'" class="text-xs text-muted">Bugün ilgilenildi</span>
+              <span v-else class="text-xs text-muted">Henüz çok küçük</span>
+              <Button class="py-0 px-1 text-danger" @click="releaseConfirmChildId = child.id">Uğurla</Button>
             </div>
           </div>
-          <p class="text-[10px] text-muted mb-0.5">{{ CHILD_STAGE_NAMES[child.stage] }} · {{ child.daysOld }}天</p>
+          <p class="text-[10px] text-muted mb-0.5">{{ CHILD_STAGE_NAMES[child.stage] }} · {{ child.daysOld }} gün</p>
           <div v-if="child.stage !== 'baby'" class="flex items-center space-x-0.5">
             <Heart
               v-for="h in 10"
@@ -190,30 +190,30 @@
           </div>
         </div>
       </div>
-      <!-- 送走子女确认 -->
+      <!-- Çocuğu gönderme onayı -->
       <div v-if="releaseConfirmChildId !== null" class="mt-2 game-panel border-danger/40">
-        <p class="text-xs text-danger mb-2">确定将{{ getChildName(releaseConfirmChildId) }}送往远方亲戚家吗？（花费10000文）</p>
+        <p class="text-xs text-danger mb-2">{{ getChildName(releaseConfirmChildId) }} çocuğunu uzak akrabaların yanına göndermek istediğine emin misin? (10000 akçe)</p>
         <div class="grid grid-cols-2 gap-2">
-          <Button class="text-danger" @click="handleReleaseChild">确认</Button>
-          <Button @click="releaseConfirmChildId = null">取消</Button>
+          <Button class="text-danger" @click="handleReleaseChild">Onayla</Button>
+          <Button @click="releaseConfirmChildId = null">Vazgeç</Button>
         </div>
       </div>
     </div>
 
-    <!-- 雇工管理 -->
+    <!-- İşçi yönetimi -->
     <div class="border border-accent/20 rounded-xs p-3 mb-4">
       <div class="flex items-center justify-between mb-2">
         <p class="text-sm text-accent">
           <Hammer :size="14" class="inline" />
-          雇工
+          Yevmiyeciler
         </p>
         <Button v-if="currentHelpers.length < 2" class="py-0 px-1.5" :icon="UserPlus" :icon-size="12" @click="showHireModal = true">
-          招募
+          Tut
         </Button>
       </div>
-      <p class="text-xs text-muted mb-2">雇佣好感度≥4心的村民帮忙打理农场，每日支付工资。</p>
+      <p class="text-xs text-muted mb-2">gaKöy halkından, gönlü en az 4 kalp olan kişileri günlük işlere tutabilirsin. Her gün yevmiye ödenir.</p>
 
-      <!-- 当前雇工 -->
+      <!-- Mevcut işçiler -->
       <div v-if="currentHelpers.length > 0" class="flex flex-col space-y-1 mb-2">
         <div
           v-for="h in currentHelpers"
@@ -225,22 +225,22 @@
             <span class="text-xs text-muted ml-1">{{ npcStore.HELPER_TASK_NAMES[h.task] }}</span>
           </div>
           <div class="flex items-center space-x-1.5">
-            <span class="text-[10px] text-muted">{{ h.dailyWage }}文/天</span>
+            <span class="text-[10px] text-muted">{{ h.dailyWage }} akçe/gün</span>
             <Button class="py-0 px-1 btn-danger" :icon="X" :icon-size="10" @click="dismissConfirmNpcId = h.npcId" />
           </div>
         </div>
       </div>
       <div v-if="currentHelpers.length === 0" class="flex flex-col items-center justify-center py-6 text-muted">
         <Hammer :size="32" class="mb-2" />
-        <p class="text-xs">暂未雇佣</p>
+        <p class="text-xs">Henüz tutulan kimse yok</p>
       </div>
     </div>
 
-    <!-- 酒窖 -->
+    <!-- Mahzen -->
     <div v-if="homeStore.hasCellar" class="border border-accent/20 rounded-xs p-3">
       <p class="text-sm text-accent mb-2">
         <Gem :size="14" class="inline" />
-        酒窖
+        Mahzen
       </p>
       <div v-if="homeStore.cellarSlots.length > 0" class="flex flex-col space-y-1.5 mb-3">
         <div v-for="(slot, idx) in homeStore.cellarSlots" :key="idx" class="border border-accent/10 rounded-xs p-2">
@@ -256,32 +256,32 @@
             >
               {{ getItemName(slot.itemId) }}
             </span>
-            <Button class="py-0 px-1" @click="removeAgingConfirmIdx = idx">取出</Button>
+            <Button class="py-0 px-1" @click="removeAgingConfirmIdx = idx">Çıkar</Button>
           </div>
           <div class="flex items-center space-x-1">
-            <span class="text-[10px] text-muted w-6">陈酿</span>
+            <span class="text-[10px] text-muted w-6">Dem</span>
             <div class="flex-1 h-1.5 bg-bg rounded-xs border border-accent/10">
               <div
                 class="h-full rounded-xs bg-accent transition-all"
                 :style="{ width: Math.min(100, Math.floor((slot.daysAging / 14) * 100)) + '%' }"
               />
             </div>
-            <span class="text-[10px] text-muted">{{ slot.daysAging }}/14天</span>
+            <span class="text-[10px] text-muted">{{ slot.daysAging }}/14 gün</span>
           </div>
         </div>
       </div>
       <div v-if="homeStore.cellarSlots.length === 0" class="flex flex-col items-center justify-center py-6 text-muted mb-3">
         <Gem :size="32" class="mb-2" />
-        <p class="text-xs">酒窖空空如也</p>
+        <p class="text-xs">Mahzen bomboş</p>
       </div>
 
-      <!-- 放入新酒 -->
+      <!-- Yeni içki koy -->
       <Button class="w-full" v-if="homeStore.cellarSlots.length < 6 && ageableInInventory.length > 0" @click="showAgingModal = true">
-        放入陈酿
+        Demlenmeye Koy
       </Button>
     </div>
 
-    <!-- 升级农舍弹窗 -->
+    <!-- Çiftlik evi yükseltme penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showUpgradeModal && homeStore.nextUpgrade"
@@ -293,15 +293,15 @@
             <X :size="14" />
           </button>
 
-          <p class="text-sm text-accent mb-2">升级农舍</p>
+          <p class="text-sm text-accent mb-2">Çiftlik Evini Yükselt</p>
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
-            <p class="text-xs">升级为「{{ homeStore.nextUpgrade.name }}」</p>
+            <p class="text-xs">“{{ homeStore.nextUpgrade.name }}” düzeyine çıkacak</p>
             <p class="text-xs text-muted mt-0.5">{{ homeStore.nextUpgrade.description }}</p>
           </div>
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2 space-y-1">
-            <p class="text-xs text-muted mb-1">所需材料</p>
+            <p class="text-xs text-muted mb-1">Gerekli malzeme</p>
             <div v-for="mat in homeStore.nextUpgrade.materialCost" :key="mat.itemId" class="flex items-center justify-between">
               <span class="text-xs text-muted">{{ getItemName(mat.itemId) }}</span>
               <span class="text-xs" :class="getCombinedItemCount(mat.itemId) >= mat.quantity ? '' : 'text-danger'">
@@ -309,9 +309,9 @@
               </span>
             </div>
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">铜钱</span>
+              <span class="text-xs text-muted">Akçe</span>
               <span class="text-xs" :class="playerStore.money >= homeStore.nextUpgrade.cost ? '' : 'text-danger'">
-                {{ homeStore.nextUpgrade.cost }}文
+                {{ homeStore.nextUpgrade.cost }} akçe
               </span>
             </div>
           </div>
@@ -324,13 +324,13 @@
             :icon-size="12"
             @click="handleUpgradeFromModal"
           >
-            升级
+            Yükselt
           </Button>
         </div>
       </div>
     </Transition>
 
-    <!-- 放入陈酿列表弹窗 -->
+    <!-- Mahzene koyulacaklar listesi -->
     <Transition name="panel-fade">
       <div
         v-if="showAgingModal"
@@ -339,7 +339,7 @@
       >
         <div class="game-panel max-w-xs w-full">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-sm text-accent">放入陈酿</p>
+            <p class="text-sm text-accent">Demlenmeye Koy</p>
             <Button class="py-0 px-1" :icon="X" :icon-size="12" @click="showAgingModal = false" />
           </div>
           <div class="flex flex-col space-y-1">
@@ -366,7 +366,7 @@
       </div>
     </Transition>
 
-    <!-- 时历弹窗 -->
+    <!-- Takvim penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showCalendarModal"
@@ -380,10 +380,10 @@
 
           <p class="text-sm text-accent mb-2">
             <Calendar :size="14" class="inline" />
-            时历
+            Takvim
           </p>
 
-          <!-- 季节切换 -->
+          <!-- Mevsim seçimi -->
           <div class="grid grid-cols-4 gap-2 mb-2">
             <button
               v-for="s in SEASONS"
@@ -396,7 +396,7 @@
             </button>
           </div>
 
-          <!-- 28天网格 -->
+          <!-- 28 günlük ızgara -->
           <div class="grid grid-cols-7 gap-px">
             <div v-for="wd in WEEKDAYS" :key="wd" class="text-center py-0.5">
               <span class="text-[10px]" :class="wd === 'sat' || wd === 'sun' ? 'text-accent' : 'text-muted'">{{ WEEKDAY_NAMES[wd] }}</span>
@@ -422,40 +422,40 @@
             </div>
           </div>
 
-          <!-- 图例 -->
+          <!-- Gösterge -->
           <div class="flex items-center space-x-3 mt-1.5">
             <span class="text-[10px] text-muted flex items-center space-x-0.5">
               <span class="w-1.5 h-1.5 rounded-full bg-danger inline-block" />
-              <span>节日</span>
+              <span>Şenlik</span>
             </span>
             <span class="text-[10px] text-muted flex items-center space-x-0.5">
               <span class="w-1.5 h-1.5 rounded-full bg-success inline-block" />
-              <span>生日</span>
+              <span>Doğum günü</span>
             </span>
           </div>
 
-          <!-- 选中日详情 -->
+          <!-- Seçili gün ayrıntısı -->
           <div
             v-if="selectedDayEntry && (selectedDayEntry.festivals.length > 0 || selectedDayEntry.birthdays.length > 0)"
             class="border border-accent/10 rounded-xs p-2 mt-2"
           >
             <p class="text-[10px] text-accent mb-1">
-              {{ SEASON_NAMES[calendarSeason] }}{{ selectedCalendarDay }}日
-              <span v-if="selectedDayEntry.isToday" class="text-danger ml-1">(今天)</span>
+              {{ SEASON_NAMES[calendarSeason] }} {{ selectedCalendarDay }}. gün
+              <span v-if="selectedDayEntry.isToday" class="text-danger ml-1">(bugün)</span>
             </p>
             <div v-for="f in selectedDayEntry.festivals" :key="f.name" class="mb-0.5">
               <span class="text-[10px] text-danger">{{ f.name }}</span>
               <span class="text-[10px] text-muted ml-1">{{ f.description }}</span>
             </div>
             <div v-for="b in selectedDayEntry.birthdays" :key="b.npcName">
-              <span class="text-[10px] text-success">{{ b.npcName }}的生日</span>
+              <span class="text-[10px] text-success">{{ b.npcName }} bugün doğmuş</span>
             </div>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 配偶送礼弹窗 -->
+    <!-- Eşe hediye verme penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showSpouseGiftModal"
@@ -464,7 +464,7 @@
       >
         <div class="game-panel max-w-sm w-full">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-sm text-accent">送礼给{{ spouseDef?.name }}</p>
+            <p class="text-sm text-accent">{{ spouseDef?.name }} için hediye seç</p>
             <Button class="py-0 px-1" :icon="X" :icon-size="12" @click="showSpouseGiftModal = false" />
           </div>
           <div class="flex flex-col space-y-1 max-h-60 overflow-y-auto">
@@ -489,22 +489,22 @@
               <span class="text-xs text-muted">&times;{{ item.quantity }}</span>
             </div>
           </div>
-          <div v-if="spouseGiftableItems.length === 0" class="py-4 text-center text-xs text-muted">背包中没有可赠送的物品</div>
+          <div v-if="spouseGiftableItems.length === 0" class="py-4 text-center text-xs text-muted">Çantada sunulacak bir eşya yok</div>
         </div>
       </div>
     </Transition>
 
-    <!-- 招募雇工弹窗 -->
+    <!-- İşçi tutma penceresi -->
     <Transition name="panel-fade">
       <div v-if="showHireModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4" @click.self="closeHireModal">
         <div class="game-panel max-w-sm w-full">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-sm text-accent">招募雇工</p>
+            <p class="text-sm text-accent">Yevmiyeci Tut</p>
             <Button class="py-0 px-1" :icon="X" :icon-size="12" @click="closeHireModal" />
           </div>
 
-          <!-- 任务选择 -->
-          <p class="text-xs text-muted mb-1">选择任务</p>
+          <!-- İş seçimi -->
+          <p class="text-xs text-muted mb-1">Görevi seç</p>
           <div class="grid grid-cols-4 gap-1 mb-3">
             <button
               v-for="(label, key) in npcStore.HELPER_TASK_NAMES"
@@ -516,25 +516,24 @@
               {{ label }}
             </button>
           </div>
-          <p class="text-xs text-muted mb-2">日薪：{{ npcStore.HELPER_WAGES[selectedHireTask] }}文</p>
+          <p class="text-xs text-muted mb-2">Günlük yevmiye: {{ npcStore.HELPER_WAGES[selectedHireTask] }} akçe</p>
 
-          <!-- 确认雇佣 -->
+          <!-- Tutma onayı -->
           <div v-if="hireConfirmNpc" class="border border-accent/30 rounded-xs p-3 mb-2">
             <p class="text-xs text-accent mb-2">
-              确定雇佣
               <span class="text-text">{{ hireConfirmNpc.name }}</span>
-              负责
+              kişisini
               <span class="text-text">{{ npcStore.HELPER_TASK_NAMES[selectedHireTask] }}</span>
-              吗？
+              işi için tutmak ister misin?
             </p>
-            <p class="text-[10px] text-muted mb-2">日薪：{{ npcStore.HELPER_WAGES[selectedHireTask] }}文</p>
+            <p class="text-[10px] text-muted mb-2">Günlük yevmiye: {{ npcStore.HELPER_WAGES[selectedHireTask] }} akçe</p>
             <div class="flex space-x-2">
-              <Button class="py-0.5 px-2 text-xs" @click="handleHire(hireConfirmNpcId!)">确定</Button>
-              <Button class="py-0.5 px-2 text-xs" @click="hireConfirmNpcId = null">取消</Button>
+              <Button class="py-0.5 px-2 text-xs" @click="handleHire(hireConfirmNpcId!)">Tut</Button>
+              <Button class="py-0.5 px-2 text-xs" @click="hireConfirmNpcId = null">Vazgeç</Button>
             </div>
           </div>
 
-          <!-- 可雇佣NPC列表 -->
+          <!-- Uygun köylüler -->
           <div v-else class="flex flex-col space-y-1 max-h-48 overflow-y-auto">
             <div
               v-for="npc in hireableNpcs"
@@ -545,18 +544,18 @@
               <span class="text-xs">{{ npc.name }}</span>
               <span class="text-[10px] text-muted">
                 <Heart :size="10" class="inline" />
-                {{ Math.floor(npc.friendship / 250) }}心
+                {{ Math.floor(npc.friendship / 250) }} kalp
               </span>
             </div>
           </div>
           <p v-if="!hireConfirmNpc && hireableNpcs.length === 0" class="text-xs text-muted text-center py-3">
-            没有可雇佣的村民（需好感≥4心，且非伴侣/知己）
+            Tutulacak köylü yok (gönül bağı ≥ 4 kalp olmalı, eş ya da sırdaş olmamalı)
           </p>
         </div>
       </div>
     </Transition>
 
-    <!-- 解雇确认弹窗 -->
+    <!-- İşçiyi çıkarma onayı -->
     <Transition name="panel-fade">
       <div
         v-if="dismissConfirmNpcId"
@@ -564,17 +563,17 @@
         @click.self="dismissConfirmNpcId = null"
       >
         <div class="game-panel max-w-xs w-full text-center">
-          <p class="text-sm text-danger mb-3">确定解雇{{ getNpcById(dismissConfirmNpcId)?.name }}吗？</p>
-          <p class="text-xs text-muted mb-4">解雇后需要重新招募。</p>
+          <p class="text-sm text-danger mb-3">{{ getNpcById(dismissConfirmNpcId)?.name }} kişisini işten çıkarmak istediğine emin misin?</p>
+          <p class="text-xs text-muted mb-4">Sonra yeniden tutman gerekir.</p>
           <div class="flex space-x-3 justify-center">
-            <Button @click="dismissConfirmNpcId = null">取消</Button>
-            <Button class="btn-danger" @click="handleDismiss(dismissConfirmNpcId!)">确认解雇</Button>
+            <Button @click="dismissConfirmNpcId = null">Vazgeç</Button>
+            <Button class="btn-danger" @click="handleDismiss(dismissConfirmNpcId!)">İşten çıkar</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 取出陈酿确认弹窗 -->
+    <!-- Mahzenden çıkarma onayı -->
     <Transition name="panel-fade">
       <div
         v-if="removeAgingConfirmSlot"
@@ -582,11 +581,11 @@
         @click.self="removeAgingConfirmIdx = null"
       >
         <div class="game-panel max-w-xs w-full text-center">
-          <p class="text-sm text-accent mb-3">确定取出{{ getItemName(removeAgingConfirmSlot.itemId) }}吗？</p>
-          <p class="text-xs text-muted mb-4">已陈酿{{ removeAgingConfirmSlot.daysAging }}天，满14天可提升品质。</p>
+          <p class="text-sm text-accent mb-3">{{ getItemName(removeAgingConfirmSlot.itemId) }} çıkarılsın mı?</p>
+          <p class="text-xs text-muted mb-4">{{ removeAgingConfirmSlot.daysAging }} gündür demleniyor, 14 gün dolunca niteliği yükselir.</p>
           <div class="flex space-x-3 justify-center">
-            <Button @click="removeAgingConfirmIdx = null">取消</Button>
-            <Button @click="handleRemoveAging(removeAgingConfirmIdx!)">确认取出</Button>
+            <Button @click="removeAgingConfirmIdx = null">Vazgeç</Button>
+            <Button @click="handleRemoveAging(removeAgingConfirmIdx!)">Çıkar</Button>
           </div>
         </div>
       </div>
@@ -663,7 +662,7 @@
     dismissConfirmNpcId.value = null
   }
 
-  // === 配偶互动 ===
+  // === Eş etkileşimi ===
 
   const spouseState = computed(() => npcStore.getSpouse())
   const spouseDef = computed(() => (spouseState.value ? getNpcById(spouseState.value.npcId) : null))
@@ -672,14 +671,14 @@
   const handleSpouseTalk = () => {
     if (!spouseState.value) return
     if (gameStore.isPastBedtime) {
-      addLog('太晚了，该休息了。')
+      addLog('Gece çok ilerledi, artık dinlenmek gerek.')
       handleEndDay()
       return
     }
     const result = npcStore.talkTo(spouseState.value.npcId)
     if (result) {
       spouseDialogue.value = result.message
-      addLog(`与${spouseDef.value?.name}聊天。(+${result.friendshipGain}好感)`)
+      addLog(`${spouseDef.value?.name} ile konuşuldu.(+${result.friendshipGain} gönül bağı)`)
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.talk)
       if (tr.message) addLog(tr.message)
       if (tr.passedOut) {
@@ -701,7 +700,7 @@
     return 'neutral'
   }
 
-  const GIFT_PREF_LABELS: Record<GiftPreference, string> = { loved: '最爱', liked: '喜欢', hated: '讨厌', neutral: '' }
+  const GIFT_PREF_LABELS: Record<GiftPreference, string> = { loved: 'En sevdiği', liked: 'Sever', hated: 'Hiç sevmez', neutral: '' }
   const GIFT_PREF_CLASS: Record<GiftPreference, string> = { loved: 'text-danger', liked: 'text-success', hated: 'text-muted', neutral: '' }
   const GIFT_PREF_ORDER: Record<GiftPreference, number> = { loved: 0, liked: 1, neutral: 2, hated: 3 }
 
@@ -725,11 +724,11 @@
       const itemName = getItemById(itemId)?.name ?? itemId
       const name = spouseDef.value?.name
       if (result.gain > 0) {
-        addLog(`送给${name}${itemName}，${name}觉得${result.reaction}。(+${result.gain}好感)`)
+        addLog(`${name} kişisine ${itemName} sunuldu, ${name} bunu ${result.reaction} buldu.(+${result.gain} gönül bağı)`)
       } else if (result.gain < 0) {
-        addLog(`送给${name}${itemName}，${name}${result.reaction}这个……(${result.gain}好感)`)
+        addLog(`${name} kişisine ${itemName} sunuldu, ${name} buna ${result.reaction} baktı…(${result.gain} gönül bağı)`)
       } else {
-        addLog(`送给${name}${itemName}，${name}觉得${result.reaction}。`)
+        addLog(`${name} kişisine ${itemName} sunuldu, ${name} bunu ${result.reaction} buldu.`)
       }
       showSpouseGiftModal.value = false
       const heartEvent = npcStore.checkHeartEvent(spouseState.value.npcId)
@@ -745,35 +744,35 @@
   }
 
   const CHILD_STAGE_NAMES: Record<ChildStage, string> = {
-    baby: '婴儿',
-    toddler: '幼儿',
-    child: '孩童',
-    teen: '少年'
+    baby: 'Bebek',
+    toddler: 'Yürümeye başlayan',
+    child: 'Çocuk',
+    teen: 'Delikanlı / Genç kız'
   }
 
   const PREGNANCY_STAGE_LABELS: Record<PregnancyStage, string> = {
-    early: '初期（需要营养）',
-    mid: '中期（需要陪伴）',
-    late: '后期（需要休息）',
-    ready: '待产期（准备迎接）'
+    early: 'İlk dönem (besine ihtiyaç var)',
+    mid: 'Orta dönem (eşlik gerek)',
+    late: 'Son dönem (dinlenme gerek)',
+    ready: 'Doğuma hazır (hazırlık vakti)'
   }
 
   const STAGE_TIPS: Record<PregnancyStage, string> = {
-    early: '孕初期需要注意营养，送些食物或补品效果最好。',
-    mid: '孕中期需要更多陪伴，多聊天可以大幅提升安产率。',
-    late: '孕后期要注意休息，让配偶好好休养。',
-    ready: '即将临盆，请选择接生方式并做好最后的准备。'
+    early: 'İlk dönemde besine dikkat gerek; yiyecekler ve şifalı destekler çok fayda verir.',
+    mid: 'Orta dönemde daha çok eşlik gerekir; konuşup yanında bulunmak güveni artırır.',
+    late: 'Son dönemde dinlenmek önemlidir; eşin rahat etsin.',
+    ready: 'Doğum yakındır; yardım yolunu seçip son hazırlıkları yap.'
   }
 
   const MEDICAL_LABELS: Record<string, string> = {
-    normal: '普通接生',
-    advanced: '高级接生',
-    luxury: '豪华接生'
+    normal: 'Olağan ebe yardımı',
+    advanced: 'Usta ebe yardımı',
+    luxury: 'Saray usulü yardım'
   }
 
   const AGEABLE_ITEMS = ['watermelon_wine', 'osmanthus_wine', 'peach_wine', 'jujube_wine', 'corn_wine', 'rice_vinegar']
 
-  // === 日历 ===
+  // === Takvim ===
 
   const SEASONS: Season[] = ['spring', 'summer', 'autumn', 'winter']
   const calendarSeason = ref<Season>(gameStore.season)
@@ -809,13 +808,13 @@
   const currentBenefit = computed(() => {
     switch (homeStore.farmhouseLevel) {
       case 0:
-        return '简陋的茅屋。'
+        return 'Mütevazı bir kulübe.'
       case 1:
-        return '厨房升级，烹饪恢复+20%。'
+        return 'Ocak büyüdü, pişen yemekler +%20 daha çok toparlar.'
       case 2:
-        return '宅院扩建，每晚额外恢复10%体力。'
+        return 'Ev genişledi, her gece ek %10 dayanıklılık yenilenir.'
       case 3:
-        return '地下酒窖开放，可陈酿美酒提升品质。'
+        return 'Yeraltı mahzeni açıldı, içkiler demlenip niteliği yükselir.'
       default:
         return ''
     }
@@ -837,19 +836,19 @@
   }
 
   const getChildName = (childId: number): string => {
-    return npcStore.children.find(c => c.id === childId)?.name ?? '孩子'
+    return npcStore.children.find(c => c.id === childId)?.name ?? 'Çocuk'
   }
 
-  // === 操作处理 ===
+  // === İşlemler ===
 
   const handleUpgradeFromModal = () => {
     const upgrade = homeStore.nextUpgrade
     if (!upgrade) return
     if (homeStore.upgradeFarmhouse()) {
-      addLog(`农舍升级为「${upgrade.name}」！${upgrade.description}`)
+      addLog(`Çiftlik evi “${upgrade.name}” düzeyine çıktı! ${upgrade.description}`)
       showUpgradeModal.value = false
     } else {
-      addLog('铜钱或材料不足，无法升级。')
+      addLog('Akçe ya da malzeme yetmediği için yükseltilemedi.')
     }
   }
 
@@ -860,7 +859,7 @@
       if (result.item) {
         inventoryStore.addItem(result.item)
         const itemDef = getItemById(result.item)
-        addLog(`获得了${itemDef?.name ?? result.item}！`)
+        addLog(`${itemDef?.name ?? result.item} kazanıldı!`)
       }
     }
   }
@@ -879,7 +878,7 @@
   const handlePregnancyCare = (action: 'gift' | 'companion' | 'supplement' | 'rest') => {
     const result = npcStore.performPregnancyCare(action)
     addLog(result.message)
-    if (result.careGain > 0) addLog(`安产率 +${result.careGain}%`)
+    if (result.careGain > 0) addLog(`Esenlik +${result.careGain}%`)
   }
 
   const handleChooseMedical = (plan: 'normal' | 'advanced' | 'luxury') => {
@@ -890,14 +889,14 @@
   const handleStartAgingFromModal = (itemId: string, quality: Quality) => {
     if (homeStore.startAging(itemId, quality)) {
       const name = getItemName(itemId)
-      addLog(`将${name}放入酒窖陈酿。`)
+      addLog(`${name} mahzende demlenmeye bırakıldı.`)
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.aging)
       if (tr.message) addLog(tr.message)
       if (tr.passedOut) handleEndDay()
     } else {
-      addLog('无法放入酒窖（已满或物品不可陈酿）。')
+      addLog('Mahzene konamadı (yer dolu ya da eşya uygun değil).')
     }
-    // 酒窖满或无剩余可陈酿物品时关闭弹窗
+    // Mahzen doluysa ya da elde demlenecek eşya kalmadıysa pencereyi kapat
     if (homeStore.cellarSlots.length >= 6 || ageableInInventory.value.length === 0) {
       showAgingModal.value = false
     }
@@ -908,7 +907,7 @@
     if (result) {
       inventoryStore.addItem(result.itemId, 1, result.quality)
       const name = getItemName(result.itemId)
-      addLog(`从酒窖取出了${name}。`)
+      addLog(`${name} mahzenden çıkarıldı.`)
     }
     removeAgingConfirmIdx.value = null
   }
