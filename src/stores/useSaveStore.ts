@@ -29,17 +29,17 @@ import { useFishPondStore } from './useFishPondStore'
 import { useTutorialStore } from './useTutorialStore'
 import { useHiddenNpcStore } from './useHiddenNpcStore'
 
-const SAVE_KEY_PREFIX = 'taoyuanxiang_save_'
+const SAVE_KEY_PREFIX = 'gakoy_save_'
 const MAX_SLOTS = 3
-const ENCRYPTION_KEY = 'taoyuanxiang_2024_secret'
-const SAVE_FILE_EXT = '.tyx'
+const ENCRYPTION_KEY = 'gakoy_2024_gizli'
+const SAVE_FILE_EXT = '.gky'
 
-/** 加密 JSON 字符串 */
+/** JSON metnini şifrele */
 const encrypt = (json: string): string => {
   return CryptoJS.AES.encrypt(json, ENCRYPTION_KEY).toString()
 }
 
-/** 解密为 JSON 字符串，失败返回 null */
+/** JSON metnine çöz, başarısızsa null dön */
 const decrypt = (cipher: string): string | null => {
   try {
     const bytes = CryptoJS.AES.decrypt(cipher, ENCRYPTION_KEY)
@@ -50,7 +50,7 @@ const decrypt = (cipher: string): string | null => {
   }
 }
 
-/** 解密并解析存档数据 */
+/** Kayıt verisini çöz ve ayrıştır */
 export const parseSaveData = (raw: string): Record<string, any> | null => {
   const decrypted = decrypt(raw)
   if (!decrypted) return null
@@ -73,10 +73,10 @@ export interface SaveSlotInfo {
 }
 
 export const useSaveStore = defineStore('save', () => {
-  /** 当前活跃存档槽位（-1 表示未分配） */
+  /** Etkin kayıt yuvası (-1 = atanmadı) */
   const activeSlot = ref(-1)
 
-  /** 获取所有存档槽位信息 */
+  /** Tüm kayıt yuvalarını getir */
   const getSlots = (): SaveSlotInfo[] => {
     const slots: SaveSlotInfo[] = []
     for (let i = 0; i < MAX_SLOTS; i++) {
@@ -108,7 +108,7 @@ export const useSaveStore = defineStore('save', () => {
     return slots
   }
 
-  /** 为新游戏分配一个空闲槽位，无空闲则返回 -1 */
+  /** Yeni oyun için boş bir yuva ata, yoksa -1 döndür */
   const assignNewSlot = (): number => {
     const slots = getSlots()
     const empty = slots.find(s => !s.exists)
@@ -117,7 +117,7 @@ export const useSaveStore = defineStore('save', () => {
     return slot
   }
 
-  /** 保存到指定槽位 */
+  /** Belirli yuvaya kaydet */
   const saveToSlot = (slot: number): boolean => {
     if (slot < 0 || slot >= MAX_SLOTS) return false
     try {
@@ -177,6 +177,7 @@ export const useSaveStore = defineStore('save', () => {
         hiddenNpc: hiddenNpcStore.serialize(),
         savedAt: new Date().toISOString()
       }
+
       localStorage.setItem(`${SAVE_KEY_PREFIX}${slot}`, encrypt(JSON.stringify(data)))
       activeSlot.value = slot
       return true
@@ -185,13 +186,13 @@ export const useSaveStore = defineStore('save', () => {
     }
   }
 
-  /** 自动存档到当前活跃槽位 */
+  /** Etkin yuvaya otomatik kaydet */
   const autoSave = (): boolean => {
     if (activeSlot.value < 0) return false
     return saveToSlot(activeSlot.value)
   }
 
-  /** 从指定槽位加载 */
+  /** Belirli yuvadan yükle */
   const loadFromSlot = (slot: number): boolean => {
     try {
       const raw = localStorage.getItem(`${SAVE_KEY_PREFIX}${slot}`)
@@ -199,6 +200,7 @@ export const useSaveStore = defineStore('save', () => {
 
       const data = parseSaveData(raw)
       if (!data) return false
+
       const gameStore = useGameStore()
       const playerStore = usePlayerStore()
       const inventoryStore = useInventoryStore()
@@ -252,6 +254,7 @@ export const useSaveStore = defineStore('save', () => {
       if (data.fishPond) fishPondStore.deserialize(data.fishPond)
       if (data.tutorial) tutorialStore.deserialize(data.tutorial)
       if (data.hiddenNpc) hiddenNpcStore.deserialize(data.hiddenNpc)
+
       activeSlot.value = slot
       return true
     } catch {
@@ -259,7 +262,7 @@ export const useSaveStore = defineStore('save', () => {
     }
   }
 
-  /** 删除指定槽位 */
+  /** Belirli yuvayı sil */
   const deleteSlot = (slot: number): boolean => {
     if (slot < 0 || slot >= MAX_SLOTS) return false
     localStorage.removeItem(`${SAVE_KEY_PREFIX}${slot}`)
@@ -267,16 +270,18 @@ export const useSaveStore = defineStore('save', () => {
     return true
   }
 
-  /** 导出存档为加密文件 */
+  /** Kaydı şifreli dosya olarak dışa aktar */
   const exportSave = (slot: number): boolean => {
     try {
       const raw = localStorage.getItem(`${SAVE_KEY_PREFIX}${slot}`)
       if (!raw) return false
+
       const blob = new Blob([raw], { type: 'application/octet-stream' })
       const info = getSlots().find(s => s.slot === slot)
       const name = info?.exists
-        ? `桃源乡_存档${slot + 1}_第${info.year}年${SEASON_NAMES[info.season as keyof typeof SEASON_NAMES] ?? info.season}第${info.day}天`
-        : `桃源乡_存档${slot + 1}`
+        ? `gaKoy_Kayit${slot + 1}_Yil${info.year}_${SEASON_NAMES[info.season as keyof typeof SEASON_NAMES] ?? info.season}_${info.day}.Gun`
+        : `gaKoy_Kayit${slot + 1}`
+
       saveAs(blob, `${name}${SAVE_FILE_EXT}`)
       return true
     } catch {
@@ -284,11 +289,10 @@ export const useSaveStore = defineStore('save', () => {
     }
   }
 
-  /** 从文件导入存档到指定槽位 */
+  /** Dosyadan belirli yuvaya kayıt içe aktar */
   const importSave = (slot: number, fileContent: string): boolean => {
     if (slot < 0 || slot >= MAX_SLOTS) return false
     try {
-      // 验证文件内容可解密
       const data = parseSaveData(fileContent)
       if (!data) return false
       localStorage.setItem(`${SAVE_KEY_PREFIX}${slot}`, fileContent)
@@ -298,5 +302,15 @@ export const useSaveStore = defineStore('save', () => {
     }
   }
 
-  return { activeSlot, getSlots, assignNewSlot, saveToSlot, autoSave, loadFromSlot, deleteSlot, exportSave, importSave }
+  return {
+    activeSlot,
+    getSlots,
+    assignNewSlot,
+    saveToSlot,
+    autoSave,
+    loadFromSlot,
+    deleteSlot,
+    exportSave,
+    importSave
+  }
 })
