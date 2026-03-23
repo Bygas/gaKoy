@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!-- Tab 切换按钮 -->
-    <h3 class="text-accent text-sm mb-3">桃源村</h3>
+    <!-- Sekme geçiş düğmeleri -->
+    <h3 class="text-accent text-sm mb-3">gaKöy</h3>
 
     <div class="flex space-x-1.5 mb-3">
       <Button
@@ -10,7 +10,7 @@
         :icon="Users"
         @click="activeTab = 'villager'"
       >
-        村民
+        Köylüler
       </Button>
       <Button
         class="flex-1 justify-center"
@@ -18,15 +18,15 @@
         :icon="Sparkles"
         @click="activeTab = 'spirit'"
       >
-        仙灵
+        Erenler
       </Button>
     </div>
 
-    <!-- 村民 Tab -->
+    <!-- Köylüler sekmesi -->
     <div v-if="activeTab === 'villager'">
       <p v-if="tutorialHint" class="text-[10px] text-muted/50 mb-2">{{ tutorialHint }}</p>
 
-      <!-- NPC 网格：移动端紧凑，桌面端详细 -->
+      <!-- Kişiler ağı: taşınırda dar, masaüstünde ayrıntılı -->
       <div class="grid grid-cols-4 md:grid-cols-3 gap-1.5 md:gap-2">
         <div
           v-for="npc in NPCS"
@@ -35,7 +35,7 @@
           :class="[npcAvailable(npc.id) ? 'cursor-pointer hover:bg-accent/5' : 'opacity-50', 'text-center md:text-left']"
           @click="handleSelectNpc(npc.id)"
         >
-          <!-- 移动端：紧凑布局 -->
+          <!-- Taşınır aygıt: sıkı düzen -->
           <div class="md:hidden">
             <p class="text-xs truncate" :class="levelColor(npcStore.getFriendshipLevel(npc.id))">
               {{ npc.name }}
@@ -55,14 +55,14 @@
               <Cake v-if="npcStore.isBirthday(npc.id)" :size="10" class="text-danger" />
             </div>
           </div>
-          <!-- 桌面端：显示更多信息 -->
+          <!-- Masaüstü: daha çok bilgi -->
           <div class="hidden md:block">
             <div class="flex items-center justify-between">
               <span class="text-xs" :class="levelColor(npcStore.getFriendshipLevel(npc.id))">
                 {{ npc.name }}
-                <span v-if="npcStore.getNpcState(npc.id)?.married" class="text-danger text-[10px] ml-0.5">[伴侣]</span>
-                <span v-else-if="npcStore.getNpcState(npc.id)?.dating" class="text-danger/70 text-[10px] ml-0.5">[约会中]</span>
-                <span v-else-if="npcStore.getNpcState(npc.id)?.zhiji" class="text-accent text-[10px] ml-0.5">[知己]</span>
+                <span v-if="npcStore.getNpcState(npc.id)?.married" class="text-danger text-[10px] ml-0.5">[Eş]</span>
+                <span v-else-if="npcStore.getNpcState(npc.id)?.dating" class="text-danger/70 text-[10px] ml-0.5">[Görüşülüyor]</span>
+                <span v-else-if="npcStore.getNpcState(npc.id)?.zhiji" class="text-accent text-[10px] ml-0.5">[Can Yoldaşı]</span>
               </span>
               <div class="flex items-center space-x-1">
                 <MessageCircle :size="10" :class="npcStore.getNpcState(npc.id)?.talkedToday ? 'text-muted/20' : 'text-success'" />
@@ -92,9 +92,9 @@
       </div>
     </div>
 
-    <!-- 仙灵 Tab -->
+    <!-- Erenler sekmesi -->
     <div v-if="activeTab === 'spirit'">
-      <!-- 已显现的仙灵 -->
+      <!-- Görünmüş erenler -->
       <template v-if="revealedHiddenNpcs.length > 0">
         <div class="grid grid-cols-4 md:grid-cols-3 gap-1.5 md:gap-2">
           <div
@@ -103,7 +103,7 @@
             class="border border-accent/20 rounded-xs p-1.5 md:p-2 cursor-pointer hover:bg-accent/5 text-center md:text-left"
             @click="selectedHiddenNpc = npc.id"
           >
-            <!-- 移动端：紧凑布局 -->
+            <!-- Taşınır aygıt: sıkı düzen -->
             <div class="md:hidden">
               <p class="text-xs text-accent truncate">{{ npc.name }}</p>
               <p
@@ -115,7 +115,7 @@
                 <span class="text-muted/50 ml-0.5">{{ hiddenNpcStore.getHiddenNpcState(npc.id)?.affinity ?? 0 }}</span>
               </p>
             </div>
-            <!-- 桌面端：显示更多信息 -->
+            <!-- Masaüstü: daha çok bilgi -->
             <div class="hidden md:block">
               <div class="flex items-center justify-between">
                 <span class="text-xs text-accent">{{ npc.name }}</span>
@@ -139,62 +139,62 @@
         </div>
       </template>
 
-      <!-- 传闻区（显示rumor/glimpse阶段的线索） -->
+      <!-- Duyum bölüğü (rumor/glimpse aşamasındaki izler) -->
       <div v-if="rumorHiddenNpcs.length > 0" :class="{ 'mt-4': revealedHiddenNpcs.length > 0 }">
-        <h3 class="text-muted/60 text-sm mb-2">传闻</h3>
+        <h3 class="text-muted/60 text-sm mb-2">Duyumlar</h3>
         <div class="flex flex-col space-y-1">
           <div v-for="npc in rumorHiddenNpcs" :key="npc.id" class="border border-muted/10 rounded-xs px-2 py-1 text-[10px] text-muted/50">
             <span v-if="hiddenNpcStore.getHiddenNpcState(npc.id)?.discoveryPhase === 'rumor'">
-              {{ getLastDiscoveryLog(npc.id) ?? '似乎有什么隐约的传说……' }}
+              {{ getLastDiscoveryLog(npc.id) ?? 'Sanki çok eski bir söylence dolaşıyor…' }}
             </span>
             <span v-else>
-              {{ getLastDiscoveryLog(npc.id) ?? '你曾看到某种异象……' }}
+              {{ getLastDiscoveryLog(npc.id) ?? 'Bir vakit garip bir belirti gördün…' }}
             </span>
           </div>
         </div>
       </div>
 
-      <!-- 仙灵空状态 -->
+      <!-- Erenler boş durumu -->
       <div
         v-if="revealedHiddenNpcs.length === 0 && rumorHiddenNpcs.length === 0"
         class="flex flex-col items-center justify-center py-12 text-muted"
       >
         <Sparkles :size="32" class="mb-2" />
-        <p class="text-xs">尚未发现任何仙灵的踪迹。</p>
+        <p class="text-xs">Henüz hiçbir erenin izine rastlamadın.</p>
       </div>
     </div>
 
-    <!-- 仙灵交互弹窗 -->
+    <!-- Eren etkileşim penceresi -->
     <Transition name="panel-fade">
       <HiddenNpcModal v-if="selectedHiddenNpc" :npc-id="selectedHiddenNpc" @close="selectedHiddenNpc = null" />
     </Transition>
 
-    <!-- NPC 交互弹窗 -->
+    <!-- Kişi etkileşim penceresi -->
     <Transition name="panel-fade">
       <div v-if="selectedNpc" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" @click.self="selectedNpc = null">
         <div class="game-panel max-w-lg w-full max-h-[80vh] overflow-y-auto">
-          <!-- 头部：名称 + 关闭 -->
+          <!-- Başlık: ad + kapat -->
           <div class="flex justify-between items-start mb-2">
             <div>
               <p class="text-sm text-accent">
                 {{ selectedNpcDef?.name }}
                 <span class="text-xs text-muted ml-0.5">{{ selectedNpcDef?.role }}</span>
                 <span v-if="selectedNpcState?.married" class="text-[10px] text-danger border border-danger/30 rounded-xs px-1 ml-1">
-                  伴侣
+                  Eş
                 </span>
                 <span v-else-if="selectedNpcState?.dating" class="text-[10px] text-danger/70 border border-danger/20 rounded-xs px-1 ml-1">
-                  约会中
+                  Görüşülüyor
                 </span>
                 <span v-else-if="selectedNpcState?.zhiji" class="text-[10px] text-accent border border-accent/30 rounded-xs px-1 ml-1">
-                  知己
+                  Can Yoldaşı
                 </span>
               </p>
               <p class="text-[10px] text-muted/60 mt-0.5">{{ selectedNpcDef?.personality }}</p>
             </div>
-            <Button @click="selectedNpc = null">关闭</Button>
+            <Button @click="selectedNpc = null">Kapat</Button>
           </div>
 
-          <!-- 好感度条 -->
+          <!-- Gönül bağı çubuğu -->
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between mb-1">
               <div class="flex items-center space-x-px">
@@ -212,14 +212,14 @@
                 <span class="text-muted/40">/{{ nextHeartThreshold }}</span>
               </span>
             </div>
-            <!-- 状态标签 -->
+            <!-- Durum damgaları -->
             <div class="flex items-center space-x-1.5 flex-wrap">
               <span
                 class="text-[10px] border rounded-xs px-1 flex items-center space-x-0.5"
                 :class="selectedNpcState?.talkedToday ? 'text-muted/40 border-muted/10' : 'text-success border-success/30'"
               >
                 <MessageCircle :size="10" />
-                <span>{{ selectedNpcState?.talkedToday ? '已聊天' : '可聊天' }}</span>
+                <span>{{ selectedNpcState?.talkedToday ? 'Bugün konuşuldu' : 'Konuşulabilir' }}</span>
               </span>
               <span class="text-[10px] border rounded-xs px-1 flex items-center space-x-0.5" :class="giftTagClass">
                 <Gift :size="10" />
@@ -230,17 +230,17 @@
                 class="text-[10px] border border-muted/10 rounded-xs px-1 text-muted flex items-center space-x-0.5"
               >
                 <Cake :size="10" />
-                <span>{{ SEASON_NAMES_MAP[selectedNpcDef.birthday.season] }}{{ selectedNpcDef.birthday.day }}日</span>
+                <span>{{ SEASON_NAMES_MAP[selectedNpcDef.birthday.season] }} {{ selectedNpcDef.birthday.day }}. gün</span>
               </span>
               <span v-if="npcStore.isBirthday(selectedNpc!)" class="text-[10px] text-danger border border-danger/30 rounded-xs px-1">
-                生日! 送礼×4
+                Doğum günü! Armağan ×4
               </span>
             </div>
           </div>
 
-          <!-- 已触发的心事件 -->
+          <!-- Tetiklenmiş gönül olayları -->
           <div v-if="selectedNpcState && selectedNpcState.triggeredHeartEvents.length > 0" class="mb-3">
-            <p class="text-xs text-muted mb-1">回忆：</p>
+            <p class="text-xs text-muted mb-1">Anılar:</p>
             <div class="flex space-x-1 flex-wrap">
               <span v-for="eid in selectedNpcState.triggeredHeartEvents" :key="eid" class="text-xs border border-accent/20 rounded-xs px-1">
                 {{ getHeartEventTitle(eid) }}
@@ -248,12 +248,12 @@
             </div>
           </div>
 
-          <!-- 对话 -->
+          <!-- Konuşma -->
           <div class="mb-3 flex space-y-2 flex-wrap">
             <Button class="w-full" :icon="MessageCircle" :disabled="selectedNpcState?.talkedToday" @click="handleTalk">
-              {{ selectedNpcState?.talkedToday ? '今天已聊过' : '聊天' }}
+              {{ selectedNpcState?.talkedToday ? 'Bugün konuşuldu' : 'Konuş' }}
             </Button>
-            <!-- 每日提示按钮 -->
+            <!-- Günlük öğüt düğmesi -->
             <Button
               v-if="selectedNpc && npcStore.hasDailyTip(selectedNpc)"
               class="w-full text-success border-success/40"
@@ -261,30 +261,30 @@
               :disabled="!!(selectedNpc && npcStore.isTipGivenToday(selectedNpc))"
               @click="handleDailyTip"
             >
-              {{ selectedNpc && npcStore.isTipGivenToday(selectedNpc) ? '今天已提示' : TIP_NPC_LABELS[selectedNpc as TipNpcId] }}
+              {{ selectedNpc && npcStore.isTipGivenToday(selectedNpc) ? 'Bugün öğüt verildi' : TIP_NPC_LABELS[selectedNpc as TipNpcId] }}
             </Button>
-            <!-- 离婚按钮 -->
+            <!-- Boşanma düğmesi -->
             <Button v-if="selectedNpcState?.married" class="w-full text-danger border-danger/40" @click="showDivorceConfirm = true">
-              休书
+              Ayrılık Kâğıdı
             </Button>
           </div>
 
-          <!-- 婚礼倒计时 -->
+          <!-- Düğün geri sayımı -->
           <p v-if="npcStore.weddingCountdown > 0 && npcStore.weddingNpcId === selectedNpc" class="text-xs text-accent mb-3">
-            婚礼将在 {{ npcStore.weddingCountdown }} 天后举行！
+            Düğün {{ npcStore.weddingCountdown }} gün sonra kurulacak!
           </p>
 
-          <!-- 恋爱/求婚面板 -->
+          <!-- Sevda / evlilik isteme bölüğü -->
           <div
             v-if="selectedNpcDef?.marriageable && !selectedNpcState?.married && selectedNpcDef.gender !== playerStore.gender"
             class="border border-danger/20 rounded-xs p-2 mb-3"
           >
             <p class="text-xs text-danger/80 mb-1.5 flex items-center space-x-1">
               <Heart :size="12" />
-              <span>姻缘</span>
+              <span>Sevda</span>
             </p>
             <template v-if="!selectedNpcState?.dating && !(npcStore.weddingCountdown > 0 && npcStore.weddingNpcId === selectedNpc)">
-              <p v-if="npcStore.npcStates.some(s => s.married)" class="text-[10px] text-muted/50 mb-1">你已有伴侣，无法再赠帕。</p>
+              <p v-if="npcStore.npcStates.some(s => s.married)" class="text-[10px] text-muted/50 mb-1">Zaten eşin var; artık mendil veremezsin.</p>
               <template v-else>
                 <div class="flex flex-col space-y-0.5 mb-1.5">
                   <span
@@ -293,8 +293,8 @@
                   >
                     <CircleCheck v-if="(selectedNpcState?.friendship ?? 0) >= 2000" :size="10" />
                     <Circle v-else :size="10" />
-                    <span>好感≥2000（8心）</span>
-                    <span class="text-muted/40">— 当前{{ selectedNpcState?.friendship ?? 0 }}</span>
+                    <span>Gönül bağı ≥ 2000 (8 gönül)</span>
+                    <span class="text-muted/40">— şimdi {{ selectedNpcState?.friendship ?? 0 }}</span>
                   </span>
                   <span
                     class="text-[10px] flex items-center space-x-1"
@@ -302,18 +302,18 @@
                   >
                     <CircleCheck v-if="inventoryStore.hasItem('silk_ribbon')" :size="10" />
                     <Circle v-else :size="10" />
-                    <span>持有丝帕</span>
-                    <span class="text-muted/40">— 绸缎庄有售</span>
+                    <span>İpek mendil var</span>
+                    <span class="text-muted/40">— Dokumacı’da satılır</span>
                   </span>
                 </div>
                 <Button class="w-full text-danger border-danger/40" :icon="Heart" :disabled="!canStartDating" @click="handleStartDating">
-                  赠帕（开始约会）
+                  Mendil Ver (Görüşme Başlasın)
                 </Button>
               </template>
             </template>
             <template v-else-if="selectedNpcState?.dating">
               <p class="text-[10px] text-danger/60 mb-1">
-                约会中
+                Görüşülüyor
                 <Heart :size="10" class="inline" />
               </p>
               <div class="flex flex-col space-y-0.5 mb-1.5">
@@ -323,8 +323,8 @@
                 >
                   <CircleCheck v-if="(selectedNpcState?.friendship ?? 0) >= 2500" :size="10" />
                   <Circle v-else :size="10" />
-                  好感≥2500（10心）
-                  <span class="text-muted/40">— 当前{{ selectedNpcState?.friendship ?? 0 }}</span>
+                  Gönül bağı ≥ 2500 (10 gönül)
+                  <span class="text-muted/40">— şimdi {{ selectedNpcState?.friendship ?? 0 }}</span>
                 </span>
                 <span
                   class="text-[10px] flex items-center space-x-0.5"
@@ -332,15 +332,15 @@
                 >
                   <CircleCheck v-if="inventoryStore.hasItem('jade_ring')" :size="10" />
                   <Circle v-else :size="10" />
-                  持有翡翠戒指
-                  <span class="text-muted/40">— 绸缎庄有售</span>
+                  Yeşim Yüzük var
+                  <span class="text-muted/40">— Dokumacı’da satılır</span>
                 </span>
               </div>
-              <Button class="w-full text-danger border-danger/40" :icon="Heart" :disabled="!canPropose" @click="handlePropose">求婚</Button>
+              <Button class="w-full text-danger border-danger/40" :icon="Heart" :disabled="!canPropose" @click="handlePropose">İste</Button>
             </template>
           </div>
 
-          <!-- 知己面板（同性可婚NPC，未约会/未结婚） -->
+          <!-- Can yoldaşı bölüğü (aynı cins evlenebilir kişi, görüşme/evlilik yoksa) -->
           <div
             v-if="
               selectedNpcDef?.marriageable &&
@@ -352,14 +352,14 @@
           >
             <p class="text-xs text-accent/80 mb-1.5 flex items-center space-x-1">
               <Heart :size="12" />
-              <span>知己</span>
+              <span>Can Yoldaşı</span>
             </p>
             <template v-if="selectedNpcState?.zhiji">
-              <p class="text-[10px] text-accent/60 mb-1">{{ selectedNpcDef.gender === 'male' ? '蓝颜知己' : '红颜知己' }} ♦</p>
-              <Button class="w-full text-danger border-danger/40" @click="showZhijiDissolveConfirm = true">断缘</Button>
+              <p class="text-[10px] text-accent/60 mb-1">{{ selectedNpcDef.gender === 'male' ? 'Gönül kardeşi' : 'Can yoldaşı' }} ♦</p>
+              <Button class="w-full text-danger border-danger/40" @click="showZhijiDissolveConfirm = true">Bağı Kes</Button>
             </template>
             <template v-else-if="npcStore.npcStates.some(s => s.zhiji)">
-              <p class="text-[10px] text-muted/50">你已有知己，无法再结缘。</p>
+              <p class="text-[10px] text-muted/50">Zaten bir can yoldaşın var; bir başkasıyla bağ kurulmaz.</p>
             </template>
             <template v-else>
               <div class="flex flex-col space-y-0.5 mb-1.5">
@@ -369,8 +369,8 @@
                 >
                   <CircleCheck v-if="(selectedNpcState?.friendship ?? 0) >= 2000" :size="10" />
                   <Circle v-else :size="10" />
-                  好感≥2000（8心）
-                  <span class="text-muted/40">— 当前{{ selectedNpcState?.friendship ?? 0 }}</span>
+                  Gönül bağı ≥ 2000 (8 gönül)
+                  <span class="text-muted/40">— şimdi {{ selectedNpcState?.friendship ?? 0 }}</span>
                 </span>
                 <span
                   class="text-[10px] flex items-center space-x-0.5"
@@ -378,56 +378,56 @@
                 >
                   <CircleCheck v-if="inventoryStore.hasItem('zhiji_jade')" :size="10" />
                   <Circle v-else :size="10" />
-                  持有知己玉佩
-                  <span class="text-muted/40">— 绸缎庄有售</span>
+                  Can yoldaşı yeşimi var
+                  <span class="text-muted/40">— Dokumacı’da satılır</span>
                 </span>
               </div>
               <Button class="w-full text-accent border-accent/40" :icon="Heart" :disabled="!canBecomeZhiji" @click="handleBecomeZhiji">
-                赠玉（结为知己）
+                Yeşim Ver (Can Yoldaşı Ol)
               </Button>
             </template>
           </div>
 
-          <!-- 断缘确认 -->
+          <!-- Bağ kesme onayı -->
           <div v-if="showZhijiDissolveConfirm" class="game-panel mb-3 border-accent/40">
-            <p class="text-xs text-danger mb-2">确定要与{{ selectedNpcDef?.name }}断缘吗？（花费10000文）</p>
+            <p class="text-xs text-danger mb-2">{{ selectedNpcDef?.name }} ile bağını kesmek istediğine emin misin? (10000 akçe)</p>
             <div class="flex space-x-2">
-              <Button class="text-danger" @click="handleDissolveZhiji">确认</Button>
-              <Button @click="showZhijiDissolveConfirm = false">取消</Button>
+              <Button class="text-danger" @click="handleDissolveZhiji">Onayla</Button>
+              <Button @click="showZhijiDissolveConfirm = false">Vazgeç</Button>
             </div>
           </div>
 
-          <!-- 离婚确认 -->
+          <!-- Boşanma onayı -->
           <div v-if="showDivorceConfirm" class="game-panel mb-3 border-danger/40">
-            <p class="text-xs text-danger mb-2">确定要与{{ selectedNpcDef?.name }}和离吗？（花费30000文）</p>
+            <p class="text-xs text-danger mb-2">{{ selectedNpcDef?.name }} ile ayrılmak istediğine emin misin? (30000 akçe)</p>
             <div class="flex space-x-2">
-              <Button class="text-danger" @click="handleDivorce">确认</Button>
-              <Button @click="showDivorceConfirm = false">取消</Button>
+              <Button class="text-danger" @click="handleDivorce">Onayla</Button>
+              <Button @click="showDivorceConfirm = false">Vazgeç</Button>
             </div>
           </div>
 
-          <!-- 对话内容 -->
+          <!-- Konuşma metni -->
           <div v-if="dialogueText" class="game-panel mb-3 text-xs">
             <p class="text-accent mb-1">「{{ selectedNpcDef?.name }}」</p>
             <p>{{ dialogueText }}</p>
           </div>
 
-          <!-- 送礼 -->
+          <!-- Armağan verme -->
           <div>
             <p class="text-xs text-muted mb-2">
-              送礼（选择背包中的物品）
-              <span v-if="npcStore.isBirthday(selectedNpc!)" class="text-danger">— 生日加成中!</span>
+              Armağan ver (heybendeki eşyaları seç)
+              <span v-if="npcStore.isBirthday(selectedNpc!)" class="text-danger">— doğum günü artısı var!</span>
             </p>
             <template v-if="selectedNpcState?.giftedToday">
               <div class="flex flex-col items-center justify-center py-6 text-muted">
                 <Gift :size="32" class="mb-2" />
-                <p class="text-xs">今天已送过礼物了。</p>
+                <p class="text-xs">Bugün zaten armağan verdin.</p>
               </div>
             </template>
             <template v-else-if="(selectedNpcState?.giftsThisWeek ?? 0) >= 2">
               <div class="flex flex-col items-center justify-center py-6 text-muted">
                 <Gift :size="32" class="mb-2" />
-                <p class="text-xs">本周已送过2次礼物了。</p>
+                <p class="text-xs">Bu hafta iki kez armağan verildi.</p>
               </div>
             </template>
             <template v-else>
@@ -455,12 +455,12 @@
               </div>
               <div v-if="giftableItems.length === 0" class="flex flex-col items-center justify-center py-6 text-muted">
                 <Package :size="32" class="mb-2" />
-                <p class="text-xs">背包为空</p>
+                <p class="text-xs">Heybe boş</p>
               </div>
             </template>
           </div>
 
-          <!-- 送礼物品详情弹窗 -->
+          <!-- Armağan eşya ayrıntı penceresi -->
           <Transition name="panel-fade">
             <div
               v-if="activeGiftItem && activeGiftDef"
@@ -479,11 +479,11 @@
                 </div>
                 <div class="border border-accent/10 rounded-xs p-2 mb-2">
                   <div class="flex items-center justify-between">
-                    <span class="text-xs text-muted">数量</span>
+                    <span class="text-xs text-muted">Sayı</span>
                     <span class="text-xs">&times;{{ activeGiftItem.quantity }}</span>
                   </div>
                   <div v-if="activeGiftItem.quality !== 'normal'" class="flex items-center justify-between mt-0.5">
-                    <span class="text-xs text-muted">品质</span>
+                    <span class="text-xs text-muted">Nitelik</span>
                     <span class="text-xs" :class="qualityTextClass(activeGiftItem.quality)">
                       {{ QUALITY_NAMES[activeGiftItem.quality] }}
                     </span>
@@ -491,7 +491,7 @@
                 </div>
                 <div v-if="activeGiftReaction" class="border border-accent/10 rounded-xs p-2 mb-2">
                   <div class="flex items-center justify-between">
-                    <span class="text-xs text-muted">{{ selectedNpcDef?.name }}觉得</span>
+                    <span class="text-xs text-muted">{{ selectedNpcDef?.name }} bunu</span>
                     <span class="text-xs" :class="activeGiftReaction.className">
                       {{ activeGiftReaction.text }}
                     </span>
@@ -499,7 +499,7 @@
                 </div>
                 <div class="flex flex-col space-y-1.5">
                   <Button :icon="Gift" class="w-full justify-center" @click="handleGift(activeGiftItem!.itemId, activeGiftItem!.quality)">
-                    赠送给{{ selectedNpcDef?.name }}
+                    {{ selectedNpcDef?.name }}’a ver
                   </Button>
                 </div>
               </div>
@@ -563,7 +563,7 @@
 
   const tutorialHint = computed(() => {
     if (!tutorialStore.enabled || gameStore.year > 1) return null
-    if (npcStore.npcStates.every(n => n.friendship === 0)) return '点击村民头像可以聊天和送礼，经常互动能增进友好度。'
+    if (npcStore.npcStates.every(n => n.friendship === 0)) return 'Köylülerin yüzüne dokununca konuşabilir, armağan verebilirsin; sık görüşmek gönül bağını artırır.'
     return null
   })
 
@@ -614,14 +614,14 @@
     return 'text-accent'
   }
 
-  /** 弹窗中下一颗心的阈值 */
+  /** Pencerede bir sonraki gönül eşiği */
   const nextHeartThreshold = computed(() => {
     const f = selectedNpcState.value?.friendship ?? 0
     const hearts = Math.min(10, Math.floor(f / 250))
     return hearts >= 10 ? 2500 : (hearts + 1) * 250
   })
 
-  /** 弹窗中送礼标签样式 */
+  /** Penceredeki armağan damgası biçemi */
   const giftTagClass = computed(() => {
     const state = selectedNpcState.value
     if ((state?.giftsThisWeek ?? 0) >= 2) return 'text-muted/40 border-muted/10'
@@ -629,12 +629,12 @@
     return 'text-accent border-accent/30'
   })
 
-  /** 弹窗中送礼标签文字 */
+  /** Penceredeki armağan damgası yazısı */
   const giftTagText = computed(() => {
     const state = selectedNpcState.value
-    if ((state?.giftsThisWeek ?? 0) >= 2) return '本周已送满'
-    if (state?.giftedToday) return '今日已送'
-    return `可送礼 ${state?.giftsThisWeek ?? 0}/2`
+    if ((state?.giftsThisWeek ?? 0) >= 2) return 'Bu hafta doldu'
+    if (state?.giftedToday) return 'Bugün verildi'
+    return `Armağan hakkı ${(state?.giftsThisWeek ?? 0)}/2`
   })
 
   const giftableItems = computed(() => {
@@ -646,7 +646,7 @@
     return [...filtered].sort((a, b) => GIFT_PREF_ORDER[getGiftPreference(a.itemId)] - GIFT_PREF_ORDER[getGiftPreference(b.itemId)])
   })
 
-  /** 是否可以赠帕开始约会 */
+  /** Mendil verip görüşmeye başlanabilir mi */
   const canStartDating = computed(() => {
     if (!selectedNpcDef.value?.marriageable) return false
     if (selectedNpcDef.value.gender === playerStore.gender) return false
@@ -658,7 +658,7 @@
     return true
   })
 
-  /** 是否可以求婚 */
+  /** Evlilik istenebilir mi */
   const canPropose = computed(() => {
     if (!selectedNpcDef.value?.marriageable) return false
     if (selectedNpcDef.value.gender === playerStore.gender) return false
@@ -671,7 +671,7 @@
     return true
   })
 
-  /** 是否可以结为知己 */
+  /** Can yoldaşı olunabilir mi */
   const canBecomeZhiji = computed(() => {
     if (!selectedNpcDef.value?.marriageable) return false
     if (selectedNpcDef.value.gender !== playerStore.gender) return false
@@ -682,7 +682,7 @@
     return true
   })
 
-  const SEASON_NAMES_MAP: Record<string, string> = { spring: '春', summer: '夏', autumn: '秋', winter: '冬' }
+  const SEASON_NAMES_MAP: Record<string, string> = { spring: 'İlkbahar', summer: 'Yaz', autumn: 'Güz', winter: 'Kış' }
 
   const qualityTextClass = (q: Quality, fallback = ''): string => {
     if (q === 'fine') return 'text-quality-fine'
@@ -692,13 +692,13 @@
   }
 
   const QUALITY_NAMES: Record<Quality, string> = {
-    normal: '普通',
-    fine: '优良',
-    excellent: '精品',
-    supreme: '极品'
+    normal: 'Sade',
+    fine: 'İyi',
+    excellent: 'Seçkin',
+    supreme: 'Ulu'
   }
 
-  // === 送礼偏好 ===
+  // === Armağan beğenisi ===
 
   type GiftPreference = 'loved' | 'liked' | 'hated' | 'neutral'
 
@@ -712,9 +712,9 @@
   }
 
   const GIFT_PREF_LABELS: Record<GiftPreference, string> = {
-    loved: '最爱',
-    liked: '喜欢',
-    hated: '讨厌',
+    loved: 'En sevdiği',
+    liked: 'Sever',
+    hated: 'Sevmez',
     neutral: ''
   }
   const GIFT_PREF_CLASS: Record<GiftPreference, string> = {
@@ -730,10 +730,10 @@
     hated: 3
   }
   const GIFT_REACTION_TEXT: Record<GiftPreference, string> = {
-    loved: '非常喜欢',
-    liked: '还不错',
-    hated: '讨厌',
-    neutral: '一般'
+    loved: 'çok sevdi',
+    liked: 'iyi buldu',
+    hated: 'beğenmedi',
+    neutral: 'olağan buldu'
   }
 
   const activeGiftReaction = computed(() => {
@@ -762,14 +762,14 @@
   const handleTalk = () => {
     if (!selectedNpc.value) return
     if (gameStore.isPastBedtime) {
-      addLog('太晚了，人家都睡了。')
+      addLog('Vakit çok geçti, herkes uykuya vardı.')
       handleEndDay()
       return
     }
     const result = npcStore.talkTo(selectedNpc.value)
     if (result) {
       dialogueText.value = result.message
-      addLog(`与${selectedNpcDef.value?.name}聊天。(+${result.friendshipGain}好感)`)
+      addLog(`${selectedNpcDef.value?.name} ile konuştun. (+${result.friendshipGain} gönül bağı)`)
 
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.talk)
       if (tr.message) addLog(tr.message)
@@ -778,7 +778,7 @@
         return
       }
 
-      // 检查心事件触发
+      // Gönül olayı denetimi
       const heartEvent = npcStore.checkHeartEvent(selectedNpc.value)
       if (heartEvent) {
         triggerHeartEvent(heartEvent)
@@ -791,7 +791,7 @@
     const tip = npcStore.getDailyTip(selectedNpc.value)
     if (tip) {
       dialogueText.value = tip
-      addLog(`${selectedNpcDef.value?.name}告诉了你一些有用的信息。`)
+      addLog(`${selectedNpcDef.value?.name} sana işe yarar bir öğüt verdi.`)
     }
   }
 
@@ -805,17 +805,17 @@
       const itemName = getItemById(itemId)?.name ?? itemId
       const npcName = selectedNpcDef.value?.name
       if (result.gain > 0) {
-        addLog(`送给${npcName}${itemName}，${npcName}觉得${result.reaction}。(+${result.gain}好感)`)
+        addLog(`${npcName}'a ${itemName} verdin, ${npcName} bunu ${result.reaction} buldu. (+${result.gain} gönül bağı)`)
       } else if (result.gain < 0) {
-        addLog(`送给${npcName}${itemName}，${npcName}${result.reaction}这个……(${result.gain}好感)`)
+        addLog(`${npcName}'a ${itemName} verdin, ${npcName} bunu ${result.reaction}… (${result.gain} gönül bağı)`)
       } else {
-        addLog(`送给${npcName}${itemName}，${npcName}觉得${result.reaction}。`)
+        addLog(`${npcName}'a ${itemName} verdin, ${npcName} bunu ${result.reaction} buldu.`)
       }
 
-      // 关闭送礼弹窗
+      // Armağan penceresini kapa
       activeGiftKey.value = null
 
-      // 送礼后也检查心事件
+      // Armağandan sonra da gönül olayı denetimi
       const heartEvent = npcStore.checkHeartEvent(selectedNpc.value)
       if (heartEvent) {
         triggerHeartEvent(heartEvent)
