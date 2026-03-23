@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 标签切换 -->
+    <!-- Sekme geçişi -->
     <div class="flex space-x-1.5 mb-3">
       <Button
         class="flex-1 justify-center"
@@ -8,7 +8,7 @@
         :icon="Sprout"
         @click="farmTab = 'field'"
       >
-        田庄
+        Tarla
       </Button>
       <Button
         class="flex-1 justify-center"
@@ -16,52 +16,52 @@
         :icon="TreeDeciduous"
         @click="farmTab = 'tree'"
       >
-        林木
+        Ağaçlık
       </Button>
     </div>
 
-    <!-- 田庄标签 -->
+    <!-- Tarla sekmesi -->
     <div v-if="farmTab === 'field'">
       <div class="flex items-center justify-between mb-1">
         <div class="flex items-center space-x-1.5 text-sm text-accent">
           <Sprout :size="14" />
-          <span>田庄 ({{ farmStore.farmSize }}×{{ farmStore.farmSize }})</span>
+          <span>Tarla ({{ farmStore.farmSize }}×{{ farmStore.farmSize }})</span>
         </div>
         <div class="text-xs text-muted flex space-x-3">
           <span v-if="farmStore.scarecrows > 0" class="inline-flex items-center space-x-0.5">
             <Bird :size="12" />
-            <span>稻草人 {{ farmStore.scarecrows }}</span>
+            <span>Korkuluk {{ farmStore.scarecrows }}</span>
           </span>
           <span v-else class="text-danger/80 inline-flex items-center space-x-0.5">
             <Bird :size="12" />
-            <span>无稻草人</span>
+            <span>Korkuluk yok</span>
           </span>
           <span v-if="farmStore.lightningRods > 0" class="inline-flex items-center space-x-0.5">
             <Zap :size="12" />
-            <span>避雷针 {{ farmStore.lightningRods }}</span>
+            <span>Yıldırım Çubuğu {{ farmStore.lightningRods }}</span>
           </span>
         </div>
       </div>
 
-      <!-- 新手引导 -->
+      <!-- Yeni başlayan rehberi -->
       <p v-if="tutorialHint" class="text-[10px] text-muted/50 mb-2">{{ tutorialHint }}</p>
 
-      <!-- 批量操作入口 -->
+      <!-- Toplu işlem girişi -->
       <div class="mb-3">
-        <Button class="w-full md:w-auto" :icon-size="12" :icon="Wrench" @click="showBatchActions = true">一键操作</Button>
+        <Button class="w-full md:w-auto" :icon-size="12" :icon="Wrench" @click="showBatchActions = true">Toplu İşlem</Button>
       </div>
 
-      <!-- 田庄特殊功能 -->
+      <!-- Çiftlik özel işlevleri -->
       <div v-if="gameStore.farmMapType === 'riverland' && gameStore.creekCatch.length > 0" class="mb-3">
         <div
           class="flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
           @click="handleCollectCreekCatch"
         >
           <div>
-            <p class="text-xs text-accent">溪流鱼获</p>
-            <p class="text-[10px] text-muted">溪流中捕获了{{ gameStore.creekCatch.length }}条鱼</p>
+            <p class="text-xs text-accent">Dere Balığı</p>
+            <p class="text-[10px] text-muted">Derede {{ gameStore.creekCatch.length }} balık tutuldu</p>
           </div>
-          <span class="text-xs text-success">收取</span>
+          <span class="text-xs text-success">Topla</span>
         </div>
       </div>
 
@@ -71,14 +71,14 @@
           @click="handleMineSurfaceOre"
         >
           <div>
-            <p class="text-xs text-accent">地表矿脉</p>
-            <p class="text-[10px] text-muted">发现{{ surfaceOreName }}&times;{{ gameStore.surfaceOrePatch.quantity }}</p>
+            <p class="text-xs text-accent">Yerüstü Madeni</p>
+            <p class="text-[10px] text-muted">{{ surfaceOreName }}&times;{{ gameStore.surfaceOrePatch.quantity }} bulundu</p>
           </div>
-          <span class="text-xs text-success">开采（-5体力）</span>
+          <span class="text-xs text-success">Kaz (-5 dayanıklılık)</span>
         </div>
       </div>
 
-      <!-- 批量操作弹窗 -->
+      <!-- Toplu işlem penceresi -->
       <Transition name="panel-fade">
         <div
           v-if="showBatchActions"
@@ -89,28 +89,28 @@
             <button class="absolute top-2 right-2 text-muted hover:text-text" @click="showBatchActions = false">
               <X :size="14" />
             </button>
-            <p class="text-accent text-sm mb-2">一键操作</p>
+            <p class="text-accent text-sm mb-2">Toplu İşlem</p>
             <div class="flex flex-col space-y-1.5">
               <button class="btn text-xs w-full justify-between" :disabled="unwateredCount === 0" @click="doBatchAction('water')">
                 <span class="flex items-center space-x-1">
                   <Droplets :size="12" />
-                  <span>一键浇水</span>
+                  <span>Hepsini Sula</span>
                 </span>
-                <span class="text-muted">{{ unwateredCount }} 块</span>
+                <span class="text-muted">{{ unwateredCount }} parça</span>
               </button>
               <button class="btn text-xs w-full justify-between" :disabled="wastelandCount === 0" @click="doBatchAction('till')">
                 <span class="flex items-center space-x-1">
                   <Shovel :size="12" />
-                  <span>一键开垦</span>
+                  <span>Hepsini Belle</span>
                 </span>
-                <span class="text-muted">{{ wastelandCount }} 块</span>
+                <span class="text-muted">{{ wastelandCount }} parça</span>
               </button>
               <button class="btn text-xs w-full justify-between" :disabled="harvestableCount === 0" @click="doBatchAction('harvest')">
                 <span class="flex items-center space-x-1">
                   <Wheat :size="12" />
-                  <span>一键收获</span>
+                  <span>Hepsini Biç</span>
                 </span>
-                <span class="text-muted">{{ harvestableCount }} 块</span>
+                <span class="text-muted">{{ harvestableCount }} parça</span>
               </button>
               <button
                 class="btn text-xs w-full justify-between"
@@ -119,9 +119,9 @@
               >
                 <span class="flex items-center space-x-1">
                   <Sprout :size="12" />
-                  <span>一键种植</span>
+                  <span>Hepsini Ek</span>
                 </span>
-                <span class="text-muted">{{ tilledEmptyCount }} 块</span>
+                <span class="text-muted">{{ tilledEmptyCount }} parça</span>
               </button>
               <button
                 class="btn text-xs w-full justify-between"
@@ -130,30 +130,30 @@
               >
                 <span class="flex items-center space-x-1">
                   <CirclePlus :size="12" />
-                  <span>一键施肥</span>
+                  <span>Hepsini Gübrele</span>
                 </span>
-                <span class="text-muted">{{ fertilizableCount }} 块</span>
+                <span class="text-muted">{{ fertilizableCount }} parça</span>
               </button>
               <button class="btn text-xs w-full justify-between" :disabled="infestedCount === 0" @click="doBatchAction('curePest')">
                 <span class="flex items-center space-x-1">
                   <Bug :size="12" />
-                  <span>一键除虫</span>
+                  <span>Hepsini İlaçla</span>
                 </span>
-                <span class="text-muted">{{ infestedCount }} 块</span>
+                <span class="text-muted">{{ infestedCount }} parça</span>
               </button>
               <button class="btn text-xs w-full justify-between" :disabled="weedyCount === 0" @click="doBatchAction('clearWeed')">
                 <span class="flex items-center space-x-1">
                   <Leaf :size="12" />
-                  <span>一键除草</span>
+                  <span>Hepsini Ayıkla</span>
                 </span>
-                <span class="text-muted">{{ weedyCount }} 块</span>
+                <span class="text-muted">{{ weedyCount }} parça</span>
               </button>
             </div>
           </div>
         </div>
       </Transition>
 
-      <!-- 农场网格 -->
+      <!-- Tarla ızgarası -->
       <div class="border border-accent/20 rounded-xs p-2">
         <div class="grid gap-0.5 max-w-full md:max-w-md" :style="{ gridTemplateColumns: `repeat(${farmStore.farmSize}, minmax(0, 1fr))` }">
           <button
@@ -176,7 +176,7 @@
             <div class="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
               <component :is="getPlotDisplay(plot).icon" :size="14" />
               <span v-if="plot.cropId" class="text-[10px] opacity-60 truncate max-w-full px-0.5 mt-1">{{ getCropName(plot.cropId) }}</span>
-              <!-- 角标 -->
+              <!-- Köşe işaretleri -->
               <Droplets
                 v-if="(plot.state === 'planted' || plot.state === 'growing') && !plot.watered"
                 :size="8"
@@ -196,7 +196,7 @@
         </div>
       </div>
 
-      <!-- 地块操作弹窗 -->
+      <!-- Tarla işlem penceresi -->
       <Transition name="panel-fade">
         <div
           v-if="activePlot"
@@ -207,17 +207,17 @@
             <button class="absolute top-2 right-2 text-muted hover:text-text" @click="activePlotId = null">
               <X :size="14" />
             </button>
-            <p class="text-accent text-sm mb-2">地块 #{{ activePlot.id + 1 }}</p>
+            <p class="text-accent text-sm mb-2">Tarla Parçası #{{ activePlot.id + 1 }}</p>
             <p class="text-xs text-muted mb-2">
               {{ plotStateLabel }}
-              <template v-if="activePlot.giantCropGroup !== null">（巨型）</template>
+              <template v-if="activePlot.giantCropGroup !== null">（Dev）</template>
               <template v-if="activePlot.cropId">
-                · {{ activePlot.giantCropGroup !== null ? '巨型' : '' }}{{ getCropName(activePlot.cropId) }}
-                <span v-if="plotCropRegrowth" class="text-success">[多茬 {{ activePlot.harvestCount }}/{{ plotCropMaxHarvests }}]</span>
+                · {{ activePlot.giantCropGroup !== null ? 'Dev ' : '' }}{{ getCropName(activePlot.cropId) }}
+                <span v-if="plotCropRegrowth" class="text-success">[Yeniden ürün {{ activePlot.harvestCount }}/{{ plotCropMaxHarvests }}]</span>
               </template>
               <template v-if="activePlot.cropId && activePlot.giantCropGroup === null">
                 ·
-                <span :class="activePlot.watered ? 'text-water' : 'text-danger'">{{ activePlot.watered ? '已浇水' : '未浇水' }}</span>
+                <span :class="activePlot.watered ? 'text-water' : 'text-danger'">{{ activePlot.watered ? 'Sulandı' : 'Su bekliyor' }}</span>
               </template>
               <template v-if="activePlot.fertilizer">
                 ·
@@ -225,20 +225,20 @@
               </template>
               <template v-if="hasSprinkler(activePlot.id)">
                 ·
-                <span class="text-water">洒水器</span>
+                <span class="text-water">Fıskiye</span>
               </template>
               <template v-if="activePlot.infested">
                 ·
-                <span class="text-danger">虫害({{ activePlot.infestedDays }}天)</span>
+                <span class="text-danger">Haşere({{ activePlot.infestedDays }} gün)</span>
               </template>
               <template v-if="activePlot.weedy">
                 ·
-                <span class="text-success">杂草({{ activePlot.weedyDays }}天)</span>
+                <span class="text-success">Yabani ot({{ activePlot.weedyDays }} gün)</span>
               </template>
             </p>
-            <!-- 生长进度条 -->
+            <!-- Büyüme ilerleme çubuğu -->
             <div v-if="activePlot.cropId && activePlot.state !== 'harvestable'" class="flex items-center space-x-2 mb-2">
-              <span class="text-xs text-muted shrink-0">生长</span>
+              <span class="text-xs text-muted shrink-0">Büyüme</span>
               <div class="flex-1 h-1 bg-bg rounded-xs border border-accent/10">
                 <div
                   class="h-full rounded-xs bg-success transition-all"
@@ -246,12 +246,12 @@
                 />
               </div>
               <span class="text-xs text-muted whitespace-nowrap">
-                {{ Number(activePlot.growthDays.toFixed(2)) }}/{{ plotCropGrowthDays }}天
+                {{ Number(activePlot.growthDays.toFixed(2)) }}/{{ plotCropGrowthDays }} gün
               </span>
             </div>
-            <p v-if="activePlot.giantCropGroup !== null" class="text-xs text-accent mb-2">收获可获得大量作物！</p>
+            <p v-if="activePlot.giantCropGroup !== null" class="text-xs text-accent mb-2">Biçildiğinde çok sayıda ürün verir!</p>
 
-            <!-- 操作列表 -->
+            <!-- İşlem listesi -->
             <div class="flex flex-col space-y-1 max-h-60 overflow-y-auto">
               <Button
                 v-if="activePlot.state === 'wasteland'"
@@ -260,9 +260,9 @@
                 :icon="Shovel"
                 @click="doTill"
               >
-                开垦
+                Belle
               </Button>
-              <Button v-if="canWater" class="w-full justify-center shrink-0" :icon-size="12" :icon="Droplets" @click="doWater">浇水</Button>
+              <Button v-if="canWater" class="w-full justify-center shrink-0" :icon-size="12" :icon="Droplets" @click="doWater">Sula</Button>
               <Button
                 v-if="activePlot.infested"
                 class="w-full justify-center shrink-0 !bg-danger !text-text"
@@ -270,7 +270,7 @@
                 :icon="Bug"
                 @click="doCurePest"
               >
-                除虫
+                Haşereyi Temizle
               </Button>
               <Button
                 v-if="activePlot.weedy"
@@ -279,7 +279,7 @@
                 :icon="Leaf"
                 @click="doClearWeed"
               >
-                除草
+                Otu Temizle
               </Button>
               <Button
                 v-if="activePlot.state === 'harvestable'"
@@ -288,7 +288,7 @@
                 :icon="Wheat"
                 @click="doHarvest"
               >
-                收获
+                Biç
               </Button>
               <Button
                 v-if="activePlot.state === 'planted' || activePlot.state === 'growing' || activePlot.state === 'harvestable'"
@@ -297,10 +297,10 @@
                 :icon="Trash2"
                 @click="doRemoveCrop"
               >
-                铲除
+                Sök
               </Button>
               <template v-if="activePlot.state === 'tilled' && plantableSeeds.length > 0">
-                <Divider label="种植" />
+                <Divider label="Ekim" />
                 <button
                   v-for="seed in plantableSeeds"
                   :key="seed.cropId"
@@ -309,13 +309,13 @@
                 >
                   <span :class="seed.colorClass">
                     {{ seed.name }}
-                    <span v-if="seed.regrowth" class="text-success ml-1">[多茬]</span>
+                    <span v-if="seed.regrowth" class="text-success ml-1">[Yeniden ürün]</span>
                   </span>
                   <span class="text-muted">×{{ seed.count }}</span>
                 </button>
               </template>
               <template v-if="activePlot.state === 'tilled' && plantableBreedingSeeds.length > 0">
-                <Divider label="育种种子" class="!my-2" />
+                <Divider label="Melez Tohumları" class="!my-2" />
                 <button
                   v-for="seed in plantableBreedingSeeds"
                   :key="seed.genetics.id"
@@ -328,18 +328,18 @@
                   </span>
                 </button>
               </template>
-              <!-- 种子空状态 -->
+              <!-- Tohum boş durumu -->
               <div
                 v-if="activePlot.state === 'tilled' && plantableSeeds.length === 0 && plantableBreedingSeeds.length === 0"
                 class="flex flex-col items-center py-4"
               >
                 <Sprout :size="32" class="text-muted/30" />
-                <p class="text-xs text-muted mt-2">背包中没有当季可种植的种子</p>
-                <Button v-if="isWanwupuOpen" class="mt-2" :icon-size="12" :icon="Store" @click="goToShop">前往商店购买</Button>
+                <p class="text-xs text-muted mt-2">Çantada bu mevsime uygun tohum yok</p>
+                <Button v-if="isWanwupuOpen" class="mt-2" :icon-size="12" :icon="Store" @click="goToShop">Dükkâna Git</Button>
                 <p v-else class="text-[10px] text-muted/60 mt-1">{{ wanwupuClosedReason }}</p>
               </div>
               <template v-if="canFertilize && fertilizerItems.length > 0">
-                <Divider label="施肥" />
+                <Divider label="Gübreleme" />
                 <button
                   v-for="f in fertilizerItems"
                   :key="f.itemId"
@@ -351,7 +351,7 @@
                 </button>
               </template>
               <template v-if="!hasSprinkler(activePlot.id) && sprinklerItems.length > 0">
-                <Divider label="洒水器" />
+                <Divider label="Fıskiye" />
                 <button
                   v-for="s in sprinklerItems"
                   :key="s.itemId"
@@ -362,13 +362,13 @@
                   <span class="text-muted">×{{ s.count }}</span>
                 </button>
               </template>
-              <Button v-if="hasSprinkler(activePlot.id)" class="mr-1 justify-center shrink-0" @click="doRemoveSprinkler">拆除洒水器</Button>
+              <Button v-if="hasSprinkler(activePlot.id)" class="mr-1 justify-center shrink-0" @click="doRemoveSprinkler">Fıskiyeyi Sök</Button>
             </div>
           </div>
         </div>
       </Transition>
 
-      <!-- 一键种植弹窗 -->
+      <!-- Toplu ekim penceresi -->
       <Transition name="panel-fade">
         <div
           v-if="showBatchPlant"
@@ -379,8 +379,8 @@
             <button class="absolute top-2 right-2 text-muted hover:text-text" @click="showBatchPlant = false">
               <X :size="14" />
             </button>
-            <p class="text-accent text-sm mb-2">一键种植</p>
-            <p class="text-xs text-muted mb-2">空耕地 {{ tilledEmptyCount }} 块，选择要种植的种子：</p>
+            <p class="text-accent text-sm mb-2">Toplu Ekim</p>
+            <p class="text-xs text-muted mb-2">Boş sürülmüş alan {{ tilledEmptyCount }} parça, ekilecek tohumu seç:</p>
             <div class="flex flex-col space-y-1 max-h-40 overflow-y-auto">
               <button
                 v-for="seed in plantableSeeds"
@@ -390,13 +390,13 @@
               >
                 <span :class="seed.colorClass">
                   {{ seed.name }}
-                  <span v-if="seed.regrowth" class="text-success ml-1">[多茬]</span>
+                  <span v-if="seed.regrowth" class="text-success ml-1">[Yeniden ürün]</span>
                 </span>
                 <span class="text-muted">×{{ seed.count }}</span>
               </button>
             </div>
             <template v-if="batchBreedingSeedGroups.length > 0">
-              <Divider label="育种种子" class="!my-2" />
+              <Divider label="Melez Tohumları" class="!my-2" />
               <div class="flex flex-col space-y-1 max-h-40 overflow-y-auto">
                 <button
                   v-for="group in batchBreedingSeedGroups"
@@ -414,15 +414,15 @@
             </template>
             <div v-if="plantableSeeds.length === 0 && batchBreedingSeedGroups.length === 0" class="flex flex-col items-center py-4">
               <Sprout :size="32" class="text-muted/30" />
-              <p class="text-xs text-muted mt-2">没有当季可种植的种子</p>
-              <Button v-if="isWanwupuOpen" class="mt-2" :icon-size="12" :icon="Store" @click="goToShop">前往商店购买</Button>
+              <p class="text-xs text-muted mt-2">Bu mevsimde ekilecek tohum yok</p>
+              <Button v-if="isWanwupuOpen" class="mt-2" :icon-size="12" :icon="Store" @click="goToShop">Dükkâna Git</Button>
               <p v-else class="text-[10px] text-muted/60 mt-1">{{ wanwupuClosedReason }}</p>
             </div>
           </div>
         </div>
       </Transition>
 
-      <!-- 一键施肥弹窗 -->
+      <!-- Toplu gübreleme penceresi -->
       <Transition name="panel-fade">
         <div
           v-if="showBatchFertilize"
@@ -433,8 +433,8 @@
             <button class="absolute top-2 right-2 text-muted hover:text-text" @click="showBatchFertilize = false">
               <X :size="14" />
             </button>
-            <p class="text-accent text-sm mb-2">一键施肥</p>
-            <p class="text-xs text-muted mb-2">可施肥地块 {{ fertilizableCount }} 块，选择肥料：</p>
+            <p class="text-accent text-sm mb-2">Toplu Gübreleme</p>
+            <p class="text-xs text-muted mb-2">Gübrelenebilir alan {{ fertilizableCount }} parça, gübreyi seç:</p>
             <div class="flex flex-col space-y-1 max-h-60 overflow-y-auto">
               <button
                 v-for="f in fertilizerItems"
@@ -448,13 +448,13 @@
             </div>
             <div v-if="fertilizerItems.length === 0" class="flex flex-col items-center py-4">
               <CirclePlus :size="32" class="text-muted/30" />
-              <p class="text-xs text-muted mt-2">没有可用的肥料</p>
+              <p class="text-xs text-muted mt-2">Kullanılabilir gübre yok</p>
             </div>
           </div>
         </div>
       </Transition>
 
-      <!-- 图例与提示 -->
+      <!-- Açıklamalar ve uyarılar -->
       <div class="mt-2 border border-accent/10 rounded-xs p-2">
         <div class="grid grid-cols-4 md:space-x-3 md:flex md:flex-wrap text-xs text-muted">
           <span v-for="(item, i) in PLOT_LEGENDS" :key="i">
@@ -469,21 +469,21 @@
         </div>
       </div>
 
-      <!-- 出货箱入口 -->
+      <!-- Sevkiyat sandığı girişi -->
       <div
         class="mt-3 flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
         @click="showShippingBox = true"
       >
         <div class="flex items-center space-x-1.5">
           <Package :size="14" class="text-accent" />
-          <span class="text-sm text-accent">出货箱</span>
-          <span v-if="shopStore.shippingBox.length > 0" class="text-xs text-muted">{{ shopStore.shippingBox.length }}种</span>
+          <span class="text-sm text-accent">Sevkiyat Sandığı</span>
+          <span v-if="shopStore.shippingBox.length > 0" class="text-xs text-muted">{{ shopStore.shippingBox.length }} tür</span>
         </div>
-        <span v-if="shippingBoxTotal > 0" class="text-xs text-accent">≈{{ shippingBoxTotal }}文</span>
-        <span v-else class="text-xs text-muted">空</span>
+        <span v-if="shippingBoxTotal > 0" class="text-xs text-accent">≈{{ shippingBoxTotal }} akçe</span>
+        <span v-else class="text-xs text-muted">Boş</span>
       </div>
 
-      <!-- 出货箱弹窗 -->
+      <!-- Sevkiyat sandığı penceresi -->
       <Transition name="panel-fade">
         <div
           v-if="showShippingBox"
@@ -496,16 +496,16 @@
             </button>
             <div class="flex items-center space-x-1.5 text-sm text-accent mb-1">
               <Package :size="14" />
-              <span>出货箱</span>
+              <span>Sevkiyat Sandığı</span>
             </div>
-            <p class="text-xs text-muted mb-2">放入的物品将在次日结算。</p>
+            <p class="text-xs text-muted mb-2">Konan eşya ertesi gün hesabı görülür.</p>
             <p v-if="inventoryStore.getRingEffectValue('sell_price_bonus') > 0" class="text-success text-xs mb-2">
-              戒指加成中：售价 +{{ Math.round(inventoryStore.getRingEffectValue('sell_price_bonus') * 100) }}%
+              Yüzük etkisi sürüyor: satış bedeli +{{ Math.round(inventoryStore.getRingEffectValue('sell_price_bonus') * 100) }}%
             </p>
 
-            <!-- 已放入的物品 -->
+            <!-- Eklenmiş eşyalar -->
             <div v-if="shopStore.shippingBox.length > 0" class="border border-accent/10 rounded-xs p-2 mb-2">
-              <p class="text-xs text-muted mb-1">已放入</p>
+              <p class="text-xs text-muted mb-1">Konanlar</p>
               <div class="flex flex-col space-y-1 max-h-36 overflow-y-auto">
                 <div
                   v-for="(entry, idx) in shopStore.shippingBox"
@@ -527,20 +527,20 @@
                     <span class="text-muted text-xs ml-1">×{{ entry.quantity }}</span>
                   </div>
                   <span class="text-xs text-accent whitespace-nowrap ml-2">
-                    ≈{{ shopStore.calculateSellPrice(entry.itemId, entry.quantity, entry.quality) }}文
+                    ≈{{ shopStore.calculateSellPrice(entry.itemId, entry.quantity, entry.quality) }} akçe
                   </span>
                 </div>
               </div>
-              <p class="text-xs text-accent mt-1.5">预计收入：{{ shippingBoxTotal }}文</p>
+              <p class="text-xs text-accent mt-1.5">Beklenen gelir: {{ shippingBoxTotal }} akçe</p>
             </div>
             <div v-else class="flex flex-col items-center justify-center py-4 text-muted mb-2">
               <Package :size="32" class="text-muted/30" />
-              <p class="text-xs mt-2">出货箱是空的</p>
+              <p class="text-xs mt-2">Sevkiyat sandığı boş</p>
             </div>
 
-            <!-- 可放入的背包物品 -->
+            <!-- Çantadan eklenebilecek eşyalar -->
             <div v-if="shippableItems.length > 0" class="border border-accent/10 rounded-xs p-2">
-              <p class="text-xs text-muted mb-1">背包物品</p>
+              <p class="text-xs text-muted mb-1">Çantadaki eşyalar</p>
               <div class="flex flex-col space-y-1 overflow-auto max-h-48">
                 <div
                   v-for="item in shippableItems"
@@ -561,21 +561,21 @@
                     <span class="text-muted text-xs ml-1">×{{ item.quantity }}</span>
                   </div>
                   <div class="flex space-x-1">
-                    <Button @click="handleAddToBox(item.itemId, 1, item.quality)">放入1</Button>
-                    <Button v-if="item.quantity > 1" @click="handleAddToBox(item.itemId, item.quantity, item.quality)">全部</Button>
+                    <Button @click="handleAddToBox(item.itemId, 1, item.quality)">1 Koy</Button>
+                    <Button v-if="item.quantity > 1" @click="handleAddToBox(item.itemId, item.quantity, item.quality)">Hepsini Koy</Button>
                   </div>
                 </div>
               </div>
             </div>
             <div v-else class="flex flex-col items-center py-3 text-muted">
               <Wheat :size="32" class="text-muted/30" />
-              <p class="text-xs mt-2">背包中没有可出货的物品</p>
+              <p class="text-xs mt-2">Çantada sevk edilecek eşya yok</p>
             </div>
           </div>
         </div>
       </Transition>
 
-      <!-- 温室入口 -->
+      <!-- Sera girişi -->
       <div
         v-if="showGreenhouse"
         class="mt-3 flex items-center justify-between border border-accent/20 rounded-xs px-3 py-2 cursor-pointer hover:bg-accent/5"
@@ -583,21 +583,21 @@
       >
         <div class="flex items-center space-x-1.5">
           <Warehouse :size="14" class="text-accent" />
-          <span class="text-sm text-accent">温室</span>
-          <span v-if="ghHarvestableCount > 0" class="text-xs text-accent">{{ ghHarvestableCount }}块可收获</span>
+          <span class="text-sm text-accent">Sera</span>
+          <span v-if="ghHarvestableCount > 0" class="text-xs text-accent">{{ ghHarvestableCount }} parça biçilmeye hazır</span>
         </div>
-        <span class="text-xs text-muted">{{ farmStore.greenhousePlots.length }}块地</span>
+        <span class="text-xs text-muted">{{ farmStore.greenhousePlots.length }} parça</span>
       </div>
     </div>
 
-    <!-- 林木标签 -->
+    <!-- Ağaçlık sekmesi -->
     <div v-if="farmTab === 'tree'">
-      <!-- 果树区 -->
+      <!-- Meyve ağaçları alanı -->
       <div class="border border-accent/20 rounded-xs p-3">
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center space-x-1.5 text-sm text-accent">
             <TreeDeciduous :size="14" />
-            <span>果树</span>
+            <span>Meyve Ağaçları</span>
           </div>
           <span class="text-xs text-muted">{{ farmStore.fruitTrees.length }}/{{ MAX_FRUIT_TREES }}</span>
         </div>
@@ -605,7 +605,7 @@
           <div v-for="tree in farmStore.fruitTrees" :key="tree.id" class="border border-accent/10 rounded-xs px-3 py-2">
             <div class="flex items-center justify-between mb-1">
               <span class="text-xs font-bold" :class="tree.mature ? 'text-accent' : 'text-muted'">{{ getTreeName(tree.type) }}</span>
-              <span v-if="tree.mature" class="text-[10px] text-muted">{{ tree.yearAge }}年</span>
+              <span v-if="tree.mature" class="text-[10px] text-muted">{{ tree.yearAge }} yaşında</span>
             </div>
             <template v-if="!tree.mature">
               <div class="flex items-center space-x-2 mb-1.5">
@@ -615,34 +615,34 @@
                     :style="{ width: Math.min(100, Math.floor((tree.growthDays / 28) * 100)) + '%' }"
                   />
                 </div>
-                <span class="text-[10px] text-muted whitespace-nowrap">{{ tree.growthDays }}/28天</span>
+                <span class="text-[10px] text-muted whitespace-nowrap">{{ tree.growthDays }}/28 gün</span>
               </div>
               <div class="flex justify-end">
-                <Button :icon-size="12" :icon="Axe" @click.stop="chopFruitTreeTarget = { id: tree.id, type: tree.type }">砍伐</Button>
+                <Button :icon-size="12" :icon="Axe" @click.stop="chopFruitTreeTarget = { id: tree.id, type: tree.type }">Kes</Button>
               </div>
             </template>
             <template v-else>
               <div class="flex items-center justify-between">
-                <span v-if="tree.todayFruit" class="text-[10px] text-accent">今日已结果</span>
-                <span v-else class="text-[10px] text-success">{{ getTreeFruitSeason(tree.type) }}产果</span>
-                <Button :icon-size="12" :icon="Axe" @click.stop="chopFruitTreeTarget = { id: tree.id, type: tree.type }">砍伐</Button>
+                <span v-if="tree.todayFruit" class="text-[10px] text-accent">Bugün meyve verdi</span>
+                <span v-else class="text-[10px] text-success">{{ getTreeFruitSeason(tree.type) }} mevsiminde verir</span>
+                <Button :icon-size="12" :icon="Axe" @click.stop="chopFruitTreeTarget = { id: tree.id, type: tree.type }">Kes</Button>
               </div>
             </template>
           </div>
         </div>
         <div v-else class="flex flex-col items-center justify-center py-4 text-muted mb-2">
           <TreeDeciduous :size="32" class="text-muted/30" />
-          <p class="text-xs mt-2">暂无果树</p>
-          <p class="text-[10px] text-muted/60 mt-0.5">可在商店购买树苗种植</p>
+          <p class="text-xs mt-2">Meyve ağacı yok</p>
+          <p class="text-[10px] text-muted/60 mt-0.5">Fidanı dükkândan alıp dikebilirsin</p>
         </div>
         <div v-if="plantableSaplings.length > 0 && farmStore.fruitTrees.length < MAX_FRUIT_TREES" class="flex space-x-1.5 flex-wrap">
           <Button v-for="s in plantableSaplings" :key="s.saplingId" :icon-size="12" :icon="TreePine" @click="handlePlantTree(s.type)">
-            种{{ s.name }} (×{{ s.count }})
+            {{ s.name }} Dik (×{{ s.count }})
           </Button>
         </div>
       </div>
 
-      <!-- 砍伐果树确认弹窗 -->
+      <!-- Meyve ağacı kesme onay penceresi -->
       <Transition name="panel-fade">
         <div
           v-if="chopFruitTreeTarget"
@@ -653,21 +653,20 @@
             <button class="absolute top-2 right-2 text-muted hover:text-text" @click="chopFruitTreeTarget = null">
               <X :size="14" />
             </button>
-            <p class="text-accent text-sm mb-2">砍伐果树</p>
+            <p class="text-accent text-sm mb-2">Meyve Ağacını Kes</p>
             <p class="text-xs text-text mb-3">
-              确定要砍掉
               <span class="text-accent">{{ getTreeName(chopFruitTreeTarget.type) }}</span>
-              吗？砍伐后不可恢复。
+              ağacını kesmek istediğine emin misin? Kesilirse geri gelmez.
             </p>
             <div class="flex space-x-2">
-              <Button class="flex-1" @click="chopFruitTreeTarget = null">取消</Button>
-              <Button class="flex-1 !bg-danger !text-text" :icon-size="12" :icon="Axe" @click="confirmChopFruitTree">确认砍伐</Button>
+              <Button class="flex-1" @click="chopFruitTreeTarget = null">Vazgeç</Button>
+              <Button class="flex-1 !bg-danger !text-text" :icon-size="12" :icon="Axe" @click="confirmChopFruitTree">Kes</Button>
             </div>
           </div>
         </div>
       </Transition>
 
-      <!-- 野树伐木确认弹窗 -->
+      <!-- Yabani ağaç kesme onay penceresi -->
       <Transition name="panel-fade">
         <div
           v-if="chopWildTreeTarget"
@@ -678,17 +677,16 @@
             <button class="absolute top-2 right-2 text-muted hover:text-text" @click="chopWildTreeTarget = null">
               <X :size="14" />
             </button>
-            <p class="text-accent text-sm mb-2">伐木</p>
+            <p class="text-accent text-sm mb-2">Odun Kes</p>
             <p class="text-xs text-text mb-2">
-              确定要对
               <span class="text-accent">{{ getWildTreeName(chopWildTreeTarget.type) }}</span>
-              伐木吗？
+              için baltayı vurmak istediğine emin misin?
             </p>
             <p class="text-xs text-danger mb-3">
-              已伐木 {{ chopWildTreeTarget.chopCount }}/3 次，再伐 {{ 3 - chopWildTreeTarget.chopCount }} 次后树将消失。
+              Şimdiye dek {{ chopWildTreeTarget.chopCount }}/3 kez vuruldu, bir {{ 3 - chopWildTreeTarget.chopCount }} darbe daha sonra devrilir.
             </p>
             <div class="flex space-x-2">
-              <Button class="flex-1" @click="chopWildTreeTarget = null">取消</Button>
+              <Button class="flex-1" @click="chopWildTreeTarget = null">Vazgeç</Button>
               <Button
                 class="flex-1"
                 :class="chopWildTreeTarget.chopCount >= 2 ? '!bg-danger !text-text' : '!bg-accent !text-bg'"
@@ -696,36 +694,36 @@
                 :icon="Axe"
                 @click="confirmChopWildTree"
               >
-                {{ chopWildTreeTarget.chopCount >= 2 ? '确认' : '确认伐木' }}
+                {{ chopWildTreeTarget.chopCount >= 2 ? 'Onayla' : 'Vur' }}
               </Button>
             </div>
           </div>
         </div>
       </Transition>
 
-      <!-- 野树区 -->
+      <!-- Yabani ağaçlar alanı -->
       <div class="mt-3 border border-accent/20 rounded-xs p-3">
         <div class="flex items-center justify-between mb-2">
           <div class="flex items-center space-x-1.5 text-sm text-accent">
             <TreePine :size="14" />
-            <span>野树</span>
+            <span>Yabani Ağaçlar</span>
           </div>
           <span class="text-xs text-muted">{{ farmStore.wildTrees.length }}/{{ MAX_WILD_TREES }}</span>
         </div>
         <div v-if="farmStore.wildTrees.length > 0" class="flex flex-col space-y-1.5 mb-2">
           <div v-for="tree in farmStore.wildTrees" :key="tree.id" class="border border-accent/10 rounded-xs px-3 py-2">
-            <!-- 第一行：树名 + 状态标签 -->
+            <!-- İlk satır: ağaç adı + durum -->
             <div class="flex items-center justify-between mb-1">
               <div class="flex items-center space-x-1.5">
                 <span class="text-xs font-bold" :class="tree.mature ? 'text-accent' : 'text-muted'">{{ getWildTreeName(tree.type) }}</span>
-                <span v-if="tree.chopCount > 0" class="text-[10px] text-danger">伐{{ tree.chopCount }}/3</span>
+                <span v-if="tree.chopCount > 0" class="text-[10px] text-danger">Kesim {{ tree.chopCount }}/3</span>
               </div>
-              <span v-if="!tree.mature" class="text-[10px] text-muted">生长中</span>
-              <span v-else-if="tree.hasTapper && tree.tapReady" class="text-[10px] text-accent">可收取</span>
-              <span v-else-if="tree.hasTapper" class="text-[10px] text-muted">采脂中</span>
-              <span v-else class="text-[10px] text-success">已成熟</span>
+              <span v-if="!tree.mature" class="text-[10px] text-muted">Büyüyor</span>
+              <span v-else-if="tree.hasTapper && tree.tapReady" class="text-[10px] text-accent">Toplanabilir</span>
+              <span v-else-if="tree.hasTapper" class="text-[10px] text-muted">Öz akıyor</span>
+              <span v-else class="text-[10px] text-success">Olgun</span>
             </div>
-            <!-- 第二行：进度/详情 + 操作按钮 -->
+            <!-- İkinci satır: ilerleme / ayrıntı + düğmeler -->
             <template v-if="!tree.mature">
               <div class="flex items-center space-x-2 mb-1.5">
                 <div class="flex-1 h-1 bg-bg rounded-xs border border-accent/10">
@@ -737,7 +735,7 @@
                   />
                 </div>
                 <span class="text-[10px] text-muted whitespace-nowrap">
-                  {{ tree.growthDays }}/{{ getWildTreeDef(tree.type)?.growthDays ?? '?' }}天
+                  {{ tree.growthDays }}/{{ getWildTreeDef(tree.type)?.growthDays ?? '?' }} gün
                 </span>
               </div>
             </template>
@@ -755,7 +753,7 @@
                   />
                 </div>
                 <span class="text-[10px] text-muted whitespace-nowrap">
-                  {{ tree.tapReady ? '已完成' : `${tree.tapDaysElapsed}/${getWildTreeDef(tree.type)?.tapCycleDays ?? '?'}天` }}
+                  {{ tree.tapReady ? 'Hazır' : `${tree.tapDaysElapsed}/${getWildTreeDef(tree.type)?.tapCycleDays ?? '?'} gün` }}
                 </span>
               </div>
             </template>
@@ -767,7 +765,7 @@
                 :icon="Gift"
                 @click.stop="handleCollectTapProduct(tree.id)"
               >
-                收取
+                Topla
               </Button>
               <Button
                 v-if="tree.mature && !tree.hasTapper && hasTapper"
@@ -775,27 +773,27 @@
                 :icon="Wrench"
                 @click.stop="handleAttachTapper(tree.id)"
               >
-                装采脂器
+                Musluk Tak
               </Button>
-              <span v-if="tree.mature && !tree.hasTapper && !hasTapper" class="text-[10px] text-muted">需制造采脂器</span>
-              <Button v-if="tree.mature" :icon-size="12" :icon="Axe" @click.stop="handleChopTree(tree.id)">伐木</Button>
+              <span v-if="tree.mature && !tree.hasTapper && !hasTapper" class="text-[10px] text-muted">Önce öz musluğu yap</span>
+              <Button v-if="tree.mature" :icon-size="12" :icon="Axe" @click.stop="handleChopTree(tree.id)">Kes</Button>
             </div>
           </div>
         </div>
         <div v-else class="flex flex-col items-center justify-center py-4 text-muted mb-2">
           <TreePine :size="32" class="text-muted/30" />
-          <p class="text-xs mt-2">暂无野树</p>
-          <p class="text-[10px] text-muted/60 mt-0.5">可使用野树种子种植</p>
+          <p class="text-xs mt-2">Yabani ağaç yok</p>
+          <p class="text-[10px] text-muted/60 mt-0.5">Yabani tohumla dikebilirsin</p>
         </div>
         <div v-if="plantableWildSeeds.length > 0 && farmStore.wildTrees.length < MAX_WILD_TREES" class="flex space-x-1.5 flex-wrap">
           <Button v-for="s in plantableWildSeeds" :key="s.type" :icon-size="12" :icon="TreePine" @click="handlePlantWildTree(s.type)">
-            种{{ s.name }} (×{{ s.count }})
+            {{ s.name }} Dik (×{{ s.count }})
           </Button>
         </div>
       </div>
     </div>
 
-    <!-- 温室弹窗 -->
+    <!-- Sera penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showGreenhouseModal"
@@ -808,11 +806,11 @@
           </button>
           <div class="flex items-center space-x-1.5 text-sm text-accent mb-1">
             <Warehouse :size="14" />
-            <span>温室</span>
+            <span>Sera</span>
           </div>
-          <p class="text-xs text-muted mb-3">无季节限制 · 自动浇水 · {{ farmStore.greenhousePlots.length }}块地</p>
+          <p class="text-xs text-muted mb-3">Mevsimsiz · Kendi sulanır · {{ farmStore.greenhousePlots.length }} parça</p>
 
-          <!-- 操作按钮 -->
+          <!-- İşlem düğmeleri -->
           <div class="flex space-x-2 mb-3">
             <Button
               class="flex-1 justify-center"
@@ -822,7 +820,7 @@
               :icon="Wheat"
               @click="doGhBatchHarvest"
             >
-              一键收获{{ ghHarvestableCount > 0 ? ` (${ghHarvestableCount}块)` : '' }}
+              Hepsini Biç{{ ghHarvestableCount > 0 ? ` (${ghHarvestableCount} parça)` : '' }}
             </Button>
             <Button
               class="flex-1 justify-center"
@@ -831,14 +829,14 @@
               :icon="Sprout"
               @click="showGhBatchPlant = true"
             >
-              一键种植{{ ghTilledEmptyCount > 0 ? ` (${ghTilledEmptyCount}块)` : '' }}
+              Hepsini Ek{{ ghTilledEmptyCount > 0 ? ` (${ghTilledEmptyCount} parça)` : '' }}
             </Button>
             <Button v-if="nextGhUpgrade" class="flex-1 justify-center" :icon-size="12" :icon="ArrowUp" @click="showGhUpgradeModal = true">
-              升级温室
+              Serayı Büyüt
             </Button>
           </div>
 
-          <!-- 温室地块网格 -->
+          <!-- Sera parsel ızgarası -->
           <div class="grid gap-1 max-w-full" :style="{ gridTemplateColumns: `repeat(${ghGridCols}, minmax(0, 1fr))` }">
             <button
               v-for="plot in farmStore.greenhousePlots"
@@ -856,7 +854,7 @@
       </div>
     </Transition>
 
-    <!-- 温室升级确认弹窗 -->
+    <!-- Sera büyütme onay penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showGhUpgradeModal && nextGhUpgrade"
@@ -872,8 +870,8 @@
 
           <div class="border border-accent/10 rounded-xs p-2 mb-3">
             <div class="flex items-center justify-between text-xs mb-1">
-              <span class="text-muted">费用</span>
-              <span :class="playerStore.money >= nextGhUpgrade.cost ? 'text-success' : 'text-danger'">{{ nextGhUpgrade.cost }}文</span>
+              <span class="text-muted">Bedel</span>
+              <span :class="playerStore.money >= nextGhUpgrade.cost ? 'text-success' : 'text-danger'">{{ nextGhUpgrade.cost }} akçe</span>
             </div>
             <div v-for="mat in nextGhUpgrade.materialCost" :key="mat.itemId" class="flex items-center justify-between text-xs">
               <span class="text-muted">{{ getItemName(mat.itemId) }}</span>
@@ -884,14 +882,14 @@
           </div>
 
           <div class="flex space-x-2">
-            <Button class="flex-1" @click="showGhUpgradeModal = false">取消</Button>
-            <Button class="flex-1 !bg-accent !text-bg" :icon-size="12" :icon="ArrowUp" @click="handleGhUpgrade">确认升级</Button>
+            <Button class="flex-1" @click="showGhUpgradeModal = false">Vazgeç</Button>
+            <Button class="flex-1 !bg-accent !text-bg" :icon-size="12" :icon="ArrowUp" @click="handleGhUpgrade">Onayla</Button>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 温室一键种植弹窗 -->
+    <!-- Sera toplu ekim penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="showGhBatchPlant"
@@ -902,8 +900,8 @@
           <button class="absolute top-2 right-2 text-muted hover:text-text" @click="showGhBatchPlant = false">
             <X :size="14" />
           </button>
-          <p class="text-accent text-sm mb-2">温室一键种植</p>
-          <p class="text-xs text-muted mb-2">空耕地 {{ ghTilledEmptyCount }} 块，选择要种植的种子：</p>
+          <p class="text-accent text-sm mb-2">Serada Toplu Ekim</p>
+          <p class="text-xs text-muted mb-2">Boş sürülmüş alan {{ ghTilledEmptyCount }} parça, ekilecek tohumu seç:</p>
           <div class="flex flex-col space-y-1 max-h-60 overflow-y-auto">
             <button
               v-for="seed in allSeeds"
@@ -913,20 +911,20 @@
             >
               <span>
                 {{ seed.name }}
-                <span v-if="seed.regrowth" class="text-success ml-1">[多茬]</span>
+                <span v-if="seed.regrowth" class="text-success ml-1">[Yeniden ürün]</span>
               </span>
               <span class="text-muted">×{{ seed.count }}</span>
             </button>
           </div>
           <div v-if="allSeeds.length === 0" class="flex flex-col items-center py-4">
             <Sprout :size="32" class="text-muted/30" />
-            <p class="text-xs text-muted mt-2">没有可种植的种子</p>
+            <p class="text-xs text-muted mt-2">Ekilecek tohum yok</p>
           </div>
         </div>
       </div>
     </Transition>
 
-    <!-- 温室地块操作弹窗 -->
+    <!-- Sera parçası işlem penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="activeGhPlot"
@@ -937,25 +935,25 @@
           <button class="absolute top-2 right-2 text-muted hover:text-text" @click="activeGhPlotId = null">
             <X :size="14" />
           </button>
-          <p class="text-accent text-sm mb-2">温室地块 #{{ activeGhPlot.id + 1 }}</p>
+          <p class="text-accent text-sm mb-2">Sera Parçası #{{ activeGhPlot.id + 1 }}</p>
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex flex-col space-y-1">
               <div class="flex items-center justify-between">
-                <span class="text-xs text-muted">状态</span>
+                <span class="text-xs text-muted">Durum</span>
                 <span class="text-xs">{{ ghPlotStateLabel }}</span>
               </div>
               <div v-if="activeGhPlot.cropId" class="flex items-center justify-between">
-                <span class="text-xs text-muted">作物</span>
+                <span class="text-xs text-muted">Ürün</span>
                 <span class="text-xs">
                   {{ getCropName(activeGhPlot.cropId) }}
                   <span v-if="ghPlotCropRegrowth" class="text-success ml-1">
-                    [多茬 {{ activeGhPlot.harvestCount }}/{{ ghPlotCropMaxHarvests }}]
+                    [Yeniden ürün {{ activeGhPlot.harvestCount }}/{{ ghPlotCropMaxHarvests }}]
                   </span>
                 </span>
               </div>
               <div v-if="activeGhPlot.cropId && activeGhPlot.state !== 'harvestable'" class="flex items-center space-x-2">
-                <span class="text-xs text-muted shrink-0">生长</span>
+                <span class="text-xs text-muted shrink-0">Büyüme</span>
                 <div class="flex-1 h-1 bg-bg rounded-xs border border-accent/10">
                   <div
                     class="h-full rounded-xs bg-success transition-all"
@@ -964,37 +962,37 @@
                     }"
                   />
                 </div>
-                <span class="text-xs text-muted whitespace-nowrap">{{ activeGhPlot.growthDays }}/{{ ghPlotCropGrowthDays }}天</span>
+                <span class="text-xs text-muted whitespace-nowrap">{{ activeGhPlot.growthDays }}/{{ ghPlotCropGrowthDays }} gün</span>
               </div>
               <div class="flex items-center justify-between">
-                <span class="text-xs text-muted">特性</span>
-                <span class="text-xs text-water">自动浇水 · 无季节限制</span>
+                <span class="text-xs text-muted">Özellik</span>
+                <span class="text-xs text-water">Kendi sulanır · Mevsim şartı yok</span>
               </div>
             </div>
           </div>
 
-          <!-- 操作区 -->
+          <!-- İşlem alanı -->
           <div class="flex flex-col space-y-1.5">
-            <!-- 已耕 → 种植（所有种子） -->
+            <!-- Sürülmüş → ekim -->
             <div v-if="activeGhPlot.state === 'tilled' && allSeeds.length > 0" class="border border-accent/10 rounded-xs p-2">
-              <p class="text-xs text-muted mb-1">种植</p>
+              <p class="text-xs text-muted mb-1">Ekim</p>
               <div class="flex flex-wrap space-x-1">
                 <Button v-for="seed in allSeeds" :key="seed.cropId" @click="doGhPlant(seed.cropId)">
                   {{ seed.name }}
-                  <span v-if="seed.regrowth" class="text-success ml-1">[多茬]</span>
+                  <span v-if="seed.regrowth" class="text-success ml-1">[Yeniden ürün]</span>
                   (×{{ seed.count }})
                 </Button>
               </div>
             </div>
-            <!-- 已耕无种子空状态 -->
+            <!-- Sürülmüş ama tohum yok -->
             <div v-else-if="activeGhPlot.state === 'tilled'" class="flex flex-col items-center py-4">
               <Sprout :size="32" class="text-muted/30" />
-              <p class="text-xs text-muted mt-2">背包中没有种子</p>
-              <Button v-if="isWanwupuOpen" class="mt-2" :icon-size="12" :icon="Store" @click="goToShop">前往商店购买</Button>
+              <p class="text-xs text-muted mt-2">Çantada tohum yok</p>
+              <Button v-if="isWanwupuOpen" class="mt-2" :icon-size="12" :icon="Store" @click="goToShop">Dükkâna Git</Button>
               <p v-else class="text-[10px] text-muted/60 mt-1">{{ wanwupuClosedReason }}</p>
             </div>
 
-            <!-- 可收获 → 收获 -->
+            <!-- Biçilebilir → biç -->
             <Button
               v-if="activeGhPlot.state === 'harvestable'"
               class="w-full justify-center !bg-accent !text-bg"
@@ -1002,7 +1000,7 @@
               :icon="Wheat"
               @click="doGhHarvest"
             >
-              收获
+              Biç
             </Button>
           </div>
         </div>
@@ -1095,25 +1093,25 @@
   const shopStore = useShopStore()
   const breedingStore = useBreedingStore()
 
-  // === 田庄特殊功能 ===
+  // === Çiftlik özel işlevleri ===
 
   const tutorialStore = useTutorialStore()
   const tutorialHint = computed(() => {
     if (!tutorialStore.enabled || gameStore.year > 1) return null
-    if (farmStore.plots.every(p => p.state === 'wasteland')) return '点击下方「一键操作」→「一键开垦」来开垦荒地，或直接点击地块逐一操作。'
+    if (farmStore.plots.every(p => p.state === 'wasteland')) return 'Aşağıdaki “Toplu İşlem” menüsünden “Hepsini Belle”yi seçerek toprağı açabilir, ya da her parçaya ayrı ayrı dokunabilirsin.'
     const hasPlanted = farmStore.plots.some(p => p.state === 'planted' || p.state === 'growing' || p.state === 'harvestable')
     if (!hasPlanted && farmStore.plots.some(p => p.state === 'tilled'))
-      return '已开垦的地块可以种植作物。使用「一键种植」可批量播种背包中的种子。'
+      return 'Sürülmüş toprağa ürün ekebilirsin. “Hepsini Ek” ile çantandaki tohumları topluca ekersin.'
     if (farmStore.plots.some(p => (p.state === 'planted' || p.state === 'growing') && !p.watered) && !gameStore.isRainy)
-      return '作物需要每天浇水才会生长。「一键浇水」可一次浇完所有作物。'
-    if (farmStore.plots.some(p => p.state === 'harvestable')) return '金色高亮的地块表示作物已成熟，点击「一键收获」即可批量收获。'
+      return 'Ürünlerin büyümesi için her gün su gerekir. “Hepsini Sula” ile hepsini birden sulayabilirsin.'
+    if (farmStore.plots.some(p => p.state === 'harvestable')) return 'Altın parlayan parçalar olgunlaşmıştır; “Hepsini Biç” ile topluca kaldırabilirsin.'
     return null
   })
 
   const surfaceOreName = computed(() => {
     const patch = gameStore.surfaceOrePatch
     if (!patch) return ''
-    return getItemById(patch.oreId)?.name ?? '矿石'
+    return getItemById(patch.oreId)?.name ?? 'Maden'
   })
 
   const handleCollectCreekCatch = () => {
@@ -1132,10 +1130,10 @@
     }
     gameStore.creekCatch = failed
     if (names.length > 0) {
-      addLog(`收取了溪流鱼获：${names.join('、')}。`)
+      addLog(`Dere avı toplandı: ${names.join('、')}。`)
     }
     if (failed.length > 0) {
-      addLog('背包已满，部分鱼获未能收取。')
+      addLog('Çanta dolu olduğu için bazı balıklar alınamadı.')
     }
   }
 
@@ -1143,26 +1141,26 @@
     const patch = gameStore.surfaceOrePatch
     if (!patch) return
     if (!playerStore.consumeStamina(5)) {
-      addLog('体力不足，无法开采。')
+      addLog('Dayanıklılık yetmedi, kazılamadı.')
       return
     }
     const added = inventoryStore.addItem(patch.oreId, patch.quantity)
     if (!added) {
       playerStore.restoreStamina(5)
-      addLog('背包已满，无法开采。')
+      addLog('Çanta dolu, kazı yapılamadı.')
       return
     }
-    const oreName = getItemById(patch.oreId)?.name ?? '矿石'
+    const oreName = getItemById(patch.oreId)?.name ?? 'Maden'
     const skillStore = useSkillStore()
     skillStore.addExp('mining', 8)
     gameStore.surfaceOrePatch = null
-    addLog(`开采了地表矿脉，获得了${patch.quantity}个${oreName}。(+8挖矿经验)`)
+    addLog(`Yerüstü damarından ${patch.quantity} adet ${oreName} çıkarıldı.(+8 madencilik tecrübesi)`)
     const tr = gameStore.advanceTime(1)
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   }
 
-  // === 出货箱 ===
+  // === Sevkiyat sandığı ===
 
   const showShippingBox = ref(false)
   const showBatchPlant = ref(false)
@@ -1213,18 +1211,18 @@
   const handleAddToBox = (itemId: string, quantity: number, quality: Quality) => {
     if (shopStore.addToShippingBox(itemId, quantity, quality)) {
       const name = getItemName(itemId)
-      addLog(`将${name}×${quantity}放入了出货箱。`)
+      addLog(`${name}×${quantity} sevkiyat sandığına kondu.`)
     }
   }
 
   const handleRemoveFromBox = (itemId: string, quantity: number, quality: Quality) => {
     if (shopStore.removeFromShippingBox(itemId, quantity, quality)) {
       const name = getItemName(itemId)
-      addLog(`从出货箱取出了${name}×${quantity}。`)
+      addLog(`${name}×${quantity} sevkiyat sandığından çıkarıldı.`)
     }
   }
 
-  // === 地块弹窗状态 ===
+  // === Tarla pencere durumu ===
 
   const activePlotId = ref<number | null>(null)
   const activePlot = computed(() => (activePlotId.value !== null ? (farmStore.plots.find(p => p.id === activePlotId.value) ?? null) : null))
@@ -1232,14 +1230,14 @@
   const activeGhPlotId = ref<number | null>(null)
   const activeGhPlot = computed(() => (activeGhPlotId.value !== null ? (farmStore.greenhousePlots[activeGhPlotId.value] ?? null) : null))
 
-  // === 弹窗显示辅助 ===
+  // === Pencere yardımcıları ===
 
   const STATE_LABELS: Record<string, string> = {
-    wasteland: '荒地',
-    tilled: '已耕',
-    planted: '已种',
-    growing: '生长中',
-    harvestable: '可收获'
+    wasteland: 'Bozkır',
+    tilled: 'Sürülmüş',
+    planted: 'Ekili',
+    growing: 'Büyüyor',
+    harvestable: 'Biçilebilir'
   }
 
   const plotStateLabel = computed(() => (activePlot.value ? (STATE_LABELS[activePlot.value.state] ?? '?') : ''))
@@ -1298,13 +1296,13 @@
     return activePlot.value.state !== 'wasteland' && !activePlot.value.fertilizer
   })
 
-  // === 背包物品列表 ===
+  // === Çanta eşya listeleri ===
 
   const sprinklerItems = computed(() => {
     const types: { type: SprinklerType; itemId: string; name: string; colorClass: string }[] = [
-      { type: 'bamboo_sprinkler', itemId: 'bamboo_sprinkler', name: '竹筒洒水器', colorClass: '' },
-      { type: 'copper_sprinkler', itemId: 'copper_sprinkler', name: '铜管洒水器', colorClass: 'text-quality-fine' },
-      { type: 'gold_sprinkler', itemId: 'gold_sprinkler', name: '金管洒水器', colorClass: 'text-quality-supreme' }
+      { type: 'bamboo_sprinkler', itemId: 'bamboo_sprinkler', name: 'Bambu Fıskiye', colorClass: '' },
+      { type: 'copper_sprinkler', itemId: 'copper_sprinkler', name: 'Bakır Fıskiye', colorClass: 'text-quality-fine' },
+      { type: 'gold_sprinkler', itemId: 'gold_sprinkler', name: 'Altın Fıskiye', colorClass: 'text-quality-supreme' }
     ]
     return types.map(s => ({ ...s, count: inventoryStore.getItemCount(s.itemId) })).filter(s => s.count > 0)
   })
@@ -1333,7 +1331,7 @@
       }))
   })
 
-  /** 当季可种的育种种子 */
+  /** Bu mevsim ekilebilen melez tohumları */
   const plantableBreedingSeeds = computed(() => {
     const season = gameStore.season
     return breedingStore.breedingBox.filter(seed => {
@@ -1343,7 +1341,7 @@
     })
   })
 
-  /** 根据作物售价返回品质颜色 */
+  /** Ürün değeri rengi */
   const cropValueColor = (sellPrice: number): string => {
     if (sellPrice >= 180) return 'text-quality-supreme'
     if (sellPrice >= 100) return 'text-quality-excellent'
@@ -1351,7 +1349,7 @@
     return ''
   }
 
-  /** 根据道具价格返回品质颜色 */
+  /** Eşya değeri rengi */
   const itemValueColor = (price: number): string => {
     if (price >= 100) return 'text-quality-supreme'
     if (price >= 75) return 'text-quality-excellent'
@@ -1359,7 +1357,7 @@
     return ''
   }
 
-  // === 地块显示 ===
+  // === Tarla görünümü ===
 
   const getCropName = (cropId: string): string => {
     const crop = getCropById(cropId)
@@ -1370,7 +1368,7 @@
     return farmStore.sprinklers.some(s => s.plotId === plotId)
   }
 
-  /** 洒水器覆盖范围（含放置洒水器的地块自身） */
+  /** Fıskiye kapsama alanı */
   const sprinklerCoverage = computed(() => farmStore.getAllWateredBySprinklers())
 
   const isSprinklerCovered = (plotId: number): boolean => sprinklerCoverage.value.has(plotId)
@@ -1388,25 +1386,25 @@
   const weedyCount = computed(() => farmStore.plots.filter(p => p.weedy).length)
 
   const PLOT_LEGENDS: { icon: Component; color: string; label: string }[] = [
-    { icon: Shovel, color: 'text-muted', label: '荒地' },
-    { icon: Square, color: 'text-earth', label: '已耕' },
-    { icon: Sprout, color: 'text-success/60', label: '已种' },
-    { icon: Flower2, color: 'text-success', label: '生长中' },
-    { icon: Droplets, color: 'text-water', label: '已浇水' },
-    { icon: Wheat, color: 'text-accent', label: '可收获' },
-    { icon: Star, color: 'text-accent', label: '巨型' },
-    { icon: Droplet, color: 'text-water', label: '洒水器' },
-    { icon: CirclePlus, color: 'text-success', label: '肥料' },
-    { icon: Droplets, color: 'text-danger', label: '需浇水' },
-    { icon: Bug, color: 'text-danger', label: '虫害' },
-    { icon: Leaf, color: 'text-success', label: '杂草' }
+    { icon: Shovel, color: 'text-muted', label: 'Bozkır' },
+    { icon: Square, color: 'text-earth', label: 'Sürülmüş' },
+    { icon: Sprout, color: 'text-success/60', label: 'Ekili' },
+    { icon: Flower2, color: 'text-success', label: 'Büyüyor' },
+    { icon: Droplets, color: 'text-water', label: 'Sulandı' },
+    { icon: Wheat, color: 'text-accent', label: 'Biçilebilir' },
+    { icon: Star, color: 'text-accent', label: 'Dev' },
+    { icon: Droplet, color: 'text-water', label: 'Fıskiye' },
+    { icon: CirclePlus, color: 'text-success', label: 'Gübre' },
+    { icon: Droplets, color: 'text-danger', label: 'Su ister' },
+    { icon: Bug, color: 'text-danger', label: 'Haşere' },
+    { icon: Leaf, color: 'text-success', label: 'Yabani ot' }
   ]
 
   const plotWarnings = computed(() => {
     const list: { color: string; text: string }[] = []
-    if (unwateredCount.value > 0) list.push({ color: 'text-danger', text: `还有${unwateredCount.value}块需浇水` })
-    if (infestedCount.value > 0) list.push({ color: 'text-danger', text: `有${infestedCount.value}块虫害` })
-    if (weedyCount.value > 0) list.push({ color: 'text-success', text: `有${weedyCount.value}块杂草` })
+    if (unwateredCount.value > 0) list.push({ color: 'text-danger', text: `${unwateredCount.value} parça hâlâ su bekliyor` })
+    if (infestedCount.value > 0) list.push({ color: 'text-danger', text: `${infestedCount.value} parçada haşere var` })
+    if (weedyCount.value > 0) list.push({ color: 'text-success', text: `${weedyCount.value} parçada yabani ot var` })
     return list
   })
 
@@ -1420,7 +1418,8 @@
     else if (action === 'curePest') handleBatchCurePest()
     else if (action === 'clearWeed') handleBatchClearWeed()
   }
-  /** 按cropId分组的当季育种种子（用于一键种植弹窗） */
+
+  /** cropId’e göre gruplanmış melez tohumları */
   const batchBreedingSeedGroups = computed(() => {
     const groups: Record<string, { cropId: string; name: string; count: number; minGen: number; maxGen: number }> = {}
     for (const seed of plantableBreedingSeeds.value) {
@@ -1445,7 +1444,7 @@
     const cookingStore = useCookingStore()
     const targets = farmStore.plots.filter(p => p.state === 'tilled')
     if (targets.length === 0) {
-      addLog('没有可种植的空耕地。')
+      addLog('Ekilecek boş sürülmüş tarla yok.')
       showBatchPlant.value = false
       return
     }
@@ -1475,14 +1474,15 @@
       }
     }
     if (planted > 0) {
-      addLog(`一键种植了${planted}株育种种子（${getCropName(cropId)}）。(-${planted}体力)`)
+      addLog(`${planted} adet melez tohum (${getCropName(cropId)}) topluca ekildi.(-${planted} dayanıklılık)`)
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.plant * planted)
       if (tr.message) addLog(tr.message)
     } else {
-      addLog('体力不足，无法种植。')
+      addLog('Dayanıklılık yetmedi, ekim yapılamadı.')
     }
     showBatchPlant.value = false
   }
+
   const doBatchFertilize = (type: FertilizerType) => {
     handleBatchFertilize(type)
     showBatchFertilize.value = false
@@ -1507,15 +1507,15 @@
   }
 
   const getPlotDisplay = (plot: (typeof farmStore.plots)[number]): { icon: Component; color: string; bg: string } => {
-    // 巨型作物特殊显示（仅在已成熟时才显示巨型图标）
+    // Dev ürün özel görünüm
     if (plot.giantCropGroup !== null && plot.state === 'harvestable') {
       return { icon: Star, color: 'text-accent', bg: 'bg-accent/10' }
     }
-    // 虫害显示
+    // Haşere görünümü
     if (plot.infested) {
       return { icon: Bug, color: 'text-danger', bg: 'bg-danger/10' }
     }
-    // 杂草显示
+    // Ot görünümü
     if (plot.weedy) {
       return { icon: Leaf, color: 'text-success/70', bg: 'bg-success/10' }
     }
@@ -1551,29 +1551,29 @@
 
   const getPlotTooltip = (plot: (typeof farmStore.plots)[number]): string => {
     let tip = ''
-    if (plot.state === 'wasteland') tip = '荒地（点击开垦）'
-    else if (plot.state === 'tilled') tip = '已耕地（点击播种）'
+    if (plot.state === 'wasteland') tip = 'Bozkır（dokun ve belle）'
+    else if (plot.state === 'tilled') tip = 'Sürülmüş toprak（dokun ve ek）'
     else if (plot.state === 'harvestable') {
       const crop = getCropById(plot.cropId!)
-      tip = `${crop?.name ?? ''}已成熟（点击收获）`
+      tip = `${crop?.name ?? ''} olgunlaştı（dokun ve biç）`
     } else if (plot.state === 'planted' || plot.state === 'growing') {
       const crop = getCropById(plot.cropId!)
       const fertDef = plot.fertilizer ? getFertilizerById(plot.fertilizer) : null
       const speedup = (fertDef?.growthSpeedup ?? 0) + useWalletStore().getCropGrowthBonus()
       const effectiveDays = crop ? (speedup > 0 ? Math.max(1, Math.floor(crop.growthDays * (1 - speedup))) : crop.growthDays) : '?'
-      tip = `${crop?.name ?? ''} ${plot.growthDays}/${effectiveDays}天 ${plot.watered ? '已浇水' : '需浇水'}`
+      tip = `${crop?.name ?? ''} ${plot.growthDays}/${effectiveDays} gün ${plot.watered ? 'sulandı' : 'su bekliyor'}`
     }
-    if (hasSprinkler(plot.id)) tip += ' [洒水器]'
+    if (hasSprinkler(plot.id)) tip += ' [Fıskiye]'
     if (plot.fertilizer) {
       const fertDef = getFertilizerById(plot.fertilizer)
       tip += ` [${fertDef?.name ?? plot.fertilizer}]`
     }
-    if (plot.infested) tip += ` [虫害${plot.infestedDays}天]`
-    if (plot.weedy) tip += ` [杂草${plot.weedyDays}天]`
+    if (plot.infested) tip += ` [Haşere ${plot.infestedDays} gün]`
+    if (plot.weedy) tip += ` [Yabani ot ${plot.weedyDays} gün]`
     return tip
   }
 
-  // === 弹窗操作：农场 ===
+  // === Pencere işlemleri: tarla ===
 
   const doTill = () => {
     if (activePlotId.value === null) return
@@ -1596,7 +1596,7 @@
     if (!seed) return
     if (farmStore.plantGeneticSeed(activePlotId.value, seed.genetics)) {
       breedingStore.removeFromBox(seedId)
-      addLog(`种下了育种种子：${getCropName(seed.genetics.cropId)} G${seed.genetics.generation}。`)
+      addLog(`Melez tohum ekildi: ${getCropName(seed.genetics.cropId)} G${seed.genetics.generation}。`)
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.plant)
       if (tr.message) addLog(tr.message)
     }
@@ -1618,8 +1618,8 @@
       if (result) {
         inventoryStore.addItem(result.cropId, result.quantity)
         const cropName = getCropName(result.cropId)
-        addLog(`收获了巨型${cropName}！获得了${result.quantity}个${cropName}！`)
-        showFloat(`巨型${cropName} ×${result.quantity}`, 'accent')
+        addLog(`Dev ${cropName} biçildi! ${result.quantity} adet ${cropName} kazanıldı!`)
+        showFloat(`Dev ${cropName} ×${result.quantity}`, 'accent')
         sfxHarvest()
       }
       activePlotId.value = null
@@ -1633,15 +1633,15 @@
   const doFertilize = (type: FertilizerType) => {
     if (activePlotId.value === null) return
     if (!inventoryStore.removeItem(type)) {
-      addLog('没有该肥料了。')
+      addLog('Bu gübre kalmadı.')
       return
     }
     if (farmStore.applyFertilizer(activePlotId.value, type)) {
       const fertDef = getFertilizerById(type)
-      addLog(`施了${fertDef?.name ?? '肥料'}。`)
+      addLog(`${fertDef?.name ?? 'Gübre'} verildi.`)
     } else {
       inventoryStore.addItem(type)
-      addLog('无法在此施肥（需要已开垦且未施肥的地块）。')
+      addLog('Buraya gübre verilemez（sürülmüş ve gübresiz olmalı）.')
     }
     activePlotId.value = null
   }
@@ -1649,14 +1649,14 @@
   const doPlaceSprinkler = (type: SprinklerType) => {
     if (activePlotId.value === null) return
     if (!inventoryStore.removeItem(type)) {
-      addLog('没有该洒水器了。')
+      addLog('Bu fıskiye kalmadı.')
       return
     }
     if (farmStore.placeSprinkler(activePlotId.value, type)) {
-      addLog('放置了洒水器，周围地块将自动浇水。')
+      addLog('Fıskiye yerleştirildi, çevresi kendi kendine sulanacak.')
     } else {
       inventoryStore.addItem(type)
-      addLog('无法在此放置洒水器。')
+      addLog('Buraya fıskiye yerleştirilemez.')
     }
     activePlotId.value = null
   }
@@ -1667,17 +1667,17 @@
     const type = farmStore.removeSprinkler(plotId)
     if (type) {
       if (inventoryStore.addItem(type)) {
-        addLog('拆除了洒水器，已回收到背包。')
+        addLog('Fıskiye söküldü ve çantaya alındı.')
       } else {
-        // 背包满，放回原处
+        // Çanta doluysa geri koy
         farmStore.placeSprinkler(plotId, type)
-        addLog('背包已满，无法回收洒水器。')
+        addLog('Çanta dolu, fıskiye geri alınamadı.')
       }
     }
     activePlotId.value = null
   }
 
-  // === 果树 ===
+  // === Meyve ağaçları ===
 
   const getTreeName = (type: string): string => {
     return FRUIT_TREE_DEFS.find(d => d.type === type)?.name ?? type
@@ -1713,16 +1713,16 @@
     const def = FRUIT_TREE_DEFS.find(d => d.type === treeType)
     if (!def) return
     if (!inventoryStore.removeItem(def.saplingId)) {
-      addLog('背包中没有该树苗。')
+      addLog('Çantada bu fidan yok.')
       return
     }
     if (farmStore.plantFruitTree(treeType)) {
-      addLog(`种下了${def.name}苗，需28天成熟。`)
+      addLog(`${def.name} fidanı dikildi, 28 günde olgunlaşacak.`)
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.plantTree)
       if (tr.message) addLog(tr.message)
     } else {
       inventoryStore.addItem(def.saplingId)
-      addLog(`果树位已满（最多${MAX_FRUIT_TREES}棵）。`)
+      addLog(`Meyve ağacı yeri dolu（en çok ${MAX_FRUIT_TREES} ağaç）.`)
     }
   }
 
@@ -1731,11 +1731,11 @@
     if (!target) return
     chopFruitTreeTarget.value = null
     if (gameStore.isPastBedtime) {
-      addLog('太晚了，没法砍伐了。')
+      addLog('Geç oldu, şimdi ağaç kesilemez.')
       return
     }
     if (!inventoryStore.isToolAvailable('axe')) {
-      addLog('斧头正在升级中，无法砍伐。')
+      addLog('Balta yükseltmede, şimdi kullanılamaz.')
       return
     }
     const skillStore = useSkillStore()
@@ -1744,20 +1744,20 @@
       Math.floor(5 * inventoryStore.getToolStaminaMultiplier('axe') * (1 - skillStore.getStaminaReduction('foraging')))
     )
     if (!playerStore.consumeStamina(cost)) {
-      addLog('体力不足，无法砍伐。')
+      addLog('Dayanıklılık yetmedi, ağaç kesilemez.')
       return
     }
     const treeName = getTreeName(target.type)
     const woodQty = farmStore.removeFruitTree(target.id)
     if (woodQty > 0) {
       inventoryStore.addItem('wood', woodQty)
-      addLog(`砍掉了${treeName}，获得${woodQty}个木材。（体力-${cost}）`)
+      addLog(`${treeName} kesildi, ${woodQty} odun kazanıldı。（dayanıklılık -${cost}）`)
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.chopTree)
       if (tr.message) addLog(tr.message)
     }
   }
 
-  // === 野树 ===
+  // === Yabani ağaçlar ===
 
   const getWildTreeName = (type: string): string => {
     return getWildTreeDef(type)?.name ?? type
@@ -1767,29 +1767,29 @@
     const def = WILD_TREE_DEFS.find(d => d.type === treeType)
     if (!def) return
     if (!inventoryStore.removeItem(def.seedItemId)) {
-      addLog('背包中没有该种子。')
+      addLog('Çantada bu tohum yok.')
       return
     }
     if (farmStore.plantWildTree(treeType)) {
-      addLog(`种下了${def.name}，需${def.growthDays}天成熟。`)
+      addLog(`${def.name} dikildi, ${def.growthDays} günde büyüyecek.`)
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.plantTree)
       if (tr.message) addLog(tr.message)
     } else {
       inventoryStore.addItem(def.seedItemId)
-      addLog(`野树位已满（最多${MAX_WILD_TREES}棵）。`)
+      addLog(`Yabani ağaç yeri dolu（en çok ${MAX_WILD_TREES} ağaç）.`)
     }
   }
 
   const handleAttachTapper = (treeId: number) => {
     if (!inventoryStore.removeItem('tapper')) {
-      addLog('背包中没有采脂器。')
+      addLog('Çantada öz musluğu yok.')
       return
     }
     if (farmStore.attachTapper(treeId)) {
-      addLog('安装了采脂器，将定期产出树脂。')
+      addLog('Öz musluğu takıldı, vakit geçtikçe reçine verecek.')
     } else {
       inventoryStore.addItem('tapper')
-      addLog('无法安装采脂器（需要已成熟且未装采脂器的野树）。')
+      addLog('Öz musluğu takılamadı（ağaç olgun olmalı ve üstünde musluk olmamalı）.')
     }
   }
 
@@ -1798,7 +1798,7 @@
     if (productId) {
       inventoryStore.addItem(productId)
       const def = WILD_TREE_DEFS.find(d => d.tapProduct === productId)
-      addLog(`收取了${def?.tapProductName ?? productId}！`)
+      addLog(`${def?.tapProductName ?? productId} toplandı!`)
     }
   }
 
@@ -1813,11 +1813,11 @@
     if (!target) return
     chopWildTreeTarget.value = null
     if (gameStore.isPastBedtime) {
-      addLog('太晚了，没法伐木了。')
+      addLog('Geç oldu, şimdi odun kesilemez.')
       return
     }
     if (!inventoryStore.isToolAvailable('axe')) {
-      addLog('斧头正在升级中，无法伐木。')
+      addLog('Balta yükseltmede, şimdi kullanılamaz.')
       return
     }
     const skillStore = useSkillStore()
@@ -1826,7 +1826,7 @@
       Math.floor(5 * inventoryStore.getToolStaminaMultiplier('axe') * (1 - skillStore.getStaminaReduction('foraging')))
     )
     if (!playerStore.consumeStamina(cost)) {
-      addLog('体力不足，无法伐木。')
+      addLog('Dayanıklılık yetmedi, odun kesilemez.')
       return
     }
     const baseQty = 2
@@ -1836,15 +1836,15 @@
     const { removed } = farmStore.chopWildTree(target.id)
     const treeName = getWildTreeName(target.type)
     if (removed) {
-      addLog(`伐木获得了${qty}个木材，${treeName}已被砍倒消失了。（体力-${cost}）`)
+      addLog(`${qty} odun elde edildi, ${treeName} devrilip yok oldu。（dayanıklılık -${cost}）`)
     } else {
-      addLog(`伐木获得了${qty}个木材。（体力-${cost}）`)
+      addLog(`${qty} odun elde edildi。（dayanıklılık -${cost}）`)
     }
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.chopTree)
     if (tr.message) addLog(tr.message)
   }
 
-  // === 温室 ===
+  // === Sera ===
 
   const showGreenhouse = computed(() => homeStore.greenhouseUnlocked)
 
@@ -1869,18 +1869,18 @@
     }))
   })
 
-  // === 弹窗操作：温室 ===
+  // === Pencere işlemleri: sera ===
 
   const doGhPlant = (cropId: string) => {
     if (activeGhPlotId.value === null) return
     const crop = getCropById(cropId)
     if (!crop) return
     if (!inventoryStore.removeItem(crop.seedId)) {
-      addLog('背包中没有该种子了。')
+      addLog('Çantada bu tohum kalmadı.')
       return
     }
     if (farmStore.greenhousePlantCrop(activeGhPlotId.value, cropId)) {
-      addLog(`在温室中播种了${crop.name}。`)
+      addLog(`Seraya ${crop.name} ekildi.`)
     } else {
       inventoryStore.addItem(crop.seedId)
     }
@@ -1890,7 +1890,7 @@
   const doGhHarvest = () => {
     if (activeGhPlotId.value === null) return
     if (!playerStore.consumeStamina(1)) {
-      addLog('体力不足，无法收获。')
+      addLog('Dayanıklılık yetmedi, biçilemedi.')
       return
     }
     const cropId = farmStore.greenhouseHarvestPlot(activeGhPlotId.value)
@@ -1903,7 +1903,7 @@
       const qualityLabel = quality !== 'normal' ? `(${QUALITY_NAMES[quality]})` : ''
       sfxHarvest()
       showFloat(`+${cropDef?.name ?? cropId}${qualityLabel}`, 'success')
-      addLog(`在温室收获了${cropDef?.name ?? cropId}${qualityLabel}！(-1体力)`)
+      addLog(`Serada ${cropDef?.name ?? cropId}${qualityLabel} biçildi!(-1 dayanıklılık)`)
     }
     activeGhPlotId.value = null
   }
@@ -1922,8 +1922,8 @@
     }
     if (harvested > 0) {
       sfxHarvest()
-      showFloat(`温室收获 ×${harvested}`, 'success')
-      addLog(`在温室一键收获了${harvested}株作物。(-${harvested}体力)`)
+      showFloat(`Sera biçimi ×${harvested}`, 'success')
+      addLog(`Serada ${harvested} ürün topluca biçildi.(-${harvested} dayanıklılık)`)
     }
   }
 
@@ -1942,10 +1942,10 @@
     }
     if (planted > 0) {
       sfxPlant()
-      showFloat(`温室种植 ${crop.name} ×${planted}`, 'success')
-      addLog(`在温室一键种植了${planted}株${crop.name}。(-${planted}体力)`)
+      showFloat(`Serada ${crop.name} ×${planted}`, 'success')
+      addLog(`Serada ${planted} adet ${crop.name} topluca ekildi.(-${planted} dayanıklılık)`)
     } else {
-      addLog('体力不足或种子不够，无法种植。')
+      addLog('Dayanıklılık ya da tohum yetmediği için ekim yapılamadı.')
     }
     showGhBatchPlant.value = false
   }
@@ -1955,19 +1955,19 @@
     if (!upgrade) return
     for (const mat of upgrade.materialCost) {
       if (inventoryStore.getItemCount(mat.itemId) < mat.quantity) {
-        addLog('材料不足，无法升级温室。')
+        addLog('Malzeme yetmedi, sera büyütülemedi.')
         return
       }
     }
     if (!playerStore.spendMoney(upgrade.cost)) {
-      addLog('铜钱不足，无法升级温室。')
+      addLog('Akçe yetmedi, sera büyütülemedi.')
       return
     }
     for (const mat of upgrade.materialCost) {
       inventoryStore.removeItem(mat.itemId, mat.quantity)
     }
     farmStore.upgradeGreenhouse(upgrade.plotCount)
-    addLog(`温室已升级至${upgrade.name}！（${upgrade.plotCount}个地块）`)
+    addLog(`Sera ${upgrade.name} düzeyine çıktı!（${upgrade.plotCount} parça）`)
     showGhUpgradeModal.value = false
   }
 </script>
