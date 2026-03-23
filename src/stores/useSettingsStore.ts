@@ -27,7 +27,7 @@ export const useSettingsStore = defineStore('settings', () => {
   const qmsgShowIcon = ref(false)
   const qmsgShowReverse = ref(false)
 
-  /** 背包物品筛选：选中的分类（空数组 = 显示全部） */
+  /** Çanta eşyası süzgeci: seçili kategoriler (boş dizi = hepsini göster) */
   const inventoryFilter = ref<ItemCategory[]>([])
 
   const applyFontSize = () => {
@@ -56,7 +56,7 @@ export const useSettingsStore = defineStore('settings', () => {
     syncQmsgConfig()
   }
 
-  /** 将当前所有通知设置同步到 Qmsg */
+  /** Mevcut bütün bildirim ayarlarını Qmsg ile eşitle */
   const syncQmsgConfig = () => {
     applyQmsgConfig({
       position: qmsgPosition.value,
@@ -118,7 +118,7 @@ export const useSettingsStore = defineStore('settings', () => {
     bgmEnabled.value = data?.bgmEnabled ?? true
   }
 
-  // 初始化时立即同步到 Qmsg，确保新游戏/首次加载也能生效
+  // İlk yüklemede de geçerli olsun diye oyunun başında hemen Qmsg ile eşitle
   syncQmsgConfig()
   applyFontSize()
   applyTheme()
