@@ -1,87 +1,87 @@
-/** 种子基因属性 */
+/** Tohum genetik özellikleri */
 export interface SeedGenetics {
-  /** 唯一标识 */
+  /** Benzersiz kimlik */
   id: string
-  /** 对应作物ID */
+  /** Bağlı olduğu ürün ID */
   cropId: string
-  /** 世代（种子制造机=0，每次杂交+1） */
+  /** Nesil (tohum makinesi = 0, her çaprazlama +1) */
   generation: number
-  /** 甜度 0-100 → 售价加成 */
+  /** Tatlılık 0-100 → satış fiyatı bonusu */
   sweetness: number
-  /** 产量 0-100 → 双收概率 */
+  /** Verim 0-100 → çift hasat ihtimali */
   yield: number
-  /** 抗性 0-100 → 减缓枯萎 */
+  /** Dayanıklılık 0-100 → solmayı geciktirir */
   resistance: number
-  /** 稳定度 0-100 → 后代属性波动越小 */
+  /** Kararlılık 0-100 → sonraki nesilde sapma azalır */
   stability: number
-  /** 变异率 1-50 → 大幅突变概率 */
+  /** Mutasyon oranı 1-50 → büyük mutasyon ihtimali */
   mutationRate: number
-  /** 父本A的ID（可溯源） */
+  /** Ebeveyn A ID (soy takibi için) */
   parentA: string | null
-  /** 父本B的ID（可溯源） */
+  /** Ebeveyn B ID (soy takibi için) */
   parentB: string | null
-  /** 是否为杂交品种 */
+  /** Melez tür mü */
   isHybrid: boolean
-  /** 杂交品种ID（仅杂交种有值） */
+  /** Melez tür ID (sadece melezlerde) */
   hybridId: string | null
 }
 
-/** 育种种子（种子箱中的条目） */
+/** Yetiştirme tohumu (tohum sandığındaki öğe) */
 export interface BreedingSeed {
   genetics: SeedGenetics
-  /** 显示标签（作物名+世代+星级） */
+  /** Görünen etiket (ürün adı + nesil + yıldız) */
   label: string
 }
 
-/** 育种台槽位 */
+/** Yetiştirme yuvası */
 export interface BreedingSlot {
-  /** 父本A */
+  /** Ebeveyn A */
   parentA: SeedGenetics | null
-  /** 父本B */
+  /** Ebeveyn B */
   parentB: SeedGenetics | null
-  /** 已加工天数 */
+  /** İşlenen gün sayısı */
   daysProcessed: number
-  /** 总需天数 */
+  /** Toplam gereken gün */
   totalDays: number
-  /** 结果种子 */
+  /** Sonuç tohumu */
   result: SeedGenetics | null
-  /** 是否完成 */
+  /** Tamamlandı mı */
   ready: boolean
 }
 
-/** 杂交配方定义 */
+/** Melez tarif tanımı */
 export interface HybridDef {
-  /** 杂交种ID */
+  /** Melez ID */
   id: string
-  /** 杂交种名称 */
+  /** Melez adı */
   name: string
-  /** 父本A的cropId */
+  /** Ebeveyn A ürün ID */
   parentCropA: string
-  /** 父本B的cropId */
+  /** Ebeveyn B ürün ID */
   parentCropB: string
-  /** 父母平均甜度要求 */
+  /** Ortalama tatlılık gereksinimi */
   minSweetness: number
-  /** 父母平均产量要求 */
+  /** Ortalama verim gereksinimi */
   minYield: number
-  /** 产出的作物ID */
+  /** Ortaya çıkan ürün ID */
   resultCropId: string
-  /** 杂交种基础基因属性 */
+  /** Melezin temel gen özellikleri */
   baseGenetics: { sweetness: number; yield: number; resistance: number }
-  /** 发现时的描述文字 */
+  /** Keşif metni */
   discoveryText: string
 }
 
-/** 图鉴条目 */
+/** Ansiklopedi kaydı */
 export interface CompendiumEntry {
-  /** 杂交品种ID */
+  /** Melez ID */
   hybridId: string
-  /** 发现年份 */
+  /** Keşfedildiği yıl */
   discoveredYear: number
-  /** 最佳总属性 */
+  /** En iyi toplam stat */
   bestTotalStats: number
-  /** 种植次数 */
+  /** Yetiştirme sayısı */
   timesGrown: number
 }
 
-/** 星级评分 1-5 */
+/** Yıldız derecesi 1-5 */
 export type SeedStarRating = 1 | 2 | 3 | 4 | 5
