@@ -1,6 +1,6 @@
 import type { SkillType } from './skill'
 
-/** 成就条件类型 */
+/** Başarı durumu */
 export type AchievementCondition =
   | { type: 'itemCount'; count: number }
   | { type: 'cropHarvest'; count: number }
@@ -32,7 +32,7 @@ export type AchievementCondition =
   | { type: 'hiddenNpcBonded' }
   | { type: 'itemDiscovered'; itemId: string }
 
-/** 成就定义 */
+/** Başarı */
 export interface AchievementDef {
   id: string
   name: string
@@ -44,7 +44,7 @@ export interface AchievementDef {
   }
 }
 
-/** 祠堂任务定义 */
+/** Tapınak Görevleri */
 export interface CommunityBundleDef {
   id: string
   name: string
