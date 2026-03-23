@@ -3,37 +3,37 @@
     <div class="flex items-center justify-between mb-1">
       <div class="flex items-center space-x-1.5 text-sm text-accent">
         <Tent :size="14" />
-        <span>瀚海</span>
+        <span>Kervansaray</span>
       </div>
-      <span v-if="hanhaiStore.unlocked" class="text-xs text-success">已开通</span>
-      <span v-else class="text-xs text-muted">未开通</span>
+      <span v-if="hanhaiStore.unlocked" class="text-xs text-success">Açık</span>
+      <span v-else class="text-xs text-muted">Kapalı</span>
     </div>
 
-    <!-- 未解锁 -->
+    <!-- Açılmamış -->
     <div v-if="!hanhaiStore.unlocked" class="flex flex-col items-center justify-center py-10 space-y-3">
       <Tent :size="48" class="text-accent/30" />
-      <p class="text-sm text-muted">商路尚未开通</p>
-      <p class="text-xs text-muted/60 text-center max-w-60">需要击败矿洞第120层BOSS并支付{{ HANHAI_UNLOCK_COST }}文修路费</p>
+      <p class="text-sm text-muted">Kervan yolu henüz açılmadı</p>
+      <p class="text-xs text-muted/60 text-center max-w-60">Madenin 120. katındaki baş belasını yenip {{ HANHAI_UNLOCK_COST }} akçe yol bedeli ödemen gerekir</p>
       <Button v-if="bossDefeated" :class="canUnlock ? '!bg-accent !text-bg' : 'opacity-50'" :disabled="!canUnlock" @click="handleUnlock">
-        开通商路 ({{ HANHAI_UNLOCK_COST }}文)
+        Yolu Aç ({{ HANHAI_UNLOCK_COST }} akçe)
       </Button>
-      <p v-if="bossDefeated && !canUnlock" class="text-xs text-danger">金钱不足（需要{{ HANHAI_UNLOCK_COST }}文）</p>
-      <p v-if="!bossDefeated" class="text-xs text-danger">需先击败矿洞第120层BOSS</p>
+      <p v-if="bossDefeated && !canUnlock" class="text-xs text-danger">Akçe yetmiyor ({{ HANHAI_UNLOCK_COST }} akçe gerek)</p>
+      <p v-if="!bossDefeated" class="text-xs text-danger">Önce madenin 120. katındaki baş belayı yenmelisin</p>
     </div>
 
-    <!-- 已解锁 -->
+    <!-- Açılmış -->
     <template v-else>
-      <!-- 标签页 -->
+      <!-- Sekmeler -->
       <div class="flex space-x-1 mb-3">
         <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': activeTab === 'shop' }" @click="activeTab = 'shop'">
-          驿站商店
+          Menzil Dükkânı
         </Button>
         <Button class="flex-1 justify-center" :class="{ '!bg-accent !text-bg': activeTab === 'casino' }" @click="activeTab = 'casino'">
-          瀚海赌坊
+          Talih Hanı
         </Button>
       </div>
 
-      <!-- 驿站商店 -->
+      <!-- Menzil Dükkânı -->
       <template v-if="activeTab === 'shop'">
         <div class="flex flex-col space-y-1 max-h-80 overflow-y-auto">
           <div
@@ -47,49 +47,49 @@
               <p class="text-xs text-muted truncate">{{ item.description }}</p>
             </div>
             <div class="flex flex-col items-end ml-2 shrink-0">
-              <span class="text-xs text-accent">{{ item.price }}文</span>
+              <span class="text-xs text-accent">{{ item.price }} akçe</span>
               <span
                 v-if="item.weeklyLimit"
                 class="text-[10px]"
                 :class="hanhaiStore.getWeeklyRemaining(item.itemId) > 0 ? 'text-muted' : 'text-danger'"
               >
-                限购 {{ hanhaiStore.getWeeklyRemaining(item.itemId) }}/{{ item.weeklyLimit }}
+                Hafta sınırı {{ hanhaiStore.getWeeklyRemaining(item.itemId) }}/{{ item.weeklyLimit }}
               </span>
             </div>
           </div>
         </div>
-        <!-- 藏宝图寻宝 -->
+        <!-- Hazine haritası -->
         <Button v-if="treasureMapCount > 0" :icon="Map" :icon-size="12" class="w-full justify-center mt-2" @click="handleUseTreasureMap">
-          使用藏宝图寻宝（{{ treasureMapCount }}张）
+          Hazine Haritasıyla Ara ({{ treasureMapCount }} adet)
         </Button>
       </template>
 
-      <!-- 赌坊 -->
+      <!-- Talih Hanı -->
       <template v-if="activeTab === 'casino'">
         <div class="border border-accent/20 rounded-xs p-2 mb-3">
           <div class="flex items-center justify-between">
-            <span class="text-xs text-muted">今日剩余次数</span>
+            <span class="text-xs text-muted">Bugün kalan hak</span>
             <span class="text-xs" :class="hanhaiStore.canBet ? 'text-accent' : 'text-danger'">
               {{ hanhaiStore.betsRemaining }}/{{ MAX_DAILY_BETS }}
             </span>
           </div>
         </div>
 
-        <!-- 次数用完 -->
+        <!-- Hak bitmiş -->
         <div v-if="!hanhaiStore.canBet" class="flex flex-col items-center justify-center py-8 space-y-3">
           <Dices :size="48" class="text-accent/30" />
-          <p class="text-sm text-muted">今日赌博次数已用完</p>
-          <p class="text-xs text-muted/60">明天再来碰碰运气吧</p>
+          <p class="text-sm text-muted">Bugünkü oyun hakkın bitti</p>
+          <p class="text-xs text-muted/60">Yarın yeniden gelip talihini deneyebilirsin</p>
         </div>
 
         <div v-else class="flex flex-col space-y-2">
-          <!-- 幸运轮盘 -->
+          <!-- Talih Çarkı -->
           <div class="border border-accent/20 rounded-xs p-2">
             <p class="text-xs text-accent mb-2 flex items-center space-x-1">
               <CircleDot :size="12" />
-              <span>幸运轮盘</span>
+              <span>Talih Çarkı</span>
             </p>
-            <p class="text-xs text-muted mb-2">选择投注金额，转动轮盘赢取倍数奖励</p>
+            <p class="text-xs text-muted mb-2">Bahis miktarını seç, çarkı döndür ve katlı ödül kazan</p>
             <div class="flex space-x-1">
               <Button
                 v-for="tier in ROULETTE_BET_TIERS"
@@ -98,35 +98,35 @@
                 :disabled="playerStore.money < tier"
                 @click="handleRoulette(tier)"
               >
-                {{ tier }}文
+                {{ tier }} akçe
               </Button>
             </div>
           </div>
 
-          <!-- 骰子猜大小 -->
+          <!-- Zarla Büyük Küçük -->
           <div class="border border-accent/20 rounded-xs p-2">
             <p class="text-xs text-accent mb-2 flex items-center space-x-1">
               <Dices :size="12" />
-              <span>骰子猜大小</span>
+              <span>Zarla Büyük Küçük</span>
             </p>
-            <p class="text-xs text-muted mb-2">投注{{ DICE_BET_AMOUNT }}文，猜对大小赢2倍</p>
+            <p class="text-xs text-muted mb-2">{{ DICE_BET_AMOUNT }} akçe koy, doğru bilirsen 2 kat al</p>
             <div class="flex space-x-1">
               <Button class="flex-1 justify-center" :disabled="playerStore.money < DICE_BET_AMOUNT" @click="handleDice(false)">
-                猜小 (2-6)
+                Küçük (2-6)
               </Button>
               <Button class="flex-1 justify-center" :disabled="playerStore.money < DICE_BET_AMOUNT" @click="handleDice(true)">
-                猜大 (7-12)
+                Büyük (7-12)
               </Button>
             </div>
           </div>
 
-          <!-- 猜杯 -->
+          <!-- Kupa Tahmini -->
           <div class="border border-accent/20 rounded-xs p-2">
             <p class="text-xs text-accent mb-2 flex items-center space-x-1">
               <Trophy :size="12" />
-              <span>猜杯</span>
+              <span>Kupa Oyunu</span>
             </p>
-            <p class="text-xs text-muted mb-2">投注{{ CUP_BET_AMOUNT }}文，3选1猜中赢{{ CUP_WIN_MULTIPLIER }}倍</p>
+            <p class="text-xs text-muted mb-2">{{ CUP_BET_AMOUNT }} akçe koy, 3 kupadan doğruyu bulursan {{ CUP_WIN_MULTIPLIER }} kat al</p>
             <div class="flex space-x-1">
               <Button
                 v-for="i in 3"
@@ -135,18 +135,18 @@
                 :disabled="playerStore.money < CUP_BET_AMOUNT"
                 @click="handleCup(i - 1)"
               >
-                第{{ i }}杯
+                {{ i }}. Kupa
               </Button>
             </div>
           </div>
 
-          <!-- 斗蛐蛐 -->
+          <!-- Cırcır Böceği Dövüşü -->
           <div class="border border-accent/20 rounded-xs p-2">
             <p class="text-xs text-accent mb-2 flex items-center space-x-1">
               <Bug :size="12" />
-              <span>斗蛐蛐</span>
+              <span>Cırcır Dövüşü</span>
             </p>
-            <p class="text-xs text-muted mb-2">投注{{ CRICKET_BET_AMOUNT }}文，选蛐蛐上场对战，赢{{ CRICKET_WIN_MULTIPLIER }}倍</p>
+            <p class="text-xs text-muted mb-2">{{ CRICKET_BET_AMOUNT }} akçe koy, böceğini seç, kazanırsan {{ CRICKET_WIN_MULTIPLIER }} kat al</p>
             <div class="flex space-x-1">
               <Button
                 v-for="c in CRICKETS"
@@ -160,13 +160,13 @@
             </div>
           </div>
 
-          <!-- 翻牌寻宝 -->
+          <!-- Kart Çevir Hazine Bul -->
           <div class="border border-accent/20 rounded-xs p-2">
             <p class="text-xs text-accent mb-2 flex items-center space-x-1">
               <Gem :size="12" />
-              <span>翻牌寻宝</span>
+              <span>Kartta Hazine</span>
             </p>
-            <p class="text-xs text-muted mb-2">投注{{ CARD_BET_AMOUNT }}文，{{ CARD_TOTAL }}张牌中{{ CARD_TREASURE_COUNT }}张有宝</p>
+            <p class="text-xs text-muted mb-2">{{ CARD_BET_AMOUNT }} akçe koy, {{ CARD_TOTAL }} karttan {{ CARD_TREASURE_COUNT }} tanesinde hazine var</p>
             <div class="flex space-x-1">
               <Button
                 v-for="i in CARD_TOTAL"
@@ -180,13 +180,13 @@
             </div>
           </div>
 
-          <!-- 瀚海扑克 -->
+          <!-- Hanhai Poker -->
           <div class="border border-accent/20 rounded-xs p-2">
             <p class="text-xs text-accent mb-2 flex items-center space-x-1">
               <Spade :size="12" />
-              <span>瀚海扑克</span>
+              <span>Kervansaray Pokeri</span>
             </p>
-            <p class="text-xs text-muted mb-2">选择场次入场，入场费即筹码，每局抽水给荷官</p>
+            <p class="text-xs text-muted mb-2">Masa seçip otur; giriş parası fişin olur, her elde kâhya payını alır</p>
             <div class="flex flex-col space-y-1">
               <div
                 v-for="t in TEXAS_TIERS"
@@ -195,43 +195,43 @@
               >
                 <div class="flex-1 min-w-0">
                   <p class="text-xs">{{ t.name }}</p>
-                  <p class="text-xs text-muted">入场{{ t.entryFee }}文 + 抽水{{ t.rake }}文 · 盲注{{ t.blind }} · {{ t.rounds }}手</p>
+                  <p class="text-xs text-muted">Giriş {{ t.entryFee }} akçe + kâhya payı {{ t.rake }} akçe · kör bahis {{ t.blind }} · {{ t.rounds }} el</p>
                 </div>
                 <Button class="ml-2 shrink-0" :disabled="playerStore.money < t.minMoney" @click="handleTexas(t.id)">
-                  {{ playerStore.money < t.minMoney ? `需${t.minMoney}文` : '入场' }}
+                  {{ playerStore.money < t.minMoney ? `${t.minMoney} akçe gerek` : 'Otur' }}
                 </Button>
               </div>
             </div>
           </div>
 
-          <!-- 恶魔轮盘 -->
+          <!-- Şeytan Çarkı -->
           <div class="border border-accent/20 rounded-xs p-2">
             <p class="text-xs text-accent mb-2 flex items-center space-x-1">
               <Crosshair :size="12" />
-              <span>恶魔轮盘</span>
+              <span>Şeytan Çarkı</span>
             </p>
-            <p class="text-xs text-muted mb-2">投注{{ BUCKSHOT_BET_AMOUNT }}文，与庄家轮流开枪，胜者得{{ BUCKSHOT_WIN_MULTIPLIER }}倍</p>
-            <Button class="w-full justify-center" :disabled="playerStore.money < BUCKSHOT_BET_AMOUNT" @click="handleBuckshot">挑战</Button>
+            <p class="text-xs text-muted mb-2">{{ BUCKSHOT_BET_AMOUNT }} akçe koy, tefeciyle sırayla tetiğe dokun; galip {{ BUCKSHOT_WIN_MULTIPLIER }} kat alır</p>
+            <Button class="w-full justify-center" :disabled="playerStore.money < BUCKSHOT_BET_AMOUNT" @click="handleBuckshot">Meydan Oku</Button>
           </div>
         </div>
       </template>
 
-      <!-- 底部统计 -->
+      <!-- Alt istatistik -->
       <div class="mt-3 border border-accent/20 rounded-xs p-2">
         <div class="grid grid-cols-2 gap-x-3 gap-y-0.5">
           <div class="flex items-center justify-between">
-            <span class="text-xs text-muted">持有金钱</span>
-            <span class="text-xs">{{ playerStore.money }}文</span>
+            <span class="text-xs text-muted">Eldeki akçe</span>
+            <span class="text-xs">{{ playerStore.money }} akçe</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-xs text-muted">今日赌博</span>
+            <span class="text-xs text-muted">Bugünkü oyun</span>
             <span class="text-xs">{{ MAX_DAILY_BETS - hanhaiStore.betsRemaining }}/{{ MAX_DAILY_BETS }}</span>
           </div>
         </div>
       </div>
     </template>
 
-    <!-- 商品购买弹窗 -->
+    <!-- Ürün alma penceresi -->
     <Transition name="panel-fade">
       <div
         v-if="shopModalItem"
@@ -251,17 +251,17 @@
 
           <div class="border border-accent/10 rounded-xs p-2 mb-2">
             <div class="flex items-center justify-between">
-              <span class="text-xs text-muted">价格</span>
-              <span class="text-xs text-accent">{{ shopModalItem.price }}文</span>
+              <span class="text-xs text-muted">Bedel</span>
+              <span class="text-xs text-accent">{{ shopModalItem.price }} akçe</span>
             </div>
             <div class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">持有</span>
-              <span class="text-xs">{{ playerStore.money }}文</span>
+              <span class="text-xs text-muted">Elindeki</span>
+              <span class="text-xs">{{ playerStore.money }} akçe</span>
             </div>
             <div v-if="shopModalItem.weeklyLimit" class="flex items-center justify-between mt-0.5">
-              <span class="text-xs text-muted">本周限购</span>
+              <span class="text-xs text-muted">Bu hafta sınırı</span>
               <span class="text-xs" :class="hanhaiStore.getWeeklyRemaining(shopModalItem.itemId) > 0 ? '' : 'text-danger'">
-                剩余 {{ hanhaiStore.getWeeklyRemaining(shopModalItem.itemId) }}/{{ shopModalItem.weeklyLimit }}
+                Kalan {{ hanhaiStore.getWeeklyRemaining(shopModalItem.itemId) }}/{{ shopModalItem.weeklyLimit }}
               </span>
             </div>
           </div>
@@ -271,20 +271,20 @@
             :disabled="playerStore.money < shopModalItem.price || hanhaiStore.getWeeklyRemaining(shopModalItem.itemId) <= 0"
             @click="handleBuyItem(shopModalItem.itemId)"
           >
-            {{ hanhaiStore.getWeeklyRemaining(shopModalItem.itemId) <= 0 ? '本周已售罄' : '购买' }}
+            {{ hanhaiStore.getWeeklyRemaining(shopModalItem.itemId) <= 0 ? 'Bu hafta tükendi' : 'Satın Al' }}
           </Button>
         </div>
       </div>
     </Transition>
 
-    <!-- 幸运轮盘弹窗 -->
+    <!-- Talih Çarkı penceresi -->
     <Transition name="panel-fade">
       <div v-if="showRouletteModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <div class="game-panel max-w-xs w-full">
-          <p class="text-sm text-accent text-center mb-1">幸运轮盘</p>
-          <p class="text-xs text-muted text-center mb-3">投注 {{ rouletteBetAmount }}文</p>
+          <p class="text-sm text-accent text-center mb-1">Talih Çarkı</p>
+          <p class="text-xs text-muted text-center mb-3">Bahis {{ rouletteBetAmount }} akçe</p>
 
-          <!-- 转盘格子 -->
+          <!-- Çark dilimleri -->
           <div class="flex flex-col space-y-1 mb-3">
             <div
               v-for="(outcome, i) in ROULETTE_OUTCOMES"
@@ -297,32 +297,32 @@
             </div>
           </div>
 
-          <!-- 结果 -->
+          <!-- Sonuç -->
           <template v-if="roulettePhase === 'done' && rouletteAnimResult">
             <div class="border border-accent/10 rounded-xs p-3 text-center mb-3">
               <p class="text-sm mb-0.5" :class="rouletteAnimResult.multiplier > 0 ? 'text-success' : 'text-danger'">
-                {{ rouletteAnimResult.multiplier > 0 ? '大赢！' : '落空…' }}
+                {{ rouletteAnimResult.multiplier > 0 ? 'Talih güldü!' : 'Bu kez nasip değil…' }}
               </p>
-              <p v-if="rouletteAnimResult.multiplier > 0" class="text-xs text-success">+{{ rouletteAnimResult.winnings }}文</p>
-              <p v-else class="text-xs text-danger">-{{ rouletteBetAmount }}文</p>
+              <p v-if="rouletteAnimResult.multiplier > 0" class="text-xs text-success">+{{ rouletteAnimResult.winnings }} akçe</p>
+              <p v-else class="text-xs text-danger">-{{ rouletteBetAmount }} akçe</p>
             </div>
-            <Button class="w-full justify-center" @click="showRouletteModal = false">确定</Button>
+            <Button class="w-full justify-center" @click="showRouletteModal = false">Tamam</Button>
           </template>
         </div>
       </div>
     </Transition>
 
-    <!-- 骰子弹窗 -->
+    <!-- Zar penceresi -->
     <Transition name="panel-fade">
       <div v-if="showDiceModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <div class="game-panel max-w-xs w-full">
-          <p class="text-sm text-accent text-center mb-1">骰子猜大小</p>
+          <p class="text-sm text-accent text-center mb-1">Zarla Büyük Küçük</p>
           <p class="text-xs text-muted text-center mb-4">
-            你猜
-            <span class="text-accent">{{ diceGuessIsBig ? '大 (7-12)' : '小 (2-6)' }}</span>
+            Seçimin:
+            <span class="text-accent">{{ diceGuessIsBig ? 'Büyük (7-12)' : 'Küçük (2-6)' }}</span>
           </p>
 
-          <!-- 骰子面 -->
+          <!-- Zar yüzleri -->
           <div class="flex justify-center space-x-4 mb-3">
             <div v-for="(val, di) in diceDisplay" :key="di" class="dice-face" :class="{ 'dice-rolling': dicePhase === 'rolling' }">
               <div v-for="pos in 9" :key="pos" class="flex items-center justify-center">
@@ -335,38 +335,38 @@
             </div>
           </div>
 
-          <!-- 点数 -->
+          <!-- Toplam -->
           <p v-if="dicePhase !== 'rolling'" class="text-xs text-center mb-3">
             <span class="text-muted">{{ diceDisplay[0] }} + {{ diceDisplay[1] }} =</span>
             <span class="text-accent">{{ diceSum }}</span>
-            <span class="text-muted">（{{ diceSum >= 7 ? '大' : '小' }}）</span>
+            <span class="text-muted">（{{ diceSum >= 7 ? 'Büyük' : 'Küçük' }}）</span>
           </p>
-          <p v-else class="text-xs text-muted/40 text-center mb-3">掷骰中…</p>
+          <p v-else class="text-xs text-muted/40 text-center mb-3">Zarlar dönüyor…</p>
 
-          <!-- 结果 -->
+          <!-- Sonuç -->
           <template v-if="dicePhase === 'done' && diceAnimResult">
             <div class="border border-accent/10 rounded-xs p-3 text-center mb-3">
               <p class="text-sm" :class="diceAnimResult.won ? 'text-success' : 'text-danger'">
-                {{ diceAnimResult.won ? '猜对了！' : '猜错了…' }}
+                {{ diceAnimResult.won ? 'Bildin!' : 'Tutmadı…' }}
               </p>
               <p class="text-xs mt-0.5" :class="diceAnimResult.won ? 'text-success' : 'text-danger'">
-                {{ diceAnimResult.won ? '+' + diceAnimResult.winnings + '文' : '-' + DICE_BET_AMOUNT + '文' }}
+                {{ diceAnimResult.won ? '+' + diceAnimResult.winnings + ' akçe' : '-' + DICE_BET_AMOUNT + ' akçe' }}
               </p>
             </div>
-            <Button class="w-full justify-center" @click="showDiceModal = false">确定</Button>
+            <Button class="w-full justify-center" @click="showDiceModal = false">Tamam</Button>
           </template>
         </div>
       </div>
     </Transition>
 
-    <!-- 猜杯弹窗 -->
+    <!-- Kupa oyunu penceresi -->
     <Transition name="panel-fade">
       <div v-if="showCupModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <div class="game-panel max-w-xs w-full">
-          <p class="text-sm text-accent text-center mb-1">猜杯</p>
-          <p class="text-xs text-muted text-center mb-4">你选了第{{ cupGuess + 1 }}杯</p>
+          <p class="text-sm text-accent text-center mb-1">Kupa Oyunu</p>
+          <p class="text-xs text-muted text-center mb-4">{{ cupGuess + 1 }}. kupayı seçtin</p>
 
-          <!-- 三个杯子 -->
+          <!-- Üç kupa -->
           <div class="flex justify-center space-x-3 mb-3">
             <div
               v-for="i in 3"
@@ -396,37 +396,37 @@
             </div>
           </div>
 
-          <p v-if="cupPhase === 'shuffling'" class="text-xs text-muted/40 text-center mb-3">洗杯中…</p>
+          <p v-if="cupPhase === 'shuffling'" class="text-xs text-muted/40 text-center mb-3">Kupalar karıştırılıyor…</p>
 
-          <!-- 结果 -->
+          <!-- Sonuç -->
           <template v-if="cupPhase === 'done' && cupAnimResult">
             <div class="border border-accent/10 rounded-xs p-3 text-center mb-3">
               <p class="text-sm" :class="cupAnimResult.won ? 'text-success' : 'text-danger'">
-                {{ cupAnimResult.won ? '猜中了！' : '猜错了…' }}
+                {{ cupAnimResult.won ? 'Doğru kupa!' : 'Yanlış kupa…' }}
               </p>
               <p class="text-xs mt-0.5" :class="cupAnimResult.won ? 'text-success' : 'text-danger'">
-                {{ cupAnimResult.won ? '+' + cupAnimResult.winnings + '文' : '-' + CUP_BET_AMOUNT + '文' }}
+                {{ cupAnimResult.won ? '+' + cupAnimResult.winnings + ' akçe' : '-' + CUP_BET_AMOUNT + ' akçe' }}
               </p>
             </div>
-            <Button class="w-full justify-center" @click="showCupModal = false">确定</Button>
+            <Button class="w-full justify-center" @click="showCupModal = false">Tamam</Button>
           </template>
         </div>
       </div>
     </Transition>
 
-    <!-- 斗蛐蛐弹窗 -->
+    <!-- Cırcır dövüşü penceresi -->
     <Transition name="panel-fade">
       <div v-if="showCricketModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <div class="game-panel max-w-xs w-full">
-          <p class="text-sm text-accent text-center mb-1">斗蛐蛐</p>
+          <p class="text-sm text-accent text-center mb-1">Cırcır Dövüşü</p>
           <p class="text-xs text-muted text-center mb-4">
-            你的蛐蛐：
+            Senin böceğin:
             <span class="text-accent">{{ cricketChoiceName }}</span>
           </p>
 
-          <!-- 对战面板 -->
+          <!-- Karşılaşma -->
           <div class="flex items-center justify-between space-x-2 mb-3">
-            <!-- 我方 -->
+            <!-- Oyuncu -->
             <div class="flex-1 text-center">
               <p class="text-xs text-accent mb-1">{{ cricketChoiceName }}</p>
               <div class="border border-accent/20 rounded-xs p-2">
@@ -461,9 +461,9 @@
 
             <span class="text-xs text-muted/40">VS</span>
 
-            <!-- 对方 -->
+            <!-- Rakip -->
             <div class="flex-1 text-center">
-              <p class="text-xs text-danger mb-1">对手</p>
+              <p class="text-xs text-danger mb-1">Rakip</p>
               <div class="border border-danger/20 rounded-xs p-2">
                 <div class="cricket-icon" :class="{ 'cricket-fight': cricketPhase === 'fighting' }">
                   <Bug :size="24" class="text-danger -scale-x-100" />
@@ -495,13 +495,13 @@
             </div>
           </div>
 
-          <p v-if="cricketPhase === 'fighting'" class="text-xs text-muted/40 text-center mb-3">对战中…</p>
+          <p v-if="cricketPhase === 'fighting'" class="text-xs text-muted/40 text-center mb-3">Dövüş sürüyor…</p>
 
-          <!-- 结果 -->
+          <!-- Sonuç -->
           <template v-if="cricketPhase === 'done' && cricketAnimResult">
             <div class="border border-accent/10 rounded-xs p-3 text-center mb-3">
               <p class="text-sm" :class="cricketAnimResult.won ? 'text-success' : cricketAnimResult.draw ? 'text-accent' : 'text-danger'">
-                {{ cricketAnimResult.won ? '大获全胜！' : cricketAnimResult.draw ? '势均力敌' : '败下阵来…' }}
+                {{ cricketAnimResult.won ? 'Ezici zafer!' : cricketAnimResult.draw ? 'Başa baş' : 'Yenildin…' }}
               </p>
               <p
                 class="text-xs mt-0.5"
@@ -509,27 +509,27 @@
               >
                 {{
                   cricketAnimResult.won
-                    ? '+' + cricketAnimResult.winnings + '文'
+                    ? '+' + cricketAnimResult.winnings + ' akçe'
                     : cricketAnimResult.draw
-                      ? '退还' + CRICKET_BET_AMOUNT + '文'
-                      : '-' + CRICKET_BET_AMOUNT + '文'
+                      ? CRICKET_BET_AMOUNT + ' akçe geri verildi'
+                      : '-' + CRICKET_BET_AMOUNT + ' akçe'
                 }}
               </p>
             </div>
-            <Button class="w-full justify-center" @click="showCricketModal = false">确定</Button>
+            <Button class="w-full justify-center" @click="showCricketModal = false">Tamam</Button>
           </template>
         </div>
       </div>
     </Transition>
 
-    <!-- 翻牌寻宝弹窗 -->
+    <!-- Kart çevirme penceresi -->
     <Transition name="panel-fade">
       <div v-if="showCardModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <div class="game-panel max-w-xs w-full">
-          <p class="text-sm text-accent text-center mb-1">翻牌寻宝</p>
-          <p class="text-xs text-muted text-center mb-4">你选了第{{ cardPick + 1 }}张</p>
+          <p class="text-sm text-accent text-center mb-1">Kartta Hazine</p>
+          <p class="text-xs text-muted text-center mb-4">{{ cardPick + 1 }}. kartı seçtin</p>
 
-          <!-- 牌面 -->
+          <!-- Kartlar -->
           <div class="flex justify-center space-x-2 mb-3">
             <div
               v-for="i in CARD_TOTAL"
@@ -555,32 +555,32 @@
             </div>
           </div>
 
-          <p v-if="cardPhase === 'flipping'" class="text-xs text-muted/40 text-center mb-3">翻牌中…</p>
+          <p v-if="cardPhase === 'flipping'" class="text-xs text-muted/40 text-center mb-3">Kart çevriliyor…</p>
 
-          <!-- 结果 -->
+          <!-- Sonuç -->
           <template v-if="cardPhase === 'done' && cardAnimResult">
             <div class="border border-accent/10 rounded-xs p-3 text-center mb-3">
               <p class="text-sm" :class="cardAnimResult.won ? 'text-success' : 'text-danger'">
-                {{ cardAnimResult.won ? '翻到宝了！' : '空牌…' }}
+                {{ cardAnimResult.won ? 'Hazineyi buldun!' : 'Boş kart…' }}
               </p>
               <p class="text-xs mt-0.5" :class="cardAnimResult.won ? 'text-success' : 'text-danger'">
-                {{ cardAnimResult.won ? '+' + cardAnimResult.winnings + '文' : '-' + CARD_BET_AMOUNT + '文' }}
+                {{ cardAnimResult.won ? '+' + cardAnimResult.winnings + ' akçe' : '-' + CARD_BET_AMOUNT + ' akçe' }}
               </p>
             </div>
-            <Button class="w-full justify-center" @click="showCardModal = false">确定</Button>
+            <Button class="w-full justify-center" @click="showCardModal = false">Tamam</Button>
           </template>
         </div>
       </div>
     </Transition>
 
-    <!-- 瀚海扑克弹窗 -->
+    <!-- Poker penceresi -->
     <Transition name="panel-fade">
       <div v-if="showTexasModal && texasSetup" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <TexasHoldemGame :setup="texasSetup" @complete="handleTexasComplete" />
       </div>
     </Transition>
 
-    <!-- 恶魔轮盘弹窗 -->
+    <!-- Şeytan Çarkı penceresi -->
     <Transition name="panel-fade">
       <div v-if="showBuckshotModal && buckshotSetup" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4">
         <BuckshotRouletteGame :setup="buckshotSetup" @complete="handleBuckshotComplete" />
@@ -659,7 +659,7 @@
     endHanhaiBgm()
   })
 
-  // === 解锁逻辑 ===
+  // === Açma mantığı ===
   const miningStore = useMiningStore()
   const bossDefeated = computed(() => miningStore.defeatedBosses.includes('abyss_dragon'))
   const canUnlock = computed(() => bossDefeated.value && playerStore.money >= HANHAI_UNLOCK_COST)
@@ -668,14 +668,14 @@
     if (result.success) addLog(result.message)
   }
 
-  // === 轮盘动画状态 ===
+  // === Çark animasyonu ===
   const showRouletteModal = ref(false)
   const roulettePhase = ref<'spinning' | 'done'>('spinning')
   const rouletteHighlight = ref(0)
   const rouletteAnimResult = ref<{ multiplier: number; winnings: number } | null>(null)
   const rouletteBetAmount = ref(0)
 
-  // === 骰子动画状态 ===
+  // === Zar animasyonu ===
   const showDiceModal = ref(false)
   const dicePhase = ref<'rolling' | 'done'>('rolling')
   const diceDisplay = ref<number[]>([1, 1])
@@ -684,7 +684,7 @@
 
   const diceSum = computed(() => (diceDisplay.value[0] ?? 0) + (diceDisplay.value[1] ?? 0))
 
-  /** 骰面点位 (3×3 grid, 0-indexed) */
+  /** Zar yüzündeki noktalar (3×3 grid, 0-indexed) */
   const DICE_DOTS: Record<number, number[]> = {
     1: [4],
     2: [2, 6],
@@ -694,21 +694,21 @@
     6: [0, 2, 3, 5, 6, 8]
   }
 
-  // === 猜杯动画状态 ===
+  // === Kupa oyunu animasyonu ===
   const showCupModal = ref(false)
   const cupPhase = ref<'shuffling' | 'done'>('shuffling')
   const cupGuess = ref(0)
   const cupShuffleIndex = ref(0)
   const cupAnimResult = ref<{ correctCup: number; won: boolean; winnings: number } | null>(null)
 
-  // === 斗蛐蛐动画状态 ===
+  // === Cırcır dövüşü animasyonu ===
   const showCricketModal = ref(false)
   const cricketPhase = ref<'fighting' | 'done'>('fighting')
   const cricketChoiceName = ref('')
   const cricketDisplayPower = ref<number[]>([5, 5])
   const cricketAnimResult = ref<{ playerPower: number; opponentPower: number; won: boolean; draw: boolean; winnings: number } | null>(null)
 
-  // === 翻牌动画状态 ===
+  // === Kart çevirme animasyonu ===
   const showCardModal = ref(false)
   const cardPhase = ref<'flipping' | 'done'>('flipping')
   const cardPick = ref(0)
@@ -724,7 +724,7 @@
     }
   }
 
-  // === 藏宝图 ===
+  // === Hazine haritası ===
   const inventoryStore = useInventoryStore()
   const treasureMapCount = computed(() => inventoryStore.getItemCount('hanhai_map'))
   const handleUseTreasureMap = () => {
@@ -734,10 +734,10 @@
     }
   }
 
-  // === 轮盘逻辑 ===
+  // === Çark mantığı ===
   const startRouletteSpin = (targetIndex: number) => {
     const len = ROULETTE_OUTCOMES.length
-    const fullCycles = 3 + Math.floor(Math.random() * 2) // 3~4 圈增加随机感
+    const fullCycles = 3 + Math.floor(Math.random() * 2)
     const totalSteps = fullCycles * len + targetIndex
     let step = 0
 
@@ -746,7 +746,6 @@
       sfxRouletteTick()
 
       if (step >= totalSteps) {
-        // 动画结束，停在 targetIndex 上，延迟显示结果
         sfxRouletteStop()
         setTimeout(() => {
           roulettePhase.value = 'done'
@@ -786,7 +785,7 @@
     startRouletteSpin(targetIndex >= 0 ? targetIndex : 0)
   }
 
-  // === 骰子逻辑 ===
+  // === Zar mantığı ===
   const startDiceRoll = (finalDice1: number, finalDice2: number) => {
     let step = 0
     const totalSteps = 14
@@ -826,7 +825,7 @@
     startDiceRoll(result.dice1, result.dice2)
   }
 
-  // === 猜杯逻辑 ===
+  // === Kupa mantığı ===
   const startCupShuffle = () => {
     let step = 0
     const totalSteps = 12
@@ -866,7 +865,7 @@
     startCupShuffle()
   }
 
-  // === 斗蛐蛐逻辑 ===
+  // === Cırcır mantığı ===
   const startCricketFight = () => {
     let step = 0
     const totalSteps = 12
@@ -911,11 +910,10 @@
     startCricketFight()
   }
 
-  // === 翻牌逻辑 ===
+  // === Kart mantığı ===
   const startCardFlip = (pickIndex: number) => {
     let step = 0
     const order: number[] = []
-    // Flip picked card first, then others
     order.push(pickIndex)
     for (let i = 0; i < CARD_TOTAL; i++) {
       if (i !== pickIndex) order.push(i)
@@ -954,7 +952,7 @@
     startCardFlip(pick)
   }
 
-  // === 瀚海扑克 ===
+  // === Poker ===
   const showTexasModal = ref(false)
   const texasSetup = ref<TexasSetup | null>(null)
 
@@ -970,7 +968,7 @@
     showTexasModal.value = false
   }
 
-  // === 恶魔轮盘 ===
+  // === Şeytan Çarkı ===
   const showBuckshotModal = ref(false)
   const buckshotSetup = ref<BuckshotSetup | null>(null)
 
@@ -1019,7 +1017,7 @@
     }
   }
 
-  /* 猜杯 */
+  /* Kupa oyunu */
   .cup-box {
     position: relative;
     width: 4rem;
@@ -1060,7 +1058,7 @@
     }
   }
 
-  /* 斗蛐蛐 */
+  /* Cırcır dövüşü */
   .cricket-icon {
     display: flex;
     justify-content: center;
@@ -1080,7 +1078,7 @@
     }
   }
 
-  /* 翻牌 */
+  /* Kart çevirme */
   .card-tile {
     width: 3rem;
     height: 3.5rem;
