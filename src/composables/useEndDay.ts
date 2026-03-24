@@ -36,77 +36,77 @@ import type { MorningEffect } from '@/data/farmEvents'
 import router from '@/router'
 
 const NPC_NAME_MAP: Record<string, string> = {
-  chen_bo: '陈伯',
-  liu_niang: '柳娘',
-  a_shi: '阿石',
-  qiu_yue: '秋月',
-  lin_lao: '林老',
-  xiao_man: '小满',
-  chun_lan: '春兰',
-  xue_qin: '雪芹',
-  su_su: '素素',
-  hong_dou: '红豆',
-  dan_qing: '丹青',
-  a_tie: '阿铁',
-  yun_fei: '云飞',
-  da_niu: '大牛',
-  mo_bai: '墨白',
-  wang_dashen: '王大婶',
-  zhao_mujiang: '赵木匠',
-  sun_tiejiang: '孙铁匠',
-  zhang_popo: '张婆婆',
-  li_yu: '李渔翁',
-  zhou_xiucai: '周秀才',
-  wu_shen: '吴婶',
-  ma_liu: '马六',
-  lao_song: '老宋',
-  pang_shen: '胖婶',
-  a_hua: '阿花',
-  shi_tou: '石头',
-  hui_niang: '慧娘',
-  lao_lu: '老陆',
-  liu_cunzhang: '柳村长',
-  qian_niang: '钱娘',
-  he_zhanggui: '何掌柜',
-  qin_dashu: '秦大叔',
-  a_fu: '阿福'
+  chen_bo: 'Hasan Enişte',
+  liu_niang: 'Elif',
+  a_shi: 'İsmail',
+  qiu_yue: 'Aylin',
+  lin_lao: 'Hekim Dede',
+  xiao_man: 'Mıstık',
+  chun_lan: 'Bahar',
+  xue_qin: 'Nazan',
+  su_su: 'Suna',
+  hong_dou: 'Zeyno',
+  dan_qing: 'Cemil',
+  a_tie: 'Demir',
+  yun_fei: 'Baran',
+  da_niu: 'İbo',
+  mo_bai: 'Mahir',
+  wang_dashen: 'Fatma Teyze',
+  zhao_mujiang: 'Mustafa Usta',
+  sun_tiejiang: 'Ali Usta',
+  zhang_popo: 'Emine Nine',
+  li_yu: 'Balıkçı Dede',
+  zhou_xiucai: 'Hoca Efendi',
+  wu_shen: 'Nuriye Teyze',
+  ma_liu: 'Seyyar Salih',
+  lao_song: 'Bekçi Osman',
+  pang_shen: 'Hatice Abla',
+  a_hua: 'Zehra',
+  shi_tou: 'Yaman',
+  hui_niang: 'Meryem',
+  lao_lu: 'Rıza Dayı',
+  liu_cunzhang: 'Muhtar Mehmet',
+  qian_niang: 'Yasemin',
+  he_zhanggui: 'Kahveci Bekir',
+  qin_dashu: 'Kemal Amca',
+  a_fu: 'Ufuk'
 }
 
 const getNpcName = (npcId: string): string => {
   return NPC_NAME_MAP[npcId] ?? npcId
 }
 
-/** NPC 好感度 → 食谱解锁映射（多层级） */
+/** NPC gönül bağı → tarif açılım eşlemesi (çok kademeli) */
 const NPC_RECIPE_MAP: { npcId: string; level: 'acquaintance' | 'friendly' | 'bestFriend'; recipeId: string }[] = [
-  // 相识
+  // Tanış
   { npcId: 'chen_bo', level: 'acquaintance', recipeId: 'radish_soup' },
   { npcId: 'qiu_yue', level: 'acquaintance', recipeId: 'braised_carp' },
   { npcId: 'lin_lao', level: 'acquaintance', recipeId: 'herbal_porridge' },
   { npcId: 'liu_niang', level: 'acquaintance', recipeId: 'osmanthus_cake' },
   { npcId: 'a_shi', level: 'acquaintance', recipeId: 'miner_lunch' },
   { npcId: 'xiao_man', level: 'acquaintance', recipeId: 'sweet_osmanthus_tea' },
-  // 相知
+  // Dost
   { npcId: 'chen_bo', level: 'friendly', recipeId: 'aged_radish_stew' },
   { npcId: 'qiu_yue', level: 'friendly', recipeId: 'maple_grilled_fish' },
   { npcId: 'lin_lao', level: 'friendly', recipeId: 'herbal_pill' },
   { npcId: 'liu_niang', level: 'friendly', recipeId: 'embroidered_cake' },
   { npcId: 'a_shi', level: 'friendly', recipeId: 'deep_mine_stew' },
   { npcId: 'xiao_man', level: 'friendly', recipeId: 'wild_berry_jam' },
-  // 挚友
+  // Can yoldaşı
   { npcId: 'chen_bo', level: 'bestFriend', recipeId: 'farmers_feast' },
   { npcId: 'qiu_yue', level: 'bestFriend', recipeId: 'autumn_moon_feast' },
   { npcId: 'lin_lao', level: 'bestFriend', recipeId: 'longevity_soup' },
   { npcId: 'liu_niang', level: 'bestFriend', recipeId: 'lovers_pastry' },
   { npcId: 'a_shi', level: 'bestFriend', recipeId: 'forgemasters_meal' },
   { npcId: 'xiao_man', level: 'bestFriend', recipeId: 'spirit_fruit_wine' },
-  // 新增：动物产品相关食谱
+  // Hayvansal ürünlerle ilgili ek tarifler
   { npcId: 'da_niu', level: 'friendly', recipeId: 'goat_milk_soup' },
   { npcId: 'da_niu', level: 'bestFriend', recipeId: 'truffle_fried_rice' },
   { npcId: 'lin_lao', level: 'bestFriend', recipeId: 'antler_soup' },
   { npcId: 'chen_bo', level: 'bestFriend', recipeId: 'camel_milk_tea' }
 ]
 
-/** 结婚食谱映射 */
+/** Evlilik tarif eşlemesi */
 const MARRIAGE_RECIPE_MAP: Record<string, string> = {
   liu_niang: 'phoenix_cake',
   a_shi: 'molten_hotpot',
@@ -122,7 +122,7 @@ const MARRIAGE_RECIPE_MAP: Record<string, string> = {
   mo_bai: 'moonlit_tea_rice'
 }
 
-/** 节日食谱映射 */
+/** Bayram tarif eşlemesi */
 const FESTIVAL_RECIPE_MAP: Record<string, string> = {
   spring_festival: 'spring_roll',
   summer_lantern: 'lotus_lantern_cake',
@@ -142,80 +142,80 @@ const FESTIVAL_RECIPE_MAP: Record<string, string> = {
   qiu_yuan: 'zhi_yuan_gao'
 }
 
-/** 好感度等级层级顺序 */
+/** Gönül seviyesi sıralaması */
 const LEVEL_ORDER = ['stranger', 'acquaintance', 'friendly', 'bestFriend'] as const
 
-/** 检查好感度是否达到指定等级 */
+/** Gönül seviyesinin istenen eşiğe ulaşıp ulaşmadığını kontrol eder */
 const meetsLevel = (current: string, required: 'acquaintance' | 'friendly' | 'bestFriend'): boolean => {
   return LEVEL_ORDER.indexOf(current as (typeof LEVEL_ORDER)[number]) >= LEVEL_ORDER.indexOf(required)
 }
 
-/** 传说鱼ID列表 */
+/** Efsanevi balık kimlikleri */
 const LEGENDARY_FISH_IDS = ['dragonfish', 'golden_turtle', 'river_dragon', 'abyss_leviathan', 'jade_dragon']
 
-/** 检查 NPC 友好度、技能等级、结婚解锁食谱 */
+/** NPC yakınlığı, beceri seviyesi ve evlilik durumuna göre tarif açılımlarını kontrol eder */
 const checkRecipeUnlocks = () => {
   const npcStore = useNpcStore()
   const cookingStore = useCookingStore()
   const skillStore = useSkillStore()
 
-  // NPC 多层级好感食谱
+  // NPC çok kademeli gönül bağı tarifleri
   for (const entry of NPC_RECIPE_MAP) {
     const level = npcStore.getFriendshipLevel(entry.npcId)
     if (meetsLevel(level, entry.level)) {
       if (cookingStore.unlockRecipe(entry.recipeId)) {
-        const levelName = entry.level === 'acquaintance' ? '相识' : entry.level === 'friendly' ? '相知' : '挚友'
-        addLog(`${getNpcName(entry.npcId)}（${levelName}）寄来了新食谱！`)
+        const levelName = entry.level === 'acquaintance' ? 'Tanış' : entry.level === 'friendly' ? 'Dost' : 'Can Yoldaşı'
+        addLog(`${getNpcName(entry.npcId)} (${levelName}) sana yeni bir yemek tarifi gönderdi!`)
       }
     }
   }
 
-  // 结婚食谱
+  // Evlilik tarifleri
   const spouse = npcStore.getSpouse()
   if (spouse) {
     const marriageRecipe = MARRIAGE_RECIPE_MAP[spouse.npcId]
     if (marriageRecipe) {
       if (cookingStore.unlockRecipe(marriageRecipe)) {
         const spouseName = getNpcName(spouse.npcId)
-        addLog(`${spouseName}教你了新的料理秘方！`)
+        addLog(`${spouseName} sana yeni bir yemek sırrı öğretti!`)
       }
     }
-    // 通用结婚食谱：孔雀宴
+    // Ortak evlilik tarifi
     if (cookingStore.unlockRecipe('peacock_feast')) {
-      addLog(`婚后生活解锁了新食谱：孔雀宴！`)
+      addLog(`Evlilikten sonra yeni bir tarif açıldı: Tavus Sofrası!`)
     }
   }
 
-  // 技能食谱
+  // Beceri tarifleri
   for (const recipe of RECIPES) {
     if (recipe.requiredSkill) {
       const skill = skillStore.getSkill(recipe.requiredSkill.type)
       if (skill.level >= recipe.requiredSkill.level) {
         if (cookingStore.unlockRecipe(recipe.id)) {
-          addLog(`技能提升解锁了新食谱：${recipe.name}！`)
+          addLog(`Becerin gelişti, yeni bir tarif açıldı: ${recipe.name}!`)
         }
       }
     }
   }
 
-  // 物品获取解锁食谱（瀚海）
+  // Eşya elde etmeyle açılan tarifler (Hanhai)
   const inventoryStore = useInventoryStore()
   const ITEM_RECIPE_MAP: { itemId: string; recipeId: string; name: string }[] = [
-    { itemId: 'hanhai_spice', recipeId: 'spiced_lamb', name: '香料烤羊' },
-    { itemId: 'hanhai_silk', recipeId: 'silk_dumpling_deluxe', name: '丝路饺子' },
-    { itemId: 'hanhai_cactus', recipeId: 'desert_cactus_soup', name: '仙人掌汤' },
-    { itemId: 'hanhai_date', recipeId: 'date_cake', name: '枣糕' }
+    { itemId: 'hanhai_spice', recipeId: 'spiced_lamb', name: 'Baharatlı Kuzu' },
+    { itemId: 'hanhai_silk', recipeId: 'silk_dumpling_deluxe', name: 'İpek Yolu Mantısı' },
+    { itemId: 'hanhai_cactus', recipeId: 'desert_cactus_soup', name: 'Kaktüs Çorbası' },
+    { itemId: 'hanhai_date', recipeId: 'date_cake', name: 'Hurma Keki' }
   ]
   for (const entry of ITEM_RECIPE_MAP) {
     if (inventoryStore.hasItem(entry.itemId)) {
       if (cookingStore.unlockRecipe(entry.recipeId)) {
-        addLog(`获得了新食谱：${entry.name}！`)
+        addLog(`Yeni tarif öğrendin: ${entry.name}!`)
       }
     }
   }
 }
 
-/** 检查成就解锁食谱 */
+/** Başarımlardan açılan tarifleri kontrol eder */
 const checkAchievementRecipes = () => {
   const achievementStore = useAchievementStore()
   const cookingStore = useCookingStore()
@@ -223,38 +223,38 @@ const checkAchievementRecipes = () => {
   const s = achievementStore.stats
 
   const checks: { condition: boolean; recipeId: string; message: string }[] = [
-    { condition: s.totalFishCaught >= 1, recipeId: 'first_catch_soup', message: '初次钓鱼' },
-    { condition: s.totalCropsHarvested >= 100, recipeId: 'bountiful_porridge', message: '收获百次作物' },
-    { condition: s.highestMineFloor >= 30, recipeId: 'miners_glory', message: '矿洞探索' },
-    { condition: s.totalRecipesCooked >= 20, recipeId: 'chef_special', message: '烹饪达人' },
+    { condition: s.totalFishCaught >= 1, recipeId: 'first_catch_soup', message: 'İlk Balığını Tuttun' },
+    { condition: s.totalCropsHarvested >= 100, recipeId: 'bountiful_porridge', message: 'Yüz Kez Hasat Yaptın' },
+    { condition: s.highestMineFloor >= 30, recipeId: 'miners_glory', message: 'Maden Keşfi' },
+    { condition: s.totalRecipesCooked >= 20, recipeId: 'chef_special', message: 'Aşçılık Ustalığı' },
     {
       condition:
         (['chen_bo', 'liu_niang', 'a_shi', 'qiu_yue', 'lin_lao', 'xiao_man'] as const).filter(id =>
           meetsLevel(npcStore.getFriendshipLevel(id), 'friendly')
         ).length >= 3,
       recipeId: 'social_tea',
-      message: '社交达人'
+      message: 'Sohbet Eri'
     },
-    { condition: s.totalFishCaught >= 20, recipeId: 'anglers_platter', message: '钓鱼好手' },
+    { condition: s.totalFishCaught >= 20, recipeId: 'anglers_platter', message: 'Usta Oltacı' },
     {
       condition: LEGENDARY_FISH_IDS.some(id => achievementStore.isDiscovered(id)),
       recipeId: 'legendary_feast',
-      message: '传说猎人'
+      message: 'Efsane Avcısı'
     },
-    { condition: s.highestMineFloor >= 50, recipeId: 'abyss_stew', message: '深渊探索' },
-    { condition: achievementStore.discoveredCount >= 50, recipeId: 'collectors_banquet', message: '收藏达人' }
+    { condition: s.highestMineFloor >= 50, recipeId: 'abyss_stew', message: 'Derin Uçurum Kaşifi' },
+    { condition: achievementStore.discoveredCount >= 50, recipeId: 'collectors_banquet', message: 'Koleksiyon Ustası' }
   ]
 
   for (const check of checks) {
     if (check.condition) {
       if (cookingStore.unlockRecipe(check.recipeId)) {
-        addLog(`【成就食谱】${check.message}解锁了新食谱！`)
+        addLog(`【Başarım Tarifi】${check.message} ile yeni bir tarif açıldı!`)
       }
     }
   }
 }
 
-/** 应用季节事件效果 */
+/** Mevsim etkinliği etkilerini uygular */
 const applyEventEffects = (event: { id: string; name: string; description: string; effects: any }) => {
   const playerStore = usePlayerStore()
   const npcStore = useNpcStore()
@@ -268,11 +268,11 @@ const applyEventEffects = (event: { id: string; name: string; description: strin
   }
   if (effects.moneyReward) {
     playerStore.earnMoney(effects.moneyReward)
-    showFloat(`+${effects.moneyReward}文`, 'accent')
+    showFloat(`+${effects.moneyReward} akçe`, 'accent')
   }
   if (effects.staminaBonus) {
     playerStore.restoreStamina(effects.staminaBonus)
-    showFloat(`+${effects.staminaBonus}体力`, 'success')
+    showFloat(`+${effects.staminaBonus} enerji`, 'success')
   }
   if (effects.itemReward) {
     for (const item of effects.itemReward) {
@@ -281,19 +281,19 @@ const applyEventEffects = (event: { id: string; name: string; description: strin
   }
   addLog(`【${event.name}】${event.description}`)
 
-  // 节日食谱解锁
+  // Bayram tarifi açılımı
   const cookingStore = useCookingStore()
   const festivalRecipe = FESTIVAL_RECIPE_MAP[event.id]
   if (festivalRecipe) {
     if (cookingStore.unlockRecipe(festivalRecipe)) {
-      addLog(`节日活动解锁了新食谱！`)
+      addLog(`Bayram sayesinde yeni bir tarif açıldı!`)
     }
   }
 }
 
-// ==================== 晨间随机事件 ====================
+// ==================== Sabah rastgele olayları ====================
 
-/** 应用晨间效果 */
+/** Sabah etkisini uygular */
 const applyMorningEffect = (effect?: MorningEffect) => {
   if (!effect) return
   const playerStore = usePlayerStore()
@@ -306,14 +306,14 @@ const applyMorningEffect = (effect?: MorningEffect) => {
       const growing = farmStore.plots.filter(p => p.state === 'growing' || p.state === 'harvestable')
       if (growing.length > 0) {
         const target = growing[Math.floor(Math.random() * growing.length)]!
-        const cropName = getCropById(target.cropId ?? '')?.name ?? '作物'
+        const cropName = getCropById(target.cropId ?? '')?.name ?? 'ürün'
         target.state = 'tilled'
         target.cropId = null
         target.growthDays = 0
         target.watered = false
         target.harvestCount = 0
         target.seedGenetics = null
-        addLog(`一株${cropName}被糟蹋了。`)
+        addLog(`Bir ${cropName} heba oldu.`)
       }
       break
     }
@@ -331,7 +331,7 @@ const applyMorningEffect = (effect?: MorningEffect) => {
   }
 }
 
-/** 掷骰：晨间随机事件 */
+/** Zar atımı: sabah rastgele olayı */
 const rollMorningEvent = ():
   | { type: 'narration'; message: string; effect?: MorningEffect }
   | { type: 'choice'; event: (typeof MORNING_CHOICE_EVENTS)[number] }
@@ -339,22 +339,22 @@ const rollMorningEvent = ():
   | null => {
   const roll = Math.random()
 
-  // 95% 什么都没发生
+  // %95 hiçbir şey olmaz
   if (roll >= 0.05) return null
 
-  // 0.2% 彩蛋 (roll < 0.002)
+  // %0.2 paskalya sürprizi
   if (roll < 0.002) {
     const egg = MORNING_EASTER_EGGS[Math.floor(Math.random() * MORNING_EASTER_EGGS.length)]!
     return { type: 'easter', message: egg.message, effect: egg.effect }
   }
 
-  // 0.8% 选项事件 (roll < 0.01)
+  // %0.8 seçimli olay
   if (roll < 0.01) {
     const event = MORNING_CHOICE_EVENTS[Math.floor(Math.random() * MORNING_CHOICE_EVENTS.length)]!
     return { type: 'choice', event }
   }
 
-  // 4% 小偷/动物旁白
+  // %4 anlatı
   const farmStore = useFarmStore()
   const hasCrops = farmStore.plots.some(p => p.state === 'growing' || p.state === 'harvestable')
   const pool = hasCrops ? MORNING_NARRATIONS : NARRATIONS_NO_LOSS
@@ -362,7 +362,7 @@ const rollMorningEvent = ():
   return { type: 'narration', message: narration.message, effect: narration.effect }
 }
 
-/** 日结算处理 */
+/** Gün sonu hesaplaşması */
 export const handleEndDay = () => {
   sfxSleep()
 
@@ -381,10 +381,10 @@ export const handleEndDay = () => {
   const skillStore = useSkillStore()
   const tutorialStore = useTutorialStore()
 
-  // 新手引导：记录体力低标记（在 dailyReset 之前）
+  // Başlangıç rehberi: enerjinin düşük kaldığını kaydet
   if (playerStore.stamina < 20) tutorialStore.setFlag('staminaWasLow')
 
-  // 恢复模式
+  // Toparlanma modu
   let recoveryMode: 'normal' | 'late' | 'passout'
   if (playerStore.stamina <= 0 || gameStore.hour >= 26) {
     recoveryMode = 'passout'
@@ -394,7 +394,7 @@ export const handleEndDay = () => {
     recoveryMode = 'normal'
   }
 
-  // 矿洞强制退出：无论玩家是否在探索中，睡觉/晕厥后都重置矿洞状态
+  // Madenden zorunlu çıkış: uykuya dalınca veya bayılınca maden durumu sıfırlanır
   const miningStore = useMiningStore()
   if (miningStore.isExploring) {
     miningStore.leaveMine()
@@ -403,11 +403,11 @@ export const handleEndDay = () => {
   const pestResult = farmStore.dailyUpdate(gameStore.isRainy)
   processingStore.dailyUpdate()
 
-  // 育种台进度更新
+  // Tohum melezleme tezgâhı güncellemesi
   const breedingStore = useBreedingStore()
   breedingStore.dailyUpdate()
 
-  // 戒指效果：作物生长加速
+  // Yüzük etkisi: ürün büyümesi hızlanır
   const ringGrowthBonus = inventoryStore.getRingEffectValue('crop_growth_bonus')
   const walletGrowthBonus = useWalletStore().getCropGrowthBonus()
   if (ringGrowthBonus > 0) {
@@ -427,7 +427,7 @@ export const handleEndDay = () => {
     }
   }
 
-  // 绿雨额外效果：作物加速生长 + 野树加速
+  // Yeşil yağmur etkisi: ürün ve yabani ağaç büyümesi hızlanır
   if (gameStore.weather === 'green_rain') {
     for (const plot of farmStore.plots) {
       if ((plot.state === 'growing' || plot.state === 'planted') && plot.watered) {
@@ -448,42 +448,42 @@ export const handleEndDay = () => {
         tree.growthDays += 1
       }
     }
-    addLog('绿雨滋润了大地，作物和树木生长加速！')
+    addLog('Yeşil yağmur toprağı besledi, ürünler ve ağaçlar daha hızlı büyüdü!')
   }
 
-  // 工具升级进度
+  // Alet yükseltme süreci
   const upgradeResult = inventoryStore.dailyUpgradeUpdate()
   if (upgradeResult?.completed) {
-    addLog(`小满完成了${TOOL_NAMES[upgradeResult.toolType]}的升级！现在是${TIER_NAMES[upgradeResult.targetTier]}级。`)
+    addLog(`Mıstık, ${TOOL_NAMES[upgradeResult.toolType]} yükseltmesini tamamladı! Artık seviye ${TIER_NAMES[upgradeResult.targetTier]}.`)
   }
 
-  // 乌鸦袭击（在其他日常处理前）
+  // Karga saldırısı
   const crowResult = farmStore.crowAttack()
   if (crowResult.attacked) {
-    addLog(`乌鸦袭击了你的农场，一株${crowResult.cropName}被吃掉了！放个稻草人保护作物吧。`)
+    addLog(`Kargalar tarlana dadandı, bir ${crowResult.cropName} yenildi! Ürünleri korumak için korkuluk dik.`)
   }
 
-  // 虫害日志
+  // Haşere kaydı
   if (pestResult.newInfestations > 0) {
     addLog(
-      `虫害来袭！${pestResult.newInfestations}块地遭到了虫害侵袭。${farmStore.scarecrows > 0 ? '稻草人降低了虫害风险。' : '放置稻草人可以降低虫害概率。'}`
+      `Haşereler üşüştü! ${pestResult.newInfestations} tarla karesi böceğe tutuldu. ${farmStore.scarecrows > 0 ? 'Korkuluklar riski azalttı.' : 'Korkuluk kurarsan böcek olasılığı düşer.'}`
     )
   }
   if (pestResult.pestDeaths > 0) {
-    addLog(`${pestResult.pestDeaths}株作物因虫害持续太久而枯死了！及时除虫可以拯救作物。`)
+    addLog(`${pestResult.pestDeaths} ürün böcekler yüzünden kurudu! Vaktinde temizlersen kurtarabilirsin.`)
   }
 
-  // 杂草日志
+  // Yabani ot kaydı
   if (pestResult.newWeeds > 0) {
     addLog(
-      `杂草蔓延！${pestResult.newWeeds}块地长出了杂草。${farmStore.scarecrows > 0 ? '稻草人抑制了杂草蔓延。' : '放置稻草人可以减少杂草。'}`
+      `Yabani otlar yayıldı! ${pestResult.newWeeds} tarla karesinde ot bitti. ${farmStore.scarecrows > 0 ? 'Korkuluklar yayılmayı bastırdı.' : 'Korkuluk kurarsan yabani otlar azalır.'}`
     )
   }
   if (pestResult.weedDeaths > 0) {
-    addLog(`${pestResult.weedDeaths}株作物被杂草覆盖窒息而死！及时除草可以拯救作物。`)
+    addLog(`${pestResult.weedDeaths} ürün yabani otların altında boğulup gitti! Otları zamanında temizlemek gerekir.`)
   }
 
-  // 晨间随机事件（偷菜旁白）
+  // Sabah rastgele olayı
   const morningEvent = rollMorningEvent()
   if (morningEvent) {
     if (morningEvent.type === 'choice') {
@@ -494,17 +494,17 @@ export const handleEndDay = () => {
     }
   }
 
-  // 巨型作物检查
+  // Dev ürün kontrolü
   const giantCrops = farmStore.checkGiantCrops()
   for (const gc of giantCrops) {
-    addLog(`巨型${gc.cropName}出现了！3×3的作物合体成了巨型作物！`)
+    addLog(`Kocaman bir ${gc.cropName} ortaya çıktı! 3×3 ürün birleşip dev ürüne dönüştü!`)
   }
 
-  // 雇工喂食结算（必须在 animalStore.dailyUpdate 之前，确保喂食状态生效）
+  // Yardımcıların yemleme hesabı
   const helperFeedResult = npcStore.processDailyHelpers(['feed'])
   for (const msg of helperFeedResult.messages) addLog(msg)
 
-  // 配偶喂食（必须在 animalStore.dailyUpdate 之前）
+  // Eşin yemlemesi
   const spouse = npcStore.getSpouse()
   if (spouse) {
     const bonusChanceEve = spouse.friendship >= 2500 ? 0.1 : 0
@@ -512,16 +512,16 @@ export const handleEndDay = () => {
       const result = animalStore.feedAll()
       if (result.fedCount > 0) {
         const spouseDefEve = getNpcById(spouse.npcId)
-        addLog(`${spouseDefEve?.name ?? '配偶'}帮你喂了所有牲畜。`)
+        addLog(`${spouseDefEve?.name ?? 'Eşin'} bütün hayvanları yemledi.`)
       }
     }
   }
 
-  // 知己每日加成（在 dailyReset 之前）
+  // Can yoldaşı günlük katkısı
   const zhiji = npcStore.getZhiji()
   if (zhiji) {
     const zhijiDef = getNpcById(zhiji.npcId)
-    const zhijiName = zhijiDef?.name ?? '知己'
+    const zhijiName = zhijiDef?.name ?? 'Can yoldaşın'
     const bonusChance2 = zhiji.friendship >= 2500 ? 0.15 : 0
 
     switch (zhiji.npcId) {
@@ -531,7 +531,7 @@ export const handleEndDay = () => {
           const ore = ores[Math.floor(Math.random() * ores.length)]!
           const qty = 1 + Math.floor(Math.random() * 3)
           inventoryStore.addItem(ore, qty)
-          addLog(`${zhijiName}送来了${qty}个${getItemById(ore)?.name ?? '矿石'}。`)
+          addLog(`${zhijiName}, sana ${qty} adet ${getItemById(ore)?.name ?? 'maden'} yolladı.`)
         }
         break
       case 'dan_qing':
@@ -539,7 +539,7 @@ export const handleEndDay = () => {
           for (const s of npcStore.npcStates) {
             if (s.npcId !== zhiji.npcId) s.friendship += 5
           }
-          addLog(`${zhijiName}在村里替你美言了几句。(全村+5好感)`)
+          addLog(`${zhijiName}, gaKöy halkına senin hakkında güzel sözler söyledi. (Köyde herkes +5 gönül)`)
         }
         break
       case 'a_tie':
@@ -547,7 +547,7 @@ export const handleEndDay = () => {
           const mats = ['iron_ore', 'copper_ore', 'charcoal']
           const mat = mats[Math.floor(Math.random() * mats.length)]!
           inventoryStore.addItem(mat, 2)
-          addLog(`${zhijiName}送来了一些打铁的材料。`)
+          addLog(`${zhijiName}, dövme işinde lazım olacak birkaç malzeme gönderdi.`)
         }
         break
       case 'yun_fei':
@@ -555,19 +555,19 @@ export const handleEndDay = () => {
           const items2 = ['wild_mushroom', 'herb', 'pine_cone']
           const item2 = items2[Math.floor(Math.random() * items2.length)]!
           inventoryStore.addItem(item2)
-          addLog(`${zhijiName}从山里带回了${getItemById(item2)?.name ?? '东西'}。`)
+          addLog(`${zhijiName}, dağdan dönerken sana ${getItemById(item2)?.name ?? 'bir şey'} getirdi.`)
         }
         break
       case 'da_niu':
         if (Math.random() < 0.3 + bonusChance2) {
           const result2 = animalStore.feedAll()
-          if (result2.fedCount > 0) addLog(`${zhijiName}帮你喂了所有牲畜。`)
+          if (result2.fedCount > 0) addLog(`${zhijiName}, bütün hayvanları yemledi.`)
         }
         break
       case 'mo_bai':
         if (Math.random() < 0.25 + bonusChance2) {
           playerStore.restoreStamina(15)
-          addLog(`${zhijiName}弹了一曲舒缓的琴音，你感觉精神好了些。(+15体力)`)
+          addLog(`${zhijiName}, sakin bir ezgi çaldı; iç ferahladı. (+15 enerji)`)
         }
         break
       case 'liu_niang':
@@ -575,7 +575,7 @@ export const handleEndDay = () => {
           for (const s of npcStore.npcStates) {
             if (s.npcId !== zhiji.npcId) s.friendship += 5
           }
-          addLog(`${zhijiName}在村里替你说了好话。(全村+5好感)`)
+          addLog(`${zhijiName}, gaKöy halkına senden övgüyle bahsetti. (Köyde herkes +5 gönül)`)
         }
         break
       case 'qiu_yue':
@@ -583,19 +583,19 @@ export const handleEndDay = () => {
           const fish = ['crucian', 'carp', 'grass_carp', 'bass']
           const f = fish[Math.floor(Math.random() * fish.length)]!
           inventoryStore.addItem(f)
-          addLog(`${zhijiName}送来了一条${getItemById(f)?.name ?? '鱼'}。`)
+          addLog(`${zhijiName}, sana bir ${getItemById(f)?.name ?? 'balık'} gönderdi.`)
         }
         break
       case 'chun_lan':
         if (Math.random() < 0.25 + bonusChance2) {
           inventoryStore.addItem('green_tea_drink')
-          addLog(`${zhijiName}送来了一壶好茶。`)
+          addLog(`${zhijiName}, sana mis kokulu bir demlik çay gönderdi.`)
         }
         break
       case 'xue_qin':
         if (Math.random() < 0.15 + bonusChance2) {
           inventoryStore.addItem('bamboo')
-          addLog(`${zhijiName}送来了一捆竹子。`)
+          addLog(`${zhijiName}, sana bir demet bambu gönderdi.`)
         }
         break
       case 'su_su':
@@ -603,7 +603,7 @@ export const handleEndDay = () => {
           const cloths = ['cloth', 'silk_cloth', 'felt']
           const c = cloths[Math.floor(Math.random() * cloths.length)]!
           inventoryStore.addItem(c)
-          addLog(`${zhijiName}送来了一匹${getItemById(c)?.name ?? '布料'}。`)
+          addLog(`${zhijiName}, sana bir top ${getItemById(c)?.name ?? 'kumaş'} gönderdi.`)
         }
         break
       case 'hong_dou':
@@ -611,7 +611,7 @@ export const handleEndDay = () => {
           const wines = ['peach_wine', 'jujube_wine', 'corn_wine']
           const w = wines[Math.floor(Math.random() * wines.length)]!
           inventoryStore.addItem(w)
-          addLog(`${zhijiName}送来了一壶${getItemById(w)?.name ?? '酒'}。`)
+          addLog(`${zhijiName}, sana bir testi ${getItemById(w)?.name ?? 'içki'} gönderdi.`)
         }
         break
     }
@@ -621,7 +621,7 @@ export const handleEndDay = () => {
   cookingStore.dailyReset()
   useHanhaiStore().resetDailyBets()
 
-  // 仙灵每日处理
+  // Gizli ruhani karakterler günlük işlemleri
   const hiddenNpcStore = useHiddenNpcStore()
   const discoveryTriggered = hiddenNpcStore.checkDiscoveryConditions()
   for (const { npcId, step } of discoveryTriggered) {
@@ -631,13 +631,13 @@ export const handleEndDay = () => {
   hiddenNpcStore.dailyReset()
   const newAbilities = hiddenNpcStore.checkAbilityUnlocks()
   for (const a of newAbilities) {
-    addLog(`【仙缘】${a.name}：${a.description}`)
-    // 永久效果：最大体力+20
+    addLog(`【Ruhani Bağ】${a.name}: ${a.description}`)
+    // Kalıcı etki: azami enerji +20
     if (a.id === 'shan_weng_3') {
       playerStore.addBonusMaxStamina(20)
     }
   }
-  // 修复旧存档：确保已激活的 shan_weng_3 体力加成正确应用
+  // Eski kayıt düzeltmesi
   if (hiddenNpcStore.isAbilityActive('shan_weng_3')) {
     const expected = 20
     if (playerStore.bonusMaxStamina < expected) {
@@ -645,26 +645,25 @@ export const handleEndDay = () => {
     }
   }
 
-  // 动物产出
+  // Hayvan ürünleri
   const animalResult = animalStore.dailyUpdate()
   if (animalResult.products.length > 0) {
     for (const p of animalResult.products) {
       inventoryStore.addItem(p.itemId, 1, p.quality)
     }
-    addLog(`动物们产出了${animalResult.products.length}件产品。`)
+    addLog(`Hayvanların ${animalResult.products.length} ürün verdi.`)
   }
   if (animalResult.died.length > 0) {
-    addLog(`${animalResult.died.join('、')}因长期饥饿或病重不治而死亡了……`)
+    addLog(`${animalResult.died.join('、')} uzun süren açlık ya da ağır hastalık yüzünden öldü...`)
   }
   if (animalResult.gotSick.length > 0) {
-    addLog(`${animalResult.gotSick.join('、')}因饥饿而生病了！请尽快喂食。`)
+    addLog(`${animalResult.gotSick.join('、')} açlıktan hastalandı! Bir an önce yem ver.`)
   }
   if (animalResult.healed.length > 0) {
-    addLog(`${animalResult.healed.join('、')}吃饱后恢复了健康。`)
+    addLog(`${animalResult.healed.join('、')} doyunca yeniden toparlandı.`)
   }
 
-  // 晨间喂食：雇工和配偶在新一天开始时标记已喂食，让玩家当天可以直接放牧
-  // 使用 markAllFed 标记已喂食状态（不消耗饲料，饲料已在上面的结算中消耗过）
+  // Sabah yemleme işareti
   const hasHelperFeed = npcStore.hiredHelpers.some(h => h.task === 'feed')
   if (hasHelperFeed) {
     animalStore.markAllFed()
@@ -674,38 +673,38 @@ export const handleEndDay = () => {
     if (Math.random() < 0.4 + bonusChanceFeed) {
       animalStore.markAllFed()
       const spouseDefFeed = getNpcById(spouse.npcId)
-      addLog(`${spouseDefFeed?.name ?? '配偶'}一早就帮你喂好了牲畜。`)
+      addLog(`${spouseDefFeed?.name ?? 'Eşin'} gün doğmadan hayvanları yemledi.`)
     }
   }
 
-  // 晨间工作：雇工浇水/收获/除草
+  // Sabah işleri: yardımcılar sulama/hasat/ot temizliği
   const helperMorningResult = npcStore.processDailyHelpers(['water', 'harvest', 'weed'])
   for (const msg of helperMorningResult.messages) addLog(msg)
 
-  // 晨间工作：配偶浇水/做饭/收获
+  // Sabah işleri: eş sulama/yemek/hasat
   if (spouse) {
     const spouseDef = getNpcById(spouse.npcId)
-    const spouseName = spouseDef?.name ?? '配偶'
+    const spouseName = spouseDef?.name ?? 'Eşin'
     const bonusChance = spouse.friendship >= 2500 ? 0.1 : 0
     const highBond = spouse.friendship >= 3000 ? 0.15 : 0
 
-    // 浇水：50% + bonus + highBond，3-6块
+    // Sulama
     if (Math.random() < 0.5 + bonusChance + highBond) {
       const unwatered = farmStore.plots.filter(p => (p.state === 'planted' || p.state === 'growing') && !p.watered)
       const count = Math.min(unwatered.length, 3 + Math.floor(Math.random() * 4))
       for (let i = 0; i < count; i++) farmStore.waterPlot(unwatered[i]!.id)
-      if (count > 0) addLog(`${spouseName}一早帮你浇了${count}块地。`)
+      if (count > 0) addLog(`${spouseName}, sabah erkenden ${count} tarla karesini suladı.`)
     }
 
-    // 做饭：30% + bonus（好感>=2000）
+    // Yemek yapma
     if (spouse.friendship >= 2000 && Math.random() < 0.3 + bonusChance) {
       const foods = ['food_rice_ball', 'food_congee', 'food_steamed_bun', 'food_honey_tea', 'food_stir_fry', 'food_dumpling']
       const food = foods[Math.floor(Math.random() * foods.length)]!
       inventoryStore.addItem(food)
-      addLog(`${spouseName}一早做了一份${getItemById(food)?.name ?? '食物'}。`)
+      addLog(`${spouseName}, sabah erkenden bir ${getItemById(food)?.name ?? 'yemek'} hazırladı.`)
     }
 
-    // 收获：30%（好感>=3000），最多3块，背包满时不收
+    // Hasat
     if (spouse.friendship >= 3000 && !inventoryStore.isFull && Math.random() < 0.3 + bonusChance) {
       const harvestable = farmStore.plots.filter(p => p.state === 'harvestable')
       const harvestCount = Math.min(harvestable.length, 3)
@@ -718,31 +717,31 @@ export const handleEndDay = () => {
           harvested++
         }
       }
-      if (harvested > 0) addLog(`${spouseName}一早帮你收了${harvested}块地的庄稼。`)
+      if (harvested > 0) addLog(`${spouseName}, sabah erkenden ${harvested} tarla karesinin hasadını yaptı.`)
     }
   }
 
-  // 孵化器更新
+  // Kuluçka güncellemesi
   const incubatorResult = animalStore.dailyIncubatorUpdate()
   if (incubatorResult.hatched) {
-    addLog(`鸡舍孵化器中的蛋孵出了一只${incubatorResult.hatched.name}！`)
+    addLog(`Kümes kuluçkasındaki yumurtadan bir ${incubatorResult.hatched.name} çıktı!`)
   }
 
-  // 牲口棚孵化器更新
+  // Ahır kuluçkası güncellemesi
   const barnIncubatorResult = animalStore.dailyBarnIncubatorUpdate()
   if (barnIncubatorResult.hatched) {
-    addLog(`牲口棚孵化器中的蛋孵出了一只${barnIncubatorResult.hatched.name}！`)
+    addLog(`Ahır kuluçkasındaki yumurtadan bir ${barnIncubatorResult.hatched.name} çıktı!`)
   }
 
-  // 宠物每日更新
+  // Evcil hayvan günlük güncellemesi
   const petResult = animalStore.dailyPetUpdate()
   if (petResult.item) {
-    const petName = animalStore.pet?.name ?? '宠物'
+    const petName = animalStore.pet?.name ?? 'Evcil dostun'
     const itemDef2 = getItemById(petResult.item)
-    addLog(`${petName}叼回来一个${itemDef2?.name ?? petResult.item}。`)
+    addLog(`${petName}, ağzında bir ${itemDef2?.name ?? petResult.item} ile döndü.`)
   }
 
-  // 鱼塘每日更新
+  // Balık havuzu günlük güncellemesi
   const fishPondStore = useFishPondStore()
   if (fishPondStore.pond.built) {
     const pondResult = fishPondStore.dailyUpdate()
@@ -750,139 +749,143 @@ export const handleEndDay = () => {
       inventoryStore.addItem(p.itemId, 1, p.quality)
     }
     if (pondResult.products.length > 0) {
-      addLog(`鱼塘产出了${pondResult.products.length}件水产品。`)
+      addLog(`Balık havuzu ${pondResult.products.length} su ürünü verdi.`)
     }
     if (pondResult.died.length > 0) {
-      addLog(`${pondResult.died.join('、')}因病重不治而死亡了……`)
+      addLog(`${pondResult.died.join('、')} ağır hastalıktan öldü...`)
     }
     if (pondResult.gotSick.length > 0) {
-      addLog(`${pondResult.gotSick.join('、')}生病了！请及时治疗。`)
+      addLog(`${pondResult.gotSick.join('、')} hastalandı! Çabuk tedavi et.`)
     }
     if (pondResult.bred) {
-      addLog(`鱼塘繁殖成功，新的${pondResult.bred}出生了！`)
+      addLog(`Balık havuzunda üreme oldu, yeni bir ${pondResult.bred} dünyaya geldi!`)
     }
     if (pondResult.breedingFailed) {
-      addLog(`${pondResult.breedingFailed}。`)
+      addLog(`${pondResult.breedingFailed}.`)
     }
   }
 
-  // 蟹笼收获
+  // Yengeç kapanı hasadı
   const fishingStore = useFishingStore()
   const crabPotHarvest = fishingStore.collectCrabPots()
   if (crabPotHarvest.length > 0) {
     const names = crabPotHarvest.map(c => c.name).join('、')
-    addLog(`蟹笼捕获了${names}。`)
+    addLog(`Yengeç kapanında şunlar vardı: ${names}.`)
   }
 
-  // 洞穴产出
+  // Mağara ürünleri
   const caveProducts = homeStore.dailyCaveUpdate()
   for (const p of caveProducts) {
     inventoryStore.addItem(p.itemId, p.quantity)
     const itemDef = getItemById(p.itemId)
-    addLog(`山洞中发现了${itemDef?.name ?? p.itemId}。`)
+    addLog(`Dağ mağarasında ${itemDef?.name ?? p.itemId} bulundu.`)
   }
 
-  // 果树更新
+  // Meyve ağacı güncellemesi
   const fruitResult = farmStore.dailyFruitTreeUpdate(gameStore.season)
   for (const f of fruitResult.fruits) {
     inventoryStore.addItem(f.fruitId, 1, f.quality)
   }
   if (fruitResult.fruits.length > 0) {
-    addLog(`果树产出了${fruitResult.fruits.length}个水果。`)
+    addLog(`Meyve ağaçları ${fruitResult.fruits.length} meyve verdi.`)
   }
 
-  // 野生树木更新
+  // Yabani ağaç güncellemesi
   const wildTreeResult = farmStore.dailyWildTreeUpdate()
   for (const p of wildTreeResult.products) {
     inventoryStore.addItem(p.productId)
   }
   if (wildTreeResult.products.length > 0) {
-    addLog(`采脂器收获了${wildTreeResult.products.map(p => p.productName).join('、')}。`)
+    addLog(`Öz toplayıcıdan şunlar çıktı: ${wildTreeResult.products.map(p => p.productName).join('、')}.`)
   }
 
-  // 温室更新
+  // Sera güncellemesi
   if (homeStore.greenhouseUnlocked) {
     farmStore.greenhouseDailyUpdate()
   }
 
-  // 酒窖更新
+  // Kiler güncellemesi
   if (homeStore.farmhouseLevel >= 3) {
     const cellarResult = homeStore.dailyCellarUpdate()
     for (const r of cellarResult.ready) {
-      addLog(`酒窖中的${getItemById(r.itemId)?.name ?? r.itemId}品质提升了！`)
+      addLog(`Kilerdeki ${getItemById(r.itemId)?.name ?? r.itemId} daha nitelikli hâle geldi!`)
     }
   }
 
-  // 钱包解锁检查
+  // Kese açılımları
   const walletStore = useWalletStore()
   const newWalletItems = walletStore.checkAndUnlock()
   for (const name of newWalletItems) {
-    addLog(`解锁了钱袋物品：${name}！`)
+    addLog(`Kesede yeni bir eşya açıldı: ${name}!`)
   }
 
-  // 委托每日更新（当天结算：倒计时递减、过期处理）
+  // Günlük görev güncellemesi
   const expiredQuests = questStore.dailyUpdate()
   for (const eq of expiredQuests) {
-    addLog(`委托「${eq.description}」已过期。`)
+    addLog(`Görev süresi doldu: "${eq.description}".`)
   }
 
-  // 主线任务进度检查
+  // Ana görev ilerlemesi
   questStore.updateMainQuestProgress()
 
-  // 婚礼倒计时
+  // Düğün geri sayımı
   const weddingResult = npcStore.dailyWeddingUpdate()
   if (weddingResult.weddingToday && weddingResult.npcId) {
     const weddingNpcDef = getNpcById(weddingResult.npcId)
-    addLog(`今天是你和${weddingNpcDef?.name ?? '心上人'}的大喜之日！`)
+    addLog(`Bugün seninle ${weddingNpcDef?.name ?? 'sevdiğinin'} düğün günü!`)
     triggerWeddingEvent(weddingResult.npcId)
   }
 
-  // 孕期每日更新
+  // Gebelik güncellemesi
   const pregResult = npcStore.dailyPregnancyUpdate()
   if (pregResult.born) {
     const qMsg =
-      pregResult.born.quality === 'healthy' ? '健健康康的！' : pregResult.born.quality === 'premature' ? '虽然早产了一些，但平安无事。' : ''
-    addLog(`${pregResult.born.name}出生了！恭喜！${qMsg}`)
+      pregResult.born.quality === 'healthy'
+        ? 'Sapasağlam dünyaya geldi!'
+        : pregResult.born.quality === 'premature'
+          ? 'Biraz erken doğdu ama çok şükür sağ salim.'
+          : ''
+    addLog(`${pregResult.born.name} dünyaya geldi! Gözün aydın! ${qMsg}`)
   }
   if (pregResult.stageChanged) {
-    const stageLabels: Record<string, string> = { early: '初期', mid: '中期', late: '后期', ready: '待产期' }
-    addLog(`孕期进入${stageLabels[pregResult.stageChanged.to]}。记得多多照顾配偶。`)
+    const stageLabels: Record<string, string> = { early: 'başlangıç', mid: 'orta', late: 'ileri', ready: 'doğum vakti' }
+    addLog(`Gebelik ${stageLabels[pregResult.stageChanged.to]} evresine geçti. Eşinle ilgilenmeyi unutma.`)
   }
   if (pregResult.miscarriage) {
-    addLog('很遗憾……这次没能迎来新生命。双方都需要一段时间来恢复。')
+    addLog('Ne yazık ki... bu kez yeni canı kucağa almak nasip olmadı. İkinizin de zamana ihtiyacı var.')
   }
 
-  // 子女成长（已出生的子女）
+  // Çocuk büyümesi
   npcStore.dailyChildUpdate()
 
-  // NPC 提议要孩子（不自动确认，玩家回家后回应）
+  // Çocuk teklifi
   if (npcStore.checkChildProposal()) {
     npcStore.triggerChildProposal()
     const spouseDef2 = getNpcById(npcStore.getSpouse()?.npcId ?? '')
-    addLog(`${spouseDef2?.name ?? '配偶'}似乎有话想和你说……`)
+    addLog(`${spouseDef2?.name ?? 'Eşin'} sana söylemek istediği bir şey var gibi görünüyor...`)
   }
 
-  // 出货箱结算
+  // Sevkiyat sandığı hesabı
   const shopStore = useShopStore()
   const shippingIncome = shopStore.processShippingBox()
   if (shippingIncome > 0) {
     playerStore.earnMoney(shippingIncome)
-    addLog(`出货箱结算：收入${shippingIncome}文。`)
+    addLog(`Sevkiyat sandığı hesabı: ${shippingIncome} akçe kazandın.`)
   }
 
   const { seasonChanged, oldSeason } = gameStore.nextDay()
 
-  // 为新的一天生成委托（在 nextDay 之后，使用新季节和新日期）
+  // Yeni gün görev üretimi
   questStore.generateDailyQuests(gameStore.season, gameStore.day)
 
-  // 每7天生成一个特殊订单 (第7/14/21/28天, 梯度递增)
+  // Her 7 günde özel sipariş
   const specialOrderDays: Record<number, number> = { 7: 1, 14: 2, 21: 3, 28: 4 }
   const tier = specialOrderDays[gameStore.day]
   if (tier && !questStore.specialOrder) {
     questStore.generateSpecialOrder(gameStore.season, tier)
   }
 
-  // 新一天如果下雨，立即浇水所有作物（让玩家看到已浇水状态）
+  // Yeni gün yağmurluysa ürünleri hemen sulansın göster
   if (gameStore.isRainy) {
     for (const plot of farmStore.plots) {
       if (plot.state === 'planted' || plot.state === 'growing') {
@@ -895,7 +898,7 @@ export const handleEndDay = () => {
   const bedHour = gameStore.hour
   const { moneyLost, recoveryPct } = playerStore.dailyReset(recoveryMode, bedHour)
 
-  // 仙灵结缘每日奖励（必须在 dailyReset 之后，否则 stamina_restore 会被覆盖）
+  // Ruhani bağ günlük ödülü
   const bondMessages = hiddenNpcStore.dailyBondBonus()
   for (const msg of bondMessages.messages) addLog(msg)
 
@@ -903,63 +906,62 @@ export const handleEndDay = () => {
   if (recoveryMode === 'passout') {
     summary =
       moneyLost > 0
-        ? `你体力耗尽倒下了……有人把你送回家。丢失了${moneyLost}文。次日仅恢复50%体力。`
-        : `你体力耗尽倒下了……次日仅恢复50%体力。`
+        ? `Gücün tükendi ve yere yığıldın... biri seni eve kadar getirdi. ${moneyLost} akçe kaybettin. Ertesi gün enerjinin yalnızca %50'si dolacak.`
+        : `Gücün tükendi ve yere yığıldın... Ertesi gün enerjinin yalnızca %50'si dolacak.`
   } else if (recoveryMode === 'late') {
     const pct = Math.round(recoveryPct * 100)
-    summary = `你熬夜到很晚才睡……次日仅恢复${pct}%体力。`
+    summary = `Geceyi çok geç vakitte tamamladın... Ertesi gün enerjinin yalnızca %${pct}'i dolacak.`
   } else {
-    summary = '美好的一天结束了。'
+    summary = 'GaKöy’de bir gün daha güzellikle kapandı.'
   }
 
   addLog(summary)
 
-  // 换季处理
+  // Mevsim değişimi işlemi
   if (seasonChanged) {
     const { witheredCount, reclaimedCount } = farmStore.onSeasonChange(gameStore.season)
-    addLog(`—— 季节更替：${SEASON_NAMES[oldSeason]}→${SEASON_NAMES[gameStore.season]} ——`)
+    addLog(`—— Mevsim döndü: ${SEASON_NAMES[oldSeason]} → ${SEASON_NAMES[gameStore.season]} ——`)
     if (witheredCount > 0) {
-      addLog(`${witheredCount}株不适应新季节的作物枯萎了……`)
+      addLog(`${witheredCount} ürün yeni mevsime dayanamadı ve kurudu...`)
     }
     if (reclaimedCount > 0) {
-      addLog(`${reclaimedCount}块荒废的耕地被杂草覆盖了。`)
+      addLog(`${reclaimedCount} terk edilmiş tarla karesini yabani otlar sardı.`)
     }
     if (oldSeason === 'winter' && gameStore.season === 'spring') {
-      addLog('新的一年开始了！农场经过一冬有些荒废，需要重新开垦。')
+      addLog('Yeni yıl başladı! Çiftlik kış boyunca biraz sahipsiz kalmış, yeniden elden geçirmek gerekecek.')
     }
     farmStore.fruitTreeSeasonUpdate(oldSeason === 'winter')
 
-    // 桃源田庄：换季自动施肥
+    // Verimli ova çiftliği: mevsim geçişinde doğal gübre
     if (gameStore.farmMapType === 'standard') {
       const fertCount = farmStore.applyFertileSoil()
       if (fertCount > 0) {
-        addLog(`桃源沃土滋养大地，${fertCount}块耕地获得了自然肥力。`)
+        addLog(`Bereketli toprak toprağı besledi, ${fertCount} tarla karesi doğal verim kazandı.`)
       }
     }
 
-    // 新手引导：记录换季标记
     tutorialStore.setFlag('justChangedSeason')
   }
 
-  // 闪电
+  // Şimşek
   if (gameStore.weather === 'stormy') {
     const strike = farmStore.lightningStrike()
     if (strike.absorbed) {
       inventoryStore.addItem('battery')
-      addLog('避雷针吸收了一道闪电！获得了电池组。')
+      addLog('Paratoner yıldırımı çekti! Bir pil takımı elde ettin.')
     } else if (strike.hit) {
-      addLog(`雷暴中一道闪电击中了你的农场，一株${strike.cropName}被毁了！建造避雷针可以防护。`)
+      addLog(`Fırtınada bir yıldırım çiftliğine düştü, bir ${strike.cropName} kül oldu! Paratoner kurarsan korunursun.`)
     }
   }
 
   if (gameStore.isRainy) {
-    addLog('今天下雨，作物自动浇水。')
+    addLog('Bugün yağmur var, ürünler kendiliğinden sulandı.')
   }
 
-  // 天气预报
-  addLog(`明日天气预报：${WEATHER_NAMES[gameStore.tomorrowWeather]}`)
+  // Hava durumu
+  addLog(`Yarın için hava: ${WEATHER_NAMES[gameStore.tomorrowWeather]}`)
 
-  // 换季倒计时提醒（第25-27天早晨）
+  // Mevsim değişim uyarısı
   if (!seasonChanged && gameStore.day >= 25 && gameStore.day <= 27) {
     const daysLeft = 28 - gameStore.day
     const SEASON_ORDER = ['spring', 'summer', 'autumn', 'winter'] as const
@@ -972,27 +974,25 @@ export const handleEndDay = () => {
       }
     }
     if (cropAtRisk > 0) {
-      addLog(`距离换季还有${daysLeft}天，${cropAtRisk}株作物不适应${SEASON_NAMES[nextSeason]}季，届时将会枯萎。`)
-      showFloat(`换季倒计时${daysLeft}天！${cropAtRisk}株作物将枯萎`, 'danger')
+      addLog(`${daysLeft} gün sonra mevsim dönecek; ${cropAtRisk} ürün ${SEASON_NAMES[nextSeason]} mevsimine dayanamayacak ve kuruyacak.`)
+      showFloat(`Mevsim dönüşüne ${daysLeft} gün kaldı! ${cropAtRisk} ürün kuruyacak`, 'danger')
     } else {
-      addLog(`距离换季还有${daysLeft}天。`)
+      addLog(`Mevsim dönüşüne ${daysLeft} gün kaldı.`)
     }
   }
 
-  // 今日行情
+  // Günlük pazar durumu
   const marketInfo = getDailyMarketInfo(gameStore.year, gameStore.seasonIndex, gameStore.day, shopStore.getRecentShipping())
   const booms = marketInfo.filter(m => m.trend === 'boom')
   const crashes = marketInfo.filter(m => m.trend === 'crash')
   if (booms.length > 0) {
-    addLog(`今日行情：${booms.map(b => MARKET_CATEGORY_NAMES[b.category]).join('、')}价格大涨！`)
+    addLog(`Bugünkü pazar: ${booms.map(b => MARKET_CATEGORY_NAMES[b.category]).join('、')} fiyatları coştu!`)
   }
   if (crashes.length > 0) {
-    addLog(`今日行情：${crashes.map(c => MARKET_CATEGORY_NAMES[c.category]).join('、')}价格暴跌。`)
+    addLog(`Bugünkü pazar: ${crashes.map(c => MARKET_CATEGORY_NAMES[c.category]).join('、')} fiyatları çakıldı.`)
   }
 
-  // 新手引导：晨间提示（仅第1年）
-  // 注意：此时 nextDay() 已执行，gameStore.day 是新一天的日期
-  // 例如玩家结束第1天后，gameStore.day === 2（第2天早晨）
+  // Başlangıç rehberi: sabah tüyoları
   if (tutorialStore.enabled && gameStore.year === 1) {
     const conditions: Record<string, () => boolean> = {
       earlyFirstDay: () => gameStore.day === 2 && gameStore.season === 'spring',
@@ -1026,18 +1026,17 @@ export const handleEndDay = () => {
         tutorialStore.markTipShown(tip.id)
         if (tip.conditionKey === 'firstRainyDay') tutorialStore.setFlag('seenRain')
         if (tip.conditionKey === 'justChangedSeason') tutorialStore.setFlag('seenSeasonChange')
-        break // 每天只显示一条
+        break
       }
     }
-    // 清除临时标记
     tutorialStore.setFlag('justChangedSeason', false)
     tutorialStore.setFlag('staminaWasLow', false)
   }
 
-  // 食谱解锁
+  // Tarif açılımları
   checkRecipeUnlocks()
 
-  // 季节事件
+  // Mevsim etkinlikleri
   const event = getTodayEvent(gameStore.season, gameStore.day)
   if (event) {
     applyEventEffects(event)
@@ -1047,8 +1046,8 @@ export const handleEndDay = () => {
       const { startFestivalBgm } = useAudio()
       startFestivalBgm(gameStore.season)
     }
-    // 替换 narrative 中的动态占位符
-    const ORDINALS = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
+    // Anlatıdaki dinamik yer tutucular
+    const ORDINALS = ['birinci', 'ikinci', 'üçüncü', 'dördüncü', 'beşinci', 'altıncı', 'yedinci', 'sekizinci', 'dokuzuncu', 'onuncu']
     const yearStr = gameStore.year <= 10 ? ORDINALS[gameStore.year - 1]! : String(gameStore.year)
     const resolved = {
       ...event,
@@ -1057,34 +1056,33 @@ export const handleEndDay = () => {
     showEvent(resolved)
   }
 
-  // 成就检查
+  // Başarımlar
   const newAchievements = achievementStore.checkAchievements()
   for (const a of newAchievements) {
-    addLog(`【成就达成】${a.name}！${a.reward.money ? `获得${a.reward.money}文` : ''}`)
-    showFloat(`成就: ${a.name}`, 'accent')
+    addLog(`【Başarım】${a.name}! ${a.reward.money ? `${a.reward.money} akçe kazandın.` : ''}`)
+    showFloat(`Başarım: ${a.name}`, 'accent')
   }
 
-  // 成就食谱解锁
+  // Başarım tarifleri
   checkAchievementRecipes()
 
-  // 洞穴解锁检查
+  // Mağara açılımı
   if (!homeStore.caveUnlocked && achievementStore.stats.totalMoneyEarned >= CAVE_UNLOCK_EARNINGS) {
     homeStore.unlockCave()
-    addLog('你的累计收入引起了注意……村后的山洞已为你开放！去设施面板选择山洞用途吧。')
+    addLog('Toplam kazancın dikkat çekti... gaKöy arkasındaki dağ mağarası artık sana açık! Yapılar panelinden mağaranın işini seçebilirsin.')
   }
 
-  // ===== 田庄特殊效果 =====
+  // ===== Çiftlik türü özel etkileri =====
 
-  // 荒野田庄：被动矿石（增强）+ 夜间野兽遭遇
+  // Yaban çiftliği: pasif maden + gece yaratık olayı
   if (gameStore.farmMapType === 'wilderness') {
     const orePool = ['copper_ore', 'iron_ore', 'gold_ore']
     const randomOre = orePool[Math.floor(Math.random() * orePool.length)]!
-    const qty = 2 + Math.floor(Math.random() * 2) // 2-3
+    const qty = 2 + Math.floor(Math.random() * 2)
     inventoryStore.addItem(randomOre, qty)
     const oreDef = getItemById(randomOre)
-    addLog(`荒野中发现了${qty}个${oreDef?.name ?? randomOre}。`)
+    addLog(`Yaban arazide ${qty} adet ${oreDef?.name ?? randomOre} buldun.`)
 
-    // 夜间野兽遭遇（25%概率）
     if (Math.random() < 0.25) {
       const combatLevel = skillStore.getSkill('combat').level
       const winRate = Math.min(0.95, 0.5 + combatLevel * 0.05)
@@ -1095,29 +1093,29 @@ export const handleEndDay = () => {
         inventoryStore.addItem(loot, lootQty)
         skillStore.addExp('combat', 15)
         const lootName = getItemById(loot)?.name ?? loot
-        addLog(`夜间有野兽入侵！你奋力击退了它，缴获了${lootQty}个${lootName}。`)
+        addLog(`Gece vakti yabani bir canavar çiftliğe sokuldu! Onu püskürttün ve ${lootQty} adet ${lootName} ele geçirdin.`)
       } else {
-        const damage = 5 + Math.floor(Math.random() * 11) // 5-15
+        const damage = 5 + Math.floor(Math.random() * 11)
         playerStore.takeDamage(damage)
         const crops = farmStore.plots.filter(p => p.state === 'growing' || p.state === 'harvestable')
         if (crops.length > 0) {
           const target = crops[Math.floor(Math.random() * crops.length)]!
-          const cropName = getCropById(target.cropId ?? '')?.name ?? '作物'
+          const cropName = getCropById(target.cropId ?? '')?.name ?? 'ürün'
           farmStore.removeCrop(target.id)
-          addLog(`夜间有野兽入侵！你没能挡住它，受了${damage}点伤，一株${cropName}被破坏了。`)
+          addLog(`Gece vakti yabani bir canavar çiftliğe sokuldu! Durduramadın; ${damage} hasar aldın ve bir ${cropName} mahvoldu.`)
         } else {
-          addLog(`夜间有野兽入侵！你没能挡住它，受了${damage}点伤。`)
+          addLog(`Gece vakti yabani bir canavar çiftliğe sokuldu! Durduramadın ve ${damage} hasar aldın.`)
         }
       }
     }
   }
 
-  // 竹林田庄：每日林中拾遗
+  // Orman çiftliği: günlük toplayıcılık
   if (gameStore.farmMapType === 'forest') {
     const foragePool = getForageItems(gameStore.season)
     const commonForage = foragePool.filter(f => f.chance >= 0.1)
     if (commonForage.length > 0) {
-      const count = 1 + (Math.random() < 0.4 ? 1 : 0) // 1-2个
+      const count = 1 + (Math.random() < 0.4 ? 1 : 0)
       const gathered: string[] = []
       for (let i = 0; i < count; i++) {
         const item = commonForage[Math.floor(Math.random() * commonForage.length)]!
@@ -1126,24 +1124,24 @@ export const handleEndDay = () => {
         skillStore.addExp('foraging', item.expReward)
         gathered.push(getItemById(item.itemId)?.name ?? item.itemId)
       }
-      addLog(`竹林间发现了${gathered.join('和')}。`)
+      addLog(`Korulukta şunları buldun: ${gathered.join(' ve ')}.`)
     }
   }
 
-  // 山丘田庄：地表矿脉生成
+  // Tepe çiftliği: yüzey cevher damarı
   if (gameStore.farmMapType === 'hilltop') {
     if (!gameStore.surfaceOrePatch && Math.random() < 0.35) {
       const year = gameStore.year
       const orePool = year >= 2 ? ['copper_ore', 'iron_ore', 'gold_ore'] : ['copper_ore', 'iron_ore']
       const oreId = orePool[Math.floor(Math.random() * orePool.length)]!
-      const qty = 3 + Math.floor(Math.random() * 3) // 3-5
+      const qty = 3 + Math.floor(Math.random() * 3)
       gameStore.surfaceOrePatch = { oreId, quantity: qty }
-      const oreName = getItemById(oreId)?.name ?? '矿石'
-      addLog(`山丘上发现了一处${oreName}脉！`)
+      const oreName = getItemById(oreId)?.name ?? 'maden'
+      addLog(`Tepenin yamacında bir ${oreName} damarı belirdi!`)
     }
   }
 
-  // 溪流田庄：溪流鱼获生成
+  // Dere çiftliği: dere balığı birikimi
   if (gameStore.farmMapType === 'riverland') {
     const seasonFish = FISH.filter(f => (f.location ?? 'creek') === 'creek' && f.season.includes(gameStore.season as any))
     if (seasonFish.length > 0) {
@@ -1158,22 +1156,22 @@ export const handleEndDay = () => {
       const MAX_CREEK_CATCH = 10
       const merged = [...gameStore.creekCatch, ...catches].slice(0, MAX_CREEK_CATCH)
       gameStore.creekCatch = merged
-      addLog(`溪流中有鱼儿在跳跃，去农场面板收取鱼获吧。`)
+      addLog(`Derede balıklar sıçrıyor; çiftlik paneline gidip avı toplayabilirsin.`)
     }
   }
 
-  // 宠物领养触发（春季第一年第7天起，每天检查直到领养）
+  // Evcil dost edinme tetiklenmesi
   if (gameStore.day >= 7 && gameStore.year === 1 && gameStore.season === 'spring' && !animalStore.pet) {
     triggerPetAdoption()
   }
 
-  // 回到农场页面（防止留在商铺等页面继续操作）
+  // Çiftlik sayfasına dön
   void router.push({ name: 'farm' })
 
-  // 自动存档
+  // Otomatik kayıt
   saveStore.autoSave()
 }
 
 export const useEndDay = () => {
   return { handleEndDay }
-}
+  }
