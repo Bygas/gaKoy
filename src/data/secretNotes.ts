@@ -13,7 +13,7 @@ export const SECRET_NOTES: SecretNoteDef[] = [
     id: 2,
     type: 'treasure',
     title: 'Madencinin Son Sözü',
-    content: 'Ömrüm boyunca biriktirdiğim akçeyi maden ocağının 20. katındaki kuytu bir köşeye sakladım… Bu mektubu bulduysan, o para artık senindir.',
+    content: 'Ömrüm boyunca biriktirdiğim akçeyi madenin 20. katındaki kuytu bir köşeye sakladım… Bu mektubu bulduysan, o para artık senindir.',
     usable: true,
     reward: { money: 500 }
   },
@@ -85,8 +85,8 @@ export const SECRET_NOTES: SecretNoteDef[] = [
   {
     id: 12,
     type: 'treasure',
-    title: 'Maden Ocağının İşareti',
-    content: 'Maden ocağının yeraltı ırmağı katının en ucunda, suyun oya oya açtığı bir oyuk vardır. İçinde kıymetli bir aytaşı saklıdır.',
+    title: 'Madenin İşareti',
+    content: 'Madenin yeraltı ırmağı katının en ucunda, suyun oya oya açtığı bir oyuk vardır. İçinde kıymetli bir aytaşı saklıdır.',
     usable: true,
     reward: { items: [{ itemId: 'moonstone', quantity: 1 }] }
   },
@@ -123,7 +123,7 @@ export const SECRET_NOTES: SecretNoteDef[] = [
     id: 17,
     type: 'story',
     title: 'Loncanın Eski Günleri',
-    content: 'Serüvenciler Loncası ilkin yalnızca avcıların toplandığı küçük bir kulübeydi. Sonra maden ocağındaki yaratıklar çoğaldı; avcılar da yaratıkları temizlemek ve köylüyü korumak için loncayı kurdu.',
+    content: 'Serüvenciler Loncası ilkin yalnızca avcıların toplandığı küçük bir kulübeydi. Sonra madendeki yaratıklar çoğaldı; avcılar da yaratıkları temizlemek ve köylüyü korumak için loncayı kurdu.',
     usable: false
   },
   {
