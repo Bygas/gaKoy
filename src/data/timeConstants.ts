@@ -208,7 +208,7 @@ const LOCATION_GROUP_NAMES: Record<LocationGroup, string> = {
   farm: 'Çiftlik',
   village_area: 'gaKöy',
   nature: 'Kır',
-  mine: 'Maden Ocağı',
+  mine: 'Maden',
   hanhai: 'Kum Denizi'
 }
 
