@@ -257,7 +257,7 @@ export const STORY_QUESTS: MainQuestDef[] = [
     title: 'Derinlik Meydan Okuması',
     description: 'İsmail der ki 40. katın altında altın damarları vardır, ama yaratıklar da azgınlaşır.',
     npcId: 'a_shi',
-    objectives: [{ type: 'reachMineFloor', label: 'Maden ocağında 40. kata ulaş', target: 40 }],
+    objectives: [{ type: 'reachMineFloor', label: 'Madende 40. kata ulaş', target: 40 }],
     moneyReward: 1500,
     itemReward: [{ itemId: 'gold_ore', quantity: 10 }],
     friendshipReward: [{ npcId: 'a_shi', amount: 20 }]
