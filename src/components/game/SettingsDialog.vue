@@ -5,8 +5,8 @@
         <button class="absolute top-2 right-2 text-muted hover:text-text" @click="$emit('close')">
           <X :size="14" />
         </button>
-        <Divider title class="my-4" label="设置" />
-        <!-- 分类导航 -->
+        <Divider title class="my-4" label="Ayarlar" />
+        <!-- Sekme gezintisi -->
         <div class="grid grid-cols-3 justify-center gap-1 mb-3">
           <button
             v-for="tab in SETTINGS_TABS"
@@ -21,105 +21,105 @@
         </div>
 
         <div class="flex flex-col space-y-3">
-          <!-- ===== 通用 ===== -->
+          <!-- ===== Genel ===== -->
           <template v-if="activeTab === 'general'">
             <div class="max-h-[40vh] overflow-y-auto">
-              <!-- 时间控制 -->
+              <!-- Zaman yönetimi -->
               <div class="border border-accent/20 rounded-xs p-3 mr-1 mb-2">
-                <p class="text-xs text-muted mb-2">时间控制</p>
+                <p class="text-xs text-muted mb-2">Zaman akışı</p>
                 <div class="flex items-center justify-center space-x-2">
                   <Button :icon="isPaused ? Play : Pause" :icon-size="12" class="py-1 px-3" @click="togglePause">
-                    {{ isPaused ? '继续' : '暂停' }}
+                    {{ isPaused ? 'Sürdür' : 'Durdur' }}
                   </Button>
-                  <Button class="py-1 px-3" @click="cycleSpeed">速度 {{ gameSpeed }}×</Button>
+                  <Button class="py-1 px-3" @click="cycleSpeed">Hız {{ gameSpeed }}×</Button>
                 </div>
               </div>
 
-              <!-- 音频控制 -->
+              <!-- Ses yönetimi -->
               <div class="border border-accent/20 rounded-xs p-3 mr-1 mb-2">
-                <p class="text-xs text-muted mb-2">音频</p>
+                <p class="text-xs text-muted mb-2">Ses</p>
                 <div class="flex items-center justify-center space-x-2">
-                  <Button :icon="sfxEnabled ? Volume2 : VolumeX" :icon-size="12" class="py-1 px-3" @click="toggleSfx">音效</Button>
-                  <Button :icon="bgmEnabled ? Headphones : HeadphoneOff" :icon-size="12" class="py-1 px-3" @click="toggleBgm">音乐</Button>
+                  <Button :icon="sfxEnabled ? Volume2 : VolumeX" :icon-size="12" class="py-1 px-3" @click="toggleSfx">Efekt</Button>
+                  <Button :icon="bgmEnabled ? Headphones : HeadphoneOff" :icon-size="12" class="py-1 px-3" @click="toggleBgm">Müzik</Button>
                 </div>
               </div>
 
-              <!-- 新手提示 -->
+              <!-- Yeni başlayan yardımı -->
               <div class="border border-accent/20 rounded-xs p-3 mr-1 mb-2">
-                <p class="text-xs text-muted mb-2">新手提示</p>
-                <p class="text-[10px] text-muted/50 mb-2">柳村长的晨间建议和面板引导文字</p>
+                <p class="text-xs text-muted mb-2">Başlangıç öğütleri</p>
+                <p class="text-[10px] text-muted/50 mb-2">gaKöy muhtarının sabah öğütleri ve panel açıklamaları</p>
                 <div class="flex items-center justify-center space-x-2">
                   <Button class="py-1 px-3" :class="{ '!bg-accent !text-bg': tutorialStore.enabled }" @click="tutorialStore.enabled = true">
-                    开
+                    Açık
                   </Button>
                   <Button
                     class="py-1 px-3"
                     :class="{ '!bg-accent !text-bg': !tutorialStore.enabled }"
                     @click="tutorialStore.enabled = false"
                   >
-                    关
+                    Kapalı
                   </Button>
                 </div>
               </div>
 
-              <!-- WebDAV 云同步 -->
+              <!-- WebDAV bulut eşitleme -->
               <div class="border border-accent/20 rounded-xs p-3 mr-1">
                 <div class="flex items-center justify-between mb-2">
-                  <p class="text-xs text-muted">WebDAV 云同步</p>
+                  <p class="text-xs text-muted">WebDAV bulut eşitleme</p>
                   <div class="flex space-x-1">
                     <Button
                       class="py-0.5 px-2 text-[10px]"
                       :class="{ '!bg-accent !text-bg': webdavConfig.enabled }"
                       @click="setWebdavEnabled(true)"
                     >
-                      开
+                      Açık
                     </Button>
                     <Button
                       class="py-0.5 px-2 text-[10px]"
                       :class="{ '!bg-accent !text-bg': !webdavConfig.enabled }"
                       @click="setWebdavEnabled(false)"
                     >
-                      关
+                      Kapalı
                     </Button>
                   </div>
                 </div>
                 <template v-if="webdavConfig.enabled">
                   <div class="flex flex-col space-y-2">
                     <div>
-                      <label class="text-[10px] text-muted mb-0.5 block">服务器地址</label>
+                      <label class="text-[10px] text-muted mb-0.5 block">Sunucu adresi</label>
                       <input
                         v-model="webdavConfig.serverUrl"
-                        placeholder="请输入WebDAV云同步服务器地址"
+                        placeholder="WebDAV eşitleme sunucusunun adresini yaz"
                         class="w-full px-2 py-1.5 bg-bg border border-accent/30 rounded-xs text-xs text-text focus:border-accent outline-none placeholder:text-muted/40 transition-colors"
                         @change="saveWebdavConfig"
                       />
                     </div>
                     <div>
-                      <label class="text-[10px] text-muted mb-0.5 block">存储路径</label>
+                      <label class="text-[10px] text-muted mb-0.5 block">Kayıt yolu</label>
                       <input
                         v-model="webdavConfig.path"
-                        placeholder="如果没有路径需求的话可以为空"
+                        placeholder="Özel bir klasör istemiyorsan boş bırakabilirsin"
                         class="w-full px-2 py-1.5 bg-bg border border-accent/30 rounded-xs text-xs text-text focus:border-accent outline-none placeholder:text-muted/40 transition-colors"
                         @change="saveWebdavConfig"
                       />
-                      <p class="text-[10px] text-muted/50 mt-0.5">填写网盘中已有的文件夹名，留空则存到根目录</p>
+                      <p class="text-[10px] text-muted/50 mt-0.5">Buluttaki mevcut klasör adını yaz; boş kalırsa kök dizine kaydeder</p>
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                       <div>
-                        <label class="text-[10px] text-muted mb-0.5 block">用户名</label>
+                        <label class="text-[10px] text-muted mb-0.5 block">Kullanıcı adı</label>
                         <input
                           v-model="webdavConfig.username"
-                          placeholder="请输入用户名"
+                          placeholder="Kullanıcı adını yaz"
                           class="w-full px-2 py-1.5 bg-bg border border-accent/30 rounded-xs text-xs text-text focus:border-accent outline-none placeholder:text-muted/40 transition-colors"
                           @change="saveWebdavConfig"
                         />
                       </div>
                       <div>
-                        <label class="text-[10px] text-muted mb-0.5 block">密码</label>
+                        <label class="text-[10px] text-muted mb-0.5 block">Parola</label>
                         <input
                           v-model="webdavConfig.password"
                           type="password"
-                          placeholder="请输入密码"
+                          placeholder="Parolanı yaz"
                           class="w-full px-2 py-1.5 bg-bg border border-accent/30 rounded-xs text-xs text-text focus:border-accent outline-none placeholder:text-muted/40 transition-colors"
                           @change="saveWebdavConfig"
                         />
@@ -130,11 +130,11 @@
                       :disabled="webdavTestStatus === 'testing' || !webdavConfig.serverUrl"
                       @click="handleTestWebdav"
                     >
-                      {{ webdavTestStatus === 'testing' ? '测试中...' : '测试连接' }}
+                      {{ webdavTestStatus === 'testing' ? 'Yoklanıyor...' : 'Bağlantıyı dene' }}
                     </Button>
-                    <p v-if="webdavTestStatus === 'success'" class="text-success text-xs text-center mt-1">连接成功</p>
+                    <p v-if="webdavTestStatus === 'success'" class="text-success text-xs text-center mt-1">Bağlantı kuruldu</p>
                     <p v-if="webdavTestStatus === 'failed'" class="text-danger text-xs text-center mt-1">
-                      {{ webdavTestError || '连接失败' }}
+                      {{ webdavTestError || 'Bağlantı kurulamadı' }}
                     </p>
                   </div>
                 </template>
@@ -142,11 +142,11 @@
             </div>
           </template>
 
-          <!-- ===== 外观 ===== -->
+          <!-- ===== Görünüş ===== -->
           <template v-if="activeTab === 'display'">
-            <!-- 字体大小 -->
+            <!-- Yazı boyu -->
             <div class="border border-accent/20 rounded-xs p-3">
-              <p class="text-xs text-muted mb-2">字体大小</p>
+              <p class="text-xs text-muted mb-2">Yazı boyu</p>
               <div class="flex items-center justify-center space-x-3">
                 <Button
                   class="py-1 px-3"
@@ -166,9 +166,9 @@
               </div>
             </div>
 
-            <!-- 配色主题 -->
+            <!-- Renk düzeni -->
             <div class="border border-accent/20 rounded-xs p-3">
-              <p class="text-xs text-muted mb-2">配色主题</p>
+              <p class="text-xs text-muted mb-2">Renk düzeni</p>
               <div class="flex items-center justify-center space-x-2">
                 <button
                   v-for="t in THEMES"
@@ -185,12 +185,12 @@
             </div>
           </template>
 
-          <!-- ===== 通知 ===== -->
+          <!-- ===== Bildirim ===== -->
           <template v-if="activeTab === 'notification'">
             <div class="max-h-[40vh] overflow-y-auto flex flex-col space-y-3">
-              <!-- 通知位置 -->
+              <!-- Bildirim konumu -->
               <div class="border border-accent/20 rounded-xs p-3 mr-1">
-                <p class="text-xs text-muted mb-2">弹出位置</p>
+                <p class="text-xs text-muted mb-2">Belirme yeri</p>
                 <div class="grid grid-cols-3 gap-1 w-24 mx-auto">
                   <button
                     v-for="pos in QMSG_POSITIONS"
@@ -207,9 +207,9 @@
                 </div>
               </div>
 
-              <!-- 持续时间 -->
+              <!-- Kalma süresi -->
               <div class="border border-accent/20 rounded-xs p-3 mr-1">
-                <p class="text-xs text-muted mb-2">持续时间</p>
+                <p class="text-xs text-muted mb-2">Kalma süresi</p>
                 <div class="flex items-center justify-center space-x-2">
                   <Button
                     class="py-0 px-1.5"
@@ -218,7 +218,7 @@
                     :disabled="settingsStore.qmsgTimeout <= 500"
                     @click="changeTimeout(-500)"
                   />
-                  <span class="text-xs w-12 text-center">{{ (settingsStore.qmsgTimeout / 1000).toFixed(1) }}s</span>
+                  <span class="text-xs w-12 text-center">{{ (settingsStore.qmsgTimeout / 1000).toFixed(1) }} sn</span>
                   <Button
                     class="py-0 px-1.5"
                     :icon="Plus"
@@ -229,9 +229,9 @@
                 </div>
               </div>
 
-              <!-- 最大数量 -->
+              <!-- En çok bildirim -->
               <div class="border border-accent/20 rounded-xs p-3 mr-1">
-                <p class="text-xs text-muted mb-2">最大数量</p>
+                <p class="text-xs text-muted mb-2">En çok sayı</p>
                 <div class="flex items-center justify-center space-x-2">
                   <Button
                     class="py-0 px-1.5"
@@ -251,27 +251,27 @@
                 </div>
               </div>
 
-              <!-- 宽度限制 -->
+              <!-- Genişlik sınırı -->
               <div class="border border-accent/20 rounded-xs p-3 mr-1">
-                <p class="text-xs text-muted mb-2">限制宽度</p>
+                <p class="text-xs text-muted mb-2">Genişliği sınırla</p>
                 <div class="flex items-center justify-center space-x-1 mb-2">
                   <Button
                     class="py-0 px-2"
                     :class="settingsStore.qmsgIsLimitWidth ? '!bg-accent/20 !text-accent !border-accent' : ''"
                     @click="setBool('qmsgIsLimitWidth', true)"
                   >
-                    开
+                    Açık
                   </Button>
                   <Button
                     class="py-0 px-2"
                     :class="!settingsStore.qmsgIsLimitWidth ? '!bg-accent/20 !text-accent !border-accent' : ''"
                     @click="setBool('qmsgIsLimitWidth', false)"
                   >
-                    关
+                    Kapalı
                   </Button>
                 </div>
                 <template v-if="settingsStore.qmsgIsLimitWidth">
-                  <p class="text-xs text-muted mb-2">宽度(px)</p>
+                  <p class="text-xs text-muted mb-2">Genişlik (px)</p>
                   <div class="flex items-center justify-center space-x-2 mb-2">
                     <Button
                       class="py-0 px-1.5"
@@ -289,7 +289,7 @@
                       @click="changeLimitWidth(50)"
                     />
                   </div>
-                  <p class="text-xs text-muted mb-2">超出处理</p>
+                  <p class="text-xs text-muted mb-2">Taşarsa ne olsun</p>
                   <div class="flex items-center justify-center space-x-1">
                     <Button
                       v-for="opt in WRAP_OPTIONS"
@@ -304,7 +304,7 @@
                 </template>
               </div>
 
-              <!-- 开关选项 -->
+              <!-- Açık / kapalı seçenekler -->
               <div class="border border-accent/20 rounded-xs p-3 mr-1 flex flex-col space-y-2">
                 <div v-for="opt in TOGGLE_OPTIONS" :key="opt.key" class="flex flex-col items-center space-y-1">
                   <span class="text-xs text-muted">{{ opt.label }}</span>
@@ -314,14 +314,14 @@
                       :class="settingsStore[opt.key] ? '!bg-accent/20 !text-accent !border-accent' : ''"
                       @click="setBool(opt.key, true)"
                     >
-                      开
+                      Açık
                     </Button>
                     <Button
                       class="py-0 px-2"
                       :class="!settingsStore[opt.key] ? '!bg-accent/20 !text-accent !border-accent' : ''"
                       @click="setBool(opt.key, false)"
                     >
-                      关
+                      Kapalı
                     </Button>
                   </div>
                 </div>
@@ -330,15 +330,15 @@
           </template>
         </div>
 
-        <!-- 存档管理（全局底部） -->
+        <!-- Kayıt yönetimi (altta sabit) -->
         <Button :icon="FolderOpen" :icon-size="12" class="py-1 px-3 w-full justify-center mt-3" @click="showSaveManager = true">
-          存档管理
+          Kayıt işleri
         </Button>
       </div>
     </div>
   </Transition>
 
-  <!-- 存档管理弹窗 -->
+  <!-- Kayıt yönetimi penceresi -->
   <Transition name="panel-fade">
     <SaveManager v-if="showSaveManager" @close="showSaveManager = false" />
   </Transition>
@@ -385,35 +385,35 @@
   type BoolSettingKey = 'qmsgIsLimitWidth' | 'qmsgAnimation' | 'qmsgAutoClose' | 'qmsgShowClose' | 'qmsgShowIcon' | 'qmsgShowReverse'
 
   const SETTINGS_TABS: { key: SettingsTab; label: string; icon: Component }[] = [
-    { key: 'general', label: '通用', icon: Settings },
-    { key: 'display', label: '外观', icon: Palette },
-    { key: 'notification', label: '通知', icon: Bell }
+    { key: 'general', label: 'Genel', icon: Settings },
+    { key: 'display', label: 'Görünüş', icon: Palette },
+    { key: 'notification', label: 'Bildirim', icon: Bell }
   ]
 
   const QMSG_POSITIONS: { value: QmsgPosition; label: string; icon: Component }[] = [
-    { value: 'topleft', label: '左上', icon: ArrowUpLeft },
-    { value: 'top', label: '上', icon: ArrowUp },
-    { value: 'topright', label: '右上', icon: ArrowUpRight },
-    { value: 'left', label: '左', icon: ArrowLeft },
-    { value: 'center', label: '中', icon: Circle },
-    { value: 'right', label: '右', icon: ArrowRight },
-    { value: 'bottomleft', label: '左下', icon: ArrowDownLeft },
-    { value: 'bottom', label: '下', icon: ArrowDown },
-    { value: 'bottomright', label: '右下', icon: ArrowDownRight }
+    { value: 'topleft', label: 'Sol üst', icon: ArrowUpLeft },
+    { value: 'top', label: 'Üst', icon: ArrowUp },
+    { value: 'topright', label: 'Sağ üst', icon: ArrowUpRight },
+    { value: 'left', label: 'Sol', icon: ArrowLeft },
+    { value: 'center', label: 'Orta', icon: Circle },
+    { value: 'right', label: 'Sağ', icon: ArrowRight },
+    { value: 'bottomleft', label: 'Sol alt', icon: ArrowDownLeft },
+    { value: 'bottom', label: 'Alt', icon: ArrowDown },
+    { value: 'bottomright', label: 'Sağ alt', icon: ArrowDownRight }
   ]
 
   const WRAP_OPTIONS: { value: QmsgLimitWidthWrap; label: string }[] = [
-    { value: 'no-wrap', label: '不处理' },
-    { value: 'wrap', label: '换行' },
-    { value: 'ellipsis', label: '省略号' }
+    { value: 'no-wrap', label: 'Olduğu gibi' },
+    { value: 'wrap', label: 'Alta geçir' },
+    { value: 'ellipsis', label: 'Üç nokta' }
   ]
 
   const TOGGLE_OPTIONS: { key: BoolSettingKey; label: string }[] = [
-    { key: 'qmsgAnimation', label: '弹出动画' },
-    { key: 'qmsgAutoClose', label: '自动关闭' },
-    { key: 'qmsgShowClose', label: '显示关闭图标' },
-    { key: 'qmsgShowIcon', label: '显示左侧图标' },
-    { key: 'qmsgShowReverse', label: '弹出方向逆反' }
+    { key: 'qmsgAnimation', label: 'Belirme oyunu' },
+    { key: 'qmsgAutoClose', label: 'Kendiliğinden kapansın' },
+    { key: 'qmsgShowClose', label: 'Kapatma imi görünsün' },
+    { key: 'qmsgShowIcon', label: 'Sol tarafta simge görünsün' },
+    { key: 'qmsgShowReverse', label: 'Belirme yönü ters olsun' }
   ]
 
   defineProps<{ open: boolean }>()
