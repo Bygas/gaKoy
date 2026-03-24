@@ -71,7 +71,7 @@ export const TABS: { key: PanelKey; label: string; icon: Component; getIcon?: ()
   { key: 'shop', label: 'Çarşı', icon: Store },
   { key: 'forage', label: 'Kamışlık', icon: TreePine },
   { key: 'fishing', label: 'Akarsu', icon: Fish },
-  { key: 'mining', label: 'Maden Ocağı', icon: Pickaxe },
+  { key: 'mining', label: 'Maden', icon: Pickaxe },
   { key: 'cooking', label: 'Ocakbaşı', icon: Flame },
   { key: 'workshop', label: 'Atölye', icon: Cog },
   { key: 'upgrade', label: 'Ustalık Ocağı', icon: Wrench },
