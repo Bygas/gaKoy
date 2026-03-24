@@ -24,9 +24,9 @@ import { useWalletStore } from '@/stores/useWalletStore'
 import { useWarehouseStore } from '@/stores/useWarehouseStore'
 
 /**
- * 重置所有游戏相关 store 到初始状态（开新游戏时调用）。
- * 不重置: useSettingsStore（跨存档设置）、useSaveStore（存档管理）。
- */
+Oyunla ilgili tüm mağazaları başlangıç durumlarına sıfırlayın (yeni bir oyun başlatırken adlandırılır).
+* Sıfırlamayın: useSettingsStore (çapraz arşiv ayarları), useSaveStore (arşiv yönetimi).
+*/
 export const resetAllStoresForNewGame = () => {
   useGameStore().$reset()
   usePlayerStore().$reset()
