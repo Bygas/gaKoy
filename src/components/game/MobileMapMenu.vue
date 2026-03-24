@@ -8,11 +8,11 @@
         >
           <X :size="14" />
         </button>
-        <p class="text-accent text-sm text-center mb-3 tracking-widest">桃源乡地图</p>
+        <p class="text-accent text-sm text-center mb-3 tracking-widest">gaKöy Haritası</p>
 
-        <!-- 田庄 -->
+        <!-- Çiftlik -->
         <div class="map-area">
-          <p class="map-area-title">田庄</p>
+          <p class="map-area-title">Çiftlik</p>
           <div class="map-area-grid">
             <button v-for="t in farmGroup" :key="t.key" class="map-loc" :class="{ 'map-loc-active': current === t.key }" @click="go(t.key)">
               <component :is="t.getIcon ? t.getIcon() : t.icon" :size="18" />
@@ -23,10 +23,10 @@
 
         <div class="map-path">···</div>
 
-        <!-- 野外 -->
+        <!-- Açık alanlar -->
         <div class="flex space-x-2">
           <div class="map-area flex-1">
-            <p class="map-area-title">村落</p>
+            <p class="map-area-title">Köy</p>
             <div class="map-area-grid">
               <button
                 v-for="t in villageGroup"
@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="map-area flex-1">
-            <p class="map-area-title">野外</p>
+            <p class="map-area-title">Kır Yeri</p>
             <div class="map-area-grid">
               <button
                 v-for="t in wildGroup"
@@ -59,9 +59,9 @@
 
         <div class="map-path">···</div>
 
-        <!-- 工坊 -->
+        <!-- El işleri -->
         <div class="map-area">
-          <p class="map-area-title">工坊</p>
+          <p class="map-area-title">İşlikler</p>
           <div class="map-area-grid">
             <button
               v-for="t in craftGroup"
@@ -78,9 +78,9 @@
 
         <div class="map-path">···</div>
 
-        <!-- 随身 -->
+        <!-- Kişisel -->
         <div class="map-area">
-          <p class="map-area-title">随身</p>
+          <p class="map-area-title">Üstündekiler</p>
           <div class="map-area-grid">
             <button
               v-for="t in personalGroup"
@@ -129,7 +129,7 @@
 </script>
 
 <style scoped>
-  /* 地图菜单 */
+  /* Harita menüsü */
   .map-area {
     border: 1px dashed rgba(200, 164, 92, 0.3);
     border-radius: 2px;
