@@ -245,7 +245,7 @@ export const SHOES: ShoeDef[] = [
     shopPrice: null,
     recipe: null,
     recipeMoney: 0,
-    obtainSource: 'Maden ocağı sandığı',
+    obtainSource: 'Maden sandığı',
     sellPrice: 300
   },
 
