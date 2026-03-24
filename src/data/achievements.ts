@@ -716,7 +716,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
 },
 {
   id: 'foraging_10',
-  name: 'Toplayıcılık Pir'i',
+  name: 'Toplayıcılık Pir`i',
   description: 'Toplayıcılık yeteneğini 10. seviyeye çıkar.',
   condition: { type: 'skillLevel', skillType: 'foraging', level: 10 },
   reward: { money: 2000 }
