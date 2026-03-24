@@ -237,10 +237,10 @@ export const HEART_EVENTS: HeartEventDef[] = [
     id: 'a_shi_heart_3',
     npcId: 'a_shi',
     requiredFriendship: 800,
-    title: 'Maden Ocağında Kurtuluş',
+    title: 'Madenden Kurtuluş',
     scenes: [
       {
-        text: `Maden ocağının derinlerinde çalışırken ilerden boğuk bir ses gelir; ardından kaya parçalarının düştüğünü duyarsın. Sesin geldiği yöne koştuğunda göçmüş taş duvarın yanında İsmail'i görürsün. Sol bacağı büyük bir kayanın altındadır, alnında kanlı bir çizik vardır ama dişini sıkıp tek ses çıkarmaz.`
+        text: `Madenin derinlerinde çalışırken ilerden boğuk bir ses gelir; ardından kaya parçalarının düştüğünü duyarsın. Sesin geldiği yöne koştuğunda göçmüş taş duvarın yanında İsmail'i görürsün. Sol bacağı büyük bir kayanın altındadır, alnında kanlı bir çizik vardır ama dişini sıkıp tek ses çıkarmaz.`
       },
       {
         text: `Seni görünce kaşlarını hafifçe çatar: "...Sen burada ne arıyorsun." Bir an durur. "Yaklaşma. Tekrar çöker."`,
@@ -266,7 +266,7 @@ export const HEART_EVENTS: HeartEventDef[] = [
         text: `Yarasını sarıp onu yavaş yavaş dışarı çıkarırsın. Yüzü her zamanki gibi donuktur ama yürürken ağırlığını bilinçli biçimde sana vermektedir; sanki sessizce sana dayanıyordur.`
       },
       {
-        text: `Ocağın ağzına geldiğinizde İsmail cebinden kaba görünümlü, soluk renkli bir taş çıkarır. "Bunu al." der. "Dıştan bakınca bir şeye benzemez... ama içinde cevher var." Kulaklarının ucu hafif kızarmıştır. "Ben... teşekkür etmeyi pek bilmem. Bunu onun yerine say."`
+        text: `Madenin ağzına geldiğinizde İsmail cebinden kaba görünümlü, soluk renkli bir taş çıkarır. "Bunu al." der. "Dıştan bakınca bir şeye benzemez... ama içinde cevher var." Kulaklarının ucu hafif kızarmıştır. "Ben... teşekkür etmeyi pek bilmem. Bunu onun yerine say."`
       }
     ]
   },
@@ -280,7 +280,7 @@ export const HEART_EVENTS: HeartEventDef[] = [
         text: `Bir sabah İsmail alışılmadık biçimde kapına gelir. Elinde iki madenci feneri vardır. Sessizce bir süre bekler, sonra kısaca der ki: "...Benimle gel. Sana göstermek istediğim bir yer var."`
       },
       {
-        text: `Seni maden ocağına götürür ama bu kez bildik patikadan değil, dar bir yarıktan geçer. Peşine takılır, eğri büğrü bir dehlizde uzun süre yürürsünüz. Yol gitgide daralır. Tam artık ilerlenmez dediğin anda önünüzde koca bir boşluk açılır.`
+        text: `Seni madene götürür ama bu kez bildik patikadan değil, dar bir yarıktan geçer. Peşine takılır, eğri büğrü bir dehlizde uzun süre yürürsünüz. Yol gitgide daralır. Tam artık ilerlenmez dediğin anda önünüzde koca bir boşluk açılır.`
       },
       {
         text: `Nefesin kesilir. Gördüğün yer dev bir yeraltı mağarasıdır. Duvarların her yanı billur kümeleriyle doludur. Kimisi buz kadar duru, kimisi mora çalan bir ışık saçar, kimisi de kehribar gibi sıcak renkte parlar. Fener ışığı vurunca tüm mağara bir saray misali ışıldar.`,
