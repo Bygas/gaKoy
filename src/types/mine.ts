@@ -1,13 +1,25 @@
-
 import type { MonsterDef, MineFloorDef } from './skill'
 
-/** Maden karo türü */
-export type MineTileType = 'empty' | 'ore' | 'monster' | 'stairs' | 'trap' | 'treasure' | 'mushroom' | 'boss'
+/** Hücre türü */
+export type MineTileType =
+  | 'empty'
+  | 'ore'
+  | 'monster'
+  | 'stairs'
+  | 'trap'
+  | 'treasure'
+  | 'mushroom'
+  | 'boss'
 
-/** Maden karo durumu */
-export type MineTileState = 'hidden' | 'revealed' | 'collected' | 'defeated' | 'triggered'
+/** Hücre durumu */
+export type MineTileState =
+  | 'hidden'
+  | 'revealed'
+  | 'collected'
+  | 'defeated'
+  | 'triggered'
 
-/** Karo ek verisi */
+/** Hücre ek verisi */
 export interface MineTileData {
   oreId?: string
   oreQuantity?: number
@@ -19,7 +31,7 @@ export interface MineTileData {
   mushroomItems?: { itemId: string; quantity: number }[]
 }
 
-/** Tek bir karo */
+/** Tek bir hücre */
 export interface MineTile {
   index: number // 0-35
   type: MineTileType
@@ -27,7 +39,7 @@ export interface MineTile {
   data?: MineTileData
 }
 
-/** Kat karo dağılımı yapılandırması */
+/** Kat hücre dağılımı yapılandırması */
 export interface FloorTileDistribution {
   oreCount: [number, number]
   monsterCount: [number, number]
@@ -35,7 +47,7 @@ export interface FloorTileDistribution {
   treasureCount?: [number, number]
   mushroomCount?: [number, number]
   bossCount?: [number, number]
-  /** Merdiven tüm alan temizlenmeden kullanılamaz mı (istila/BOSS katları) */
+  /** Merdiven ancak tüm hücreler temizlenince kullanılabilir mi (enfekte/BOSS katları) */
   stairsHiddenUntilClear?: boolean
 }
 
@@ -45,14 +57,4 @@ export const GRID_TOTAL = 36
 export const MIN_STAIRS_DISTANCE = 3
 
 /** Özel kat türü */
-export type FloorSpecialType = MineFloorDef['specialType']  /** 楼梯是否需要全清才可使用（感染/BOSS层） */
-  stairsHiddenUntilClear?: boolean
-}
-
-/** 网格常量 */
-export const GRID_SIZE = 6
-export const GRID_TOTAL = 36
-export const MIN_STAIRS_DISTANCE = 3
-
-/** 特殊层类型 */
 export type FloorSpecialType = MineFloorDef['specialType']
