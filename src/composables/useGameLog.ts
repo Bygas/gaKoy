@@ -17,7 +17,7 @@ export interface QmsgConfigOptions {
   showReverse: boolean
 }
 
-// 配置 Qmsg 全局样式
+// Qmsg genel görünüm ayarları
 Qmsg.config({
   position: 'top',
   showIcon: false,
@@ -27,7 +27,7 @@ Qmsg.config({
   useShadowRoot: false
 })
 
-/** 动态更新 Qmsg 全部通知配置 */
+/** Qmsg bildirim ayarlarını topluca uygula */
 export const applyQmsgConfig = (opts: QmsgConfigOptions) => {
   Qmsg.config({
     isHTML: true,
@@ -46,33 +46,36 @@ export const applyQmsgConfig = (opts: QmsgConfigOptions) => {
   })
 }
 
-// 天赋检查回调 — 由 useDialogs 注册以避免循环导入
+// Hüner denetimi geri çağırımı
+// döngüsel içe aktarmayı önlemek için useDialogs tarafından kaydedilir
 let _perkChecker: (() => void) | null = null
 
-/** 注册天赋检查回调（useDialogs 初始化时调用） */
+/** Hüner denetimi geri çağırımını kaydet (useDialogs başlatılırken çağrılır) */
 export const _registerPerkChecker = (fn: () => void) => {
   _perkChecker = fn
 }
 
-// === 日志历史记录（内存中，不存档，刷新页面清空） ===
+// === Kayıt geçmişi (yalnız bellekte tutulur, kayıt dosyasına yazılmaz, sayfa yenilenince silinir) ===
 
 export interface LogEntry {
   msg: string
   dayLabel: string
 }
 
-/** 全部日志历史 */
+/** Tüm kayıt geçmişi */
 export const logHistory = ref<LogEntry[]>([])
 
-/** 天数标签获取器 — 由 GameLayout 注册以避免循环导入 */
+/** Gün etiketi alıcısı
+ * döngüsel içe aktarmayı önlemek için GameLayout tarafından kaydedilir
+ */
 let _dayLabelGetter: (() => string) | null = null
 
-/** 注册天数标签获取器（GameLayout 初始化时调用） */
+/** Gün etiketi alıcısını kaydet (GameLayout başlatılırken çağrılır) */
 export const _registerDayLabelGetter = (fn: () => string) => {
   _dayLabelGetter = fn
 }
 
-/** 添加日志消息（显示为 toast 通知，同时记录到历史） */
+/** Kayıt mesajı ekle (bildirim olarak gösterilir, ayrıca geçmişe yazılır) */
 export const addLog = (msg: string) => {
   Qmsg.info(msg)
   const dayLabel = _dayLabelGetter?.() ?? ''
@@ -80,7 +83,7 @@ export const addLog = (msg: string) => {
   _perkChecker?.()
 }
 
-/** 显示浮动文本反馈（显示为 toast 通知） */
+/** Yüzen kısa bildirim göster */
 export const showFloat = (text: string, color: FloatColor = 'accent') => {
   switch (color) {
     case 'danger':
@@ -98,17 +101,17 @@ export const showFloat = (text: string, color: FloatColor = 'accent') => {
   }
 }
 
-/** 重置日志（新游戏） */
+/** Kayıtları sıfırla (yeni oyun) */
 export const resetLogs = () => {
   Qmsg.closeAll()
 }
 
-/** 清空全部日志历史 */
+/** Tüm kayıt geçmişini temizle */
 export const clearAllLogs = () => {
   logHistory.value = []
 }
 
-/** 清空指定天的日志 */
+/** Belirli bir güne ait kayıtları temizle */
 export const clearDayLogs = (dayLabel: string) => {
   logHistory.value = logHistory.value.filter(e => e.dayLabel !== dayLabel)
 }
