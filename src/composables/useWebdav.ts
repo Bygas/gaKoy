@@ -27,32 +27,33 @@ const loadConfig = (): WebdavConfig => {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (raw) return { ...defaultConfig(), ...JSON.parse(raw) }
   } catch {
-    /* ignore */
+    /* yok say */
   }
   return defaultConfig()
 }
 
-/** 持久化配置 */
+/** Yapılandırmayı kalıcı sakla */
 const config = ref<WebdavConfig>(loadConfig())
 const testStatus = ref<'idle' | 'testing' | 'success' | 'failed'>('idle')
 const testError = ref('')
 
-/** 检测是否在 Electron 环境中 */
+/** Electron ortamında mı çalışıyor denetle */
 const isElectron = typeof navigator !== 'undefined' && navigator.userAgent.includes('Electron')
 
-/** 平台自适应 HTTP 请求：原生平台走 CapacitorHttp，dev 走 Vite 代理，Electron/生产 web 直连 */
+/** Platforma göre uyarlanan HTTP isteği: yerel platformda CapacitorHttp, geliştirme ortamında Vite vekili, Electron/üretim webde doğrudan bağlantı */
 const webdavFetch = async (
   url: string,
   method: string,
   headers: Record<string, string>,
   body?: string
 ): Promise<{ status: number; data: string }> => {
-  // 原生平台（Capacitor Android/iOS）：CapacitorHttp 绕过 CORS
+  // Yerel platform (Capacitor Android/iOS): CapacitorHttp ile CORS engelini aş
   if (Capacitor.isNativePlatform()) {
     const res = await CapacitorHttp.request({ url, method, headers, data: body })
     return { status: res.status, data: typeof res.data === 'string' ? res.data : JSON.stringify(res.data) }
   }
-  // Dev 环境（非 Electron）：走 Vite 代理中间件绕过 CORS
+
+  // Geliştirme ortamı (Electron değil): Vite vekil katmanı ile CORS engelini aş
   if (import.meta.env.DEV && !isElectron) {
     const res = await fetch('/__webdav', {
       method,
@@ -61,23 +62,24 @@ const webdavFetch = async (
     })
     return { status: res.status, data: await res.text() }
   }
-  // Electron（主进程已注入 CORS 头）/ 生产 web（同源部署）：直连
-  // credentials: 'omit' 防止浏览器弹出原生认证对话框（认证由 Authorization 头自行处理）
+
+  // Electron (ana süreçte CORS başlıkları eklenmiş) / üretim web (aynı kaynak): doğrudan bağlan
+  // credentials: 'omit' ile tarayıcının yerel kimlik doğrulama penceresi açılmasın
   const res = await fetch(url, { method, headers, body, credentials: 'omit' })
   return { status: res.status, data: await res.text() }
 }
 
-/** 根据 serverUrl 域名返回针对性的路径提示 */
+/** serverUrl alanına göre uygun yol ipucu döndür */
 const getPathHint = (serverUrl: string): string => {
   try {
     const host = new URL(serverUrl).hostname.toLowerCase()
-    if (host.includes('jianguoyun')) return '坚果云请在「存储路径」中填写已有的文件夹名，如"我的坚果云"。'
-    if (host.includes('nextcloud') || serverUrl.includes('/remote.php/dav')) return 'Nextcloud 请在「存储路径」中填写目标文件夹名。'
-    if (host.includes('owncloud') || serverUrl.includes('/remote.php/webdav')) return 'ownCloud 请在「存储路径」中填写目标文件夹名。'
+    if (host.includes('jianguoyun')) return 'Jianguoyun için "Saklama yolu" kısmına mevcut bir klasör adı yazın; örnek: "Benim Jianguoyun".'
+    if (host.includes('nextcloud') || serverUrl.includes('/remote.php/dav')) return 'Nextcloud için "Saklama yolu" kısmına hedef klasör adını yazın.'
+    if (host.includes('owncloud') || serverUrl.includes('/remote.php/webdav')) return 'ownCloud için "Saklama yolu" kısmına hedef klasör adını yazın.'
   } catch {
-    /* ignore */
+    /* yok say */
   }
-  return '请在「存储路径」中填写一个已存在的文件夹名。'
+  return '"Saklama yolu" kısmına mevcut bir klasör adı yazın.'
 }
 
 export const useWebdav = () => {
@@ -91,13 +93,13 @@ export const useWebdav = () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(config.value))
   }
 
-  /** 确保 URL 末尾带 / */
+  /** URL sonuna / eklenmesini garanti et */
   const normalizeUrl = (url: string): string => {
     const trimmed = url.trim().replace(/\/+$/, '')
     return trimmed ? trimmed + '/' : ''
   }
 
-  /** 拼接 serverUrl + path 得到完整目录 URL（对路径段做 percent-encode 以支持中文） */
+  /** serverUrl + path birleştirip tam klasör URL’si oluştur (Türkçe ve özel karakterler için percent-encode uygulanır) */
   const fullDirUrl = (): string => {
     const base = normalizeUrl(config.value.serverUrl)
     const sub = config.value.path.trim().replace(/^\/+|\/+$/g, '')
@@ -109,15 +111,15 @@ export const useWebdav = () => {
     return base + encoded + '/'
   }
 
-  /** 生成 Basic Auth header */
+  /** Basic Auth başlığı üret */
   const authHeaders = (): Record<string, string> => ({
     Authorization: 'Basic ' + btoa(config.value.username + ':' + config.value.password)
   })
 
-  /** 远程文件路径 */
+  /** Uzak sunucudaki kayıt yolu */
   const remoteFilePath = (slot: number): string => fullDirUrl() + `taoyuan_save_${slot}.tyx`
 
-  /** 测试连接：Web/Electron 用 PROPFIND，原生平台（Android/iOS）用 HEAD（CapacitorHttp 不支持 PROPFIND） */
+  /** Bağlantıyı sına: Web/Electron için PROPFIND, yerel platform için HEAD (CapacitorHttp PROPFIND desteklemez) */
   const testConnection = async (): Promise<boolean> => {
     testStatus.value = 'testing'
     testError.value = ''
@@ -125,58 +127,63 @@ export const useWebdav = () => {
       const base = normalizeUrl(config.value.serverUrl)
       if (!base) {
         testStatus.value = 'failed'
-        testError.value = '服务器地址为空'
+        testError.value = 'Sunucu adresi boş'
         return false
       }
+
       const url = fullDirUrl()
       const isNative = Capacitor.isNativePlatform()
-      // 原生平台 CapacitorHttp 不支持 PROPFIND 方法，改用 HEAD 验证连接和认证
+
+      // Yerel platformda CapacitorHttp PROPFIND desteklemez, bu yüzden HEAD kullanılır
       const method = isNative ? 'HEAD' : 'PROPFIND'
       const headers = isNative ? authHeaders() : { ...authHeaders(), Depth: '0' }
       const res = await webdavFetch(url, method, headers)
-      // PROPFIND 成功返回 207；HEAD 成功返回 200/207
+
+      // PROPFIND başarılıysa 207 döner; HEAD ise genelde 200/207
       if (res.status === 207 || (isNative && res.status >= 200 && res.status < 300)) {
         testStatus.value = 'success'
         return true
       }
+
       testStatus.value = 'failed'
       if (res.status === 401 || res.status === 403) {
-        testError.value = '认证失败，请检查用户名和密码'
+        testError.value = 'Kimlik doğrulama başarısız, kullanıcı adı ve şifreyi gözden geçirin'
       } else if (res.status === 404) {
-        testError.value = '路径不存在。' + getPathHint(config.value.serverUrl)
+        testError.value = 'Yol bulunamadı. ' + getPathHint(config.value.serverUrl)
       } else if (res.status === 405) {
-        testError.value = '服务器不支持 WebDAV'
+        testError.value = 'Sunucu WebDAV desteklemiyor'
       } else {
-        testError.value = `服务器返回 ${res.status}`
+        testError.value = `Sunucu ${res.status} yanıtı verdi`
       }
       return false
     } catch (e: unknown) {
       testStatus.value = 'failed'
       const msg = e instanceof Error ? e.message : ''
       if (msg.includes('Failed to fetch') || msg.includes('NetworkError') || msg.includes('fetch')) {
-        testError.value = '网络错误，请检查地址是否正确'
+        testError.value = 'Ağ hatası, adresin doğru olduğundan emin olun'
       } else {
-        testError.value = msg || '连接失败'
+        testError.value = msg || 'Bağlantı kurulamadı'
       }
       return false
     }
   }
 
-  /** 确保远程目录存在（MKCOL），已存在时 405/409 属正常情况 */
+  /** Uzak klasörün varlığını garanti et (MKCOL); zaten varsa 405/409 normal sayılır */
   const ensureDirectory = async (): Promise<void> => {
     const url = fullDirUrl()
     if (!url) return
     try {
       await webdavFetch(url, 'MKCOL', authHeaders())
     } catch {
-      /* 忽略：目录创建失败不阻塞上传流程 */
+      /* yok say: klasör oluşturulamasa da yüklemeyi hemen kesme */
     }
   }
 
-  /** 上传存档到 WebDAV */
+  /** Kaydı WebDAV’a yükle */
   const uploadSave = async (slot: number): Promise<{ success: boolean; message: string }> => {
     const raw = localStorage.getItem(`${SAVE_KEY_PREFIX}${slot}`)
-    if (!raw) return { success: false, message: '本地存档不存在。' }
+    if (!raw) return { success: false, message: 'Yerel kayıt bulunamadı.' }
+
     try {
       let res = await webdavFetch(
         remoteFilePath(slot),
@@ -187,7 +194,8 @@ export const useWebdav = () => {
         },
         raw
       )
-      // 404 通常是远程目录不存在，尝试 MKCOL 创建后重试
+
+      // 404 çoğunlukla uzak klasör yok demektir; MKCOL ile oluşturmaya çalışıp yeniden dene
       if (res.status === 404) {
         await ensureDirectory()
         res = await webdavFetch(
@@ -200,41 +208,42 @@ export const useWebdav = () => {
           raw
         )
       }
+
       if (res.status >= 200 && res.status < 300) {
-        return { success: true, message: `存档 ${slot + 1} 已上传到云端。` }
+        return { success: true, message: `Kayıt ${slot + 1} buluta yüklendi.` }
       }
       if (res.status === 404) {
-        return { success: false, message: '上传路径无效。' + getPathHint(config.value.serverUrl) }
+        return { success: false, message: 'Yükleme yolu geçersiz. ' + getPathHint(config.value.serverUrl) }
       }
-      return { success: false, message: `上传失败（${res.status}）。` }
+      return { success: false, message: `Yükleme başarısız (${res.status}).` }
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : '未知错误'
-      return { success: false, message: `上传失败：${msg}` }
+      const msg = e instanceof Error ? e.message : 'Bilinmeyen hata'
+      return { success: false, message: `Yükleme başarısız: ${msg}` }
     }
   }
 
-  /** 从 WebDAV 下载存档 */
+  /** Kaydı WebDAV’dan indir */
   const downloadSave = async (slot: number): Promise<{ success: boolean; message: string }> => {
     try {
       const res = await webdavFetch(remoteFilePath(slot), 'GET', authHeaders())
       if (res.status === 404) {
-        return { success: false, message: `云端不存在存档 ${slot + 1}。` }
+        return { success: false, message: `Bulutta ${slot + 1}. kayıt bulunmuyor.` }
       }
       if (res.status < 200 || res.status >= 300) {
-        return { success: false, message: `下载失败（${res.status}）。` }
+        return { success: false, message: `İndirme başarısız (${res.status}).` }
       }
       if (!parseSaveData(res.data)) {
-        return { success: false, message: '云端存档数据无效或已损坏。' }
+        return { success: false, message: 'Buluttaki kayıt verisi geçersiz ya da bozulmuş.' }
       }
       localStorage.setItem(`${SAVE_KEY_PREFIX}${slot}`, res.data)
-      return { success: true, message: `存档 ${slot + 1} 已从云端下载。` }
+      return { success: true, message: `Kayıt ${slot + 1} buluttan indirildi.` }
     } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : '未知错误'
-      return { success: false, message: `下载失败：${msg}` }
+      const msg = e instanceof Error ? e.message : 'Bilinmeyen hata'
+      return { success: false, message: `İndirme başarısız: ${msg}` }
     }
   }
 
-  /** 列出远程存档是否存在 */
+  /** Uzak kayıtların var olup olmadığını listele */
   const listRemoteSaves = async (): Promise<{ slot: number; exists: boolean }[]> => {
     const results: { slot: number; exists: boolean }[] = []
     for (let i = 0; i < MAX_SLOTS; i++) {
