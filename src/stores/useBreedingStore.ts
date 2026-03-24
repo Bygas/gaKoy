@@ -31,35 +31,35 @@ import { useAchievementStore } from './useAchievementStore'
 import { useGameStore } from './useGameStore'
 
 export const useBreedingStore = defineStore('breeding', () => {
-  // === 状态 ===
+  // === Durum ===
 
-  /** 种子箱 */
+  /** Tohum sandığı */
   const breedingBox = ref<BreedingSeed[]>([])
 
-  /** 育种台 */
+  /** Islah tezgahları */
   const stations = ref<BreedingSlot[]>([])
 
-  /** 已建造的育种台数量 */
+  /** Kurulmuş ıslah tezgahı sayısı */
   const stationCount = ref(0)
 
-  /** 图鉴 */
+  /** Kayıt defteri */
   const compendium = ref<CompendiumEntry[]>([])
 
-  /** 是否已解锁育种系统（拥有种子制造机即解锁） */
+  /** Islah sistemi açıldı mı? (Tohum yapım düzeneği olunca açılır) */
   const unlocked = ref(false)
 
-  /** 种子箱等级：0/1/2，对应 30/45/60 */
+  /** Tohum sandığı seviyesi: 0/1/2, karşılığı 30/45/60 */
   const seedBoxLevel = ref(0)
 
-  // === 计算属性 ===
+  // === Hesaplanan değerler ===
 
-  /** 种子箱最大容量（基于等级） */
+  /** Tohum sandığının azami kapasitesi (seviyeye göre) */
   const maxSeedBox = computed(() => BASE_BREEDING_BOX + seedBoxLevel.value * SEED_BOX_UPGRADE_INCREMENT)
 
   const boxCount = computed(() => breedingBox.value.length)
   const boxFull = computed(() => breedingBox.value.length >= maxSeedBox.value)
 
-  // === 种子箱操作 ===
+  // === Tohum sandığı işlemleri ===
 
   const addToBox = (genetics: SeedGenetics): boolean => {
     if (breedingBox.value.length >= maxSeedBox.value) return false
@@ -76,7 +76,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     return breedingBox.value.splice(idx, 1)[0] ?? null
   }
 
-  // === 种子制造机增强 ===
+  // === Tohum yapım düzeneği geliştirmesi ===
 
   const trySeedMakerGeneticSeed = (cropId: string, farmingLevel: number): boolean => {
     if (breedingBox.value.length >= maxSeedBox.value) return false
@@ -85,7 +85,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     if (Math.random() > chance) return false
 
     const base = getDefaultGenetics(cropId)
-    // 添加少量随机波动
+    // Az miktarda rastgele dalgalanma ekle
     const genetics: SeedGenetics = {
       ...base,
       id: generateGeneticsId(),
@@ -99,7 +99,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     return true
   }
 
-  // === 育种台 ===
+  // === Islah tezgahı ===
 
   const craftStation = (spendMoney: (amount: number) => void, removeItem: (id: string, qty: number) => void): boolean => {
     if (stationCount.value >= MAX_BREEDING_STATIONS) return false
@@ -128,7 +128,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     return true
   }
 
-  // === 种子箱升级 ===
+  // === Tohum sandığı yükseltmesi ===
 
   const getNextSeedBoxUpgrade = () => {
     const next = seedBoxLevel.value + 1
@@ -150,13 +150,13 @@ export const useBreedingStore = defineStore('breeding', () => {
     removeItem: (id: string, qty: number) => void
   ): { success: boolean; message: string } => {
     const upgrade = getNextSeedBoxUpgrade()
-    if (!upgrade) return { success: false, message: '种子箱已达到最高等级。' }
+    if (!upgrade) return { success: false, message: 'Tohum sandığı en yüksek seviyeye ulaştı.' }
     spendMoney(upgrade.cost)
     for (const mat of upgrade.materials) {
       removeItem(mat.itemId, mat.quantity)
     }
     seedBoxLevel.value++
-    return { success: true, message: `种子箱扩容完成！容量提升至${maxSeedBox.value}格。` }
+    return { success: true, message: `Tohum sandığı genişletildi! Kapasite ${maxSeedBox.value} göze çıktı.` }
   }
 
   const startBreeding = (slotIndex: number, seedAId: string, seedBId: string): boolean => {
@@ -166,7 +166,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     const seedA = removeFromBox(seedAId)
     const seedB = removeFromBox(seedBId)
     if (!seedA || !seedB) {
-      // 归还已取出的种子
+      // Çıkarılmış tohumları geri ver
       if (seedA) addToBox(seedA.genetics)
       if (seedB) addToBox(seedB.genetics)
       return false
@@ -186,13 +186,13 @@ export const useBreedingStore = defineStore('breeding', () => {
     if (!slot || !slot.ready || !slot.result) return null
 
     const result = slot.result
-    // 放入种子箱
+    // Tohum sandığına koy
     if (!addToBox(result)) {
-      addLog('种子箱已满，无法收取。')
+      addLog('Tohum sandığı dolu, ürün alınamadı.')
       return null
     }
 
-    // 安全校验：确保杂交种已记录到图鉴
+    // Güvenlik kontrolü: melez tohum kayıt defterine işlendi mi?
     if (result.isHybrid && result.hybridId) {
       const existing = compendium.value.find(e => e.hybridId === result.hybridId)
       if (!existing) {
@@ -207,7 +207,7 @@ export const useBreedingStore = defineStore('breeding', () => {
       }
     }
 
-    // 重置槽位
+    // Yuvayı sıfırla
     slot.parentA = null
     slot.parentB = null
     slot.daysProcessed = 0
@@ -217,19 +217,19 @@ export const useBreedingStore = defineStore('breeding', () => {
     return result
   }
 
-  // === 核心杂交算法 ===
+  // === Ana melezleme algoritması ===
 
   const breedSeeds = (parentA: SeedGenetics, parentB: SeedGenetics): SeedGenetics => {
     if (parentA.cropId === parentB.cropId) {
-      // 同种杂交：世代培育
+      // Aynı tür melezleme: nesil ıslahı
       return breedSameCrop(parentA, parentB)
     } else {
-      // 异种杂交
+      // Farklı tür melezleme
       return breedDifferentCrop(parentA, parentB)
     }
   }
 
-  /** 同种杂交（世代培育） */
+  /** Aynı tür melezleme (nesil ıslahı) */
   const breedSameCrop = (a: SeedGenetics, b: SeedGenetics): SeedGenetics => {
     const avgStability = (a.stability + b.stability) / 2
     const avgMutationRate = (a.mutationRate + b.mutationRate) / 2
@@ -245,11 +245,11 @@ export const useBreedingStore = defineStore('breeding', () => {
     let resistance = clampStat(Math.round((a.resistance + b.resistance) / 2) + fluctuate())
     let mutationRate = clampMutationRate(Math.round(avgMutationRate))
 
-    // 变异事件
+    // Mutasyon olayı
     if (Math.random() < avgMutationRate / 100) {
       const mutateCount = Math.random() < 0.5 ? 1 : 2
       const stats: ('sweetness' | 'yield' | 'resistance')[] = ['sweetness', 'yield', 'resistance']
-      // Fisher-Yates 洗牌
+      // Fisher-Yates karıştırma
       for (let j = stats.length - 1; j > 0; j--) {
         const k = Math.floor(Math.random() * (j + 1))
         ;[stats[j], stats[k]] = [stats[k]!, stats[j]!]
@@ -269,7 +269,7 @@ export const useBreedingStore = defineStore('breeding', () => {
       resistance = current.resistance
       mutationRate = clampMutationRate(mutationRate + Math.round((Math.random() - 0.5) * 2 * MUTATION_RATE_DRIFT))
 
-      addLog('育种发生了变异！属性产生了大幅波动。')
+      addLog('Islah sırasında mutasyon oldu! Özelliklerde büyük dalgalanma yaşandı.')
     }
 
     const result: SeedGenetics = {
@@ -287,7 +287,8 @@ export const useBreedingStore = defineStore('breeding', () => {
       hybridId: a.hybridId ?? b.hybridId
     }
 
-    // 同种杂交也需要同步图鉴（防止图鉴条目丢失后无法恢复）
+    // Aynı tür melezlemede de kayıt defteri eşzamanlı güncellensin
+    // (kayıt silinirse geri kazanılabilsin diye)
     if (result.isHybrid && result.hybridId) {
       const existing = compendium.value.find(e => e.hybridId === result.hybridId)
       if (!existing) {
@@ -310,14 +311,14 @@ export const useBreedingStore = defineStore('breeding', () => {
     return result
   }
 
-  /** 异种杂交 */
+  /** Farklı tür melezleme */
   const breedDifferentCrop = (a: SeedGenetics, b: SeedGenetics): SeedGenetics => {
     const hybrid = findPossibleHybrid(a.cropId, b.cropId)
     const avgSweetness = (a.sweetness + b.sweetness) / 2
     const avgYield = (a.yield + b.yield) / 2
 
     if (hybrid && avgSweetness >= hybrid.minSweetness && avgYield >= hybrid.minYield) {
-      // 匹配成功，产出杂交种
+      // Eşleşme başarılı, melez tohum üret
       const avgStability = (a.stability + b.stability) / 2
       const avgMutationRate = (a.mutationRate + b.mutationRate) / 2
       const fluctuationScale = (avgMutationRate / 50) * (1 - avgStability / 100)
@@ -341,7 +342,7 @@ export const useBreedingStore = defineStore('breeding', () => {
         hybridId: hybrid.id
       }
 
-      // 更新图鉴
+      // Kayıt defterini güncelle
       const existing = compendium.value.find(e => e.hybridId === hybrid.id)
       if (!existing) {
         compendium.value.push({
@@ -363,7 +364,7 @@ export const useBreedingStore = defineStore('breeding', () => {
 
       return result
     } else {
-      // 匹配失败，返回随机父本种子的副本并微降属性
+      // Eşleşme başarısızsa, ebeveynlerden birinin kopyasını döndür ve bir özelliği biraz düşür
       const source = Math.random() < 0.5 ? a : b
       const statToReduce: ('sweetness' | 'yield' | 'resistance')[] = ['sweetness', 'yield', 'resistance']
       const randomStat = statToReduce[Math.floor(Math.random() * 3)]!
@@ -376,17 +377,17 @@ export const useBreedingStore = defineStore('breeding', () => {
 
       if (hybrid) {
         addLog(
-          `杂交失败：父本平均甜度${Math.round(avgSweetness)}（需≥${hybrid.minSweetness}），平均产量${Math.round(avgYield)}（需≥${hybrid.minYield}）。请先通过同种培育提升属性。`
+          `Melezleme başarısız: ebeveyn ortalama tatlılığı ${Math.round(avgSweetness)} (gereken ≥${hybrid.minSweetness}), ortalama verimi ${Math.round(avgYield)} (gereken ≥${hybrid.minYield}). Önce aynı tür ıslahıyla özellikleri yükseltin.`
         )
       } else {
-        addLog('这两个品种无法杂交，返回了一颗种子。')
+        addLog('Bu iki tür birbirine tutmadı, geriye bir tohum kaldı.')
       }
 
       return failed
     }
   }
 
-  // === 日更新 ===
+  // === Günlük güncelleme ===
 
   const dailyUpdate = (): void => {
     for (const slot of stations.value) {
@@ -399,11 +400,11 @@ export const useBreedingStore = defineStore('breeding', () => {
           const crop = getCropById(slot.result.cropId)
           const stars = getStarRating(slot.result)
           if (isCrossBreed && slot.result.isHybrid) {
-            addLog(`杂交成功：${crop?.name ?? slot.result.cropId}（${stars}星）！已记录到图鉴。`)
+            addLog(`Melezleme başarılı: ${crop?.name ?? slot.result.cropId} (${stars} yıldız)! Kayıt defterine işlendi.`)
           } else if (isCrossBreed) {
-            addLog(`杂交未成功，获得了${crop?.name ?? slot.result.cropId}种子（${stars}星）。`)
+            addLog(`Melezleme tam tutmadı, ${crop?.name ?? slot.result.cropId} tohumu elde edildi (${stars} yıldız).`)
           } else {
-            addLog(`育种完成：${crop?.name ?? slot.result.cropId}（${stars}星）。`)
+            addLog(`Islah tamamlandı: ${crop?.name ?? slot.result.cropId} (${stars} yıldız).`)
           }
           const achievementStore = useAchievementStore()
           achievementStore.recordBreeding()
@@ -412,7 +413,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     }
   }
 
-  /** 记录杂交种被种植 */
+  /** Melez tohumun ekildiğini kaydet */
   const recordHybridGrown = (hybridId: string): void => {
     const entry = compendium.value.find(e => e.hybridId === hybridId)
     if (entry) {
@@ -420,7 +421,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     }
   }
 
-  // === 序列化 ===
+  // === Serileştirme ===
 
   const serialize = () => ({
     breedingBox: breedingBox.value.map(s => ({
@@ -470,18 +471,18 @@ export const useBreedingStore = defineStore('breeding', () => {
   }
 
   return {
-    // 状态
+    // Durum
     breedingBox,
     stations,
     stationCount,
     seedBoxLevel,
     compendium,
     unlocked,
-    // 计算
+    // Hesaplamalar
     boxCount,
     boxFull,
     maxSeedBox,
-    // 方法
+    // Yöntemler
     addToBox,
     removeFromBox,
     trySeedMakerGeneticSeed,
@@ -494,7 +495,7 @@ export const useBreedingStore = defineStore('breeding', () => {
     collectResult,
     dailyUpdate,
     recordHybridGrown,
-    // 序列化
+    // Serileştirme
     serialize,
     deserialize,
     reset
