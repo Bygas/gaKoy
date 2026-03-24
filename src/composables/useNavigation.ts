@@ -63,7 +63,7 @@ export type PanelKey =
 export const TABS: { key: PanelKey; label: string; icon: Component; getIcon?: () => Component }[] = [
   { key: 'farm', label: 'Tarla', icon: Wheat },
   { key: 'animal', label: 'Hayvanlık', icon: Egg },
-  { key: 'cottage', label: 'Yuva', icon: Home, getIcon: () => (useNpcStore().getSpouse() ? Heart : Home) },
+  { key: 'cottage', label: 'Ev', icon: Home, getIcon: () => (useNpcStore().getSpouse() ? Heart : Home) },
   { key: 'home', label: 'Yapılar', icon: Building },
   { key: 'breeding', label: 'Islah', icon: FlaskConical },
   { key: 'fishpond', label: 'Balık Göleti', icon: Waves },
