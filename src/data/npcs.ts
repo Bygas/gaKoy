@@ -63,7 +63,7 @@ export const NPCS: NpcDef[] = [
     likedItems: ['gold_ore', 'iron_ore', 'potato', 'rabbit_foot'],
     hatedItems: ['chrysanthemum', 'wintersweet'],
     dialogues: {
-      stranger: ['…He.', 'Maden ocağına… dikkatle in {title}.'],
+      stranger: ['…He.', 'Madene… dikkatle in {title}.'],
       acquaintance: ['{title} sen de kazıya mı gidiyorsun?… Kazmanı yanına al.', 'Derinlerde iyi cevher de var, uğursuzluk da.'],
       friendly: ['Şu taş iyi çıktı, al senin olsun {title}.', '{player}, kazman artık yenilenmeli; isterse bir bakarım.'],
       bestFriend: ['…{player}, benim ilk gerçek dostumsun.', 'En dipteki sırrı… yalnız {title} ile paylaşırım.']
