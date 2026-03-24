@@ -2,54 +2,54 @@
   <div class="game-panel max-w-sm w-full">
     <h3 class="text-accent text-sm mb-3 flex items-center space-x-1">
       <Wheat :size="14" />
-      <span>农展会</span>
+      <span>Ürün Şenliği</span>
     </h3>
 
-    <!-- 选择展品阶段 -->
+    <!-- Sergi eşyası seçimi -->
     <div v-if="!submitted">
       <p class="text-xs text-muted mb-3">
-        从背包中选择最多
+        Heybenden en çok
         <span class="text-accent">5</span>
-        件展品参展。品质越高、价值越高的物品得分越多！
+        parça sergilik seç. Kalitesi yüksek, değeri yüksek eşya daha çok puan getirir!
       </p>
 
-      <!-- 已选展品 -->
+      <!-- Seçilen sergilikler -->
       <div class="mb-3">
-        <p class="text-xs text-muted mb-1">已选展品（{{ selectedItems.length }} / 5）：</p>
+        <p class="text-xs text-muted mb-1">Seçilen sergilikler ({{ selectedItems.length }} / 5):</p>
         <div v-if="selectedItems.length === 0" class="flex flex-col items-center py-4 text-muted">
           <Package :size="28" class="mb-1.5 opacity-40" />
-          <p class="text-xs">尚未选择任何物品</p>
-          <p class="text-xs opacity-60">从下方列表中选取展品</p>
+          <p class="text-xs">Henüz hiçbir eşya seçilmedi</p>
+          <p class="text-xs opacity-60">Aşağıdaki listeden sergiliğini seç</p>
         </div>
         <div v-else class="flex flex-col space-y-1.5">
           <button
             v-for="(sel, i) in selectedItems"
             :key="i"
             class="border border-accent/20 rounded-xs px-2 py-1.5 text-xs flex items-center justify-between hover:border-danger/50 transition-colors"
-            :title="'点击移除'"
+            :title="'Kaldırmak için tıkla'"
             @click="removeSelection(i)"
           >
             <span class="truncate" :class="qualityClass(sel.quality)">{{ getItemById(sel.itemId)?.name }}</span>
             <span class="flex items-center space-x-2 shrink-0 ml-2">
-              <span class="text-muted">{{ getItemById(sel.itemId)?.sellPrice }}文</span>
-              <span class="text-danger">移除</span>
+              <span class="text-muted">{{ getItemById(sel.itemId)?.sellPrice }} akçe</span>
+              <span class="text-danger">Kaldır</span>
             </span>
           </button>
         </div>
       </div>
 
       <p class="text-xs text-muted mb-1">
-        预计总分：
+        Görünen toplam puan:
         <span class="text-accent">{{ previewScore }}</span>
       </p>
 
-      <!-- 背包物品选择 -->
+      <!-- Heybeden eşya seçimi -->
       <div class="mb-3">
-        <p class="text-xs text-muted mb-1">可选物品：</p>
+        <p class="text-xs text-muted mb-1">Seçilebilir eşyalar:</p>
         <div v-if="selectableItems.length === 0" class="flex flex-col items-center py-4 text-muted">
           <Package :size="28" class="mb-1.5 opacity-40" />
-          <p class="text-xs">背包中没有可参展的物品</p>
-          <p class="text-xs opacity-60">农产品、鱼获、宝石等均可参展</p>
+          <p class="text-xs">Heybende sergiye uygun eşya yok</p>
+          <p class="text-xs opacity-60">Tarla ürünü, balık, taş, işlenmiş eşya ve benzerleri sergilenebilir</p>
         </div>
         <div v-else class="flex flex-col space-y-1.5 max-h-48 overflow-y-auto pr-1">
           <button
@@ -62,24 +62,24 @@
             <span class="truncate" :class="qualityClass(item.quality)">{{ getItemById(item.itemId)?.name }}</span>
             <span class="flex items-center space-x-2 shrink-0 ml-2">
               <span class="text-muted">×{{ item.quantity }}</span>
-              <span class="text-muted">{{ getItemById(item.itemId)?.sellPrice }}文</span>
+              <span class="text-muted">{{ getItemById(item.itemId)?.sellPrice }} akçe</span>
             </span>
           </button>
         </div>
       </div>
 
       <div class="flex space-x-2">
-        <Button class="flex-1" :disabled="selectedItems.length === 0" @click="handleSubmit">参展！</Button>
-        <Button class="flex-1 opacity-60 hover:opacity-100" @click="handleQuit">放弃参赛</Button>
+        <Button class="flex-1" :disabled="selectedItems.length === 0" @click="handleSubmit">Sergiye koy!</Button>
+        <Button class="flex-1 opacity-60 hover:opacity-100" @click="handleQuit">Vazgeç</Button>
       </div>
     </div>
 
-    <!-- 结果阶段 -->
+    <!-- Sonuç aşaması -->
     <div v-else>
-      <p class="text-xs text-muted mb-2">评审结束！</p>
+      <p class="text-xs text-muted mb-2">Değerlendirme bitti!</p>
 
       <div class="border border-accent/20 p-2 mb-3">
-        <p class="text-xs text-muted mb-1">最终排名：</p>
+        <p class="text-xs text-muted mb-1">Son sıralama:</p>
         <div
           v-for="(entry, i) in rankings"
           :key="entry.name"
@@ -90,42 +90,42 @@
               class="mr-2"
               :class="{
                 'text-accent': i === 0,
-                'text-success': entry.name === '你'
+                'text-success': entry.name === 'Sen'
               }"
             >
-              第{{ i + 1 }}名
+              {{ i + 1 }}. sıra
             </span>
-            <span :class="{ 'text-success': entry.name === '你' }">{{ entry.name }}</span>
+            <span :class="{ 'text-success': entry.name === 'Sen' }">{{ entry.name }}</span>
           </div>
-          <span class="text-muted">{{ entry.score }} 分</span>
+          <span class="text-muted">{{ entry.score }} puan</span>
         </div>
       </div>
 
-      <!-- 展品明细 -->
+      <!-- Sergi ayrıntısı -->
       <div class="border border-accent/20 p-2 mb-3">
-        <p class="text-xs text-muted mb-1">你的展品明细：</p>
+        <p class="text-xs text-muted mb-1">Senin sergiliklerin:</p>
         <div
           v-for="(d, i) in scoreDetails"
           :key="i"
           class="flex items-center justify-between text-xs py-0.5 border-b border-accent/10 last:border-0"
         >
           <span :class="qualityClass(d.quality) || 'text-accent'">{{ d.name }}</span>
-          <span class="text-muted">{{ d.basePrice }}文 × {{ d.multiplier }} = {{ d.score }}分</span>
+          <span class="text-muted">{{ d.basePrice }} akçe × {{ d.multiplier }} = {{ d.score }} puan</span>
         </div>
         <div class="flex items-center justify-between text-xs mt-1.5 pt-1 border-t border-accent/20">
-          <span class="text-muted">总分</span>
-          <span class="text-accent">{{ playerScore }} 分</span>
+          <span class="text-muted">Toplam puan</span>
+          <span class="text-accent">{{ playerScore }} puan</span>
         </div>
       </div>
 
       <div class="mb-3 text-xs text-center border border-accent/20 p-2">
-        <span v-if="playerRank === 1" class="text-accent">恭喜你荣获金奖！奖金 1000文</span>
-        <span v-else-if="playerRank === 2" class="text-success">你获得了银奖！奖金 500文</span>
-        <span v-else-if="playerRank === 3" class="text-success">你获得了铜奖！奖金 200文</span>
-        <span v-else class="text-muted">很遗憾，没有获得名次。明年再来吧！</span>
+        <span v-if="playerRank === 1" class="text-accent">Kutlu olsun, altın ödülü aldın! Ödül 1000 akçe</span>
+        <span v-else-if="playerRank === 2" class="text-success">Gümüş ödül senin! Ödül 500 akçe</span>
+        <span v-else-if="playerRank === 3" class="text-success">Tunç ödül aldın! Ödül 200 akçe</span>
+        <span v-else class="text-muted">Bu kez sıralamaya giremedin. Seneye yine gel!</span>
       </div>
 
-      <Button class="w-full" @click="handleClaim">领取奖励</Button>
+      <Button class="w-full" @click="handleClaim">Ödülü Al</Button>
     </div>
   </div>
 </template>
@@ -185,7 +185,7 @@
   const scoreDetails = ref<ScoreDetail[]>([])
   const playerScore = ref(0)
 
-  /** 可参展的背包物品（排除种子、机器等非展示类物品） */
+  /** Sergiye uygun heybede bulunan eşyalar */
   const selectableItems = computed(() => {
     const exhibitCategories = ['crop', 'fish', 'food', 'processed', 'gem', 'misc']
     return inventoryStore.items.filter(item => {
@@ -194,7 +194,7 @@
     })
   })
 
-  /** 预览当前选择的总分 */
+  /** Şu anki seçime göre görünen toplam puan */
   const previewScore = computed(() => {
     return selectedItems.value.reduce((sum, sel) => {
       const def = getItemById(sel.itemId)
@@ -205,7 +205,7 @@
   })
 
   const playerRank = computed(() => {
-    const idx = rankings.value.findIndex(e => e.name === '你')
+    const idx = rankings.value.findIndex(e => e.name === 'Sen')
     return idx === -1 ? 99 : idx + 1
   })
 
@@ -234,7 +234,7 @@
     if (selectedItems.value.length === 0) return
     sfxJudging()
 
-    // 计算玩家分数明细
+    // Oyuncu puan ayrıntısını hesapla
     const details: ScoreDetail[] = []
     let total = 0
     for (const sel of selectedItems.value) {
@@ -254,21 +254,21 @@
     scoreDetails.value = details
     playerScore.value = total
 
-    // 生成NPC分数（600-1200范围）
+    // Köylü puanları (600-1200 arası)
     const npcs: Participant[] = [
-      { name: '秋月', score: Math.round(600 + Math.random() * 600) },
-      { name: '陈伯', score: Math.round(600 + Math.random() * 600) },
-      { name: '小满', score: Math.round(600 + Math.random() * 600) }
+      { name: 'Gökçe', score: Math.round(600 + Math.random() * 600) },
+      { name: 'Demir Enişte', score: Math.round(600 + Math.random() * 600) },
+      { name: 'Yel Ana', score: Math.round(600 + Math.random() * 600) }
     ]
 
-    const player: Participant = { name: '你', score: total }
+    const player: Participant = { name: 'Sen', score: total }
     const all = [...npcs, player]
     all.sort((a, b) => b.score - a.score)
     rankings.value = all
     submitted.value = true
 
-    // 排名音效
-    const rank = all.findIndex(e => e.name === '你') + 1
+    // Sıralama sesi
+    const rank = all.findIndex(e => e.name === 'Sen') + 1
     setTimeout(() => {
       if (rank === 1) sfxRankFirst()
       else if (rank === 2) sfxRankSecond()
