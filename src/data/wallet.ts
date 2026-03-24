@@ -21,7 +21,7 @@ export const WALLET_ITEMS: WalletItemDef[] = [
     name: 'Madenci Muskası',
     description: 'Madencilikte direnç tüketimi %15 azalır.',
     effect: { type: 'miningStamina', value: 0.15 },
-    unlockCondition: 'Maden ocağında 50. kata ulaş'
+    unlockCondition: 'Madende 50. kata ulaş'
   },
   {
     id: 'anglers_token',
