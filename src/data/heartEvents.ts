@@ -1180,734 +1180,750 @@ export const HEART_EVENTS: HeartEventDef[] = [
   // Mahir (mo_bai) —— Saz ustası, sakin ve hüzünlü
   // ============================================================
   {
-    id: 'mo_bai_heart_3',
-    npcId: 'mo_bai',
-    requiredFriendship: 800,
-    title: 'Kopan Telin Sesi',
-    scenes: [
-      {
-        text: `Bir saz sesi duyup peşine düşersin. Yol seni köyün batısındaki küçük köprüye çıkarır. Mahir köprü başında oturmuş, sazını kucağına almıştır. Ay ışığında çalan ezgi, sanki anlatılmamış bir kederi dile getirir.`
-      },
-      {
-        text: `Birden "tınk" diye sert bir ses çıkar; sazın teli kopmuştur. Mahir susup kopan tele bakar. Sen yanına yaklaşınca başını kaldırmadan konuşur: "...Ne zamandır dinliyorsun?"`
-      },
-      {
-        text: `"Bu saz bana ustamdan kaldı. O derdi ki, tel koparsa saz sana 'bazı yükleri bırak' diye işaret eder." Sesi öyle hafiftir ki sanki kendi kendine konuşuyordur.`,
-        choices: [
-          {
-            text: `"Neyi bırakmalı insan?" diye usulca sorarsın.`,
-            friendshipChange: 120,
-            response: `Mahir uzun süre cevap vermez. Ay ışığı yanağını gölgeleyip bir resim gibi gösterir. "Geçmişi galiba." der sonunda. "Bir önceki yerde beni kimse dinlemez olmuştu. Ezgilerime fazla hüzünlü dediler."`
-          },
-          {
-            text: `Sessizce yanına oturur, hiçbir şey sormazsın.`,
-            friendshipChange: 80,
-            response: `Mahir sana kısa bir bakış atar; sessizliğine şaşırmıştır. "...Niye diye sormayan ilk kişisin." Biraz geçince yeniden konuşur. "Eskiden anlaşılmamayı olağan sayardım. Ama sen burada böyle oturunca... yalnızlığım biraz hafifledi."`
-          }
-        ]
-      },
-      {
-        text: `Koynundan yeni bir tel çıkarıp dikkatlice saza takar. Akordu düzelttikten sonra farklı bir ezgi çalmaya başlar. Bu kez melodide yine hüzün vardır ama sonunda sıcak bir ışık belirir. "Bu parçanın adı 'Karşılaşma'." der. "Bugün yazdım." Daha fazlasını söylemez ama nedenini anlarsın.`
-      }
-    ]
-  },
-  {
-    id: 'mo_bai_heart_5',
-    npcId: 'mo_bai',
-    requiredFriendship: 1600,
-    title: 'Yağmur İçinde Saz',
-    scenes: [
-      {
-        text: `Günlerdir süren kapalı havalar köyü boz renkli bir örtüye bürümüştür. Mahir'in kulübesinin önünden geçerken içeriden gelen ezgiyi duyarsın; bu kez alıştığın sakin tını değil, hırçın ve dağınık bir ses vardır içinde. Sanki fırtınaya tutulmuş bir kuş çırpınmaktadır.`
-      },
-      {
-        text: `Kapıyı itersin. Mahir köşede sazına sarılmış, yüzü kâğıt gibi beyaz, tellerin üstünde parmaklarını düzensizce gezdirmektedir. Seni görünce bakışları bir an dalgalanır. "...Gelmesen daha iyiydi." der boğuk bir sesle. "Bugün iyi değilim. Hiç iyi değilim."`
-      },
-      {
-        text: `"Ben bazen içime gömülürüm. Çıkamam." Yüzünü kollarına gömer. "Ezgi gelmeyince, yağmur kesilmeyince, dünyada kimse beni umursamıyor sanınca... başımın içi uğultuyla dolar."`,
-        choices: [
-          {
-            text: `Yanına gidip omzuna hafifçe elini koyarsın. "Ben buradayım."`,
-            friendshipChange: 160,
-            response: `Mahir'in bedeni hafifçe sarsılır. Uzun bir sessizlikten sonra başını kaldırır. Gözleri kızarmıştır. Sesi uzaklardan gelir gibi çıkar: "Birinin burada olması... gerçekten fark ediyormuş." Solgun ama gerçek bir tebessüm etmeye çalışır.`
-          },
-          {
-            text: `"Öyleyse bugün saz çalma. Hiçbir şey yapma. Sadece otur."`,
-            friendshipChange: 120,
-            response: `Mahir şaşırır. `"Hiçbir şey yapmamak?" diye tekrar eder. Sanki böyle bir ihtimali hiç düşünmemiştir. Yavaşça saza dokunmayı bırakıp duvara yaslanır, gözlerini kapatır. "...Pekâlâ. Bugün öyle olsun."`
-          }
-        ]
-      },
-      {
-        text: `Bütün ikindiyi onunla sessizce geçirirsin. Yağmurun sesi de zamanla yumuşar. Akşamüstü Mahir sazını yeniden eline alır ve kısa, sade, dingin bir hava çalar; yağmur sonrası akan su gibi.`
-      },
-      {
-        text: `"Eskiden böyle günlerde yalnızca sazım vardı." der. Parmakları tellerde ağır ağır gezinir. "Ama saz karşılık vermez. Bugün... sen geldin." Gözlerini kaldırdığında bakışlarında daha önce görmediğin bir sıcaklık vardır. "Gitmeyip kaldığın için sağ ol."`
-      }
-    ]
-  },
-  {
-    id: 'mo_bai_heart_8',
-    npcId: 'mo_bai',
-    requiredFriendship: 2400,
-    title: 'Gönüldaş',
-    scenes: [
-      {
-        text: `Güz başı bir akşamüstü Mahir seni bulur ve eline sade bir kâğıt tutuşturur. Üzerinde tek satır yazı vardır: "Bu gece yarısı, köprü başı. Yüreğini de getir." Yazısı zarif ama kararlıdır.`
-      },
-      {
-        text: `Gece yarısı gaKöyün batısındaki küçük köprüye varırsın. Köprü başında birkaç kandil yanmaktadır; ışıkları ay ışığı kadar yumuşaktır. Mahir köprünün üstünde oturur, dizinde sazı vardır. Açık renkli giysisi gece rüzgârında hafifçe dalgalanır. Seni görünce bakışlarında beklediği kişiye kavuşmuş birinin huzuru belirir.`
-      },
-      {
-        text: `"Senin için bir ezgi besteledim." der. Sesi sakin ama hafifçe titremektedir. "Uzun sürdü. Defalarca değiştirdim. Çünkü bu ezginin içine, daha önce hiçbir parçama koymadığım şeyleri kattım." Derin bir nefes alır ve parmaklarını tellere indirir.`,
-        choices: [
-          {
-            text: `Sessizce gözlerini kapatıp bütün gönlünle dinlersin.`,
-            friendshipChange: 120,
-            response: `Gözlerini kaparsın; ezgi bütün duyularını sarar. Başlangıçta yalnızlık vardır: soğuk, geniş, ıssız... Sanki biri uçsuz bucaksız bozkırda yapayalnız yürümektedir. Sonra yavaşça sıcak bir melodi katılır; yalnızlıkla iç içe geçer ve sonunda tek ses olur. Parça bittiğinde gözlerinin nemlendiğini fark edersin.`
-          },
-          {
-            text: `Onu dikkatle izler, saz çalarken yüzüne bakarsın.`,
-            friendshipChange: 120,
-            response: `Mahir'in parmaklarını izlersin. Gözleri yarı kapalıdır, dudakları sessizce kıpırdar; sanki sazına söz söylemektedir. O anda fark edersin ki çalarken içindeki bütün keder dağılır, yerine bembeyaz bir berraklık gelir.`
-          }
-        ]
-      },
-      {
-        text: `Son nota gece yeline karışıp uzaklaşır. Mahir ağır ağır gözlerini açar. Bakışı berrak su gibidir. Sazını yanına koyup ayağa kalkar.`
-      },
-      {
-        text: `"Bu ezginin adı 'Gönüldaş'." der alçak sesle. "On yıldır saz çalıyorum. Nice yer gördüm, nice insan tanıdım. Ama beni gerçekten 'duyan' yalnızca sen oldun." Elini uzatır; parmakları hafif titremektedir. "Ben zor biriyim... susarım, içime kapanırım. Böyle biriyle bir ömür yol yürür müsün?" Ay ışığında gözleri hafifçe kızarmıştır ama dudağında içten bir gülümseme vardır.`
-      }
-    ]
-  },
+  id: 'mo_bai_heart_3',
+  npcId: 'mo_bai',
+  requiredFriendship: 800,
+  title: 'Kopan Telin Sesi',
+  scenes: [
+    {
+      text: `Bir saz sesi duyup peşine düşersin. Yol seni köyün batısındaki küçük köprüye çıkarır. Mahir köprü başında oturmuş, sazını kucağına almıştır. Ay ışığında çalan ezgi, sanki anlatılmamış bir kederi dile getirir.`
+    },
+    {
+      text: `Birden "tınk" diye sert bir ses çıkar; sazın teli kopmuştur. Mahir susup kopan tele bakar. Sen yanına yaklaşınca başını kaldırmadan konuşur: "...Ne zamandır dinliyorsun?"`
+    },
+    {
+      text: `"Bu saz bana ustamdan kaldı. O derdi ki, tel koparsa saz sana 'bazı yükleri bırak' diye işaret eder." Sesi öyle hafiftir ki sanki kendi kendine konuşuyordur.`,
+      choices: [
+        {
+          text: `"Neyi bırakmalı insan?" diye usulca sorarsın.`,
+          friendshipChange: 120,
+          response: `Mahir uzun süre cevap vermez. Ay ışığı yanağını gölgeleyip bir resim gibi gösterir. "Geçmişi galiba." der sonunda. "Bir önceki yerde beni kimse dinlemez olmuştu. Ezgilerime fazla hüzünlü dediler."`
+        },
+        {
+          text: `Sessizce yanına oturur, hiçbir şey sormazsın.`,
+          friendshipChange: 80,
+          response: `Mahir sana kısa bir bakış atar; sessizliğine şaşırmıştır. "...Niye diye sormayan ilk kişisin." Biraz geçince yeniden konuşur. "Eskiden anlaşılmamayı olağan sayardım. Ama sen burada böyle oturunca... yalnızlığım biraz hafifledi."`
+        }
+      ]
+    },
+    {
+      text: `Koynundan yeni bir tel çıkarıp dikkatlice saza takar. Akordu düzelttikten sonra farklı bir ezgi çalmaya başlar. Bu kez melodide yine hüzün vardır ama sonunda sıcak bir ışık belirir. "Bu parçanın adı 'Karşılaşma'." der. "Bugün yazdım." Daha fazlasını söylemez ama nedenini anlarsın.`
+    }
+  ]
+},
+{
+  id: 'mo_bai_heart_5',
+  npcId: 'mo_bai',
+  requiredFriendship: 1600,
+  title: 'Yağmur İçinde Saz',
+  scenes: [
+    {
+      text: `Günlerdir süren kapalı havalar köyü boz renkli bir örtüye bürümüştür. Mahir'in kulübesinin önünden geçerken içeriden gelen ezgiyi duyarsın; bu kez alıştığın sakin tını değil, hırçın ve dağınık bir ses vardır içinde. Sanki fırtınaya tutulmuş bir kuş çırpınmaktadır.`
+    },
+    {
+      text: `Kapıyı itersin. Mahir köşede sazına sarılmış, yüzü kâğıt gibi beyaz, tellerin üstünde parmaklarını düzensizce gezdirmektedir. Seni görünce bakışları bir an dalgalanır. "...Gelmesen daha iyiydi." der boğuk bir sesle. "Bugün iyi değilim. Hiç iyi değilim."`
+    },
+    {
+      text: `"Ben bazen içime gömülürüm. Çıkamam." Yüzünü kollarına gömer. "Ezgi gelmeyince, yağmur kesilmeyince, dünyada kimse beni umursamıyor sanınca... başımın içi uğultuyla dolar."`,
+      choices: [
+        {
+          text: `Yanına gidip omzuna hafifçe elini koyarsın. "Ben buradayım."`,
+          friendshipChange: 160,
+          response: `Mahir'in bedeni hafifçe sarsılır. Uzun bir sessizlikten sonra başını kaldırır. Gözleri kızarmıştır. Sesi uzaklardan gelir gibi çıkar: "Birinin burada olması... gerçekten fark ediyormuş." Solgun ama gerçek bir tebessüm etmeye çalışır.`
+        },
+        {
+          text: `"Öyleyse bugün saz çalma. Hiçbir şey yapma. Sadece otur."`,
+          friendshipChange: 120,
+          response: `Mahir şaşırır. "Hiçbir şey yapmamak?" diye tekrar eder. Sanki böyle bir ihtimali hiç düşünmemiştir. Yavaşça saza dokunmayı bırakıp duvara yaslanır, gözlerini kapatır. "...Pekâlâ. Bugün öyle olsun."`
+        }
+      ]
+    },
+    {
+      text: `Bütün ikindiyi onunla sessizce geçirirsin. Yağmurun sesi de zamanla yumuşar. Akşamüstü Mahir sazını yeniden eline alır ve kısa, sade, dingin bir hava çalar; yağmur sonrası akan su gibi.`
+    },
+    {
+      text: `"Eskiden böyle günlerde yalnızca sazım vardı." der. Parmakları tellerde ağır ağır gezinir. "Ama saz karşılık vermez. Bugün... sen geldin." Gözlerini kaldırdığında bakışlarında daha önce görmediğin bir sıcaklık vardır. "Gitmeyip kaldığın için sağ ol."`
+    }
+  ]
+},
+{
+  id: 'mo_bai_heart_8',
+  npcId: 'mo_bai',
+  requiredFriendship: 2400,
+  title: 'Gönüldaş',
+  scenes: [
+    {
+      text: `Güz başı bir akşamüstü Mahir seni bulur ve eline sade bir kâğıt tutuşturur. Üzerinde tek satır yazı vardır: "Bu gece yarısı, köprü başı. Yüreğini de getir." Yazısı zarif ama kararlıdır.`
+    },
+    {
+      text: `Gece yarısı gaKöyün batısındaki küçük köprüye varırsın. Köprü başında birkaç kandil yanmaktadır; ışıkları ay ışığı kadar yumuşaktır. Mahir köprünün üstünde oturur, dizinde sazı vardır. Açık renkli giysisi gece rüzgârında hafifçe dalgalanır. Seni görünce bakışlarında beklediği kişiye kavuşmuş birinin huzuru belirir.`
+    },
+    {
+      text: `"Senin için bir ezgi besteledim." der. Sesi sakin ama hafifçe titremektedir. "Uzun sürdü. Defalarca değiştirdim. Çünkü bu ezginin içine, daha önce hiçbir parçama koymadığım şeyleri kattım." Derin bir nefes alır ve parmaklarını tellere indirir.`,
+      choices: [
+        {
+          text: `Sessizce gözlerini kapatıp bütün gönlünle dinlersin.`,
+          friendshipChange: 120,
+          response: `Gözlerini kaparsın; ezgi bütün duyularını sarar. Başlangıçta yalnızlık vardır: soğuk, geniş, ıssız... Sanki biri uçsuz bucaksız bozkırda yapayalnız yürümektedir. Sonra yavaşça sıcak bir melodi katılır; yalnızlıkla iç içe geçer ve sonunda tek ses olur. Parça bittiğinde gözlerinin nemlendiğini fark edersin.`
+        },
+        {
+          text: `Onu dikkatle izler, saz çalarken yüzüne bakarsın.`,
+          friendshipChange: 120,
+          response: `Mahir'in parmaklarını izlersin. Gözleri yarı kapalıdır, dudakları sessizce kıpırdar; sanki sazına söz söylemektedir. O anda fark edersin ki çalarken içindeki bütün keder dağılır, yerine bembeyaz bir berraklık gelir.`
+        }
+      ]
+    },
+    {
+      text: `Son nota gece yeline karışıp uzaklaşır. Mahir ağır ağır gözlerini açar. Bakışı berrak su gibidir. Sazını yanına koyup ayağa kalkar.`
+    },
+    {
+      text: `"Bu ezginin adı 'Gönüldaş'." der alçak sesle. "On yıldır saz çalıyorum. Nice yer gördüm, nice insan tanıdım. Ama beni gerçekten 'duyan' yalnızca sen oldun." Elini uzatır; parmakları hafif titremektedir. "Ben zor biriyim... susarım, içime kapanırım. Böyle biriyle bir ömür yol yürür müsün?" Ay ışığında gözleri hafifçe kızarmıştır ama dudağında içten bir gülümseme vardır.`
+    }
+  ]
+},
 
-  // ============================================================
-  // Gönüldaşlık olayları — Her NPC için 2 adet (zhiji_7 + zhiji_9)
-  // ============================================================
+// ============================================================
+// Gönüldaşlık olayları — Her NPC için 2 adet (zhiji_7 + zhiji_9)
+// ============================================================
 
-  // --- Elif Gönüldaşlık ---
-  {
-    id: 'liu_niang_zhiji_7',
-    npcId: 'liu_niang',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Ay Işığında Şiir Meclisi',
-    scenes: [
-      { text: `Elif seni arka avludaki köşke çağırır. Ay ışığı avluya dökülmektedir. Kâğıdı açıp mürekkebi hazırlar. "Böyle bir gecede gel, biraz şiir konuşalım."` },
-      { text: `İlk dizeyi kendisi yazar ve kalemi sana uzatır. "Gönüldaşlar arasında şiirle sohbet etmekten daha zarif ne vardır?"` },
-      {
-        text: `Kalem sırayla el değiştirir. Kâğıt doldukça Elif'in yüzü aydınlanır. "Bunları bizden başka kimse tam anlayamaz."`,
-        choices: [
-          { text: `"Elif'in kalemi insanı hayran bırakıyor."`, friendshipChange: 120, response: `Elif başını eğip gülümser. "{player} gibi bir gönüldaş olunca, kalemin de kıymeti artıyor."` },
-          {
-            text: `"Bundan sonra her dolunayda yine şiir yazalım."`,
-            friendshipChange: 80,
-            response: `"Söz." Elif yazdığınız sayfayı dikkatle katlar. "Bu da bizim ilk sayfamız olsun."`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'liu_niang_zhiji_9',
-    npcId: 'liu_niang',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'Çiçekli Mektup Kâğıdı',
-    scenes: [
-      { text: `Elif zarif bir kutu çıkarır. "Bunu ben yaptım. Çiçek liflerinden iki defter hazırladım. Biri sana, biri bana."` },
-      {
-        text: `"Bundan böyle yazmak istediğin her şeyi buna yaz." Sana ciddiyetle bakar. "Yan yana olamasak bile sayfaları açınca birbirimizi hatırlarız."`,
-        choices: [
-          {
-            text: `Defteri büyük bir saygıyla alırsın. "Bu sayfalar gönüldaşlığımızın emaneti olsun."`,
-            friendshipChange: 160,
-            response: `Elif'in gözleri dolar. "{player}... böyle bir gönüldaşa sahip olmak benim için büyük baht."`
-          },
-          {
-            text: `"Merak etme, her sayfasını özenle dolduracağım."`,
-            friendshipChange: 120,
-            response: `"Bilirim." Elif ilk sayfayı açar. Üstünde küçük bir cümle yazılıdır: "Hakiki dostluk, kokusunu kimse görmese de kaybetmez."`
-          }
-        ]
-      }
-    ]
-  },
+// --- Elif Gönüldaşlık ---
+{
+  id: 'liu_niang_zhiji_7',
+  npcId: 'liu_niang',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Ay Işığında Şiir Meclisi',
+  scenes: [
+    { text: `Elif seni arka avludaki köşke çağırır. Ay ışığı avluya dökülmektedir. Kâğıdı açıp mürekkebi hazırlar. "Böyle bir gecede gel, biraz şiir konuşalım."` },
+    { text: `İlk dizeyi kendisi yazar ve kalemi sana uzatır. "Gönüldaşlar arasında şiirle sohbet etmekten daha zarif ne vardır?"` },
+    {
+      text: `Kalem sırayla el değiştirir. Kâğıt doldukça Elif'in yüzü aydınlanır. "Bunları bizden başka kimse tam anlayamaz."`,
+      choices: [
+        {
+          text: `"Elif'in kalemi insanı hayran bırakıyor."`,
+          friendshipChange: 120,
+          response: `Elif başını eğip gülümser. "{player} gibi bir gönüldaş olunca, kalemin de kıymeti artıyor."`
+        },
+        {
+          text: `"Bundan sonra her dolunayda yine şiir yazalım."`,
+          friendshipChange: 80,
+          response: `"Söz." Elif yazdığınız sayfayı dikkatle katlar. "Bu da bizim ilk sayfamız olsun."`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'liu_niang_zhiji_9',
+  npcId: 'liu_niang',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'Çiçekli Mektup Kâğıdı',
+  scenes: [
+    { text: `Elif zarif bir kutu çıkarır. "Bunu ben yaptım. Çiçek liflerinden iki defter hazırladım. Biri sana, biri bana."` },
+    {
+      text: `"Bundan böyle yazmak istediğin her şeyi buna yaz." Sana ciddiyetle bakar. "Yan yana olamasak bile sayfaları açınca birbirimizi hatırlarız."`,
+      choices: [
+        {
+          text: `Defteri büyük bir saygıyla alırsın. "Bu sayfalar gönüldaşlığımızın emaneti olsun."`,
+          friendshipChange: 160,
+          response: `Elif'in gözleri dolar. "{player}... böyle bir gönüldaşa sahip olmak benim için büyük baht."`
+        },
+        {
+          text: `"Merak etme, her sayfasını özenle dolduracağım."`,
+          friendshipChange: 120,
+          response: `"Bilirim." Elif ilk sayfayı açar. Üstünde küçük bir cümle yazılıdır: "Hakiki dostluk, kokusunu kimse görmese de kaybetmez."`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- İsmail Gönüldaşlık ---
-  {
-    id: 'a_shi_zhiji_7',
-    npcId: 'a_shi',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Ocağın Derinindeki Söz',
-    scenes: [
-      { text: `İsmail seni nadiren olduğu kadar isteyerek çağırır. Elinde iki fener vardır. "...Benimle gel. Sana göstereceğim şeyi yalnız gönüldaş bilsin."` },
-      { text: `Seni ocağın en dibindeki gizli bir yarığa götürür. Taş duvarda iki ayrı damar yan yana uzanmaktadır; biri sarı, biri açık renkli, kıvrıla kıvrıla gider ama hiç ayrılmaz.` },
-      {
-        text: `"İki damar." der İsmail. "Ayrı ayrı... ama hep yan yana. Bizim gibi."`,
-        choices: [
-          {
-            text: `"İsmail... bu gördüğüm, nice kıymetli taştan daha değerli."`,
-            friendshipChange: 120,
-            response: `İsmail nadir gülüşlerinden birini gösterir. "Hı. O yüzden kazmadım. Böyle kalsın."`
-          },
-          { text: `"Senin gönlün sandığımdan daha da sağlam."`, friendshipChange: 80, response: `İsmail yüzünü yana çevirir; kulakları kızarmıştır. "...Gönüldaşların, yalnız ikisinin bildiği bir yeri olmalı."` }
-        ]
-      },
-      { text: `Ayrılmadan önce İsmail kayaya iki küçük işaret kazır. "Sonra yine buluruz." der. "Bunu bizden başka kimse bilmez."` }
-    ]
-  },
-  {
-    id: 'a_shi_zhiji_9',
-    npcId: 'a_shi',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'Taş Gibi Bağ',
-    scenes: [
-      { text: `İsmail seni bulduğunda elinde bir bohça tutmaktadır. Yüzü her zamankinden daha ciddi görünür.` },
-      { text: `Bohçayı açıp sana uzatır. İçinden iki aynı taş kolye çıkar; temiz, yeşil parlaklıkları vardır. "Aynı damardan çıktı. Birini sen al."` },
-      {
-        text: `"Aynı damarın taşı ne kadar uzağa giderse gitsin, özü bir kalır." İsmail gözünü kaçırmadan konuşur. "Gönüldaş da öyledir."`,
-        choices: [
-          {
-            text: `Kolye boynuna takarsın. "Bu bağ bozulmasın."`,
-            friendshipChange: 160,
-            response: `İsmail diğerini kendi göğsüne takar. Sana baktığında gözleri mağara billurları gibi sessiz ama sıcak yanmaktadır. "Bozulmaz."`
-          },
-          { text: `"İsmail, böylesi bir dosta sahip olmak benim için büyük talih."`, friendshipChange: 120, response: `İsmail uzun süre susar, sonra ağır ağır başını sallar. "...Benim için de."` }
-        ]
-      }
-    ]
-  },
+// --- İsmail Gönüldaşlık ---
+{
+  id: 'a_shi_zhiji_7',
+  npcId: 'a_shi',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Ocağın Derinindeki Söz',
+  scenes: [
+    { text: `İsmail seni nadiren olduğu kadar isteyerek çağırır. Elinde iki fener vardır. "...Benimle gel. Sana göstereceğim şeyi yalnız gönüldaş bilsin."` },
+    { text: `Seni ocağın en dibindeki gizli bir yarığa götürür. Taş duvarda iki ayrı damar yan yana uzanmaktadır; biri sarı, biri açık renkli, kıvrıla kıvrıla gider ama hiç ayrılmaz.` },
+    {
+      text: `"İki damar." der İsmail. "Ayrı ayrı... ama hep yan yana. Bizim gibi."`,
+      choices: [
+        {
+          text: `"İsmail... bu gördüğüm, nice kıymetli taştan daha değerli."`,
+          friendshipChange: 120,
+          response: `İsmail nadir gülüşlerinden birini gösterir. "Hı. O yüzden kazmadım. Böyle kalsın."`
+        },
+        {
+          text: `"Senin gönlün sandığımdan daha da sağlam."`,
+          friendshipChange: 80,
+          response: `İsmail yüzünü yana çevirir; kulakları kızarmıştır. "...Gönüldaşların, yalnız ikisinin bildiği bir yeri olmalı."`
+        }
+      ]
+    },
+    { text: `Ayrılmadan önce İsmail kayaya iki küçük işaret kazır. "Sonra yine buluruz." der. "Bunu bizden başka kimse bilmez."` }
+  ]
+},
+{
+  id: 'a_shi_zhiji_9',
+  npcId: 'a_shi',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'Taş Gibi Bağ',
+  scenes: [
+    { text: `İsmail seni bulduğunda elinde bir bohça tutmaktadır. Yüzü her zamankinden daha ciddi görünür.` },
+    { text: `Bohçayı açıp sana uzatır. İçinden iki aynı taş kolye çıkar; temiz, yeşil parlaklıkları vardır. "Aynı damardan çıktı. Birini sen al."` },
+    {
+      text: `"Aynı damarın taşı ne kadar uzağa giderse gitsin, özü bir kalır." İsmail gözünü kaçırmadan konuşur. "Gönüldaş da öyledir."`,
+      choices: [
+        {
+          text: `Kolye boynuna takarsın. "Bu bağ bozulmasın."`,
+          friendshipChange: 160,
+          response: `İsmail diğerini kendi göğsüne takar. Sana baktığında gözleri mağara billurları gibi sessiz ama sıcak yanmaktadır. "Bozulmaz."`
+        },
+        {
+          text: `"İsmail, böylesi bir dosta sahip olmak benim için büyük talih."`,
+          friendshipChange: 120,
+          response: `İsmail uzun süre susar, sonra ağır ağır başını sallar. "...Benim için de."`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- Aylin Gönüldaşlık ---
-  {
-    id: 'qiu_yue_zhiji_7',
-    npcId: 'qiu_yue',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Gizli Avlak',
-    scenes: [
-      { text: `Aylin seni daha önce hiç görmediğin bir yere götürür. Uçurum altındaki küçük bir çağlayanın dibinde saklı bir havuz vardır. "İşte benim asıl gizli avlağım! Buraya daha kimseyi getirmedim!"` },
-      { text: `Yan yana kayalara oturup oltalarınızı suya salarsınız. Aylin, alışılmadık biçimde biraz susar. Sonra gülümseyerek der ki: "Gönüldaş dediğin, yanında sessiz kalınca da insanın sıkılmadığı kişidir."` },
-      {
-        text: `Birden iki oltanız da aynı anda oynar! Göz göze gelir, birlikte gülmeye başlarsınız.`,
-        choices: [
-          {
-            text: `"Aylin, seninleyken insanın canı hiç sıkılmıyor."`,
-            friendshipChange: 120,
-            response: `"Elbet!" Aylin gururla çenesini kaldırır. "Burası artık ikimizin gizli yeri! Hadi söz ver!"`
-          },
-          { text: `"Bu yer gerçekten de görülmeye değer."`, friendshipChange: 80, response: `"Öyle ya!" Aylin neşeyle ellerini çırpar. "Buraya ancak gönüldaş getirilir!"` }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'qiu_yue_zhiji_9',
-    npcId: 'qiu_yue',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'İkili Balık Düğümü',
-    scenes: [
-      { text: `Aylin sana misinadan örülmüş bir bileklik uzatır. Üstünde birbirine dolanmış iki küçük balık şekli vardır. "Bu, balıkçıların düğümüdür. Takılan iki kişiyi ömür boyu takım arkadaşı yapar derler!"` },
-      {
-        text: `"Bunu örmem günler sürdü..." der, başını kaşıyarak. İlk kez biraz utanıyordur. "Gönüldaşlığın da bir nişanesi olsun istedim."`,
-        choices: [
-          {
-            text: `Bilekliğini hemen takarsın. "Bu düğüm çözülmesin."`,
-            friendshipChange: 160,
-            response: `Aylin kendi bileğindeki eşini sallayarak güler. "Artık resmen gönüldaş olduk! Bizi kimse ayıramaz!"`
-          },
-          {
-            text: `"Aylin, elin oltada olduğu kadar düğümde de maharetliymiş."`,
-            friendshipChange: 120,
-            response: `"Ha ha, bunu inkâr etmeyeceğim!" Aylin omzuna vurur. "Bundan sonra başın sıkışırsa gönüldaşın burada!"`
-          }
-        ]
-      }
-    ]
-  },
+// --- Aylin Gönüldaşlık ---
+{
+  id: 'qiu_yue_zhiji_7',
+  npcId: 'qiu_yue',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Gizli Avlak',
+  scenes: [
+    { text: `Aylin seni daha önce hiç görmediğin bir yere götürür. Uçurum altındaki küçük bir çağlayanın dibinde saklı bir havuz vardır. "İşte benim asıl gizli avlağım! Buraya daha kimseyi getirmedim!"` },
+    { text: `Yan yana kayalara oturup oltalarınızı suya salarsınız. Aylin, alışılmadık biçimde biraz susar. Sonra gülümseyerek der ki: "Gönüldaş dediğin, yanında sessiz kalınca da insanın sıkılmadığı kişidir."` },
+    {
+      text: `Birden iki oltanız da aynı anda oynar! Göz göze gelir, birlikte gülmeye başlarsınız.`,
+      choices: [
+        {
+          text: `"Aylin, seninleyken insanın canı hiç sıkılmıyor."`,
+          friendshipChange: 120,
+          response: `"Elbet!" Aylin gururla çenesini kaldırır. "Burası artık ikimizin gizli yeri! Hadi söz ver!"`
+        },
+        {
+          text: `"Bu yer gerçekten de görülmeye değer."`,
+          friendshipChange: 80,
+          response: `"Öyle ya!" Aylin neşeyle ellerini çırpar. "Buraya ancak gönüldaş getirilir!"`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'qiu_yue_zhiji_9',
+  npcId: 'qiu_yue',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'İkili Balık Düğümü',
+  scenes: [
+    { text: `Aylin sana misinadan örülmüş bir bileklik uzatır. Üstünde birbirine dolanmış iki küçük balık şekli vardır. "Bu, balıkçıların düğümüdür. Takılan iki kişiyi ömür boyu takım arkadaşı yapar derler!"` },
+    {
+      text: `"Bunu örmem günler sürdü..." der, başını kaşıyarak. İlk kez biraz utanıyordur. "Gönüldaşlığın da bir nişanesi olsun istedim."`,
+      choices: [
+        {
+          text: `Bilekliğini hemen takarsın. "Bu düğüm çözülmesin."`,
+          friendshipChange: 160,
+          response: `Aylin kendi bileğindeki eşini sallayarak güler. "Artık resmen gönüldaş olduk! Bizi kimse ayıramaz!"`
+        },
+        {
+          text: `"Aylin, elin oltada olduğu kadar düğümde de maharetliymiş."`,
+          friendshipChange: 120,
+          response: `"Ha ha, bunu inkâr etmeyeceğim!" Aylin omzuna vurur. "Bundan sonra başın sıkışırsa gönüldaşın burada!"`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- Bahar Gönüldaşlık ---
-  {
-    id: 'chun_lan_zhiji_7',
-    npcId: 'chun_lan',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Çay Bahçesinde Gece Sözü',
-    scenes: [
-      { text: `Bahar seni çay bahçesinin derinliklerinde gece çayı içmeye çağırır. Ay ışığı yaprakların üstünde gümüş gibi parlamaktadır. Daha önce kimseye sunmadığı bir demlik çıkarır. "Bunun adı 'gönüldaş demi'. Kendi usulümle hazırladım."` },
-      {
-        text: `"Eskiden bunu yalnız içer, adına da içimden gülerdim." der. Başını hafifçe öne eğer. "Şimdi {player} var... artık bu ismi hak etti."`,
-        choices: [
-          {
-            text: `"Bahar, içtiğim en güzel çaylardan biri bu."`,
-            friendshipChange: 120,
-            response: `Bahar ay gibi gülümser. "Öyleyse her yıl yeni çay çıktığında ilk fincanı sana ayıracağım."`
-          },
-          {
-            text: `"Gönüldaş demi... adı da kendisi gibi güzel."`,
-            friendshipChange: 80,
-            response: `"İyi çayı, anlayan biriyle içmek gerekir." Bahar fincanına bir kere daha çay doldurur. "Bu gece acelemiz yok."`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'chun_lan_zhiji_9',
-    npcId: 'chun_lan',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'İkiz Demlik',
-    scenes: [
-      { text: `Bahar küçük bir kutu getirir. İçinden biçimleri aynı, boyları farklı iki demlik çıkar. Dışlarına zarif çiçekler işlenmiştir. "Bunlar ailemizin yadigârıdır. Biri büyük, biri küçük; ama takım hâlindedirler."` },
-      {
-        text: `"Söylenene göre, bunlar ayrı ayrı kullanılırsa sıradan tat verir; bir aradaysa demleri başka olur." Küçüğünü sana uzatır. "Büyüğü bende kalsın; küçüğü sen taşı."`,
-        choices: [
-          {
-            text: `Demliği iki elinle alırsın. "Bunu elimde tutmak, seni yanı başımda hissetmek gibi."`,
-            friendshipChange: 160,
-            response: `Bahar büyük demliği en görünür yere bırakır. "Bundan sonra biri sorarsa derim ki: bunun öteki parçası, en kıymetli gönüldaşımda."`
-          },
-          {
-            text: `"Merak etme, bunu özenle saklarım."`,
-            friendshipChange: 120,
-            response: `"Çay da demlik de kullanıldıkça kıymet kazanır." Bahar gülümser. "Dostluk da öyledir; gidip gelmekle çoğalır."`
-          }
-        ]
-      }
-    ]
-  },
+// --- Bahar Gönüldaşlık ---
+{
+  id: 'chun_lan_zhiji_7',
+  npcId: 'chun_lan',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Çay Bahçesinde Gece Sözü',
+  scenes: [
+    { text: `Bahar seni çay bahçesinin derinliklerinde gece çayı içmeye çağırır. Ay ışığı yaprakların üstünde gümüş gibi parlamaktadır. Daha önce kimseye sunmadığı bir demlik çıkarır. "Bunun adı 'gönüldaş demi'. Kendi usulümle hazırladım."` },
+    {
+      text: `"Eskiden bunu yalnız içer, adına da içimden gülerdim." der. Başını hafifçe öne eğer. "Şimdi {player} var... artık bu ismi hak etti."`,
+      choices: [
+        {
+          text: `"Bahar, içtiğim en güzel çaylardan biri bu."`,
+          friendshipChange: 120,
+          response: `Bahar ay gibi gülümser. "Öyleyse her yıl yeni çay çıktığında ilk fincanı sana ayıracağım."`
+        },
+        {
+          text: `"Gönüldaş demi... adı da kendisi gibi güzel."`,
+          friendshipChange: 80,
+          response: `"İyi çayı, anlayan biriyle içmek gerekir." Bahar fincanına bir kere daha çay doldurur. "Bu gece acelemiz yok."`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'chun_lan_zhiji_9',
+  npcId: 'chun_lan',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'İkiz Demlik',
+  scenes: [
+    { text: `Bahar küçük bir kutu getirir. İçinden biçimleri aynı, boyları farklı iki demlik çıkar. Dışlarına zarif çiçekler işlenmiştir. "Bunlar ailemizin yadigârıdır. Biri büyük, biri küçük; ama takım hâlindedirler."` },
+    {
+      text: `"Söylenene göre, bunlar ayrı ayrı kullanılırsa sıradan tat verir; bir aradaysa demleri başka olur." Küçüğünü sana uzatır. "Büyüğü bende kalsın; küçüğü sen taşı."`,
+      choices: [
+        {
+          text: `Demliği iki elinle alırsın. "Bunu elimde tutmak, seni yanı başımda hissetmek gibi."`,
+          friendshipChange: 160,
+          response: `Bahar büyük demliği en görünür yere bırakır. "Bundan sonra biri sorarsa derim ki: bunun öteki parçası, en kıymetli gönüldaşımda."`
+        },
+        {
+          text: `"Merak etme, bunu özenle saklarım."`,
+          friendshipChange: 120,
+          response: `"Çay da demlik de kullanıldıkça kıymet kazanır." Bahar gülümser. "Dostluk da öyledir; gidip gelmekle çoğalır."`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- Nazan Gönüldaşlık ---
-  {
-    id: 'xue_qin_zhiji_7',
-    npcId: 'xue_qin',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Adsız Resim',
-    scenes: [
-      { text: `Nazan'ın odası resim doludur. Köşedeki örtülü bir tabloyu işaret eder: "Şunu üç yıldır bitiremiyorum. Gel, bir bak."` },
-      { text: `Örtüyü kaldırdığında puslu bir manzara görürsün. Ortası boş bırakılmıştır. "Ne koysam eksik geldi." der Nazan.` },
-      {
-        text: `Fırçayı eline alır, kısa bir sessizlikten sonra boşluğa yan yana oturan iki siluet çizer. "...Demek eksik olan buymuş."`,
-        choices: [
-          {
-            text: `"Nazan, bu resim şimdi bambaşka oldu."`,
-            friendshipChange: 120,
-            response: `Nazan'ın yanakları hafifçe kızarır. "...Buna 'Gönüldaşlar' derim artık. Satılık değil."`
-          },
-          {
-            text: `"Demek sen de hep böyle bir dostu arıyordun."`,
-            friendshipChange: 80,
-            response: `"Sus." der ama dudaklarının ucu hafifçe kıvrılır. "...Doğru söyledin yine de."`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'xue_qin_zhiji_9',
-    npcId: 'xue_qin',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'Resimde Sen Varsın',
-    scenes: [
-      { text: `Nazan sana bir tomar uzatır. "Aç." Sesi her zamankinden daha gergindir.` },
-      { text: `Tomarı açtığında ince işlenmiş büyükçe bir resim çıkar. Üstündeki kişi bütünüyle sana benzer; arka planda ise gaKöyün dört mevsimi vardır. Her ayrıntı büyük bir özenle çizilmiştir.` },
-      {
-        text: `"Bunu uzun vakitte bitirdim." der Nazan, gözlerini kaçırmadan. "İyi resim için iyi bir yüz gerekir. Uzun uzun çizmek isteyeceğim tek kişi sendin."`,
-        choices: [
-          {
-            text: `"Bunu evimin en görünür yerine asacağım."`,
-            friendshipChange: 160,
-            response: `Nazan'ın yüzünde nadir görülen tam bir gülümseme belirir. "...Öyleyse yeni ilham gelince evine gelip çizim yaparım. Gönüldaşlar arasında izin istemek gerekmez."`
-          },
-          {
-            text: `"Hayatımda aldığım en kıymetli hediyelerden biri bu."`,
-            friendshipChange: 120,
-            response: `"Hıh." Nazan başını yana çevirir ama sesi hayli yumuşaktır. "Daha niceleri olur. Çünkü anlayan biri varken ilham kurumaz."`
-          }
-        ]
-      }
-    ]
-  },
+// --- Nazan Gönüldaşlık ---
+{
+  id: 'xue_qin_zhiji_7',
+  npcId: 'xue_qin',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Adsız Resim',
+  scenes: [
+    { text: `Nazan'ın odası resim doludur. Köşedeki örtülü bir tabloyu işaret eder: "Şunu üç yıldır bitiremiyorum. Gel, bir bak."` },
+    { text: `Örtüyü kaldırdığında puslu bir manzara görürsün. Ortası boş bırakılmıştır. "Ne koysam eksik geldi." der Nazan.` },
+    {
+      text: `Fırçayı eline alır, kısa bir sessizlikten sonra boşluğa yan yana oturan iki siluet çizer. "...Demek eksik olan buymuş."`,
+      choices: [
+        {
+          text: `"Nazan, bu resim şimdi bambaşka oldu."`,
+          friendshipChange: 120,
+          response: `Nazan'ın yanakları hafifçe kızarır. "...Buna 'Gönüldaşlar' derim artık. Satılık değil."`
+        },
+        {
+          text: `"Demek sen de hep böyle bir dostu arıyordun."`,
+          friendshipChange: 80,
+          response: `"Sus." der ama dudaklarının ucu hafifçe kıvrılır. "...Doğru söyledin yine de."`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'xue_qin_zhiji_9',
+  npcId: 'xue_qin',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'Resimde Sen Varsın',
+  scenes: [
+    { text: `Nazan sana bir tomar uzatır. "Aç." Sesi her zamankinden daha gergindir.` },
+    { text: `Tomarı açtığında ince işlenmiş büyükçe bir resim çıkar. Üstündeki kişi bütünüyle sana benzer; arka planda ise gaKöyün dört mevsimi vardır. Her ayrıntı büyük bir özenle çizilmiştir.` },
+    {
+      text: `"Bunu uzun vakitte bitirdim." der Nazan, gözlerini kaçırmadan. "İyi resim için iyi bir yüz gerekir. Uzun uzun çizmek isteyeceğim tek kişi sendin."`,
+      choices: [
+        {
+          text: `"Bunu evimin en görünür yerine asacağım."`,
+          friendshipChange: 160,
+          response: `Nazan'ın yüzünde nadir görülen tam bir gülümseme belirir. "...Öyleyse yeni ilham gelince evine gelip çizim yaparım. Gönüldaşlar arasında izin istemek gerekmez."`
+        },
+        {
+          text: `"Hayatımda aldığım en kıymetli hediyelerden biri bu."`,
+          friendshipChange: 120,
+          response: `"Hıh." Nazan başını yana çevirir ama sesi hayli yumuşaktır. "Daha niceleri olur. Çünkü anlayan biri varken ilham kurumaz."`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- Suna Gönüldaşlık ---
-  {
-    id: 'su_su_zhiji_7',
-    npcId: 'su_su',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Gönül Düğümü',
-    scenes: [
-      { text: `Suna seni dükkânın arka avlusunda bekler. Masanın üstünde çeşit çeşit ipek iplik durmaktadır. "Sana bir şey öğretmek istiyorum." der. "Bu, gönüldaşların ördüğü bir düğümdür."` },
-      { text: `Sabırla, ilmik ilmik nasıl örüldüğünü gösterir. Parmaklarınız ara ara birbirine dokunur; Suna her seferinde hafifçe çekinir ama öğretmeye devam eder.` },
-      {
-        text: `Sonunda iki aynı düğüm ortaya çıkar. Biri kırmızı, biri maviye çalan tondadır. "Biri benim, biri senin gönlünü simgelesin. Bağlanınca çözülmesinler."`,
-        choices: [
-          {
-            text: `"Bunu hep yanımda taşıyacağım."`,
-            friendshipChange: 120,
-            response: `Suna kırmızı olanı bileğine bağlar. "Gönüller bir olursa yol da kolaylaşır."`
-          },
-          {
-            text: `"Elin gerçekten eşsiz iş çıkarıyor."`,
-            friendshipChange: 80,
-            response: `"Çünkü bunu gönüldaş için ördüm." Suna hafifçe gülümser ve ötekini kendi bileğine bağlar.`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'su_su_zhiji_9',
-    npcId: 'su_su',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'Gönüldaş Giysisi',
-    scenes: [
-      { text: `Suna sana özenle dikilmiş bir giysi getirir. Kumaşı yumuşak, rengi sade ama göz alıcıdır. Yaka ve kollarında ince işleme vardır. "Bunu tam bir ayda bitirdim."` },
-      {
-        text: `"Kumaşını çoktan beri saklıyordum. Motifleri de kendim düşündüm; birbirine dolanmış dallar gibi." Gözleri pırıl pırıldır. "Bir denesen?"`,
-        choices: [
-          {
-            text: `Giysiyi giyip ona dönersin. "Bu, dost elinden çıkmış gerçek bir armağan."`,
-            friendshipChange: 160,
-            response: `Suna'nın gözleri dolu dolu olur. "Her dikişinde benim gönlüm var. Üzerinde görünce... sanki hep yanında olacağım gibi geliyor."`
-          },
-          {
-            text: `"Çok güzel olmuş Suna. Sen gerçekten usta bir terzisin."`,
-            friendshipChange: 120,
-            response: `"Sen de iyi bir gönüldaşsın." Suna yakayı usulca düzeltir. "Sana çok yakıştı."`
-          }
-        ]
-      }
-    ]
-  },
+// --- Suna Gönüldaşlık ---
+{
+  id: 'su_su_zhiji_7',
+  npcId: 'su_su',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Gönül Düğümü',
+  scenes: [
+    { text: `Suna seni dükkânın arka avlusunda bekler. Masanın üstünde çeşit çeşit ipek iplik durmaktadır. "Sana bir şey öğretmek istiyorum." der. "Bu, gönüldaşların ördüğü bir düğümdür."` },
+    { text: `Sabırla, ilmik ilmik nasıl örüldüğünü gösterir. Parmaklarınız ara ara birbirine dokunur; Suna her seferinde hafifçe çekinir ama öğretmeye devam eder.` },
+    {
+      text: `Sonunda iki aynı düğüm ortaya çıkar. Biri kırmızı, biri maviye çalan tondadır. "Biri benim, biri senin gönlünü simgelesin. Bağlanınca çözülmesinler."`,
+      choices: [
+        {
+          text: `"Bunu hep yanımda taşıyacağım."`,
+          friendshipChange: 120,
+          response: `Suna kırmızı olanı bileğine bağlar. "Gönüller bir olursa yol da kolaylaşır."`
+        },
+        {
+          text: `"Elin gerçekten eşsiz iş çıkarıyor."`,
+          friendshipChange: 80,
+          response: `"Çünkü bunu gönüldaş için ördüm." Suna hafifçe gülümser ve ötekini kendi bileğine bağlar.`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'su_su_zhiji_9',
+  npcId: 'su_su',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'Gönüldaş Giysisi',
+  scenes: [
+    { text: `Suna sana özenle dikilmiş bir giysi getirir. Kumaşı yumuşak, rengi sade ama göz alıcıdır. Yaka ve kollarında ince işleme vardır. "Bunu tam bir ayda bitirdim."` },
+    {
+      text: `"Kumaşını çoktan beri saklıyordum. Motifleri de kendim düşündüm; birbirine dolanmış dallar gibi." Gözleri pırıl pırıldır. "Bir denesen?"`,
+      choices: [
+        {
+          text: `Giysiyi giyip ona dönersin. "Bu, dost elinden çıkmış gerçek bir armağan."`,
+          friendshipChange: 160,
+          response: `Suna'nın gözleri dolu dolu olur. "Her dikişinde benim gönlüm var. Üzerinde görünce... sanki hep yanında olacağım gibi geliyor."`
+        },
+        {
+          text: `"Çok güzel olmuş Suna. Sen gerçekten usta bir terzisin."`,
+          friendshipChange: 120,
+          response: `"Sen de iyi bir gönüldaşsın." Suna yakayı usulca düzeltir. "Sana çok yakıştı."`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- Zeyno Gönüldaşlık ---
-  {
-    id: 'hong_dou_zhiji_7',
-    npcId: 'hong_dou',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Gönüldaş Küpü',
-    scenes: [
-      { text: `Zeyno seni içki ocağının en dip kısmına götürür. Tozlu bir küp indirir. "Bunu babam gömdü. Dedi ki, ancak gerçek gönüldaş bulunursa açılır."` },
-      { text: `Küpün mührünü kırar, ağır ama hoş bir koku yayılır. Sana tas doldurur, kendine de koyar. "Haydi! Gönüldaş tası, dibine kadar!"` },
-      {
-        text: `İlk yudum boğazdan ateş gibi geçer ama sonunda tatlı bir sıcaklık bırakır. Zeyno gözlerini hafifçe siler. "Babam derdi ki, gönüldaş iyi içkiden de zordur. Bulunca da bırakılmaz."`,
-        choices: [
-          {
-            text: `"Bu içki de bu dostluk da pek kıymetli."`,
-            friendshipChange: 120,
-            response: `Zeyno omzuna sağlam bir şaplak indirir. "İşte böyle konuş! Bir tas daha!" der. Gülmeye çalışsa da gözünden yaş süzülür. "Babam görseydi sevinecekti."`
-          },
-          {
-            text: `"Bu kadar önemli bir küpü benimle açtığın için sağ ol."`,
-            friendshipChange: 80,
-            response: `"Aman, ne teşekkürü!" Zeyno eliyle havayı yarar. "Gönüldaşlar teşekkür mü eder? Hadi bitirelim şunu!"`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'hong_dou_zhiji_9',
-    npcId: 'hong_dou',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'Tas Kardeşliği',
-    scenes: [
-      { text: `Zeyno arka avluda bir masa kurmuştur. Elinde iki aynı tas vardır; üzerlerine "gönüldaş" işlenmiştir. "Bugün işi usulüne göre yapacağız!"` },
-      {
-        text: `"Bundan böyle bu taslar bizim olsun." Bu kez yüzündeki ifade şaşırtıcı biçimde ciddidir. "Gökyüzü, toprak ve çiçekler şahit olsun. İyi günde de darda da omuz omuza."`,
-        choices: [
-          {
-            text: `Tasını kaldırırsın. "İyi günde de darda da!"`,
-            friendshipChange: 160,
-            response: `Taslar çarpışır. Zeyno kahkahayla güler: "Tamamdır! Artık sen benim en sıkı gönüldaşımsın!" Sonra yine doldurur. "Bu gece uyku yok!"`
-          },
-          {
-            text: `"Zeyno, sen göründüğünden daha da duyguluymuşsun."`,
-            friendshipChange: 120,
-            response: `"Hıh!" Zeyno'nun yüzü kızarır. "Ben de utanırım ha! Ama gönüldaşımın yanında numara yapmam. Haydi iç!"`
-          }
-        ]
-      }
-    ]
-  },
+// --- Zeyno Gönüldaşlık ---
+{
+  id: 'hong_dou_zhiji_7',
+  npcId: 'hong_dou',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Gönüldaş Küpü',
+  scenes: [
+    { text: `Zeyno seni içki ocağının en dip kısmına götürür. Tozlu bir küp indirir. "Bunu babam gömdü. Dedi ki, ancak gerçek gönüldaş bulunursa açılır."` },
+    { text: `Küpün mührünü kırar, ağır ama hoş bir koku yayılır. Sana tas doldurur, kendine de koyar. "Haydi! Gönüldaş tası, dibine kadar!"` },
+    {
+      text: `İlk yudum boğazdan ateş gibi geçer ama sonunda tatlı bir sıcaklık bırakır. Zeyno gözlerini hafifçe siler. "Babam derdi ki, gönüldaş iyi içkiden de zordur. Bulunca da bırakılmaz."`,
+      choices: [
+        {
+          text: `"Bu içki de bu dostluk da pek kıymetli."`,
+          friendshipChange: 120,
+          response: `Zeyno omzuna sağlam bir şaplak indirir. "İşte böyle konuş! Bir tas daha!" der. Gülmeye çalışsa da gözünden yaş süzülür. "Babam görseydi sevinecekti."`
+        },
+        {
+          text: `"Bu kadar önemli bir küpü benimle açtığın için sağ ol."`,
+          friendshipChange: 80,
+          response: `"Aman, ne teşekkürü!" Zeyno eliyle havayı yarar. "Gönüldaşlar teşekkür mü eder? Hadi bitirelim şunu!"`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'hong_dou_zhiji_9',
+  npcId: 'hong_dou',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'Tas Kardeşliği',
+  scenes: [
+    { text: `Zeyno arka avluda bir masa kurmuştur. Elinde iki aynı tas vardır; üzerlerine "gönüldaş" işlenmiştir. "Bugün işi usulüne göre yapacağız!"` },
+    {
+      text: `"Bundan böyle bu taslar bizim olsun." Bu kez yüzündeki ifade şaşırtıcı biçimde ciddidir. "Gökyüzü, toprak ve çiçekler şahit olsun. İyi günde de darda da omuz omuza."`,
+      choices: [
+        {
+          text: `Tasını kaldırırsın. "İyi günde de darda da!"`,
+          friendshipChange: 160,
+          response: `Taslar çarpışır. Zeyno kahkahayla güler: "Tamamdır! Artık sen benim en sıkı gönüldaşımsın!" Sonra yine doldurur. "Bu gece uyku yok!"`
+        },
+        {
+          text: `"Zeyno, sen göründüğünden daha da duyguluymuşsun."`,
+          friendshipChange: 120,
+          response: `"Hıh!" Zeyno'nun yüzü kızarır. "Ben de utanırım ha! Ama gönüldaşımın yanında numara yapmam. Haydi iç!"`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- Cemil Gönüldaşlık ---
-  {
-    id: 'dan_qing_zhiji_7',
-    npcId: 'dan_qing',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Yazı Meclisi',
-    scenes: [
-      { text: `Cemil koruluktaki taş masaya kâğıt, kalem ve mürekkep dizer. "Eski büyükler yazı meclisleri kurarmış. Bugün kalabalık yok ama ikimiz de yetiyoruz."` },
-      { text: `Kalemi mürekkebe batırıp birkaç kelime yazar, sonra sana uzatır. "Gönüldaşlar bazen sözü yazıyla sınar. Buyur."` },
-      {
-        text: `Sırayla yazı yazar, okur, yorum yaparsınız. Cemil'in gözleri ışıldar. "Bazı dostluklar çok konuşmadan anlaşılır. Ben de bunu senin yanında öğrendim."`,
-        choices: [
-          {
-            text: `"Senin kalemin gönle dokunuyor. Seninle böyle oturmak benim için de kıymetli."`,
-            friendshipChange: 120,
-            response: `Cemil gülümseyip kâğıda iki kelime daha yazar: "Hakiki Dost". "Bunu sana armağan ediyorum. Görünen bir yere as."`
-          },
-          {
-            text: `"Seninle bir arada oturmak, uzun zamandır aranan huzur gibi."`,
-            friendshipChange: 80,
-            response: `"Güzel söyledin." Cemil içtenlikle gülümser. "Bunu bir gün yazıma koyarım; çünkü gönüldaş sözü kıymetlidir."`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'dan_qing_zhiji_9',
-    npcId: 'dan_qing',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'Kalem Dostluğu',
-    scenes: [
-      { text: `Cemil sana el yazısıyla doldurulmuş bir defter verir. Kapağında "Dostluk Defteri" yazar. "Yıllardır yazdıklarımın içinden en sevdiklerimi topladım. Birçoğu, seninle tanıştıktan sonra kaleme döküldü."` },
-      {
-        text: `"Ben güçlü biri değilim." der sakince. "Ama gönüldaş başı sıkıştığında, kalem ehli de olsa geri durmamalı." Bakışı açık ve içtendir.`,
-        choices: [
-          {
-            text: `"Bu dostluğa ben de sonuna dek sahip çıkarım."`,
-            friendshipChange: 160,
-            response: `Cemil'in gözleri hafifçe dolar, ama gülümsemeyi elden bırakmaz. "Bu söz bana yeter. Böylesi bir bağ varken başka ne istenir?"`
-          },
-          {
-            text: `"Bu defteri özenle saklayacağım."`,
-            friendshipChange: 120,
-            response: `"Kâğıt eskir, mürekkep solar." Cemil başını sallar. "Ama insan yüreğinde saklarsa söz kaybolmaz."`
-          }
-        ]
-      }
-    ]
-  },
+// --- Cemil Gönüldaşlık ---
+{
+  id: 'dan_qing_zhiji_7',
+  npcId: 'dan_qing',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Yazı Meclisi',
+  scenes: [
+    { text: `Cemil koruluktaki taş masaya kâğıt, kalem ve mürekkep dizer. "Eski büyükler yazı meclisleri kurarmış. Bugün kalabalık yok ama ikimiz de yetiyoruz."` },
+    { text: `Kalemi mürekkebe batırıp birkaç kelime yazar, sonra sana uzatır. "Gönüldaşlar bazen sözü yazıyla sınar. Buyur."` },
+    {
+      text: `Sırayla yazı yazar, okur, yorum yaparsınız. Cemil'in gözleri ışıldar. "Bazı dostluklar çok konuşmadan anlaşılır. Ben de bunu senin yanında öğrendim."`,
+      choices: [
+        {
+          text: `"Senin kalemin gönle dokunuyor. Seninle böyle oturmak benim için de kıymetli."`,
+          friendshipChange: 120,
+          response: `Cemil gülümseyip kâğıda iki kelime daha yazar: "Hakiki Dost". "Bunu sana armağan ediyorum. Görünen bir yere as."`
+        },
+        {
+          text: `"Seninle bir arada oturmak, uzun zamandır aranan huzur gibi."`,
+          friendshipChange: 80,
+          response: `"Güzel söyledin." Cemil içtenlikle gülümser. "Bunu bir gün yazıma koyarım; çünkü gönüldaş sözü kıymetlidir."`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'dan_qing_zhiji_9',
+  npcId: 'dan_qing',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'Kalem Dostluğu',
+  scenes: [
+    { text: `Cemil sana el yazısıyla doldurulmuş bir defter verir. Kapağında "Dostluk Defteri" yazar. "Yıllardır yazdıklarımın içinden en sevdiklerimi topladım. Birçoğu, seninle tanıştıktan sonra kaleme döküldü."` },
+    {
+      text: `"Ben güçlü biri değilim." der sakince. "Ama gönüldaş başı sıkıştığında, kalem ehli de olsa geri durmamalı." Bakışı açık ve içtendir.`,
+      choices: [
+        {
+          text: `"Bu dostluğa ben de sonuna dek sahip çıkarım."`,
+          friendshipChange: 160,
+          response: `Cemil'in gözleri hafifçe dolar, ama gülümsemeyi elden bırakmaz. "Bu söz bana yeter. Böylesi bir bağ varken başka ne istenir?"`
+        },
+        {
+          text: `"Bu defteri özenle saklayacağım."`,
+          friendshipChange: 120,
+          response: `"Kâğıt eskir, mürekkep solar." Cemil başını sallar. "Ama insan yüreğinde saklarsa söz kaybolmaz."`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- Demir Gönüldaşlık ---
-  {
-    id: 'a_tie_zhiji_7',
-    npcId: 'a_tie',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Demircinin Sırrı',
-    scenes: [
-      { text: `Demir seni dükkânın arka tarafına gizlice çeker. "Bir şey göstereceğim... bunu ancak gönüldaşa gösteririm." Dolaptan tuhaf biçimli küçük bir bıçak çıkarır.` },
-      { text: `"Bu, tek başıma tamamladığım ilk iş." der. Ali Usta'nın bilmediğini de ekler. Bıçakta bariz kusurlar vardır ama kabzasına eğri büğrü bir işaret kazınmıştır.` },
-      {
-        text: `"Biraz çirkin oldu, değil mi?" Demir başını eğer. "Ama benim için kıymetlidir. Gönüldaşıma göstermek istedim."`,
-        choices: [
-          {
-            text: `"Bu bıçağın manası, nice parlak silahtan daha ağır basar."`,
-            friendshipChange: 120,
-            response: `Demir'in gözleri iyice açılır. "Cidden mi? O zaman söz! Usta olduktan sonra sana çok daha iyisini yapacağım!"`
-          },
-          {
-            text: `"Bana bunu göstermiş olman büyük güven demek."`,
-            friendshipChange: 80,
-            response: `"Hı!" Demir kuvvetle başını sallar, kulakları kıpkırmızıdır. "Gönüldaşa insan en mahcup olduğu şeyi bile gösterebilir!"`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'a_tie_zhiji_9',
-    npcId: 'a_tie',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'İkiz Bilezik',
-    scenes: [
-      { text: `Demir koşa koşa gelir. "Bitti!" Elindeki kutuyu açar; içinden parlatılmış iki sade ama sağlam demir bilezik çıkar.` },
-      {
-        text: `"Bunu en iyi demirden dövdüm! Yedi gece uğraştım!" der heyecanla. "Usta der ki, en iyi işi en kıymetli kişiye verirsin. Gönüldaş da odur işte!"`,
-        choices: [
-          {
-            text: `Bileziği takıp Demir'in elini güçlüce sıkarsın. "Bundan sonra kardeş kadar yakınsın."`,
-            friendshipChange: 160,
-            response: `Demir de ötekini takar, elini daha da sıkı kavrar. "Ben de söz! Bundan sonra aletin, işin gücün benden sorulur!"`
-          },
-          {
-            text: `"Bu demir sade olabilir ama üstündeki emek altından ağır."`,
-            friendshipChange: 120,
-            response: `Demir'in gözleri dolar. "Ben güzel konuşamam... ama sen benim en kıymetli dostumsun. Bu hiç değişmez."`
-          }
-        ]
-      }
-    ]
-  },
+// --- Demir Gönüldaşlık ---
+{
+  id: 'a_tie_zhiji_7',
+  npcId: 'a_tie',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Demircinin Sırrı',
+  scenes: [
+    { text: `Demir seni dükkânın arka tarafına gizlice çeker. "Bir şey göstereceğim... bunu ancak gönüldaşa gösteririm." Dolaptan tuhaf biçimli küçük bir bıçak çıkarır.` },
+    { text: `"Bu, tek başıma tamamladığım ilk iş." der. Ali Usta'nın bilmediğini de ekler. Bıçakta bariz kusurlar vardır ama kabzasına eğri büğrü bir işaret kazınmıştır.` },
+    {
+      text: `"Biraz çirkin oldu, değil mi?" Demir başını eğer. "Ama benim için kıymetlidir. Gönüldaşıma göstermek istedim."`,
+      choices: [
+        {
+          text: `"Bu bıçağın manası, nice parlak silahtan daha ağır basar."`,
+          friendshipChange: 120,
+          response: `Demir'in gözleri iyice açılır. "Cidden mi? O zaman söz! Usta olduktan sonra sana çok daha iyisini yapacağım!"`
+        },
+        {
+          text: `"Bana bunu göstermiş olman büyük güven demek."`,
+          friendshipChange: 80,
+          response: `"Hı!" Demir kuvvetle başını sallar, kulakları kıpkırmızıdır. "Gönüldaşa insan en mahcup olduğu şeyi bile gösterebilir!"`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'a_tie_zhiji_9',
+  npcId: 'a_tie',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'İkiz Bilezik',
+  scenes: [
+    { text: `Demir koşa koşa gelir. "Bitti!" Elindeki kutuyu açar; içinden parlatılmış iki sade ama sağlam demir bilezik çıkar.` },
+    {
+      text: `"Bunu en iyi demirden dövdüm! Yedi gece uğraştım!" der heyecanla. "Usta der ki, en iyi işi en kıymetli kişiye verirsin. Gönüldaş da odur işte!"`,
+      choices: [
+        {
+          text: `Bileziği takıp Demir'in elini güçlüce sıkarsın. "Bundan sonra kardeş kadar yakınsın."`,
+          friendshipChange: 160,
+          response: `Demir de ötekini takar, elini daha da sıkı kavrar. "Ben de söz! Bundan sonra aletin, işin gücün benden sorulur!"`
+        },
+        {
+          text: `"Bu demir sade olabilir ama üstündeki emek altından ağır."`,
+          friendshipChange: 120,
+          response: `Demir'in gözleri dolar. "Ben güzel konuşamam... ama sen benim en kıymetli dostumsun. Bu hiç değişmez."`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- Baran Gönüldaşlık ---
-  {
-    id: 'yun_fei_zhiji_7',
-    npcId: 'yun_fei',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Kartal Yuvası',
-    scenes: [
-      { text: `Baran seni arka dağın en sarp yamacına çıkarır. Zirvede tek bir çam vardır; dallarından birine kocaman bir kartal yuvası kurulmuştur. "Bu yuvayı üç yıldır gözlerim." der.` },
-      { text: `Gökte dönen kartal gelip ağaca konar; sizden ürküp kaçmaz. "Bana alıştı." der Baran. "Şimdi... seni de kabullendi."` },
-      {
-        text: `"Buraya herkesi getirmem." Uzak dağlara bakar. Sesi nadir görülen bir yumuşaklık taşır. "Ama sen gönüldaşsın. O yüzden bu manzara da senin."`,
-        choices: [
-          {
-            text: `"Bana en saklı yerini açtın."`,
-            friendshipChange: 120,
-            response: `Baran uzun süre sessiz kalır. Sonra yalnızca iki kelime söyler: "Değdi." Kartal, akşam ışığında yukarıda geniş daireler çizer.`
-          },
-          {
-            text: `"Bana güvendiğin için sağ ol."`,
-            friendshipChange: 80,
-            response: `"Teşekküre gerek yok." Baran'ın ağzının kenarı hafifçe yukarı kıvrılır. "Gönüldaşlar arasında bunlar söylenmez."`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'yun_fei_zhiji_9',
-    npcId: 'yun_fei',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'Avcı Sözü',
-    scenes: [
-      { text: `Baran toprağa bir bıçak saplar. Ay ışığında çeliği parıldar. "Bu bıçak on yıldır belimdeydi."` },
-      {
-        text: `"Avcılar arasında bir töre vardır." Sana dosdoğru bakar. "Birine kendi bıçağını verirsen, canını da ona emanet etmiş sayılırsın. Ben bunu sana veriyorum."`,
-        choices: [
-          {
-            text: `Bıçağı yerden çekip dikkatle koynuna koyarsın. "Senin canın da benim emanetimdir."`,
-            friendshipChange: 160,
-            response: `Baran ilk kez açıkça gülümser; bu alaycı değil, düpedüz içten bir gülüştür. "...İyi." der. "Bundan sonra dağda arkana ben bakarım."`
-          },
-          {
-            text: `"Baran... bu fazla kıymetli."`,
-            friendshipChange: 120,
-            response: `"Kıymetli diye vermiyorum sanıyorsan beni tanımamışsın." Kaşlarını çatar ama sesi yumuşar. "Al. Bunu verecek kadar güvendiğim tek kişi sensin."`
-          }
-        ]
-      }
-    ]
-  },
+// --- Baran Gönüldaşlık ---
+{
+  id: 'yun_fei_zhiji_7',
+  npcId: 'yun_fei',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Kartal Yuvası',
+  scenes: [
+    { text: `Baran seni arka dağın en sarp yamacına çıkarır. Zirvede tek bir çam vardır; dallarından birine kocaman bir kartal yuvası kurulmuştur. "Bu yuvayı üç yıldır gözlerim." der.` },
+    { text: `Gökte dönen kartal gelip ağaca konar; sizden ürküp kaçmaz. "Bana alıştı." der Baran. "Şimdi... seni de kabullendi."` },
+    {
+      text: `"Buraya herkesi getirmem." Uzak dağlara bakar. Sesi nadir görülen bir yumuşaklık taşır. "Ama sen gönüldaşsın. O yüzden bu manzara da senin."`,
+      choices: [
+        {
+          text: `"Bana en saklı yerini açtın."`,
+          friendshipChange: 120,
+          response: `Baran uzun süre sessiz kalır. Sonra yalnızca iki kelime söyler: "Değdi." Kartal, akşam ışığında yukarıda geniş daireler çizer.`
+        },
+        {
+          text: `"Bana güvendiğin için sağ ol."`,
+          friendshipChange: 80,
+          response: `"Teşekküre gerek yok." Baran'ın ağzının kenarı hafifçe yukarı kıvrılır. "Gönüldaşlar arasında bunlar söylenmez."`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'yun_fei_zhiji_9',
+  npcId: 'yun_fei',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'Avcı Sözü',
+  scenes: [
+    { text: `Baran toprağa bir bıçak saplar. Ay ışığında çeliği parıldar. "Bu bıçak on yıldır belimdeydi."` },
+    {
+      text: `"Avcılar arasında bir töre vardır." Sana dosdoğru bakar. "Birine kendi bıçağını verirsen, canını da ona emanet etmiş sayılırsın. Ben bunu sana veriyorum."`,
+      choices: [
+        {
+          text: `Bıçağı yerden çekip dikkatle koynuna koyarsın. "Senin canın da benim emanetimdir."`,
+          friendshipChange: 160,
+          response: `Baran ilk kez açıkça gülümser; bu alaycı değil, düpedüz içten bir gülüştür. "...İyi." der. "Bundan sonra dağda arkana ben bakarım."`
+        },
+        {
+          text: `"Baran... bu fazla kıymetli."`,
+          friendshipChange: 120,
+          response: `"Kıymetli diye vermiyorum sanıyorsan beni tanımamışsın." Kaşlarını çatar ama sesi yumuşar. "Al. Bunu verecek kadar güvendiğim tek kişi sensin."`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- İbo Gönüldaşlık ---
-  {
-    id: 'da_niu_zhiji_7',
-    npcId: 'da_niu',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Süt Kardeşliği',
-    scenes: [
-      { text: `İbo seni heyecanla ahıra çeker. "Gel çabuk! Uğur ilk kez süt verdi! İlk tası gönüldaş içer!"` },
-      { text: `Taze sütü iki tasa doldurmaya çalışırken yarısını masaya sıçratır. "He he... elim titredi."` },
-      {
-        text: `Taslardan birini sana uzatır. "Ben öyle okumamış adam değilim. Güzel söz de bilmem. Ama şunu bilirim: aynı tastan süt içen adamlar birbirini yarı yolda bırakmaz!"`,
-        choices: [
-          {
-            text: `Tasını kaldırıp bir dikişte içersin. "Öyleyse bundan sonra omuz omuzayız."`,
-            friendshipChange: 120,
-            response: `"İşte bu!" İbo göğsünü gere gere güler. "Artık benim ağırım da hafifim de senindir!"`
-          },
-          {
-            text: `"İbo, sandığından daha güzel konuşuyorsun."`,
-            friendshipChange: 80,
-            response: `"Sahi mi?" İbo ensesini kaşıyıp kahkaha atar. "Bunu senden duymak, on inekten övgü almak gibi!"`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'da_niu_zhiji_9',
-    npcId: 'da_niu',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'Ağıl Andı',
-    scenes: [
-      { text: `İbo, ağılın girişine yeni bir tahta tabela asmıştır. Üzerine seninle kendi adını yamuk yumuk kazımıştır.` },
-      {
-        text: `"Bugünden sonra burası ikimizin de yeri sayılır!" der; gözleri sulanmıştır. "Ben hep yanımda biri olsun istemiştim. Gönüldaş dediğin, iş ortağından da öte olur!"`,
-        choices: [
-          {
-            text: `Omzuna vurursun. "Bu ağılın hatırı da sözü de ortak."`,
-            friendshipChange: 160,
-            response: `İbo kuvvetle başını sallayıp sana sarılır; neredeyse nefesini kesecektir. "Çok iyi oldu! Şimdi gidip hayvanlara fazladan yem vereceğim, kutlama olsun!"`
-          },
-          {
-            text: `"Böyle bir dosta sahip olmak benim için baht."`,
-            friendshipChange: 120,
-            response: `İbo hüngür hüngür olmasa da gözlerini tutamaz. "Aman... böyle konuşma, ben hemen duygulanıyorum... ama vallahi çok sevindim!"`
-          }
-        ]
-      }
-    ]
-  },
+// --- İbo Gönüldaşlık ---
+{
+  id: 'da_niu_zhiji_7',
+  npcId: 'da_niu',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Süt Kardeşliği',
+  scenes: [
+    { text: `İbo seni heyecanla ahıra çeker. "Gel çabuk! Uğur ilk kez süt verdi! İlk tası gönüldaş içer!"` },
+    { text: `Taze sütü iki tasa doldurmaya çalışırken yarısını masaya sıçratır. "He he... elim titredi."` },
+    {
+      text: `Taslardan birini sana uzatır. "Ben öyle okumamış adam değilim. Güzel söz de bilmem. Ama şunu bilirim: aynı tastan süt içen adamlar birbirini yarı yolda bırakmaz!"`,
+      choices: [
+        {
+          text: `Tasını kaldırıp bir dikişte içersin. "Öyleyse bundan sonra omuz omuzayız."`,
+          friendshipChange: 120,
+          response: `"İşte bu!" İbo göğsünü gere gere güler. "Artık benim ağırım da hafifim de senindir!"`
+        },
+        {
+          text: `"İbo, sandığından daha güzel konuşuyorsun."`,
+          friendshipChange: 80,
+          response: `"Sahi mi?" İbo ensesini kaşıyıp kahkaha atar. "Bunu senden duymak, on inekten övgü almak gibi!"`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'da_niu_zhiji_9',
+  npcId: 'da_niu',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'Ağıl Andı',
+  scenes: [
+    { text: `İbo, ağılın girişine yeni bir tahta tabela asmıştır. Üzerine seninle kendi adını yamuk yumuk kazımıştır.` },
+    {
+      text: `"Bugünden sonra burası ikimizin de yeri sayılır!" der; gözleri sulanmıştır. "Ben hep yanımda biri olsun istemiştim. Gönüldaş dediğin, iş ortağından da öte olur!"`,
+      choices: [
+        {
+          text: `Omzuna vurursun. "Bu ağılın hatırı da sözü de ortak."`,
+          friendshipChange: 160,
+          response: `İbo kuvvetle başını sallayıp sana sarılır; neredeyse nefesini kesecektir. "Çok iyi oldu! Şimdi gidip hayvanlara fazladan yem vereceğim, kutlama olsun!"`
+        },
+        {
+          text: `"Böyle bir dosta sahip olmak benim için baht."`,
+          friendshipChange: 120,
+          response: `İbo hüngür hüngür olmasa da gözlerini tutamaz. "Aman... böyle konuşma, ben hemen duygulanıyorum... ama vallahi çok sevindim!"`
+        }
+      ]
+    }
+  ]
+},
 
-  // --- Mahir Gönüldaşlık ---
-  {
-    id: 'mo_bai_zhiji_7',
-    npcId: 'mo_bai',
-    requiredFriendship: 1750,
-    requiresZhiji: true,
-    title: 'Sözsüz Ezgi',
-    scenes: [
-      { text: `Mahir ay ışığında sana daha önce hiç duymadığın bir parça çalar. Ezgi bir neşe dalgasıyla başlar, sonra kedere uğrar, en sonunda da dinginliğe varır. Bittiğinde uzun süre sana bakar.` },
-      {
-        text: `"Bunun adı yok." der usulca. "Sözü de yok. Çünkü bu parça kulakla değil, yürekle anlaşılır. Ancak gönüldaş anlayabilir."`,
-        choices: [
-          {
-            text: `"Duydum Mahir. Sevinci de kederi de, sonunda gelen huzuru da duydum."`,
-            friendshipChange: 120,
-            response: `Mahir olduğu yerde kalır. Başını eğer, parmakları sazın tellerine hafifçe dokunur. "...Gerçekten duydun. On yıldır bunu ilk kez birine söyleyebiliyorum."`
-          },
-          {
-            text: `"Bu ezgi çok güzeldi."`,
-            friendshipChange: 80,
-            response: `"Güzel olmasından öte..." Mahir hafifçe başını sallar. "Bu parça gerçektir. Ben ancak gönüldaşın yanında hakiki sesi çıkarabilirim."`
-          }
-        ]
-      }
-    ]
-  },
-  {
-    id: 'mo_bai_zhiji_9',
-    npcId: 'mo_bai',
-    requiredFriendship: 2250,
-    requiresZhiji: true,
-    title: 'Gönüldaş Sazı',
-    scenes: [
-      {
-        text: `Mahir daha önce hiç görmediğin bir saz kutusu açar. İçinde küçük, eski bir saz vardır. Üstüne küçük bir işaret kazınmıştır. "Bunu ustam bana bırakmıştı. Demişti ki, gerçek gönüldaşı bulunca bunu ona emanet et."`
-      },
-      {
-        text: `"Çalmayı bilmen şart değil." der, sazı dikkatle sana uzatırken. "Yanında dursun yeter; böylece benim sesim de yanında kalır." Bakışları beklenmedik kadar yumuşaktır. "Eskiler, anlayan gidince sazı kırar der. Ben öyle yapmam. Çünkü sen varsın."`,
-        choices: [
-          {
-            text: `Sazı iki elinle alırsın. "Bu saz elimde kaldıkça sesin de gönlümde kalır. Ben senin ezgini unutmayacağım."`,
-            friendshipChange: 160,
-            response: `Mahir gözlerini kapatıp kendi sazında tek bir tel titreştirir. Nota geceye yayılır. "...İyi." der. "Öyleyse bu ses hiç kaybolmaz."`
-          },
-          {
-            text: `"Mahir, bunu iyi saklayacağım."`,
-            friendshipChange: 120,
-            response: `"Saklamak yetmez." Mahir hafifçe gülümser. "Bir gün ilk notayı çıkarmayı öğrendiğinde, bana çal."`
-          }
-        ]
-      }
-    ]
-  }
+// --- Mahir Gönüldaşlık ---
+{
+  id: 'mo_bai_zhiji_7',
+  npcId: 'mo_bai',
+  requiredFriendship: 1750,
+  requiresZhiji: true,
+  title: 'Sözsüz Ezgi',
+  scenes: [
+    { text: `Mahir ay ışığında sana daha önce hiç duymadığın bir parça çalar. Ezgi bir neşe dalgasıyla başlar, sonra kedere uğrar, en sonunda da dinginliğe varır. Bittiğinde uzun süre sana bakar.` },
+    {
+      text: `"Bunun adı yok." der usulca. "Sözü de yok. Çünkü bu parça kulakla değil, yürekle anlaşılır. Ancak gönüldaş anlayabilir."`,
+      choices: [
+        {
+          text: `"Duydum Mahir. Sevinci de kederi de, sonunda gelen huzuru da duydum."`,
+          friendshipChange: 120,
+          response: `Mahir olduğu yerde kalır. Başını eğer, parmakları sazın tellerine hafifçe dokunur. "...Gerçekten duydun. On yıldır bunu ilk kez birine söyleyebiliyorum."`
+        },
+        {
+          text: `"Bu ezgi çok güzeldi."`,
+          friendshipChange: 80,
+          response: `"Güzel olmasından öte..." Mahir hafifçe başını sallar. "Bu parça gerçektir. Ben ancak gönüldaşın yanında hakiki sesi çıkarabilirim."`
+        }
+      ]
+    }
+  ]
+},
+{
+  id: 'mo_bai_zhiji_9',
+  npcId: 'mo_bai',
+  requiredFriendship: 2250,
+  requiresZhiji: true,
+  title: 'Gönüldaş Sazı',
+  scenes: [
+    {
+      text: `Mahir daha önce hiç görmediğin bir saz kutusu açar. İçinde küçük, eski bir saz vardır. Üstüne küçük bir işaret kazınmıştır. "Bunu ustam bana bırakmıştı. Demişti ki, gerçek gönüldaşı bulunca bunu ona emanet et."`
+    },
+    {
+      text: `"Çalmayı bilmen şart değil." der, sazı dikkatle sana uzatırken. "Yanında dursun yeter; böylece benim sesim de yanında kalır." Bakışları beklenmedik kadar yumuşaktır. "Eskiler, anlayan gidince sazı kırar der. Ben öyle yapmam. Çünkü sen varsın."`,
+      choices: [
+        {
+          text: `Sazı iki elinle alırsın. "Bu saz elimde kaldıkça sesin de gönlümde kalır. Ben senin ezgini unutmayacağım."`,
+          friendshipChange: 160,
+          response: `Mahir gözlerini kapatıp kendi sazında tek bir tel titreştirir. Nota geceye yayılır. "...İyi." der. "Öyleyse bu ses hiç kaybolmaz."`
+        },
+        {
+          text: `"Mahir, bunu iyi saklayacağım."`,
+          friendshipChange: 120,
+          response: `"Saklamak yetmez." Mahir hafifçe gülümser. "Bir gün ilk notayı çıkarmayı öğrendiğinde, bana çal."`
+        }
+      ]
+    }
+  ]
+}
 ]
 
 /** Düğün olayı tanımı (genel, npcId çalışma anında değiştirilir) */
@@ -1943,4 +1959,4 @@ export const getHeartEventsForNpc = (npcId: string): HeartEventDef[] => {
 /** Olay kimliğine göre gönül olayı tanımını getirir */
 export const getHeartEventById = (id: string): HeartEventDef | undefined => {
   return HEART_EVENTS.find(e => e.id === id)
-              }
+          }
