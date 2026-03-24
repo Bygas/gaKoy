@@ -2,7 +2,7 @@ import type { AchievementDef, CommunityBundleDef } from '@/types'
 
 /** Başarım listesi */
 export const ACHIEVEMENTS: AchievementDef[] = [
-  // Koleksiyon
+  // Keşif
   {
     id: 'collector_10',
     name: 'Yola Yeni Çıkan',
@@ -155,14 +155,14 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   {
     id: 'quest_10',
     name: 'Köyün Yardımseveri',
-    description: 'Toplam 10 görev tamamla.',
+    description: 'Toplam 10 köy işi tamamla.',
     condition: { type: 'questsCompleted', count: 10 },
     reward: { money: 500 }
   },
   {
     id: 'quest_40',
     name: 'Her Derde Derman',
-    description: 'Toplam 40 görev tamamla.',
+    description: 'Toplam 40 köy işi tamamla.',
     condition: { type: 'questsCompleted', count: 40 },
     reward: { money: 2500 }
   },
@@ -183,7 +183,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     reward: { money: 1000, items: [{ itemId: 'jade_ring', quantity: 1 }] }
   },
 
-  // Evlilik & Çocuk
+  // Evlilik ve Çocuk
   {
     id: 'married',
     name: 'Kutlu Birlik',
@@ -199,7 +199,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     reward: { money: 520 }
   },
 
-  // Canavar
+  // Canavar Avı
   {
     id: 'slayer_50',
     name: 'Yaratık Avcısı',
@@ -284,11 +284,11 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     reward: { money: 10000 }
   },
 
-  // Daha fazla çiftçilik & balıkçılık
+  // Daha fazla tarım ve balıkçılık
   {
     id: 'farmer_500',
     name: 'Toprak Beyi',
-    description: 'Toplam 500 mahsul hasat et.',
+    description: 'Toplam 500 kez ürün hasat et.',
     condition: { type: 'cropHarvest', count: 500 },
     reward: { money: 2000 }
   },
@@ -300,7 +300,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     reward: { money: 2000 }
   },
 
-  // Tüm yetenekler & tüm tapınak görevleri
+  // Tüm yetenekler ve tüm tapınak görevleri
   {
     id: 'all_skills',
     name: 'Kâmil Usta',
@@ -311,16 +311,16 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   {
     id: 'all_bundles',
     name: 'Köy Birliği',
-    description: 'Tüm kutsal ocak görevlerini tamamla.',
+    description: 'Tüm tapınak görevlerini tamamla.',
     condition: { type: 'allBundlesComplete' },
     reward: { money: 5000 }
   },
 
-  // Koleksiyon, yemek, görev, dostluk
+  // Daha fazla keşif, yemek, görev ve dostluk
   {
     id: 'collector_100',
     name: 'Eşya Bilgesi',
-    description: '100 farklı nesne keşfet.',
+    description: '100 farklı eşya keşfet.',
     condition: { type: 'itemCount', count: 100 },
     reward: { money: 3000 }
   },
@@ -334,81 +334,81 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   {
     id: 'quest_80',
     name: 'Her İşe Koşan',
-    description: 'Toplam 80 görev tamamla.',
+    description: 'Toplam 80 köy işi tamamla.',
     condition: { type: 'questsCompleted', count: 80 },
     reward: { money: 3000 }
   },
   {
     id: 'friend_all_best',
-    name: 'Can Yoldaşı',
-    description: '6 köylü ile gönül bağı kur.',
+    name: 'Gönül Ulusu',
+    description: '6 köylüyle gönül bağı kur.',
     condition: { type: 'npcBestFriend', count: 6 },
     reward: { money: 3000, items: [{ itemId: 'jade_ring', quantity: 1 }] }
   },
 
-  // Koleksiyon
+  // Keşif
   {
     id: 'collector_5',
     name: 'Meraklı Çırak',
-    description: '5 farklı nesne keşfet.',
+    description: '5 farklı eşya keşfet.',
     condition: { type: 'itemCount', count: 5 },
     reward: { money: 100 }
   },
   {
     id: 'collector_20',
     name: 'Gezgin Göz',
-    description: '20 farklı nesne keşfet.',
+    description: '20 farklı eşya keşfet.',
     condition: { type: 'itemCount', count: 20 },
     reward: { money: 300 }
   },
   {
     id: 'collector_45',
     name: 'Diyar Tanıyan',
-    description: '45 farklı nesne keşfet.',
+    description: '45 farklı eşya keşfet.',
     condition: { type: 'itemCount', count: 45 },
     reward: { money: 800 }
   },
   {
     id: 'collector_80',
     name: 'Bilge Derleyici',
-    description: '80 farklı nesne keşfet.',
+    description: '80 farklı eşya keşfet.',
     condition: { type: 'itemCount', count: 80 },
     reward: { money: 2000 }
   },
   {
     id: 'collector_120',
     name: 'Varlık Bilgesi',
-    description: '120 farklı nesne keşfet.',
+    description: '120 farklı eşya keşfet.',
     condition: { type: 'itemCount', count: 120 },
     reward: { money: 5000 }
   },
   {
     id: 'collector_150',
     name: 'Her Şeyi Bilen',
-    description: '150 farklı nesne keşfet.',
+    description: '150 farklı eşya keşfet.',
     condition: { type: 'itemCount', count: 150 },
     reward: { money: 8000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
   },
 
-  // Çiftçilik
+  // Tarım
   {
     id: 'farmer_10',
     name: 'Toprak Çırağı',
-    description: '10 mahsul hasat et.',
+    description: 'Toplam 10 kez ürün hasat et.',
     condition: { type: 'cropHarvest', count: 10 },
     reward: { money: 100 }
   },
   {
     id: 'farmer_100',
     name: 'Usta Çiftçi',
-    description: '100 mahsul hasat et.',
+    description: 'Toplam 100 kez ürün hasat et.',
     condition: { type: 'cropHarvest', count: 100 },
     reward: { money: 500 }
   },
   {
     id: 'farmer_1000',
     name: 'Toprağın Efsanesi',
-    description: '1000 mahsul hasat et.',
+    description: 'Toplam 1000 kez ürün hasat et.',
     condition: { type: 'cropHarvest', count: 1000 },
     reward: { money: 5000, items: [{ itemId: 'iridium_ore', quantity: 5 }] }
   },
@@ -417,14 +417,14 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   {
     id: 'fisher_5',
     name: 'Irmak Çocuğu',
-    description: '5 balık yakala.',
+    description: 'Toplam 5 balık yakala.',
     condition: { type: 'fishCaught', count: 5 },
     reward: { money: 100 }
   },
   {
     id: 'fisher_50',
     name: 'Olta Ustası',
-    description: '50 balık yakala.',
+    description: 'Toplam 50 balık yakala.',
     condition: { type: 'fishCaught', count: 50 },
     reward: { money: 500 }
   },
@@ -436,7 +436,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     reward: { money: 5000, items: [{ itemId: 'prismatic_shard', quantity: 1 }] }
   },
 
-  // Zenginlik
+  // Para
   {
     id: 'rich_1000',
     name: 'İlk Akçe Birikimi',
@@ -473,7 +473,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     reward: { money: 30000, items: [{ itemId: 'prismatic_shard', quantity: 3 }] }
   },
 
-  // Aşçılık
+  // Yemek
   {
     id: 'chef_5',
     name: 'Ocak Çırağı',
@@ -526,32 +526,32 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     reward: { money: 5000, items: [{ itemId: 'dragon_jade', quantity: 1 }] }
   },
 
-  // Canavar avı
+  // Canavar Avı
   {
     id: 'slayer_10',
     name: 'İlk Kılıç Denemesi',
-    description: 'Toplam 10 yaratık öldür.',
+    description: 'Toplam 10 yaratık yok et.',
     condition: { type: 'monstersKilled', count: 10 },
     reward: { money: 100 }
   },
   {
     id: 'slayer_100',
     name: 'Köy Koruyucusu',
-    description: 'Toplam 100 yaratık öldür.',
+    description: 'Toplam 100 yaratık yok et.',
     condition: { type: 'monstersKilled', count: 100 },
     reward: { money: 500 }
   },
   {
     id: 'slayer_300',
     name: 'Uğursuzluk Kıranı',
-    description: 'Toplam 300 yaratık öldür.',
+    description: 'Toplam 300 yaratık yok et.',
     condition: { type: 'monstersKilled', count: 300 },
     reward: { money: 2000 }
   },
   {
     id: 'slayer_2000',
     name: 'Destanlık Avcı',
-    description: 'Toplam 2000 yaratık öldür.',
+    description: 'Toplam 2000 yaratık yok et.',
     condition: { type: 'monstersKilled', count: 2000 },
     reward: { money: 10000, items: [{ itemId: 'dragon_jade', quantity: 2 }] }
   },
@@ -560,21 +560,21 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   {
     id: 'shipper_5',
     name: 'Pazar Yolcusu',
-    description: '5 farklı nesneyi sevk et.',
+    description: '5 farklı eşyayı sevk et.',
     condition: { type: 'shippedCount', count: 5 },
     reward: { money: 100 }
   },
   {
     id: 'shipper_20',
     name: 'Kervan Yolu Açan',
-    description: '20 farklı nesneyi sevk et.',
+    description: '20 farklı eşyayı sevk et.',
     condition: { type: 'shippedCount', count: 20 },
     reward: { money: 500 }
   },
   {
     id: 'shipper_50',
     name: 'Ticaret Beyi',
-    description: '50 farklı nesneyi sevk et.',
+    description: '50 farklı eşyayı sevk et.',
     condition: { type: 'shippedCount', count: 50 },
     reward: { money: 2000 }
   },
@@ -639,73 +639,73 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     reward: { money: 4000, items: [{ itemId: 'shadow_ore', quantity: 5 }] }
   },
 
-  // Kafatası Madeni
+  // Kuru Kafa Madeni
   {
     id: 'skull_10',
     name: 'Kuru Kuyu Yolcusu',
-    description: 'Kafatası Madeninde 10. kata ulaş.',
+    description: 'Kuru Kafa Madeninde 10. kata ulaş.',
     condition: { type: 'skullCavernFloor', floor: 10 },
     reward: { money: 1000 }
   },
   {
     id: 'skull_50',
     name: 'Derinlik Aşanı',
-    description: 'Kafatası Madeninde 50. kata ulaş.',
+    description: 'Kuru Kafa Madeninde 50. kata ulaş.',
     condition: { type: 'skullCavernFloor', floor: 50 },
     reward: { money: 5000, items: [{ itemId: 'iridium_ore', quantity: 10 }] }
   },
   {
     id: 'skull_75',
     name: 'Öte Âlem Gezgini',
-    description: 'Kafatası Madeninde 75. kata ulaş.',
+    description: 'Kuru Kafa Madeninde 75. kata ulaş.',
     condition: { type: 'skullCavernFloor', floor: 75 },
     reward: { money: 8000, items: [{ itemId: 'dragon_jade', quantity: 1 }] }
   },
   {
     id: 'skull_150',
     name: 'Uçsuz Dip',
-    description: 'Kafatası Madeninde 150. kata ulaş.',
+    description: 'Kuru Kafa Madeninde 150. kata ulaş.',
     condition: { type: 'skullCavernFloor', floor: 150 },
     reward: { money: 20000, items: [{ itemId: 'prismatic_shard', quantity: 2 }] }
   },
 
-  // Gönül bağı
+  // Dostluk
   {
     id: 'friend_best_2',
     name: 'İki Can Dost',
-    description: '2 köylü ile gönül bağı kur.',
+    description: '2 köylüyle gönül bağı kur.',
     condition: { type: 'npcBestFriend', count: 2 },
     reward: { money: 500 }
   },
   {
     id: 'friend_best_3',
     name: 'Can Yoldaşları',
-    description: '3 köylü ile gönül bağı kur.',
+    description: '3 köylüyle gönül bağı kur.',
     condition: { type: 'npcBestFriend', count: 3 },
     reward: { money: 1000 }
   },
   {
     id: 'friend_best_4',
     name: 'Dost Eli Geniş',
-    description: '4 köylü ile gönül bağı kur.',
+    description: '4 köylüyle gönül bağı kur.',
     condition: { type: 'npcBestFriend', count: 4 },
     reward: { money: 2000 }
   },
 
-  // Sosyallik
+  // Sosyal
   {
     id: 'social_all_friendly',
     name: 'İyilikle Anılan',
-    description: 'Tüm köylülerle "tanışık" ol.',
+    description: 'Tüm köylülerle "Dost" ol.',
     condition: { type: 'npcFriendship', level: 'friendly' },
     reward: { money: 2000 }
   },
 
-  // Yetenek seviyeleri
+  // Yetenek Seviyeleri
   {
     id: 'farming_5',
     name: 'Toprağın Yolunu Bilen',
-    description: 'Ekin biçme yeteneğini 5. seviyeye çıkar.',
+    description: 'Çiftçilik yeteneğini 5. seviyeye çıkar.',
     condition: { type: 'skillLevel', skillType: 'farming', level: 5 },
     reward: { money: 300 }
   },
@@ -718,7 +718,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   },
   {
     id: 'foraging_10',
-    name: "Toplayıcılık Pir'i",
+    name: 'Toplayıcılık Piri',
     description: 'Toplayıcılık yeteneğini 10. seviyeye çıkar.',
     condition: { type: 'skillLevel', skillType: 'foraging', level: 10 },
     reward: { money: 2000 }
@@ -732,7 +732,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   },
   {
     id: 'fishing_10',
-    name: 'Olta Pir’i',
+    name: 'Balıkçılık Piri',
     description: 'Balıkçılık yeteneğini 10. seviyeye çıkar.',
     condition: { type: 'skillLevel', skillType: 'fishing', level: 10 },
     reward: { money: 2000 }
@@ -746,7 +746,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   },
   {
     id: 'mining_10',
-    name: 'Maden Pir’i',
+    name: 'Maden Piri',
     description: 'Madencilik yeteneğini 10. seviyeye çıkar.',
     condition: { type: 'skillLevel', skillType: 'mining', level: 10 },
     reward: { money: 2000 }
@@ -818,7 +818,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   },
   {
     id: 'hybrid_50',
-    name: 'Tohum Pir’i',
+    name: 'Tohum Piri',
     description: '50 melez tür keşfet.',
     condition: { type: 'hybridsDiscovered', count: 50 },
     reward: { money: 5000 }
@@ -859,7 +859,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     reward: { money: 15000, items: [{ itemId: 'prismatic_shard', quantity: 2 }] }
   },
 
-  // Melez sevkiyatı
+  // Melez Sevkiyatı
   {
     id: 'hybrid_ship_1',
     name: 'İlk Melez Satışı',
@@ -935,7 +935,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
     reward: { money: 10000, items: [{ itemId: 'iridium_bar', quantity: 5 }] }
   },
 
-  // Ruhânî varlıklar
+  // Ruhânî Varlıklar
   {
     id: 'spirit_first',
     name: 'İlk Sezi',
@@ -1323,4 +1323,4 @@ export const getAchievementById = (id: string): AchievementDef | undefined => {
 
 export const getBundleById = (id: string): CommunityBundleDef | undefined => {
   return COMMUNITY_BUNDLES.find(b => b.id === id)
-    }
+  }
