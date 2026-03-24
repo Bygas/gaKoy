@@ -26,19 +26,19 @@ export const useAnimalStore = defineStore('animal', () => {
   ])
   const animals = ref<Animal[]>([])
 
-  /** 鸡舍孵化器状态 (同时最多1个) */
+  /** Kümes kuluçka durumu (aynı anda en fazla 1 adet) */
   const incubating = ref<IncubationState | null>(null)
 
-  /** 牲口棚孵化器状态 (同时最多1个, barn level ≥ 2) */
+  /** Ahır kuluçka durumu (aynı anda en fazla 1 adet, barn level ≥ 2) */
   const barnIncubating = ref<IncubationState | null>(null)
 
-  /** 宠物状态 */
+  /** Evcil hayvan durumu */
   const pet = ref<PetState | null>(null)
 
-  /** 今天是否已放牧 */
+  /** Bugün otlatma yapıldı mı */
   const grazedToday = ref(false)
 
-  /** 已安装自动抚摸机的建筑类型 */
+  /** Otomatik sevme düzeneği takılı yapı türleri */
   const autoPetterBuildings = ref<AnimalBuildingType[]>([])
 
   const coopBuilt = computed(() => buildings.value.find(b => b.type === 'coop')?.built ?? false)
@@ -59,13 +59,13 @@ export const useAnimalStore = defineStore('animal', () => {
     })
   )
 
-  /** 获取马 */
+  /** Atı getir */
   const getHorse = computed(() => animals.value.find(a => a.type === 'horse') ?? null)
 
-  /** 是否拥有马 */
+  /** At var mı */
   const hasHorse = computed(() => getHorse.value !== null)
 
-  /** 建造畜舍 */
+  /** Hayvan barınağı inşa et */
   const buildBuilding = (type: AnimalBuildingType): boolean => {
     const playerStore = usePlayerStore()
 
@@ -75,14 +75,14 @@ export const useAnimalStore = defineStore('animal', () => {
     const def = ANIMAL_BUILDINGS.find(d => d.type === type)
     if (!def) return false
 
-    // 检查材料
+    // Malzemeleri denetle
     for (const mat of def.materialCost) {
       if (getCombinedItemCount(mat.itemId) < mat.quantity) return false
     }
-    // 检查铜钱
+    // Parayı denetle
     if (!playerStore.spendMoney(def.cost)) return false
 
-    // 扣除材料
+    // Malzemeleri düş
     for (const mat of def.materialCost) {
       removeCombinedItem(mat.itemId, mat.quantity)
     }
@@ -92,7 +92,7 @@ export const useAnimalStore = defineStore('animal', () => {
     return true
   }
 
-  /** 升级畜舍 */
+  /** Hayvan barınağını yükselt */
   const upgradeBuilding = (type: AnimalBuildingType): boolean => {
     const playerStore = usePlayerStore()
 
@@ -115,14 +115,14 @@ export const useAnimalStore = defineStore('animal', () => {
     return true
   }
 
-  /** 购买动物 */
+  /** Hayvan satın al */
   const buyAnimal = (animalType: AnimalType, customName: string): boolean => {
     const playerStore = usePlayerStore()
 
     const def = ANIMAL_DEFS.find(d => d.type === animalType)
     if (!def) return false
 
-    // 检查容量 (level × 4, 马厩固定1)
+    // Kapasite denetimi (seviye × 4, ahır sabit 1)
     const building = buildings.value.find(b => b.type === def.building)
     if (!building?.built) return false
     const maxCapacity = def.building === 'stable' ? 1 : building.level * 4
@@ -132,7 +132,7 @@ export const useAnimalStore = defineStore('animal', () => {
     }).length
     if (currentCount >= maxCapacity) return false
 
-    // 检查铜钱
+    // Parayı denetle
     if (!playerStore.spendMoney(def.cost)) return false
 
     animals.value.push({
@@ -153,7 +153,7 @@ export const useAnimalStore = defineStore('animal', () => {
     return true
   }
 
-  /** 喂食所有动物（消耗指定饲料，马也需要喂食；从背包+仓库箱子取饲料） */
+  /** Tüm hayvanları yemle (belirtilen yem harcanır, at da yem ister; çanta + depodan alınır) */
   const feedAll = (feedId: string = HAY_ITEM_ID): { fedCount: number; noFeedCount: number } => {
     let fedCount = 0
     let noFeedCount = 0
@@ -172,7 +172,7 @@ export const useAnimalStore = defineStore('animal', () => {
     return { fedCount, noFeedCount }
   }
 
-  /** 标记所有动物为已喂食（不消耗饲料，用于晨间雇工/配偶预喂食） */
+  /** Tüm hayvanları yemlenmiş say (yem harcamaz, sabah yardımcısı/eş ön yemlemesi için) */
   const markAllFed = () => {
     for (const animal of animals.value) {
       if (!animal.wasFed) {
@@ -183,7 +183,7 @@ export const useAnimalStore = defineStore('animal', () => {
     }
   }
 
-  /** 抚摸动物 */
+  /** Hayvanı sev */
   const petAnimal = (animalId: string): boolean => {
     const animal = animals.value.find(a => a.id === animalId)
     if (!animal || animal.wasPetted) return false
@@ -193,7 +193,7 @@ export const useAnimalStore = defineStore('animal', () => {
     return true
   }
 
-  /** 一键抚摸所有动物+宠物 */
+  /** Tüm hayvanları ve evcil hayvanı tek seferde sev */
   const petAllAnimals = (): number => {
     const coopmasterBonus = useSkillStore().getSkill('farming').perk10 === 'coopmaster' ? 1.5 : 1.0
     let count = 0
@@ -212,39 +212,39 @@ export const useAnimalStore = defineStore('animal', () => {
   }
 
   // ============================================================
-  // 孵化器
+  // Kuluçka
   // ============================================================
 
-  /** 开始鸡舍孵化 (需鸡舍 ≥ 2 级, 仅限 coop 类蛋) */
+  /** Kümes kuluçkasını başlat (kümes ≥ 2. seviye olmalı, yalnızca coop türü yumurtalar) */
   const startIncubation = (itemId: string): { success: boolean; message: string } => {
     const coopBuilding = buildings.value.find(b => b.type === 'coop')
     if (!coopBuilding?.built || coopBuilding.level < 2) {
-      return { success: false, message: '需要大型鸡舍（2级）才能使用孵化器。' }
+      return { success: false, message: 'Kuluçka düzeneğini kullanmak için Büyük Kümes (2. seviye) gerekir.' }
     }
     if (incubating.value) {
-      return { success: false, message: '孵化器中已有蛋在孵化。' }
+      return { success: false, message: 'Kuluçkada zaten bir yumurta var.' }
     }
     const mapping = INCUBATION_MAP[itemId]
     if (!mapping || mapping.building !== 'coop') {
-      return { success: false, message: '这个物品不能在鸡舍孵化。' }
+      return { success: false, message: 'Bu nesne kümeste kuluçkaya yatırılamaz.' }
     }
 
     const inventoryStore = useInventoryStore()
     if (!inventoryStore.removeItem(itemId, 1)) {
-      return { success: false, message: '背包中没有这个物品。' }
+      return { success: false, message: 'Çantada bu nesne yok.' }
     }
 
-    // coopmaster 专精减半孵化时间
+    // coopmaster uzmanlığı kuluçka süresini yarıya indirir
     const skillStore = useSkillStore()
     const hasCoopmaster = skillStore.getSkill('farming').perk10 === 'coopmaster'
     const days = hasCoopmaster ? Math.ceil(mapping.days / 2) : mapping.days
 
     incubating.value = { itemId, animalType: mapping.animalType, daysLeft: days }
     const animalDef = ANIMAL_DEFS.find(d => d.type === mapping.animalType)
-    return { success: true, message: `开始孵化${animalDef?.name ?? '动物'}，预计${days}天后孵出。` }
+    return { success: true, message: `${animalDef?.name ?? 'Hayvan'} için kuluçka başladı. Yaklaşık ${days} gün sonra çıkacak.` }
   }
 
-  /** 每日孵化器更新 */
+  /** Günlük kümes kuluçka güncellemesi */
   const dailyIncubatorUpdate = (): { hatched?: { type: AnimalType; name: string } } => {
     if (!incubating.value) return {}
 
@@ -253,13 +253,13 @@ export const useAnimalStore = defineStore('animal', () => {
       const { animalType, itemId } = incubating.value
       const def = ANIMAL_DEFS.find(d => d.type === animalType)
 
-      // 检查容量
+      // Kapasite denetimi
       const building = buildings.value.find(b => b.type === 'coop')
       const maxCapacity = (building?.level ?? 0) * 4
       const currentCount = coopAnimals.value.length
 
       if (currentCount >= maxCapacity) {
-        // 容量满，退回蛋
+        // Yer doluysa yumurtayı geri ver
         const inventoryStore = useInventoryStore()
         inventoryStore.addItem(itemId, 1)
         incubating.value = null
@@ -267,7 +267,7 @@ export const useAnimalStore = defineStore('animal', () => {
       }
 
       const count = animals.value.filter(a => a.type === animalType).length
-      const name = `${def?.name ?? '动物'}${count + 1}`
+      const name = `${def?.name ?? 'Hayvan'}${count + 1}`
       animals.value.push({
         id: `${animalType}_${Date.now()}`,
         type: animalType,
@@ -290,23 +290,23 @@ export const useAnimalStore = defineStore('animal', () => {
     return {}
   }
 
-  /** 开始牲口棚孵化 (需牲口棚 ≥ 2 级, 仅限 barn 类蛋) */
+  /** Ahır kuluçkasını başlat (ahır ≥ 2. seviye olmalı, yalnızca barn türü yumurtalar) */
   const startBarnIncubation = (itemId: string): { success: boolean; message: string } => {
     const barnBuilding = buildings.value.find(b => b.type === 'barn')
     if (!barnBuilding?.built || barnBuilding.level < 2) {
-      return { success: false, message: '需要大型牲口棚（2级）才能使用孵化器。' }
+      return { success: false, message: 'Kuluçka düzeneğini kullanmak için Büyük Ahır (2. seviye) gerekir.' }
     }
     if (barnIncubating.value) {
-      return { success: false, message: '牲口棚孵化器中已有蛋在孵化。' }
+      return { success: false, message: 'Ahır kuluçkasında zaten bir yumurta var.' }
     }
     const mapping = INCUBATION_MAP[itemId]
     if (!mapping || mapping.building !== 'barn') {
-      return { success: false, message: '这个物品不能在牲口棚孵化。' }
+      return { success: false, message: 'Bu nesne ahırda kuluçkaya yatırılamaz.' }
     }
 
     const inventoryStore = useInventoryStore()
     if (!inventoryStore.removeItem(itemId, 1)) {
-      return { success: false, message: '背包中没有这个物品。' }
+      return { success: false, message: 'Çantada bu nesne yok.' }
     }
 
     const skillStore = useSkillStore()
@@ -315,10 +315,10 @@ export const useAnimalStore = defineStore('animal', () => {
 
     barnIncubating.value = { itemId, animalType: mapping.animalType, daysLeft: days }
     const animalDef = ANIMAL_DEFS.find(d => d.type === mapping.animalType)
-    return { success: true, message: `开始在牲口棚孵化${animalDef?.name ?? '动物'}，预计${days}天后孵出。` }
+    return { success: true, message: `${animalDef?.name ?? 'Hayvan'} için ahırda kuluçka başladı. Yaklaşık ${days} gün sonra çıkacak.` }
   }
 
-  /** 每日牲口棚孵化器更新 */
+  /** Günlük ahır kuluçka güncellemesi */
   const dailyBarnIncubatorUpdate = (): { hatched?: { type: AnimalType; name: string } } => {
     if (!barnIncubating.value) return {}
 
@@ -339,7 +339,7 @@ export const useAnimalStore = defineStore('animal', () => {
       }
 
       const count = animals.value.filter(a => a.type === animalType).length
-      const name = `${def?.name ?? '动物'}${count + 1}`
+      const name = `${def?.name ?? 'Hayvan'}${count + 1}`
       animals.value.push({
         id: `${animalType}_${Date.now()}`,
         type: animalType,
@@ -363,15 +363,15 @@ export const useAnimalStore = defineStore('animal', () => {
   }
 
   // ============================================================
-  // 宠物
+  // Evcil hayvan
   // ============================================================
 
-  /** 领养宠物 */
+  /** Evcil hayvan sahiplen */
   const adoptPet = (type: PetType, name: string) => {
     pet.value = { type, name, friendship: 0, wasPetted: false }
   }
 
-  /** 抚摸宠物 */
+  /** Evcil hayvanı sev */
   const petThePet = (): boolean => {
     if (!pet.value || pet.value.wasPetted) return false
     pet.value.wasPetted = true
@@ -379,17 +379,17 @@ export const useAnimalStore = defineStore('animal', () => {
     return true
   }
 
-  /** 每日宠物更新 */
+  /** Günlük evcil hayvan güncellemesi */
   const dailyPetUpdate = (): { item?: string } => {
     if (!pet.value) return {}
 
-    // 未抚摸扣好感
+    // Sevilmediyse yakınlık azalır
     if (!pet.value.wasPetted) {
       pet.value.friendship = Math.max(0, pet.value.friendship - 2)
     }
     pet.value.wasPetted = false
 
-    // 高好感带回采集物
+    // Yüksek yakınlıkta toplama eşyası getirebilir
     if (pet.value.friendship >= 800 && Math.random() < 0.1) {
       const finds = ['herb', 'wild_berry', 'pine_cone', 'bamboo_shoot', 'wild_mushroom']
       const item = finds[Math.floor(Math.random() * finds.length)]!
@@ -401,32 +401,32 @@ export const useAnimalStore = defineStore('animal', () => {
   }
 
   // ============================================================
-  // 放牧
+  // Otlatma
   // ============================================================
 
-  /** 放牧（春/夏/秋非雨天；冬季仅牦牛可放牧） */
+  /** Otlatma (ilkbahar/yaz/güz yağmursuz günlerde; kışın yalnız yak otlayabilir) */
   const grazeAnimals = (): { success: boolean; count: number; message: string; bonusProducts?: { itemId: string; quality: Quality }[] } => {
     if (grazedToday.value) {
-      return { success: false, count: 0, message: '今天已经放牧过了。' }
+      return { success: false, count: 0, message: 'Bugün otlatma zaten yapıldı.' }
     }
 
     const gameStore = useGameStore()
     if (gameStore.isRainy) {
-      return { success: false, count: 0, message: '雨天不能放牧。' }
+      return { success: false, count: 0, message: 'Yağmurlu havada otlatma yapılamaz.' }
     }
 
-    // 只有喂食过的动物可放牧（排除马）
+    // Yalnız yemlenmiş hayvanlar otlayabilir (at hariç)
     let grazeable: Animal[]
     if (gameStore.season === 'winter') {
-      // 冬季仅牦牛可放牧
+      // Kışın yalnız yak otlayabilir
       grazeable = animals.value.filter(a => a.wasFed && a.type === 'yak')
       if (grazeable.length === 0) {
-        return { success: false, count: 0, message: '冬天只有牦牛可以放牧，且需先喂食。' }
+        return { success: false, count: 0, message: 'Kışın yalnız yak otlayabilir, hem de önce yemlenmiş olması gerekir.' }
       }
     } else {
       grazeable = animals.value.filter(a => a.wasFed && a.type !== 'horse')
       if (grazeable.length === 0) {
-        return { success: false, count: 0, message: '没有已喂食的动物可放牧。' }
+        return { success: false, count: 0, message: 'Otlatılabilecek yemlenmiş hayvan yok.' }
       }
     }
 
@@ -437,13 +437,13 @@ export const useAnimalStore = defineStore('animal', () => {
       animal.mood = 255
       animal.friendship = Math.min(1000, animal.friendship + 10)
 
-      // 猪放牧时额外找到松露
+      // Domuz otlarken fazladan trüf bulur
       if (animal.type === 'pig') {
         bonusProducts.push({ itemId: 'truffle', quality: getAnimalProductQuality(animal.friendship) })
       }
     }
 
-    // 将猪找到的松露直接加入背包
+    // Domuzların bulduğu trüfleri doğrudan çantaya ekle
     if (bonusProducts.length > 0) {
       const inventoryStore = useInventoryStore()
       for (const bp of bonusProducts) {
@@ -452,24 +452,24 @@ export const useAnimalStore = defineStore('animal', () => {
     }
 
     const pigCount = bonusProducts.length
-    let message = `${grazeable.length}只动物在草地上愉快地觅食。`
+    let message = `${grazeable.length} hayvan çayıra çıkıp keyifle otlandı.`
     if (pigCount > 0) {
-      message += `猪找到了${pigCount}个松露！`
+      message += ` Domuzlar ${pigCount} adet trüf buldu!`
     }
 
     return { success: true, count: grazeable.length, message, bonusProducts: bonusProducts.length > 0 ? bonusProducts : undefined }
   }
 
-  /** 饥饿致死天数上限 */
+  /** Açlıktan ölme gün sınırı */
   const HUNGER_DEATH_DAYS = 7
-  /** 连续饥饿≥此天数时有概率生病 */
+  /** Açlık bunun üstüne çıkarsa hastalanma ihtimali doğar */
   const HUNGER_SICK_THRESHOLD = 3
-  /** 每天生病概率（饥饿≥阈值时） */
+  /** Günlük hastalanma ihtimali */
   const SICK_CHANCE = 0.3
-  /** 连续生病致死天数上限 */
+  /** Uzun süre hastalıktan ölme gün sınırı */
   const SICK_DEATH_DAYS = 5
 
-  /** 每日更新：产品收集、心情/友好度变化、饥饿/生病/死亡 */
+  /** Günlük güncelleme: ürün toplama, ruh hâli/yakınlık değişimi, açlık/hastalık/ölüm */
   const dailyUpdate = (): { products: { itemId: string; quality: Quality }[]; died: string[]; gotSick: string[]; healed: string[] } => {
     const products: { itemId: string; quality: Quality }[] = []
     const died: string[] = []
@@ -479,21 +479,22 @@ export const useAnimalStore = defineStore('animal', () => {
     const gameStore = useGameStore()
     const coopmasterBonus = skillStore.getSkill('farming').perk10 === 'coopmaster' ? 1.5 : 1.0
     const hasShepherd = skillStore.getSkill('farming').perk10 === 'shepherd'
+
     for (const animal of animals.value) {
       animal.daysOwned++
       animal.daysSinceProduct++
 
-      // === 饥饿系统 ===
+      // === Açlık sistemi ===
       if (!animal.wasFed) {
         animal.hunger++
-        // 骆驼夏季耐饿：饥饿增长减半（向下取整，至少+1已在上面）
+        // Deve yazın açlığa daha dayanıklıdır: açlık artışı yarıya iner
         if (animal.type === 'camel' && gameStore.season === 'summer' && animal.hunger > 1) {
           animal.hunger = Math.max(1, animal.hunger - 1)
         }
       } else {
-        // 喂食后饥饿归零
+        // Yemlenince açlık sıfırlanır
         animal.hunger = 0
-        // 喂食后治愈疾病：活力饲料100%，其他50%
+        // Yemlenince hastalık iyileşebilir: canlılık yemi %100, diğerleri %50
         if (animal.sick) {
           const cureChance = animal.fedWith === VITALITY_FEED_ID ? 1.0 : 0.5
           if (Math.random() < cureChance) {
@@ -504,9 +505,9 @@ export const useAnimalStore = defineStore('animal', () => {
         }
       }
 
-      // 饥饿达到阈值时有概率生病
+      // Açlık eşik değere gelince hastalanma olasılığı
       if (animal.hunger >= HUNGER_SICK_THRESHOLD && !animal.sick && Math.random() < SICK_CHANCE) {
-        // 草甸田庄：动物不会因饥饿生病
+        // Çayır Çiftliği: hayvanlar açlıktan hastalanmaz
         if (gameStore.farmMapType !== 'meadowlands') {
           animal.sick = true
           animal.sickDays = 0
@@ -514,23 +515,23 @@ export const useAnimalStore = defineStore('animal', () => {
         }
       }
 
-      // 生病天数累计
+      // Hastalık günü birikir
       if (animal.sick) {
         animal.sickDays++
       }
 
-      // 饥饿致死 或 久病致死
+      // Açlıktan ya da uzun hastalıktan ölüm
       if (animal.hunger >= HUNGER_DEATH_DAYS || animal.sickDays >= SICK_DEATH_DAYS) {
         died.push(animal.name)
-        continue // 跳过后续处理，后面统一移除
+        continue
       }
 
-      // 友好度变化
+      // Yakınlık değişimi
       const friendshipMultiplier = gameStore.farmMapType === 'meadowlands' ? 1.5 : 1.0
-      // 仙缘能力：灵抚（gui_nv_3）动物好感获取+25%
+      // Ruh bağı yeteneği: Ruh Eli (gui_nv_3), hayvan yakınlığı kazanımı +%25
       const spiritFriendshipBonus = 1 + useHiddenNpcStore().getAbilityValue('gui_nv_3') / 100
 
-      // 自动抚摸机：若所在建筑已安装，自动标记已抚摸
+      // Otomatik sevme düzeneği: takılıysa otomatik sevildi say
       if (!animal.wasPetted) {
         const animalDef = ANIMAL_DEFS.find(d => d.type === animal.type)
         if (animalDef && autoPetterBuildings.value.includes(animalDef.building)) {
@@ -541,11 +542,11 @@ export const useAnimalStore = defineStore('animal', () => {
       if (!animal.wasFed) {
         animal.friendship = Math.max(0, animal.friendship - 10)
       }
-      // 牦牛: 未抚摸不扣友好度
+      // Yak: sevilmediyse yakınlık düşmez
       if (!animal.wasPetted && animal.type !== 'yak') {
         animal.friendship = Math.max(0, animal.friendship - 5)
       }
-      // 生病时友好度额外下降
+      // Hastaysa yakınlık ek olarak düşer
       if (animal.sick) {
         animal.friendship = Math.max(0, animal.friendship - 10)
       }
@@ -563,34 +564,34 @@ export const useAnimalStore = defineStore('animal', () => {
         )
       }
 
-      // 心情根据喂食调整
-      // 骆驼: 夏季未喂食不扣心情(耐热)
+      // Ruh hâli yeme göre değişir
+      // Deve: yazın yemlenmese de moral kaybetmez
       if (animal.wasFed) {
         const moodGain = animal.fedWith === PREMIUM_FEED_ID ? 60 : 30
         animal.mood = Math.min(255, animal.mood + moodGain)
       } else if (animal.type === 'camel' && gameStore.season === 'summer') {
-        // 骆驼夏季耐热，未喂食不扣心情
+        // Deve yazın sıcağa dayanıklıdır, yemlenmese de morali düşmez
       } else {
         animal.mood = Math.max(0, animal.mood - 50)
       }
-      // 生病时心情额外下降
+      // Hastalıkta ruh hâli ayrıca düşer
       if (animal.sick) {
         animal.mood = Math.max(0, animal.mood - 30)
       }
 
-      // 产品检查（跳过马，马无产出；生病时不产出）
+      // Ürün kontrolü (atı geç; at ürün vermez, hastaysa da vermez)
       const def = ANIMAL_DEFS.find(d => d.type === animal.type)
       if (def && def.produceDays > 0 && animal.wasFed && !animal.sick) {
         const effectiveDays = animal.fedWith === NOURISHING_FEED_ID ? Math.max(1, def.produceDays - 1) : def.produceDays
         if (animal.daysSinceProduct >= effectiveDays) {
           let quality = getAnimalProductQuality(animal.friendship)
-          // 牧羊人专精：品质提升一档
+          // Çoban uzmanlığı: kalite bir kademe artar
           if (hasShepherd) {
             const qualityOrder: Quality[] = ['normal', 'fine', 'excellent', 'supreme']
             const idx = qualityOrder.indexOf(quality)
             quality = qualityOrder[Math.min(idx + 1, qualityOrder.length - 1)]!
           }
-          // 仙缘结缘：灵织（animal_blessing）动物产品品质+1
+          // Ruh bağı: Hayvan Kut'u ürün kalitesini +1 artırabilir
           const animalBondBonus = useHiddenNpcStore().getBondBonusByType('animal_blessing')
           if (animalBondBonus?.type === 'animal_blessing' && Math.random() < animalBondBonus.chance) {
             const qualityOrder2: Quality[] = ['normal', 'fine', 'excellent', 'supreme']
@@ -600,33 +601,33 @@ export const useAnimalStore = defineStore('animal', () => {
           products.push({ itemId: def.productId, quality })
           animal.daysSinceProduct = 0
 
-          // 草甸田庄：40%概率额外产出1件
+          // Çayır Çiftliği: %40 olasılıkla 1 ek ürün
           if (gameStore.farmMapType === 'meadowlands' && Math.random() < 0.4) {
             products.push({ itemId: def.productId, quality })
           }
         }
       }
 
-      // 兔子: 好感≥600时4%概率额外产出幸运兔脚
+      // Tavşan: yakınlık ≥600 ise %4 ihtimalle tavşan ayağı bulur
       if (animal.type === 'rabbit' && animal.friendship >= 600 && !animal.sick && Math.random() < 0.04) {
         products.push({ itemId: 'rabbit_foot', quality: getAnimalProductQuality(animal.friendship) })
       }
 
-      // 重置每日状态
+      // Günlük durumu sıfırla
       animal.wasFed = false
       animal.fedWith = null
       animal.wasPetted = false
     }
 
-    // 移除死亡的动物（饿死或病死）
+    // Ölen hayvanları kaldır
     if (died.length > 0) {
       animals.value = animals.value.filter(a => a.hunger < HUNGER_DEATH_DAYS && a.sickDays < SICK_DEATH_DAYS)
     }
 
-    // 重置放牧状态
+    // Otlatma durumunu sıfırla
     grazedToday.value = false
 
-    // 自动抚摸机：为新一天预设抚摸状态，使 UI 正确显示「已摸」
+    // Otomatik sevme düzeneği: yeni gün için UI'da “sevildi” olarak görünsün
     for (const animal of animals.value) {
       const animalDef = ANIMAL_DEFS.find(d => d.type === animal.type)
       if (animalDef && autoPetterBuildings.value.includes(animalDef.building)) {
@@ -637,7 +638,7 @@ export const useAnimalStore = defineStore('animal', () => {
     return { products, died, gotSick, healed }
   }
 
-  /** 出售动物，返还购买价的一半 */
+  /** Hayvanı sat, alış fiyatının yarısını geri ver */
   const sellAnimal = (animalId: string): { success: boolean; refund: number; name: string } => {
     const idx = animals.value.findIndex(a => a.id === animalId)
     if (idx === -1) return { success: false, refund: 0, name: '' }
@@ -653,7 +654,7 @@ export const useAnimalStore = defineStore('animal', () => {
     return { success: true, refund, name }
   }
 
-  /** 治疗单只生病的动物（消耗1个兽药） */
+  /** Tek bir hasta hayvanı iyileştir (1 hayvan ilacı harcar) */
   const healAnimal = (animalId: string): boolean => {
     const animal = animals.value.find(a => a.id === animalId)
     if (!animal || !animal.sick) return false
@@ -664,7 +665,7 @@ export const useAnimalStore = defineStore('animal', () => {
     return true
   }
 
-  /** 治疗所有生病的动物（批量消耗兽药） */
+  /** Tüm hasta hayvanları iyileştir (toplu ilaç harcaması) */
   const healAllSick = (): { healedCount: number; noMedicineCount: number } => {
     const inventoryStore = useInventoryStore()
     let healedCount = 0
@@ -681,7 +682,7 @@ export const useAnimalStore = defineStore('animal', () => {
     return { healedCount, noMedicineCount }
   }
 
-  /** 根据友好度决定产品品质 */
+  /** Yakınlığa göre ürün kalitesini belirle */
   const getAnimalProductQuality = (friendship: number): Quality => {
     if (friendship >= 800) return 'supreme'
     if (friendship >= 500) return 'excellent'
@@ -689,7 +690,7 @@ export const useAnimalStore = defineStore('animal', () => {
     return 'normal'
   }
 
-  /** 修改动物名称（id='pet' 表示宠物） */
+  /** Hayvanın adını değiştir (id='pet' ise evcil hayvandır) */
   const renameAnimal = (id: string, newName: string): boolean => {
     const trimmed = newName.trim()
     if (!trimmed || trimmed.length > 8) return false
@@ -705,20 +706,20 @@ export const useAnimalStore = defineStore('animal', () => {
     return false
   }
 
-  /** 检查指定建筑是否已安装自动抚摸机 */
+  /** Belirli yapıda otomatik sevme düzeneği var mı */
   const hasAutoPetter = (buildingType: AnimalBuildingType): boolean => {
     return autoPetterBuildings.value.includes(buildingType)
   }
 
-  /** 安装自动抚摸机到指定建筑 */
+  /** Belirli yapıya otomatik sevme düzeneği kur */
   const installAutoPetter = (buildingType: AnimalBuildingType): { success: boolean; message: string } => {
-    if (buildingType === 'stable') return { success: false, message: '马厩不能安装自动抚摸机。' }
+    if (buildingType === 'stable') return { success: false, message: 'Atağıra otomatik sevme düzeneği kurulamaz.' }
     const building = buildings.value.find(b => b.type === buildingType)
-    if (!building || !building.built) return { success: false, message: '需要先建造畜舍。' }
-    if (building.level < 2) return { success: false, message: '需要大型畜舍（2级）才能安装。' }
-    if (autoPetterBuildings.value.includes(buildingType)) return { success: false, message: '该畜舍已安装自动抚摸机。' }
+    if (!building || !building.built) return { success: false, message: 'Önce ilgili yapıyı inşa etmek gerekir.' }
+    if (building.level < 2) return { success: false, message: 'Kurulum için büyük yapı (2. seviye) gerekir.' }
+    if (autoPetterBuildings.value.includes(buildingType)) return { success: false, message: 'Bu yapıda zaten otomatik sevme düzeneği var.' }
     autoPetterBuildings.value.push(buildingType)
-    return { success: true, message: `自动抚摸机已安装到${buildingType === 'coop' ? '鸡舍' : '畜棚'}。` }
+    return { success: true, message: `Otomatik sevme düzeneği ${buildingType === 'coop' ? 'kümese' : 'ahıra'} kuruldu.` }
   }
 
   const serialize = () => {
@@ -739,7 +740,7 @@ export const useAnimalStore = defineStore('animal', () => {
         ...b,
         level: b.level && b.level > 0 ? b.level : b.built ? 1 : 0
       }))
-      // 兼容旧存档：补充缺少的 stable 建筑
+      // Eski kayıt uyumluluğu: eksik stable yapısını ekle
       const savedTypes = new Set(savedBuildings.map((b: any) => b.type))
       if (!savedTypes.has('stable')) {
         savedBuildings.push({ type: 'stable', built: false, level: 0 })
