@@ -2,32 +2,32 @@
   <div class="game-panel max-w-sm w-full">
     <h3 class="text-accent text-sm mb-3 flex items-center space-x-1">
       <Ship :size="14" />
-      <span>端午赛龙舟</span>
+      <span>Kürek Yarışı</span>
     </h3>
 
-    <!-- 准备阶段 -->
+    <!-- Hazırlık aşaması -->
     <div v-if="phase === 'ready'">
-      <p class="text-xs text-muted mb-3">三条龙舟蓄势待发！疯狂点击「划桨」按钮让龙舟前进，10秒内看谁划得最远！</p>
-      <Button class="w-full" @click="startCountdown">开始比赛！</Button>
+      <p class="text-xs text-muted mb-3">Üç kayık hazır bekliyor! “Kürek çek” düğmesine delicesine basıp kayığını ileri götür; 10 saniye içinde en uzağa giden kazansın!</p>
+      <Button class="w-full" @click="startCountdown">Yarışı Başlat!</Button>
     </div>
 
-    <!-- 倒计时 -->
+    <!-- Geri sayım -->
     <div v-else-if="phase === 'countdown'" class="text-center py-6">
-      <p class="text-xs text-muted mb-3">准备——</p>
+      <p class="text-xs text-muted mb-3">Hazır ol —</p>
       <div class="countdown-num text-accent text-2xl">{{ countdownNum }}</div>
     </div>
 
-    <!-- 比赛中 -->
+    <!-- Yarış sırasında -->
     <div v-else-if="phase === 'racing'">
       <div class="flex items-center justify-between mb-2">
         <p class="text-xs text-muted">
           <Timer :size="12" class="inline -mt-0.5" />
-          剩余时间
+          Kalan süre
         </p>
-        <p class="text-sm font-bold" :class="timeLeft <= 3 ? 'text-danger time-pulse' : 'text-accent'">{{ timeLeft }}s</p>
+        <p class="text-sm font-bold" :class="timeLeft <= 3 ? 'text-danger time-pulse' : 'text-accent'">{{ timeLeft }}sn</p>
       </div>
 
-      <!-- 赛道 -->
+      <!-- Yarış parkuru -->
       <div class="border border-accent/20 p-2 mb-3">
         <div v-for="(boat, i) in boats" :key="i" class="mb-2 last:mb-0">
           <div class="flex items-center space-x-2 mb-0.5">
@@ -36,11 +36,11 @@
             </span>
             <span class="text-xs text-muted flex-1 text-right">{{ boat.progress }}m</span>
           </div>
-          <!-- 赛道条 -->
+          <!-- Parkur çubuğu -->
           <div class="h-5 bg-bg border relative overflow-hidden" :class="i === 0 ? 'border-accent/40' : 'border-accent/15'">
-            <!-- 终点线 -->
+            <!-- Bitiş çizgisi -->
             <div class="absolute top-0 bottom-0 right-0 w-px border-r border-dashed border-accent/30" />
-            <!-- 进度 -->
+            <!-- İlerleme -->
             <div
               class="h-full transition-all duration-100 flex items-center justify-end pr-0.5"
               :class="boatTrackClass(i)"
@@ -48,32 +48,32 @@
             >
               <Ship :size="12" class="relative z-10" :class="{ 'boat-rock': i === 0 && rowing }" />
             </div>
-            <!-- 水波纹 -->
+            <!-- Su dalgası -->
             <div class="wave-bg absolute inset-0 pointer-events-none opacity-15" />
           </div>
         </div>
       </div>
 
-      <!-- 划桨按钮 + 点击计数 -->
+      <!-- Kürek düğmesi + tıklama sayısı -->
       <div class="flex items-center space-x-2">
-        <Button class="flex-1 py-3 text-sm active:!bg-accent active:!text-bg paddle-btn" :icon="Zap" @click="paddle">划桨！</Button>
+        <Button class="flex-1 py-3 text-sm active:!bg-accent active:!text-bg paddle-btn" :icon="Zap" @click="paddle">Kürek çek!</Button>
         <div class="text-center min-w-12">
           <p class="text-accent text-sm font-bold">{{ clickCount }}</p>
-          <p class="text-xs text-muted leading-none">次</p>
+          <p class="text-xs text-muted leading-none">kez</p>
         </div>
       </div>
     </div>
 
-    <!-- 结束 -->
+    <!-- Bitiş -->
     <div v-else>
-      <p class="text-xs text-muted mb-2">比赛结束！最终排名：</p>
+      <p class="text-xs text-muted mb-2">Yarış bitti! Son sıralama:</p>
 
       <div class="border border-accent/20 mb-3">
         <div
           v-for="(entry, i) in rankings"
           :key="entry.name"
           class="flex items-center justify-between text-xs px-2 py-1.5 border-b border-accent/10 last:border-0"
-          :class="{ 'bg-accent/5': entry.name === '你' }"
+          :class="{ 'bg-accent/5': entry.name === 'Sen' }"
         >
           <div class="flex items-center space-x-2">
             <span class="w-5 flex justify-center" :class="rankColor(i)">
@@ -81,19 +81,19 @@
               <Medal v-else-if="i === 1" :size="12" />
               <Award v-else :size="12" />
             </span>
-            <span :class="{ 'text-accent': entry.name === '你' }">{{ entry.name }}</span>
+            <span :class="{ 'text-accent': entry.name === 'Sen' }">{{ entry.name }}</span>
           </div>
           <span class="text-muted">{{ entry.progress }}m</span>
         </div>
       </div>
 
       <div class="border border-accent/20 p-2 mb-3 text-center">
-        <span v-if="playerRank === 1" class="text-accent text-xs finish-flash">恭喜你获得冠军！奖金 800文</span>
-        <span v-else-if="playerRank === 2" class="text-success text-xs">你获得了亚军！奖金 400文</span>
-        <span v-else class="text-muted text-xs">获得了季军。奖金 200文</span>
+        <span v-if="playerRank === 1" class="text-accent text-xs finish-flash">Kutlu olsun, birinci oldun! Ödül 800 akçe</span>
+        <span v-else-if="playerRank === 2" class="text-success text-xs">İkinci oldun! Ödül 400 akçe</span>
+        <span v-else class="text-muted text-xs">Üçüncü oldun. Ödül 200 akçe</span>
       </div>
 
-      <Button class="w-full" @click="handleClaim">领取奖励</Button>
+      <Button class="w-full" @click="handleClaim">Ödülü Al</Button>
     </div>
   </div>
 </template>
@@ -127,9 +127,9 @@
   }
 
   const boats = ref<Boat[]>([
-    { name: '你', progress: 0 },
-    { name: '阿石队', progress: 0 },
-    { name: '小满队', progress: 0 }
+    { name: 'Sen', progress: 0 },
+    { name: 'Argun Takımı', progress: 0 },
+    { name: 'Yalvaç Takımı', progress: 0 }
   ])
 
   const timeLeft = ref(raceDuration)
@@ -144,7 +144,7 @@
   let cdTimeout: ReturnType<typeof setTimeout> | null = null
 
   const playerRank = computed(() => {
-    const idx = rankings.value.findIndex(b => b.name === '你')
+    const idx = rankings.value.findIndex(b => b.name === 'Sen')
     return idx === -1 ? 3 : idx + 1
   })
 
@@ -188,13 +188,13 @@
     timeLeft.value = raceDuration
     clickCount.value = 0
 
-    // NPC自动划船
+    // Rakiplerin otomatik kürek çekmesi
     raceTimer = setInterval(() => {
       boats.value[1]!.progress += Math.floor(Math.random() * 4) + 2
       boats.value[2]!.progress += Math.floor(Math.random() * 4) + 2
     }, 500)
 
-    // 倒计时
+    // Geri sayım
     countdownTimer = setInterval(() => {
       timeLeft.value--
       if (timeLeft.value <= 3 && timeLeft.value > 0) sfxCountdownFinal()
@@ -227,8 +227,8 @@
     rankings.value = sorted
     phase.value = 'finished'
 
-    // 按排名播放音效
-    const rank = rankings.value.findIndex(b => b.name === '你') + 1
+    // Sıraya göre ses çal
+    const rank = rankings.value.findIndex(b => b.name === 'Sen') + 1
     if (rank === 1) sfxRankFirst()
     else if (rank === 2) sfxRankSecond()
     else sfxRankThird()
