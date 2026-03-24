@@ -13,8 +13,8 @@
         </p>
       </div>
       <div class="flex justify-center">
-        <Button v-if="!allLinesShown" class="w-full" @click="showNextLine">继续</Button>
-        <Button v-else class="w-full" @click="emit('close')">关闭</Button>
+        <Button v-if="!allLinesShown" class="w-full" @click="showNextLine">Sürdür</Button>
+        <Button v-else class="w-full" @click="emit('close')">Kapat</Button>
       </div>
     </div>
   </div>
