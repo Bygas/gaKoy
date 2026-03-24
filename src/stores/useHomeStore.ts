@@ -15,17 +15,17 @@ import { useInventoryStore } from './useInventoryStore'
 import { useFarmStore } from './useFarmStore'
 import { getCombinedItemCount, removeCombinedItem } from '@/composables/useCombinedInventory'
 
-/** 酒窖陈酿槽 */
+/** Mahzen dinlendirme yuvası */
 interface CellarSlot {
   itemId: string
   quality: Quality
   daysAging: number
 }
 
-/** 品质升级顺序 */
+/** Kalite yükselme sırası */
 const QUALITY_ORDER: Quality[] = ['normal', 'fine', 'excellent', 'supreme']
 
-/** 可陈酿的物品ID（酒类） */
+/** Dinlendirilebilen içecekler */
 const AGEABLE_ITEMS = ['watermelon_wine', 'osmanthus_wine', 'peach_wine', 'jujube_wine', 'corn_wine', 'rice_vinegar']
 
 export const useHomeStore = defineStore('home', () => {
@@ -36,7 +36,7 @@ export const useHomeStore = defineStore('home', () => {
   const cellarSlots = ref<CellarSlot[]>([])
 
   const farmhouseName = computed(() => {
-    const names: Record<FarmhouseLevel, string> = { 0: '茅屋', 1: '砖房', 2: '宅院', 3: '酒窖宅院' }
+    const names: Record<FarmhouseLevel, string> = { 0: 'Kerpiç Kulübe', 1: 'Taş Ev', 2: 'Konak', 3: 'Mahzenli Konak' }
     return names[farmhouseLevel.value]
   })
 
@@ -47,20 +47,20 @@ export const useHomeStore = defineStore('home', () => {
 
   const hasCellar = computed(() => farmhouseLevel.value >= 3)
 
-  /** 升级农舍 */
+  /** Evi yükselt */
   const upgradeFarmhouse = (): boolean => {
     const playerStore = usePlayerStore()
 
     const upgrade = nextUpgrade.value
     if (!upgrade) return false
 
-    // 检查材料
+    // Gereçleri denetle
     for (const mat of upgrade.materialCost) {
       if (getCombinedItemCount(mat.itemId) < mat.quantity) return false
     }
     if (!playerStore.spendMoney(upgrade.cost)) return false
 
-    // 扣除材料
+    // Gereçleri düş
     for (const mat of upgrade.materialCost) {
       removeCombinedItem(mat.itemId, mat.quantity)
     }
@@ -69,14 +69,14 @@ export const useHomeStore = defineStore('home', () => {
     return true
   }
 
-  /** 解锁山洞 */
+  /** Mağarayı aç */
   const unlockCave = (): boolean => {
     if (caveUnlocked.value) return false
     caveUnlocked.value = true
     return true
   }
 
-  /** 选择山洞类型 */
+  /** Mağara türünü seç */
   const chooseCave = (choice: 'mushroom' | 'fruit_bat'): boolean => {
     if (!caveUnlocked.value) return false
     if (caveChoice.value !== 'none') return false
@@ -84,7 +84,7 @@ export const useHomeStore = defineStore('home', () => {
     return true
   }
 
-  /** 山洞每日产出 */
+  /** Mağaranın günlük verimi */
   const dailyCaveUpdate = (): { itemId: string; quantity: number }[] => {
     if (caveChoice.value === 'none') return []
     const results: { itemId: string; quantity: number }[] = []
@@ -104,7 +104,7 @@ export const useHomeStore = defineStore('home', () => {
     return results
   }
 
-  /** 解锁温室 */
+  /** Sera aç */
   const unlockGreenhouse = (): boolean => {
     const playerStore = usePlayerStore()
 
@@ -120,13 +120,13 @@ export const useHomeStore = defineStore('home', () => {
     }
 
     greenhouseUnlocked.value = true
-    // 初始化温室地块
+    // Sera topraklarını hazırla
     const farmStore = useFarmStore()
     farmStore.initGreenhouse()
     return true
   }
 
-  /** 酒窖放入陈酿 */
+  /** Mahzene dinlenmeye içecek koy */
   const startAging = (itemId: string, quality: Quality): boolean => {
     if (!hasCellar.value) return false
     if (cellarSlots.value.length >= CELLAR_MAX_SLOTS) return false
@@ -140,7 +140,7 @@ export const useHomeStore = defineStore('home', () => {
     return true
   }
 
-  /** 酒窖取出陈酿 */
+  /** Mahzenden dinlenen içeceği çıkar */
   const removeAging = (index: number): { itemId: string; quality: Quality } | null => {
     if (index < 0 || index >= cellarSlots.value.length) return null
     const slot = cellarSlots.value[index]!
@@ -148,7 +148,7 @@ export const useHomeStore = defineStore('home', () => {
     return { itemId: slot.itemId, quality: slot.quality }
   }
 
-  /** 酒窖每日更新 */
+  /** Mahzenin günlük güncellemesi */
   const dailyCellarUpdate = (): { ready: { itemId: string; newQuality: Quality }[] } => {
     const ready: { itemId: string; newQuality: Quality }[] = []
 
@@ -167,12 +167,12 @@ export const useHomeStore = defineStore('home', () => {
     return { ready }
   }
 
-  /** 获取厨房加成（Level 1+） */
+  /** Ocak aşçılığı bereketi (Seviye 1+) */
   const getKitchenBonus = (): number => {
     return farmhouseLevel.value >= 1 ? 1.2 : 1.0
   }
 
-  /** 获取睡眠恢复加成（Level 2+） */
+  /** Uyku dinçliği bereketi (Seviye 2+) */
   const getStaminaRecoveryBonus = (): number => {
     return farmhouseLevel.value >= 2 ? 0.1 : 0
   }
@@ -193,7 +193,7 @@ export const useHomeStore = defineStore('home', () => {
     caveUnlocked.value = data.caveUnlocked ?? false
     greenhouseUnlocked.value = data.greenhouseUnlocked ?? false
     cellarSlots.value = data.cellarSlots ?? []
-    // 加载后如果温室已解锁，确保温室地块初始化
+    // Kayıt yüklenince sera açıksa toprağı yeniden hazırla
     if (greenhouseUnlocked.value) {
       const farmStore = useFarmStore()
       farmStore.initGreenhouse()
