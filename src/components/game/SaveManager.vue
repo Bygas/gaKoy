@@ -4,30 +4,26 @@
       <button class="absolute top-2 right-2 text-muted hover:text-text" @click="$emit('close')">
         <X :size="14" />
       </button>
-      <Divider title class="my-4" label="存档管理" />
+      <Divider title class="my-4" label="Kayıt işleri" />
       <div class="flex-1 flex flex-col space-y-2 mb-3" @click="menuOpen = null">
         <div v-for="info in slots" :key="info.slot">
           <div v-if="info.exists" class="flex space-x-1 w-full">
             <button v-if="allowLoad" class="btn flex-1 !justify-between text-xs" @click="$emit('load', info.slot)">
               <span class="inline-flex items-center space-x-1">
                 <FolderOpen :size="12" />
-                <span>存档 {{ info.slot + 1 }}</span>
+                <span>Kayıt {{ info.slot + 1 }}</span>
               </span>
               <span class="text-muted text-xs">
-                {{ info.playerName ?? '未命名' }} · 第{{ info.year }}年 {{ SEASON_NAMES[info.season as keyof typeof SEASON_NAMES] }} 第{{
-                  info.day
-                }}天
+                {{ info.playerName ?? 'Adsız' }} · {{ info.year }}. yıl {{ SEASON_NAMES[info.season as keyof typeof SEASON_NAMES] }} {{ info.day }}. gün
               </span>
             </button>
             <div v-else class="btn flex-1 !justify-between text-xs cursor-default">
               <span class="inline-flex items-center space-x-1">
                 <FolderOpen :size="12" />
-                <span>存档 {{ info.slot + 1 }}</span>
+                <span>Kayıt {{ info.slot + 1 }}</span>
               </span>
               <span class="text-muted text-xs">
-                {{ info.playerName ?? '未命名' }} · 第{{ info.year }}年 {{ SEASON_NAMES[info.season as keyof typeof SEASON_NAMES] }} 第{{
-                  info.day
-                }}天
+                {{ info.playerName ?? 'Adsız' }} · {{ info.year }}. yıl {{ SEASON_NAMES[info.season as keyof typeof SEASON_NAMES] }} {{ info.day }}. gün
               </span>
             </div>
             <div class="relative">
@@ -49,7 +45,7 @@
                   :disabled="uploading"
                   @click="handleUpload(info.slot)"
                 >
-                  {{ uploading ? '上传中...' : '上传云端' }}
+                  {{ uploading ? 'Göğe yükleniyor...' : 'Buluta yükle' }}
                 </Button>
                 <Button
                   v-if="webdavReady"
@@ -59,7 +55,7 @@
                   :disabled="downloading"
                   @click="handleDownload(info.slot)"
                 >
-                  {{ downloading ? '下载中...' : '云端下载' }}
+                  {{ downloading ? 'Göktan iniyor...' : 'Buluttan indir' }}
                 </Button>
                 <Button
                   v-if="!Capacitor.isNativePlatform()"
@@ -68,7 +64,7 @@
                   class="text-center !rounded-none justify-center text-sm"
                   @click="handleExport(info.slot)"
                 >
-                  导出存档
+                  Kaydı dışa aktar
                 </Button>
                 <Button
                   :icon="Trash2"
@@ -76,13 +72,13 @@
                   class="btn-danger !rounded-none text-center justify-center text-sm"
                   @click="handleDelete(info.slot)"
                 >
-                  删除存档
+                  Kaydı sil
                 </Button>
               </div>
             </div>
           </div>
           <div v-else class="flex space-x-1 w-full">
-            <div class="text-xs text-muted border border-accent/10 rounded-xs px-3 py-2 flex-1">存档 {{ info.slot + 1 }} — 空</div>
+            <div class="text-xs text-muted border border-accent/10 rounded-xs px-3 py-2 flex-1">Kayıt {{ info.slot + 1 }} — Boş</div>
             <Button
               v-if="webdavReady"
               :icon="CloudDownload"
@@ -91,19 +87,19 @@
               :disabled="downloading"
               @click="handleDownload(info.slot)"
             >
-              <span class="text-xs">{{ downloading ? '下载中...' : '云端' }}</span>
+              <span class="text-xs">{{ downloading ? 'İniyor...' : 'Bulut' }}</span>
             </Button>
           </div>
         </div>
       </div>
 
-      <!-- 导入存档 -->
+      <!-- Kayıt içe aktarma -->
       <template v-if="!Capacitor.isNativePlatform()">
-        <Button :icon="Upload" class="text-center justify-center text-sm w-full" @click="triggerImport">导入存档</Button>
+        <Button :icon="Upload" class="text-center justify-center text-sm w-full" @click="triggerImport">Kayıt içe al</Button>
         <input ref="fileInputRef" type="file" accept=".tyx" class="hidden" @change="handleImportFile" />
       </template>
 
-      <!-- 删除存档确认弹窗 -->
+      <!-- Silme onayı -->
       <Transition name="panel-fade">
         <div
           v-if="deleteTargetSlot !== null"
@@ -111,11 +107,11 @@
           @click.self="deleteTargetSlot = null"
         >
           <div class="game-panel w-full max-w-xs mx-4 text-center">
-            <p class="text-danger text-sm mb-3">确定删除存档 {{ deleteTargetSlot + 1 }}？</p>
-            <p class="text-xs text-muted mb-4">此操作不可恢复。</p>
+            <p class="text-danger text-sm mb-3">Kayıt {{ deleteTargetSlot + 1 }} silinsin mi?</p>
+            <p class="text-xs text-muted mb-4">Bu işlem geri alınamaz.</p>
             <div class="flex space-x-3 justify-center">
-              <Button @click="deleteTargetSlot = null">取消</Button>
-              <Button class="btn-danger" @click="confirmDelete">确认删除</Button>
+              <Button @click="deleteTargetSlot = null">Vazgeç</Button>
+              <Button class="btn-danger" @click="confirmDelete">Sil gitsin</Button>
             </div>
           </div>
         </div>
@@ -152,7 +148,7 @@
 
   const handleExport = (slot: number) => {
     if (!saveStore.exportSave(slot)) {
-      showFloat('导出失败。', 'danger')
+      showFloat('Dışa aktarma olmadı.', 'danger')
     }
   }
 
@@ -187,13 +183,13 @@
       const content = reader.result as string
       const emptySlot = slots.value.find(s => !s.exists)
       if (!emptySlot) {
-        showFloat('存档槽位已满，请先删除一个旧存档。')
+        showFloat('Kayıt gözleri dolu, önce eski bir kaydı sil.', 'danger')
       } else if (saveStore.importSave(emptySlot.slot, content)) {
         refreshSlots()
         emit('change')
-        showFloat(`已导入到存档 ${emptySlot.slot + 1}。`, 'success')
+        showFloat(`Kayıt ${emptySlot.slot + 1} gözüne alındı.`, 'success')
       } else {
-        showFloat('存档文件无效或已损坏。', 'danger')
+        showFloat('Kayıt dosyası bozuk ya da geçersiz.', 'danger')
       }
       input.value = ''
     }
