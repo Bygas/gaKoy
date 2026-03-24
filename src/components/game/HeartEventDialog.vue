@@ -3,29 +3,29 @@
     <div class="game-panel max-w-lg w-full max-h-[80vh] overflow-y-auto">
       <h3 class="text-accent text-sm mb-3">{{ event.title }}</h3>
 
-      <!-- 已播放的场景 -->
+      <!-- Geçmiş sahneler -->
       <div v-for="(scene, i) in playedScenes" :key="i" class="mb-3">
         <p class="text-xs leading-relaxed">{{ scene.text }}</p>
         <p v-if="scene.chosenResponse" class="text-xs text-accent mt-1 ml-2">→ {{ scene.chosenResponse }}</p>
       </div>
 
-      <!-- 当前场景 -->
+      <!-- Şimdiki sahne -->
       <div v-if="currentScene">
         <p class="text-xs leading-relaxed mb-3">{{ currentScene.text }}</p>
 
-        <!-- 选择项 -->
+        <!-- Seçenekler -->
         <div v-if="currentScene.choices && !hasChosen" class="space-y-2 mt-3">
           <Button v-for="(choice, ci) in currentScene.choices" :key="ci" class="w-full text-left" @click="handleChoice(choice)">
             {{ choice.text }}
           </Button>
         </div>
 
-        <!-- 选择后的回应 -->
+        <!-- Seçim sonrası karşılık -->
         <p v-if="choiceResponse" class="text-xs text-accent mt-2 ml-2">→ {{ choiceResponse }}</p>
 
-        <!-- 继续按钮（无选择或已选择后） -->
+        <!-- Devam düğmesi (seçenek yoksa ya da seçim yapıldıysa) -->
         <Button v-if="!currentScene.choices || hasChosen" class="mt-3" @click="nextScene">
-          {{ isLastScene ? '结束' : '继续' }}
+          {{ isLastScene ? 'Bitir' : 'Sürdür' }}
         </Button>
       </div>
     </div>
@@ -71,7 +71,7 @@
   }
 
   const nextScene = () => {
-    // 归档当前场景
+    // Şimdiki sahneyi kayda geçir
     playedScenes.value.push({
       text: currentScene.value?.text ?? '',
       chosenResponse: choiceResponse.value ?? undefined
