@@ -22,22 +22,22 @@ export const useAchievementStore = defineStore('achievement', () => {
   const skillStore = useSkillStore()
   const npcStore = useNpcStore()
 
-  /** 已发现的物品ID集合 */
+  /** Keşfedilmiş eşya kimlikleri */
   const discoveredItems = ref<string[]>([])
 
-  /** 物品发现时间记录 { itemId: "第X年 春 第Y天" } */
+  /** Eşya keşif zamanı kaydı { itemId: "X. Yıl İlkbahar Y. Gün" } */
   const discoveryTimes = ref<Record<string, string>>({})
 
-  /** 已完成的成就ID集合 */
+  /** Tamamlanan başarımların kimlikleri */
   const completedAchievements = ref<string[]>([])
 
-  /** 祠堂任务已提交物品 */
+  /** Tapınak sunularına teslim edilmiş eşyalar */
   const bundleSubmissions = ref<Record<string, Record<string, number>>>({})
 
-  /** 已完成的祠堂任务 */
+  /** Tamamlanan tapınak sunuları */
   const completedBundles = ref<string[]>([])
 
-  /** 统计计数器 */
+  /** İstatistik sayaçları */
   const stats = ref({
     totalCropsHarvested: 0,
     totalFishCaught: 0,
@@ -53,14 +53,19 @@ export const useAchievementStore = defineStore('achievement', () => {
 
   const discoveredCount = computed(() => discoveredItems.value.length)
 
-  // === 物品发现 ===
+  // === Eşya keşfi ===
 
   const discoverItem = (itemId: string) => {
     if (!discoveredItems.value.includes(itemId)) {
       discoveredItems.value.push(itemId)
       const gameStore = useGameStore()
-      const SEASON_NAMES: Record<string, string> = { spring: '春', summer: '夏', autumn: '秋', winter: '冬' }
-      discoveryTimes.value[itemId] = `第${gameStore.year}年 ${SEASON_NAMES[gameStore.season] ?? gameStore.season} 第${gameStore.day}天`
+      const SEASON_NAMES: Record<string, string> = {
+        spring: 'İlkbahar',
+        summer: 'Yaz',
+        autumn: 'Güz',
+        winter: 'Kış'
+      }
+      discoveryTimes.value[itemId] = `${gameStore.year}. Yıl ${SEASON_NAMES[gameStore.season] ?? gameStore.season} ${gameStore.day}. Gün`
     }
   }
 
@@ -72,7 +77,7 @@ export const useAchievementStore = defineStore('achievement', () => {
     return discoveredItems.value.includes(itemId)
   }
 
-  // === 统计记录 ===
+  // === İstatistik kaydı ===
 
   const recordCropHarvest = () => {
     stats.value.totalCropsHarvested++
@@ -120,9 +125,9 @@ export const useAchievementStore = defineStore('achievement', () => {
     }
   }
 
-  // === 成就检查 ===
+  // === Başarım denetimi ===
 
-  /** 判断单个成就条件是否满足 */
+  /** Tek bir başarım koşulu sağlandı mı */
   const isConditionMet = (c: AchievementCondition): boolean => {
     switch (c.type) {
       case 'itemCount':
@@ -238,7 +243,7 @@ export const useAchievementStore = defineStore('achievement', () => {
 
       if (isConditionMet(achievement.condition)) {
         completedAchievements.value.push(achievement.id)
-        // 发放奖励
+        // Ödülleri ver
         if (achievement.reward.money) {
           playerStore.earnMoney(achievement.reward.money)
         }
@@ -254,7 +259,7 @@ export const useAchievementStore = defineStore('achievement', () => {
     return newlyCompleted
   }
 
-  // === 祠堂任务 ===
+  // === Tapınak sunuları ===
 
   const submitToBundle = (bundleId: string, itemId: string, quantity: number): boolean => {
     if (completedBundles.value.includes(bundleId)) return false
@@ -272,12 +277,12 @@ export const useAchievementStore = defineStore('achievement', () => {
     const sub = bundleSubmissions.value[bundleId]!
     sub[itemId] = (sub[itemId] ?? 0) + quantity
 
-    // 检查是否完成
+    // Tamamlandı mı kontrol et
     const allMet = bundle.requiredItems.every(r => (sub[r.itemId] ?? 0) >= r.quantity)
 
     if (allMet) {
       completedBundles.value.push(bundleId)
-      // 发放奖励
+      // Ödülleri ver
       if (bundle.reward.money) {
         playerStore.earnMoney(bundle.reward.money)
       }
@@ -299,7 +304,7 @@ export const useAchievementStore = defineStore('achievement', () => {
     return completedBundles.value.includes(bundleId)
   }
 
-  // === 完成度 ===
+  // === Tamamlanma oranı ===
 
   const SHIPPABLE_CATEGORIES = ['crop', 'fish', 'animal_product', 'processed', 'fruit', 'ore', 'gem', 'material', 'misc', 'food', 'gift']
   const shippableItemCount = ITEMS.filter(i => SHIPPABLE_CATEGORIES.includes(i.category)).length
@@ -307,18 +312,18 @@ export const useAchievementStore = defineStore('achievement', () => {
   const perfectionPercent = computed(() => {
     const shopStore = useShopStore()
 
-    // 成就 25%
+    // Başarımlar %25
     const achievementRate = completedAchievements.value.length / ACHIEVEMENTS.length
-    // 出货 20%
+    // Gönderim %20
     const shippingRate = shippableItemCount > 0 ? shopStore.shippedItems.length / shippableItemCount : 0
-    // 祠堂任务 15%
+    // Tapınak sunuları %15
     const bundleRate = COMMUNITY_BUNDLES.length > 0 ? completedBundles.value.length / COMMUNITY_BUNDLES.length : 0
-    // 图鉴 15%
+    // Koleksiyon %15
     const collectionRate = ITEMS.length > 0 ? discoveredItems.value.length / ITEMS.length : 0
-    // 技能 15%
+    // Beceriler %15
     const avgSkillLevel = skillStore.skills.reduce((sum, s) => sum + s.level, 0) / skillStore.skills.length
     const skillRate = avgSkillLevel / 10
-    // 好感 10%
+    // Yakınlık %10
     const friendlyCount = npcStore.npcStates.filter(n => {
       const level = npcStore.getFriendshipLevel(n.npcId)
       return level === 'friendly' || level === 'bestFriend'
@@ -326,11 +331,17 @@ export const useAchievementStore = defineStore('achievement', () => {
     const friendRate = npcStore.npcStates.length > 0 ? friendlyCount / npcStore.npcStates.length : 0
 
     const total =
-      achievementRate * 0.25 + shippingRate * 0.2 + bundleRate * 0.15 + collectionRate * 0.15 + skillRate * 0.15 + friendRate * 0.1
+      achievementRate * 0.25 +
+      shippingRate * 0.2 +
+      bundleRate * 0.15 +
+      collectionRate * 0.15 +
+      skillRate * 0.15 +
+      friendRate * 0.1
+
     return Math.floor(total * 100)
   })
 
-  // === 序列化 ===
+  // === Serileştirme ===
 
   const serialize = () => {
     return {
@@ -357,7 +368,8 @@ export const useAchievementStore = defineStore('achievement', () => {
       totalRecipesCooked: 0,
       skullCavernBestFloor: 0
     }
-    // 兼容旧存档：补充缺失字段
+
+    // Eski kayıtlarla uyumluluk için eksik alanları tamamla
     if (stats.value.skullCavernBestFloor === undefined) {
       stats.value.skullCavernBestFloor = 0
     }
@@ -373,13 +385,16 @@ export const useAchievementStore = defineStore('achievement', () => {
     if ((stats.value as Record<string, unknown>).highestHybridTier === undefined) {
       stats.value.highestHybridTier = 0
     }
-    // 同步已拥有装备到图鉴（修复旧存档中装备未登记到图鉴的问题）
+
+    // Sahip olunan donanımları koleksiyona işle
+    // Eski kayıtlarda koleksiyona yazılmayan eşyaları düzeltmek için
     const inventoryStore = useInventoryStore()
     for (const w of inventoryStore.ownedWeapons) discoverItem(w.defId)
     for (const r of inventoryStore.ownedRings) discoverItem(r.defId)
     for (const h of inventoryStore.ownedHats) discoverItem(h.defId)
     for (const s of inventoryStore.ownedShoes) discoverItem(s.defId)
-    // 同步背包中已有物品到图鉴
+
+    // Çantadaki mevcut eşyaları da koleksiyona işle
     const seen = new Set<string>()
     for (const slot of inventoryStore.items) {
       if (!seen.has(slot.itemId)) {
