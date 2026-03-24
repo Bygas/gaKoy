@@ -2,27 +2,27 @@
   <div class="game-panel max-w-sm w-full">
     <h3 class="text-accent text-sm mb-3 flex items-center space-x-1">
       <Sparkles :size="14" />
-      <span>年末烟花会</span>
+      <span>Yıl Sonu Havai Fişekleri</span>
     </h3>
 
-    <!-- 准备 -->
+    <!-- Hazırlık -->
     <div v-if="phase === 'ready'">
-      <p class="text-xs text-muted mb-3">记住烟花绽放的顺序，然后按顺序点击复现！共5轮，每轮多一个位置，考验你的记忆力！</p>
-      <Button class="w-full" @click="startGame">开始烟花会！</Button>
+      <p class="text-xs text-muted mb-3">Havai fişeklerin patlama sırasını aklında tut, sonra aynı sırayla tıklayıp yeniden yap! Toplam 5 tur var; her turda bir yer daha eklenir. Bakalım hafızan ne kadar kuvvetli!</p>
+      <Button class="w-full" @click="startGame">Şenliği Başlat!</Button>
     </div>
 
-    <!-- 游戏中 -->
+    <!-- Oyun sırasında -->
     <div v-else-if="phase !== 'finished'">
       <div class="flex items-center justify-between mb-2">
-        <p class="text-xs text-muted">第 {{ round + 1 }} / 5 轮</p>
+        <p class="text-xs text-muted">{{ round + 1 }} / 5. tur</p>
         <p class="text-xs text-muted">
-          得分：
+          Kazanç:
           <span class="text-accent">{{ score }}</span>
-          文
+          akçe
         </p>
       </div>
 
-      <!-- 轮数进度点 -->
+      <!-- Tur ilerleme noktaları -->
       <div class="flex justify-center space-x-1.5 mb-2">
         <div v-for="i in 5" :key="i" class="w-2 h-2" :class="roundDotClass(i - 1)" />
       </div>
@@ -38,11 +38,11 @@
         {{ phaseText }}
       </p>
 
-      <!-- 回忆倒计时 -->
+      <!-- Hatırlama sayacı -->
       <div v-if="phase === 'repeating'" class="mb-2">
         <div class="flex items-center justify-between mb-1">
           <p class="text-xs text-muted">{{ playerInput.length }} / {{ sequence.length }}</p>
-          <p class="text-xs" :class="recallTimeLeft <= 3 ? 'text-danger time-pulse' : 'text-accent'">{{ recallTimeLeft }}s</p>
+          <p class="text-xs" :class="recallTimeLeft <= 3 ? 'text-danger time-pulse' : 'text-accent'">{{ recallTimeLeft }}sn</p>
         </div>
         <div class="h-1 bg-bg border border-accent/20">
           <div
@@ -53,7 +53,7 @@
         </div>
       </div>
 
-      <!-- 6个发射位置（2×3网格）夜空背景 -->
+      <!-- 6 fırlatma noktası (2×3 ızgara), gece göğü arka planı -->
       <div class="grid grid-cols-3 gap-2 mb-4 p-2 night-sky border border-accent/10">
         <button
           v-for="i in 6"
@@ -66,53 +66,53 @@
           }"
           @click="clickPad(i - 1)"
         >
-          <!-- 烟花绽放效果 -->
+          <!-- Havai fişek patlama efekti -->
           <div v-if="activeFirework === i - 1" class="firework-bloom absolute inset-0 flex items-center justify-center">
             <div class="firework-particle" :style="{ '--fw-color': fireworkColors[i - 1] }">
               <Sparkle :size="18" />
             </div>
-            <!-- 散射粒子 -->
+            <!-- Saçılan parçacıklar -->
             <Asterisk :size="10" class="particle p1" :style="{ color: fireworkColors[i - 1] }" />
             <Asterisk :size="10" class="particle p2" :style="{ color: fireworkColors[i - 1] }" />
             <Asterisk :size="10" class="particle p3" :style="{ color: fireworkColors[i - 1] }" />
             <Asterisk :size="10" class="particle p4" :style="{ color: fireworkColors[i - 1] }" />
           </div>
 
-          <!-- 正确点击反馈 -->
+          <!-- Doğru tıklama geri bildirimi -->
           <div v-if="correctFlash === i - 1" class="correct-bloom absolute inset-0 bg-success/20" />
 
-          <!-- 错误反馈 -->
+          <!-- Yanlış geri bildirimi -->
           <div v-if="wrongFlash === i - 1" class="wrong-flash-bg absolute inset-0 bg-danger/20" />
 
-          <!-- 位置编号 -->
+          <!-- Yer numarası -->
           <span class="text-xs relative z-10" :class="phase === 'repeating' ? 'text-accent/50' : 'text-accent/20'">{{ i }}</span>
         </button>
       </div>
     </div>
 
-    <!-- 最终结果 -->
+    <!-- Son sonuç -->
     <div v-else>
-      <p class="text-xs text-muted mb-2">烟花会结束！</p>
+      <p class="text-xs text-muted mb-2">Havai fişek gecesi bitti!</p>
 
-      <!-- 轮数进度点（最终状态） -->
+      <!-- Tur ilerleme noktaları (son durum) -->
       <div class="flex justify-center space-x-1.5 mb-3">
         <div v-for="i in 5" :key="i" class="w-2 h-2" :class="roundDotClass(i - 1)" />
       </div>
 
       <div class="border border-accent/20 p-3 mb-3 text-center">
         <p class="text-xs mb-1">
-          通过轮数：
+          Geçilen tur:
           <span class="text-success">{{ completedRounds }}</span>
-          / 5 轮
+          / 5 tur
         </p>
         <p class="text-xs">
-          总奖金：
+          Toplam ödül:
           <span class="text-accent">{{ score }}</span>
-          文
-          <span v-if="completedRounds === 5" class="text-accent finish-flash">（全通+200文！）</span>
+          akçe
+          <span v-if="completedRounds === 5" class="text-accent finish-flash">（hepsini geçene +200 akçe!）</span>
         </p>
       </div>
-      <Button class="w-full" @click="handleClaim">领取奖励</Button>
+      <Button class="w-full" @click="handleClaim">Ödülü Al</Button>
     </div>
   </div>
 </template>
@@ -146,9 +146,9 @@
   const activeFirework = ref(-1)
   const correctFlash = ref(-1)
   const wrongFlash = ref(-1)
-  /** 记录每轮通过/失败: true=通过, false=失败, null=未到 */
+  /** Her turun sonucu: true=geçti, false=kaldı, null=henüz gelmedi */
   const roundResults = ref<(boolean | null)[]>([null, null, null, null, null])
-  /** 回忆阶段倒计时 */
+  /** Hatırlama aşaması sayacı */
   const recallTimeLeft = ref(0)
   const recallTimeLimit = ref(0)
 
@@ -161,13 +161,13 @@
   const phaseText = computed(() => {
     switch (phase.value) {
       case 'watching':
-        return '看好烟花顺序...'
+        return 'Sırayı iyi belle...'
       case 'repeating':
-        return '按顺序点击！'
+        return 'Şimdi sırayla tıkla!'
       case 'round_success':
-        return '记忆正确！+150文'
+        return 'Doğru bildin! +150 akçe'
       case 'round_fail':
-        return '记错了...'
+        return 'Sırayı şaşırdın...'
       default:
         return ''
     }
@@ -199,16 +199,16 @@
   }
 
   const startRound = () => {
-    const seqLength = round.value + 2 // 第1轮2个，第5轮6个
+    const seqLength = round.value + 2 // 1. turda 2, 5. turda 6
     sequence.value = generateSequence(seqLength)
     playerInput.value = []
     phase.value = 'watching'
 
-    // 展示间隔随轮次加快: 第1轮500ms → 第5轮350ms
+    // Gösterim aralığı tur geçtikçe hızlanır: 1. tur 500ms → 5. tur 350ms
     const showDelay = Math.max(350, 500 - round.value * 40)
     const flashDuration = Math.max(350, 500 - round.value * 40)
 
-    // 展示序列
+    // Diziyi göster
     let idx = 0
     const showNext = () => {
       if (idx < sequence.value.length) {
@@ -221,9 +221,9 @@
           showTimeout = setTimeout(showNext, showDelay * 0.5)
         }, flashDuration)
       } else {
-        // 展示完毕，进入玩家输入，开始倒计时
+        // Gösterim bitti, oyuncu girişine geç ve süreyi başlat
         phase.value = 'repeating'
-        // 回忆时间: 基础5秒 + 每个位置1.5秒，随轮次略减
+        // Hatırlama süresi: taban 5 sn + her yer için 1.5 sn, turlar ilerledikçe biraz azalır
         const timePerSlot = Math.max(1.0, 1.5 - round.value * 0.1)
         recallTimeLimit.value = Math.ceil(5 + seqLength * timePerSlot)
         recallTimeLeft.value = recallTimeLimit.value
@@ -232,7 +232,7 @@
           if (recallTimeLeft.value <= 3 && recallTimeLeft.value > 0) sfxCountdownFinal()
           else if (recallTimeLeft.value > 3) sfxCountdownTick()
           if (recallTimeLeft.value <= 0) {
-            // 超时，本轮失败
+            // Süre doldu, bu tur kaybedildi
             sfxMiniFail()
             if (recallTimer) clearInterval(recallTimer)
             recallTimer = null
@@ -255,7 +255,7 @@
     const expected = sequence.value[expectedIdx]
 
     if (idx === expected) {
-      // 正确
+      // Doğru
       sfxFireworkBoom()
       playerInput.value.push(idx)
       correctFlash.value = idx
@@ -266,7 +266,7 @@
       }, 300)
 
       if (playerInput.value.length === sequence.value.length) {
-        // 本轮全部正确
+        // Bu turun tamamı doğru
         if (recallTimer) clearInterval(recallTimer)
         recallTimer = null
         completedRounds.value++
@@ -278,7 +278,7 @@
         phaseTimeout = setTimeout(() => {
           round.value++
           if (round.value >= 5) {
-            score.value += 200 // 全通奖励
+            score.value += 200 // hepsini geçme ödülü
             sfxRankFirst()
             phase.value = 'finished'
           } else {
@@ -287,7 +287,7 @@
         }, 1000)
       }
     } else {
-      // 错误
+      // Yanlış
       sfxMiniFail()
       wrongFlash.value = idx
       setTimeout(() => {
@@ -360,7 +360,7 @@
     }
   }
 
-  /* 散射粒子 */
+  /* Saçılan parçacıklar */
   .particle {
     position: absolute;
     opacity: 0;
