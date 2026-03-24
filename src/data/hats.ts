@@ -30,7 +30,7 @@ export const HATS: HatDef[] = [
   {
     id: 'miner_helmet',
     name: 'Madenci Başlığı',
-    description: 'Lamba yuvalı deri başlık; maden ocağında kuvvet tüketimini büyük ölçüde azaltır.',
+    description: 'Lamba yuvalı deri başlık; madende kuvvet tüketimini büyük ölçüde azaltır.',
     effects: [{ type: 'mining_stamina', value: 0.12 }],
     shopPrice: 800,
     recipe: null,
