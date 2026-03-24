@@ -2,11 +2,11 @@
   <div>
     <p class="text-xs text-accent mb-2">
       <Fish :size="14" class="inline" />
-      实时钓鱼 — {{ fishName }}
+      Olta Gerilimi — {{ fishName }}
     </p>
 
     <div class="flex space-x-2 items-end justify-center">
-      <!-- 进度条 (左侧竖条) -->
+      <!-- İlerleme çubuğu (soldaki dik çubuk) -->
       <div
         class="w-3 bg-bg border border-accent/30 rounded-xs relative overflow-hidden"
         :style="{ height: CONTAINER_HEIGHT + 'px' }"
@@ -15,7 +15,7 @@
         <div class="absolute bottom-0 w-full bg-success rounded-[1px]" :style="{ height: score + '%' }" />
       </div>
 
-      <!-- 钓鱼区 -->
+      <!-- Balık tutma alanı -->
       <div
         class="w-10 bg-water/20 border border-accent/30 rounded-xs relative overflow-hidden select-none"
         :style="{ height: CONTAINER_HEIGHT + 'px' }"
@@ -26,24 +26,24 @@
         @touchstart="startHold"
         @touchend="stopHold"
       >
-        <!-- 钩子（底层） -->
+        <!-- Kanca (alt katman) -->
         <div
           class="absolute w-full rounded-[1px]"
           :class="isOverlap ? 'bg-success/80' : 'bg-success/40'"
           :style="{ top: CONTAINER_HEIGHT - hookPos - hookHeight + 'px', height: hookHeight + 'px' }"
         />
-        <!-- 鱼（顶层，始终可见） -->
+        <!-- Balık (üst katman, her zaman görünür) -->
         <div class="absolute w-full bg-accent/60 rounded-[1px]" :style="{ top: fishPos + 'px', height: FISH_HEIGHT + 'px' }" />
       </div>
 
-      <!-- 倒计时+分数 -->
+      <!-- Sayaç + puan -->
       <div class="text-xs text-muted w-8 text-center">
-        <p>{{ Math.ceil(timeLeft) }}s</p>
+        <p>{{ Math.ceil(timeLeft) }}sn</p>
         <p class="text-accent">{{ Math.round(score) }}%</p>
       </div>
     </div>
 
-    <!-- 操作按钮 -->
+    <!-- İşlem düğmesi -->
     <div class="flex space-x-2 mt-3 justify-center">
       <button
         class="btn text-xs flex-1"
@@ -55,10 +55,10 @@
         @touchend="stopHold"
       >
         <ArrowUp :size="14" />
-        <span>长按收线</span>
+        <span>Basılı tut, sar</span>
       </button>
     </div>
-    <p class="text-xs text-muted text-center mt-1">按住空格键或↑键也可收线</p>
+    <p class="text-xs text-muted text-center mt-1">Boşluk ya da ↑ tuşuna basılı tutarak da sarabilirsin</p>
   </div>
 </template>
 
@@ -87,7 +87,7 @@
   const CONTAINER_HEIGHT = 250
   const FISH_HEIGHT = 25
 
-  // Reactive game state (drives template)
+  // Tepkisel oyun durumu (şablonu besler)
   const fishPos = ref(CONTAINER_HEIGHT / 2 - FISH_HEIGHT / 2)
   const hookPos = ref(0)
   const score = ref(0)
@@ -96,7 +96,7 @@
   const isOverlap = ref(false)
   const gameActive = ref(false)
 
-  // Internal tracking (non-reactive for performance)
+  // İç takip değişkenleri (performans için tepkisel değil)
   let isPerfect = true
   let peakScore = 0
   let fishVelocity = 0
@@ -137,18 +137,18 @@
   const gameLoop = (timestamp: number) => {
     if (!gameActive.value) return
 
-    // Timer
+    // Sayaç
     const elapsed = (timestamp - startTime) / 1000
     timeLeft.value = Math.max(props.timeLimit - elapsed, 0)
 
-    // 1. Update hook position
+    // 1. Kanca konumunu güncelle
     if (isHolding.value) {
       hookPos.value = Math.min(hookPos.value + props.liftSpeed, CONTAINER_HEIGHT - props.hookHeight)
     } else {
       hookPos.value = Math.max(hookPos.value - props.gravity, 0)
     }
 
-    // 2. Update fish position
+    // 2. Balık konumunu güncelle
     if (Math.random() < props.fishChangeDir) {
       targetDirection = (Math.random() - 0.5) * props.fishSpeed * 2
     }
@@ -167,18 +167,18 @@
       fishVelocity = -Math.abs(fishVelocity) * 0.5
     }
 
-    // 3. Overlap detection
-    // Hook is positioned from bottom: CSS bottom = hookPos
-    // So hook occupies Y range: (CONTAINER_HEIGHT - hookPos - hookHeight) to (CONTAINER_HEIGHT - hookPos)
-    // Fish is positioned from top: CSS top = fishPos
-    // So fish occupies Y range: fishPos to (fishPos + FISH_HEIGHT)
+    // 3. Çakışma denetimi
+    // Kanca alttan konumlanır: CSS bottom = hookPos
+    // Bu yüzden kanca Y aralığı: (CONTAINER_HEIGHT - hookPos - hookHeight) ile (CONTAINER_HEIGHT - hookPos)
+    // Balık üstten konumlanır: CSS top = fishPos
+    // Bu yüzden balığın Y aralığı: fishPos ile (fishPos + FISH_HEIGHT)
     const hookTop = CONTAINER_HEIGHT - hookPos.value - props.hookHeight
     const hookBottom = CONTAINER_HEIGHT - hookPos.value
     const fishTop = fishPos.value
     const fishBottom = fishPos.value + FISH_HEIGHT
     isOverlap.value = !(hookBottom <= fishTop || hookTop >= fishBottom)
 
-    // 4. Update score
+    // 4. Puanı güncelle
     if (isOverlap.value) {
       score.value = Math.min(score.value + props.scoreGain, 100)
     } else {
@@ -187,13 +187,13 @@
     }
     peakScore = Math.max(peakScore, score.value)
 
-    // 5. Check win (progress reaches 100%)
+    // 5. Kazanma denetimi (ilerleme %100'e ulaştıysa)
     if (score.value >= 100) {
       endGame(isPerfect ? 'perfect' : 'excellent')
       return
     }
 
-    // 6. Check timeout
+    // 6. Süre bitiş denetimi
     if (timeLeft.value <= 0) {
       endGame(score.value >= 60 ? 'good' : 'poor')
       return
