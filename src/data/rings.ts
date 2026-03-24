@@ -105,7 +105,7 @@ export const RINGS: RingDef[] = [
   {
     id: 'miners_ring',
     name: 'Madenci Altın Yüzüğü',
-    description: 'Maden ocağında keşif yaparken kuvvet tüketimini büyük ölçüde azaltır, fazladan cevher toplatır.',
+    description: 'Madende keşif yaparken kuvvet tüketimini büyük ölçüde azaltır, fazladan cevher toplatır.',
     effects: [
       { type: 'mining_stamina', value: 0.15 },
       { type: 'ore_bonus', value: 1 }
@@ -199,7 +199,7 @@ export const RINGS: RingDef[] = [
   {
     id: 'treasure_hunter_ring',
     name: 'Hazine Arayıcı Yüzüğü',
-    description: 'Maden ocağında sandıkların daha sık çıkmasını sağlar; balıkta sandık bulma ihtimalini de artırır.',
+    description: 'Madende sandıkların daha sık çıkmasını sağlar; balıkta sandık bulma ihtimalini de artırır.',
     effects: [{ type: 'treasure_find', value: 0.1 }],
     recipe: [
       { itemId: 'gold_bar', quantity: 2 },
@@ -462,7 +462,7 @@ export const RINGS: RingDef[] = [
     ],
     recipe: null,
     recipeMoney: 0,
-    obtainSource: 'Maden ocağı sandığı',
+    obtainSource: 'Maden sandığı',
     sellPrice: 600
   },
 
