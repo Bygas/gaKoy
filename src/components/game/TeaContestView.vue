@@ -2,33 +2,34 @@
   <div class="game-panel max-w-sm w-full">
     <h3 class="text-accent text-sm mb-3 flex items-center space-x-1">
       <Coffee :size="14" />
-      <span>斗茶大会</span>
+      <span>Çay Meydanı</span>
     </h3>
 
-    <!-- 准备 -->
+    <!-- Hazırlık -->
     <div v-if="phase === 'ready'">
       <p class="text-xs text-muted mb-3">
-        品茗斗茶，考的是功夫！共3轮，每轮需依次完成三步：控温、投茶、出汤。条子会从左往右填充，在目标标记附近按下按钮！越精准得分越高！
+        Çayın eri olmak kolay değildir! Toplam 3 tur var. Her turda sırasıyla üç işi doğru vakitte yapman gerekir: suyu tuttur, çayı ekle, demi çıkar.
+        Çubuk soldan sağa dolacak; hedef işaretine yakınken düğmeye bas. Ne kadar denk getirirsen puanın o kadar artar!
       </p>
-      <Button class="w-full" @click="startGame">开始斗茶！</Button>
+      <Button class="w-full" @click="startGame">Meydanı Başlat!</Button>
     </div>
 
-    <!-- 泡茶进行中 -->
+    <!-- Demleme sürüyor -->
     <div v-else-if="phase === 'brewing'">
       <div class="flex items-center justify-between mb-2">
-        <p class="text-xs text-muted">第 {{ roundIndex + 1 }} / 3 轮</p>
+        <p class="text-xs text-muted">Tur {{ roundIndex + 1 }} / 3</p>
         <p class="text-xs text-muted">
-          总分：
+          Toplam puan:
           <span class="text-accent">{{ totalScore }}</span>
         </p>
       </div>
 
-      <!-- 轮次进度点 -->
+      <!-- Tur ilerleme noktaları -->
       <div class="flex justify-center space-x-1.5 mb-3">
         <div v-for="i in 3" :key="i" class="w-2 h-2" :class="roundDotClass(i - 1)" />
       </div>
 
-      <!-- 步骤进度 -->
+      <!-- Adım ilerleyişi -->
       <div class="flex justify-center space-x-1 mb-2">
         <div
           v-for="(s, i) in BREW_STEPS"
@@ -45,28 +46,28 @@
         </div>
       </div>
 
-      <!-- 当前步骤标题 -->
+      <!-- Şu anki adım başlığı -->
       <p class="text-xs text-accent text-center mb-2">{{ currentStepDef.label }} — {{ currentStepDef.hint }}</p>
 
-      <!-- 填充条 -->
+      <!-- Dolum çubuğu -->
       <div class="relative h-10 bg-bg border border-accent/20 mb-3">
-        <!-- 目标标记 -->
+        <!-- Hedef işareti -->
         <div
           class="absolute top-0 bottom-0 w-6 border-x border-success/50 bg-success/15"
           :style="{ left: `calc(${targetPosition}% - 12px)` }"
         />
         <div class="absolute top-0 bottom-0 w-1 bg-accent/40" :style="{ left: `${targetPosition}%` }" />
-        <!-- 目标标签 -->
-        <span class="absolute -top-3.5 text-success" style="font-size: 8px" :style="{ left: `calc(${targetPosition}% - 6px)` }">目标</span>
-        <!-- 填充 -->
+        <!-- Hedef etiketi -->
+        <span class="absolute -top-3.5 text-success" style="font-size: 8px" :style="{ left: `calc(${targetPosition}% - 6px)` }">hedef</span>
+        <!-- Dolum -->
         <div
           class="absolute top-0 bottom-0 left-0 transition-none"
           :class="fillPct > 95 ? 'bg-danger/40' : 'bg-accent/30'"
           :style="{ width: `${fillPct}%` }"
         />
-        <!-- 当前位置指针 -->
+        <!-- Şu anki konum işaretçisi -->
         <div class="absolute top-0 bottom-0 w-0.5 bg-text" :style="{ left: `${fillPct}%`, transition: 'none' }" />
-        <!-- 区域标签 -->
+        <!-- Bölge etiketleri -->
         <div class="absolute bottom-0 left-1 right-1 flex justify-between" style="font-size: 8px">
           <span class="text-muted">{{ currentStepDef.lowLabel }}</span>
           <span class="text-muted">{{ currentStepDef.highLabel }}</span>
@@ -76,7 +77,7 @@
       <Button class="w-full py-2" :icon="Droplets" @click="lockStep">{{ currentStepDef.action }}</Button>
     </div>
 
-    <!-- 单步结果反馈 -->
+    <!-- Tek adım sonucu -->
     <div v-else-if="phase === 'step_result'" class="text-center py-2">
       <div class="flex justify-center space-x-1.5 mb-2">
         <div v-for="i in 3" :key="i" class="w-2 h-2" :class="roundDotClass(i - 1)" />
@@ -90,13 +91,13 @@
             'text-muted': lastStepGrade === 'poor'
           }"
         >
-          {{ lastStepGrade === 'perfect' ? '精准！' : lastStepGrade === 'good' ? '还行。' : '偏了…' }}
-          +{{ lastStepScore }}分
+          {{ lastStepGrade === 'perfect' ? 'Tam yerinde!' : lastStepGrade === 'good' ? 'İdare eder.' : 'Taştı gitti…' }}
+          +{{ lastStepScore }} puan
         </p>
       </div>
     </div>
 
-    <!-- 单轮总结 -->
+    <!-- Tur özeti -->
     <div v-else-if="phase === 'round_result'" class="text-center py-2">
       <div class="flex justify-center space-x-1.5 mb-3">
         <div v-for="i in 3" :key="i" class="w-2 h-2" :class="roundDotClass(i - 1)" />
@@ -110,15 +111,15 @@
             'text-danger': lastRoundGrade === 'poor'
           }"
         >
-          {{ lastRoundGrade === 'perfect' ? '绝品好茶！' : lastRoundGrade === 'good' ? '茶味尚可。' : '这泡砸了…' }}
+          {{ lastRoundGrade === 'perfect' ? 'Usta işi bir demlik!' : lastRoundGrade === 'good' ? 'Çayı içilir olmuş.' : 'Bu demlik boşa gitti…' }}
         </p>
-        <p class="text-xs text-muted">本轮得分：{{ roundScore }}分</p>
+        <p class="text-xs text-muted">Bu turun puanı: {{ roundScore }}</p>
       </div>
     </div>
 
-    <!-- 最终结果 -->
+    <!-- Sonuç -->
     <div v-else-if="phase === 'finished'">
-      <p class="text-xs text-muted mb-2">斗茶结束！</p>
+      <p class="text-xs text-muted mb-2">Çay meydanı sona erdi!</p>
 
       <div class="flex justify-center space-x-1.5 mb-3">
         <div v-for="i in 3" :key="i" class="w-2 h-2" :class="roundDotClass(i - 1)" />
@@ -130,7 +131,7 @@
           :key="i"
           class="flex items-center justify-between text-xs py-0.5 border-b border-accent/10 last:border-0"
         >
-          <span class="text-muted">第{{ i + 1 }}泡</span>
+          <span class="text-muted">{{ i + 1 }}. demlik</span>
           <span
             :class="{
               'text-accent': r.grade === 'perfect',
@@ -138,25 +139,25 @@
               'text-danger': r.grade === 'poor'
             }"
           >
-            {{ r.grade === 'perfect' ? '绝品' : r.grade === 'good' ? '尚可' : '失手' }}
+            {{ r.grade === 'perfect' ? 'usta işi' : r.grade === 'good' ? 'olmuş' : 'şaşmış' }}
           </span>
-          <span class="text-muted">{{ r.score }}分</span>
+          <span class="text-muted">{{ r.score }} puan</span>
         </div>
       </div>
 
       <div class="border border-accent/20 p-2 mb-3 text-center">
         <p class="text-xs mb-1">
-          总分：
+          Toplam puan:
           <span class="text-accent">{{ totalScore }}</span>
           / 450
         </p>
         <p class="text-xs">
-          奖金：
+          Ödül:
           <span class="text-accent">{{ prize }}</span>
-          文
+          akçe
         </p>
       </div>
-      <Button class="w-full" @click="handleClaim">领取奖励</Button>
+      <Button class="w-full" @click="handleClaim">Ödülü Al</Button>
     </div>
   </div>
 </template>
@@ -184,9 +185,9 @@
   type Grade = 'perfect' | 'good' | 'poor'
 
   const BREW_STEPS = [
-    { label: '控制水温', shortLabel: '温', hint: '将水烧到合适温度', action: '定温！', lowLabel: '凉', highLabel: '烫' },
-    { label: '投茶', shortLabel: '茶', hint: '放入适量茶叶', action: '放茶！', lowLabel: '少', highLabel: '多' },
-    { label: '出汤时机', shortLabel: '汤', hint: '在最佳时机出汤', action: '出汤！', lowLabel: '淡', highLabel: '苦' }
+    { label: 'Suyun harını tuttur', shortLabel: 'Su', hint: 'Suyu tam kıvamında ısıt', action: 'Harı tut!', lowLabel: 'ılık', highLabel: 'yakıcı' },
+    { label: 'Çayı kat', shortLabel: 'Çay', hint: 'Yaprağı kararınca bırak', action: 'Çayı sal!', lowLabel: 'az', highLabel: 'çok' },
+    { label: 'Demi çıkar', shortLabel: 'Dem', hint: 'Tam vaktinde demi süz', action: 'Demi al!', lowLabel: 'hafif', highLabel: 'acı' }
   ]
 
   const phase = ref<Phase>('ready')
@@ -204,7 +205,7 @@
   let fillTimer: ReturnType<typeof setInterval> | null = null
   let phaseTimeout: ReturnType<typeof setTimeout> | null = null
 
-  // 填充速度随轮次和步骤增加
+  // Dolma hızı tur ve adımla birlikte artar
   const getFillSpeed = () => {
     const roundBonus = roundIndex.value * 0.4
     const stepBonus = brewStep.value * 0.2
@@ -243,14 +244,14 @@
   const startBrewStep = () => {
     phase.value = 'brewing'
     fillPct.value = 0
-    // 随机目标位置 (25-80范围)
+    // Rastgele hedef konumu (25-80 arası)
     targetPosition.value = 25 + Math.random() * 55
 
     const speed = getFillSpeed()
     fillTimer = setInterval(() => {
       fillPct.value = Math.min(100, fillPct.value + speed)
       if (fillPct.value >= 100) {
-        // 自动超时，强制结算（最差分数）
+        // Süre dolarsa kendiliğinden hesaplanır (en kötü puan)
         lockStep()
       }
     }, 50)
@@ -276,7 +277,7 @@
       score = 10
     }
 
-    // 步骤判定音效
+    // Adım değerlendirme sesi
     setTimeout(() => {
       if (grade === 'perfect') sfxTeaBell()
       else if (grade === 'good') sfxMiniGood()
@@ -292,7 +293,7 @@
     phaseTimeout = setTimeout(() => {
       brewStep.value++
       if (brewStep.value >= 3) {
-        // 本轮结束
+        // Tur biter
         let roundGrade: Grade = 'poor'
         if (roundScore.value >= 120) roundGrade = 'perfect'
         else if (roundScore.value >= 70) roundGrade = 'good'
@@ -300,7 +301,7 @@
         lastRoundGrade.value = roundGrade
         roundResults.value.push({ grade: roundGrade, score: roundScore.value })
 
-        // 轮次结果音效
+        // Tur sonucu sesi
         if (roundGrade === 'perfect') sfxMiniPerfect()
         else if (roundGrade === 'poor') sfxMiniFail()
 
