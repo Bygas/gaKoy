@@ -3,28 +3,28 @@ import path from 'node:path'
 import fs from 'node:fs'
 import pkg from '../package.json'
 
-// 应用根目录（开发时是项目根目录，打包后是 app.asar）
+// Uygulama kök dizini (geliştirmede proje kökü, paketlendikten sonra app.asar)
 const appRoot = app.getAppPath()
 
-// preload 路径
+// preload yolu
 const preloadPath = path.join(appRoot, 'dist-electron', 'preload.js')
 
-// 构建产物路径（Vite 输出到 docs/）
+// Derleme çıktısı yolu (Vite docs/ klasörüne çıkarır)
 const docsPath = path.join(appRoot, 'docs')
 
-// 静态资源路径
+// Statik varlık yolu
 const publicPath = path.join(appRoot, 'public')
 
-// 设置文件路径
+// Ayar dosyası yolu
 const settingsPath = path.join(app.getPath('userData'), 'settings.json')
 
-// 默认设置
+// Varsayılan ayarlar
 const defaultSettings = {
-  closeToTray: false, // 关闭窗口时隐藏到托盘
-  autoLaunch: false // 开机自启动
+  closeToTray: false, // Pencere kapanırken sistem tepsisine gizle
+  autoLaunch: false // Bilgisayar açılınca otomatik başlat
 }
 
-// 读取设置
+// Ayarları oku
 const loadSettings = () => {
   try {
     if (fs.existsSync(settingsPath)) {
@@ -36,7 +36,7 @@ const loadSettings = () => {
   return { ...defaultSettings }
 }
 
-// 保存设置
+// Ayarları kaydet
 const saveSettings = s => {
   try {
     fs.writeFileSync(settingsPath, JSON.stringify(s, null, 2))
@@ -50,7 +50,7 @@ let win = null
 let tray = null
 let isQuitting = false
 
-// 销毁托盘
+// Sistem tepsisini kaldır
 const destroyTray = () => {
   if (tray) {
     tray.destroy()
@@ -58,7 +58,7 @@ const destroyTray = () => {
   }
 }
 
-// 设置开机自启动
+// Bilgisayar açılınca otomatik başlatmayı ayarla
 const setAutoLaunch = enable => {
   app.setLoginItemSettings({
     openAtLogin: enable,
@@ -66,7 +66,7 @@ const setAutoLaunch = enable => {
   })
 }
 
-// 创建托盘
+// Sistem tepsisini oluştur
 const createTray = () => {
   if (tray) return
 
@@ -77,10 +77,10 @@ const createTray = () => {
   tray.setToolTip(pkg.title)
 
   const contextMenu = Menu.buildFromTemplate([
-    { label: '显示窗口', click: () => win?.show() },
+    { label: 'Pencereyi Göster', click: () => win?.show() },
     { type: 'separator' },
     {
-      label: '退出',
+      label: 'Çıkış',
       click: () => {
         isQuitting = true
         app.quit()
@@ -92,14 +92,14 @@ const createTray = () => {
   tray.on('double-click', () => win?.show())
 }
 
-// 创建应用菜单
+// Uygulama menüsünü oluştur
 const createAppMenu = () => {
   const template = [
     {
-      label: '设置',
+      label: 'Ayarlar',
       submenu: [
         {
-          label: '关闭时最小化到托盘',
+          label: 'Kapatınca sistem tepsisine küçült',
           type: 'checkbox',
           checked: settings.closeToTray,
           click: menuItem => {
@@ -113,7 +113,7 @@ const createAppMenu = () => {
           }
         },
         {
-          label: '开机自动启动',
+          label: 'Bilgisayar açılınca otomatik başlat',
           type: 'checkbox',
           checked: settings.autoLaunch,
           click: menuItem => {
@@ -123,7 +123,7 @@ const createAppMenu = () => {
           }
         },
         {
-          label: '退出游戏',
+          label: 'Oyundan Çık',
           accelerator: 'CmdOrCtrl+Q',
           click: () => {
             isQuitting = true
@@ -133,15 +133,15 @@ const createAppMenu = () => {
       ]
     },
     {
-      label: '开发',
+      label: 'Geliştirici',
       submenu: [
         {
-          label: '开发者工具',
+          label: 'Geliştirici Araçları',
           accelerator: 'F12',
           click: () => win?.webContents.toggleDevTools()
         },
         {
-          label: '重新加载',
+          label: 'Yeniden Yükle',
           accelerator: 'CmdOrCtrl+R',
           click: () => win?.webContents.reload()
         }
@@ -153,7 +153,7 @@ const createAppMenu = () => {
   Menu.setApplicationMenu(menu)
 }
 
-// 创建窗口
+// Pencereyi oluştur
 const createWindow = () => {
   win = new BrowserWindow({
     title: pkg.title,
@@ -170,19 +170,20 @@ const createWindow = () => {
   createAppMenu()
   win.loadFile(path.join(docsPath, 'index.html'))
 
-  // WebDAV CORS 绕过：对所有非同源请求注入 CORS 响应头
+  // WebDAV CORS aşımı: aynı kökenden olmayan tüm isteklere CORS yanıt başlıkları ekle
   win.webContents.session.webRequest.onHeadersReceived((details, callback) => {
     const headers = { ...details.responseHeaders }
     headers['access-control-allow-origin'] = ['*']
     headers['access-control-allow-methods'] = ['GET, PUT, DELETE, PROPFIND, HEAD, OPTIONS']
     headers['access-control-allow-headers'] = ['Authorization, Content-Type, Depth']
-    // 剥离 WWW-Authenticate 防止浏览器弹出原生认证对话框（由应用自行处理认证错误）
+    // Tarayıcının yerel kimlik doğrulama penceresi açmasını engellemek için WWW-Authenticate başlığını kaldır
+    // (kimlik doğrulama hataları uygulama içinde ele alınır)
     delete headers['www-authenticate']
     delete headers['WWW-Authenticate']
     callback({ responseHeaders: headers })
   })
 
-  // 窗口关闭事件
+  // Pencere kapanma olayı
   win.on('close', e => {
     if (settings.closeToTray && !isQuitting) {
       e.preventDefault()
@@ -192,17 +193,17 @@ const createWindow = () => {
   })
 }
 
-// IPC 处理
+// IPC işlemleri
 ipcMain.handle('get-settings', () => settings)
 
 ipcMain.handle('set-settings', (_, newSettings) => {
   settings = { ...settings, ...newSettings }
   saveSettings(settings)
 
-  // 处理开机自启动
+  // Otomatik başlatmayı işle
   setAutoLaunch(settings.autoLaunch)
 
-  // 处理托盘
+  // Sistem tepsisini işle
   if (settings.closeToTray) {
     createTray()
   } else {
@@ -229,12 +230,12 @@ ipcMain.handle('quit-app', () => {
 app.whenReady().then(() => {
   createWindow()
 
-  // 如果启用了托盘功能，创建托盘
+  // Sistem tepsisi özelliği açıksa tepsiyi oluştur
   if (settings.closeToTray) {
     createTray()
   }
 
-  // 应用开机自启动设置
+  // Bilgisayar açılınca otomatik başlatma ayarını uygula
   setAutoLaunch(settings.autoLaunch)
 })
 
