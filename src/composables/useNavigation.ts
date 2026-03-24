@@ -62,7 +62,7 @@ export type PanelKey =
 
 export const TABS: { key: PanelKey; label: string; icon: Component; getIcon?: () => Component }[] = [
   { key: 'farm', label: 'Tarla', icon: Wheat },
-  { key: 'animal', label: 'Hayvanlık', icon: Egg },
+  { key: 'animal', label: 'Hayvancılık', icon: Egg },
   { key: 'cottage', label: 'Ev', icon: Home, getIcon: () => (useNpcStore().getSpouse() ? Heart : Home) },
   { key: 'home', label: 'Yapılar', icon: Building },
   { key: 'breeding', label: 'Islah', icon: FlaskConical },
@@ -73,15 +73,15 @@ export const TABS: { key: PanelKey; label: string; icon: Component; getIcon?: ()
   { key: 'fishing', label: 'Akarsu', icon: Fish },
   { key: 'mining', label: 'Maden Ocağı', icon: Pickaxe },
   { key: 'cooking', label: 'Ocakbaşı', icon: Flame },
-  { key: 'workshop', label: 'İşlik', icon: Cog },
+  { key: 'workshop', label: 'Atölye', icon: Cog },
   { key: 'upgrade', label: 'Ustalık Ocağı', icon: Wrench },
   { key: 'charinfo', label: 'Kişi', icon: User },
   { key: 'inventory', label: 'Heybe', icon: Package },
   { key: 'skills', label: 'Hüner', icon: Star },
-  { key: 'achievement', label: 'Defter', icon: BookOpen },
+  { key: 'achievement', label: 'Başarılar', icon: BookOpen },
   { key: 'wallet', label: 'Kesecik', icon: Wallet },
   { key: 'quest', label: 'Duyuru Tahtası', icon: ScrollText },
-  { key: 'museum', label: 'Müzehane', icon: Landmark },
+  { key: 'museum', label: 'Müze', icon: Landmark },
   { key: 'guild', label: 'Lonca', icon: Swords },
   { key: 'hanhai', label: 'Uçsuz Kumluk', icon: Tent }
 ]
