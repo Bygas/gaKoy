@@ -1,34 +1,35 @@
+
 <template>
   <div class="game-panel max-w-sm w-full">
     <h3 class="text-accent text-sm mb-3 flex items-center space-x-1">
       <Target :size="14" />
-      <span>重阳投壶</span>
+      <span>Testi Atışı</span>
     </h3>
 
-    <!-- 准备 -->
+    <!-- Hazırlık -->
     <div v-if="phase === 'ready'">
-      <p class="text-xs text-muted mb-3">瞄准铜壶，投出箭矢！共5次机会，在指针移到中心时点击「投掷」，越准得分越高！</p>
-      <Button class="w-full" @click="startGame">开始投壶！</Button>
+      <p class="text-xs text-muted mb-3">Bakır testiyi gözle, oku sal! Toplam 5 hakkın var. İbre tam ortaya yaklaşınca “At!” düğmesine bas; ne kadar denk getirirsen puanın o kadar artar!</p>
+      <Button class="w-full" @click="startGame">Atışa Başla!</Button>
     </div>
 
-    <!-- 瞄准中 -->
+    <!-- Nişan alma -->
     <div v-else-if="phase === 'aiming'">
       <div class="flex items-center justify-between mb-2">
-        <p class="text-xs text-muted">第 {{ throwIndex + 1 }} / 5 投</p>
+        <p class="text-xs text-muted">{{ throwIndex + 1 }} / 5. atış</p>
         <p class="text-xs text-muted">
-          总分：
+          Toplam puan:
           <span class="text-accent">{{ totalScore }}</span>
         </p>
       </div>
 
-      <!-- 投掷进度点 -->
+      <!-- Atış ilerleme noktaları -->
       <div class="flex justify-center space-x-1.5 mb-3">
         <div v-for="i in 5" :key="i" class="w-2 h-2" :class="throwDotClass(i - 1)" />
       </div>
 
-      <!-- 瞄准条 -->
+      <!-- Nişan çubuğu -->
       <div class="relative h-8 bg-bg border border-accent/20 mb-2">
-        <!-- 区域着色 -->
+        <!-- Bölge renkleri -->
         <div class="absolute inset-0 flex">
           <div class="flex-1 bg-danger/5" />
           <div class="flex-1 bg-success/5" />
@@ -36,42 +37,42 @@
           <div class="flex-1 bg-success/5" />
           <div class="flex-1 bg-danger/5" />
         </div>
-        <!-- 中心区域标记 -->
+        <!-- Orta bölge işareti -->
         <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-8 border-x border-success/40" />
         <div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-2 bg-accent/25" />
-        <!-- 摆动指针 -->
+        <!-- Sallanan ibre -->
         <div class="absolute top-0 bottom-0 w-1 bg-accent" :style="{ left: `${aimPosition}%`, transition: 'none' }" />
-        <!-- 区域标签 -->
+        <!-- Bölge yazıları -->
         <div class="absolute bottom-0 w-full flex text-center" style="font-size: 9px">
-          <span class="flex-1 text-danger/40">远</span>
-          <span class="flex-1 text-success/40">近</span>
-          <span class="flex-1 text-accent/60">中</span>
-          <span class="flex-1 text-success/40">近</span>
-          <span class="flex-1 text-danger/40">远</span>
+          <span class="flex-1 text-danger/40">uzak</span>
+          <span class="flex-1 text-success/40">yakın</span>
+          <span class="flex-1 text-accent/60">tam</span>
+          <span class="flex-1 text-success/40">yakın</span>
+          <span class="flex-1 text-danger/40">uzak</span>
         </div>
       </div>
 
-      <!-- 壶 -->
+      <!-- Testi -->
       <div class="text-center mb-3">
         <div class="inline-block border-2 border-accent/40 px-4 py-2 relative">
-          <div class="text-accent text-sm">壶</div>
+          <div class="text-accent text-sm">Testi</div>
           <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-4 h-1 border border-accent/40 bg-panel" />
         </div>
       </div>
 
-      <Button class="w-full py-2" :icon="ArrowUp" @click="throwArrow">投掷！</Button>
+      <Button class="w-full py-2" :icon="ArrowUp" @click="throwArrow">At!</Button>
     </div>
 
-    <!-- 投掷动画 -->
+    <!-- Atış canlandırması -->
     <div v-else-if="phase === 'throwing'" class="text-center py-6">
       <div class="arrow-fly mb-3">
         <ArrowUp :size="24" class="text-accent mx-auto" />
       </div>
     </div>
 
-    <!-- 单次结果 -->
+    <!-- Tek atış sonucu -->
     <div v-else-if="phase === 'hit'" class="text-center py-2">
-      <!-- 投掷进度点 -->
+      <!-- Atış ilerleme noktaları -->
       <div class="flex justify-center space-x-1.5 mb-3">
         <div v-for="i in 5" :key="i" class="w-2 h-2" :class="throwDotClass(i - 1)" />
       </div>
@@ -85,7 +86,7 @@
             'text-danger': lastResult === 'miss'
           }"
         >
-          {{ lastResult === 'bullseye' ? '正中壶心！' : lastResult === 'good' ? '擦边命中！' : '没投中…' }}
+          {{ lastResult === 'bullseye' ? 'Tam ağızdan girdi!' : lastResult === 'good' ? 'Kenarından tuttu!' : 'Iskaladın…' }}
         </p>
         <p
           class="text-xs score-pop"
@@ -95,16 +96,16 @@
             'text-muted': lastResult === 'miss'
           }"
         >
-          +{{ lastScore }}分
+          +{{ lastScore }} puan
         </p>
       </div>
     </div>
 
-    <!-- 最终结果 -->
+    <!-- Son sonuç -->
     <div v-else>
-      <p class="text-xs text-muted mb-2">投壶结束！</p>
+      <p class="text-xs text-muted mb-2">Testi atışı bitti!</p>
 
-      <!-- 投掷进度点（最终） -->
+      <!-- Atış ilerleme noktaları (son) -->
       <div class="flex justify-center space-x-1.5 mb-3">
         <div v-for="i in 5" :key="i" class="w-2 h-2" :class="throwDotClass(i - 1)" />
       </div>
@@ -115,7 +116,7 @@
           :key="i"
           class="flex items-center justify-between text-xs py-0.5 border-b border-accent/10 last:border-0"
         >
-          <span class="text-muted">第{{ i + 1 }}投</span>
+          <span class="text-muted">{{ i + 1 }}. atış</span>
           <span
             :class="{
               'text-accent': r.result === 'bullseye',
@@ -123,25 +124,25 @@
               'text-danger': r.result === 'miss'
             }"
           >
-            {{ r.result === 'bullseye' ? '正中' : r.result === 'good' ? '擦边' : '未中' }}
+            {{ r.result === 'bullseye' ? 'tam isabet' : r.result === 'good' ? 'sıyırdı' : 'kaçtı' }}
           </span>
-          <span class="text-muted">{{ r.score }}分</span>
+          <span class="text-muted">{{ r.score }} puan</span>
         </div>
       </div>
 
       <div class="border border-accent/20 p-2 mb-3 text-center">
         <p class="text-xs mb-1">
-          总分：
+          Toplam puan:
           <span class="text-accent">{{ totalScore }}</span>
           / 500
         </p>
         <p class="text-xs">
-          奖金：
+          Ödül:
           <span class="text-accent">{{ prize }}</span>
-          文
+          akçe
         </p>
       </div>
-      <Button class="w-full" @click="handleClaim">领取奖励</Button>
+      <Button class="w-full" @click="handleClaim">Ödülü Al</Button>
     </div>
   </div>
 </template>
@@ -178,7 +179,7 @@
   let phaseTimeout: ReturnType<typeof setTimeout> | null = null
   let aimDirection = 1
 
-  /** 难度随回合递增: 第1投2.0 → 第5投4.0 */
+  /** Zorluk atış ilerledikçe artar: 1. atış 2.0 → 5. atış 4.0 */
   const getAimSpeed = () => 2.0 + throwIndex.value * 0.5
 
   const prize = computed(() => {
@@ -229,7 +230,7 @@
     if (aimTimer) clearInterval(aimTimer)
     aimTimer = null
 
-    // 计算偏移（50为中心）
+    // Sapmayı hesapla (50 merkezdir)
     const offset = Math.abs(aimPosition.value - 50)
     let result: ThrowResult
     let score: number
@@ -252,7 +253,7 @@
 
     phase.value = 'throwing'
     phaseTimeout = setTimeout(() => {
-      // 命中结果音效
+      // İsabet sesi
       if (result === 'bullseye') sfxPotClang()
       else if (result === 'good') sfxMiniGood()
       else sfxMiniFail()
@@ -261,7 +262,7 @@
         throwIndex.value++
         if (throwIndex.value >= 5) {
           phase.value = 'finished'
-          // 最终排名音效
+          // Son sıra sesi
           if (totalScore.value >= 500) sfxRankFirst()
           else if (totalScore.value >= 300) sfxRankSecond()
         } else {
