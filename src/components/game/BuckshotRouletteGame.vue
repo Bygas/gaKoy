@@ -1,29 +1,29 @@
 <template>
   <div class="game-panel max-w-xs w-full">
-    <Divider title class="!mb-1" label="恶魔轮盘" />
+    <Divider title class="!mb-1" label="Şeytan Çarkı" />
 
-    <!-- 弹仓信息 -->
+    <!-- Mermi yuvası bilgisi -->
     <div class="border border-accent/20 rounded-xs p-2 mb-3">
       <div class="flex items-center justify-between text-xs">
-        <span class="text-muted">弹仓</span>
+        <span class="text-muted">Mermi yatağı</span>
         <span>
           <span v-for="i in liveRemaining" :key="'l' + i" class="text-danger">&bull;</span>
           <span v-for="i in blankRemaining" :key="'b' + i" class="text-muted">&bull;</span>
-          <span class="text-muted ml-1">({{ liveRemaining }}实{{ blankRemaining }}空)</span>
+          <span class="text-muted ml-1">({{ liveRemaining }} gerçek / {{ blankRemaining }} boş)</span>
         </span>
       </div>
       <div class="flex items-center justify-between text-xs mt-0.5">
-        <span class="text-muted">进度</span>
-        <span>第{{ shellIndex + 1 }}发 / 共{{ shells.length }}发</span>
+        <span class="text-muted">Gidişat</span>
+        <span>{{ shellIndex + 1 }}. atış / toplam {{ shells.length }} atış</span>
       </div>
     </div>
 
-    <!-- HP 显示 -->
+    <!-- Can gösterimi -->
     <div class="flex items-center space-x-3 mb-3">
-      <!-- 玩家HP -->
+      <!-- Oyuncu canı -->
       <div class="flex-1">
         <div class="flex items-center justify-between text-xs mb-0.5">
-          <span :class="isPlayerTurn && !gameOver ? 'text-accent' : 'text-muted'">你</span>
+          <span :class="isPlayerTurn && !gameOver ? 'text-accent' : 'text-muted'">Sen</span>
           <span class="text-text">{{ playerHP }}/{{ maxPlayerHP }}</span>
         </div>
         <div class="h-1.5 bg-panel rounded-full overflow-hidden" :class="{ 'buckshot-flash-red': playerHit }">
@@ -37,10 +37,10 @@
 
       <span class="text-xs text-muted/40">VS</span>
 
-      <!-- 庄家HP -->
+      <!-- Krupiye canı -->
       <div class="flex-1">
         <div class="flex items-center justify-between text-xs mb-0.5">
-          <span :class="!isPlayerTurn && !gameOver ? 'text-danger' : 'text-muted'">庄家</span>
+          <span :class="!isPlayerTurn && !gameOver ? 'text-danger' : 'text-muted'">Krupiye</span>
           <span class="text-text">{{ dealerHP }}/{{ maxDealerHP }}</span>
         </div>
         <div class="h-1.5 bg-panel rounded-full overflow-hidden" :class="{ 'buckshot-flash-red': dealerHit }">
@@ -53,16 +53,16 @@
       </div>
     </div>
 
-    <!-- 操作按钮 -->
+    <!-- İşlem düğmeleri -->
     <div v-if="isPlayerTurn && !gameOver" class="flex space-x-2 mb-3">
-      <Button class="flex-1 justify-center" :disabled="animating" @click="shootOpponent">射向庄家</Button>
-      <Button class="flex-1 justify-center" :disabled="animating" @click="shootSelf">射向自己</Button>
+      <Button class="flex-1 justify-center" :disabled="animating" @click="shootOpponent">Krupiyeye ateş et</Button>
+      <Button class="flex-1 justify-center" :disabled="animating" @click="shootSelf">Kendine ateş et</Button>
     </div>
 
-    <!-- 庄家回合提示 -->
-    <p v-if="!isPlayerTurn && !gameOver" class="text-xs text-muted/40 text-center mb-3">庄家思考中…</p>
+    <!-- Krupiye sırası bildirimi -->
+    <p v-if="!isPlayerTurn && !gameOver" class="text-xs text-muted/40 text-center mb-3">Krupiye düşünüyor…</p>
 
-    <!-- 行动日志 -->
+    <!-- Hamle günlüğü -->
     <div v-if="actionLog.length > 0" class="border border-accent/10 rounded-xs p-2 mb-3 max-h-24 overflow-y-auto">
       <p
         v-for="(log, i) in actionLog"
@@ -74,23 +74,23 @@
       </p>
     </div>
 
-    <!-- 结果 -->
+    <!-- Sonuç -->
     <template v-if="gameOver">
       <div class="border border-accent/10 rounded-xs p-3 text-center mb-3">
         <p class="text-sm" :class="won ? 'text-success' : draw ? 'text-accent' : 'text-danger'">
-          {{ won ? '你赢了！' : draw ? '平局' : '你输了…' }}
+          {{ won ? 'Kazandın!' : draw ? 'Berabere' : 'Kaybettin…' }}
         </p>
         <p class="text-xs mt-0.5" :class="won ? 'text-success' : draw ? 'text-accent' : 'text-danger'">
           {{
             won
-              ? '+' + BUCKSHOT_BET_AMOUNT * BUCKSHOT_WIN_MULTIPLIER + '文'
+              ? '+' + BUCKSHOT_BET_AMOUNT * BUCKSHOT_WIN_MULTIPLIER + ' akçe'
               : draw
-                ? '退还' + BUCKSHOT_BET_AMOUNT + '文'
-                : '-' + BUCKSHOT_BET_AMOUNT + '文'
+                ? BUCKSHOT_BET_AMOUNT + ' akçe geri verildi'
+                : '-' + BUCKSHOT_BET_AMOUNT + ' akçe'
           }}
         </p>
       </div>
-      <Button class="w-full justify-center" @click="emit('complete', won, draw)">确定</Button>
+      <Button class="w-full justify-center" @click="emit('complete', won, draw)">Tamam</Button>
     </template>
   </div>
 </template>
@@ -106,7 +106,7 @@
   const props = defineProps<{ setup: BuckshotSetup }>()
   const emit = defineEmits<{ complete: [won: boolean, draw: boolean] }>()
 
-  // 游戏状态
+  // Oyun durumu
   const shells = ref<ShellType[]>([...props.setup.shells])
   const shellIndex = ref(0)
   const playerHP = ref(props.setup.playerHP)
@@ -121,7 +121,7 @@
   const actionLog = ref<string[]>([])
   const animating = ref(false)
 
-  // 受击动画
+  // İsabet animasyonu
   const playerHit = ref(false)
   const dealerHit = ref(false)
 
@@ -173,33 +173,33 @@
       gameOver.value = true
       won.value = false
       sfxCasinoLose()
-      addActionLog('你倒下了……')
+      addActionLog('Yere serildin…')
       return true
     }
     if (dealerHP.value <= 0) {
       gameOver.value = true
       won.value = true
       sfxCasinoWin()
-      addActionLog('庄家倒下了！')
+      addActionLog('Krupiye yere serildi!')
       return true
     }
     if (shellIndex.value >= shells.value.length) {
-      // 弹药用完，比较剩余HP
+      // Mermiler biterse kalan cana bakılır
       if (playerHP.value > dealerHP.value) {
         gameOver.value = true
         won.value = true
         sfxCasinoWin()
-        addActionLog('弹药用尽，你的生命值更高——你赢了！')
+        addActionLog('Mermiler tükendi; canın daha yüksek — kazandın!')
       } else if (playerHP.value < dealerHP.value) {
         gameOver.value = true
         won.value = false
         sfxCasinoLose()
-        addActionLog('弹药用尽，庄家生命值更高——你输了…')
+        addActionLog('Mermiler tükendi; krupiyenin canı daha yüksek — kaybettin…')
       } else {
-        // 平局，退还下注
+        // Berabere, bahis geri verilir
         gameOver.value = true
         draw.value = true
-        addActionLog('弹药用尽，生命值相同——平局！')
+        addActionLog('Mermiler tükendi, canlar eşit — berabere!')
       }
       return true
     }
@@ -208,7 +208,7 @@
 
   const delay = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms))
 
-  /** 玩家射击对方 */
+  /** Oyuncu karşı tarafa ateş eder */
   const shootOpponent = async () => {
     if (animating.value || gameOver.value) return
     animating.value = true
@@ -219,10 +219,10 @@
       sfxGunshot()
       dealerHP.value = Math.max(0, dealerHP.value - 1)
       triggerHitAnim('dealer')
-      addActionLog('你射向庄家——实弹！庄家 -1HP')
+      addActionLog('Krupiyeye ateş ettin — gerçek mermi! Krupiye -1 can')
     } else {
       sfxGunEmpty()
-      addActionLog('你射向庄家——空弹，未命中。')
+      addActionLog('Krupiyeye ateş ettin — boş mermi, isabet yok.')
     }
 
     await nextTick()
@@ -237,7 +237,7 @@
     }
   }
 
-  /** 玩家射击自己 */
+  /** Oyuncu kendine ateş eder */
   const shootSelf = async () => {
     if (animating.value || gameOver.value) return
     animating.value = true
@@ -246,8 +246,8 @@
 
     if (shell === 'blank') {
       sfxGunEmpty()
-      addActionLog('你射向自己——空弹！获得额外回合。')
-      // 额外回合，不切换
+      addActionLog('Kendine ateş ettin — boş mermi! Fazladan sıra kazandın.')
+      // Fazladan sıra, el değişmez
       await delay(400)
       animating.value = false
       if (checkGameEnd()) return
@@ -255,7 +255,7 @@
       sfxGunshot()
       playerHP.value = Math.max(0, playerHP.value - 1)
       triggerHitAnim('player')
-      addActionLog('你射向自己——实弹！你 -1HP')
+      addActionLog('Kendine ateş ettin — gerçek mermi! -1 can')
       await nextTick()
 
       if (!checkGameEnd()) {
@@ -269,7 +269,7 @@
     }
   }
 
-  /** 庄家回合 */
+  /** Krupiye sırası */
   const dealerTurn = async () => {
     if (gameOver.value) return
     animating.value = true
@@ -287,15 +287,15 @@
     consumeShell()
 
     if (decision === 'opponent') {
-      // 射玩家
+      // Oyuncuya ateş eder
       if (shell === 'live') {
         sfxGunshot()
         playerHP.value = Math.max(0, playerHP.value - 1)
         triggerHitAnim('player')
-        addActionLog('庄家射向你——实弹！你 -1HP')
+        addActionLog('Krupiye sana ateş etti — gerçek mermi! -1 can')
       } else {
         sfxGunEmpty()
-        addActionLog('庄家射向你——空弹，未命中。')
+        addActionLog('Krupiye sana ateş etti — boş mermi, isabet yok.')
       }
       await nextTick()
 
@@ -306,10 +306,10 @@
         animating.value = false
       }
     } else {
-      // 射自己
+      // Kendine ateş eder
       if (shell === 'blank') {
         sfxGunEmpty()
-        addActionLog('庄家射向自己——空弹！庄家获得额外回合。')
+        addActionLog('Krupiye kendine ateş etti — boş mermi! Fazladan sıra kazandı.')
         await delay(600)
         if (!checkGameEnd()) {
           await dealerTurn()
@@ -320,7 +320,7 @@
         sfxGunshot()
         dealerHP.value = Math.max(0, dealerHP.value - 1)
         triggerHitAnim('dealer')
-        addActionLog('庄家射向自己——实弹！庄家 -1HP')
+        addActionLog('Krupiye kendine ateş etti — gerçek mermi! Krupiye -1 can')
         await nextTick()
 
         if (!checkGameEnd()) {
@@ -335,9 +335,9 @@
 
   onMounted(() => {
     if (playerFirst) {
-      addActionLog('你先手。')
+      addActionLog('İlk sıra sende.')
     } else {
-      addActionLog('庄家先手。')
+      addActionLog('İlk sıra krupiyede.')
       void dealerTurn()
     }
   })
