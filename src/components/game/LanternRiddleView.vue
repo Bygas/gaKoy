@@ -2,43 +2,43 @@
   <div class="game-panel max-w-sm w-full">
     <h3 class="text-accent text-sm mb-3 flex items-center space-x-1">
       <Lightbulb :size="14" />
-      <span>七夕猜灯谜</span>
+      <span>Fener Bilmeceleri</span>
     </h3>
 
-    <!-- 准备 -->
+    <!-- Hazırlık -->
     <div v-if="phase === 'ready'">
-      <p class="text-xs text-muted mb-3">广场上挂满了灯笼，每个灯笼下都有一条灯谜。共5题，每题限时，答对有奖！</p>
-      <Button class="w-full" @click="startGame">开始猜谜！</Button>
+      <p class="text-xs text-muted mb-3">Meydan fenerlerle dolu; her fenerin altında bir bilmece var. Toplam 5 soru var, her birinin süresi sınırlı. Bilen ödülü kapar!</p>
+      <Button class="w-full" @click="startGame">Bilmeceye Başla!</Button>
     </div>
 
-    <!-- 展示灯笼 -->
+    <!-- Fener gösterimi -->
     <div v-else-if="phase === 'showing'" class="text-center py-4">
       <div class="lantern-drop mb-3">
         <div class="inline-block border-2 border-accent/50 px-6 py-3">
           <Lamp :size="20" class="text-accent mx-auto mb-1" />
-          <p class="text-accent text-xs">第 {{ currentIndex + 1 }} 题</p>
+          <p class="text-accent text-xs">{{ currentIndex + 1 }}. soru</p>
         </div>
       </div>
-      <!-- 进度点 -->
+      <!-- İlerleme noktaları -->
       <div class="flex justify-center space-x-2 mt-2">
         <div v-for="i in 5" :key="i" class="w-2 h-2" :class="dotClass(i - 1)" />
       </div>
     </div>
 
-    <!-- 答题中 -->
+    <!-- Cevaplama -->
     <div v-else-if="phase === 'answering'">
-      <!-- 进度点 + 倒计时 -->
+      <!-- İlerleme noktaları + geri sayım -->
       <div class="flex items-center justify-between mb-2">
         <div class="flex items-center space-x-1.5">
           <div v-for="i in 5" :key="i" class="w-2 h-2" :class="dotClass(i - 1)" />
         </div>
         <p class="text-xs" :class="countdown <= 3 ? 'text-danger time-pulse' : 'text-accent'">
           <Timer :size="12" class="inline -mt-0.5" />
-          {{ countdown }}s
+          {{ countdown }} sn
         </p>
       </div>
 
-      <!-- 倒计时条 -->
+      <!-- Geri sayım çubuğu -->
       <div class="h-1 bg-bg border border-accent/20 mb-3">
         <div
           class="h-full transition-all duration-1000 ease-linear"
@@ -47,13 +47,13 @@
         />
       </div>
 
-      <!-- 谜面 -->
+      <!-- Bilmece -->
       <div class="border border-accent/30 p-3 mb-3 text-center">
-        <p class="text-xs text-muted mb-1">谜面</p>
+        <p class="text-xs text-muted mb-1">Bilmece</p>
         <p class="text-xs text-text leading-relaxed">{{ currentRiddle.question }}</p>
       </div>
 
-      <!-- 选项 -->
+      <!-- Seçenekler -->
       <div class="flex flex-col space-y-2">
         <Button
           v-for="(opt, i) in currentRiddle.options"
@@ -63,58 +63,58 @@
           :class="{ 'opacity-50': answered }"
           @click="answer(i)"
         >
-          <span class="text-accent mr-1">{{ ['甲', '乙', '丙', '丁'][i] }}.</span>
+          <span class="text-accent mr-1">{{ ['A', 'B', 'C', 'D'][i] }}.</span>
           {{ opt }}
         </Button>
       </div>
     </div>
 
-    <!-- 单题结果 -->
+    <!-- Tek soru sonucu -->
     <div v-else-if="phase === 'result'" class="text-center">
-      <!-- 进度点 -->
+      <!-- İlerleme noktaları -->
       <div class="flex justify-center space-x-1.5 mb-3">
         <div v-for="i in 5" :key="i" class="w-2 h-2" :class="dotClass(i - 1)" />
       </div>
 
       <div :class="lastCorrect ? 'correct-flash' : 'wrong-shake'" class="mb-3 py-3 border border-accent/20">
         <p class="text-sm mb-1" :class="lastCorrect ? 'text-success' : 'text-danger'">
-          {{ lastCorrect ? '答对了！+100文' : '答错了…' }}
+          {{ lastCorrect ? 'Doğru bildin! +100 akçe' : 'Bilemedin…' }}
         </p>
         <p class="text-xs text-muted mt-1">
-          正确答案：
+          Doğru cevap:
           <span class="text-accent">{{ currentRiddle.options[currentRiddle.answer] }}</span>
         </p>
       </div>
       <p class="text-xs text-muted">
-        当前得分：
+        Şimdiki kazanç:
         <span class="text-accent">{{ score }}</span>
-        文
+        akçe
       </p>
     </div>
 
-    <!-- 最终结果 -->
+    <!-- Son sonuç -->
     <div v-else>
-      <p class="text-xs text-muted mb-2">灯谜会结束！</p>
+      <p class="text-xs text-muted mb-2">Bilmece meclisi sona erdi!</p>
 
-      <!-- 进度点（最终状态） -->
+      <!-- İlerleme noktaları (son durum) -->
       <div class="flex justify-center space-x-1.5 mb-3">
         <div v-for="i in 5" :key="i" class="w-2 h-2" :class="dotClass(i - 1)" />
       </div>
 
       <div class="border border-accent/20 p-3 mb-3 text-center">
         <p class="text-xs mb-1">
-          答对：
+          Doğru sayısı:
           <span class="text-success">{{ correctCount }}</span>
-          / 5 题
+          / 5 soru
         </p>
         <p class="text-xs">
-          总奖金：
+          Toplam ödül:
           <span class="text-accent">{{ score }}</span>
-          文
-          <span v-if="correctCount === 5" class="text-accent finish-flash">（全对+300文！）</span>
+          akçe
+          <span v-if="correctCount === 5" class="text-accent finish-flash">（hepsi doğruysa +300 akçe!）</span>
         </p>
       </div>
-      <Button class="w-full" @click="handleClaim">领取奖励</Button>
+      <Button class="w-full" @click="handleClaim">Ödülü Al</Button>
     </div>
   </div>
 </template>
@@ -146,68 +146,70 @@
   }
 
   const RIDDLE_POOL: Riddle[] = [
-    // === 传统灯谜 ===
-    { question: '有面无口，有脚无手，听人讲话，陪人吃酒。（打一日用品）', options: ['桌子', '椅子', '茶壶', '灯笼'], answer: 0 },
-    { question: '千条线，万条线，掉到水里看不见。（打一自然现象）', options: ['风', '雨', '雪', '雾'], answer: 1 },
-    { question: '身穿绿衣裳，肚里水汪汪，生的子儿多，个个黑脸膛。（打一水果）', options: ['葡萄', '西瓜', '石榴', '荔枝'], answer: 1 },
-    { question: '红公鸡，绿尾巴，身体钻到地底下。（打一蔬菜）', options: ['胡萝卜', '白萝卜', '红薯', '花生'], answer: 0 },
-    { question: '弟兄七八个，围着柱子坐，大家一分手，衣服全扯破。（打一食物）', options: ['饺子', '包子', '蒜', '橘子'], answer: 2 },
-    { question: '头戴红帽子，身穿白袍子，走路摆架子，说话伸脖子。（打一动物）', options: ['鸡', '鹅', '鹤', '鹦鹉'], answer: 1 },
-    { question: '一物三口，有腿无手，谁要没它，难见亲友。（打一服饰）', options: ['帽子', '裤子', '鞋子', '手套'], answer: 1 },
-    { question: '小小一姑娘，坐在水中央，身穿粉红袄，阵阵放清香。（打一植物）', options: ['睡莲', '荷花', '菊花', '兰花'], answer: 1 },
-    { question: '一个老头，不跑不走，请他睡觉，他就摇头。（打一物品）', options: ['钟摆', '不倒翁', '秋千', '风车'], answer: 1 },
-    { question: '有头无颈，有眼无眉，无脚能走，有翅难飞。（打一动物）', options: ['蛇', '鱼', '蚕', '蜗牛'], answer: 1 },
-    { question: '驼背公公，力大无穷，爱驮什么？车水马龙。（打一物）', options: ['桥', '路', '船', '车'], answer: 0 },
-    { question: '上不怕水，下不怕火，家家厨房，都有一个。（打一厨具）', options: ['菜刀', '锅', '碗', '案板'], answer: 1 },
-    // === 中国文化/节日/诗词 ===
-    { question: '「但愿人长久，千里共婵娟」中的「婵娟」指什么？', options: ['美人', '月亮', '太阳', '星辰'], answer: 1 },
-    { question: '七夕节又叫什么节？', options: ['元宵节', '花朝节', '乞巧节', '上巳节'], answer: 2 },
-    { question: '「爆竹声中一岁除」出自哪位诗人？', options: ['李白', '杜甫', '苏轼', '王安石'], answer: 3 },
-    { question: '古代「五谷」中不包括以下哪一种？', options: ['稻', '麦', '棉', '黍'], answer: 2 },
+    // === Geleneksel bilmeceler ===
+    { question: 'Yüzü var ağzı yok, ayağı var eli yok, insanı dinler, sofraya yoldaş olur. (Nedir?)', options: ['Masa', 'Sandalye', 'Çaydanlık', 'Fener'], answer: 0 },
+    { question: 'Binlerce çizgi iner, suya düşünce görünmez olur. (Nedir?)', options: ['Rüzgâr', 'Yağmur', 'Kar', 'Sis'], answer: 1 },
+    { question: 'Yeşil elbiseli, içi sulu, çekirdeği çok, her biri kapkara. (Nedir?)', options: ['Üzüm', 'Karpuz', 'Nar', 'Liçi'], answer: 1 },
+    { question: 'Kırmızı başlı, yeşil kuyruklu, gövdesi toprağın altında. (Nedir?)', options: ['Havuç', 'Turp', 'Tatlı patates', 'Yer fıstığı'], answer: 0 },
+    { question: 'Yedi sekiz kardeş, direğin çevresine çöker; ayrılınca hepsinin üstü başı parçalanır. (Nedir?)', options: ['Mantı', 'Poğaça', 'Sarımsak', 'Portakal'], answer: 2 },
+    { question: 'Kırmızı başlıklı, beyaz giysili, yürürken salınır, ses ederken boynunu uzatır. (Nedir?)', options: ['Tavuk', 'Kaz', 'Turna', 'Papağan'], answer: 1 },
+    { question: 'Üç ağzı var, eli yok ayağı var; onsuz kalanın eş dosta çıkası gelmez. (Nedir?)', options: ['Şapka', 'Pantolon', 'Ayakkabı', 'Eldiven'], answer: 1 },
+    { question: 'Küçük bir kız, suyun ortasında oturur, pembe kaftan giyer, mis gibi kokar. (Nedir?)', options: ['Nilüfer', 'Lotus', 'Kasımpatı', 'Orkide'], answer: 1 },
+    { question: 'Bir ihtiyar var, ne koşar ne yürür; uyusun dersin, başını sallar. (Nedir?)', options: ['Sarkaç', 'Hacıyatmaz', 'Salıncak', 'Yel değirmeni'], answer: 1 },
+    { question: 'Başı var boynu yok, gözü var kaşı yok, ayağı yok ama gider, kanadı var ama uçamaz. (Nedir?)', options: ['Yılan', 'Balık', 'İpekböceği', 'Salyangoz'], answer: 1 },
+    { question: 'Kambur dede, gücü çok; üstünden ne geçer desen, araba sel gibi akar. (Nedir?)', options: ['Köprü', 'Yol', 'Gemi', 'Araba'], answer: 0 },
+    { question: 'Üstü sudan korkmaz, altı ateşten korkmaz; her evin ocağında bulunur. (Nedir?)', options: ['Bıçak', 'Tencere', 'Kâse', 'Tezgâh'], answer: 1 },
+
+    // === Kültür / bayram / şiir ===
+    { question: '“Dilerim uzun ömür, uzaklar da aynı aya baksın” sözündeki “aya” neyi anlatır?', options: ['Güzel yüz', 'Ay', 'Güneş', 'Yıldız'], answer: 1 },
+    { question: 'Yedinci ayın yedinci gecesi kutlanan bayrama başka ne denir?', options: ['Fener Bayramı', 'Çiçek Bayramı', 'Hüner Bayramı', 'Su Bayramı'], answer: 2 },
+    { question: '“Patırtılar arasında bir yıl gider” dizesi kime aittir?', options: ['Li Bai', 'Du Fu', 'Su Shi', 'Wang Anshi'], answer: 3 },
+    { question: 'Eski “beş tahıl” arasında hangisi yoktur?', options: ['Pirinç', 'Buğday', 'Pamuk', 'Darı'], answer: 2 },
     {
-      question: '「清明时节雨纷纷」的下一句是？',
-      options: ['路上行人欲断魂', '牧童遥指杏花村', '借问酒家何处有', '独在异乡为异客'],
+      question: '“Bahar yağmuru ince ince düşer” sözünün ardından ne gelir?',
+      options: ['Yolcu yolda gamla yürür', 'Çoban uzakta hana işaret eder', 'Sor bakalım meyhane nerededir', 'Yabancı elde daha bir yalnızım'],
       answer: 0
     },
-    { question: '农历五月初五是什么节日？', options: ['中秋节', '重阳节', '端午节', '七夕节'], answer: 2 },
-    { question: '「举头望明月」的下一句是？', options: ['疑是地上霜', '低头思故乡', '月是故乡明', '对影成三人'], answer: 1 },
-    { question: '古代的「文房四宝」不包括以下哪项？', options: ['笔', '墨', '纸', '尺'], answer: 3 },
-    { question: '「春眠不觉晓」的下一句是？', options: ['处处闻啼鸟', '花落知多少', '夜来风雨声', '春风花草香'], answer: 0 },
-    { question: '二十四节气中，立春之后是哪个节气？', options: ['惊蛰', '雨水', '春分', '清明'], answer: 1 },
-    { question: '古人说「岁寒三友」，指的是哪三种植物？', options: ['梅兰竹', '松竹梅', '兰菊梅', '松兰竹'], answer: 1 },
-    { question: '「床前明月光」中的「床」最可能指什么？', options: ['睡床', '井栏', '胡床', '窗台'], answer: 1 },
-    { question: '重阳节有什么传统习俗？', options: ['吃汤圆', '登高望远', '放河灯', '踏青'], answer: 1 },
+    { question: 'Ay takvimine göre beşinci ayın beşinci günü hangi bayramdır?', options: ['Orta Güz', 'Çifte Dokuz', 'Ejder Kayığı', 'Yedinci Gece'], answer: 2 },
+    { question: '“Başımı kaldırır aya bakarım” sözünden sonra ne gelir?', options: ['Yerde kırağı sanırım', 'Başımı eğer yurdu anarım', 'Ay vatanda daha parlaktır', 'Gölgeyle üç olurum'], answer: 1 },
+    { question: 'Dört kıymetli yazı gereci arasında hangisi yoktur?', options: ['Kalem', 'Mürekkep', 'Kâğıt', 'Cetvel'], answer: 3 },
+    { question: '“Bahar uykusunda şafak sezilmez” sözünden sonra ne gelir?', options: ['Her yerde kuş sesi duyulur', 'Düşen çiçek ne kadardır', 'Gece yağmur rüzgârı eser', 'Bahar kokusu her yanı sarar'], answer: 0 },
+    { question: 'Yirmi dört mevsim işaretinde ilkbahar başlangıcından sonra hangisi gelir?', options: ['Uyanan böcekler', 'Yağmur suyu', 'İlkbahar dengesi', 'Açık hava'], answer: 1 },
+    { question: '“Kış dostu üçlü” hangi bitkilerdir?', options: ['Erik orkide bambu', 'Çam bambu erik', 'Orkide krizantem erik', 'Çam orkide bambu'], answer: 1 },
+    { question: '“Yatağın önünde ay ışığı” sözündeki “yatak” en çok neyi anlatır?', options: ['Uyku yatağı', 'Kuyu başı', 'Kamp sediri', 'Pencere önü'], answer: 1 },
+    { question: 'Çifte Dokuz Bayramı’nda hangi gelenek yapılır?', options: ['Tatlı yenir', 'Yükseğe çıkılır', 'Suya kandil bırakılır', 'Kır gezisi yapılır'], answer: 1 },
     {
-      question: '「人面不知何处去」的下一句是？',
-      options: ['桃花依旧笑春风', '春风不度玉门关', '花开花落两由之', '落花时节又逢君'],
+      question: '“İnsan yüzü nereye gitti bilinmez” sözünden sonra ne gelir?',
+      options: ['Şeftali çiçeği yine bahara güler', 'Bahar yeli geçide uğramaz', 'Çiçek açar solarken usul usul', 'Düşen çiçek vaktinde yine kavuşulur'],
       answer: 0
     },
-    { question: '端午节吃粽子是为了纪念谁？', options: ['孔子', '屈原', '李白', '诸葛亮'], answer: 1 },
-    { question: '「采菊东篱下」的下一句是？', options: ['悠然见南山', '把酒问青天', '独钓寒江雪', '春来江水绿如蓝'], answer: 0 },
-    // === 自然/农耕/动物 ===
+    { question: 'Ejder Kayığı Bayramı’nda yapışkan pirinç sarması kimin anısına yenir?', options: ['Konfüçyüs', 'Qu Yuan', 'Li Bai', 'Zhuge Liang'], answer: 1 },
+    { question: '“Çit dibinde kasımpatı toplarım” sözünden sonra ne gelir?', options: ['Sakin gözle dağa bakarım', 'Kadehi aya sorarım', 'Soğuk ırmakta yalnız avlanırım', 'Bahar suyu maviye döner'], answer: 0 },
+
+    // === Doğa / tarım / hayvan ===
     {
-      question: '圆圆脸儿像苹果，又酸又甜营养多，既能做菜吃，又能当水果。（打一蔬果）',
-      options: ['番茄', '苹果', '桃子', '杏子'],
+      question: 'Yuvarlak yüzlü, elma gibi; ekşi tatlı, besini bol. Hem yemek olur hem meyve olur. (Nedir?)',
+      options: ['Domates', 'Elma', 'Şeftali', 'Kayısı'],
       answer: 0
     },
-    { question: '看看圆，摸摸麻，包着一肚小月牙。（打一食物）', options: ['核桃', '花生', '橘子', '石榴'], answer: 2 },
-    { question: '白嫩小宝宝，洗澡吹泡泡，洗洗身体小，再洗不见了。（打一日用品）', options: ['毛巾', '肥皂', '牙膏', '香囊'], answer: 1 },
+    { question: 'Yuvarlak bakınca, pütürlü dokununca; içinde ince hilaller saklı. (Nedir?)', options: ['Ceviz', 'Yer fıstığı', 'Portakal', 'Nar'], answer: 2 },
+    { question: 'Bembeyaz küçük yavru, yıkanırken köpürür; bedeni küçülür küçülür, sonunda kaybolur. (Nedir?)', options: ['Havlu', 'Sabun', 'Diş macunu', 'Kesecik'], answer: 1 },
     {
-      question: '一根竹管二尺长，开了七个小圆窗，对准一个窗口吹，悠悠乐声传四方。（打一乐器）',
-      options: ['箫', '笛子', '埙', '琵琶'],
+      question: 'Bir kamış boru, yedi küçük pencere; birinden üfleyince ezgisi her yana yayılır. (Nedir?)',
+      options: ['Ney', 'Kaval', 'Toprak düdük', 'Ud'],
       answer: 1
     },
-    { question: '说它是头牛，不能拉犁走，说它力气小，却能背屋走。（打一动物）', options: ['蜗牛', '犀牛', '水牛', '蚂蚁'], answer: 0 },
-    { question: '有翅不是鸟，有腿不会跑，无巢住树上，鸣叫赛百鸟。（打一昆虫）', options: ['蜜蜂', '蝴蝶', '蝉', '蟋蟀'], answer: 2 },
-    { question: '两叶花四朵，颜色白又黄，一年开一次，八月放清香。（打一植物）', options: ['兰花', '菊花', '桂花', '荷花'], answer: 2 },
+    { question: 'Adı öküzdür ama saban çekmez; gücü az sanılır ama evini sırtında taşır. (Nedir?)', options: ['Salyangoz', 'Gergedan', 'Manda', 'Karınca'], answer: 0 },
+    { question: 'Kanadı var kuş değil, ayağı var koşamaz; yuva kurmaz, ağaçta yaşar, ötüşü kuşlarla yarışır. (Nedir?)', options: ['Arı', 'Kelebek', 'Ağustos böceği', 'Cırcır böceği'], answer: 2 },
+    { question: 'İki yaprak, dört çiçek; beyazla sarı arası, yılda bir açar, sekizinci ayda güzel kokar. (Nedir?)', options: ['Orkide', 'Kasımpatı', 'Osmanthus', 'Lotus'], answer: 2 },
     {
-      question: '四四方方一座城，城里住着十万兵，派出将军去攻打，万马奔腾杀敌人。（打一物品）',
-      options: ['棋盘', '算盘', '印章', '砚台'],
+      question: 'Dört köşe bir şehir, içinde on bin asker; kumandan çıkar hücum eder, ortalık kaynar. (Nedir?)',
+      options: ['Satranç tahtası', 'Abaküs', 'Mühür', 'Mürekkep taşı'],
       answer: 0
     }
   ]
 
-  /** 前2题7秒，后3题6秒 */
+  /** İlk 2 soru 7 saniye, sonraki 3 soru 6 saniye */
   const currentTimeLimit = ref(7)
 
   const gameRiddles = ref<Riddle[]>([])
