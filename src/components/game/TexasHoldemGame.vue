@@ -1,21 +1,21 @@
 <template>
   <div class="game-panel max-w-sm w-full">
-    <Divider title class="!mb-1">瀚海扑克 · {{ tier.name }}</Divider>
+    <Divider title class="!mb-1">Hanhai Pokeri · {{ tier.name }}</Divider>
     <div class="flex items-center justify-center space-x-2 mb-2">
-      <span class="text-xs text-muted">第 {{ currentRound }}/{{ tier.rounds }} 手</span>
-      <span class="text-xs text-muted">入场费 {{ tier.entryFee }}文</span>
-      <span class="text-xs text-muted">抽水 {{ tier.rake }}文</span>
+      <span class="text-xs text-muted">El {{ currentRound }}/{{ tier.rounds }}</span>
+      <span class="text-xs text-muted">Giriş bedeli {{ tier.entryFee }} akçe</span>
+      <span class="text-xs text-muted">Kesinti {{ tier.rake }} akçe</span>
     </div>
 
-    <!-- 底池 + 街 -->
+    <!-- Pot + aşama -->
     <div class="flex items-center justify-between mb-2">
       <span class="text-xs text-muted">{{ streetLabel }}</span>
-      <span class="text-xs text-accent">底池: {{ pot }}</span>
+      <span class="text-xs text-accent">Orta bahis: {{ pot }}</span>
     </div>
 
-    <!-- 公共牌 -->
+    <!-- Ortak kartlar -->
     <div class="mb-2">
-      <p class="text-xs text-muted mb-1">公共牌</p>
+      <p class="text-xs text-muted mb-1">Ortak kartlar</p>
       <div class="flex justify-center space-x-1">
         <span
           v-for="(card, i) in currentCommunity"
@@ -36,11 +36,11 @@
       </div>
     </div>
 
-    <!-- 玩家手牌 + 筹码 -->
+    <!-- Oyuncu eli + pul -->
     <div class="mb-2">
       <div class="flex items-center justify-between mb-1">
-        <span class="text-xs text-muted">你的手牌</span>
-        <span class="text-xs">筹码: {{ playerStack }}</span>
+        <span class="text-xs text-muted">Senin elin</span>
+        <span class="text-xs">Pulun: {{ playerStack }}</span>
       </div>
       <div class="flex justify-center space-x-1">
         <span
@@ -56,11 +56,11 @@
       <p v-if="playerHandResult" class="text-xs text-center mt-1 text-accent">{{ playerHandResult.label }}</p>
     </div>
 
-    <!-- 庄家手牌 + 筹码 -->
+    <!-- Dağıtanın eli + pul -->
     <div class="mb-2">
       <div class="flex items-center justify-between mb-1">
-        <span class="text-xs text-muted">庄家手牌</span>
-        <span class="text-xs">筹码: {{ dealerStack }}</span>
+        <span class="text-xs text-muted">Dağıtanın eli</span>
+        <span class="text-xs">Pul: {{ dealerStack }}</span>
       </div>
       <div class="flex justify-center space-x-1">
         <span
@@ -83,44 +83,44 @@
       <p v-if="dealerHandResult" class="text-xs text-center mt-1 text-accent">{{ dealerHandResult.label }}</p>
     </div>
 
-    <!-- 操作按钮 -->
+    <!-- İşlem düğmeleri -->
     <div v-if="!handOver && isPlayerTurn && !animating" class="flex flex-wrap space-x-1 mb-2">
       <template v-if="toCall <= 0">
-        <Button class="flex-1 justify-center" @click="doCheck">过牌</Button>
-        <Button class="flex-1 justify-center" @click="doRaise(tier.blind * 2)">加注{{ tier.blind * 2 }}</Button>
-        <Button class="flex-1 justify-center" @click="doRaise(tier.blind * 4)">加注{{ tier.blind * 4 }}</Button>
+        <Button class="flex-1 justify-center" @click="doCheck">Pas</Button>
+        <Button class="flex-1 justify-center" @click="doRaise(tier.blind * 2)">Artır {{ tier.blind * 2 }}</Button>
+        <Button class="flex-1 justify-center" @click="doRaise(tier.blind * 4)">Artır {{ tier.blind * 4 }}</Button>
       </template>
       <template v-else>
-        <Button class="flex-1 justify-center" @click="doCall">跟注{{ toCall }}</Button>
+        <Button class="flex-1 justify-center" @click="doCall">Gör {{ toCall }}</Button>
         <Button v-if="playerStack > toCall" class="flex-1 justify-center" @click="doRaise(toCall + tier.blind * 2)">
-          加注{{ toCall + tier.blind * 2 }}
+          Artır {{ toCall + tier.blind * 2 }}
         </Button>
       </template>
-      <Button class="flex-1 justify-center" @click="doAllIn">全押</Button>
-      <Button class="flex-1 justify-center text-danger" @click="doFold">弃牌</Button>
+      <Button class="flex-1 justify-center" @click="doAllIn">Hepsini sür</Button>
+      <Button class="flex-1 justify-center text-danger" @click="doFold">Çekil</Button>
     </div>
 
-    <!-- 庄家思考中 -->
-    <p v-if="!handOver && !isPlayerTurn && animating" class="text-xs text-muted/40 text-center mb-2">庄家思考中…</p>
+    <!-- Dağıtan düşünüyor -->
+    <p v-if="!handOver && !isPlayerTurn && animating" class="text-xs text-muted/40 text-center mb-2">Dağıtan düşünüyor…</p>
 
-    <!-- 日志 -->
+    <!-- Kayıt -->
     <div class="border border-accent/10 rounded-xs p-2 mb-2 max-h-24 overflow-y-auto" ref="logRef">
       <p v-for="(msg, i) in actionLog" :key="i" class="text-xs text-muted leading-relaxed">{{ msg }}</p>
     </div>
 
-    <!-- 最终结算 -->
+    <!-- Son hesap -->
     <template v-if="sessionOver && finalResult">
       <div class="border border-accent/10 rounded-xs p-3 text-center mb-2">
         <p class="text-sm" :class="finalResult.won ? 'text-success' : finalResult.draw ? 'text-accent' : 'text-danger'">
-          {{ finalResult.won ? '你赢了！' : finalResult.draw ? '不赚不亏' : '你输了…' }}
+          {{ finalResult.won ? 'Bu masayı sen topladın!' : finalResult.draw ? 'Ne kâr ne zarar' : 'Bu eli yitirdin…' }}
         </p>
         <p class="text-xs mt-0.5" :class="finalResult.netProfit >= 0 ? 'text-success' : 'text-danger'">
-          {{ finalResult.netProfit >= 0 ? '+' + finalResult.netProfit + '文' : finalResult.netProfit + '文' }}
+          {{ finalResult.netProfit >= 0 ? '+' + finalResult.netProfit + ' akçe' : finalResult.netProfit + ' akçe' }}
         </p>
-        <p class="text-xs text-muted mt-0.5">荷官小费 {{ tier.rake }}文</p>
-        <p class="text-xs text-muted mt-0.5">共 {{ currentRound }} 手 · 最终筹码 {{ playerStack }}</p>
+        <p class="text-xs text-muted mt-0.5">Dağıtan payı {{ tier.rake }} akçe</p>
+        <p class="text-xs text-muted mt-0.5">Toplam {{ currentRound }} el · Son pulun {{ playerStack }}</p>
       </div>
-      <Button class="w-full justify-center" @click="emit('complete', playerStack, tier.name)">确定</Button>
+      <Button class="w-full justify-center" @click="emit('complete', playerStack, tier.name)">Tamam</Button>
     </template>
   </div>
 </template>
@@ -141,13 +141,13 @@
 
   const tier = props.setup.tier
 
-  // === 多手牌管理 ===
+  // === Çok elli yönetim ===
   const currentRound = ref(1)
   const currentPlayerHole = ref<PokerCard[]>(props.setup.playerHole)
   const currentDealerHole = ref<PokerCard[]>(props.setup.dealerHole)
   const currentCommunity = ref<PokerCard[]>(props.setup.community)
 
-  // === 单手牌状态 ===
+  // === Tek el durumu ===
   const street = ref<TexasStreet>('preflop')
   const playerStack = ref(tier.entryFee)
   const dealerStack = ref(tier.entryFee)
@@ -167,7 +167,7 @@
   const dealerHandResult = ref<PokerHandResult | null>(null)
   const sessionOver = ref(false)
   const finalResult = ref<{ won: boolean; draw: boolean; netProfit: number } | null>(null)
-  const totalInvested = ref(0) // 场外累计投入（不含初始入场费）
+  const totalInvested = ref(0) // Dışarıdan eklenen toplam para (ilk giriş bedeli hariç)
   const actionLog = ref<string[]>([])
   const logRef = ref<HTMLElement | null>(null)
 
@@ -175,11 +175,11 @@
 
   const streetLabel = computed(() => {
     const labels: Record<TexasStreet, string> = {
-      preflop: '翻牌前',
-      flop: '翻牌',
-      turn: '转牌',
-      river: '河牌',
-      showdown: '摊牌'
+      preflop: 'Açılış',
+      flop: 'Üç açıldı',
+      turn: 'Dördüncü kart',
+      river: 'Son kart',
+      showdown: 'Kart açma'
     }
     return labels[street.value]
   })
@@ -208,7 +208,7 @@
     })
   }
 
-  /** 将筹码从一方移入底池 */
+  /** Bir taraftan pulu ortaya sürer */
   const betFromPlayer = (amount: number) => {
     const actual = Math.min(amount, playerStack.value)
     playerStack.value -= actual
@@ -225,14 +225,14 @@
     return actual
   }
 
-  /** 收集本轮下注到底池（处理不等额all-in退还多余筹码） */
+  /** Bu turun bahislerini ortaya toplar (eşit olmayan all-in fazlasını geri verir) */
   const collectBets = () => {
     const pBet = playerBetRound.value
     const dBet = dealerBetRound.value
     const matched = Math.min(pBet, dBet)
     pot.value += matched * 2
 
-    // 退还多余的筹码
+    // Fazla pulları geri ver
     if (pBet > matched) {
       const refund = pBet - matched
       playerStack.value += refund
@@ -246,7 +246,7 @@
     dealerBetRound.value = 0
   }
 
-  /** 进入下一街 */
+  /** Sonraki aşamaya geç */
   const advanceStreet = () => {
     collectBets()
     const order: TexasStreet[] = ['preflop', 'flop', 'turn', 'river', 'showdown']
@@ -267,11 +267,11 @@
     isPlayerTurn.value = true
   }
 
-  /** 检查本轮是否结束 */
+  /** Bu turun bitip bitmediğini denetler */
   const checkRoundEnd = (playerActed: boolean) => {
     const pBet = playerBetRound.value
     const dBet = dealerBetRound.value
-    // 下注匹配，或下注少的一方已all-in（无法再加）
+    // Bahisler eşitse ya da düşük kalan taraf all-in ise tur kapanır
     const settled = pBet === dBet || (pBet < dBet && playerAllIn.value) || (dBet < pBet && dealerAllIn.value)
 
     if (settled) {
@@ -279,7 +279,7 @@
       return
     }
 
-    // 还需要对方行动
+    // Diğer tarafın sırası
     if (playerActed) {
       isPlayerTurn.value = false
       animating.value = true
@@ -290,11 +290,11 @@
     }
   }
 
-  // === 玩家操作 ===
+  // === Oyuncu işlemleri ===
 
   const doCheck = () => {
     sfxChipBet()
-    addActionLog('你过牌')
+    addActionLog('Pas geçtin')
     isPlayerTurn.value = false
     animating.value = true
     setTimeout(() => dealerTurn(), 800)
@@ -303,7 +303,7 @@
   const doCall = () => {
     const amount = betFromPlayer(toCall.value)
     sfxChipBet()
-    addActionLog(`你跟注 ${amount}`)
+    addActionLog(`Bahsi gördün: ${amount}`)
     checkRoundEnd(true)
   }
 
@@ -311,7 +311,7 @@
     const needed = total - playerBetRound.value
     const amount = betFromPlayer(needed)
     sfxChipBet()
-    addActionLog(`你加注 ${amount}`)
+    addActionLog(`Artırdın: ${amount}`)
     isPlayerTurn.value = false
     animating.value = true
     setTimeout(() => dealerTurn(), 800)
@@ -320,7 +320,7 @@
   const doAllIn = () => {
     const amount = betFromPlayer(playerStack.value)
     sfxChipBet()
-    addActionLog(`你全押 ${amount}`)
+    addActionLog(`Ne var ne yok sürdün: ${amount}`)
     playerAllIn.value = true
     isPlayerTurn.value = false
     animating.value = true
@@ -329,13 +329,13 @@
 
   const doFold = () => {
     sfxFoldCards()
-    addActionLog('你弃牌')
+    addActionLog('Elden çekildin')
     playerFolded.value = true
     collectBets()
     endHand('lost')
   }
 
-  // === 庄家AI ===
+  // === Dağıtan yapay zekâsı ===
 
   const dealerTurn = () => {
     const decision = texasDealerAI(
@@ -352,7 +352,7 @@
 
     if (decision.action === 'fold') {
       sfxFoldCards()
-      addActionLog('庄家弃牌')
+      addActionLog('Dağıtan elden çekildi')
       dealerFolded.value = true
       collectBets()
       animating.value = false
@@ -362,7 +362,7 @@
 
     if (decision.action === 'check') {
       sfxChipBet()
-      addActionLog('庄家过牌')
+      addActionLog('Dağıtan pas geçti')
       animating.value = false
       checkRoundEnd(false)
       return
@@ -372,7 +372,7 @@
       const callAmt = playerBetRound.value - dealerBetRound.value
       const amount = betFromDealer(callAmt)
       sfxChipBet()
-      addActionLog(`庄家跟注 ${amount}`)
+      addActionLog(`Dağıtan gördü: ${amount}`)
       animating.value = false
       checkRoundEnd(false)
       return
@@ -381,7 +381,7 @@
     if (decision.action === 'allin') {
       const amount = betFromDealer(dealerStack.value)
       sfxChipBet()
-      addActionLog(`庄家全押 ${amount}`)
+      addActionLog(`Dağıtan hepsini sürdü: ${amount}`)
       dealerAllIn.value = true
       animating.value = false
       if (dealerBetRound.value > playerBetRound.value && !playerAllIn.value) {
@@ -395,18 +395,18 @@
     // raise
     const amount = betFromDealer(decision.amount)
     sfxChipBet()
-    addActionLog(`庄家加注 ${amount}`)
+    addActionLog(`Dağıtan artırdı: ${amount}`)
     animating.value = false
     isPlayerTurn.value = true
   }
 
-  // === Showdown ===
+  // === Kart açma ===
 
   const doShowdown = () => {
     street.value = 'showdown'
     showDealerCards.value = true
     sfxCardFlip()
-    addActionLog('—— 摊牌 ——')
+    addActionLog('—— Kartlar açılıyor ——')
 
     const allCards = currentCommunity.value
     const pHand = evaluateBestHand([...currentPlayerHole.value, ...allCards])
@@ -414,8 +414,8 @@
     playerHandResult.value = pHand
     dealerHandResult.value = dHand
 
-    addActionLog(`你: ${pHand.label}`)
-    addActionLog(`庄家: ${dHand.label}`)
+    addActionLog(`Sen: ${pHand.label}`)
+    addActionLog(`Dağıtan: ${dHand.label}`)
 
     const cmp = compareHands(pHand, dHand)
     const result = cmp > 0 ? 'won' : cmp === 0 ? 'draw' : 'lost'
@@ -423,7 +423,7 @@
     setTimeout(() => endHand(result), 800)
   }
 
-  // === 单手结算 ===
+  // === Tek el hesabı ===
 
   const endHand = (result: 'won' | 'draw' | 'lost') => {
     handOver.value = true
@@ -431,35 +431,35 @@
       showDealerCards.value = true
     }
 
-    // 筹码结算：赢家拿走底池
+    // Pul hesabı: kazanan ortadaki bahsi alır
     if (result === 'won') {
       playerStack.value += pot.value
       sfxCasinoWin()
-      addActionLog(`你赢了本手！获得底池 ${pot.value}`)
+      addActionLog(`Bu eli aldın! Ortadaki bahis: ${pot.value}`)
     } else if (result === 'draw') {
       const half = Math.floor(pot.value / 2)
       playerStack.value += half
       dealerStack.value += pot.value - half
-      addActionLog(`平局，底池平分`)
+      addActionLog(`El berabere bitti, orta bahis pay edildi`)
     } else {
       dealerStack.value += pot.value
       sfxCasinoLose()
-      addActionLog(`你输了本手，庄家获得底池 ${pot.value}`)
+      addActionLog(`Bu eli yitirdin, dağıtan ortadaki bahsi aldı: ${pot.value}`)
     }
     pot.value = 0
     handResult.value = result
 
-    // 检查是否已打完所有手数，或玩家筹码+场外资金都不够继续
+    // Tüm eller bitti mi ya da oyuncunun devam edecek pulu kalmadı mı
     const playerBroke = playerStack.value <= 0 && playerStore.money <= 0
     if (playerBroke || currentRound.value >= tier.rounds) {
       endSession()
     } else {
-      // 还有剩余手数，自动开始下一手
+      // Hâlâ el varsa yenisini başlat
       setTimeout(() => startNextHand(), 1000)
     }
   }
 
-  // === 开始下一手 ===
+  // === Yeni el başlat ===
 
   const startNextHand = () => {
     currentRound.value++
@@ -469,14 +469,14 @@
     currentCommunity.value = deal.community
     sfxCardFlip()
 
-    // 庄家筹码不足时补充到入场费
+    // Dağıtanın pulu azsa giriş bedeline tamamla
     if (dealerStack.value < tier.blind * 2) {
       const refill = tier.entryFee - dealerStack.value
       dealerStack.value = tier.entryFee
-      addActionLog(`庄家补充筹码 ${refill}`)
+      addActionLog(`Dağıtan pulunu tazeledi: ${refill}`)
     }
 
-    // 玩家筹码不足时，从场外资金补充
+    // Oyuncunun pulu azsa dışarıdaki paradan ekle
     if (playerStack.value < tier.blind * 2) {
       const needed = tier.entryFee - playerStack.value
       const canAfford = Math.min(needed, playerStore.money)
@@ -484,11 +484,11 @@
         playerStore.spendMoney(canAfford)
         playerStack.value += canAfford
         totalInvested.value += canAfford
-        addActionLog(`从场外补充筹码 ${canAfford}`)
+        addActionLog(`Dışarıdan pula ekledin: ${canAfford}`)
       }
     }
 
-    // 重置单手状态
+    // Tek el durumunu sıfırla
     street.value = 'preflop'
     pot.value = 0
     playerBetRound.value = 0
@@ -505,21 +505,21 @@
     playerHandResult.value = null
     dealerHandResult.value = null
 
-    // 下盲注
+    // Kör bahisler
     betFromPlayer(tier.blind)
     betFromDealer(tier.blind)
     collectBets()
-    addActionLog(`—— 第 ${currentRound.value} 手 ——`)
-    addActionLog(`双方各下盲注 ${tier.blind}`)
-    addActionLog('—— 翻牌前 ——')
+    addActionLog(`—— ${currentRound.value}. el ——`)
+    addActionLog(`İkiniz de ${tier.blind} kör bahis sürdünüz`)
+    addActionLog('—— Açılış ——')
     isPlayerTurn.value = true
   }
 
-  // === 整场结算 ===
+  // === Tüm masa hesabı ===
 
   const endSession = () => {
     sessionOver.value = true
-    // netProfit: 最终筹码 - 初始入场费 - 场外补充 (不含抽水，抽水已在store扣除)
+    // netProfit: son pul - ilk giriş bedeli - dışarıdan eklenen pul
     const net = playerStack.value - tier.entryFee - totalInvested.value
     const won = net > 0
     const draw = net === 0
@@ -527,23 +527,23 @@
     finalResult.value = { won, draw, netProfit: net }
 
     if (won) {
-      addActionLog(`场次结束！你赢了！净赚 ${net}`)
+      addActionLog(`Masa kapandı! Kârlısın! Temiz kazanç: ${net}`)
     } else if (draw) {
-      addActionLog(`场次结束！不赚不亏`)
+      addActionLog(`Masa kapandı! Ne aldın ne verdin`)
     } else {
-      addActionLog(`场次结束！你输了…净亏 ${Math.abs(net)}`)
+      addActionLog(`Masa kapandı! Zarardasın… Temiz kayıp: ${Math.abs(net)}`)
     }
   }
 
-  // === 初始化 ===
+  // === Başlatma ===
 
   onMounted(() => {
     betFromPlayer(tier.blind)
     betFromDealer(tier.blind)
     collectBets()
-    addActionLog(`—— 第 1 手 ——`)
-    addActionLog(`双方各下盲注 ${tier.blind}`)
-    addActionLog('—— 翻牌前 ——')
+    addActionLog(`—— 1. el ——`)
+    addActionLog(`İkiniz de ${tier.blind} kör bahis sürdünüz`)
+    addActionLog('—— Açılış ——')
     isPlayerTurn.value = true
   })
 </script>
