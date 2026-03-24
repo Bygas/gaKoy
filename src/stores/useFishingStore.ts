@@ -30,7 +30,7 @@ const STAMINA_COST = 4
 const MAX_CRAB_POTS = 10
 const MAX_CRAB_POTS_PER_LOCATION = 3
 
-/** 蟹笼产物池 */
+/** Yengeç sepeti ganimet havuzu */
 const CRAB_POT_LOOT: { itemId: string; weight: number; locationOverride?: FishingLocation; replaces?: string }[] = [
   { itemId: 'snail', weight: 20 },
   { itemId: 'freshwater_shrimp', weight: 25 },
@@ -44,10 +44,10 @@ const CRAB_POT_LOOT: { itemId: string; weight: number; locationOverride?: Fishin
   { itemId: 'swamp_crab', weight: 20, locationOverride: 'swamp', replaces: 'crab' }
 ]
 
-/** 钓鱼垃圾池 */
+/** Balıkçılık hurdaları */
 const FISHING_JUNK = ['trash', 'driftwood', 'broken_cd', 'soggy_newspaper']
 
-/** 宝箱奖品池 */
+/** Hazine sandığı ödül havuzu */
 const TREASURE_POOL: { itemId: string | null; weight: number; minQty: number; maxQty: number; money?: number }[] = [
   { itemId: 'copper_ore', weight: 30, minQty: 1, maxQty: 3 },
   { itemId: 'iron_ore', weight: 20, minQty: 1, maxQty: 3 },
@@ -70,84 +70,83 @@ export const useFishingStore = defineStore('fishing', () => {
   const inventoryStore = useInventoryStore()
   const skillStore = useSkillStore()
 
-  /** 当前钓鱼地点 */
+  /** Şu anki avlak */
   const fishingLocation = ref<FishingLocation>('creek')
 
-  /** 切换钓鱼地点 */
+  /** Avlağı değiştir */
   const setLocation = (loc: FishingLocation) => {
     fishingLocation.value = loc
   }
 
-  /** 当前可钓的鱼 */
+  /** Şu an tutulabilecek balıklar */
   const availableFish = computed(() => getAvailableFish(gameStore.season, gameStore.weather, fishingLocation.value))
 
-  /** 当前钓鱼会话状态 */
+  /** O anki balık tutma oturumu durumu */
   const currentFish = ref<FishDef | null>(null)
 
-  /** 上次钓鱼的宝箱结果 */
+  /** Son tutuşta çıkan sandık ganimeti */
   const lastTreasure = ref<{ items: { itemId: string; name: string; quantity: number }[]; money: number } | null>(null)
 
-  /** 上次是否完美 */
+  /** Son yakalayış kusursuz muydu */
   const lastPerfect = ref(false)
 
-  /** 鱼饵/浮漂装备 */
+  /** Yem / şamandıra kuşanımı */
   const equippedBait = ref<BaitType | null>(null)
   const equippedTackle = ref<TackleType | null>(null)
   const tackleDurability = ref(0)
 
-  /** 当次钓鱼会话的鱼饵/浮漂 */
+  /** Bu balık tutuşta kullanılan yem / şamandıra */
   const activeBaitDef = ref<BaitDef | null>(null)
   const activeTackleDef = ref<TackleDef | null>(null)
 
-  /** 蟹笼 */
+  /** Yengeç sepetleri */
   const crabPots = ref<CrabPotState[]>([])
 
-  /** 装备鱼饵（仅标记类型，不从背包取出） */
+  /** Yem kuşan */
   const equipBait = (type: BaitType): { success: boolean; message: string } => {
     const def = getBaitById(type)
-    if (!def) return { success: false, message: '无效的鱼饵。' }
-    if (inventoryStore.getItemCount(type) <= 0) return { success: false, message: '背包中没有该鱼饵。' }
+    if (!def) return { success: false, message: 'Geçersiz yem.' }
+    if (inventoryStore.getItemCount(type) <= 0) return { success: false, message: 'Heybende bu yem yok.' }
     equippedBait.value = type
-    return { success: true, message: `装备了${def.name}。` }
+    return { success: true, message: `${def.name} kuşanıldı.` }
   }
 
-  /** 卸下鱼饵 */
+  /** Yemi çıkar */
   const unequipBait = (): string => {
-    if (!equippedBait.value) return '没有装备鱼饵。'
+    if (!equippedBait.value) return 'Kuşanılmış yem yok.'
     const def = getBaitById(equippedBait.value)
     equippedBait.value = null
-    return `卸下了${def?.name ?? '鱼饵'}。`
+    return `${def?.name ?? 'Yem'} çıkarıldı.`
   }
 
-  /** 装备浮漂 */
+  /** Şamandıra kuşan */
   const equipTackle = (type: TackleType): { success: boolean; message: string } => {
     const def = getTackleById(type)
-    if (!def) return { success: false, message: '无效的浮漂。' }
+    if (!def) return { success: false, message: 'Geçersiz şamandıra.' }
     const rodTier = inventoryStore.getTool('fishingRod')?.tier ?? 'basic'
-    if (rodTier === 'basic') return { success: false, message: '需要铁制或更好的鱼竿才能装备浮漂。' }
-    if (!inventoryStore.removeItem(type, 1)) return { success: false, message: '背包中没有该浮漂。' }
+    if (rodTier === 'basic') return { success: false, message: 'Şamandıra takmak için demir ya da daha iyi bir olta gerekir.' }
+    if (!inventoryStore.removeItem(type, 1)) return { success: false, message: 'Heybende bu şamandıra yok.' }
     if (equippedTackle.value) unequipTackle()
     equippedTackle.value = type
     tackleDurability.value = def.maxDurability
-    return { success: true, message: `装备了${def.name}。(耐久: ${def.maxDurability})` }
+    return { success: true, message: `${def.name} kuşanıldı. (Dayanıklılık: ${def.maxDurability})` }
   }
 
-  /** 卸下浮漂 */
+  /** Şamandırayı çıkar */
   const unequipTackle = (): string => {
-    if (!equippedTackle.value) return '没有装备浮漂。'
+    if (!equippedTackle.value) return 'Kuşanılmış şamandıra yok.'
     const def = getTackleById(equippedTackle.value)
     if (tackleDurability.value > 0) {
       inventoryStore.addItem(equippedTackle.value, 1)
     }
     equippedTackle.value = null
     tackleDurability.value = 0
-    return `卸下了${def?.name ?? '浮漂'}。`
+    return `${def?.name ?? 'Şamandıra'} çıkarıldı.`
   }
 
-  /** 开始钓鱼 */
+  /** Balık tutmaya başla */
   const startFishing = (): { success: boolean; message: string; junk?: boolean } => {
     const rodMultiplier = inventoryStore.getToolStaminaMultiplier('fishingRod')
-    // 旋转亮片减免体力
     const tackleDef = equippedTackle.value ? getTackleById(equippedTackle.value) : null
     const tackleStaminaReduction = tackleDef?.staminaReduction ?? 0
     const ringFishingReduction = inventoryStore.getRingEffectValue('fishing_stamina')
@@ -164,10 +163,10 @@ export const useFishingStore = defineStore('fishing', () => {
       )
     )
     if (!playerStore.consumeStamina(staminaCost)) {
-      return { success: false, message: '体力不足，无法钓鱼。' }
+      return { success: false, message: 'Takatin yetmiyor, olta atamazsın.' }
     }
 
-    // 确定鱼池：magic_bait 忽略季节但仍限地点
+    // Büyülü yem mevsimi hiçe sayar ama avlak şartı sürer
     const baitDef = equippedBait.value ? getBaitById(equippedBait.value) : null
     const loc = fishingLocation.value
     const fishPool = baitDef?.ignoresSeason
@@ -176,10 +175,10 @@ export const useFishingStore = defineStore('fishing', () => {
 
     if (fishPool.length === 0) {
       playerStore.restoreStamina(staminaCost)
-      return { success: false, message: '当前季节和天气没有可钓的鱼。' }
+      return { success: false, message: 'Bu mevsim ve bu havada tutulacak balık yok.' }
     }
 
-    // 消耗鱼饵（从背包扣除1个，用完才取消装备）
+    // Yem tüket
     activeBaitDef.value = baitDef ?? null
     if (equippedBait.value) {
       inventoryStore.removeItem(equippedBait.value, 1)
@@ -188,7 +187,7 @@ export const useFishingStore = defineStore('fishing', () => {
       }
     }
 
-    // 浮漂耐久-1
+    // Şamandıra dayanıklılığı
     activeTackleDef.value = tackleDef ?? null
     if (equippedTackle.value && tackleDef) {
       tackleDurability.value--
@@ -197,7 +196,7 @@ export const useFishingStore = defineStore('fishing', () => {
       }
     }
 
-    // 垃圾判定：基础12%概率钓到垃圾，钓鱼等级每级-1%，使用鱼饵减半
+    // Hurdalık yakalama hesabı
     const junkBase = 0.12 - skillStore.fishingLevel * 0.01
     const junkChance = Math.max(0, baitDef ? junkBase * 0.5 : junkBase)
     if (Math.random() < junkChance) {
@@ -206,47 +205,42 @@ export const useFishingStore = defineStore('fishing', () => {
       inventoryStore.addItem(junkId)
       currentFish.value = null
       skillStore.addExp('fishing', 3)
-      return { success: true, junk: true, message: `钓上了${junkName}……(-${staminaCost}体力)` }
+      return { success: true, junk: true, message: `${junkName} çekip çıkardın… (-${staminaCost} takat)` }
     }
 
-    // 随机选一条鱼
     const fish = pickRandomFish(fishPool)
     currentFish.value = fish
     lastTreasure.value = null
     lastPerfect.value = false
 
-    let msg = `抛竿入水……感觉有${fish.name}在附近！(-${staminaCost}体力)`
+    let msg = `Olta suya düştü… Yakında ${fish.name} dolaşıyor gibi! (-${staminaCost} takat)`
     if (activeBaitDef.value) msg += ` [${activeBaitDef.value.name}]`
     if (activeTackleDef.value) msg += ` [${activeTackleDef.value.name}]`
     return { success: true, message: msg }
   }
 
-  /** 计算小游戏参数（在 startFishing 之后调用） */
+  /** Mini oyun ayarlarını hesapla */
   const calculateMiniGameParams = (): MiniGameParams => {
     const fish = currentFish.value!
     const rodTier = inventoryStore.getTool('fishingRod')?.tier ?? 'basic'
     const level = skillStore.fishingLevel
 
-    // 基础钩子高度（鱼竿等级）
     const rodHookMap: Record<ToolTier, number> = { basic: 40, iron: 45, steel: 50, iridium: 60 }
     let hookHeight = rodHookMap[rodTier] + level * 2
 
-    // 基础时限（鱼竿等级）
     const rodTimeMap: Record<ToolTier, number> = { basic: 30, iron: 33, steel: 36, iridium: 40 }
     const timeLimit = rodTimeMap[rodTier]
 
-    // 鱼速度（难度为默认，鱼种可覆盖）
     const difficultySpeedMap: Record<string, number> = { easy: 1.0, normal: 2.0, hard: 3.0, legendary: 4.0 }
     const difficultyDirMap: Record<string, number> = { easy: 0.02, normal: 0.04, hard: 0.06, legendary: 0.08 }
     let fishSpeed = fish.miniGameSpeed ?? difficultySpeedMap[fish.difficulty] ?? 2.0
     let fishChangeDir = fish.miniGameDirChange ?? difficultyDirMap[fish.difficulty] ?? 0.04
 
-    // 物理参数
     let gravity = 1.5
     let scoreGain = 0.15
     let scoreLoss = 0.1
 
-    // 鱼饵效果
+    // Yem etkileri
     if (activeBaitDef.value?.behaviorModifier) {
       fishSpeed *= 1 - activeBaitDef.value.behaviorModifier.calm * 0.3
     }
@@ -254,26 +248,22 @@ export const useFishingStore = defineStore('fishing', () => {
       fishSpeed *= 0.9
     }
 
-    // 浮漂效果
+    // Şamandıra etkileri
     if (activeTackleDef.value) {
-      // 旋转浮漂：重力减免（下落更慢）
       if (activeTackleDef.value.staminaReduction) gravity *= 1 - activeTackleDef.value.staminaReduction
-      // 陷阱浮漂：进度流失减半
       if (activeTackleDef.value.extraBreakChance) scoreLoss *= 0.5
-      // 软木浮漂：钩子高度+15
       if (activeTackleDef.value.struggleBonus) hookHeight += 15
-      // 铅坠浮漂：鱼改变方向概率减半
       if (activeTackleDef.value.dangerReduction) fishChangeDir *= 0.5
     }
 
-    // 钓翁令牌效果：鱼速度 -10%
+    // Balıkçı nişanı etkisi
     const walletStore = useWalletStore()
     const calmBonus = walletStore.getFishingCalmBonus()
     if (calmBonus > 0) {
       fishSpeed *= 1 - calmBonus
     }
 
-    // 戒指效果：鱼速度降低
+    // Yüzük etkisi
     const ringCalmBonus = inventoryStore.getRingEffectValue('fishing_calm')
     if (ringCalmBonus > 0) {
       fishSpeed *= 1 - ringCalmBonus
@@ -293,7 +283,7 @@ export const useFishingStore = defineStore('fishing', () => {
     }
   }
 
-  /** 根据难度、钓鱼等级和鱼竿等级加权随机选鱼 */
+  /** Zorluk, seviye ve oltaya göre ağırlıklı balık seç */
   const pickRandomFish = (pool?: FishDef[]): FishDef => {
     const fishPool = pool ?? availableFish.value
     const cookingStore = useCookingStore()
@@ -303,14 +293,16 @@ export const useFishingStore = defineStore('fishing', () => {
     const effectiveLevel = skillStore.fishingLevel + fishingBuff
     const rodTier = inventoryStore.getTool('fishingRod')?.tier ?? 'basic'
     const hasAngler = skillStore.getSkill('fishing').perk10 === 'angler'
-    // 定向鱼饵权重倍率
+
     const hardMult = activeBaitDef.value?.hardWeightMult ?? 1
     const legendaryMult = activeBaitDef.value?.legendaryWeightMult ?? 1
-    // 仙缘：龙瞳（long_ling_3）传说鱼捕获率+20%，鱼引结缘提升稀有鱼概率
+
+    // Kutlu bağ kudretleri
     const hiddenNpcStore = useHiddenNpcStore()
     const legendaryBoost = 1 + hiddenNpcStore.getAbilityValue('long_ling_3') / 100
     const bondBonus = hiddenNpcStore.getBondBonusByType('fish_attraction')
     const fishAttractionMult = bondBonus?.type === 'fish_attraction' ? 1.5 : 1
+
     const weights: number[] = fishPool.map(f => {
       if (f.difficulty === 'legendary') {
         const minLevel = hasAngler ? 6 : 8
@@ -325,6 +317,7 @@ export const useFishingStore = defineStore('fishing', () => {
       if (f.difficulty === 'normal') return 2
       return 0.5
     })
+
     const total = weights.reduce((a, b) => a + b, 0)
     let roll = Math.random() * total
     for (let i = 0; i < fishPool.length; i++) {
@@ -334,38 +327,50 @@ export const useFishingStore = defineStore('fishing', () => {
     return fishPool[0]!
   }
 
-  /** 完成钓鱼（小游戏结束后调用） */
+  /** Balık tutmayı tamamla */
   const completeFishing = (rating: MiniGameRating): { message: string; fishName?: string; fishId?: string; difficulty?: string; sellPrice?: number; description?: string; quality?: Quality; quantity?: number; success: boolean } | null => {
     if (!currentFish.value) return null
 
-    // poor = 鱼跑了
+    // poor = balık kaçtı
     if (rating === 'poor') {
       const fish = currentFish.value
       endFishing()
-      return { message: `鱼跑掉了……${fish.name}逃脱了！`, fishName: fish.name, fishId: fish.id, difficulty: fish.difficulty, sellPrice: fish.sellPrice, description: fish.description, success: false }
+      return {
+        message: `Balık elinden sıyrıldı… ${fish.name} kaçıp gitti!`,
+        fishName: fish.name,
+        fishId: fish.id,
+        difficulty: fish.difficulty,
+        sellPrice: fish.sellPrice,
+        description: fish.description,
+        success: false
+      }
     }
 
-    // 品质计算
+    // Kalite hesabı
     const qualityOrder: Quality[] = ['normal', 'fine', 'excellent', 'supreme']
     let quality: Quality = skillStore.rollCropQuality()
-    // 水手专精：鱼品质至少为优良
+
+    // Usta denizci: en az seçkin kalite
     if (skillStore.getSkill('fishing').perk10 === 'mariner' && quality === 'normal') {
       quality = 'fine'
     }
-    // 戒指效果：鱼品质提升
+
+    // Yüzük kalite etkisi
     const ringFishQualityBonus = inventoryStore.getRingEffectValue('fish_quality_bonus')
     if (ringFishQualityBonus > 0 && Math.random() < ringFishQualityBonus) {
       const idx = qualityOrder.indexOf(quality)
       const newIdx = Math.min(idx + 1, qualityOrder.length - 1)
       quality = qualityOrder[newIdx]!
     }
-    // 品质浮标：品质+1档
+
+    // Kalite şamandırası
     if (activeTackleDef.value?.qualityBoost) {
       const idx = qualityOrder.indexOf(quality)
       const newIdx = Math.min(idx + activeTackleDef.value.qualityBoost, qualityOrder.length - 1)
       quality = qualityOrder[newIdx]!
     }
-    // 小游戏评级品质加成
+
+    // Mini oyun derecesi etkisi
     if (rating === 'perfect') {
       const idx = qualityOrder.indexOf(quality)
       const newIdx = Math.min(idx + 2, qualityOrder.length - 1)
@@ -376,7 +381,7 @@ export const useFishingStore = defineStore('fishing', () => {
       quality = qualityOrder[newIdx]!
     }
 
-    // 溪流田庄雨天品质+1档
+    // Dere çiftliği yağmurlu günde kalite +1
     if (gameStore.farmMapType === 'riverland' && gameStore.isRainy) {
       const idx = qualityOrder.indexOf(quality)
       if (idx < qualityOrder.length - 1) {
@@ -384,7 +389,7 @@ export const useFishingStore = defineStore('fishing', () => {
       }
     }
 
-    // 仙缘能力：龙泽（long_ling_1）瀑布钓鱼品质+1
+    // Kutlu kudret: Long Ling’in su bereketi
     if (fishingLocation.value === 'waterfall' && useHiddenNpcStore().isAbilityActive('long_ling_1')) {
       const idx = qualityOrder.indexOf(quality)
       if (idx < qualityOrder.length - 1) {
@@ -392,11 +397,17 @@ export const useFishingStore = defineStore('fishing', () => {
       }
     }
 
-    // 野生鱼饵：概率双倍（诱饵师专精翻倍）
+    // Yabani yem: çift balık ihtimali
     const luremasterCatchMult = skillStore.getSkill('fishing').perk10 === 'luremaster' ? 2 : 1
     const doubleCatchChance = (activeBaitDef.value?.doubleCatchChance ?? 0) * luremasterCatchMult
     const catchQty = doubleCatchChance > 0 && Math.random() < doubleCatchChance ? 2 : 1
-    const caughtFish = { name: currentFish.value.name, id: currentFish.value.id, difficulty: currentFish.value.difficulty, sellPrice: currentFish.value.sellPrice, description: currentFish.value.description }
+    const caughtFish = {
+      name: currentFish.value.name,
+      id: currentFish.value.id,
+      difficulty: currentFish.value.difficulty,
+      sellPrice: currentFish.value.sellPrice,
+      description: currentFish.value.description
+    }
 
     const added = inventoryStore.addItem(currentFish.value.id, catchQty, quality)
     const achievementStore = useAchievementStore()
@@ -404,47 +415,57 @@ export const useFishingStore = defineStore('fishing', () => {
     achievementStore.recordFishCaught()
     useQuestStore().onItemObtained(currentFish.value.id, catchQty)
 
-    // 4% 概率获得秘密笔记
+    // Gizli not ihtimali
     if (Math.random() < 0.04) {
       useSecretNoteStore().tryCollectNote()
     }
 
-    // 经验
+    // Tecrübe
     const difficultyExpMult: Record<string, number> = { easy: 1, normal: 1.5, hard: 2, legendary: 3 }
     const expGain = currentFish.value.sellPrice * (difficultyExpMult[currentFish.value.difficulty] ?? 1)
     const riverlandBonus = gameStore.farmMapType === 'riverland' ? 1.25 : 1.0
     const perfectMult = rating === 'perfect' ? 2 : 1
     skillStore.addExp('fishing', Math.floor(expGain * riverlandBonus * perfectMult))
 
-    const ratingTag = rating === 'perfect' ? ' [完美!]' : ''
+    const ratingTag = rating === 'perfect' ? ' [Kusursuz!]' : ''
     let message = ''
     if (!added) {
-      message = `钓上了${currentFish.value.name}，但背包已满，鱼丢失了！`
+      message = `${currentFish.value.name} tuttun ama heybe doluydu; balık yitirildi!`
     } else {
       message =
         catchQty > 1
-          ? `成功钓上了${catchQty}条${currentFish.value.name}！${ratingTag}`
-          : `成功钓上了${currentFish.value.name}！${ratingTag}`
+          ? `${catchQty} adet ${currentFish.value.name} başarıyla tutuldu!${ratingTag}`
+          : `${currentFish.value.name} başarıyla tutuldu!${ratingTag}`
     }
 
-    // 宝箱
+    // Sandık hesabı
     const treasure = rollTreasureChest()
     if (treasure) {
       lastTreasure.value = treasure
       const treasureNames = treasure.items.map(t => `${t.name}×${t.quantity}`).join('、')
       if (treasure.money > 0) {
-        message += ` 宝箱：${treasureNames}${treasureNames ? '、' : ''}${treasure.money}文！`
+        message += ` Sandıktan: ${treasureNames}${treasureNames ? '、' : ''}${treasure.money} akçe çıktı!`
       } else {
-        message += ` 宝箱：${treasureNames}！`
+        message += ` Sandıktan: ${treasureNames} çıktı!`
       }
     }
 
     lastPerfect.value = rating === 'perfect'
     endFishing()
-    return { message, fishName: caughtFish.name, fishId: caughtFish.id, difficulty: caughtFish.difficulty, sellPrice: caughtFish.sellPrice, description: caughtFish.description, quality, quantity: catchQty, success: true }
+    return {
+      message,
+      fishName: caughtFish.name,
+      fishId: caughtFish.id,
+      difficulty: caughtFish.difficulty,
+      sellPrice: caughtFish.sellPrice,
+      description: caughtFish.description,
+      quality,
+      quantity: catchQty,
+      success: true
+    }
   }
 
-  /** 钓鱼宝箱 */
+  /** Balıkçılık sandığı */
   const rollTreasureChest = (): { items: { itemId: string; name: string; quantity: number }[]; money: number } | null => {
     const cookingStore = useCookingStore()
     const luckBuff = cookingStore.activeBuff?.type === 'luck' ? 0.05 : 0
@@ -453,7 +474,6 @@ export const useFishingStore = defineStore('fishing', () => {
     const chance = 0.15 + skillStore.fishingLevel * 0.01 + luckBuff + ringTreasureFind + ringLuck * 0.3
     if (Math.random() >= chance) return null
 
-    // 随机1-2个奖品
     const numPrizes = Math.random() < 0.3 ? 2 : 1
     const items: { itemId: string; name: string; quantity: number }[] = []
     let money = 0
@@ -487,37 +507,37 @@ export const useFishingStore = defineStore('fishing', () => {
     activeTackleDef.value = null
   }
 
-  // =========== 蟹笼系统 ===========
+  // =========== Yengeç sepeti düzeni ===========
 
-  /** 放置蟹笼 */
+  /** Yengeç sepeti yerleştir */
   const placeCrabPot = (location: FishingLocation): { success: boolean; message: string } => {
     if (crabPots.value.length >= MAX_CRAB_POTS) {
-      return { success: false, message: `蟹笼已达上限 (${MAX_CRAB_POTS})。` }
+      return { success: false, message: `Yengeç sepeti sınırı doldu (${MAX_CRAB_POTS}).` }
     }
     const atLocation = crabPots.value.filter(p => p.location === location).length
     if (atLocation >= MAX_CRAB_POTS_PER_LOCATION) {
-      return { success: false, message: `该地点蟹笼已达上限 (${MAX_CRAB_POTS_PER_LOCATION})。` }
+      return { success: false, message: `Bu avlak için sepet sınırı doldu (${MAX_CRAB_POTS_PER_LOCATION}).` }
     }
     if (!inventoryStore.removeItem('crab_pot', 1)) {
-      return { success: false, message: '背包中没有蟹笼。' }
+      return { success: false, message: 'Heybende yengeç sepeti yok.' }
     }
     crabPots.value.push({ location, hasBait: false })
-    return { success: true, message: '蟹笼已放置。' }
+    return { success: true, message: 'Yengeç sepeti yerleştirildi.' }
   }
 
-  /** 回收蟹笼 */
+  /** Yengeç sepetini geri al */
   const removeCrabPot = (location: FishingLocation): { success: boolean; message: string } => {
     const idx = crabPots.value.findIndex(p => p.location === location)
-    if (idx === -1) return { success: false, message: '该地点没有蟹笼。' }
+    if (idx === -1) return { success: false, message: 'Bu avlakta sepet yok.' }
     crabPots.value.splice(idx, 1)
     inventoryStore.addItem('crab_pot', 1)
-    return { success: true, message: '蟹笼已回收。' }
+    return { success: true, message: 'Yengeç sepeti toplandı.' }
   }
 
-  /** 给蟹笼装饵 (指定地点的所有蟹笼) */
+  /** Sepetleri yemle */
   const baitCrabPots = (location: FishingLocation): { success: boolean; message: string } => {
     const pots = crabPots.value.filter(p => p.location === location && !p.hasBait)
-    if (pots.length === 0) return { success: false, message: '该地点蟹笼都已有饵料。' }
+    if (pots.length === 0) return { success: false, message: 'Bu avlaktaki bütün sepetler zaten yemli.' }
     let baited = 0
     for (const pot of pots) {
       if (inventoryStore.removeItem('standard_bait', 1)) {
@@ -527,11 +547,11 @@ export const useFishingStore = defineStore('fishing', () => {
         break
       }
     }
-    if (baited === 0) return { success: false, message: '没有鱼饵了。' }
-    return { success: true, message: `装饵${baited}个蟹笼。` }
+    if (baited === 0) return { success: false, message: 'Yem kalmadı.' }
+    return { success: true, message: `${baited} sepet yemlendi.` }
   }
 
-  /** 各地点蟹笼统计 */
+  /** Avlağa göre sepet sayımı */
   const crabPotsByLocation = computed(() => {
     const map: Partial<Record<FishingLocation, { total: number; baited: number }>> = {}
     for (const pot of crabPots.value) {
@@ -542,7 +562,7 @@ export const useFishingStore = defineStore('fishing', () => {
     return map
   })
 
-  /** 每日收获蟹笼 (由 useEndDay 调用) */
+  /** Gün sonunda sepetleri topla */
   const collectCrabPots = (): { itemId: string; name: string }[] => {
     const isLuremaster = skillStore.getSkill('fishing').perk10 === 'luremaster'
     const isMariner = skillStore.getSkill('fishing').perk10 === 'mariner'
@@ -551,15 +571,15 @@ export const useFishingStore = defineStore('fishing', () => {
     for (const pot of crabPots.value) {
       if (!pot.hasBait && !isLuremaster) continue
 
-      // 构建该地点的产物池
       let pool = CRAB_POT_LOOT.filter(l => !l.locationOverride || l.locationOverride === pot.location)
-      // 地点替换
+
       const overrides = pool.filter(l => l.locationOverride === pot.location)
       if (overrides.length > 0) {
         const replaceIds = new Set(overrides.map(o => o.replaces).filter(Boolean))
         pool = pool.filter(l => !replaceIds.has(l.itemId) || l.locationOverride === pot.location)
       }
-      // 水手专精：排除垃圾
+
+      // Usta denizci hurdaları ayıklar
       if (isMariner) {
         const junkSet = new Set(FISHING_JUNK)
         pool = pool.filter(l => !junkSet.has(l.itemId))
@@ -573,7 +593,8 @@ export const useFishingStore = defineStore('fishing', () => {
           inventoryStore.addItem(loot.itemId, 1)
           const itemDef = getItemById(loot.itemId)
           collected.push({ itemId: loot.itemId, name: itemDef?.name ?? loot.itemId })
-          // 水产也算钓鱼经验
+
+          // Su ürünleri de balıkçılık tecrübesi sayılır
           if (itemDef) {
             skillStore.addExp('fishing', Math.floor(itemDef.sellPrice * 0.5))
           }
@@ -583,7 +604,6 @@ export const useFishingStore = defineStore('fishing', () => {
         }
       }
 
-      // 消耗饵料
       pot.hasBait = false
     }
 
