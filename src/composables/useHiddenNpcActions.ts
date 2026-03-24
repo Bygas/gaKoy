@@ -4,86 +4,104 @@ import { addLog, showFloat } from './useGameLog'
 import { getHiddenNpcById } from '@/data/hiddenNpcs'
 import type { Quality } from '@/types'
 
-/** 执行供奉 */
+/** Adak sun */
 export const doOffering = (npcId: string, itemId: string, quality: Quality): boolean => {
   const hiddenNpcStore = useHiddenNpcStore()
   const result = hiddenNpcStore.performOffering(npcId, itemId, quality)
+
   if (result.success) {
     const gameStore = useGameStore()
     gameStore.advanceTime(30)
+
     if (result.affinityChange > 0) {
-      showFloat(`+${result.affinityChange}缘分`, 'accent')
+      showFloat(`+${result.affinityChange} bağ`, 'accent')
     } else if (result.affinityChange < 0) {
-      showFloat(`${result.affinityChange}缘分`, 'danger')
+      showFloat(`${result.affinityChange} bağ`, 'danger')
     }
+
     addLog(result.message)
   } else {
     addLog(result.message)
   }
+
   return result.success
 }
 
-/** 执行独特互动 */
+/** Özel etkileşim */
 export const doSpecialInteraction = (npcId: string): boolean => {
   const def = getHiddenNpcById(npcId)
   if (!def) return false
+
   const hiddenNpcStore = useHiddenNpcStore()
   const result = hiddenNpcStore.performSpecialInteraction(npcId)
+
   if (result.success) {
     const gameStore = useGameStore()
     gameStore.advanceTime(60)
-    showFloat(`+${result.affinityChange}缘分`, 'accent')
+
+    showFloat(`+${result.affinityChange} bağ`, 'accent')
     addLog(result.message)
   } else {
     addLog(result.message)
   }
+
   return result.success
 }
 
-/** 发起求缘 */
+/** Gönül arayışı başlat */
 export const doCourting = (npcId: string): boolean => {
   const hiddenNpcStore = useHiddenNpcStore()
   const result = hiddenNpcStore.startCourting(npcId)
+
   if (result.success) {
-    showFloat('求缘成功', 'accent')
+    showFloat('Gönül bağı kuruldu', 'accent')
   }
+
   addLog(result.message)
   return result.success
 }
 
-/** 发起结缘 */
+/** Bağ kur (kader bağı) */
 export const doBond = (npcId: string): boolean => {
   const hiddenNpcStore = useHiddenNpcStore()
   const result = hiddenNpcStore.formBond(npcId)
+
   if (result.success) {
-    showFloat('结缘成功！', 'accent')
+    showFloat('Bağ kuruldu!', 'accent')
   }
+
   addLog(result.message)
   return result.success
 }
 
-/** 解除缘分 */
+/** Bağı çöz */
 export const doDissolve = (npcId: string): boolean => {
   const hiddenNpcStore = useHiddenNpcStore()
   const result = hiddenNpcStore.dissolveBond(npcId)
+
   addLog(result.message)
   return result.success
 }
 
-/** 获取供奉偏好标签 */
-export const getOfferingPreference = (npcId: string, itemId: string): 'resonant' | 'pleased' | 'repelled' | 'neutral' => {
+/** Adak uyumunu al */
+export const getOfferingPreference = (
+  npcId: string,
+  itemId: string
+): 'resonant' | 'pleased' | 'repelled' | 'neutral' => {
   const def = getHiddenNpcById(npcId)
   if (!def) return 'neutral'
+
   if (def.resonantOfferings.includes(itemId)) return 'resonant'
   if (def.pleasedOfferings.includes(itemId)) return 'pleased'
   if (def.repelledOfferings.includes(itemId)) return 'repelled'
+
   return 'neutral'
 }
 
 export const OFFERING_PREF_LABELS: Record<string, string> = {
-  resonant: '灵犀',
-  pleased: '合意',
-  repelled: '排斥',
+  resonant: 'Uyumlu',
+  pleased: 'Hoşnut',
+  repelled: 'İtici',
   neutral: ''
 }
 
