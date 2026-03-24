@@ -16,7 +16,7 @@
         </div>
         <p v-if="choiceResponse" class="text-xs text-accent mt-2 ml-2">→ {{ choiceResponse }}</p>
         <Button v-if="!currentScene.choices || hasChosen" class="mt-3 w-full" @click="nextScene">
-          {{ isLastScene ? '结束' : '继续' }}
+          {{ isLastScene ? 'Bitir' : 'Sürdür' }}
         </Button>
       </div>
     </div>
@@ -42,18 +42,18 @@
 
   const PHASE_LABELS: Record<DiscoveryPhase, string> = {
     unknown: '',
-    rumor: '—— 传闻 ——',
-    glimpse: '—— 惊鸿一瞥 ——',
-    encounter: '—— 邂逅 ——',
-    revealed: '—— 显现 ——'
+    rumor: '—— Söylence ——',
+    glimpse: '—— Bir Anlık Görüş ——',
+    encounter: '—— Karşılaşma ——',
+    revealed: '—— Beliriş ——'
   }
 
   const npcDef = computed(() => getHiddenNpcById(props.npcId))
   const phaseLabel = computed(() => PHASE_LABELS[props.step.phase])
   const stepTitle = computed(() => {
-    if (props.step.phase === 'revealed' && npcDef.value) return `${npcDef.value.name}显现了真容`
-    if (props.step.phase === 'encounter' && npcDef.value) return `与${npcDef.value.name}的邂逅`
-    return props.step.logMessage ?? '神秘的异象'
+    if (props.step.phase === 'revealed' && npcDef.value) return `${npcDef.value.name} gerçek suretiyle göründü`
+    if (props.step.phase === 'encounter' && npcDef.value) return `${npcDef.value.name} ile karşılaşma`
+    return props.step.logMessage ?? 'Esrarlı bir belirti'
   })
 
   const currentIndex = ref(0)
@@ -87,6 +87,13 @@
     if (isLastScene.value) {
       emit('close')
       return
+    }
+
+    currentIndex.value++
+    hasChosen.value = false
+    choiceResponse.value = null
+  }
+</script>      return
     }
 
     currentIndex.value++
