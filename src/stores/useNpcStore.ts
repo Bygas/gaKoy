@@ -23,7 +23,7 @@ import { useFarmStore } from './useFarmStore'
 import { useAnimalStore } from './useAnimalStore'
 import { useFishPondStore } from './useFishPondStore'
 
-/** 好感等级阈值 (10心制, 每心250点, 上限2500) */
+/** Gönül seviyesi eşikleri (10 kalp, kalp başı 250 puan, üst sınır 2500) */
 const FRIENDSHIP_THRESHOLDS: { level: FriendshipLevel; min: number }[] = [
   { level: 'bestFriend', min: 2000 },
   { level: 'friendly', min: 1000 },
@@ -46,47 +46,47 @@ export const useNpcStore = defineStore('npc', () => {
     }))
   )
 
-  /** 每日提示NPC是否已给过提示 */
+  /** Günlük öğüt NPC'si bugün konuştu mu */
   const tipGivenToday = ref<Record<string, boolean>>({})
 
-  /** 子女列表 */
+  /** Çocuk listesi */
   const children = ref<ChildState[]>([])
 
-  /** 子女ID自增计数器（避免释放后ID冲突） */
+  /** Çocuk kimliği sayaç değeri */
   const nextChildId = ref<number>(0)
 
-  /** 结婚天数计数 */
+  /** Evlilikte geçen gün sayısı */
   const daysMarried = ref<number>(0)
 
-  /** 知己天数计数 */
+  /** Can yoldaşlığı gün sayısı */
   const daysZhiji = ref<number>(0)
 
-  /** 孕期状态（null = 无孕期） */
+  /** Gebelik durumu (null = gebelik yok) */
   const pregnancy = ref<PregnancyState | null>(null)
 
-  /** 配偶是否已提议要孩子（等待玩家回应） */
+  /** Eş çocuk isteğinde bulundu mu */
   const childProposalPending = ref<boolean>(false)
 
-  /** 提议被拒绝次数（影响再次提议冷却） */
+  /** Reddedilen teklif sayısı */
   const childProposalDeclinedCount = ref<number>(0)
 
-  /** 距上次拒绝/等待的天数 */
+  /** Son ret/bekleme kararından beri geçen gün */
   const daysSinceProposalDecline = ref<number>(0)
 
-  /** 婚礼倒计时 (0=无婚礼待举行) */
+  /** Düğün geri sayımı (0 = düğün yok) */
   const weddingCountdown = ref<number>(0)
 
-  /** 婚礼对象NPC ID */
+  /** Düğün yapılacak NPC kimliği */
   const weddingNpcId = ref<string | null>(null)
 
   // ============================================================
-  // 雇工系统
+  // Yardımcı sistemi
   // ============================================================
 
   const hiredHelpers = ref<HiredHelper[]>([])
   const MAX_HELPERS = 2
 
-  /** 雇工日薪 */
+  /** Yardımcı gündeliği */
   const HELPER_WAGES: Record<FarmHelperTask, number> = {
     water: 100,
     feed: 150,
@@ -94,15 +94,15 @@ export const useNpcStore = defineStore('npc', () => {
     weed: 100
   }
 
-  /** 雇工任务名称 */
+  /** Yardımcı görev adları */
   const HELPER_TASK_NAMES: Record<FarmHelperTask, string> = {
-    water: '浇水',
-    feed: '喂食',
-    harvest: '收获',
-    weed: '除草除虫'
+    water: 'sulama',
+    feed: 'yemleme',
+    harvest: 'hasat',
+    weed: 'ot ve haşere temizliği'
   }
 
-  /** 可雇佣的NPC列表（好感>=1000 且 未被雇佣 且 非配偶/知己） */
+  /** Çalıştırılabilir NPC listesi (gönül>=1000, zaten tutulmuyor, eş/can yoldaşı değil) */
   const getHireableNpcs = (): { npcId: string; name: string; friendship: number }[] => {
     return npcStates.value
       .filter(s => {
@@ -117,33 +117,33 @@ export const useNpcStore = defineStore('npc', () => {
       })
   }
 
-  /** 雇佣NPC */
+  /** NPC'yi yardımcı olarak tut */
   const hireHelper = (npcId: string, task: FarmHelperTask): { success: boolean; message: string } => {
     const state = getNpcState(npcId)
-    if (!state) return { success: false, message: 'NPC不存在。' }
-    if (state.friendship < 1000) return { success: false, message: '好感度不足（需要4心/1000）。' }
-    if (state.married || state.zhiji) return { success: false, message: '伴侣和知己不可雇佣。' }
-    if (hiredHelpers.value.length >= MAX_HELPERS) return { success: false, message: `最多雇佣${MAX_HELPERS}名帮手。` }
-    if (hiredHelpers.value.some(h => h.npcId === npcId)) return { success: false, message: '此人已被雇佣。' }
+    if (!state) return { success: false, message: 'Böyle biri gaKöy’de yok.' }
+    if (state.friendship < 1000) return { success: false, message: 'Gönül bağı yetmiyor (4 kalp / 1000 gerekir).' }
+    if (state.married || state.zhiji) return { success: false, message: 'Eşin ya da can yoldaşın ırgat tutulamaz.' }
+    if (hiredHelpers.value.length >= MAX_HELPERS) return { success: false, message: `En fazla ${MAX_HELPERS} yardımcı tutulabilir.` }
+    if (hiredHelpers.value.some(h => h.npcId === npcId)) return { success: false, message: 'Bu kişi zaten iş başında.' }
 
     const npcDef = getNpcById(npcId)
     const name = npcDef?.name ?? npcId
     hiredHelpers.value.push({ npcId, task, dailyWage: HELPER_WAGES[task] })
-    return { success: true, message: `${name}开始帮你${HELPER_TASK_NAMES[task]}了！(日薪${HELPER_WAGES[task]}文)` }
+    return { success: true, message: `${name}, bugün itibarıyla ${HELPER_TASK_NAMES[task]} işine koyuldu! (Gündelik ${HELPER_WAGES[task]} akçe)` }
   }
 
-  /** 解雇 */
+  /** Yardımcıyı sal */
   const dismissHelper = (npcId: string): { success: boolean; message: string } => {
     const idx = hiredHelpers.value.findIndex(h => h.npcId === npcId)
-    if (idx < 0) return { success: false, message: '此人未被雇佣。' }
+    if (idx < 0) return { success: false, message: 'Bu kişi zaten yanında çalışmıyor.' }
 
     const npcDef = getNpcById(npcId)
     const name = npcDef?.name ?? npcId
     hiredHelpers.value.splice(idx, 1)
-    return { success: true, message: `${name}已离开。` }
+    return { success: true, message: `${name} işten ayrıldı.` }
   }
 
-  /** 每日雇工结算（useEndDay调用） */
+  /** Günlük yardımcı işlemleri (useEndDay çağırır) */
   const processDailyHelpers = (taskFilter?: FarmHelperTask[]): { messages: string[]; dismissedNpcs: string[] } => {
     const playerStore = usePlayerStore()
     const farmStore = useFarmStore()
@@ -153,27 +153,26 @@ export const useNpcStore = defineStore('npc', () => {
     const dismissed: string[] = []
 
     for (const helper of [...hiredHelpers.value]) {
-      // 按任务类型过滤
       if (taskFilter && !taskFilter.includes(helper.task)) continue
 
       const npcDef = getNpcById(helper.npcId)
-      const name = npcDef?.name ?? '雇工'
+      const name = npcDef?.name ?? 'Yardımcı'
       const state = getNpcState(helper.npcId)
 
-      // 已变为配偶/知己 → 自动解雇（不收工资）
+      // Eş veya can yoldaşı olduysa otomatik ayrılır
       if (state && (state.married || state.zhiji)) {
         hiredHelpers.value = hiredHelpers.value.filter(h => h.npcId !== helper.npcId)
-        messages.push(`${name}已成为你的${state.married ? '伴侣' : '知己'}，不再担任雇工。`)
+        messages.push(`${name}, artık senin ${state.married ? 'eşin' : 'can yoldaşın'} olduğu için yardımcı olarak çalışmıyor.`)
         dismissed.push(helper.npcId)
         continue
       }
 
       const efficiency = state && state.friendship >= 2000 ? 1.5 : 1.0
 
-      // 扣工资
+      // Ücret öde
       if (!playerStore.spendMoney(helper.dailyWage)) {
         hiredHelpers.value = hiredHelpers.value.filter(h => h.npcId !== helper.npcId)
-        messages.push(`付不起${name}的工资，${name}不干了。`)
+        messages.push(`${name}’in gündeliği ödenemedi, o da işi bıraktı.`)
         dismissed.push(helper.npcId)
         continue
       }
@@ -183,8 +182,8 @@ export const useNpcStore = defineStore('npc', () => {
           const unwatered = farmStore.plots.filter(p => (p.state === 'planted' || p.state === 'growing') && !p.watered)
           const count = Math.min(unwatered.length, Math.floor(4 * efficiency) + Math.floor(Math.random() * 3))
           for (let i = 0; i < count; i++) farmStore.waterPlot(unwatered[i]!.id)
-          if (count > 0) messages.push(`${name}帮你浇了${count}块地。(-${helper.dailyWage}文)`)
-          else messages.push(`${name}今天没什么可浇的。(-${helper.dailyWage}文)`)
+          if (count > 0) messages.push(`${name}, ${count} tarlayı suladı. (-${helper.dailyWage} akçe)`)
+          else messages.push(`${name} bugün sulanacak yer bulamadı. (-${helper.dailyWage} akçe)`)
           break
         }
         case 'feed': {
@@ -192,13 +191,13 @@ export const useNpcStore = defineStore('npc', () => {
           const fishPondStore = useFishPondStore()
           const fedFish = fishPondStore.pond.built && !fishPondStore.pond.fedToday ? fishPondStore.feedFish() : false
           if (result.fedCount > 0 && fedFish) {
-            messages.push(`${name}帮你喂了${result.fedCount}只牲畜和鱼塘的鱼。(-${helper.dailyWage}文)`)
+            messages.push(`${name}, ${result.fedCount} baş hayvanı ve balık havuzunu doyurdu. (-${helper.dailyWage} akçe)`)
           } else if (result.fedCount > 0) {
-            messages.push(`${name}帮你喂了${result.fedCount}只牲畜。(-${helper.dailyWage}文)`)
+            messages.push(`${name}, ${result.fedCount} baş hayvanı doyurdu. (-${helper.dailyWage} akçe)`)
           } else if (fedFish) {
-            messages.push(`${name}帮你喂了鱼塘的鱼。(-${helper.dailyWage}文)`)
+            messages.push(`${name}, balık havuzundaki balıkları yemledi. (-${helper.dailyWage} akçe)`)
           } else {
-            messages.push(`${name}今天没什么需要喂的。(-${helper.dailyWage}文)`)
+            messages.push(`${name} bugün yemlenecek bir şey bulamadı. (-${helper.dailyWage} akçe)`)
           }
           break
         }
@@ -213,8 +212,8 @@ export const useNpcStore = defineStore('npc', () => {
               harvested++
             }
           }
-          if (harvested > 0) messages.push(`${name}帮你收了${harvested}块地的庄稼。(-${helper.dailyWage}文)`)
-          else messages.push(`${name}今天没什么可收的。(-${helper.dailyWage}文)`)
+          if (harvested > 0) messages.push(`${name}, ${harvested} tarlalık mahsul topladı. (-${helper.dailyWage} akçe)`)
+          else messages.push(`${name} bugün hasatlık ürün bulamadı. (-${helper.dailyWage} akçe)`)
           break
         }
         case 'weed': {
@@ -229,8 +228,8 @@ export const useNpcStore = defineStore('npc', () => {
               cleared++
             }
           }
-          if (cleared > 0) messages.push(`${name}清理了${cleared}处杂草和虫害。(-${helper.dailyWage}文)`)
-          else messages.push(`${name}今天田里挺干净的。(-${helper.dailyWage}文)`)
+          if (cleared > 0) messages.push(`${name}, ${cleared} yerde otu ve haşereyi temizledi. (-${helper.dailyWage} akçe)`)
+          else messages.push(`${name}, bugün tarlayı tertemiz buldu. (-${helper.dailyWage} akçe)`)
           break
         }
       }
@@ -238,16 +237,16 @@ export const useNpcStore = defineStore('npc', () => {
     return { messages, dismissedNpcs: dismissed }
   }
 
-  /** 子女名字池（按性别） */
-  const CHILD_NAMES_MALE = ['小龙', '小宝', '团子', '年年']
-  const CHILD_NAMES_FEMALE = ['小凤', '阿花', '豆豆', '圆圆']
+  /** Çocuk ad havuzu */
+  const CHILD_NAMES_MALE = ['Tuna', 'Aras', 'Doruk', 'Mert']
+  const CHILD_NAMES_FEMALE = ['Ece', 'İlay', 'Selin', 'Yaren']
 
-  /** 获取NPC状态 */
+  /** NPC durumunu getir */
   const getNpcState = (npcId: string): NpcState | undefined => {
     return npcStates.value.find(s => s.npcId === npcId)
   }
 
-  /** 获取好感等级 */
+  /** Gönül seviyesini getir */
   const getFriendshipLevel = (npcId: string): FriendshipLevel => {
     const state = getNpcState(npcId)
     if (!state) return 'stranger'
@@ -257,7 +256,7 @@ export const useNpcStore = defineStore('npc', () => {
     return 'stranger'
   }
 
-  /** 检查NPC今天是否生日 */
+  /** Bugün doğum günü mü */
   const isBirthday = (npcId: string): boolean => {
     const npcDef = getNpcById(npcId)
     if (!npcDef?.birthday) return false
@@ -265,7 +264,7 @@ export const useNpcStore = defineStore('npc', () => {
     return npcDef.birthday.season === gameStore.season && npcDef.birthday.day === gameStore.day
   }
 
-  /** 获取今天过生日的NPC (null if none) */
+  /** Bugün doğum günü olan NPC */
   const getTodayBirthdayNpc = (): string | null => {
     const gameStore = useGameStore()
     for (const npc of NPCS) {
@@ -276,15 +275,13 @@ export const useNpcStore = defineStore('npc', () => {
     return null
   }
 
-  /** 检查是否有可触发的心事件（对话后调用） */
+  /** Tetiklenebilir kalp olayı var mı */
   const checkHeartEvent = (npcId: string): HeartEventDef | null => {
     const state = getNpcState(npcId)
     if (!state) return null
     const events = getHeartEventsForNpc(npcId)
     for (const event of events) {
-      // 知己事件仅知己触发
       if (event.requiresZhiji && !state.zhiji) continue
-      // 知己不触发恋爱告白（heart_8）
       if (!event.requiresZhiji && state.zhiji && event.id.endsWith('_heart_8')) continue
       if (state.friendship >= event.requiredFriendship && !state.triggeredHeartEvents.includes(event.id)) {
         return event
@@ -293,7 +290,7 @@ export const useNpcStore = defineStore('npc', () => {
     return null
   }
 
-  /** 标记心事件为已触发 */
+  /** Kalp olayını işlendi diye işaretle */
   const markHeartEventTriggered = (npcId: string, eventId: string) => {
     const state = getNpcState(npcId)
     if (state && !state.triggeredHeartEvents.includes(eventId)) {
@@ -301,7 +298,7 @@ export const useNpcStore = defineStore('npc', () => {
     }
   }
 
-  /** 调整好感度（心事件选择结果） */
+  /** Gönül puanı değiştir */
   const adjustFriendship = (npcId: string, amount: number) => {
     const state = getNpcState(npcId)
     if (state) {
@@ -309,13 +306,13 @@ export const useNpcStore = defineStore('npc', () => {
     }
   }
 
-  /** 替换对话中的占位符 */
+  /** Diyalog içindeki yer tutucuları değiştir */
   const replaceDialoguePlaceholders = (text: string): string => {
     const playerStore = usePlayerStore()
     return text.replace(/\{player\}/g, playerStore.playerName).replace(/\{title\}/g, playerStore.honorific)
   }
 
-  /** 与NPC对话 (+20好感) */
+  /** NPC ile konuş (+20 gönül) */
   const talkTo = (npcId: string): { message: string; friendshipGain: number } | null => {
     const state = getNpcState(npcId)
     if (!state) return null
@@ -327,35 +324,35 @@ export const useNpcStore = defineStore('npc', () => {
     const npcDef = getNpcById(npcId)
     if (!npcDef) return null
 
-    // 已婚NPC有特殊对话
+    // Eş için özel konuşmalar
     if (state.married) {
       const playerStore = usePlayerStore()
       const gameStore = useGameStore()
       const name = playerStore.playerName
 
       const marriedDialogues = [
-        `${name}，今天辛苦了，早点回来吃饭。`,
-        `我给${name}留了饭菜，还热着呢。`,
-        '田里的活干完了吗？别太累了。',
-        `有${name}在身边，每天都很开心。`,
-        '今天想吃什么？我去准备。',
-        '家里收拾好了，你歇会儿吧。',
-        `和${name}在一起的日子，真好。`,
-        `${name}，今天精神不错嘛。`
+        `${name}, bugün çok yoruldun; akşam erken dön de birlikte oturalım.`,
+        `${name}, sana sıcak aş bıraktım, hâlâ tencerede tüter.`,
+        'Tarladaki işin bitti mi? Kendini fazla zorlama.',
+        `${name} yanımdayken evin içi başka bir sıcak oluyor.`,
+        'Bu akşam ne yiyesin gelir? Hazırlayayım.',
+        'Evin içini topladım, biraz soluklan artık.',
+        `${name} ile geçen her gün, gönlüme iyi geliyor.`,
+        `${name}, bugün yüzün aydınlık görünüyor.`
       ]
 
       const seasonDialogues: Record<string, string[]> = {
-        spring: [`春天到了，院子里的花都开了呢。`, `${name}，春播忙完了吗？`],
-        summer: [`好热啊……${name}多喝水。`, '夏天的西瓜最解暑了。'],
-        autumn: [`秋天的风真舒服。${name}，要不要一起散步？`, '丰收的季节，辛苦种的东西都有了回报。'],
-        winter: [`外面好冷，${name}快进屋暖和暖和。`, '冬天就该窝在家里喝热茶。']
+        spring: ['Bahar geldi, gaKöy’ün avluları çiçek kokuyor.', `${name}, ekim işlerin yetişti mi?`],
+        summer: [`Bugün hava kızgın, ${name}; bol bol su iç.`, 'Yazın serinliği en çok kavunda bulunur.'],
+        autumn: [`Güz yeli ne hoş eser, ${name}; biraz yürüyelim mi?`, 'Bereket zamanı geldi, emeğin karşılığı göründü.'],
+        winter: [`Ayaz sert bugün, ${name}; içeri geç de ısın.`, 'Kış gününde sıcak çay kadar kıymetlisi yok.']
       }
 
       const weatherDialogues: Record<string, string | null> = {
-        rainy: '下雨了，田里不用浇水，在家歇歇吧。',
-        stormy: '外面风雨好大，今天别出远门了。',
-        snowy: '下雪了呢，外面白茫茫的，真好看。',
-        windy: '风好大，出门小心别着凉了。',
+        rainy: 'Yağmur indi, tarla bugün su ister diye düşünme; biraz dinlen.',
+        stormy: 'Dışarıda fırtına koptu, bugün uzağa gitme.',
+        snowy: 'Kar yağdı; gaKöy bembeyaz olmuş, ne hoş.',
+        windy: 'Rüzgâr sert, üstünü sıkı giyin.',
         sunny: null,
         cloudy: null,
         green_rain: null
@@ -369,14 +366,14 @@ export const useNpcStore = defineStore('npc', () => {
       return { message, friendshipGain: 20 }
     }
 
-    // 知己NPC使用知己专属对话
+    // Can yoldaşı için özel konuşmalar
     if (state.zhiji && npcDef.zhijiDialogues?.length) {
       const raw = npcDef.zhijiDialogues[Math.floor(Math.random() * npcDef.zhijiDialogues.length)]!
       const message = replaceDialoguePlaceholders(raw)
       return { message, friendshipGain: 20 }
     }
 
-    // 约会中NPC使用约会对话
+    // Sevgili konuşmaları
     if (state.dating && npcDef.datingDialogues && npcDef.datingDialogues.length > 0) {
       const raw = npcDef.datingDialogues[Math.floor(Math.random() * npcDef.datingDialogues.length)]!
       const message = replaceDialoguePlaceholders(raw)
@@ -391,7 +388,7 @@ export const useNpcStore = defineStore('npc', () => {
     return { message, friendshipGain: 20 }
   }
 
-  /** 送礼给NPC (每天1次, 每周2次) */
+  /** Hediye ver (günde 1, haftada 2 kez) */
   const giveGift = (
     npcId: string,
     itemId: string,
@@ -416,21 +413,19 @@ export const useNpcStore = defineStore('npc', () => {
 
     if (npcDef.lovedItems.includes(itemId)) {
       gain = 80
-      reaction = '非常喜欢'
+      reaction = 'bayıldı'
     } else if (npcDef.likedItems.includes(itemId)) {
       gain = 45
-      reaction = '还不错'
+      reaction = 'beğendi'
     } else if (npcDef.hatedItems.includes(itemId)) {
       gain = -40
-      reaction = '讨厌'
+      reaction = 'hiç sevmedi'
     } else {
       gain = 20
-      reaction = '一般'
+      reaction = 'eh işte'
     }
 
-    // 品质加成
     const qualityMultiplier: Record<Quality, number> = { normal: 1.0, fine: 1.25, excellent: 1.5, supreme: 2.0 }
-    // 生日加成 (4倍)
     const birthdayMultiplier = isBirthday(npcId) ? 4 : 1
 
     gain = Math.floor(gain * qualityMultiplier[quality] * birthdayMultiplier * giftBonusMultiplier)
@@ -439,119 +434,114 @@ export const useNpcStore = defineStore('npc', () => {
     return { gain, reaction }
   }
 
-  /** 赠帕开启约会 (需2000好感/8心) */
+  /** Mendil verip sevgililiği başlat (2000 gönül / 8 kalp) */
   const startDating = (npcId: string): { success: boolean; message: string } => {
     const state = getNpcState(npcId)
-    if (!state) return { success: false, message: 'NPC不存在。' }
+    if (!state) return { success: false, message: 'Böyle biri yok.' }
 
     const npcDef = getNpcById(npcId)
-    if (!npcDef?.marriageable) return { success: false, message: '无法与此人约会。' }
+    if (!npcDef?.marriageable) return { success: false, message: 'Bu kişiyle gönül bağı kurulamaz.' }
 
     const playerStore = usePlayerStore()
     if (npcDef.gender === playerStore.gender) {
-      return { success: false, message: '只能向异性赠帕。' }
+      return { success: false, message: 'Mendil yalnız karşı cinse sunulabilir.' }
     }
 
-    if (state.dating) return { success: false, message: '你们已经在约会了。' }
-    if (state.married) return { success: false, message: '你们已经结婚了。' }
-    if (npcStates.value.some(s => s.married)) return { success: false, message: '你已经结婚了。' }
-    if (state.friendship < 2000) return { success: false, message: '好感度不足（需要8心/2000）。' }
+    if (state.dating) return { success: false, message: 'Zaten gönül yoldaşısınız.' }
+    if (state.married) return { success: false, message: 'Zaten evlisiniz.' }
+    if (npcStates.value.some(s => s.married)) return { success: false, message: 'Zaten evlisin.' }
+    if (state.friendship < 2000) return { success: false, message: 'Gönül bağı yetmiyor (8 kalp / 2000 gerekir).' }
 
     const inventoryStore = useInventoryStore()
     if (!inventoryStore.removeItem('silk_ribbon')) {
-      return { success: false, message: '需要一条丝帕。' }
+      return { success: false, message: 'Bir ipek mendil gerekir.' }
     }
 
     state.dating = true
     state.friendship += 160
-    return { success: true, message: `${npcDef.name}羞红了脸，接过了你的丝帕……你们开始约会了！` }
+    return { success: true, message: `${npcDef.name} utana sıkıla mendilini kabul etti… artık görüşmeye başladınız!` }
   }
 
-  /** 求婚 (需2500好感/10心) */
+  /** Evlenme teklifi (2500 gönül / 10 kalp) */
   const propose = (npcId: string): { success: boolean; message: string } => {
     const state = getNpcState(npcId)
-    if (!state) return { success: false, message: 'NPC不存在。' }
+    if (!state) return { success: false, message: 'Böyle biri yok.' }
 
     const npcDef = getNpcById(npcId)
-    if (!npcDef?.marriageable) return { success: false, message: '这个人无法求婚。' }
+    if (!npcDef?.marriageable) return { success: false, message: 'Bu kişiye evlenme teklifi edilemez.' }
 
-    // 只允许异性求婚
     const playerStore = usePlayerStore()
     if (npcDef.gender === playerStore.gender) {
-      return { success: false, message: '只能向异性求婚。' }
+      return { success: false, message: 'Evlilik teklifi yalnız karşı cinse yapılabilir.' }
     }
 
-    // 检查是否已有配偶
     const alreadyMarried = npcStates.value.some(s => s.married)
-    if (alreadyMarried) return { success: false, message: '你已经结婚了。' }
+    if (alreadyMarried) return { success: false, message: 'Zaten evlisin.' }
 
-    // 检查是否正在筹备婚礼
-    if (weddingCountdown.value > 0) return { success: false, message: '婚礼正在筹备中。' }
+    if (weddingCountdown.value > 0) return { success: false, message: 'Düğün hazırlığı zaten sürüyor.' }
 
-    // 需要先约会
-    if (!state.dating) return { success: false, message: '需要先赠帕约会。' }
+    if (!state.dating) return { success: false, message: 'Önce mendil verip gönül bağı kurman gerekir.' }
 
-    if (state.friendship < 2500) return { success: false, message: '好感度不足（需要10心/2500）。' }
+    if (state.friendship < 2500) return { success: false, message: 'Gönül bağı yetmiyor (10 kalp / 2500 gerekir).' }
 
     const inventoryStore = useInventoryStore()
     if (!inventoryStore.removeItem('jade_ring')) {
-      return { success: false, message: '需要一枚翡翠戒指。' }
+      return { success: false, message: 'Bir yeşim yüzük gerekir.' }
     }
 
-    // 设置婚礼倒计时而非立即结婚
     weddingCountdown.value = 3
     weddingNpcId.value = npcId
     state.friendship += 400
-    return { success: true, message: `${npcDef.name}含泪接受了你的翡翠戒指……婚礼将在3天后举行！` }
+    return { success: true, message: `${npcDef.name}, gözleri dolarak yeşim yüzüğü kabul etti… düğün 3 gün sonra kurulacak!` }
   }
 
-  /** 获取已婚配偶状态 */
+  /** Eşi getir */
   const getSpouse = (): NpcState | null => {
     return npcStates.value.find(s => s.married) ?? null
   }
 
-  /** 获取知己状态 */
+  /** Can yoldaşını getir */
   const getZhiji = (): NpcState | null => {
     return npcStates.value.find(s => s.zhiji) ?? null
   }
 
-  /** 赠玉结为知己 (需同性+2000好感) */
+  /** Aynı cinsle can yoldaşı ol (2000 gönül) */
   const becomeZhiji = (npcId: string): { success: boolean; message: string } => {
     const state = getNpcState(npcId)
-    if (!state) return { success: false, message: 'NPC不存在。' }
+    if (!state) return { success: false, message: 'Böyle biri yok.' }
 
     const npcDef = getNpcById(npcId)
-    if (!npcDef?.marriageable) return { success: false, message: '无法与此人结为知己。' }
+    if (!npcDef?.marriageable) return { success: false, message: 'Bu kişiyle can yoldaşlığı kurulamaz.' }
 
     const playerStore = usePlayerStore()
     if (npcDef.gender !== playerStore.gender) {
-      return { success: false, message: '只能与同性结为知己。' }
+      return { success: false, message: 'Can yoldaşlığı yalnız aynı cinsten biriyle kurulabilir.' }
     }
 
-    if (state.zhiji) return { success: false, message: '你们已经是知己了。' }
-    if (state.dating || state.married) return { success: false, message: '无法与恋人或伴侣结为知己。' }
-    if (npcStates.value.some(s => s.zhiji)) return { success: false, message: '你已经有知己了。' }
-    if (state.friendship < 2000) return { success: false, message: '好感度不足（需要8心/2000）。' }
+    if (state.zhiji) return { success: false, message: 'Zaten can yoldaşısınız.' }
+    if (state.dating || state.married) return { success: false, message: 'Sevgili ya da eş ile can yoldaşı olunamaz.' }
+    if (npcStates.value.some(s => s.zhiji)) return { success: false, message: 'Zaten bir can yoldaşın var.' }
+    if (state.friendship < 2000) return { success: false, message: 'Gönül bağı yetmiyor (8 kalp / 2000 gerekir).' }
 
     const inventoryStore = useInventoryStore()
     if (!inventoryStore.removeItem('zhiji_jade')) {
-      return { success: false, message: '需要一块知己玉佩。' }
+      return { success: false, message: 'Bir can yoldaşı yeşimi gerekir.' }
     }
 
     state.zhiji = true
     state.friendship += 160
-    const label = playerStore.gender === 'male' ? '蓝颜知己' : '红颜知己'
-    return { success: true, message: `${npcDef.name}郑重地接过了玉佩……你们结为了${label}！` }
+    const label = playerStore.gender === 'male' ? 'can kardeş' : 'can yoldaşı'
+    return { success: true, message: `${npcDef.name}, yeşim nişanını saygıyla kabul etti… artık ${label} oldunuz!` }
   }
 
-  /** 断绝知己之缘 */
+  /** Can yoldaşlığını boz */
   const dissolveZhiji = (): { success: boolean; message: string } => {
     const zhijiState = getZhiji()
-    if (!zhijiState) return { success: false, message: '你还没有知己。' }
+    if (!zhijiState) return { success: false, message: 'Henüz bir can yoldaşın yok.' }
 
     const playerStore = usePlayerStore()
     if (!playerStore.spendMoney(10000)) {
-      return { success: false, message: '金钱不足（需要10000文）。' }
+      return { success: false, message: 'Yeterli akçe yok (10000 gerekir).' }
     }
 
     const npcDef = getNpcById(zhijiState.npcId)
@@ -559,10 +549,10 @@ export const useNpcStore = defineStore('npc', () => {
     zhijiState.friendship = 1000
     daysZhiji.value = 0
 
-    return { success: true, message: `你和${npcDef?.name ?? '知己'}的知己之缘已断。` }
+    return { success: true, message: `${npcDef?.name ?? 'Can yoldaşın'} ile kurduğun bağ çözüldü.` }
   }
 
-  /** 每日婚礼倒计时更新 */
+  /** Günlük düğün sayacı */
   const dailyWeddingUpdate = (): { weddingToday: boolean; npcId: string | null } => {
     if (weddingCountdown.value <= 0 || !weddingNpcId.value) {
       return { weddingToday: false, npcId: null }
@@ -582,20 +572,20 @@ export const useNpcStore = defineStore('npc', () => {
     return { weddingToday: false, npcId: null }
   }
 
-  /** 取消婚礼 */
+  /** Düğünü iptal et */
   const cancelWedding = () => {
     weddingCountdown.value = 0
     weddingNpcId.value = null
   }
 
-  /** 离婚 */
+  /** Boşan */
   const divorce = (): { success: boolean; message: string } => {
     const spouse = getSpouse()
-    if (!spouse) return { success: false, message: '你还没有结婚。' }
+    if (!spouse) return { success: false, message: 'Henüz evli değilsin.' }
 
     const playerStore = usePlayerStore()
     if (!playerStore.spendMoney(30000)) {
-      return { success: false, message: '金钱不足（需要30000文）。' }
+      return { success: false, message: 'Yeterli akçe yok (30000 gerekir).' }
     }
 
     const npcDef = getNpcById(spouse.npcId)
@@ -607,44 +597,44 @@ export const useNpcStore = defineStore('npc', () => {
     daysMarried.value = 0
     cancelWedding()
 
-    return { success: true, message: `你和${npcDef?.name ?? '配偶'}的婚姻结束了。` }
+    return { success: true, message: `${npcDef?.name ?? 'Eşin'} ile evliliğin sona erdi.` }
   }
 
-  /** 放生子女 */
+  /** Çocuğu uzak akrabaya yolla */
   const releaseChild = (childId: number): { success: boolean; message: string } => {
     const child = children.value.find(c => c.id === childId)
-    if (!child) return { success: false, message: '找不到这个孩子。' }
+    if (!child) return { success: false, message: 'Böyle bir çocuk bulunamadı.' }
 
     const playerStore = usePlayerStore()
     if (!playerStore.spendMoney(10000)) {
-      return { success: false, message: '金钱不足（需要10000文）。' }
+      return { success: false, message: 'Yeterli akçe yok (10000 gerekir).' }
     }
 
     const name = child.name
     children.value = children.value.filter(c => c.id !== childId)
-    return { success: true, message: `${name}被送往了远方亲戚家。` }
+    return { success: true, message: `${name}, uzak akrabaların yanına gönderildi.` }
   }
 
   // ============================================================
-  // 孕期养成系统
+  // Gebelik sistemi
   // ============================================================
 
   const PREGNANCY_STAGE_CONFIG: Record<PregnancyStage, { days: number; label: string }> = {
-    early: { days: 5, label: '初期' },
-    mid: { days: 5, label: '中期' },
-    late: { days: 5, label: '后期' },
-    ready: { days: 3, label: '待产期' }
+    early: { days: 5, label: 'İlk dönem' },
+    mid: { days: 5, label: 'Orta dönem' },
+    late: { days: 5, label: 'Son dönem' },
+    ready: { days: 3, label: 'Doğuma hazır' }
   }
 
   const STAGE_ORDER: PregnancyStage[] = ['early', 'mid', 'late', 'ready']
 
   const MEDICAL_PLANS = {
-    normal: { cost: 1000, successRate: 0.8, label: '普通接生' },
-    advanced: { cost: 5000, successRate: 0.95, label: '高级接生' },
-    luxury: { cost: 15000, successRate: 1.0, label: '豪华接生' }
+    normal: { cost: 1000, successRate: 0.8, label: 'Sade doğum hazırlığı' },
+    advanced: { cost: 5000, successRate: 0.95, label: 'Usta ebe desteği' },
+    luxury: { cost: 15000, successRate: 1.0, label: 'Konak usulü doğum' }
   } as const
 
-  /** 检查配偶是否应提议要孩子（每日调用） */
+  /** Eş çocuk teklif etmeli mi */
   const checkChildProposal = (): boolean => {
     const spouse = getSpouse()
     if (!spouse) return false
@@ -653,7 +643,6 @@ export const useNpcStore = defineStore('npc', () => {
     if (childProposalPending.value) return false
     if (daysMarried.value < 7) return false
     if (spouse.friendship < 3000) return false
-    // 拒绝冷却：7天基础 + 每次拒绝额外7天
     if (childProposalDeclinedCount.value > 0) {
       const cooldownDays = 7 + childProposalDeclinedCount.value * 7
       if (daysSinceProposalDecline.value < cooldownDays) return false
@@ -661,12 +650,12 @@ export const useNpcStore = defineStore('npc', () => {
     return Math.random() < 0.05
   }
 
-  /** 触发提议（设置等待标记） */
+  /** Teklifi beklemeye al */
   const triggerChildProposal = () => {
     childProposalPending.value = true
   }
 
-  /** 玩家回应提议 */
+  /** Oyuncunun cevap vermesi */
   const respondToChildProposal = (response: ProposalResponse): { message: string; friendshipChange: number } => {
     childProposalPending.value = false
     const spouse = getSpouse()
@@ -686,26 +675,26 @@ export const useNpcStore = defineStore('npc', () => {
         if (spouse) spouse.friendship += 100
         childProposalDeclinedCount.value = 0
         daysSinceProposalDecline.value = 0
-        return { message: '你们决定迎接新的家庭成员。', friendshipChange: 100 }
+        return { message: 'Yeni bir canı yuvanıza çağırmaya karar verdiniz.', friendshipChange: 100 }
 
       case 'decline':
         if (spouse) spouse.friendship = Math.max(0, spouse.friendship - 50)
         childProposalDeclinedCount.value++
         daysSinceProposalDecline.value = 0
-        return { message: '你委婉地拒绝了。', friendshipChange: -50 }
+        return { message: 'Teklifi nazikçe geri çevirdin.', friendshipChange: -50 }
 
       case 'wait':
         daysSinceProposalDecline.value = 0
-        childProposalDeclinedCount.value++ // 也计入冷却
-        return { message: '你说了再等等看。', friendshipChange: 0 }
+        childProposalDeclinedCount.value++
+        return { message: 'Biraz daha zaman isteyip beklemeyi seçtin.', friendshipChange: 0 }
     }
   }
 
-  /** 孕期照料操作 */
+  /** Gebelik bakımı */
   const performPregnancyCare = (
     action: 'gift' | 'companion' | 'supplement' | 'rest'
   ): { success: boolean; message: string; careGain: number } => {
-    if (!pregnancy.value) return { success: false, message: '没有待产。', careGain: 0 }
+    if (!pregnancy.value) return { success: false, message: 'Şu anda doğum beklenmiyor.', careGain: 0 }
 
     let careGain = 0
     let message = ''
@@ -713,20 +702,20 @@ export const useNpcStore = defineStore('npc', () => {
     switch (action) {
       case 'gift': {
         if (pregnancy.value.giftedForPregnancy) {
-          return { success: false, message: '今天已经送过礼物了。', careGain: 0 }
+          return { success: false, message: 'Bugün zaten bir armağan verildi.', careGain: 0 }
         }
         pregnancy.value.giftedForPregnancy = true
         careGain = pregnancy.value.stage === 'early' ? 5 : 3
-        message = '你送了一份贴心的礼物。'
+        message = 'İç ısıtan bir armağan sundun.'
         break
       }
       case 'companion': {
         if (pregnancy.value.companionToday) {
-          return { success: false, message: '今天已经陪伴过了。', careGain: 0 }
+          return { success: false, message: 'Bugün zaten yanında vakit geçirildi.', careGain: 0 }
         }
         pregnancy.value.companionToday = true
         careGain = pregnancy.value.stage === 'mid' ? 5 : 3
-        message = '你陪伴了一会儿，聊了很多。'
+        message = 'Bir süre yanında oturup uzun uzun konuştun.'
         break
       }
       case 'supplement': {
@@ -745,21 +734,21 @@ export const useNpcStore = defineStore('npc', () => {
             found = true
             careGain = si.gain
             const itemDef = getItemById(si.id)
-            message = `服用了${itemDef?.name ?? '补品'}。`
+            message = `${itemDef?.name ?? 'Şifalı bir içecek'} kullanıldı.`
             break
           }
         }
         if (!found) {
-          return { success: false, message: '没有合适的补品（人参/草药/茶饮）。', careGain: 0 }
+          return { success: false, message: 'Uygun bir destekleyici yok (ginseng / ot / çay içeceği gerekir).', careGain: 0 }
         }
         break
       }
       case 'rest': {
         if (pregnancy.value.caredToday) {
-          return { success: false, message: '今天已经安排过休息了。', careGain: 0 }
+          return { success: false, message: 'Bugün zaten dinlenme ayarlandı.', careGain: 0 }
         }
         careGain = pregnancy.value.stage === 'late' ? 5 : 2
-        message = '你让配偶好好休息了一天。'
+        message = 'Bugünü dinlenmeye ayırdın.'
         break
       }
     }
@@ -769,22 +758,22 @@ export const useNpcStore = defineStore('npc', () => {
     return { success: true, message, careGain }
   }
 
-  /** 选择接生方式（仅待产期） */
+  /** Doğum planı seç */
   const chooseMedicalPlan = (plan: 'normal' | 'advanced' | 'luxury'): { success: boolean; message: string } => {
-    if (!pregnancy.value) return { success: false, message: '没有待产。' }
-    if (pregnancy.value.stage !== 'ready') return { success: false, message: '还没到待产期。' }
+    if (!pregnancy.value) return { success: false, message: 'Şu anda beklenen bir doğum yok.' }
+    if (pregnancy.value.stage !== 'ready') return { success: false, message: 'Henüz doğum vakti gelmedi.' }
 
     const planInfo = MEDICAL_PLANS[plan]
     const playerStore = usePlayerStore()
     if (!playerStore.spendMoney(planInfo.cost)) {
-      return { success: false, message: `金钱不足（需要${planInfo.cost}文）。` }
+      return { success: false, message: `Yeterli akçe yok (${planInfo.cost} gerekir).` }
     }
 
     pregnancy.value.medicalPlan = plan
-    return { success: true, message: `选择了${planInfo.label}（${planInfo.cost}文）。` }
+    return { success: true, message: `${planInfo.label} seçildi. (${planInfo.cost} akçe)` }
   }
 
-  /** 分娩处理（内部方法） */
+  /** Doğumu işle */
   const handleDelivery = (): {
     born?: { name: string; quality: 'normal' | 'premature' | 'healthy' }
     miscarriage?: boolean
@@ -794,7 +783,6 @@ export const useNpcStore = defineStore('npc', () => {
     const plan = pregnancy.value.medicalPlan ?? 'normal'
     const planInfo = MEDICAL_PLANS[plan]
 
-    // 成功率 = 医疗方案基础率 + 安产分加成（最高+15%）
     const careBonus = (pregnancy.value.careScore / 100) * 0.15
     const totalSuccessRate = Math.min(1.0, planInfo.successRate + careBonus)
 
@@ -809,7 +797,6 @@ export const useNpcStore = defineStore('npc', () => {
       return { miscarriage: true }
     }
 
-    // 根据安产分决定出生品质
     const birthQuality: 'normal' | 'premature' | 'healthy' =
       pregnancy.value.careScore >= 80 ? 'healthy' : pregnancy.value.careScore < 40 ? 'premature' : 'normal'
 
@@ -817,7 +804,7 @@ export const useNpcStore = defineStore('npc', () => {
     const namePool = isBoy ? CHILD_NAMES_MALE : CHILD_NAMES_FEMALE
     const usedNames = children.value.map(c => c.name)
     const availableNames = namePool.filter(n => !usedNames.includes(n))
-    const name = availableNames[Math.floor(Math.random() * availableNames.length)] ?? '小宝'
+    const name = availableNames[Math.floor(Math.random() * availableNames.length)] ?? 'Yavru'
 
     children.value.push({
       id: nextChildId.value++,
@@ -833,39 +820,33 @@ export const useNpcStore = defineStore('npc', () => {
     return { born: { name, quality: birthQuality } }
   }
 
-  /** 每日孕期更新 */
+  /** Günlük gebelik güncellemesi */
   const dailyPregnancyUpdate = (): {
     stageChanged?: { from: PregnancyStage; to: PregnancyStage }
     born?: { name: string; quality: 'normal' | 'premature' | 'healthy' }
     miscarriage?: boolean
   } => {
-    // 结婚天数递增
     if (getSpouse()) daysMarried.value++
 
-    // 拒绝冷却计时递增
     if (childProposalDeclinedCount.value > 0) {
       daysSinceProposalDecline.value++
     }
 
     if (!pregnancy.value) return {}
 
-    // 重置每日照料标记
     pregnancy.value.caredToday = false
     pregnancy.value.giftedForPregnancy = false
     pregnancy.value.companionToday = false
 
     pregnancy.value.daysInStage++
 
-    // 检查阶段完成
     if (pregnancy.value.daysInStage >= pregnancy.value.stageDays) {
       const currentStageIndex = STAGE_ORDER.indexOf(pregnancy.value.stage)
 
       if (pregnancy.value.stage === 'ready') {
-        // 分娩
         return handleDelivery()
       }
 
-      // 进入下一阶段
       const from = pregnancy.value.stage
       const nextStage = STAGE_ORDER[currentStageIndex + 1]!
       pregnancy.value.stage = nextStage
@@ -878,7 +859,7 @@ export const useNpcStore = defineStore('npc', () => {
     return {}
   }
 
-  /** 每日子女成长更新（仅已出生子女） */
+  /** Günlük çocuk büyüme güncellemesi */
   const dailyChildUpdate = () => {
     for (const child of children.value) {
       child.daysOld++
@@ -893,7 +874,7 @@ export const useNpcStore = defineStore('npc', () => {
     }
   }
 
-  /** 与子女互动 */
+  /** Çocukla vakit geçir */
   const interactWithChild = (childId: number): { message: string; item?: string } | null => {
     const child = children.value.find(c => c.id === childId)
     if (!child) return null
@@ -906,23 +887,23 @@ export const useNpcStore = defineStore('npc', () => {
     if (child.stage === 'child' && Math.random() < 0.1) {
       const finds = ['wood', 'herb', 'pine_cone', 'wild_berry']
       const item = finds[Math.floor(Math.random() * finds.length)]!
-      return { message: `${child.name}递给你一个东西。`, item }
+      return { message: `${child.name}, sana bir şey uzattı.`, item }
     }
 
-    return { message: `你和${child.name}玩了一会儿。(+2好感)` }
+    return { message: `${child.name} ile biraz oynadın. (+2 gönül)` }
   }
 
-  /** 检查NPC是否有每日提示功能 */
+  /** NPC günlük öğüt verir mi */
   const hasDailyTip = (npcId: string): boolean => {
     return (TIP_NPC_IDS as readonly string[]).includes(npcId)
   }
 
-  /** 检查NPC今天是否已给过提示 */
+  /** NPC bugün öğüt verdi mi */
   const isTipGivenToday = (npcId: string): boolean => {
     return tipGivenToday.value[npcId] ?? false
   }
 
-  /** 获取NPC的每日提示 */
+  /** Günlük öğüdü al */
   const getDailyTip = (npcId: string): string | null => {
     if (!hasDailyTip(npcId)) return null
     if (tipGivenToday.value[npcId]) return null
@@ -939,7 +920,6 @@ export const useNpcStore = defineStore('npc', () => {
         const cookingStore = useCookingStore()
         const unlockedRecipes = RECIPES.filter(r => cookingStore.unlockedRecipes.includes(r.id))
         if (unlockedRecipes.length === 0) return NO_RECIPE_TIP
-        // 每周推荐一个固定食谱（基于年+周数的种子）
         const weekIndex = Math.floor((gameStore.day - 1) / 7)
         const seed = (gameStore.year - 1) * 16 + ['spring', 'summer', 'autumn', 'winter'].indexOf(gameStore.season) * 4 + weekIndex
         const recipe = unlockedRecipes[seed % unlockedRecipes.length]!
@@ -956,31 +936,26 @@ export const useNpcStore = defineStore('npc', () => {
     }
   }
 
-  /** 每日重置对话和送礼状态 + 伴侣好感衰减 */
+  /** Günlük sıfırlama + eş/can yoldaşı gönül azalması */
   const dailyReset = () => {
     const gameStore = useGameStore()
 
-    // 重置每日提示
     tipGivenToday.value = {}
 
     for (const state of npcStates.value) {
-      // 只有已婚伴侣不聊天才会掉好感，普通NPC不衰减
       if (!state.talkedToday && state.married) {
         state.friendship = Math.max(0, state.friendship - 10)
       }
-      // 知己不聊天也会掉好感（衰减较少）
       if (!state.talkedToday && state.zhiji) {
         state.friendship = Math.max(0, state.friendship - 5)
       }
       state.talkedToday = false
       state.giftedToday = false
-      // 每周日重置周送礼计数 (day 7,14,21,28)
       if (gameStore.day % 7 === 0) {
         state.giftsThisWeek = 0
       }
     }
 
-    // 知己天数递增
     if (getZhiji()) daysZhiji.value++
   }
 
@@ -995,7 +970,6 @@ export const useNpcStore = defineStore('npc', () => {
       childProposalPending: childProposalPending.value,
       childProposalDeclinedCount: childProposalDeclinedCount.value,
       daysSinceProposalDecline: daysSinceProposalDecline.value,
-      // 旧字段保留以兼容
       pendingChild: false,
       childCountdown: 0,
       weddingCountdown: weddingCountdown.value,
@@ -1009,7 +983,6 @@ export const useNpcStore = defineStore('npc', () => {
     const isOldScale = !(data as any).friendshipVersion || (data as any).friendshipVersion < 2
     const savedStates = data.npcStates.map(s => ({
       ...s,
-      // 旧存档好感度迁移: ×8 (300制→2500制)
       friendship: isOldScale ? Math.round(s.friendship * 8) : s.friendship,
       married: s.married ?? false,
       dating: s.dating ?? false,
@@ -1017,7 +990,6 @@ export const useNpcStore = defineStore('npc', () => {
       giftsThisWeek: (s as any).giftsThisWeek ?? 0,
       triggeredHeartEvents: s.triggeredHeartEvents ?? []
     }))
-    // 合并：保留已保存的状态，为新增NPC补充默认状态
     const savedIds = new Set(savedStates.map(s => s.npcId))
     const newNpcStates: NpcState[] = NPCS.filter(npc => !savedIds.has(npc.id)).map(npc => ({
       npcId: npc.id,
@@ -1035,19 +1007,16 @@ export const useNpcStore = defineStore('npc', () => {
       ...c,
       birthQuality: c.birthQuality ?? 'normal'
     }))
-    // 旧存档无 nextChildId → 从已有子女推算
     nextChildId.value =
       (data as any).nextChildId ?? (children.value.length > 0 ? Math.max(...children.value.map((c: ChildState) => c.id)) + 1 : 0)
     daysMarried.value = (data as any).daysMarried ?? 0
     daysZhiji.value = (data as any).daysZhiji ?? 0
 
-    // 新孕期系统
     pregnancy.value = (data as any).pregnancy ?? null
     childProposalPending.value = (data as any).childProposalPending ?? false
     childProposalDeclinedCount.value = (data as any).childProposalDeclinedCount ?? 0
     daysSinceProposalDecline.value = (data as any).daysSinceProposalDecline ?? 0
 
-    // 旧存档迁移：pendingChild → pregnancy
     if ((data as any).pendingChild && !pregnancy.value) {
       const oldCountdown: number = (data as any).childCountdown ?? 0
       let stage: PregnancyStage = 'early'
