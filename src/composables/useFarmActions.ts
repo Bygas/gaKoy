@@ -21,13 +21,13 @@ import { handleEndDay } from './useEndDay'
 import { sfxDig, sfxPlant, sfxWater, sfxHarvest, sfxLevelUp, sfxBuy, sfxCoin } from './useAudio'
 
 export const QUALITY_NAMES: Record<Quality, string> = {
-  normal: '普通',
-  fine: '优良',
-  excellent: '精品',
-  supreme: '极品'
+  normal: 'Sıradan',
+  fine: 'İyi',
+  excellent: 'Seçkin',
+  supreme: 'Eşsiz'
 }
 
-/** 仙缘结缘：作物祝福（crop_blessing）概率品质+1 */
+/** Gizli bağ etkisi: ürün kutu (crop_blessing) olasılıkla kaliteyi +1 artırır */
 const QUALITY_ORDER: Quality[] = ['normal', 'fine', 'excellent', 'supreme']
 export const applyCropBlessing = (quality: Quality): Quality => {
   const bondBonus = useHiddenNpcStore().getBondBonusByType('crop_blessing')
@@ -38,10 +38,10 @@ export const applyCropBlessing = (quality: Quality): Quality => {
   return quality
 }
 
-// 模块级单例状态
+// Modül düzeyinde tekil durum
 const selectedSeed = ref<string | null>(null)
 
-/** 处理地块点击：翻耕/种植/浇水/收获 */
+/** Tarla gözüne tıklama işlemi: sür / ek / sula / biç */
 export const handlePlotClick = (plotId: number) => {
   const gameStore = useGameStore()
   const playerStore = usePlayerStore()
@@ -55,14 +55,14 @@ export const handlePlotClick = (plotId: number) => {
   if (!plot) return
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
 
   if (plot.state === 'wasteland') {
     if (!inventoryStore.isToolAvailable('hoe')) {
-      addLog('锄头正在升级中，无法开垦。')
+      addLog('Çapa ustanın elinde, şimdilik toprağı süremezsin.')
       return
     }
     const farmingBuff = cookingStore.activeBuff?.type === 'farming' ? cookingStore.activeBuff.value / 100 : 0
@@ -80,13 +80,13 @@ export const handlePlotClick = (plotId: number) => {
       )
     )
     if (!playerStore.consumeStamina(cost)) {
-      addLog('体力不足，无法开垦。')
+      addLog('Dermanın yetmedi, toprağı süremedin.')
       return
     }
     farmStore.tillPlot(plotId)
     sfxDig()
-    showFloat(`-${cost}体力`, 'danger')
-    addLog(`你开垦了一块荒地。(-${cost}体力)`)
+    showFloat(`-${cost} derman`, 'danger')
+    addLog(`Boş toprağı sürdün. (-${cost} derman)`)
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.till)
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) {
@@ -97,7 +97,7 @@ export const handlePlotClick = (plotId: number) => {
     const cropDef = getCropById(selectedSeed.value)
     if (!cropDef) return
     if (!inventoryStore.hasItem(cropDef.seedId)) {
-      addLog(`没有${cropDef.name}种子了。`)
+      addLog(`${cropDef.name} tohumu kalmamış.`)
       return
     }
     const cropFarmingBuff = cookingStore.activeBuff?.type === 'farming' ? cookingStore.activeBuff.value / 100 : 0
@@ -115,24 +115,26 @@ export const handlePlotClick = (plotId: number) => {
       )
     )
     if (!playerStore.consumeStamina(cost)) {
-      addLog('体力不足，无法播种。')
+      addLog('Dermanın yetmedi, ekim yapamadın.')
       return
     }
     inventoryStore.removeItem(cropDef.seedId)
     farmStore.plantCrop(plotId, cropDef.id)
     sfxPlant()
-    showFloat(`-${cost}体力`, 'danger')
-    addLog(`种下了${cropDef.name}。(-${cost}体力)`)
-    // 种植预警：作物可能无法在本季成熟
+    showFloat(`-${cost} derman`, 'danger')
+    addLog(`${cropDef.name} ektin. (-${cost} derman)`)
+
+    // Mevsim uyarısı: ürün bu mevsimde yetişmeyebilir
     const daysLeft = 28 - gameStore.day
     if (cropDef.growthDays > daysLeft) {
       const SEASON_ORDER = ['spring', 'summer', 'autumn', 'winter'] as const
       const nextSeason = SEASON_ORDER[(SEASON_ORDER.indexOf(gameStore.season) + 1) % 4]!
       if (!cropDef.season.includes(nextSeason)) {
-        showFloat(`${cropDef.name}需${cropDef.growthDays}天，本季仅剩${daysLeft}天！`, 'danger')
-        addLog(`注意：${cropDef.name}需要${cropDef.growthDays}天成熟，但本季仅剩${daysLeft}天，换季后将枯萎。`)
+        showFloat(`${cropDef.name} için ${cropDef.growthDays} gün gerek, mevsimde yalnız ${daysLeft} gün kaldı!`, 'danger')
+        addLog(`Dikkat: ${cropDef.name} yetişmek için ${cropDef.growthDays} gün ister; bu mevsimde yalnız ${daysLeft} gün kaldı. Mevsim dönünce solar gider.`)
       }
     }
+
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.plant)
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) {
@@ -141,11 +143,11 @@ export const handlePlotClick = (plotId: number) => {
     }
   } else if (plot.state === 'planted' || plot.state === 'growing') {
     if (!inventoryStore.isToolAvailable('wateringCan')) {
-      addLog('水壶正在升级中，无法浇水。')
+      addLog('Su kabı ustanın elinde, şimdi sulayamazsın.')
       return
     }
     if (plot.watered) {
-      addLog('这块地今天已经浇过水了。')
+      addLog('Bu toprak bugün suyunu aldı.')
       return
     }
     const crop = getCropById(plot.cropId!)
@@ -165,14 +167,14 @@ export const handlePlotClick = (plotId: number) => {
       )
     )
     if (!playerStore.consumeStamina(cost)) {
-      addLog('体力不足，无法浇水。')
+      addLog('Dermanın yetmedi, sulayamadın.')
       return
     }
     farmStore.waterPlot(plotId)
     skillStore.addExp('farming', 2)
     sfxWater()
-    showFloat(`-${cost}体力`, 'water')
-    addLog(`浇水完成。(-${cost}体力)`)
+    showFloat(`-${cost} derman`, 'water')
+    addLog(`Toprağı suladın. (-${cost} derman)`)
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.water)
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) {
@@ -181,15 +183,15 @@ export const handlePlotClick = (plotId: number) => {
     }
   } else if (plot.state === 'harvestable') {
     if (!inventoryStore.isToolAvailable('scythe')) {
-      addLog('镰刀正在升级中，无法收获。')
+      addLog('Orak ustanın elinde, şimdi biçemezsin.')
       return
     }
-    // 镰刀收获不消耗体力
-    // 在收获清除前读取肥料信息
+    // Orakla biçmek derman harcamaz
     const plotFertilizer = plot.fertilizer
     const result = farmStore.harvestPlot(plotId)
     const cropId = result.cropId
     const genetics = result.genetics
+
     if (cropId) {
       const cropDef = getCropById(cropId)
       const fertDef = plotFertilizer ? getFertilizerById(plotFertilizer) : null
@@ -197,40 +199,48 @@ export const handlePlotClick = (plotId: number) => {
       const allSkillsBuff = cookingStore.activeBuff?.type === 'all_skills' ? cookingStore.activeBuff.value : 0
       let quality = skillStore.rollCropQualityWithBonus((fertDef?.qualityBonus ?? 0) + ringCropQualityBonus, allSkillsBuff)
       quality = applyCropBlessing(quality)
-      // 精耕细作天赋：20% 概率双倍收获
+
+      // İnce emek hüneri: %20 olasılıkla çift ürün
       const intensiveDouble = skillStore.getSkill('farming').perk10 === 'intensive' && Math.random() < 0.2
-      // 育种产量加成：yield/100 × 30% 概率双收
+      // Islah verim katkısı: yield/100 × %30 olasılıkla çift ürün
       const yieldDouble = genetics && !intensiveDouble && Math.random() < (genetics.yield / 100) * 0.3
       const harvestQty = intensiveDouble || yieldDouble ? 2 : 1
+
       inventoryStore.addItem(cropId, harvestQty, quality)
       achievementStore.discoverItem(cropId)
       achievementStore.recordCropHarvest()
       useQuestStore().onItemObtained(cropId, harvestQty)
       const { leveledUp, newLevel } = skillStore.addExp('farming', 10)
-      const qualityLabel = quality !== 'normal' ? `(${QUALITY_NAMES[quality]})` : ''
+
+      const qualityLabel = quality !== 'normal' ? ` (${QUALITY_NAMES[quality]})` : ''
       sfxHarvest()
-      const qtyLabel = intensiveDouble || yieldDouble ? '×2' : ''
+      const qtyLabel = intensiveDouble || yieldDouble ? ' ×2' : ''
       showFloat(`+${cropDef?.name ?? cropId}${qtyLabel}${qualityLabel}`, 'success')
-      let msg = `收获了${cropDef?.name ?? cropId}${qtyLabel}${qualityLabel}！`
-      if (intensiveDouble) msg += ' 精耕细作，双倍丰收！'
-      if (yieldDouble) msg += ' 育种产量加成，双倍丰收！'
-      // 育种甜度加成：额外铜钱
+
+      let msg = `${cropDef?.name ?? cropId}${qtyLabel}${qualityLabel} biçtin!`
+      if (intensiveDouble) msg += ' Eli özenli olanın harmanı da bol olur; çift ürün aldın!'
+      if (yieldDouble) msg += ' Islah bereket verdi; çift ürün aldın!'
+
+      // Islah tatlılık katkısı: ek para
       if (genetics && genetics.sweetness > 0 && cropDef) {
         const bonusMoney = Math.floor((cropDef.sellPrice * harvestQty * genetics.sweetness) / 200)
         if (bonusMoney > 0) {
           usePlayerStore().earnMoney(bonusMoney)
-          msg += ` 甜度加成+${bonusMoney}文`
-          showFloat(`+${bonusMoney}文`, 'accent')
+          msg += ` Tatlılık bereketi +${bonusMoney} akçe`
+          showFloat(`+${bonusMoney} akçe`, 'accent')
         }
       }
-      // 杂交种记录
+
+      // Melez kayıt
       if (genetics?.isHybrid && genetics.hybridId) {
         useBreedingStore().recordHybridGrown(genetics.hybridId)
       }
+
       if (leveledUp) {
-        msg += ` 农耕提升到${newLevel}级！`
+        msg += ` Ekin hünerin ${newLevel}. düzeye ulaştı!`
         sfxLevelUp()
       }
+
       addLog(msg)
       const tr = gameStore.advanceTime(ACTION_TIME_COSTS.harvest)
       if (tr.message) addLog(tr.message)
@@ -242,7 +252,7 @@ export const handlePlotClick = (plotId: number) => {
   }
 }
 
-/** 从商店购买种子 */
+/** Çarşıdan tohum satın al */
 export const handleBuySeed = (seedId: string) => {
   const shopStore = useShopStore()
   const walletStore = useWalletStore()
@@ -252,14 +262,14 @@ export const handleBuySeed = (seedId: string) => {
   const actualPrice = Math.floor(seed.price * (1 - discount))
   if (shopStore.buySeed(seedId)) {
     sfxBuy()
-    showFloat(`-${actualPrice}文`, 'danger')
-    addLog(`购买了${seed.cropName}种子。(-${actualPrice}文)`)
+    showFloat(`-${actualPrice} akçe`, 'danger')
+    addLog(`${seed.cropName} tohumu aldın. (-${actualPrice} akçe)`)
   } else {
-    addLog('铜钱不足或背包已满。')
+    addLog('Akçen yetmedi ya da heybende yer kalmadı.')
   }
 }
 
-/** 通过商店出售物品 */
+/** Çarşı üzerinden eşya sat */
 export const handleSellItem = (itemId: string, quality: Quality) => {
   const shopStore = useShopStore()
   const itemDef = getItemById(itemId)
@@ -267,12 +277,12 @@ export const handleSellItem = (itemId: string, quality: Quality) => {
   const earned = shopStore.sellItem(itemId, 1, quality)
   if (earned > 0) {
     sfxCoin()
-    showFloat(`+${earned}文`, 'accent')
-    addLog(`卖出了${itemDef.name}。(+${earned}文)`)
+    showFloat(`+${earned} akçe`, 'accent')
+    addLog(`${itemDef.name} sattın. (+${earned} akçe)`)
   }
 }
 
-/** 出售指定物品的全部数量 */
+/** Belirli bir eşyanın tüm miktarını sat */
 export const handleSellItemAll = (itemId: string, quantity: number, quality: Quality) => {
   const shopStore = useShopStore()
   const itemDef = getItemById(itemId)
@@ -280,25 +290,26 @@ export const handleSellItemAll = (itemId: string, quantity: number, quality: Qua
   const earned = shopStore.sellItem(itemId, quantity, quality)
   if (earned > 0) {
     sfxCoin()
-    showFloat(`+${earned}文`, 'accent')
-    addLog(`卖出了${itemDef.name}×${quantity}。(+${earned}文)`)
+    showFloat(`+${earned} akçe`, 'accent')
+    addLog(`${itemDef.name} ×${quantity} sattın. (+${earned} akçe)`)
   }
 }
 
-/** 一键出售背包中所有可出售物品 */
+/** Heybedeki tüm satılabilir eşyaları bir kerede sat */
 export const handleSellAll = (filterCategories?: ItemCategory[]) => {
   const shopStore = useShopStore()
   const inventoryStore = useInventoryStore()
   let totalEarned = 0
   let totalCount = 0
   const allowed = filterCategories && filterCategories.length > 0 ? new Set(filterCategories) : null
-  // 快照当前可卖物品（避免遍历中修改数组）
+
   const sellable = inventoryStore.items
     .filter(inv => {
       const def = getItemById(inv.itemId)
       return def && def.category !== 'seed' && !inv.locked && (!allowed || allowed.has(def.category))
     })
     .map(inv => ({ itemId: inv.itemId, quantity: inv.quantity, quality: inv.quality }))
+
   for (const item of sellable) {
     const earned = shopStore.sellItem(item.itemId, item.quantity, item.quality)
     if (earned > 0) {
@@ -306,14 +317,15 @@ export const handleSellAll = (filterCategories?: ItemCategory[]) => {
       totalCount += item.quantity
     }
   }
+
   if (totalEarned > 0) {
     sfxCoin()
-    showFloat(`+${totalEarned}文`, 'accent')
-    addLog(`一键出售了${totalCount}件物品。(+${totalEarned}文)`)
+    showFloat(`+${totalEarned} akçe`, 'accent')
+    addLog(`Bir solukta ${totalCount} parça eşya sattın. (+${totalEarned} akçe)`)
   }
 }
 
-/** 一键浇水（浇所有未浇水地块，体力不足时自动停止） */
+/** Bir kerede sulama (tüm susuz ekinleri sular, derman yetmezse durur) */
 export const handleBatchWater = () => {
   const gameStore = useGameStore()
   const playerStore = usePlayerStore()
@@ -323,25 +335,26 @@ export const handleBatchWater = () => {
   const cookingStore = useCookingStore()
 
   if (!inventoryStore.isToolAvailable('wateringCan')) {
-    addLog('水壶正在升级中，无法浇水。')
+    addLog('Su kabı ustanın elinde, şimdi sulayamazsın.')
     return
   }
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
 
   const targets = farmStore.plots.filter(p => (p.state === 'planted' || p.state === 'growing') && !p.watered)
   if (targets.length === 0) {
-    addLog('没有需要浇水的地块。')
+    addLog('Su bekleyen tarla gözü yok.')
     return
   }
 
   let watered = 0
   const batchRingFarmReduction = inventoryStore.getRingEffectValue('farming_stamina')
   const batchRingGlobalReduction = inventoryStore.getRingEffectValue('stamina_reduction')
+
   for (const plot of targets) {
     const crop = getCropById(plot.cropId!)
     const baseCost = crop?.deepWatering ? 3 : 2
@@ -365,16 +378,16 @@ export const handleBatchWater = () => {
 
   if (watered > 0) {
     sfxWater()
-    addLog(`一键浇水了${watered}块地。`)
+    addLog(`${watered} tarla gözüne bir solukta su verdin.`)
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.batchWater * inventoryStore.getToolStaminaMultiplier('wateringCan'))
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   } else {
-    addLog('体力不足，无法浇水。')
+    addLog('Dermanın yetmedi, sulama yapamadın.')
   }
 }
 
-/** 一键开垦（开垦所有荒地，体力不足时自动停止） */
+/** Bir kerede sürme (tüm boş toprağı sürer, derman yetmezse durur) */
 export const handleBatchTill = () => {
   const gameStore = useGameStore()
   const playerStore = usePlayerStore()
@@ -384,25 +397,26 @@ export const handleBatchTill = () => {
   const cookingStore = useCookingStore()
 
   if (!inventoryStore.isToolAvailable('hoe')) {
-    addLog('锄头正在升级中，无法开垦。')
+    addLog('Çapa ustanın elinde, şimdi toprağı süremezsin.')
     return
   }
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
 
   const targets = farmStore.plots.filter(p => p.state === 'wasteland')
   if (targets.length === 0) {
-    addLog('没有需要开垦的荒地。')
+    addLog('Sürülecek boş toprak yok.')
     return
   }
 
   let tilled = 0
   const tillRingFarmReduction = inventoryStore.getRingEffectValue('farming_stamina')
   const tillRingGlobalReduction = inventoryStore.getRingEffectValue('stamina_reduction')
+
   for (const plot of targets) {
     const farmingBuff = cookingStore.activeBuff?.type === 'farming' ? cookingStore.activeBuff.value / 100 : 0
     const cost = Math.max(
@@ -423,16 +437,16 @@ export const handleBatchTill = () => {
 
   if (tilled > 0) {
     sfxDig()
-    addLog(`一键开垦了${tilled}块荒地。`)
+    addLog(`${tilled} parça boş toprağı bir çırpıda sürdün.`)
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.batchTill * inventoryStore.getToolStaminaMultiplier('hoe'))
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   } else {
-    addLog('体力不足，无法开垦。')
+    addLog('Dermanın yetmedi, toprağı süremedin.')
   }
 }
 
-/** 一键收获（收获所有成熟作物，不消耗体力） */
+/** Bir kerede biçme (tüm olgun ürünleri toplar, derman harcamaz) */
 export const handleBatchHarvest = () => {
   const gameStore = useGameStore()
   const farmStore = useFarmStore()
@@ -442,12 +456,12 @@ export const handleBatchHarvest = () => {
   const achievementStore = useAchievementStore()
 
   if (!inventoryStore.isToolAvailable('scythe')) {
-    addLog('镰刀正在升级中，无法收获。')
+    addLog('Orak ustanın elinde, şimdi biçemezsin.')
     return
   }
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
@@ -455,13 +469,14 @@ export const handleBatchHarvest = () => {
   let harvested = 0
   const harvestedCrops: string[] = []
 
-  // 先收获巨型作物
+  // Önce dev ürünleri biç
   const giantGroups = new Set<number>()
   for (const plot of farmStore.plots) {
     if (plot.state === 'harvestable' && plot.giantCropGroup !== null) {
       giantGroups.add(plot.giantCropGroup)
     }
   }
+
   for (const groupId of giantGroups) {
     const groupPlot = farmStore.plots.find(p => p.giantCropGroup === groupId && p.state === 'harvestable')
     if (!groupPlot) continue
@@ -474,11 +489,11 @@ export const handleBatchHarvest = () => {
       useQuestStore().onItemObtained(result.cropId, result.quantity)
       skillStore.addExp('farming', 10)
       harvested++
-      harvestedCrops.push(`巨型${cropDef?.name ?? result.cropId}x${result.quantity}`)
+      harvestedCrops.push(`Dev ${cropDef?.name ?? result.cropId} x${result.quantity}`)
     }
   }
 
-  // 再收获普通作物
+  // Sonra sıradan ürünleri biç
   const targets = farmStore.plots.filter(p => p.state === 'harvestable' && p.giantCropGroup === null)
 
   for (const plot of targets) {
@@ -486,6 +501,7 @@ export const handleBatchHarvest = () => {
     const result = farmStore.harvestPlot(plot.id)
     const cropId = result.cropId
     const genetics = result.genetics
+
     if (cropId) {
       const cropDef = getCropById(cropId)
       const fertDef = plotFertilizer ? getFertilizerById(plotFertilizer) : null
@@ -493,9 +509,11 @@ export const handleBatchHarvest = () => {
       const batchAllSkillsBuff = cookingStore.activeBuff?.type === 'all_skills' ? cookingStore.activeBuff.value : 0
       let quality = skillStore.rollCropQualityWithBonus((fertDef?.qualityBonus ?? 0) + batchRingCropQuality, batchAllSkillsBuff)
       quality = applyCropBlessing(quality)
+
       const intensiveDouble = skillStore.getSkill('farming').perk10 === 'intensive' && Math.random() < 0.2
       const yieldDouble = genetics && !intensiveDouble && Math.random() < (genetics.yield / 100) * 0.3
       const harvestQty = intensiveDouble || yieldDouble ? 2 : 1
+
       inventoryStore.addItem(cropId, harvestQty, quality)
       achievementStore.discoverItem(cropId)
       achievementStore.recordCropHarvest()
@@ -503,13 +521,14 @@ export const handleBatchHarvest = () => {
       skillStore.addExp('farming', 10)
       harvested++
       harvestedCrops.push(cropDef?.name ?? cropId)
-      // 育种甜度加成
+
       if (genetics && genetics.sweetness > 0 && cropDef) {
         const bonusMoney = Math.floor((cropDef.sellPrice * harvestQty * genetics.sweetness) / 200)
         if (bonusMoney > 0) {
           usePlayerStore().earnMoney(bonusMoney)
         }
       }
+
       if (genetics?.isHybrid && genetics.hybridId) {
         useBreedingStore().recordHybridGrown(genetics.hybridId)
       }
@@ -523,18 +542,18 @@ export const handleBatchHarvest = () => {
       cropCounts.set(name, (cropCounts.get(name) ?? 0) + 1)
     }
     const cropSummary = Array.from(cropCounts.entries())
-      .map(([name, count]) => (count > 1 ? `${name}x${count}` : name))
+      .map(([name, count]) => (count > 1 ? `${name} x${count}` : name))
       .join('、')
-    addLog(`一键收获了${harvested}株作物：${cropSummary}。`)
+    addLog(`${harvested} ürün bir solukta toplandı: ${cropSummary}.`)
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.batchHarvest * inventoryStore.getToolStaminaMultiplier('scythe'))
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   } else {
-    addLog('没有可收获的作物。')
+    addLog('Biçilecek olgun ürün yok.')
   }
 }
 
-/** 一键种植（在所有空耕地上种植指定作物） */
+/** Tüm boş sürülü tarlalara belirli ürünü ek */
 export const handleBatchPlant = (cropId: string) => {
   const gameStore = useGameStore()
   const playerStore = usePlayerStore()
@@ -544,12 +563,12 @@ export const handleBatchPlant = (cropId: string) => {
   const cookingStore = useCookingStore()
 
   if (!inventoryStore.isToolAvailable('hoe')) {
-    addLog('锄头正在升级中，无法播种。')
+    addLog('Çapa ustanın elinde, şimdi ekim yapamazsın.')
     return
   }
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
@@ -559,13 +578,14 @@ export const handleBatchPlant = (cropId: string) => {
 
   const targets = farmStore.plots.filter(p => p.state === 'tilled')
   if (targets.length === 0) {
-    addLog('没有可种植的空耕地。')
+    addLog('Ekilecek boş sürülü toprak yok.')
     return
   }
 
   let planted = 0
   const plantRingFarmReduction = inventoryStore.getRingEffectValue('farming_stamina')
   const plantRingGlobalReduction = inventoryStore.getRingEffectValue('stamina_reduction')
+
   for (const plot of targets) {
     if (!inventoryStore.hasItem(cropDef.seedId)) break
     const farmingBuff = cookingStore.activeBuff?.type === 'farming' ? cookingStore.activeBuff.value / 100 : 0
@@ -588,33 +608,34 @@ export const handleBatchPlant = (cropId: string) => {
 
   if (planted > 0) {
     sfxPlant()
-    addLog(`一键种植了${planted}株${cropDef.name}。`)
-    // 种植预警：作物可能无法在本季成熟
+    addLog(`${cropDef.name} tohumundan ${planted} göz toprağa ekildi.`)
+
     const daysLeft = 28 - gameStore.day
     if (cropDef.growthDays > daysLeft) {
       const SEASON_ORDER = ['spring', 'summer', 'autumn', 'winter'] as const
       const nextSeason = SEASON_ORDER[(SEASON_ORDER.indexOf(gameStore.season) + 1) % 4]!
       if (!cropDef.season.includes(nextSeason)) {
-        showFloat(`${cropDef.name}需${cropDef.growthDays}天，本季仅剩${daysLeft}天！`, 'danger')
-        addLog(`注意：${cropDef.name}需要${cropDef.growthDays}天成熟，但本季仅剩${daysLeft}天，换季后将枯萎。`)
+        showFloat(`${cropDef.name} için ${cropDef.growthDays} gün gerek, mevsimde yalnız ${daysLeft} gün kaldı!`, 'danger')
+        addLog(`Dikkat: ${cropDef.name} yetişmek için ${cropDef.growthDays} gün ister; bu mevsimde yalnız ${daysLeft} gün kaldı. Mevsim dönünce solar gider.`)
       }
     }
+
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.plant * Math.min(planted, 3))
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   } else {
-    addLog('体力不足或种子不够，无法种植。')
+    addLog('Dermanın yetmedi ya da tohumun eksik, ekim yapamadın.')
   }
 }
 
-/** 一键施肥（给所有未施肥的非荒地施指定肥料） */
+/** Tüm uygun tarlalara bir kerede gübre ser */
 export const handleBatchFertilize = (fertilizerType: FertilizerType) => {
   const gameStore = useGameStore()
   const farmStore = useFarmStore()
   const inventoryStore = useInventoryStore()
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
@@ -624,7 +645,7 @@ export const handleBatchFertilize = (fertilizerType: FertilizerType) => {
 
   const targets = farmStore.plots.filter(p => p.state !== 'wasteland' && !p.fertilizer)
   if (targets.length === 0) {
-    addLog('没有可施肥的地块。')
+    addLog('Gübre bekleyen tarla gözü yok.')
     return
   }
 
@@ -641,17 +662,17 @@ export const handleBatchFertilize = (fertilizerType: FertilizerType) => {
   }
 
   if (applied > 0) {
-    showFloat(`施肥 ×${applied}`, 'success')
-    addLog(`一键施了${applied}块地的${fertDef.name}。`)
+    showFloat(`Gübre ×${applied}`, 'success')
+    addLog(`${fertDef.name} ile ${applied} tarla gözüne bereket serptin.`)
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.plant * Math.min(applied, 3))
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   } else {
-    addLog('肥料不足，无法施肥。')
+    addLog('Gübren yetmedi, serpecek bir şey kalmadı.')
   }
 }
 
-/** 铲除单块作物 */
+/** Tek gözdeki ürünü sök */
 export const handleRemoveCrop = (plotId: number) => {
   const gameStore = useGameStore()
   const playerStore = usePlayerStore()
@@ -661,7 +682,7 @@ export const handleRemoveCrop = (plotId: number) => {
   const inventoryStore = useInventoryStore()
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
@@ -669,7 +690,7 @@ export const handleRemoveCrop = (plotId: number) => {
   const plot = farmStore.plots[plotId]
   if (!plot) return
   if (plot.state !== 'planted' && plot.state !== 'growing' && plot.state !== 'harvestable') {
-    addLog('该地块没有作物可以铲除。')
+    addLog('Bu gözde sökülecek bir ürün yok.')
     return
   }
 
@@ -683,7 +704,7 @@ export const handleRemoveCrop = (plotId: number) => {
     )
   )
   if (!playerStore.consumeStamina(cost)) {
-    addLog('体力不足，无法铲除。')
+    addLog('Dermanın yetmedi, ürünü sökemedin.')
     return
   }
 
@@ -691,14 +712,14 @@ export const handleRemoveCrop = (plotId: number) => {
   if (result.cropId) {
     const cropDef = getCropById(result.cropId)
     sfxDig()
-    addLog(`铲除了${cropDef?.name ?? result.cropId}。`)
+    addLog(`${cropDef?.name ?? result.cropId} söktün.`)
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.till)
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   }
 }
 
-/** 除虫（单块） */
+/** Tek gözde zararlıyı temizle */
 export const handleCurePest = (plotId: number) => {
   const gameStore = useGameStore()
   const playerStore = usePlayerStore()
@@ -708,14 +729,14 @@ export const handleCurePest = (plotId: number) => {
   const inventoryStore = useInventoryStore()
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
 
   const plot = farmStore.plots[plotId]
   if (!plot || !plot.infested) {
-    addLog('该地块没有虫害。')
+    addLog('Bu gözde haşere izi yok.')
     return
   }
 
@@ -729,20 +750,20 @@ export const handleCurePest = (plotId: number) => {
     )
   )
   if (!playerStore.consumeStamina(cost)) {
-    addLog('体力不足，无法除虫。')
+    addLog('Dermanın yetmedi, haşereyi temizleyemedin.')
     return
   }
 
   if (farmStore.curePest(plotId)) {
     sfxDig()
-    addLog('清除了虫害。')
+    addLog('Topraktaki haşereyi temizledin.')
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.till)
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   }
 }
 
-/** 一键除虫（清除所有虫害地块，体力不足时自动停止） */
+/** Tüm haşereli gözleri bir kerede temizle */
 export const handleBatchCurePest = () => {
   const gameStore = useGameStore()
   const playerStore = usePlayerStore()
@@ -752,20 +773,21 @@ export const handleBatchCurePest = () => {
   const inventoryStore = useInventoryStore()
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
 
   const targets = farmStore.plots.filter(p => p.infested)
   if (targets.length === 0) {
-    addLog('没有需要除虫的地块。')
+    addLog('Temizlenecek haşereli tarla yok.')
     return
   }
 
   let cured = 0
   const batchRingFarmReduction = inventoryStore.getRingEffectValue('farming_stamina')
   const batchRingGlobalReduction = inventoryStore.getRingEffectValue('stamina_reduction')
+
   for (const plot of targets) {
     const farmingBuff = cookingStore.activeBuff?.type === 'farming' ? cookingStore.activeBuff.value / 100 : 0
     const cost = Math.max(
@@ -785,16 +807,16 @@ export const handleBatchCurePest = () => {
 
   if (cured > 0) {
     sfxDig()
-    addLog(`一键除虫了${cured}块地。`)
+    addLog(`${cured} tarla gözündeki haşereyi bir solukta temizledin.`)
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.batchTill)
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   } else {
-    addLog('体力不足，无法除虫。')
+    addLog('Dermanın yetmedi, haşere temizlenemedi.')
   }
 }
 
-/** 除草（单块） */
+/** Tek gözde yabani otu temizle */
 export const handleClearWeed = (plotId: number) => {
   const gameStore = useGameStore()
   const playerStore = usePlayerStore()
@@ -804,14 +826,14 @@ export const handleClearWeed = (plotId: number) => {
   const inventoryStore = useInventoryStore()
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
 
   const plot = farmStore.plots[plotId]
   if (!plot || !plot.weedy) {
-    addLog('该地块没有杂草。')
+    addLog('Bu gözde ayıklanacak yabani ot yok.')
     return
   }
 
@@ -825,20 +847,20 @@ export const handleClearWeed = (plotId: number) => {
     )
   )
   if (!playerStore.consumeStamina(cost)) {
-    addLog('体力不足，无法除草。')
+    addLog('Dermanın yetmedi, otu ayıklayamadın.')
     return
   }
 
   if (farmStore.clearWeed(plotId)) {
     sfxDig()
-    addLog('清除了杂草。')
+    addLog('Yabani otu temizledin.')
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.till)
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   }
 }
 
-/** 一键除草（清除所有杂草地块，体力不足时自动停止） */
+/** Tüm yabani otları bir kerede temizle */
 export const handleBatchClearWeed = () => {
   const gameStore = useGameStore()
   const playerStore = usePlayerStore()
@@ -848,20 +870,21 @@ export const handleBatchClearWeed = () => {
   const inventoryStore = useInventoryStore()
 
   if (gameStore.isPastBedtime) {
-    addLog('已经凌晨2点了，你必须休息。')
+    addLog('Gece ikinci saati geçti, artık dinlenmen gerek.')
     handleEndDay()
     return
   }
 
   const targets = farmStore.plots.filter(p => p.weedy)
   if (targets.length === 0) {
-    addLog('没有需要除草的地块。')
+    addLog('Ayıklanacak yabani ot yok.')
     return
   }
 
   let cleared = 0
   const batchRingFarmReduction = inventoryStore.getRingEffectValue('farming_stamina')
   const batchRingGlobalReduction = inventoryStore.getRingEffectValue('stamina_reduction')
+
   for (const plot of targets) {
     const farmingBuff = cookingStore.activeBuff?.type === 'farming' ? cookingStore.activeBuff.value / 100 : 0
     const cost = Math.max(
@@ -881,12 +904,12 @@ export const handleBatchClearWeed = () => {
 
   if (cleared > 0) {
     sfxDig()
-    addLog(`一键除草了${cleared}块地。`)
+    addLog(`${cleared} tarla gözündeki yabani otu temizledin.`)
     const tr = gameStore.advanceTime(ACTION_TIME_COSTS.batchTill)
     if (tr.message) addLog(tr.message)
     if (tr.passedOut) handleEndDay()
   } else {
-    addLog('体力不足，无法除草。')
+    addLog('Dermanın yetmedi, otları temizleyemedin.')
   }
 }
 
@@ -903,4 +926,4 @@ export const useFarmActions = () => {
     handleBatchHarvest,
     QUALITY_NAMES
   }
-}
+      }
