@@ -234,7 +234,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Kar çiçeğinin saflığı ile sarımsağın keskinliği birleşti, Buz Sarımsağı don gibi bir aura yayar!'
   },
   {
-    {
     id: 'emerald_radish',
     name: 'Zümrüt Turp',
     parentCropA: 'cabbage',
@@ -290,7 +289,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Baklanın dolgunluğu ile şeftalinin kızıllığı birleşir, her tanesi yakut gibi parlar.'
   },
   {
-    {
     id: 'twin_bean',
     name: 'İkiz Fasulye',
     parentCropA: 'broad_bean',
@@ -445,7 +443,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Çayın derinliği ile osmanthus çiçeğinin kokusu birleşir, Gaköy evlerini hoş bir koku sarar.'
   },
   {
-    {
     id: 'mountain_bamboo',
     name: 'Dağ Bambu Yumrusu',
     parentCropA: 'bamboo_shoot',
@@ -501,7 +498,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Şeftali çiçeği ile hurma çiçeği birlikte açar, meyvesi tatlı ve zarif olur.'
   },
   {
-    {
     id: 'ginger_blossom',
     name: 'Zencefil Çiçeği Otu',
     parentCropA: 'rapeseed',
@@ -557,7 +553,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Çay ile kar çiçeğinin saf özü birleşir, deminde kar gibi beyaz bir berraklık oluşur.'
   },
   {
-    {
     id: 'spring_chive',
     name: 'Bahar Frenk Soğanı',
     parentCropA: 'cabbage',
@@ -602,7 +597,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Bakla, hardal yaprağının hafif acılığıyla birleşir; serin mevsimlerin vazgeçilmez tadıdır.'
   },
   {
-    {
     id: 'frost_rapeseed',
     name: 'Kırağı Kanola',
     parentCropA: 'rapeseed',
@@ -647,7 +641,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Nilüfer kökü ile tohumu birleşir, aynı gövdede iki çiçek açar; Gaköy’de kutsal sayılır.'
   },
   {
-    {
     id: 'fire_sesame',
     name: 'Alev Susamı',
     parentCropA: 'chili',
@@ -692,7 +685,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Karpuzun tatlılığı ile kasımpatının zarafeti birleşir, meyvesinde çiçek kokusu taşır.'
   },
   {
-    {
     id: 'pumpkin_rice',
     name: 'Balkabaklı Pirinç',
     parentCropA: 'rice',
@@ -737,7 +729,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Lif kabağının yumuşaklığı ile tatlı patatesin lezzeti birleşir, içi tatlı ve yumuşaktır.'
   },
   {
-    {
     id: 'purple_persimmon',
     name: 'Mor Trabzon Hurması',
     parentCropA: 'eggplant',
@@ -782,7 +773,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Mısırın altın rengi ile tatlı patatesin lezzeti birleşir, bütünüyle altın gibi parlayan bir ürün doğar.'
   },
   {
-    {
     id: 'ruby_melon',
     name: 'Yakut Kavun',
     parentCropA: 'watermelon',
@@ -827,7 +817,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Karpuzun tatlılığı ile lahananın soğuğa direnci birleşir, kışın bile tatlı meyve verir.'
   },
   {
-    {
     id: 'twin_grain',
     name: 'İkiz Tahıl',
     parentCropA: 'rice',
@@ -861,7 +850,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Susamın yoğun aroması ile sarımsağın keskinliği birleşir, Gaköy mutfağının vazgeçilmez baharatı olur.'
   },
   {
-    {
     id: 'chive_gourd',
     name: 'Frenk Soğanlı Lif Kabağı',
     parentCropA: 'loofah',
@@ -895,7 +883,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Biberin ateşi ile kar çiçeğinin soğuğu çarpışır, Gaköy’de “iki âlemin meyvesi” diye anılır.'
   },
   {
-    {
     id: 'winter_corn',
     name: 'Kış Mısırı',
     parentCropA: 'corn',
@@ -929,7 +916,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Kasımpatı ile osmanthus birlikte açar, Gaköy bahçelerinde iki çiçek yarışır gibi parlar.'
   },
   {
-    {
     id: 'mountain_nut',
     name: 'Dağ Fıstığı',
     parentCropA: 'yam',
@@ -963,7 +949,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Zencefilin sıcaklığı ile yam kökünün besleyiciliği birleşir, kış günlerinde şifa kaynağı olur.'
   },
   {
-    {
     id: 'golden_persimmon',
     name: 'Altın Hurma',
     parentCropA: 'persimmon',
@@ -997,7 +982,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Osmanthus çiçeğinin kokusu tatlı patatese işler, her lokmada Gaköy bahçelerinin kokusu hissedilir.'
   },
   {
-    {
     id: 'winter_pumpkin',
     name: 'Kış Balkabağı',
     parentCropA: 'pumpkin',
@@ -1031,7 +1015,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Kasımpatının zarafeti ile kar çiçeğinin saflığı birleşir, taç yaprakları kar gibi beyazdır.'
   },
   {
-    {
     id: 'osmanthus_garlic',
     name: 'Osmanthus Sarımsağı',
     parentCropA: 'osmanthus',
@@ -1065,7 +1048,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Fıstığın aroması ile lahananın sadeliği birleşir, kabuğu kar gibi beyaz bir ürün oluşur.'
   },
   {
-    {
     id: 'garlic_jujube',
     name: 'Sarımsaklı Hurma',
     parentCropA: 'jujube',
@@ -1099,7 +1081,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Zencefilin sıcaklığı ile hardal yaprağının hafif acılığı birleşir, soğuğa karşı güçlü bir şifa olur.'
   },
   {
-    {
     id: 'snow_pumpkin',
     name: 'Kar Balkabağı',
     parentCropA: 'pumpkin',
@@ -1133,7 +1114,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Sarımsağın keskinliği ile lahananın tatlılığı birleşir, kışlık erzakların vazgeçilmezi olur.'
   },
   {
-    {
     id: 'evergreen_herb',
     name: 'Ebedi Yeşil Otu',
     parentCropA: 'spinach',
@@ -1167,7 +1147,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Sarımsak ile frenk soğanı birleşir, kokusu güçlü, tadı efsanevi bir bitki doğar.'
   },
   {
-    {
     id: 'green_wheat',
     name: 'Yeşil Buğday',
     parentCropA: 'spinach',
@@ -1201,7 +1180,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Bahar filizinin çıtırlığı ile mısırın tatlılığı birleşir, yeşim gibi parlak başaklar verir.'
   },
   {
-    {
     id: 'ginger_jade_green',
     name: 'Zencefilli Yeşim Otu',
     parentCropA: 'cabbage',
@@ -1235,7 +1213,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Lif kabağının yumuşaklığı ile fıstığın tatlılığı birleşir, ağızda bal gibi bir his bırakır.'
   },
   {
-    {
     id: 'golden_peanut_yam',
     name: 'Fıstıklı Tatlı Yumru',
     parentCropA: 'peanut',
@@ -1269,7 +1246,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Fasulyenin tazeliği ile patlıcanın yumuşaklığı birleşir, tarlaların iki hazinesi tek üründe buluşur.'
   },
   {
-    {
     id: 'chrysanthemum_persimmon',
     name: 'Kasımpatı Hurması',
     parentCropA: 'persimmon',
@@ -1303,7 +1279,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Nilüfer tohumunun dinginliği ile kar çiçeğinin saflığı birleşir, kışın parlayan bir inci gibi görünür.'
   },
   {
-    {
     id: 'melon_tea_fruit',
     name: 'Bal Çay Meyvesi',
     parentCropA: 'golden_melon',
@@ -1337,7 +1312,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Ay ışığı pirincinin parıltısı ile osmanthus çiçeğinin kokusu birleşir, göksel bir mahsul ortaya çıkar.'
   },
   {
-    {
     id: 'ice_lotus',
     name: 'Buz Nilüferi',
     parentCropA: 'frost_garlic',
@@ -1371,7 +1345,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın kavunun asaleti ile anka biberinin alevi çarpışır; bu meyveye Gaköy’de “ejderlerin armağanı” denir.'
   },
   {
-    {
     id: 'moonlight_frost',
     name: 'Ay Don Pirinci',
     parentCropA: 'moonlight_rice',
@@ -1405,7 +1378,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Don sarımsağının soğuğu ile yeşim çayının özü birleşir; Gaköy ozanları bu çiçeği ölümsüzlerin nimeti diye anar.'
   },
   {
-    {
     id: 'dragon_pearl',
     name: 'Ejder İncisi',
     parentCropA: 'phoenix_pepper',
@@ -1440,7 +1412,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'İnci tanesi gibi parlayan tahıl ile osmanthus çiçeğinin kokusu birleşir, her tanesi mis gibi kokar.'
   },
   {
-    {
     id: 'ruby_fire',
     name: 'Kızıl Kor Biberi',
     parentCropA: 'ruby_bean',
@@ -1474,7 +1445,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Yeşim kavunun ferahlığı ile çayın kokusu birleşir, yaz sıcağında serinlik veren bir nimet olur.'
   },
   {
-    {
     id: 'twin_golden_bean',
     name: 'Altın İkiz Fasulye',
     parentCropA: 'twin_bean',
@@ -1508,7 +1478,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Yeşim filizin tazeliği ile zencefilin yakıcılığı birleşir, Gaköy kışlarında iç ısıtan bir nimet olur.'
   },
   {
-    {
     id: 'golden_tuber_lotus',
     name: 'Altın Nilüfer Yumrusu',
     parentCropA: 'golden_tuber',
@@ -1542,7 +1511,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Anka biberinin alevi ile susamın aroması birleşir, Gaköy’de hem acı hem kokulu nadir bir mahsul sayılır.'
   },
   {
-    {
     id: 'moonlight_lotus',
     name: 'Ay Nilüferi',
     parentCropA: 'moonlight_rice',
@@ -1576,7 +1544,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın kavunun tatlılığı ile kabağın bereketi birleşir, Gaköy’de tarlaların hükümdarı sayılır.'
   },
   {
-    {
     id: 'phoenix_corn',
     name: 'Alev Başak',
     parentCropA: 'phoenix_pepper',
@@ -1610,7 +1577,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Yeşim çayının özü fıstığa işler, kabuğunun içinde yeşim gibi parlayan taneler saklıdır.'
   },
   {
-    {
     id: 'frost_radish',
     name: 'Don Yeşim Turpu',
     parentCropA: 'frost_garlic',
@@ -1644,7 +1610,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Anka biberinin ateşi patlıcanın mor kabuğuna işler, içi yakıcı ve lezzetli olur.'
   },
   {
-    {
     id: 'moonlight_spinach',
     name: 'Ay Yaprağı Otu',
     parentCropA: 'moonlight_rice',
@@ -1678,7 +1643,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Don sarımsağının soğuğu buğdaya işler, başakları kırağıyla süslenir.'
   },
   {
-    {
     id: 'golden_sesame',
     name: 'Altın Susam',
     parentCropA: 'golden_melon',
@@ -1712,7 +1676,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Ay pirincinin gümüş ışığı lahana yapraklarına iner, yapraklar ipek gibi parlak ve tatlı olur.'
   },
   {
-    {
     id: 'jade_persimmon',
     name: 'Yeşim Hurması',
     parentCropA: 'jade_tea',
@@ -1746,7 +1709,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın kavun kökenine döner, karpuzla birleşir; Gaköy’de buna meyvelerin hükümdarı denir.'
   },
   {
-    {
     id: 'phoenix_peach',
     name: 'Alev Şeftalisi',
     parentCropA: 'phoenix_pepper',
@@ -1780,7 +1742,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Yeşim çayının özü frenk soğanına işler, keskin kokusu yeşim gibi berraklaşır.'
   },
   {
-    {
     id: 'frost_pumpkin',
     name: 'Don Kabağı',
     parentCropA: 'frost_garlic',
@@ -1814,7 +1775,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'İnci taneli tahıl ile şeftalinin kızıllığı birleşir, meyvesi inci gibi yuvarlak ve parlak olur.'
   },
   {
-    {
     id: 'golden_lotus',
     name: 'Altın Nilüfer',
     parentCropA: 'golden_melon',
@@ -1848,7 +1808,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Ay pirincinin gümüş ışıltısı çay yapraklarına işler, Gaköy bilginlerinin içtiği uzun kokulu bir dem olur.'
   },
   {
-    {
     id: 'jade_rapeseed',
     name: 'Yeşim Altın Otu',
     parentCropA: 'jade_tea',
@@ -1883,7 +1842,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile yeşim çayı rüzgâr ve zamanla yoğrulur, Gaköy ovalarında doğan nadide bir kavun olur.'
   },
   {
-    {
     id: 'cloud_bean',
     name: 'Bulut Fasulyesi',
     parentCropA: 'melon_tea_fruit',
@@ -1917,7 +1875,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile don sarımsağı yıldızlı gecede değişir, doğanın özünü taşıyan nadir bir yumruya dönüşür.'
   },
   {
-    {
     id: 'thunder_green',
     name: 'Yıldırım Otu',
     parentCropA: 'melon_tea_fruit',
@@ -1951,7 +1908,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile altın yumru sabah çiğiyle birleşir, doğanın saf kokusunu taşıyan bir çiçek açar.'
   },
   {
-    {
     id: 'dawn_tea',
     name: 'Şafak Çayı',
     parentCropA: 'melon_tea_fruit',
@@ -1985,7 +1941,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile ikiz tohumlar gök ve yerin gücünü toplar, Gaköy göllerinde yıldız gibi parlayan bir nilüfer açar.'
   },
   {
-    {
     id: 'wind_splendor_wheat',
     name: 'Rüzgâr İhtişam Buğdayı',
     parentCropA: 'melon_tea_fruit',
@@ -2019,7 +1974,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile altın başak çiy ve yağmurla beslenir, Gaköy tarlalarında göğün bereketini taşıyan bir biber doğar.'
   },
   {
-    {
     id: 'hoar_splendor_root',
     name: 'Kırağı İhtişam Kökü',
     parentCropA: 'melon_tea_fruit',
@@ -2053,7 +2007,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile bal şeftali kavunu rüzgâr ve yağmurla yoğrulur, Gaköy bağlarında renk renk uzanan bir asma olur.'
   },
   {
-    {
     id: 'dew_splendor_bud',
     name: 'Çiğ İhtişam Tomurcuğu',
     parentCropA: 'melon_tea_fruit',
@@ -2087,7 +2040,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile çift yağ tohumu yıldızlı akşamda değişir, Gaköy bağlarında yetişen değerli bir kabak olur.'
   },
   {
-    {
     id: 'star_splendor_herb',
     name: 'Yıldız İhtişam Otu',
     parentCropA: 'melon_tea_fruit',
@@ -2121,7 +2073,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile kristal yam rüzgârda birleşir, Gaköy göklerinin zarafetini taşıyan bir kayısı doğar.'
   },
   {
-    {
     id: 'rain_jade3_pear',
     name: 'Yağmur Yeşim Armudu',
     parentCropA: 'melon_tea_fruit',
@@ -2155,7 +2106,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile altın sonbahar meyvesi dağların gücünü toplar, Gaköy’de yıldırımın armağanı sayılan bir şeftali olur.'
   },
   {
-    {
     id: 'rainbow_jade3_melon',
     name: 'Gökkuşağı Yeşim Kavunu',
     parentCropA: 'melon_tea_fruit',
@@ -2189,7 +2139,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile hünnap çiçeği şafağın çiyiyle yoğrulur, Gaköy tarlalarında kutsal sayılan bir pirinç doğar.'
   },
   {
-    {
     id: 'dusk_jade3_tuber',
     name: 'Alaca Yeşim Yumrusu',
     parentCropA: 'melon_tea_fruit',
@@ -2223,7 +2172,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile asil lahana rüzgâr ve zamanla yoğrulur, Gaköy’de ruh taşıdığına inanılan bir meyve doğar.'
   },
   {
-    {
     id: 'cloud_aura_bloom',
     name: 'Bulut Ruh Çiçeği',
     parentCropA: 'melon_tea_fruit',
@@ -2257,7 +2205,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile bahar frenk otu yıldızlı gecede değişir, Gaköy toprağının özünü taşıyan bir filiz doğar.'
   },
   {
-    {
     id: 'thunder_aura_lotus',
     name: 'Yıldırım Ruh Nilüferi',
     parentCropA: 'melon_tea_fruit',
@@ -2291,7 +2238,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile hardal kokulu fasulye sabah rüzgârında birleşir, Gaköy’de doğanın ruhunu taşıyan bir susam doğar.'
   },
   {
-    {
     id: 'dawn_aura_pepper',
     name: 'Şafak Ruh Biberi',
     parentCropA: 'melon_tea_fruit',
@@ -2325,7 +2271,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile altın pirinç dağların ve toprağın gücünü toplar, Gaköy’de yıldız gibi doğan bir filiz olur.'
   },
   {
-    {
     id: 'wind_glow_vine',
     name: 'Rüzgâr Işıltı Asması',
     parentCropA: 'melon_tea_fruit',
@@ -2359,7 +2304,6 @@ export const HYBRID_DEFS: HybridDef[] = [
     discoveryText: 'Altın meyve ile ipek başak çiy ve yağmurla yoğrulur, Gaköy’de kutsal sayılan ışıklı bir çiçek açar.'
   },
   {
-    {
     id: 'hoar_glow_gourd',
     name: 'Kırağı Parıltısı Kabağı',
     parentCropA: 'melon_tea_fruit',
