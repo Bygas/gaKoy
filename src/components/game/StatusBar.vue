@@ -1,26 +1,26 @@
 <template>
   <div class="border-b border-accent/30 pb-2 md:pb-3 flex flex-col space-y-1">
-    <!-- 第一行：日期时间天气 + 铜钱 -->
+    <!-- İlk satır: tarih saat hava + akçe -->
     <div class="flex items-center justify-between text-xs md:text-sm">
       <div class="flex items-center space-x-2 md:space-x-3">
-        <span class="text-accent font-bold">桃源乡</span>
+        <span class="text-accent font-bold">gaKöy</span>
         <span class="text-muted text-xs max-w-16 truncate">{{ playerStore.playerName }}</span>
-        <span class="hidden md:inline">第{{ gameStore.year }}年</span>
-        <span>{{ SEASON_NAMES[gameStore.season] }} 第{{ gameStore.day }}天</span>
+        <span class="hidden md:inline">{{ gameStore.year }}. yıl</span>
+        <span>{{ SEASON_NAMES[gameStore.season] }} {{ gameStore.day }}. gün</span>
         <span class="text-muted hidden md:inline">({{ gameStore.weekdayName }})</span>
         <span :class="{ 'text-danger': gameStore.isLateNight }">{{ gameStore.timeDisplay }}</span>
         <span class="text-muted">{{ WEATHER_NAMES[gameStore.weather] }}</span>
       </div>
       <span class="text-accent shrink-0">
         <Coins :size="12" class="inline" />
-        {{ playerStore.money }}文
+        {{ playerStore.money }} akçe
       </span>
     </div>
 
-    <!-- 第二行：状态条 + 音频控制 -->
+    <!-- İkinci satır: durum çubukları -->
     <div class="flex items-center justify-between text-xs flex-wrap">
       <div class="flex items-center space-x-2 md:space-x-4 flex-wrap">
-        <!-- 体力 -->
+        <!-- Derman -->
         <div class="flex items-center space-x-1">
           <span :class="{ 'text-danger stamina-critical': playerStore.isExhausted }">
             <Zap :size="12" class="inline" />
@@ -34,7 +34,8 @@
             />
           </div>
         </div>
-        <!-- HP（矿洞或受伤时显示） -->
+
+        <!-- Can (maden içindeyken ya da yaralıyken görünür) -->
         <div v-if="showHpBar" class="flex items-center space-x-1">
           <span :class="{ 'text-danger stamina-critical': playerStore.getIsLowHp() }">
             <Heart :size="12" class="inline" />
@@ -48,7 +49,8 @@
             />
           </div>
         </div>
-        <!-- 剩余时间 -->
+
+        <!-- Kalan vakit -->
         <div class="flex items-center space-x-1">
           <Clock :size="12" class="tinline" />
           <div class="w-12 md:w-16 h-2 bg-bg rounded-xs border border-accent/20">
@@ -78,7 +80,7 @@
     return 'bg-success'
   })
 
-  /** HP 条是否显示：在矿洞中或HP不满 */
+  /** Can çubuğu gösterilsin mi: madendeyse ya da canı tam değilse */
   const showHpBar = computed(() => {
     return gameStore.currentLocationGroup === 'mine' || playerStore.hp < playerStore.getMaxHp()
   })
@@ -90,9 +92,9 @@
     return 'bg-success'
   })
 
-  /** 剩余时间百分比 */
+  /** Kalan vaktin yüzdesi */
   const timePercent = computed(() => {
-    const total = DAY_END_HOUR - DAY_START_HOUR // 20 hours
+    const total = DAY_END_HOUR - DAY_START_HOUR
     const remaining = DAY_END_HOUR - gameStore.hour
     return Math.max(0, Math.round((remaining / total) * 100))
   })
@@ -106,7 +108,7 @@
 </script>
 
 <style scoped>
-  /* 体力条闪烁 */
+  /* Derman çubuğu titreşimi */
   @keyframes staminaPulse {
     0%,
     100% {
