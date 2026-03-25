@@ -817,12 +817,12 @@
   }
 
   const parseDamage = (msg: string): { dealt: number; taken: number; isCrit: boolean } => {
-    const dealt = msg.match(/造成(\d+)点伤害/)
-    const taken = msg.match(/受到(\d+)点伤害/)
+    const dealt = msg.match(/(\d+) hasar verdin/)
+    const taken = msg.match(/(\d+) hasar aldın/)
     return {
       dealt: dealt ? parseInt(dealt[1]!) : 0,
       taken: taken ? parseInt(taken[1]!) : 0,
-      isCrit: msg.includes('暴击')
+      isCrit: msg.includes('Kritik Vuruş')
     }
   }
 
