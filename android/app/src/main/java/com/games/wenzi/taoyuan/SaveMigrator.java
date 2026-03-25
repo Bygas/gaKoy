@@ -17,8 +17,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import fi.iki.elonen.NanoHTTPD;
 
 /**
- * 一次性存档迁移器：从旧版 http://localhost:8080 读取 localStorage，
- * 注入到 Capacitor 的 https://localhost WebView 中。
+ * Tek seferlik kayıt taşıyıcı: Eski sürümdeki http://localhost:8080 adresinden localStorage verisini okur,
+ * ve bunu Capacitor içindeki https://localhost WebView'ine aktarır.
  */
 public class SaveMigrator {
 
@@ -44,37 +44,37 @@ public class SaveMigrator {
         this.context = context;
     }
 
-    /** 检查是否需要迁移 */
+    /** Taşıma gerekip gerekmediğini kontrol et */
     public boolean needsMigration() {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         return !prefs.getBoolean(KEY_DONE, false);
     }
 
-    /** 标记迁移完成 */
+    /** Taşıma tamamlandı olarak işaretle */
     public static void markDone(Context context) {
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
             .edit().putBoolean(KEY_DONE, true).apply();
     }
 
-    /** 启动迁移流程 */
+    /** Taşıma sürecini başlat */
     public void migrate(OnMigrationListener listener) {
         this.listener = listener;
 
         if (!needsMigration()) {
-            listener.onMigrationSkipped("已迁移过，跳过");
+            listener.onMigrationSkipped("Zaten taşınmış, atlanıyor");
             return;
         }
 
-        Log.d(TAG, "开始存档迁移...");
-        showToast("正在检测旧版存档...");
+        Log.d(TAG, "Kayıt taşıma başlıyor...");
+        showToast("Eski sürüm kayıtları kontrol ediliyor...");
 
         try {
-            // 启动 NanoHTTPD，提供迁移页面
+            // Taşıma sayfasını sunmak için NanoHTTPD başlat
             server = new MigrationServer(OLD_PORT);
             server.start();
-            Log.d(TAG, "迁移服务器启动在端口 " + OLD_PORT);
+            Log.d(TAG, "Taşıma sunucusu şu portta başlatıldı: " + OLD_PORT);
 
-            // 创建隐藏 WebView 访问旧 origin
+            // Eski origin'e erişmek için gizli WebView oluştur
             handler.post(() -> {
                 hiddenWebView = new WebView(context);
                 WebSettings settings = hiddenWebView.getSettings();
@@ -85,65 +85,66 @@ public class SaveMigrator {
                 hiddenWebView.setWebViewClient(new WebViewClient() {
                     @Override
                     public void onPageFinished(WebView view, String url) {
-                        Log.d(TAG, "迁移页面加载完成: " + url);
+                        Log.d(TAG, "Taşıma sayfası yüklendi: " + url);
                     }
 
                     @Override
                     public void onReceivedError(WebView view, int errorCode,
                                                 String description, String failingUrl) {
-                        Log.e(TAG, "迁移页面加载失败: " + description);
-                        finish("页面加载失败: " + description);
+                        Log.e(TAG, "Taşıma sayfası yüklenemedi: " + description);
+                        finish("Sayfa yüklenemedi: " + description);
                     }
                 });
 
                 hiddenWebView.loadUrl("http://localhost:" + OLD_PORT + "/migration");
             });
 
-            // 10秒超时保护
+            // 10 saniyelik zaman aşımı koruması
             handler.postDelayed(() -> {
                 if (!finished) {
-                    Log.w(TAG, "迁移超时，跳过");
-                    finish("迁移超时");
+                    Log.w(TAG, "Taşıma zaman aşımına uğradı, atlanıyor");
+                    finish("Taşıma zaman aşımı");
                 }
             }, 10000);
 
         } catch (Exception e) {
-            Log.e(TAG, "迁移启动失败", e);
-            finish("服务器启动失败: " + e.getMessage());
+            Log.e(TAG, "Taşıma başlatılamadı", e);
+            finish("Sunucu başlatılamadı: " + e.getMessage());
         }
     }
 
-    /** 完成迁移并清理资源 */
+    /** Taşımayı tamamla ve kaynakları temizle */
     private synchronized void finish(String skipReason) {
         if (finished) return;
         finished = true;
         cleanup();
         if (listener != null) {
             if (skipReason != null || collectedSaves.isEmpty()) {
-                String reason = skipReason != null ? skipReason : "旧版本无存档数据";
-                Log.d(TAG, "迁移跳过: " + reason);
-                // 只有确认无数据时才标记完成，错误/超时不标记，下次启动重试
-                if ("旧版本无存档数据".equals(reason)) {
+                String reason = skipReason != null ? skipReason : "Eski sürümde kayıt verisi yok";
+                Log.d(TAG, "Taşıma atlandı: " + reason);
+                // Sadece veri olmadığı kesinleşirse tamamlandı işaretlenir,
+                // hata/zaman aşımında işaretlenmez, bir sonraki açılışta tekrar denenir
+                if ("Eski sürümde kayıt verisi yok".equals(reason)) {
                     markDone(context);
                 }
-                showToast("未发现旧版存档（" + reason + "）");
+                showToast("Eski sürüm kaydı bulunamadı (" + reason + ")");
                 listener.onMigrationSkipped(reason);
             } else {
-                // 找到旧存档，但不在这里 markDone()
-                // markDone 由 injectSaves 在真正注入成功后调用
-                Log.d(TAG, "迁移成功，共 " + collectedSaves.size() + " 条存档");
-                showToast("发现 " + collectedSaves.size() + " 个旧版存档，正在迁移...");
+                // Eski kayıt bulundu, ama burada markDone() çağrılmaz
+                // markDone, injectSaves içinde gerçekten başarıyla eklenince çağrılır
+                Log.d(TAG, "Taşıma başarılı, toplam " + collectedSaves.size() + " kayıt");
+                showToast(collectedSaves.size() + " adet eski sürüm kaydı bulundu, taşınıyor...");
                 listener.onMigrationComplete(collectedSaves);
             }
         }
     }
 
-    /** 显示 Toast 提示 */
+    /** Toast bildirimi göster */
     private void showToast(String message) {
         handler.post(() -> Toast.makeText(context, message, Toast.LENGTH_LONG).show());
     }
 
-    /** 清理资源 */
+    /** Kaynakları temizle */
     public void cleanup() {
         if (server != null) {
             server.stop();
@@ -157,7 +158,7 @@ public class SaveMigrator {
         });
     }
 
-    /** NanoHTTPD 迁移服务器，只返回一个迁移 HTML 页面 */
+    /** NanoHTTPD taşıma sunucusu, yalnızca bir taşıma HTML sayfası döndürür */
     private static class MigrationServer extends NanoHTTPD {
         MigrationServer(int port) {
             super(port);
@@ -192,40 +193,41 @@ public class SaveMigrator {
         }
     }
 
-    /** JS Bridge，接收旧 origin 的存档数据 */
+    /** JS Bridge, eski origin'den gelen kayıt verilerini alır */
     private class MigrationBridge {
         @JavascriptInterface
         public void onSaveData(String key, String value) {
-            Log.d(TAG, "收到存档: " + key + " (" + value.length() + " 字符)");
+            Log.d(TAG, "Kayıt alındı: " + key + " (" + value.length() + " karakter)");
             collectedSaves.put(key, value);
         }
 
         @JavascriptInterface
         public void onComplete(int count) {
-            Log.d(TAG, "迁移读取完成，共 " + count + " 个存档");
+            Log.d(TAG, "Taşıma okuma işlemi tamamlandı, toplam " + count + " kayıt");
             handler.post(() -> finish(null));
         }
 
         @JavascriptInterface
         public void onNoData() {
-            Log.d(TAG, "旧 origin 无存档数据");
-            handler.post(() -> finish("旧版本无存档数据"));
+            Log.d(TAG, "Eski origin'de kayıt verisi yok");
+            handler.post(() -> finish("Eski sürümde kayıt verisi yok"));
         }
 
         @JavascriptInterface
         public void onError(String message) {
-            Log.e(TAG, "迁移 JS 错误: " + message);
-            handler.post(() -> finish("JS错误: " + message));
+            Log.e(TAG, "Taşıma JS hatası: " + message);
+            handler.post(() -> finish("JS hatası: " + message));
         }
     }
 
     /**
-     * 检查新版是否已有存档，没有才注入旧存档并刷新页面
+     * Yeni sürümde zaten kayıt var mı kontrol eder,
+     * yoksa eski kayıtları ekler ve sayfayı yeniler
      */
     public static void injectSaves(WebView webView, Map<String, String> saves, Context context) {
         if (saves == null || saves.isEmpty()) return;
 
-        // 先检查新版 localStorage 是否已有存档
+        // Önce yeni sürüm localStorage içinde kayıt var mı kontrol et
         webView.evaluateJavascript(
             "(function(){" +
             "  for(var i=0;i<localStorage.length;i++){" +
@@ -234,16 +236,16 @@ public class SaveMigrator {
             "  return 'empty';" +
             "})();",
             result -> {
-                // evaluateJavascript 返回值带引号，如 "\"has_data\""
+                // evaluateJavascript dönüş değeri tırnaklı gelir, örnek: "\"has_data\""
                 if (result != null && result.contains("has_data")) {
-                    Log.d(TAG, "新版已有存档，跳过迁移注入，避免覆盖");
+                    Log.d(TAG, "Yeni sürümde zaten kayıt var, üzerine yazmamak için taşıma ekleme atlandı");
                     new Handler(Looper.getMainLooper()).post(() ->
-                        Toast.makeText(context, "新版已有存档，跳过旧版迁移", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, "Yeni sürümde zaten kayıt var, eski sürüm taşıması atlandı", Toast.LENGTH_LONG).show()
                     );
                     return;
                 }
 
-                // 新版无存档，安全注入
+                // Yeni sürümde kayıt yok, güvenli şekilde ekle
                 StringBuilder js = new StringBuilder("(function(){");
                 for (Map.Entry<String, String> entry : saves.entrySet()) {
                     String key = escapeJs(entry.getKey());
@@ -254,15 +256,15 @@ public class SaveMigrator {
                 js.append("})();");
 
                 webView.evaluateJavascript(js.toString(), r -> {
-                    Log.d(TAG, "存档注入完成，共 " + saves.size() + " 条，页面已刷新");
-                    // 注入成功才标记完成，下次不再迁移
+                    Log.d(TAG, "Kayıt ekleme tamamlandı, toplam " + saves.size() + " kayıt, sayfa yenilendi");
+                    // Sadece başarıyla eklenirse tamamlandı olarak işaretle
                     markDone(context);
                 });
             }
         );
     }
 
-    /** 转义 JS 单引号字符串中的特殊字符 */
+    /** JS içindeki tek tırnaklı metinlerde özel karakterleri kaçır */
     private static String escapeJs(String s) {
         return s.replace("\\", "\\\\")
                 .replace("'", "\\'")
