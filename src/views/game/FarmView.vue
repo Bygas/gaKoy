@@ -1193,7 +1193,7 @@
   })
 
   const wanwupuClosedReason = computed(() => {
-    return '万物铺' + getShopClosedReason(wanwupu, gameStore.day, gameStore.hour, gameStore.weather, gameStore.season)
+    return 'Hepsi Hazır'+ getShopClosedReason(wanwupu, gameStore.day, gameStore.hour, gameStore.weather, gameStore.season)
   })
 
   const getItemName = (itemId: string): string => getItemById(itemId)?.name ?? itemId
