@@ -33,11 +33,12 @@ public class MainActivity extends BridgeActivity {
 
         // Tam ekran durum çubuğu
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-        WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(getWindow(), getWindow().getDecorView());
+        WindowInsetsControllerCompat controller =
+            new WindowInsetsControllerCompat(getWindow(), getWindow().getDecorView());
         controller.setAppearanceLightStatusBars(false);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
-        // BridgeActivity kendi WebView düzenini zaten oluşturdu,
+        // BridgeActivity kendi WebView düzenini oluşturur,
         // yükleme katmanını bunun üstüne elle ekliyoruz
         loadingOverlay = getLayoutInflater().inflate(R.layout.activity_main, null);
         addContentView(loadingOverlay, new ViewGroup.LayoutParams(
@@ -47,7 +48,7 @@ public class MainActivity extends BridgeActivity {
 
         enterButton = loadingOverlay.findViewById(R.id.enterButton);
 
-        // "Oyuna Gir" butonuna basınca katmanı manuel kapat
+        // "Oyuna Gir" butonuna basınca yükleme katmanını kapat
         enterButton.setOnClickListener(v -> dismissLoading());
 
         // 5 saniye sonra hâlâ yüklenmediyse giriş butonunu göster
@@ -62,7 +63,7 @@ public class MainActivity extends BridgeActivity {
 
         WebView webView = getBridge().getWebView();
         if (webView != null) {
-            // JS arayüzünü kaydet, böylece WebView native tarafa yükleme ekranını gizle diyebilir
+            // JS arayüzünü kaydet, böylece WebView native tarafa yükleme ekranını gizleyebilir
             webView.addJavascriptInterface(new Object() {
                 @android.webkit.JavascriptInterface
                 public void hideLoading() {
@@ -70,8 +71,7 @@ public class MainActivity extends BridgeActivity {
                 }
             }, "NativeApp");
 
-            // Capacitor sayfayı yükledikten sonra Vue render tamamlandı mı diye
-            // kontrol eden scripti gecikmeli olarak ekle
+            // Capacitor sayfayı yükledikten sonra Vue render tamamlandı mı diye kontrol eden scripti gecikmeli ekle
             handler.postDelayed(() -> {
                 WebView wv = getBridge().getWebView();
                 if (wv != null) {
@@ -89,20 +89,23 @@ public class MainActivity extends BridgeActivity {
                 }
             }, 500);
 
-            // Kayıt taşıma: eski http://localhost:8080 sürümünden
-            // Capacitor içindeki https://localhost sürümüne taşı
+            // Kayıt taşıma: eski http://localhost:8080 sürümünden Capacitor içindeki https://localhost sürümüne taşı
             migrator = new SaveMigrator(this);
             migrator.migrate(new SaveMigrator.OnMigrationListener() {
                 @Override
                 public void onMigrationComplete(Map<String, String> saves) {
                     Log.d(TAG, "Kayıt taşıma başarılı, toplam " + saves.size() + " kayıt, ekleme bekleniyor...");
-                    // Capacitor WebView sayfasının yüklendiğinden emin olmak için gecikmeli ekle
+
+                    // Gecikmeli ekle, böylece Capacitor WebView sayfasının yüklendiğinden emin oluruz
                     handler.postDelayed(() -> {
                         WebView wv = getBridge().getWebView();
                         if (wv != null) {
                             SaveMigrator.injectSaves(wv, saves, MainActivity.this);
-                            Toast.makeText(MainActivity.this,
-                                "Kayıt taşıma tamamlandı! Yeniden yükleniyor...", Toast.LENGTH_LONG).show();
+                            Toast.makeText(
+                                MainActivity.this,
+                                "Kayıt taşıma tamamlandı! Yeniden yükleniyor...",
+                                Toast.LENGTH_LONG
+                            ).show();
                         }
                     }, 2000);
                 }
@@ -132,7 +135,7 @@ public class MainActivity extends BridgeActivity {
         loadingDismissed = true;
 
         // Sadece giriş butonunun zaman aşımı callback'ini kaldır,
-        // tüm callback'leri silme (yanlışlıkla taşıma callback'ini de silmeyelim)
+        // tüm callback'leri temizleme
         if (enterButtonRunnable != null) {
             handler.removeCallbacks(enterButtonRunnable);
         }
