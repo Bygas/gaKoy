@@ -74,9 +74,9 @@ pnpm preview
 # Electron masaüstü sürümünü derle
 pnpm build:electron
 
-# Yöntem 3: Yerelde imaj derle
-docker build -t taoyuan .
-docker run -d -p 8080:80 taoyuan
+# Yöntem: Yerelde imaj derle
+docker build -t gakoy .
+docker run -d -p 8080:80 gakoy
 http://localhost:8080 adresine giderek oyunu başlatabilirsin.
 Teknoloji Yığını
 Teknoloji
