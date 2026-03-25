@@ -13,7 +13,7 @@ def versionParts = appVersionName.split('\\.')
 def appVersionCode = versionParts[0].toInteger() * 10000 + versionParts[1].toInteger() * 100 + versionParts[2].toInteger()
 
 android {
-    namespace = "com.games.wenzi.gakoy"
+    namespace = "games.bygas.gakoy"
     compileSdk = rootProject.ext.compileSdkVersion
 
     signingConfigs {
@@ -28,7 +28,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.games.wenzi.gakoy"
+        applicationId "games.bygas.gakoy"
         minSdkVersion 26
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode appVersionCode
