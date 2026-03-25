@@ -1160,7 +1160,7 @@
     if (action === 'attack') sfxAttack()
     if (action === 'defend') sfxDefend()
     if (action === 'flee') sfxFlee()
-    if (result.message.includes('受到')) sfxHurt()
+    if (result.message.includes('hasar aldı')) sfxHurt()
 
     if (action === 'attack' && dealt > 0) {
       triggerAnim('monster', isCrit ? 'anim-shake-heavy' : 'anim-shake', isCrit ? 400 : 300)
