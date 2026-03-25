@@ -117,8 +117,8 @@
             </div>
             <div class="border border-accent/20 rounded-xs p-3">
               <p class="text-muted text-xs mb-1">TapTap</p>
-              <a :href="`https://www.taptap.cn/app/${pkg.tapid}`" target="_blank" class="text-accent underline break-all">
-                https://www.taptap.cn/app/{{ pkg.tapid }}
+              <a :href="`#/${pkg.tapid}`" target="_blank" class="text-accent underline break-all">
+                Daha açmadık yeğenim
               </a>
             </div>
           </div>
