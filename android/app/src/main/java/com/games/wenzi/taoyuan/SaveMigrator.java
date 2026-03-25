@@ -1,4 +1,4 @@
-package com.games.wenzi.taoyuan;
+package games.bygas.gakoy;
 
 import android.content.Context;
 import android.content.SharedPreferences;
