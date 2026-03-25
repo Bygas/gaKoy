@@ -105,8 +105,8 @@
             </div>
             <div class="border border-accent/20 rounded-xs p-3">
               <p class="text-muted text-xs mb-1">QQ sohbet obası</p>
-              <a href="https://qm.qq.com/q/2BVaTTwDkI" target="_blank" class="text-accent underline break-all">
-                {{ pkg.qq }}
+              <a href="#" target="_blank" class="text-accent underline break-all">
+                {{ pkg.qq }} Buda yok isterseniz wp grubu kurarım
               </a>
             </div>
             <div class="border border-accent/20 rounded-xs p-3">
@@ -127,23 +127,14 @@
             <p class="text-xs text-muted">Bu oyunu sevdiysen, ozana bir tas süt ya da sıcak bir öğün ısmarlayabilirsin; desteğin yeni güncellemelerin en büyük kuvvetidir.</p>
             <div class="flex space-x-3">
               <div class="flex-1 border border-accent/20 rounded-xs p-3">
-                <p class="text-muted text-xs mb-2">Alipay</p>
-                <img
-                  src="@/assets/alipay.png"
-                  alt="Alipay"
-                  class="mx-auto"
-                  style="width: 120px; height: 120px; image-rendering: pixelated"
-                />
+                Paylaşın oynatın
               </div>
-              <div class="flex-1 border border-accent/20 rounded-xs p-3">
-                <p class="text-muted text-xs mb-2">WeChat</p>
-                <img src="@/assets/wechat.png" alt="WeChat" class="mx-auto" style="width: 120px; height: 120px; image-rendering: pixelated" />
-              </div>
+              Nbr Yeğenim
             </div>
             <div class="border border-accent/20 rounded-xs p-3">
               <p class="text-muted text-xs mb-1">Aifadian</p>
-              <a :href="`https://afdian.com/a/${pkg.author}`" target="_blank" class="text-accent underline break-all">
-                https://afdian.com/a/{{ pkg.author }}
+              <a :href="`#/${pkg.author}`" target="_blank" class="text-accent underline break-all">
+                Aman eğlenin gerek yok şimdilik
               </a>
             </div>
           </div>
