@@ -74,12 +74,6 @@ pnpm preview
 # Electron masaüstü sürümünü derle
 pnpm build:electron
 
-# Yöntem 1: Hazır imaj kullan (önerilir)
-docker run -d -p 8080:80 ghcr.io/setube/taoyuan:latest
-
-# Yöntem 2: Belirli sürüm kullan
-docker run -d -p 8080:80 ghcr.io/setube/taoyuan:<version>
-
 # Yöntem 3: Yerelde imaj derle
 docker build -t taoyuan .
 docker run -d -p 8080:80 taoyuan
