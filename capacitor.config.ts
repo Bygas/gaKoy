@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
-  appId: 'com.games.wenzi.taoyuan',
+  appId: 'games.bygas.gakoy',
   appName: 'gaKöy',
   webDir: 'docs'
 }
