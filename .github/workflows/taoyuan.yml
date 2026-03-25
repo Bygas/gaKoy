@@ -120,12 +120,12 @@ jobs:
           no-cache: false
           pull: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/taoyuan:latest
-            ghcr.io/${{ github.repository_owner }}/taoyuan:${{ steps.version.outputs.version }}
-            ghcr.io/${{ github.repository_owner }}/taoyuan:${{ github.sha }}
-            ${{ env.DOCKERHUB_USERNAME && format('{0}/taoyuan:latest', env.DOCKERHUB_USERNAME) || '' }}
-            ${{ env.DOCKERHUB_USERNAME && format('{0}/taoyuan:{1}', env.DOCKERHUB_USERNAME, steps.version.outputs.version) || '' }}
-            ${{ env.DOCKERHUB_USERNAME && format('{0}/taoyuan:{1}', env.DOCKERHUB_USERNAME, github.sha) || '' }}
+            ghcr.io/${{ github.repository_owner }}/gakoy:latest
+            ghcr.io/${{ github.repository_owner }}/gakoy:${{ steps.version.outputs.version }}
+            ghcr.io/${{ github.repository_owner }}/gakoy:${{ github.sha }}
+            ${{ env.DOCKERHUB_USERNAME && format('{0}/gakoy:latest', env.DOCKERHUB_USERNAME) || '' }}
+            ${{ env.DOCKERHUB_USERNAME && format('{0}/gakoy:{1}', env.DOCKERHUB_USERNAME, steps.version.outputs.version) || '' }}
+            ${{ env.DOCKERHUB_USERNAME && format('{0}/gakoy:{1}', env.DOCKERHUB_USERNAME, github.sha) || '' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           build-args: |
