@@ -225,7 +225,7 @@
           <div class="text-xs text-muted mb-2 border-b border-accent/20 pb-2 space-y-0.5">
             <p>
               <Swords :size="12" class="inline" />
-              {{ weaponDisplayName }}（{{ weaponTypeName }} · Vuruş {{ weaponAttack }} · Ağır vurma {{ critRateDisplay }}）
+              {{ weaponDisplayName }} ({{ weaponTypeName }} · Vuruş {{ weaponAttack }} · Ağır vurma {{ critRateDisplay }})
             </p>
             <p v-if="weaponEnchantName" class="text-success">Tılsım: {{ weaponEnchantName }}</p>
           </div>
@@ -313,7 +313,7 @@
             >
               <span class="text-xs text-danger">
                 <LogOut :size="12" class="inline" />
-                {{ miningStore.isInSkullCavern ? 'Kuru Kafa Oyuğu’ndan çık' : 'Madenden çık' }}
+                {{ miningStore.isInSkullCavern ? "Kuru Kafa Oyuğu'ndan çık" : 'Madenden çık' }}
               </span>
             </div>
           </div>
@@ -548,7 +548,7 @@
       >
         <div class="game-panel max-w-xs w-full">
           <p class="text-sm text-accent mb-2">Çıkışı Onayla</p>
-          <p class="text-xs text-muted mb-3">Gerçekten {{ miningStore.isInSkullCavern ? 'Kuru Kafa Oyuğu’ndan' : 'madenden' }} çıkmak ister misin? Şimdiki iz saklanmayacak.</p>
+          <p class="text-xs text-muted mb-3">Gerçekten {{ miningStore.isInSkullCavern ? "Kuru Kafa Oyuğu'ndan" : 'madenden' }} çıkmak ister misin? Şimdiki iz saklanmayacak.</p>
           <div class="flex space-x-1.5">
             <Button class="flex-1 justify-center" @click="showLeaveConfirm = false">Sürmeye devam et</Button>
             <Button class="flex-1 justify-center btn-danger" :icon="LogOut" @click="confirmLeave">Çık</Button>
@@ -779,7 +779,6 @@
   /** Madenden çıkma onayı */
   const showLeaveConfirm = ref(false)
 
-  // Dövüş devinim durumu
   const combatAnimLock = ref(false)
   const playerAnim = ref('')
   const monsterAnim = ref('')
@@ -817,8 +816,8 @@
   }
 
   const parseDamage = (msg: string): { dealt: number; taken: number; isCrit: boolean } => {
-    const dealt = msg.match(/(\d+) hasar verdin/)
-    const taken = msg.match(/(\d+) hasar aldın/)
+    const dealt = msg.match(/(\d+).*hasar verdin/)
+    const taken = msg.match(/(\d+).*hasar aldın/)
     return {
       dealt: dealt ? parseInt(dealt[1]!) : 0,
       taken: taken ? parseInt(taken[1]!) : 0,
@@ -836,35 +835,29 @@
     return BOMBS.map(b => ({ id: b.id, name: b.name, count: inventoryStore.getItemCount(b.id) })).filter(b => b.count > 0)
   })
 
-  /** Dövüşte kullanılacak eşyalar */
   const availableCombatItems = computed(() => {
     const items: { itemId: string; name: string; desc: string; count: number }[] = []
 
-    // Lonca nişanı
     const badgeCount = inventoryStore.getItemCount('guild_badge')
     if (badgeCount > 0) {
       items.push({ itemId: 'guild_badge', name: 'Lonca Nişanı', desc: 'Vuruş gücü kalıcı +3', count: badgeCount })
     }
 
-    // Can muskası
     const talismanCount = inventoryStore.getItemCount('life_talisman')
     if (talismanCount > 0) {
       items.push({ itemId: 'life_talisman', name: 'Can Muskası', desc: 'Azami can kalıcı +15', count: talismanCount })
     }
 
-    // Uğur akçesi
     const coinCount = inventoryStore.getItemCount('lucky_coin')
     if (coinCount > 0) {
       items.push({ itemId: 'lucky_coin', name: 'Uğur Akçesi', desc: 'Düşürme oranı kalıcı +5%', count: coinCount })
     }
 
-    // Korunç
     const defenseCharmCount = inventoryStore.getItemCount('defense_charm')
     if (defenseCharmCount > 0) {
       items.push({ itemId: 'defense_charm', name: 'Korunç', desc: 'Savunma kalıcı +3%', count: defenseCharmCount })
     }
 
-    // Avcı muskası
     if (!miningStore.slayerCharmActive) {
       const charmCount = inventoryStore.getItemCount('slayer_charm')
       if (charmCount > 0) {
@@ -872,7 +865,6 @@
       }
     }
 
-    // Yenebilir onarıcı eşyalar
     const seen = new Set<string>(['guild_badge', 'slayer_charm', 'monster_lure', 'life_talisman', 'lucky_coin', 'defense_charm'])
     for (const invItem of inventoryStore.items) {
       if (invItem.quantity <= 0 || seen.has(invItem.itemId)) continue
@@ -888,7 +880,7 @@
       items.push({
         itemId: invItem.itemId,
         name: def.name,
-        desc: parts.join('，'),
+        desc: parts.join(', '),
         count: inventoryStore.getItemCount(invItem.itemId)
       })
     }
@@ -896,7 +888,6 @@
     return items
   })
 
-  /** Yaratık yemi var mı */
   const hasMonsterLure = computed(() => inventoryStore.getItemCount('monster_lure') > 0)
 
   const zoneName = computed(() => {
@@ -904,7 +895,6 @@
     return floor ? ZONE_NAMES[floor.zone] : ''
   })
 
-  /** Maden haritası bölük bilgileri */
   const mineZones = computed(() => {
     const zones = [
       { id: 'shallow', name: 'Yüzey Katı · Toprak ve taş', start: 1, end: 20, bossFloor: 20 },
@@ -933,21 +923,17 @@
     })
   })
 
-  /** Şimdiki kat özel mi */
   const currentFloorSpecial = computed(() => {
     const floor = miningStore.getActiveFloorData()
     return floor?.specialType ?? null
   })
 
-  /** Basık katta kalan yaratık */
   const remainingMonsters = computed(() => {
     return miningStore.totalMonstersOnFloor - miningStore.monstersDefeatedCount
   })
 
-  /** Asansör görünsün mü */
   const hasElevator = computed(() => elevatorZones.value.length > 0 || miningStore.isSkullCavernUnlocked())
 
-  /** Silah bilgileri */
   const weaponDisplayName = computed(() => {
     const owned = inventoryStore.getEquippedWeapon()
     return getWeaponDisplayName(owned.defId, owned.enchantmentId)
@@ -974,7 +960,6 @@
     return enchant ? `${enchant.name} - ${enchant.description}` : ''
   })
 
-  /** Asansör katlarını bölüklere ayır */
   const elevatorZones = computed(() => {
     const allSafePoints = miningStore.getUnlockedSafePoints().filter(sp => sp < miningStore.safePointFloor)
     const zones = [
@@ -993,9 +978,6 @@
       .filter(z => z.floors.length > 0)
   })
 
-  // ==================== Göze görünüşü yardımcıları ====================
-
-  /** Göze biçemi */
   const getTileClass = (tile: MineTile): string => {
     if (tile.state === 'hidden') {
       if (bombModeId.value) return 'bg-panel/50 border-accent/10 cursor-not-allowed opacity-40'
@@ -1024,7 +1006,6 @@
     }
   }
 
-  /** Göze imi */
   const getTileIcon = (tile: MineTile): string => {
     if (tile.state === 'hidden') return '?'
     switch (tile.type) {
@@ -1049,19 +1030,16 @@
     }
   }
 
-  /** Göze dokunulabilir mi */
   const isTileClickable = (tile: MineTile): boolean => {
     if (bombModeId.value) {
       return tile.state !== 'hidden'
     }
-    // Açılmış yaratık/Ulu yaratık gözesine yeniden girilebilir
     if (tile.state === 'revealed' && (tile.type === 'monster' || tile.type === 'boss') && tile.data?.monster) {
       return true
     }
     return tile.state === 'hidden' && miningStore.canRevealTile(tile.index)
   }
 
-  /** Göze dokunma işi */
   const handleTileClick = (tile: MineTile) => {
     if (gameStore.isPastBedtime) {
       addLog('Vakit çok geçti, artık iz sürülmez.')
@@ -1085,7 +1063,6 @@
       return
     }
 
-    // Açılmış yaratık/Ulu yaratık gözesinde yeniden dövüş
     if (tile.state === 'revealed' && (tile.type === 'monster' || tile.type === 'boss') && tile.data?.monster) {
       const result = miningStore.engageRevealedMonster(tile.index)
       if (result.success) {
@@ -1125,12 +1102,9 @@
     }
   }
 
-  /** Bomba düzenini değiştir */
   const toggleBombMode = (bombId: string) => {
     bombModeId.value = bombModeId.value === bombId ? null : bombId
   }
-
-  // ==================== İşlemler ====================
 
   const handleEnterMine = (startFrom?: number) => {
     showElevatorModal.value = false
@@ -1160,7 +1134,7 @@
     if (action === 'attack') sfxAttack()
     if (action === 'defend') sfxDefend()
     if (action === 'flee') sfxFlee()
-    if (result.message.includes('hasar aldı')) sfxHurt()
+    if (result.message.includes('hasar aldın')) sfxHurt()
 
     if (action === 'attack' && dealt > 0) {
       triggerAnim('monster', isCrit ? 'anim-shake-heavy' : 'anim-shake', isCrit ? 400 : 300)
@@ -1193,7 +1167,6 @@
     }, 400)
   }
 
-  /** Dövüş eşyası kullan */
   const handleUseCombatItem = (itemId: string) => {
     const result = miningStore.useCombatItem(itemId)
     sfxClick()
@@ -1214,7 +1187,6 @@
     showCombatItems.value = false
   }
 
-  /** Yaratık yemi kullan */
   const handleUseMonsterLure = () => {
     const result = miningStore.useMonsterLure()
     sfxClick()
@@ -1257,8 +1229,6 @@
   const confirmLeave = () => {
     handleLeave()
   }
-
-  // ==================== Hızlı kuşanım ====================
 
   const showPresetListModal = ref(false)
   const showPresetDetailModal = ref(false)
@@ -1390,8 +1360,6 @@
 </script>
 
 <style scoped>
-  /* === Dövüş devinimleri === */
-
   @keyframes combat-shake {
     0%,
     100% {
