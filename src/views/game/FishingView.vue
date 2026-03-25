@@ -353,8 +353,8 @@
             </div>
           </div>
 
-          <p v-if="catchResult.message.includes('宝箱')" class="text-xs text-accent mb-2">
-            {{ catchResult.message.slice(catchResult.message.indexOf('宝箱')) }}
+          <p v-if="catchResult.message.includes('Hazine Sandığı')" class="text-xs text-accent mb-2">
+            {{ catchResult.message.slice(catchResult.message.indexOf('Hazine Sandığı')) }}
           </p>
 
           <Button class="w-full justify-center !bg-accent !text-bg" @click="dismissCatchResult">Tamam</Button>
