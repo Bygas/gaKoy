@@ -1,5 +1,5 @@
 {
-  "name": "taoyuan",
+  "name": "gaKöy",
   "title": "gaKöy",
   "qq": "920930589",
   "tapid": "816558",
@@ -18,8 +18,8 @@
     "build:android": "pnpm run build && npx cap sync android",
     "build:apk": "pnpm run build:android && cd android && ./gradlew assembleRelease"
   },
-  "description": "Yazı tabanlı bir kır yaşamı ve işletme oyunu; esini Yıldız Çiyi Vadisi'nden alır.",
-  "author": "setube",
+  "description": "Yazı tabanlı bir kır yaşamı ve işletme oyunu; Stardew Valleyden esinlenilmiştir.",
+  "author": "bygas",
   "dependencies": {
     "@capacitor/android": "^8.1.0",
     "@capacitor/app": "^8.0.1",
@@ -61,8 +61,8 @@
     "vue-tsc": "^3.1.4"
   },
   "build": {
-    "appId": "games.wenzi.taoyuan",
-    "productName": "gaKöy",
+    "appId": "games.bygas.gakoy",
+    "productName": "gaKoy",
     "asar": false,
     "files": [
       "dist-electron/**/*",
