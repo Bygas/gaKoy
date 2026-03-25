@@ -31,13 +31,14 @@ public class MainActivity extends BridgeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 沉浸式状态栏
+        // Tam ekran durum çubuğu
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
         WindowInsetsControllerCompat controller = new WindowInsetsControllerCompat(getWindow(), getWindow().getDecorView());
         controller.setAppearanceLightStatusBars(false);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
-        // BridgeActivity 已创建自己的 WebView 布局，手动 inflate 遮罩层叠加到上面
+        // BridgeActivity kendi WebView düzenini zaten oluşturdu,
+        // yükleme katmanını bunun üstüne elle ekliyoruz
         loadingOverlay = getLayoutInflater().inflate(R.layout.activity_main, null);
         addContentView(loadingOverlay, new ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -46,10 +47,10 @@ public class MainActivity extends BridgeActivity {
 
         enterButton = loadingOverlay.findViewById(R.id.enterButton);
 
-        // 点击"进入游戏"手动关闭遮罩
+        // "Oyuna Gir" butonuna basınca katmanı manuel kapat
         enterButton.setOnClickListener(v -> dismissLoading());
 
-        // 5秒后如果还没加载完，显示进入按钮
+        // 5 saniye sonra hâlâ yüklenmediyse giriş butonunu göster
         enterButtonRunnable = () -> {
             if (!loadingDismissed && enterButton != null) {
                 enterButton.setVisibility(View.VISIBLE);
@@ -61,7 +62,7 @@ public class MainActivity extends BridgeActivity {
 
         WebView webView = getBridge().getWebView();
         if (webView != null) {
-            // 注册 JS 接口，让 WebView 可以通知 Native 隐藏遮罩
+            // JS arayüzünü kaydet, böylece WebView native tarafa yükleme ekranını gizle diyebilir
             webView.addJavascriptInterface(new Object() {
                 @android.webkit.JavascriptInterface
                 public void hideLoading() {
@@ -69,7 +70,8 @@ public class MainActivity extends BridgeActivity {
                 }
             }, "NativeApp");
 
-            // 延迟注入轮询脚本，等 Capacitor 加载页面后检测 Vue 渲染完成
+            // Capacitor sayfayı yükledikten sonra Vue render tamamlandı mı diye
+            // kontrol eden scripti gecikmeli olarak ekle
             handler.postDelayed(() -> {
                 WebView wv = getBridge().getWebView();
                 if (wv != null) {
@@ -87,26 +89,27 @@ public class MainActivity extends BridgeActivity {
                 }
             }, 500);
 
-            // 存档迁移：从旧版 http://localhost:8080 迁移到 Capacitor 的 https://localhost
+            // Kayıt taşıma: eski http://localhost:8080 sürümünden
+            // Capacitor içindeki https://localhost sürümüne taşı
             migrator = new SaveMigrator(this);
             migrator.migrate(new SaveMigrator.OnMigrationListener() {
                 @Override
                 public void onMigrationComplete(Map<String, String> saves) {
-                    Log.d(TAG, "存档迁移成功，共 " + saves.size() + " 条，等待注入...");
-                    // 延迟注入，确保 Capacitor WebView 页面已加载
+                    Log.d(TAG, "Kayıt taşıma başarılı, toplam " + saves.size() + " kayıt, ekleme bekleniyor...");
+                    // Capacitor WebView sayfasının yüklendiğinden emin olmak için gecikmeli ekle
                     handler.postDelayed(() -> {
                         WebView wv = getBridge().getWebView();
                         if (wv != null) {
                             SaveMigrator.injectSaves(wv, saves, MainActivity.this);
                             Toast.makeText(MainActivity.this,
-                                "存档迁移完成！重新加载中...", Toast.LENGTH_LONG).show();
+                                "Kayıt taşıma tamamlandı! Yeniden yükleniyor...", Toast.LENGTH_LONG).show();
                         }
                     }, 2000);
                 }
 
                 @Override
                 public void onMigrationSkipped(String reason) {
-                    Log.d(TAG, "存档迁移跳过: " + reason);
+                    Log.d(TAG, "Kayıt taşıma atlandı: " + reason);
                 }
             });
         }
@@ -116,7 +119,8 @@ public class MainActivity extends BridgeActivity {
     public void onDestroy() {
         super.onDestroy();
         handler.removeCallbacksAndMessages(null);
-        // 清理迁移器资源
+
+        // Taşıyıcı kaynaklarını temizle
         if (migrator != null) {
             migrator.cleanup();
             migrator = null;
@@ -126,10 +130,13 @@ public class MainActivity extends BridgeActivity {
     private void dismissLoading() {
         if (loadingDismissed || loadingOverlay == null) return;
         loadingDismissed = true;
-        // 只移除进入按钮的超时回调，不清除所有回调（避免误杀迁移注入回调）
+
+        // Sadece giriş butonunun zaman aşımı callback'ini kaldır,
+        // tüm callback'leri silme (yanlışlıkla taşıma callback'ini de silmeyelim)
         if (enterButtonRunnable != null) {
             handler.removeCallbacks(enterButtonRunnable);
         }
+
         loadingOverlay.animate()
             .alpha(0f)
             .setDuration(300)
