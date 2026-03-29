@@ -505,7 +505,7 @@ export const FISH: FishDef[] = [
   },
   {
     id: 'stone_crab',
-    name: 'Taş Yengesi',
+    name: 'Taş Yengeci',
     season: ['spring', 'summer', 'autumn', 'winter'],
     weather: ['any'],
     difficulty: 'easy',
